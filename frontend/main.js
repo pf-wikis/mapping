@@ -358,6 +358,7 @@ function clickOnCity(e) {
     .setLngLat(coordinates)
     .setHTML('<a href="'+props.link+'" target="_blank">'+props.Name+"</a>")
     .addTo(map);
+  e.stopPropagation();
 }
 
 map.on('click', 'city-icons', clickOnCity);
