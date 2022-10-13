@@ -63,7 +63,7 @@ let layers = [
       'fill-color': colors.ice,
     }
   }),
-  createLayer('swamps', {
+  createLayer('swamp', {
     type: 'fill',
     paint: {
       'fill-color': colors.swamp,
