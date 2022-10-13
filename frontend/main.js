@@ -329,15 +329,21 @@ map.on('contextmenu', function(e) {
 
 
 ////////////////////////////////////////// make cities clickable
-map.on('mouseenter', 'city-icons', function () {
+function showPointer() {
   map.getCanvas().style.cursor = 'pointer';
-});
+}
 
-map.on('mouseleave', 'city-icons', function () {
+function hidePointer() {
   map.getCanvas().style.cursor = '';
-});
+}
 
-map.on('click', 'city-icons', function (e) {
+map.on('mouseenter', 'city-icons', showPointer);
+map.on('mouseenter', 'city-labels', showPointer);
+
+map.on('mouseleave', 'city-icons', hidePointer);
+map.on('mouseleave', 'city-labels', hidePointer);
+
+function clickOnCity(e) {
   let coordinates = e.features[0].geometry.coordinates.slice();
   let props = e.features[0].properties;
    
@@ -352,10 +358,10 @@ map.on('click', 'city-icons', function (e) {
     .setLngLat(coordinates)
     .setHTML('<a href="'+props.link+'" target="_blank">'+props.Name+"</a>")
     .addTo(map);
-});
+}
 
-
-
+map.on('click', 'city-icons', clickOnCity);
+map.on('click', 'city-labels', clickOnCity);
 
 
 
