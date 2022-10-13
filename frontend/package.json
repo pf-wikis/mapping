@@ -1,0 +1,17 @@
+{
+  "name": "mapbox-vector-tiles",
+  "dependencies": {
+    "bootstrap": "^5.2.2",
+    "maplibre-gl": "^2.4.0",
+    "pure-context-menu": "^1.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "latest",
+    "sass": "^1.55.0",
+    "vite": "^3.0.3"
+  },
+  "scripts": {
+    "start": "npx vite",
+    "build": "vite build"
+  }
+}
