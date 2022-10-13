@@ -294,15 +294,16 @@ let layers = [
 export const map = new maplibregl.Map({
   container: 'map-container',
   style: {
-    'version': 8,
-    'sources': {
-      'golarion': {
-        'type': 'vector',
-        'tiles': [
+    version: 8,
+    sources: {
+      golarion: {
+        type: 'vector',
+        attribution: "Created under the Paizo Inc. Community Use Policy",
+        tiles: [
           document.baseURI+'data/golarion/{z}/{x}/{y}.pbf'
         ],
-        'minzoom': 0,
-        'maxzoom': 6
+        minzoom: 0,
+        maxzoom: 7
       }
     },
     sprite: document.baseURI+'sprites',
