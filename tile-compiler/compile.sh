@@ -4,14 +4,16 @@ set -e
 maxZoom=7
 
 targetDir="../frontend/public/data"
+spriteDir="$targetDir/../sprites"
 rm -rf $targetDir
 rm -rf geo
 mkdir geo
 mkdir -p "$targetDir"
+mkdir -p "$spriteDir"
 
 #compile sprites
-spritezero "$targetDir/../sprites" "sprites/"
-spritezero "$targetDir/../sprites@2x" "sprites/" --retina
+spritezero "$spriteDir/sprites" "sprites/"
+spritezero "$spriteDir/sprites@2x" "sprites/" --retina
 
 toGeoJSON() {
 	local target="$tmp/${1:8:-4}.json"
@@ -66,7 +68,14 @@ tippecanoe -z${maxZoom} --no-tile-compression -n "golarion" -e "$targetDir/golar
 	--coalesce \
 	\
 	-B 0 \
-	--no-feature-limit \
-	--no-tile-size-limit \
+	--coalesce-densest-as-needed \
+	--simplification=4 \
+	--maximum-tile-bytes=200000 \
+	--maximum-tile-features=100000 \
 	\
 	$layers
+
+# rename extensions for github pages gzipping
+for f in $targetDir/golarion/*/*/*.pbf; do
+	mv "$f" "$f.json"
+done

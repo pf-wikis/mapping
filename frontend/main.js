@@ -300,16 +300,20 @@ export const map = new maplibregl.Map({
         type: 'vector',
         attribution: "Created under the Paizo Inc. Community Use Policy",
         tiles: [
-          document.baseURI+'data/golarion/{z}/{x}/{y}.pbf'
+          document.baseURI+'data/golarion/{z}/{x}/{y}.pbf.json'
         ],
         minzoom: 0,
         maxzoom: 7
       }
     },
-    sprite: document.baseURI+'sprites',
+    sprite: document.baseURI+'sprites/sprites',
     layers: layers,
-    glyphs: "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf"
+    glyphs: document.baseURI+'fonts/{fontstack}/{range}.pbf.json'
   },
+});
+map.on('error', function(err) {
+  console.log(err.error.message);
+  document.getElementById("map-container").innerHTML = err.error.message;
 });
 map.addControl(new maplibregl.NavigationControl());
 map.addControl(new maplibregl.ScaleControl({
