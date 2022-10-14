@@ -60,7 +60,7 @@ for f in geo/*.geojson; do
 	layers="$layers -L $name:$f"
 done
 
-tippecanoe -z${maxZoom} --no-tile-compression -n "golarion" -e "$targetDir/golarion" \
+tippecanoe -z${maxZoom} -n "golarion" -e "$targetDir/golarion" \
 	--force \
 	--detect-shared-borders \
 	--coalesce \
@@ -70,3 +70,7 @@ tippecanoe -z${maxZoom} --no-tile-compression -n "golarion" -e "$targetDir/golar
 	--no-tile-size-limit \
 	\
 	$layers
+
+for f in $targetDir/golarion/*/*/*.pbf; do
+	mv "$f" "$f.gz"
+done
