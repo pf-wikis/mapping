@@ -11,3 +11,11 @@ body {
 	bottom: 0;
 	width: 100%;
 }
+
+.embedded {
+	.maplibregl-ctrl-scale {
+		background: transparent;
+		height: 5px;
+		margin-bottom: 15px !important;
+	}
+}

@@ -3,8 +3,15 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import * as maplibregl from "maplibre-gl";
 import PureContextMenu from "pure-context-menu";
 
-//<script src='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js'></script>
-//<link href='https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css' rel='stylesheet' />
+//check if running embedded
+var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
+const embedded = (urlParams.get('embedded') === 'true');
+const mapContainer = document.getElementById("map-container");
+
+if(embedded) {
+  mapContainer.classList.add("embedded");
+}
+
 
 function createLayer(name, base) {
   return Object.assign({
@@ -295,13 +302,14 @@ const root = location.origin + location.pathname
 if(!root.endsWith("/")) root += "/";
 export const map = new maplibregl.Map({
   container: 'map-container',
-  hash: true,
+  hash: 'location',
+  attributionControl: false,
   style: {
     version: 8,
     sources: {
       golarion: {
         type: 'vector',
-        attribution: "Created under the Paizo Inc. Community Use Policy",
+        attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>',
         tiles: [
           root+'data/golarion/{z}/{x}/{y}.pbf.json'
         ],
@@ -318,12 +326,19 @@ map.on('error', function(err) {
   console.log(err.error.message);
   document.getElementById("map-container").innerHTML = err.error.message;
 });
-map.addControl(new maplibregl.NavigationControl());
+if(!embedded) {
+  map.addControl(new maplibregl.NavigationControl());
+}
 map.addControl(new maplibregl.ScaleControl({
-  unit: 'imperial'
+  unit: 'imperial',
+  maxWidth: embedded?50:100,
 }));
 map.addControl(new maplibregl.ScaleControl({
-  unit: 'metric'
+  unit: 'metric',
+  maxWidth: embedded?50:100,
+}));
+map.addControl(new maplibregl.AttributionControl({
+  compact: embedded
 }));
 
 var latLong = null;
@@ -394,7 +409,7 @@ const items = [
     },
   },
 ];
-const menu = new PureContextMenu(document.getElementById("map-container"), items, {
+const menu = new PureContextMenu(mapContainer, items, {
   show: (e) => {
     //only show if map itself is clicked
     return e.target.classList.contains('maplibregl-canvas');
