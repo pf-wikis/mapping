@@ -291,8 +291,11 @@ let layers = [
   }),
 ];
 
+const root = location.origin + location.pathname
+if(!root.endsWith("/")) root += "/";
 export const map = new maplibregl.Map({
   container: 'map-container',
+  hash: true,
   style: {
     version: 8,
     sources: {
@@ -300,15 +303,15 @@ export const map = new maplibregl.Map({
         type: 'vector',
         attribution: "Created under the Paizo Inc. Community Use Policy",
         tiles: [
-          document.baseURI+'data/golarion/{z}/{x}/{y}.pbf.json'
+          root+'data/golarion/{z}/{x}/{y}.pbf.json'
         ],
         minzoom: 0,
         maxzoom: 7
       }
     },
-    sprite: document.baseURI+'sprites/sprites',
+    sprite: root+'sprites/sprites',
     layers: layers,
-    glyphs: document.baseURI+'fonts/{fontstack}/{range}.pbf.json'
+    glyphs: root+'fonts/{fontstack}/{range}.pbf.json'
   },
 });
 map.on('error', function(err) {
