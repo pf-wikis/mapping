@@ -104,7 +104,7 @@ let layers = [
       'symbol-placement': 'line',
       'text-max-angle': 20,
       'text-field': ['get', 'Name'],
-      'text-font': ['Klokantech Noto Sans Regular'],
+      'text-font': ['NotoSans-Medium'],
       'symbol-spacing': 300,
       'text-size': [
         'interpolate',
@@ -143,7 +143,7 @@ let layers = [
     type: 'symbol',
     layout: {
       'text-field': ['get', 'Name'],
-      'text-font': ['Klokantech Noto Sans Regular'],
+      'text-font': ['NotoSans-Medium'],
       'text-overlap': 'always',
       'text-size': 32,
     },
@@ -158,7 +158,7 @@ let layers = [
     minzoom: 6,
     layout: {
       'text-field': ['get', 'Name'],
-      'text-font': ['Klokantech Noto Sans Regular'],
+      'text-font': ['NotoSans-Medium'],
       'text-size': 16,
     },
     paint: {
@@ -172,7 +172,7 @@ let layers = [
     minzoom: 6,
     layout: {
       'text-field': ['get', 'Name'],
-      'text-font': ['Klokantech Noto Sans Regular'],
+      'text-font': ['NotoSans-Medium'],
       'text-size': 16,
     },
     paint: {
@@ -186,7 +186,7 @@ let layers = [
     minzoom: 6,
     layout: {
       'text-field': ['get', 'Name'],
-      'text-font': ['Klokantech Noto Sans Regular'],
+      'text-font': ['NotoSans-Medium'],
       'text-size': 16,
     },
     paint: {
@@ -200,7 +200,7 @@ let layers = [
     minzoom: 6,
     layout: {
       'text-field': ['get', 'Name'],
-      'text-font': ['Klokantech Noto Sans Regular'],
+      'text-font': ['NotoSans-Medium'],
       'text-size': 16,
     },
     paint: {
@@ -214,7 +214,7 @@ let layers = [
     maxzoom: 2,
     layout: {
       'text-field': ['get', 'Name'],
-      'text-font': ['Klokantech Noto Sans Regular'],
+      'text-font': ['NotoSans-Medium'],
       'text-overlap': 'always',
       'text-size': interpolateWithCamera(10),
     },
@@ -250,7 +250,7 @@ let layers = [
     maxzoom: 10,
     layout: {
       'text-field': ['get', 'Name'],
-      'text-font': ['Klokantech Noto Sans Regular'],
+      'text-font': ['NotoSans-Medium'],
       'text-size': ['step',
         ['get', 'size'],
         16,
@@ -280,7 +280,7 @@ let layers = [
     maxzoom: 6,
     layout: {
       'text-field': ['get', 'Name'],
-      'text-font': ['Klokantech Noto Sans Regular'],
+      'text-font': ['NotoSans-Medium'],
       'text-size': 24,
     },
     paint: {
