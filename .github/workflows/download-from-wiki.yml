@@ -1,0 +1,37 @@
+name: Donwload entities from wiki
+
+on:
+  schedule:
+    - cron: "0 */2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "download"
+  cancel-in-progress: true
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+      - name: Download changes
+        run: |
+          cd wiki-downloader
+          mvn compile
+          mvn exec:java
+      - name: Push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'Updating wiki derived json files'
+
