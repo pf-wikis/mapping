@@ -300,7 +300,7 @@ export const map = new maplibregl.Map({
         type: 'vector',
         attribution: "Created under the Paizo Inc. Community Use Policy",
         tiles: [
-          document.baseURI+'data/golarion/{z}/{x}/{y}.pbf.gz'
+          document.baseURI+'data/golarion/{z}/{x}/{y}.pbf'
         ],
         minzoom: 0,
         maxzoom: 7
