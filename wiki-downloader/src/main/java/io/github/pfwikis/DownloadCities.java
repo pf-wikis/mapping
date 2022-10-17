@@ -7,10 +7,10 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import org.apache.commons.io.IOUtils;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -35,6 +35,8 @@ public class DownloadCities {
                 array.forEach(e->cities.add(e.getAsJsonObject()));
             }
         }
+        cities.sort(Comparator.comparing(e -> e.get("_pageName").getAsString()));
+
 
         System.out.println("Found "+cities.size()+" cities.");
 
