@@ -241,7 +241,7 @@ let layers = [
     maxzoom: 10,
     layout: {
       'icon-image': ['case',
-        getOrDefault('capital', false), ['step',
+        ['get', 'capital'], ['step',
           ['get', 'size'],
           'city-major-capital',
           1, 'city-large-capital',
