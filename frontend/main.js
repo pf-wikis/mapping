@@ -31,6 +31,10 @@ function interpolateWithCamera(factor) {
   ]
 }
 
+function getOrDefault(field, defaultValue) {
+  return ['case', ['has', field], ['get', 'field'], defaultValue];
+}
+
 let colors = {
   water:           'rgb(162, 203, 255)',
   waterDarker:     'rgb( 81, 101, 127)',
@@ -236,12 +240,20 @@ let layers = [
     type: 'symbol',
     maxzoom: 10,
     layout: {
-      'icon-image': ['step',
-        ['get', 'size'],
-        'city-major',
-        1, 'city-large',
-        2, 'city-medium',
-        3, 'city-small'
+      'icon-image': ['case',
+        getOrDefault('capital', false), ['step',
+          ['get', 'size'],
+          'city-major-capital',
+          1, 'city-large-capital',
+          2, 'city-medium-capital',
+          3, 'city-small-capital'
+        ], ['step',
+          ['get', 'size'],
+          'city-major',
+          1, 'city-large',
+          2, 'city-medium',
+          3, 'city-small'
+        ]
       ],
       'icon-pitch-alignment': 'map',
       'icon-allow-overlap': true,

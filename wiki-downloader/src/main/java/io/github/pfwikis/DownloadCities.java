@@ -47,6 +47,7 @@ public class DownloadCities {
                 feature.add("properties", properties);
                 handleName(city, properties);
                 properties.addProperty("link", "https://pathfinderwiki.com/wiki/"+city.get("_pageName").getAsString().replace(' ', '_'));
+                properties.addProperty("capital", false);
                 handlePopulation(city, feature);
                 var geometry = new JsonObject();
                 feature.add("geometry", geometry);
