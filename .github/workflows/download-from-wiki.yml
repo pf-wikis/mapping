@@ -38,5 +38,3 @@ jobs:
       - name: pull
         if: ${{ steps.push.outputs.pushed }}
         uses: pf-wikis/mapping/blob/main/.github/workflows/deploy-to-gh-pages.yml@main
-        secrets: inherit
-
