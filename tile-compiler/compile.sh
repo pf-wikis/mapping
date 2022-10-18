@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-maxZoom=7
+maxZoom=${1:-8}
 
 targetDir="../frontend/public/data"
 spriteDir="$targetDir/../sprites"
@@ -69,13 +69,22 @@ tippecanoe -z${maxZoom} --no-tile-compression -n "golarion" -e "$targetDir/golar
 	\
 	-B 0 \
 	--coalesce-densest-as-needed \
-	--simplification=4 \
 	--maximum-tile-bytes=200000 \
 	--maximum-tile-features=100000 \
 	\
 	$layers
 
 # rename extensions for github pages gzipping
-for f in $targetDir/golarion/*/*/*.pbf; do
-	mv "$f" "$f.json"
+echo "Changing pbf extensions"
+for zoom in $targetDir/golarion/*/; do
+	echo "  $zoom"
+	for a in $zoom/*/; do
+		for f in $a/*.pbf; do
+			mv "$f" "$f.json"
+		done
+	done
 done
+
+
+#give maxZoom to vite
+echo "VITE_MAX_ZOOM=$maxZoom" >> "$targetDir/../../.env.local"

@@ -39,7 +39,7 @@ jobs:
         shell: bash
         run: |
           cd tile-compiler
-          ./compile.sh
+          ./compile.sh 10
       - name: Compile frontend
         run: |
           cd frontend

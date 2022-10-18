@@ -12,5 +12,5 @@ export default {
     alias: {
       '~bootstrap': 'node_modules/bootstrap',
     }
-  },
+  }
 }

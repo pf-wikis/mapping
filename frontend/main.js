@@ -50,6 +50,8 @@ let colors = {
   mountainsDarker: 'rgb(129, 121, 099)',
   border:          'rgb(200, 200, 200)',
   borderDarker:    'rgb(100, 100, 100)',
+  walls:           'rgb(160, 160, 160)',
+  chasms:           'rgb( 59,  51,  29)',
   white:           'rgb(255, 255, 255)',
   black:           'rgb( 20,  20,  20)'
 };
@@ -66,6 +68,13 @@ let layers = [
     type: 'fill',
     paint: {
       'fill-color': colors.land,
+    }
+  }),
+  createLayer('chasms', {
+    minzoom: 3,
+    type: 'fill',
+    paint: {
+      'fill-color': colors.chasms,
     }
   }),
   createLayer('ice_mass', {
@@ -135,6 +144,13 @@ let layers = [
          5, .125,
         10, 1,
       ],
+    }
+  }),
+  createLayer('walls', {
+    minzoom: 3,
+    type: 'fill',
+    paint: {
+      'fill-color': colors.walls,
     }
   }),
   createLayer('borders', {
@@ -310,7 +326,7 @@ let layers = [
   }),
 ];
 
-const root = location.origin + location.pathname
+var root = location.origin + location.pathname
 if(!root.endsWith("/")) root += "/";
 export const map = new maplibregl.Map({
   container: 'map-container',
@@ -326,7 +342,7 @@ export const map = new maplibregl.Map({
           root+'data/golarion/{z}/{x}/{y}.pbf.json'
         ],
         minzoom: 0,
-        maxzoom: 7
+        maxzoom: parseInt(import.meta.env.VITE_MAX_ZOOM)
       }
     },
     sprite: root+'sprites/sprites',
