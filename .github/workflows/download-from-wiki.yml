@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   # Build job
-  build:
+  pull:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,7 +31,12 @@ jobs:
           mvn compile
           mvn exec:java
       - name: Push changes
+        id: push
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Updating wiki derived json files'
+      - name: pull
+        if: ${{ steps.push.outputs.pushed }}
+        uses: pf-wikis/mapping/blob/main/.github/workflows/deploy-to-gh-pages.yml@main
+        secrets: inherit
 

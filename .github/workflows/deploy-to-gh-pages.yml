@@ -1,6 +1,7 @@
 name: Deploy to GitHub Pages
 
 on:
+  workflow_call:
   push:
     branches:
       - main
@@ -39,7 +40,7 @@ jobs:
         shell: bash
         run: |
           cd tile-compiler
-          ./compile.sh 10
+          ./compile.sh 11
       - name: Compile frontend
         run: |
           cd frontend
