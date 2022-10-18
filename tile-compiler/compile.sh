@@ -1,11 +1,12 @@
 #!/bin/bash
 set -e
 
-maxZoom=${1:-8}
+maxZoom=${1:-9}
 
-targetDir="../frontend/public/data"
+dataPath="data-$RANDOM"
+targetDir="../frontend/public/$dataPath"
 spriteDir="$targetDir/../sprites"
-rm -rf $targetDir
+rm -rf ../frontend/public/data-*
 rm -rf geo
 mkdir geo
 mkdir -p "$targetDir"
@@ -74,17 +75,16 @@ tippecanoe -z${maxZoom} --no-tile-compression -n "golarion" -e "$targetDir/golar
 	\
 	$layers
 
+
+SECONDS=0
 # rename extensions for github pages gzipping
 echo "Changing pbf extensions"
 for zoom in $targetDir/golarion/*/; do
 	echo "  $zoom"
-	for a in $zoom/*/; do
-		for f in $a/*.pbf; do
-			mv "$f" "$f.json"
-		done
-	done
+	mmv -r "$zoom*/*.pbf" "#2.pbf.json"
 done
+echo "$SECONDS"
 
 
 #give maxZoom to vite
-echo "VITE_MAX_ZOOM=$maxZoom" >> "$targetDir/../../.env.local"
+printf "VITE_MAX_ZOOM=$maxZoom\nVITE_DATA_PATH=$dataPath" > "$targetDir/../../.env.local"

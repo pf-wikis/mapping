@@ -328,6 +328,9 @@ let layers = [
 
 var root = location.origin + location.pathname
 if(!root.endsWith("/")) root += "/";
+const maxZoom = parseInt(import.meta.env.VITE_MAX_ZOOM);
+const dataPath = import.meta.env.VITE_DATA_PATH;
+
 export const map = new maplibregl.Map({
   container: 'map-container',
   hash: 'location',
@@ -339,10 +342,10 @@ export const map = new maplibregl.Map({
         type: 'vector',
         attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>',
         tiles: [
-          root+'data/golarion/{z}/{x}/{y}.pbf.json'
+          root+dataPath+'/golarion/{z}/{x}/{y}.pbf.json'
         ],
         minzoom: 0,
-        maxzoom: parseInt(import.meta.env.VITE_MAX_ZOOM)
+        maxzoom: maxZoom
       }
     },
     sprite: root+'sprites/sprites',
