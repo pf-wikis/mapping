@@ -2,11 +2,19 @@
 set -e
 
 maxZoom=${1:-9}
+shortcut=${2}
+dataPath=${3:-"data"}
 
-dataPath="data-$RANDOM"
-targetDir="../frontend/public/$dataPath"
-spriteDir="$targetDir/../sprites"
-rm -rf ../frontend/public/data-*
+targetRoot="../frontend/public"
+if [ $shortcut = 'shortcut' ]; then
+	targetRoot="../frontend/dist"
+fi
+
+
+
+targetDir="$targetRoot/$dataPath"
+spriteDir="$targetRoot/sprites"
+rm -rf $targetRoot/data-*
 rm -rf geo
 mkdir geo
 mkdir -p "$targetDir"
@@ -87,4 +95,4 @@ echo "$SECONDS"
 
 
 #give maxZoom to vite
-printf "VITE_MAX_ZOOM=$maxZoom\nVITE_DATA_PATH=$dataPath" > "$targetDir/../../.env.local"
+printf "VITE_MAX_ZOOM=$maxZoom\nVITE_DATA_PATH=$dataPath" > "$targetRoot/../.env.local"

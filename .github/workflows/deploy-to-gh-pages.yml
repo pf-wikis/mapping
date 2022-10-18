@@ -36,16 +36,16 @@ jobs:
           sudo make -j
           sudo make install
           npm install -g geojson-polygon-labels mapshaper @elastic/spritezero-cli
-      - name: Compile data
-        shell: bash
-        run: |
-          cd tile-compiler
-          ./compile.sh 11
       - name: Compile frontend
         run: |
+          maxzoom=11
+          datapath=data-$RANDOM
           cd frontend
+          printf "VITE_MAX_ZOOM=$maxzoom\nVITE_DATA_PATH=$datapath" > .env.local
           npm ci
           npm run build
+          cd ../tile-compiler
+          ./compile.sh $maxzoom shortcut $datapath
       - name: Push to page branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
