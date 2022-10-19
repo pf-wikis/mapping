@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 
-maxZoom=${1:-9}
+maxZoom=${1:-7}
 shortcut=${2}
 dataPath=${3:-"data"}
 
 targetRoot="../frontend/public"
-if [ $shortcut = 'shortcut' ]; then
+if [ "$shortcut" = "shortcut" ]; then
 	targetRoot="../frontend/dist"
 fi
 
@@ -14,7 +14,7 @@ fi
 
 targetDir="$targetRoot/$dataPath"
 spriteDir="$targetRoot/sprites"
-rm -rf $targetRoot/data-*
+rm -rf $targetRoot/data*
 rm -rf geo
 mkdir geo
 mkdir -p "$targetDir"
@@ -95,4 +95,5 @@ echo "$SECONDS"
 
 
 #give maxZoom to vite
+echo "Writing .env.local to $targetRoot/../.env.local"
 printf "VITE_MAX_ZOOM=$maxZoom\nVITE_DATA_PATH=$dataPath" > "$targetRoot/../.env.local"

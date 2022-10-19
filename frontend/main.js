@@ -1,6 +1,6 @@
 import './style.scss';
 import 'maplibre-gl/dist/maplibre-gl.css';
-import * as maplibregl from "maplibre-gl";
+import * as maplibre from "maplibre-gl";
 import PureContextMenu from "pure-context-menu";
 
 //check if running embedded
@@ -251,6 +251,41 @@ let layers = [
       'text-halo-width': interpolateWithCamera(1)
     }
   }),
+  createLayer('locations', {
+    id: 'location-icons',
+    type: 'symbol',
+    maxzoom: 15,
+    layout: {
+      'icon-image': ['match', ['get', 'type'],
+        'tower', 'location-tower',
+        'location-other'
+      ],
+      'icon-pitch-alignment': 'map',
+      'icon-allow-overlap': true,
+      'icon-overlap': 'always',
+      'icon-ignore-placement': true,
+    },
+    paint: {
+    }
+  }),
+  createLayer('locations', {
+    id: 'location-labels',
+    type: 'symbol',
+    maxzoom: 15,
+    layout: {
+      'text-field': ['get', 'Name'],
+      'text-font': ['NotoSans-Medium'],
+      'text-size': 12,
+      'text-variable-anchor': ["left", "right"],
+      'symbol-sort-key': ['get', 'size'],
+      'text-radial-offset': .3,
+    },
+    paint: {
+      'text-color': colors.white,
+      'text-halo-color': colors.black,
+      'text-halo-width': .8
+    }
+  }),
   createLayer('cities', {
     id: 'city-icons',
     type: 'symbol',
@@ -331,7 +366,7 @@ if(!root.endsWith("/")) root += "/";
 const maxZoom = parseInt(import.meta.env.VITE_MAX_ZOOM);
 const dataPath = import.meta.env.VITE_DATA_PATH;
 
-export const map = new maplibregl.Map({
+export const map = new maplibre.Map({
   container: 'map-container',
   hash: 'location',
   attributionControl: false,
@@ -358,17 +393,17 @@ map.on('error', function(err) {
   document.getElementById("map-container").innerHTML = err.error.message;
 });
 if(!embedded) {
-  map.addControl(new maplibregl.NavigationControl());
+  map.addControl(new maplibre.NavigationControl());
 }
-map.addControl(new maplibregl.ScaleControl({
+map.addControl(new maplibre.ScaleControl({
   unit: 'imperial',
   maxWidth: embedded?50:100,
 }));
-map.addControl(new maplibregl.ScaleControl({
+map.addControl(new maplibre.ScaleControl({
   unit: 'metric',
   maxWidth: embedded?50:100,
 }));
-map.addControl(new maplibregl.AttributionControl({
+map.addControl(new maplibre.AttributionControl({
   compact: embedded
 }));
 
@@ -376,8 +411,6 @@ var latLong = null;
 map.on('contextmenu', function(e) {
   latLong = e.lngLat.wrap();
 });
-
-
 
 
 
@@ -392,13 +425,30 @@ function hidePointer() {
 
 map.on('mouseenter', 'city-icons', showPointer);
 map.on('mouseenter', 'city-labels', showPointer);
-
 map.on('mouseleave', 'city-icons', hidePointer);
 map.on('mouseleave', 'city-labels', hidePointer);
+map.on('mouseenter', 'location-icons', showPointer);
+map.on('mouseenter', 'location-labels', showPointer);
+map.on('mouseleave', 'location-icons', hidePointer);
+map.on('mouseleave', 'location-labels', hidePointer);
 
-function clickOnCity(e) {
+
+const popup = new maplibre.Popup();
+function clickOnWikilink(e) {
   let coordinates = e.features[0].geometry.coordinates.slice();
   let props = e.features[0].properties;
+
+  //if this feature has multiple geometry use the closest one
+  if(Array.isArray(coordinates[0])) {
+    coordinates = coordinates.reduce((prev, curr) => {
+      if(prev === undefined) {
+        return curr;
+      }
+      let prevDist = e.lngLat.distanceTo(new maplibre.LngLat(...prev));
+      let currDist = e.lngLat.distanceTo(new maplibre.LngLat(...curr));
+      return prevDist < currDist ? prev : curr;
+    });
+  }
    
   // Ensure that if the map is zoomed out such that multiple
   // copies of the feature are visible, the popup appears
@@ -407,15 +457,16 @@ function clickOnCity(e) {
     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
   }
    
-  new maplibregl.Popup()
+  popup
     .setLngLat(coordinates)
     .setHTML('<a href="'+props.link+'" target="_blank">'+props.Name+"</a>")
     .addTo(map);
-  e.stopPropagation();
 }
 
-map.on('click', 'city-icons', clickOnCity);
-map.on('click', 'city-labels', clickOnCity);
+map.on('click', 'city-icons',  clickOnWikilink);
+map.on('click', 'city-labels', clickOnWikilink);
+map.on('click', 'location-icons',  clickOnWikilink);
+map.on('click', 'location-labels', clickOnWikilink);
 
 
 

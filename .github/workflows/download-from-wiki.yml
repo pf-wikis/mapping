@@ -1,4 +1,4 @@
-name: Donwload entities from wiki
+name: Download entities from wiki
 
 on:
   schedule:
@@ -29,7 +29,8 @@ jobs:
         run: |
           cd wiki-downloader
           mvn compile
-          mvn exec:java
+          mvn exec:java -Dexec.mainClass="io.github.pfwikis.DownloadCities"
+          mvn exec:java -Dexec.mainClass="io.github.pfwikis.DownloadLoI"
       - name: Push changes
         id: push
         uses: EndBug/add-and-commit@v9

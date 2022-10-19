@@ -36,7 +36,7 @@ jobs:
           sudo make -j
           sudo make install
           npm install -g geojson-polygon-labels mapshaper @elastic/spritezero-cli
-      - name: Compile frontend
+      - name: Compile
         run: |
           maxzoom=11
           datapath=data-$RANDOM
