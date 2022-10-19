@@ -21,13 +21,23 @@ function createLayer(name, base) {
   }, base);
 }
 
-function interpolateWithCamera(factor) {
+function interpolateTextWithCamera(factor) {
   return [
     'interpolate',
     ['exponential', 2],
     ['zoom'],
     0, factor,
     22, factor*4194304,
+  ]
+}
+
+function interpolateWithCamera(base) {
+  return [
+    'interpolate',
+    ['exponential', 2],
+    ['zoom'],
+     0, ['*', base, 4*0.00001],
+    22, ['*', base, 4*41.94304],
   ]
 }
 
@@ -105,7 +115,7 @@ let layers = [
     type: 'line',
     paint: {
       'line-color': colors.water,
-      'line-width': interpolateWithCamera(.05),
+      'line-width': interpolateWithCamera(['case', ['has', 'width'], ['get', 'width'], 500]),
     },
     layout: {
       'line-cap': 'round'
@@ -243,12 +253,12 @@ let layers = [
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
       'text-overlap': 'always',
-      'text-size': interpolateWithCamera(10),
+      'text-size': interpolateTextWithCamera(10),
     },
     paint: {
       'text-color': colors.land,
       'text-halo-color': colors.landDarker,
-      'text-halo-width': interpolateWithCamera(1)
+      'text-halo-width': interpolateTextWithCamera(1)
     }
   }),
   createLayer('locations', {
