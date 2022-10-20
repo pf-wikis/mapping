@@ -36,6 +36,9 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Updating wiki derived json files'
-      - name: pull
-        if: ${{ steps.push.outputs.pushed }}
-        uses: pf-wikis/mapping/.github/workflows/deploy-to-gh-pages.yml@main
+    outputs:
+      pushed: ${{ steps.push.outputs.pushed }}
+  deploy:
+    needs: pull
+    if: ${{ needs.pull.outputs.pushed }}
+    uses: pf-wikis/mapping/.github/workflows/deploy-to-gh-pages.yml@main
