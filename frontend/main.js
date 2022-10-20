@@ -36,8 +36,8 @@ function interpolateWithCamera(base) {
     'interpolate',
     ['exponential', 2],
     ['zoom'],
-     0, ['*', base, 4*0.00001],
-    22, ['*', base, 4*41.94304],
+     0, ['*', base, 0.00001],
+    22, ['*', base, 41.94304],
   ]
 }
 
@@ -50,18 +50,22 @@ let colors = {
   waterDarker:     'rgb( 81, 101, 127)',
   land:            'rgb(240, 237, 229)',
   landDarker:      'rgb(207, 195, 160)',
+  deserts:         'rgb(250, 243, 195)',
+  desertsDarker:   'rgb(186, 171, 104)',
   ice:             'rgb(240, 240, 254)',
   iceDarker:       'rgb(200, 200, 214)',
   swamp:           'rgb(200, 205, 179)',
   swampDarker:     'rgb(100, 105, 079)',
   forest:          'rgb(210, 228, 200)',
   forestDarker:    'rgb(110, 128, 100)',
+  hills:           'rgb(235, 230, 215)',
+  hillsDarker:     'rgb(169, 161, 130)',
   mountains:       'rgb(229, 221, 199)',
   mountainsDarker: 'rgb(129, 121, 099)',
   border:          'rgb(200, 200, 200)',
   borderDarker:    'rgb(100, 100, 100)',
   walls:           'rgb(160, 160, 160)',
-  chasms:           'rgb( 59,  51,  29)',
+  chasms:          'rgb( 59,  51,  29)',
   white:           'rgb(255, 255, 255)',
   black:           'rgb( 20,  20,  20)'
 };
@@ -99,10 +103,22 @@ let layers = [
       'fill-color': colors.swamp,
     }
   }),
+  createLayer('deserts', {
+    type: 'fill',
+    paint: {
+      'fill-color': colors.deserts,
+    }
+  }),
   createLayer('forests', {
     type: 'fill',
     paint: {
       'fill-color': colors.forest,
+    }
+  }),
+  createLayer('hills', {
+    type: 'fill',
+    paint: {
+      'fill-color': colors.hills,
     }
   }),
   createLayer('mountains', {
@@ -115,7 +131,7 @@ let layers = [
     type: 'line',
     paint: {
       'line-color': colors.water,
-      'line-width': interpolateWithCamera(['case', ['has', 'width'], ['get', 'width'], 500]),
+      'line-width': interpolateWithCamera(['case', ['has', 'width'], ['get', 'width'], 2000]),
     },
     layout: {
       'line-cap': 'round'
@@ -204,6 +220,20 @@ let layers = [
       'text-halo-width': 1
     }
   }),
+  createLayer('hills_label', {
+    type: 'symbol',
+    minzoom: 6,
+    layout: {
+      'text-field': ['get', 'Name'],
+      'text-font': ['NotoSans-Medium'],
+      'text-size': 16,
+    },
+    paint: {
+      'text-color': colors.hills,
+      'text-halo-color': colors.hillsDarker,
+      'text-halo-width': 1
+    }
+  }),
   createLayer('mountains_label', {
     type: 'symbol',
     minzoom: 6,
@@ -215,6 +245,20 @@ let layers = [
     paint: {
       'text-color': colors.mountains,
       'text-halo-color': colors.mountainsDarker,
+      'text-halo-width': 1
+    }
+  }),
+  createLayer('deserts_label', {
+    type: 'symbol',
+    minzoom: 6,
+    layout: {
+      'text-field': ['get', 'Name'],
+      'text-font': ['NotoSans-Medium'],
+      'text-size': 16,
+    },
+    paint: {
+      'text-color': colors.deserts,
+      'text-halo-color': colors.desertsDarker,
       'text-halo-width': 1
     }
   }),

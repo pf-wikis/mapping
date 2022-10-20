@@ -20,7 +20,7 @@ public class DownloadCities {
     public static void main(String[] args) throws MalformedURLException, IOException {
         String url = "https://pathfinderwiki.com/w/index.php?title=Special:CargoExport"
             + "&tables=City%2C&"
-            + "&fields=City._pageName%2C+City.name%2C+City.population%2C+City.latlong"
+            + "&fields=City._pageName%2C+City.name%2C+City.population%2C+City.latlong%2C+City.capital"
             + "&where=City.latlong__full+IS+NOT+NULL+AND+City._pageNamespace=0"
             + "&order+by=%60mw_cargo__City%60.%60_pageName%60%2C%60mw_cargo__City%60.%60latlong__full%60"
             + "&limit=1000&format=json";
@@ -53,7 +53,7 @@ public class DownloadCities {
                 feature.setProperties(properties);
                 handleName(city, properties);
                 properties.setLink("https://pathfinderwiki.com/wiki/"+city.getPageName().replace(' ', '_'));
-                properties.setCapital(false);
+                properties.setCapital(city.getCapital() == 1);
                 handlePopulation(city, feature);
                 var geometry = new Geometry();
                 feature.setGeometry(geometry);

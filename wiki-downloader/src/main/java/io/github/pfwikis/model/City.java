@@ -18,4 +18,5 @@ public class City {
     @SerializedName("latlong  lat")
     private BigDecimal coordsLat;
     private String population;
+    private int capital;
 }
