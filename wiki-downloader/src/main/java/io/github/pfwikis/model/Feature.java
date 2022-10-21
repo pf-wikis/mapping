@@ -1,10 +1,13 @@
 package io.github.pfwikis.model;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@JsonPropertyOrder({"type", "properties", "tippecanoe", "geometry"})
 public class Feature {
 
     private String type = "Feature";

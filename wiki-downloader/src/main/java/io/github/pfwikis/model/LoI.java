@@ -2,17 +2,19 @@ package io.github.pfwikis.model;
 
 import java.math.BigDecimal;
 
-import com.google.gson.annotations.SerializedName;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LoI {
-    @SerializedName("_pageName")
+    @JsonProperty("_pageName")
     private String pageName;
-    @SerializedName("latlong  lon")
+    @JsonProperty("latlong  lon")
     private BigDecimal coordsLon;
-    @SerializedName("latlong  lat")
+    @JsonProperty("latlong  lat")
     private BigDecimal coordsLat;
     private String type;
 }
