@@ -69,7 +69,7 @@ maxDistance="500"
 if [ "$prodDetail" = "true" ]; then
 	maxDistance="250"
 fi
-mvn -f fractal-detailer exec:java -Dexec.args="$maxDistance\
+mvn -B -f fractal-detailer compile exec:java -Dexec.args="$maxDistance\
    geo/chasms.geojson\
    geo/continents.geojson\
    geo/deserts.geojson\

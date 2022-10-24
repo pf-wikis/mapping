@@ -28,6 +28,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
       - name: Prepare environment
         run: |
           sudo apt update && sudo apt install -y libsqlite3-dev zlib1g-dev mmv
