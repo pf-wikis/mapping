@@ -4,6 +4,7 @@ set -e
 maxZoom=${1:-7}
 shortcut=${2}
 dataPath=${3:-"data"}
+prodDetail=${4:-"false"}
 
 targetRoot="../frontend/public"
 if [ "$shortcut" = "shortcut" ]; then
@@ -62,6 +63,22 @@ done
 # compile borders
 mapshaper geo/country.geojson -clean -snap precision=0.0001 -innerlines -dissolve -o geo/borders.geojson geojson-type=FeatureCollection
 rm -rf geo/country.geojson
+
+# add detailing
+maxDistance="500"
+if [ "$prodDetail" = "true" ]; then
+	maxDistance="250"
+fi
+mvn -f fractal-detailer exec:java -Dexec.args="$maxDistance\
+   geo/chasms.geojson\
+   geo/continents.geojson\
+   geo/deserts.geojson\
+   geo/forests.geojson\
+   geo/hills.geojson\
+   geo/ice_mass.geojson\
+   geo/mountains.geojson\
+   geo/swamp.geojson\
+   geo/water_body.geojson"
 
 # make tiles
 layers=""
