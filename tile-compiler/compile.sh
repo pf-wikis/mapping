@@ -25,19 +25,10 @@ mkdir -p "$spriteDir"
 spritezero "$spriteDir/sprites" "sprites/"
 spritezero "$spriteDir/sprites@2x" "sprites/" --retina
 
-toGeoJSON() {
-	local target="$tmp/${1:8:-4}.json"
-	rm -f $target
-	ogr2ogr -f GeoJSON "$target" -t_srs EPSG:4326 "${1}" \
-		-dim XY \
-		-mapFieldType DateTime=String
-}
-
 compile() {
-	local target="geo/${1:11}"
-	local lTarget="geo/${1:11:-8}_label.geojson"
+	local target="${1}"
+	local lTarget="${target:0:-8}_label.geojson"
 	local tmp="geo/tmp.geojson"
-	cp $1 "$target"
 	#if possible write geometry centers
 	if grep -q -E "type\": *\"(Multi)?Polygon" "$target" && grep -q -E "Name\": *\"" "$target"; then
 		echo "Generating centers"
@@ -56,13 +47,24 @@ compile() {
 #compile maps
 for f in ../sources/*.geojson; do
 	echo "" && echo ""
-	echo "Transforming $f to GeoJSON"
-	compile $f
+	target="geo/${f:11}"
+	echo "Transforming $f to GeoJSON $target"
+	cp $f $target
+	compile $target
+done
+for f in ../sources/*/*.shp; do
+	echo "" && echo ""
+	target="geo/$(basename $f .shp).geojson"
+	echo "Transforming $f to GeoJSON $target"
+	ogr2ogr "$target" "$f" \
+		-dim XY \
+		-mapFieldType DateTime=String
+	compile $target
 done
 
 # compile borders
-mapshaper geo/country.geojson -clean -snap precision=0.0001 -innerlines -dissolve -o geo/borders.geojson geojson-type=FeatureCollection
-rm -rf geo/country.geojson
+mapshaper geo/countries.geojson -clean -snap precision=0.0001 -innerlines -dissolve -o geo/borders.geojson geojson-type=FeatureCollection
+rm -rf geo/countries.geojson
 
 # add detailing
 maxDistance="500"
@@ -75,10 +77,14 @@ mvn -B -f fractal-detailer compile exec:java -Dexec.args="$maxDistance\
    geo/deserts.geojson\
    geo/forests.geojson\
    geo/hills.geojson\
-   geo/ice_mass.geojson\
+   geo/ice.geojson\
    geo/mountains.geojson\
-   geo/swamp.geojson\
-   geo/water_body.geojson"
+   geo/swamps.geojson\
+   geo/waters.geojson"
+
+# smooth rivers
+# qgis_process run native:smoothgeometry --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 --ITERATIONS=3 --OFFSET=0.25 --MAX_ANGLE=180 \
+# --INPUT='geo/rivers.geojson' --OUTPUT='geo/rivers.geojson'
 
 # make tiles
 layers=""

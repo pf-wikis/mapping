@@ -91,13 +91,13 @@ let layers = [
       'fill-color': colors.chasms,
     }
   }),
-  createLayer('ice_mass', {
+  createLayer('ice', {
     type: 'fill',
     paint: {
       'fill-color': colors.ice,
     }
   }),
-  createLayer('swamp', {
+  createLayer('swamps', {
     type: 'fill',
     paint: {
       'fill-color': colors.swamp,
@@ -137,7 +137,7 @@ let layers = [
       'line-cap': 'round'
     }
   }),
-  createLayer('water_body', {
+  createLayer('waters', {
     type: 'fill',
     paint: {
       'fill-color': colors.water,
@@ -192,7 +192,7 @@ let layers = [
       ],
     }
   }),
-  createLayer('ice_mass_label', {
+  createLayer('ice_label', {
     type: 'symbol',
     layout: {
       'text-field': ['get', 'Name'],
@@ -262,7 +262,7 @@ let layers = [
       'text-halo-width': 1
     }
   }),
-  createLayer('swamp_label', {
+  createLayer('swamps_label', {
     type: 'symbol',
     minzoom: 6,
     layout: {
@@ -276,7 +276,7 @@ let layers = [
       'text-halo-width': 1
     }
   }),
-  createLayer('water_body_label', {
+  createLayer('waters_label', {
     type: 'symbol',
     minzoom: 6,
     layout: {
@@ -398,7 +398,7 @@ let layers = [
       'text-halo-width': .8
     }
   }),
-  createLayer('country_label', {
+  createLayer('countries_label', {
     type: 'symbol',
     minzoom: 2,
     maxzoom: 6,
