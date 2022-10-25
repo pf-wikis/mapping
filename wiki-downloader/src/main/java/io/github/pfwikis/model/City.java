@@ -20,5 +20,6 @@ public class City {
     @JsonProperty("latlong  lat")
     private BigDecimal coordsLat;
     private String population;
+    private String size;
     private int capital;
 }

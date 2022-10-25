@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
+
 import io.github.pfwikis.model.*;
 
 public class DownloadCities {
@@ -16,7 +18,7 @@ public class DownloadCities {
     public static void main(String[] args) throws MalformedURLException, IOException {
         String url = "https://pathfinderwiki.com/w/index.php?title=Special:CargoExport"
             + "&tables=City%2C&"
-            + "&fields=City._pageName%2C+City.name%2C+City.population%2C+City.latlong%2C+City.capital"
+            + "&fields=City._pageName%2C+City.name%2C+City.population%2C+City.latlong%2C+City.capital%2C+City.size"
             + "&where=City.latlong__full+IS+NOT+NULL+AND+City._pageNamespace=0"
             + "&order+by=%60mw_cargo__City%60.%60_pageName%60%2C%60mw_cargo__City%60.%60latlong__full%60"
             + "&limit=1000&format=json";
@@ -73,31 +75,50 @@ public class DownloadCities {
     }
 
     private static void handlePopulation(City city, Feature feature) {
-        long population;
+        int size = mapSize(city);
+
+        feature.getProperties().setSize(size);
+        feature.getTippecanoe().setMinzoom(switch(size) {
+            case 0  -> 2;
+            case 1  -> 4;
+            case 2  -> 5;
+            default -> 6;
+        });
+    }
+
+    private static int mapSize(City city) {
         if(city.getPopulation() != null && !city.getPopulation().isEmpty()) {
-            population = Long.parseLong(city.getPopulation());
+            long population = Long.parseLong(city.getPopulation());
+            if(population > 25000) {
+                return 0;
+            }
+            else if(population > 5000) {
+                return 1;
+            }
+            else if(population > 201) {
+                return 2;
+            }
+            return 3;
         }
-        else {
-            population = 1000;
+        else if(city.getSize() != null && !city.getSize().isEmpty()) {
+            String size = city.getSize();
+            if(StringUtils.containsAnyIgnoreCase(size, "Category:Thorps", "Category:Hamlets", "Category:Villages")) {
+                return 3;
+            }
+            else if(StringUtils.containsAnyIgnoreCase(size, "Category:Small_towns", "Category:Large_towns", "Town")) {
+                return 2;
+            }
+            else if(StringUtils.containsAnyIgnoreCase(size, "City", "Category:Small_cities", "Category:Large_cities")) {
+                return 1;
+            }
+            else if(StringUtils.containsAnyIgnoreCase(size, "Category:Metropolises", "Metropolis")) {
+                return 0;
+            }
+            else if(StringUtils.containsAnyIgnoreCase(size, "Abandoned", "Ruins")) {
+                return 3; //TODO maybe these should be locations instead?
+            }
+            return 3;
         }
-
-        if(population > 100000) {
-            feature.getProperties().setSize(0);
-            feature.getTippecanoe().setMinzoom(2);
-        }
-        else if(population > 10000) {
-            feature.getProperties().setSize(1);
-            feature.getTippecanoe().setMinzoom(4);
-        }
-        else if(population > 1000) {
-            feature.getProperties().setSize(2);
-            feature.getTippecanoe().setMinzoom(5);
-        }
-        else {
-            feature.getProperties().setSize(3);
-            feature.getTippecanoe().setMinzoom(6);
-        }
-
-
+        return 3;
     }
 }
