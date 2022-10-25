@@ -35,7 +35,8 @@ jobs:
           java-version: '17'
       - name: Prepare environment
         run: |
-          sudo apt update && sudo apt install -y libsqlite3-dev zlib1g-dev mmv
+          sudo add-apt-repository ppa:ubuntugis/ppa
+          sudo apt update && sudo apt install -y libsqlite3-dev zlib1g-dev mmv gdal-bin
           git clone https://github.com/mapbox/tippecanoe.git
           cd tippecanoe
           sudo make -j
