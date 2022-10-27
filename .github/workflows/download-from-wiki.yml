@@ -40,5 +40,5 @@ jobs:
       pushed: ${{ steps.push.outputs.pushed }}
   deploy:
     needs: pull
-    if: ${{ needs.pull.outputs.pushed }}
+    if: needs.pull.outputs.pushed == 'true'
     uses: pf-wikis/mapping/.github/workflows/deploy-to-gh-pages.yml@main
