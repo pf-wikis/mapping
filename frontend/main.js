@@ -3,6 +3,13 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import * as maplibre from "maplibre-gl";
 import PureContextMenu from "pure-context-menu";
 
+
+//constants
+const limit = {
+  districts:    11,
+  river_labels:  5
+};
+
 //check if running embedded
 var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
 const embedded = (urlParams.get('embedded') === 'true');
@@ -50,6 +57,8 @@ let colors = {
   waterDarker:     'rgb( 81, 101, 127)',
   land:            'rgb(240, 237, 229)',
   landDarker:      'rgb(207, 195, 160)',
+  districts:       'rgb(220, 220, 210)',
+  districtsDarker: 'rgb(067, 065, 060)',
   deserts:         'rgb(250, 243, 195)',
   desertsDarker:   'rgb(186, 171, 104)',
   ice:             'rgb(240, 240, 254)',
@@ -64,7 +73,7 @@ let colors = {
   mountainsDarker: 'rgb(129, 121, 099)',
   border:          'rgb(200, 200, 200)',
   borderDarker:    'rgb(100, 100, 100)',
-  walls:           'rgb(160, 160, 160)',
+  walls:           'rgb(140, 137, 129)',
   chasms:          'rgb( 59,  51,  29)',
   white:           'rgb(255, 255, 255)',
   black:           'rgb( 20,  20,  20)'
@@ -84,8 +93,20 @@ let layers = [
       'fill-color': colors.land,
     }
   }),
+  createLayer('districts', {
+    type: 'fill',
+    paint: {
+      'fill-color': colors.districts,
+    }
+  }),
+  createLayer('districts_borders', {
+    type: 'line',
+    paint: {
+      'line-color': colors.land,
+      'line-width': interpolateWithCamera(200),
+    },
+  }),
   createLayer('chasms', {
-    minzoom: 3,
     type: 'fill',
     paint: {
       'fill-color': colors.chasms,
@@ -145,7 +166,7 @@ let layers = [
   }),
   createLayer('rivers', {
     type: 'symbol',
-    minzoom: 5,
+    minzoom: limit.river_labels,
     layout: {
       'symbol-placement': 'line',
       'text-max-angle': 20,
@@ -173,7 +194,6 @@ let layers = [
     }
   }),
   createLayer('walls', {
-    minzoom: 3,
     type: 'fill',
     paint: {
       'fill-color': colors.walls,
@@ -343,7 +363,7 @@ let layers = [
   createLayer('cities', {
     id: 'city-icons',
     type: 'symbol',
-    maxzoom: 10,
+    maxzoom: limit.districts,
     layout: {
       'icon-image': ['case',
         ['get', 'capital'], ['step',
@@ -371,7 +391,7 @@ let layers = [
   createLayer('cities', {
     id: 'city-labels',
     type: 'symbol',
-    maxzoom: 10,
+    maxzoom: limit.districts,
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
@@ -391,6 +411,27 @@ let layers = [
         2, .25,
         3, .2
       ],
+    },
+    paint: {
+      'text-color': colors.white,
+      'text-halo-color': colors.black,
+      'text-halo-width': .8
+    }
+  }),
+  createLayer('districts_label', {
+    type: 'symbol',
+    minzoom: limit.districts,
+    layout: {
+      'text-field': ['get', 'Name'],
+      'text-font': ['NotoSans-Medium'],
+      'text-size': ['step',
+        ['get', 'size'],
+        16,
+        1, 14,
+        2, 12,
+        3, 10
+      ],
+      'text-anchor': 'center',
     },
     paint: {
       'text-color': colors.white,

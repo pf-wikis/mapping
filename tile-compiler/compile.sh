@@ -39,7 +39,6 @@ compile() {
 			-each 'tippecanoe={"minzoom" : Math.min('$maxZoom',Math.round(20/(Math.min(this.width, this.height)**2))) }' \
 			-o "$tmp" geojson-type=FeatureCollection
 		geojson-polygon-labels --precision=0.00001 --style=largest "$tmp" > "$lTarget"
-		sed -i -E 's/("type":"Feature".*?),("tippecanoe":\{[^\}]+\})/\2,\1/' "$lTarget"
 		rm -rf "$tmp"
 	fi
 }
@@ -66,6 +65,13 @@ done
 mapshaper geo/countries.geojson -clean -snap precision=0.0001 -innerlines -dissolve -o geo/borders.geojson geojson-type=FeatureCollection
 rm -rf geo/countries.geojson
 
+# remove borders from districts
+mv geo/districts.geojson geo/tmp0.geojson
+mapshaper geo/tmp0.geojson -clean -snap precision=0.0001 -innerlines -dissolve -o geo/tmp1.geojson geojson-type=FeatureCollection
+qgis_process run native:buffer --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 --INPUT=geo/tmp1.geojson --DISTANCE=0.0004 --SEGMENTS=5 --END_CAP_STYLE=0 --JOIN_STYLE=0 --MITER_LIMIT=2 --DISSOLVE=true --OUTPUT=geo/tmp2.geojson
+qgis_process run native:difference --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 --INPUT=geo/tmp0.geojson --OVERLAY=geo/tmp2.geojson --OUTPUT=geo/districts.geojson
+rm -rf geo/tmp*.geojson
+
 # add detailing
 maxDistance="500"
 if [ "$prodDetail" = "true" ]; then
@@ -85,6 +91,12 @@ mvn -B -f fractal-detailer compile exec:java -Dexec.args="$maxDistance\
 # smooth rivers
 # qgis_process run native:smoothgeometry --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 --ITERATIONS=3 --OFFSET=0.25 --MAX_ANGLE=180 \
 # --INPUT='geo/rivers.geojson' --OUTPUT='geo/rivers.geojson'
+
+# add minzoom to some layers
+TODO walls and districts and rivers with a length smaller than whatevaaa
+
+# move tippecanoe property up a level
+sed -i -E 's/("type":"Feature".*?),?("tippecanoe":\{[^\}]+\})/\2,\1/' "$lTarget"
 
 # make tiles
 layers=""

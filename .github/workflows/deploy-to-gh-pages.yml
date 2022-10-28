@@ -35,6 +35,7 @@ jobs:
           java-version: '17'
       - name: Prepare environment
         run: |
+          printf "Install tippecanoe\n"
           sudo add-apt-repository ppa:ubuntugis/ppa
           sudo apt update && sudo apt install -y libsqlite3-dev zlib1g-dev mmv gdal-bin
           git clone https://github.com/mapbox/tippecanoe.git
@@ -42,15 +43,17 @@ jobs:
           sudo make -j
           sudo make install
           npm install -g geojson-polygon-labels mapshaper @elastic/spritezero-cli
+          
+          printf "\n\nInstall qgis\n"
+          sudo apt install qgis qgis-plugin-grass
       - name: Compile
         run: |
           maxzoom=11
           datapath=data-$RANDOM
           cd frontend
           printf "VITE_MAX_ZOOM=$maxzoom\nVITE_DATA_PATH=$datapath" > .env.local
-          npm ci
-          npm run build
           cd ../tile-compiler
+          export QT_QPA_PLATFORM=offscreen
           ./compile.sh $maxzoom shortcut $datapath
       - name: Push to page branch
         uses: JamesIves/github-pages-deploy-action@v4
