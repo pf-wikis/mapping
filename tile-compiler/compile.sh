@@ -88,8 +88,8 @@ mvn -B -f fractal-detailer compile exec:java -Dexec.args="$maxDistance\
    geo/waters.geojson"
 
 # smooth rivers
-mv 'geo/rivers.geojson' 'geo/tmp.geojson'
-qgis_process run native:smoothgeometry --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 --ITERATIONS=3 --OFFSET=0.25 --MAX_ANGLE=180 --INPUT='geo/tmp.geojson' --OUTPUT='geo/rivers.geojson'
+#mv 'geo/rivers.geojson' 'geo/tmp.geojson'
+#qgis_process run native:smoothgeometry --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 --ITERATIONS=3 --OFFSET=0.25 --MAX_ANGLE=180 --INPUT='geo/tmp.geojson' --OUTPUT='geo/rivers.geojson'
 
 # add minzoom to some layers
 mapshaper "geo/districts.geojson" -each 'tippecanoe={"minzoom":4}' -o "geo/districts.geojson" force geojson-type=FeatureCollection
@@ -98,7 +98,7 @@ mapshaper "geo/rivers.geojson" -each 'if(width<5000){tippecanoe={"minzoom":1};}i
 
 # move tippecanoe property up a level
 for f in geo/*.geojson; do
-	jq  -c '.features[] |= ((.tippecanoe = .properties.tippecanoe) | del(.properties.tippecanoe))' $f > $f.tmp && mv $f.tmp $f
+	jq  -c '.features[] |= ((.tippecanoe += .properties.tippecanoe) | del(.properties.tippecanoe))' $f > $f.tmp && mv $f.tmp $f
 done
 
 # make tiles
