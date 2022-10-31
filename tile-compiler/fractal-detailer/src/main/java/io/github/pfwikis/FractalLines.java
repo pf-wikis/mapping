@@ -15,12 +15,7 @@ public class FractalLines {
     public static double MAX_DIST = 100;
     private final static double FRACTAL_STRENGTH = 0.2;
     private final static float FRACTAL_SCALE = 10;
-    private final static FastNoiseLite NOISE;
-
-    static {
-        NOISE = new FastNoiseLite(7);
-        NOISE.SetFrequency(FRACTAL_SCALE);
-    }
+    private final static FastNoiseLite NOISE = new FastNoiseLite(7, FRACTAL_SCALE);
 
     public static List<LngLat> interpolate(List<LngLat> points, Set<Edge> innerEdges) {
         ArrayDeque<LngLat> open = new ArrayDeque<>(points);
@@ -54,7 +49,7 @@ public class FractalLines {
     private static void collectFractally(Point a, Point b, int iterations, List<LngLat> result) {
         if (iterations == 0) return;
 
-        double r = NOISE.GetNoise((float) (a.x() + b.x()), (float) ((a.y() + b.y())));
+        double r = NOISE.getNoise((float) (a.x() + b.x()), (float) ((a.y() + b.y())));
 
         double d = FRACTAL_STRENGTH * r;
 
