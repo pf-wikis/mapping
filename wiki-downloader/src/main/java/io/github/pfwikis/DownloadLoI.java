@@ -2,7 +2,6 @@ package io.github.pfwikis;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +12,7 @@ import io.github.pfwikis.model.*;
 
 public class DownloadLoI {
 
-    public static void main(String[] args) throws MalformedURLException, IOException {
+    public static void main(String[] args) throws IOException {
         String url = "https://pathfinderwiki.com/w/index.php?title=Special:CargoExport"
             + "&tables=LocationOfInterest%2C&"
             + "&fields=LocationOfInterest._pageName%2C+LocationOfInterest.latlong%2C+LocationOfInterest.type"
@@ -25,44 +24,38 @@ public class DownloadLoI {
 
         var lois = new ArrayList<LoI>();
 
-        while(true) {
-            var array = jackson.readValue(new URL(url+"&offset="+offset), LoI[].class);
-            if(array.length == 0) {
+        while (true) {
+            LoI[] array = jackson.readValue(new URL(url + "&offset=" + offset), LoI[].class);
+            if (array.length == 0) {
                 break;
             }
-            offset+=1000;
+            offset += 1000;
             lois.addAll(Arrays.asList(array));
         }
         lois.sort(Comparator.comparing(LoI::getPageName));
 
-
-        System.out.println("Found "+lois.size()+" LoIs.");
+        System.out.println("Found " + lois.size() + " LoIs.");
 
         var arr = new ArrayList<Feature>();
         for (var loi : lois) {
             try {
-                var feature = new Feature();
                 var properties = new Properties();
-                feature.setProperties(properties);
                 handleName(loi, properties);
-                properties.setLink("https://pathfinderwiki.com/wiki/"+loi.getPageName().replace(' ', '_'));
-                feature.getTippecanoe().setMinzoom(5);
+                properties.setLink("https://pathfinderwiki.com/wiki/" + loi.getPageName().replace(' ', '_'));
                 properties.setType(loi.getType());
                 var geometry = new Geometry();
-                feature.setGeometry(geometry);
-                geometry.setCoordinates(List.of(
-                    loi.getCoordsLon(),
-                    loi.getCoordsLat()));
+                geometry.setCoordinates(List.of(loi.getCoordsLon(), loi.getCoordsLat()));
+
+                var feature = new Feature(properties, geometry);
+                feature.getTippecanoe().setMinzoom(5);
                 arr.add(feature);
-            } catch(Exception e) {
-                System.err.println("Failed for "+loi.getPageName());
+            } catch (Exception e) {
+                System.err.println("Failed for " + loi.getPageName());
                 e.printStackTrace();
             }
         }
 
-        var result = new FeatureCollection();
-        result.setName("cities");
-        result.setFeatures(arr);
+        var result = new FeatureCollection("cities", arr);
         jackson.writer().withDefaultPrettyPrinter().writeValue(new File("../sources/locations.geojson"), result);
     }
 

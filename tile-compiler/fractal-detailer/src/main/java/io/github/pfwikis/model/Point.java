@@ -3,9 +3,6 @@ package io.github.pfwikis.model;
 import lombok.*;
 
 @Value
-public class Point {
-
-    private double x;
-    private double y;
+public record Point(double x, double y) {
 
 }

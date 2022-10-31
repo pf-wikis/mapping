@@ -3,8 +3,6 @@ package io.github.pfwikis.model;
 import lombok.Value;
 
 @Value
-public class Edge {
+public record Edge(LngLat a, LngLat b) {
 
-    private LngLat a;
-    private LngLat b;
 }
