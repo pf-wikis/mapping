@@ -86,6 +86,9 @@ public class FastNoiseLite {
         None, ImproveXYPlanes, ImproveXZPlanes, DefaultOpenSimplex2
     }
 
+    /** Mask used to clear the non-sign part of an int. */
+    private static final int MASK_NON_SIGN_INT = 0x7fffffff;
+
     private int mSeed = 1337;
     private float mFrequency = 0.01f;
     private NoiseType mNoiseType = NoiseType.OpenSimplex2;
@@ -523,17 +526,61 @@ public class FastNoiseLite {
         -0.7870349638f, 0.03447489231f, 0.6159443543f, 0, -0.2015596421f, 0.6859872284f, 0.6991389226f, 0, -0.08581082512f, -0.10920836f, -0.9903080513f, 0, 0.5532693395f, 0.7325250401f, -0.396610771f, 0, -0.1842489331f, -0.9777375055f, -0.1004076743f, 0, 0.0775473789f, -0.9111505856f, 0.4047110257f, 0, 0.1399838409f, 0.7601631212f, -0.6344734459f, 0, 0.4484419361f, -0.845289248f, 0.2904925424f, 0
     };
 
-    private static float fastMin(float a, float b) { return Math.min(a, b); }
+    private static float fastMin(float a, float b) {
+        if (a > b) {
+            return b;
+        }
+        if (a < b) {
+            return a;
+        }
+        /* if either arg is NaN, return NaN */
+        if (a != b) {
+            return Float.NaN;
+        }
+        /* min(+0.0,-0.0) == -0.0 */
+        /* 0x80000000 == Float.floatToRawIntBits(-0.0d) */
+        int bits = Float.floatToRawIntBits(a);
+        if (bits == 0x80000000) {
+            return a;
+        }
+        return b;
+    }
 
-    private static float fastMax(float a, float b) { return Math.max(a, b); }
+    private static float fastMax(float a, float b) {
+        if (a > b) {
+            return a;
+        }
+        if (a < b) {
+            return b;
+        }
+        /* if either arg is NaN, return NaN */
+        if (a != b) {
+            return Float.NaN;
+        }
+        /* min(+0.0,-0.0) == -0.0 */
+        /* 0x80000000 == Float.floatToRawIntBits(-0.0d) */
+        int bits = Float.floatToRawIntBits(a);
+        if (bits == 0x80000000) {
+            return b;
+        }
+        return a;
+    }
 
-    private static float fastAbs(float f) { return f < 0 ? -f : f; }
+    private static float fastAbs(float f) {
+        return Float.intBitsToFloat(MASK_NON_SIGN_INT & Float.floatToRawIntBits(f));
+    }
 
-    private static float fastSqrt(float f) { return (float)Math.sqrt(f); }
+    private static float fastSqrt(float f) {
+        return (float)Math.sqrt(f);
+    }
 
-    private static int fastFloor(/*FNLfloat*/ float f) { return f >= 0 ? (int)f : (int)f - 1; }
+    private static int fastFloor(/*FNLfloat*/ float f) {
+        return f >= 0 ? (int)f : (int)f - 1;
+    }
 
-    private static int fastRound(/*FNLfloat*/ float f) { return f >= 0 ? (int)(f + 0.5f) : (int)(f - 0.5f); }
+    private static int fastRound(/*FNLfloat*/ float f) {
+        return fastFloor(f + 0.5f);
+    }
 
     private static float lerp(float a, float b, float t) { return a + t * (b - a); }
 
