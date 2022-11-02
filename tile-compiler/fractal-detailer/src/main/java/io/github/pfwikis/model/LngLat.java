@@ -3,9 +3,6 @@ package io.github.pfwikis.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-import lombok.*;
-
-@Value
 public record LngLat(double lng, double lat) {
 
     @JsonCreator
