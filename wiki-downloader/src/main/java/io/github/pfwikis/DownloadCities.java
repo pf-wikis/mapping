@@ -2,7 +2,6 @@ package io.github.pfwikis;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +14,7 @@ import io.github.pfwikis.model.*;
 
 public class DownloadCities {
 
-    public static void main(String[] args) throws MalformedURLException, IOException {
+    public static void main(String[] args) throws IOException {
         String url = "https://pathfinderwiki.com/w/index.php?title=Special:CargoExport"
             + "&tables=City%2C&"
             + "&fields=City._pageName%2C+City.name%2C+City.population%2C+City.latlong%2C+City.capital%2C+City.size"
@@ -27,44 +26,40 @@ public class DownloadCities {
 
         var cities = new ArrayList<City>();
 
-        while(true) {
-            var array = jackson.readValue(new URL(url+"&offset="+offset), City[].class);
-            if(array.length == 0) {
+        while (true) {
+            City[] array = jackson.readValue(new URL(url + "&offset=" + offset), City[].class);
+            if (array.length == 0) {
                 break;
             }
-            offset+=1000;
+            offset += 1000;
             cities.addAll(Arrays.asList(array));
         }
         cities.sort(Comparator.comparing(City::getPageName));
 
-
-        System.out.println("Found "+cities.size()+" cities.");
+        System.out.println("Found " + cities.size() + " cities.");
 
         var arr = new ArrayList<Feature>();
         for (var city : cities) {
             try {
                 var feature = new Feature();
                 var properties = new Properties();
-                feature.setProperties(properties);
                 handleName(city, properties);
-                properties.setLink("https://pathfinderwiki.com/wiki/"+city.getPageName().replace(' ', '_'));
+                properties.setLink("https://pathfinderwiki.com/wiki/" + city.getPageName().replace(' ', '_'));
                 properties.setCapital(city.getCapital() == 1);
+                feature.setProperties(properties);
                 handlePopulation(city, feature);
+
                 var geometry = new Geometry();
+                geometry.setCoordinates(List.of(city.getCoordsLon(), city.getCoordsLat()));
                 feature.setGeometry(geometry);
-                geometry.setCoordinates(List.of(
-                    city.getCoordsLon(),
-                    city.getCoordsLat()));
                 arr.add(feature);
-            } catch(Exception e) {
-                System.err.println("Failed for "+city.getPageName());
+            } catch (Exception e) {
+                System.err.println("Failed for " + city.getPageName());
                 e.printStackTrace();
             }
         }
 
-        var result = new FeatureCollection();
-        result.setName("cities");
-        result.setFeatures(arr);
+        var result = new FeatureCollection("cities", arr);
         jackson.writer().withDefaultPrettyPrinter().writeValue(new File("../sources/cities.geojson"), result);
     }
 
@@ -78,43 +73,36 @@ public class DownloadCities {
         int size = mapSize(city);
 
         feature.getProperties().setSize(size);
-        feature.getTippecanoe().setMinzoom(switch(size) {
-            case 0  -> 2;
-            case 1  -> 4;
-            case 2  -> 5;
+        feature.getTippecanoe().setMinzoom(switch (size) {
+            case 0 -> 2;
+            case 1 -> 4;
+            case 2 -> 5;
             default -> 6;
         });
     }
 
     private static int mapSize(City city) {
-        if(city.getPopulation() != null && !city.getPopulation().isEmpty()) {
+        if (city.getPopulation() != null && !city.getPopulation().isEmpty()) {
             long population = Long.parseLong(city.getPopulation());
-            if(population > 25000) {
+            if (population > 25000) {
                 return 0;
-            }
-            else if(population > 5000) {
+            } else if (population > 5000) {
                 return 1;
-            }
-            else if(population > 201) {
+            } else if (population > 201) {
                 return 2;
             }
             return 3;
-        }
-        else if(city.getSize() != null && !city.getSize().isEmpty()) {
+        } else if (city.getSize() != null && !city.getSize().isEmpty()) {
             String size = city.getSize();
-            if(StringUtils.containsAnyIgnoreCase(size, "Category:Thorps", "Category:Hamlets", "Category:Villages")) {
+            if (StringUtils.containsAnyIgnoreCase(size, "Category:Thorps", "Category:Hamlets", "Category:Villages")) {
                 return 3;
-            }
-            else if(StringUtils.containsAnyIgnoreCase(size, "Category:Small_towns", "Category:Large_towns", "Town")) {
+            } else if (StringUtils.containsAnyIgnoreCase(size, "Category:Small_towns", "Category:Large_towns", "Town")) {
                 return 2;
-            }
-            else if(StringUtils.containsAnyIgnoreCase(size, "City", "Category:Small_cities", "Category:Large_cities")) {
+            } else if (StringUtils.containsAnyIgnoreCase(size, "City", "Category:Small_cities", "Category:Large_cities")) {
                 return 1;
-            }
-            else if(StringUtils.containsAnyIgnoreCase(size, "Category:Metropolises", "Metropolis")) {
+            } else if (StringUtils.containsAnyIgnoreCase(size, "Category:Metropolises", "Metropolis")) {
                 return 0;
-            }
-            else if(StringUtils.containsAnyIgnoreCase(size, "Abandoned", "Ruins")) {
+            } else if (StringUtils.containsAnyIgnoreCase(size, "Abandoned", "Ruins")) {
                 return 3; //TODO maybe these should be locations instead?
             }
             return 3;

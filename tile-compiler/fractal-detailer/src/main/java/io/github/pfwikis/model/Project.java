@@ -28,19 +28,19 @@ public class Project {
     }
 
     public static Point fromLatLngToPoint(LngLat lngLat) {
-        double x = _pixelOrigin.getX() + lngLat.getLng() * _pixelsPerLonDegree;
+        double x = _pixelOrigin.x() + lngLat.lng() * _pixelsPerLonDegree;
 
         // Truncating to 0.9999 effectively limits latitude to 89.189. This is
         // about a third of a tile past the edge of the world tile.
-        double siny = bound(Math.sin(degreesToRadians(lngLat.getLat())), -0.9999, 0.9999);
-        double y = _pixelOrigin.getY() + 0.5 * Math.log((1 + siny) / (1 - siny)) * -_pixelsPerLonRadian;
+        double siny = bound(Math.sin(degreesToRadians(lngLat.lat())), -0.9999, 0.9999);
+        double y = _pixelOrigin.y() + 0.5 * Math.log((1 + siny) / (1 - siny)) * -_pixelsPerLonRadian;
 
         return new Point(x, y);
     }
 
     public static LngLat fromPointToLatLng(Point point) {
-        double lng = (point.getX() - _pixelOrigin.getX()) / _pixelsPerLonDegree;
-        double latRadians = (point.getY() - _pixelOrigin.getY()) / -_pixelsPerLonRadian;
+        double lng = (point.x() - _pixelOrigin.x()) / _pixelsPerLonDegree;
+        double latRadians = (point.y() - _pixelOrigin.y()) / -_pixelsPerLonRadian;
         double lat = radiansToDegrees(2 * Math.atan(Math.exp(latRadians)) - Math.PI / 2);
         return new LngLat(lng, lat);
     }

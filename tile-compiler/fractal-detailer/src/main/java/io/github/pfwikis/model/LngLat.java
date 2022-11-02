@@ -6,10 +6,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.*;
 
 @Value
-public class LngLat {
-
-    private double lng;
-    private double lat;
+public record LngLat(double lng, double lat) {
 
     @JsonCreator
     public static LngLat of(double[] raw) {
@@ -18,6 +15,6 @@ public class LngLat {
 
     @JsonValue
     public double[] toRaw() {
-        return new double[] {lng, lat};
+        return new double[]{lng, lat};
     }
 }
