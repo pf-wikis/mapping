@@ -193,7 +193,7 @@
     "properties" : {
       "Name" : "Almas",
       "link" : "https://pathfinderwiki.com/wiki/Almas",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -566,6 +566,21 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "Name" : "Badelund",
+      "link" : "https://pathfinderwiki.com/wiki/Badelund",
+      "capital" : false,
+      "size" : 2
+    },
+    "tippecanoe" : {
+      "minzoom" : 5
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -25.896704059296, 58.261190134821 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "Name" : "Baghava",
       "link" : "https://pathfinderwiki.com/wiki/Baghava",
       "capital" : false,
@@ -577,6 +592,21 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ 73.302499853571, -25.169332244404 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Baldachin",
+      "link" : "https://pathfinderwiki.com/wiki/Baldachin",
+      "capital" : false,
+      "size" : 2
+    },
+    "tippecanoe" : {
+      "minzoom" : 5
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -26.988553347639, 57.942761775006 ]
     }
   }, {
     "type" : "Feature",
@@ -973,7 +1003,7 @@
     "properties" : {
       "Name" : "Caliphas",
       "link" : "https://pathfinderwiki.com/wiki/Caliphas_(city)",
-      "capital" : false,
+      "capital" : true,
       "size" : 1
     },
     "tippecanoe" : {
@@ -988,7 +1018,7 @@
     "properties" : {
       "Name" : "Canorate",
       "link" : "https://pathfinderwiki.com/wiki/Canorate",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -1357,6 +1387,21 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -3.1035, 37.7028 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Coldwater",
+      "link" : "https://pathfinderwiki.com/wiki/Coldwater",
+      "capital" : false,
+      "size" : 2
+    },
+    "tippecanoe" : {
+      "minzoom" : 5
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -23.786540438089, 58.186556703679 ]
     }
   }, {
     "type" : "Feature",
@@ -1976,21 +2021,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "Name" : "Drezen",
-      "link" : "https://pathfinderwiki.com/wiki/Drezen",
-      "capital" : false,
-      "size" : 1
-    },
-    "tippecanoe" : {
-      "minzoom" : 4
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -2.4566, 59.3056 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "Name" : "Drowning Rock",
       "link" : "https://pathfinderwiki.com/wiki/Drowning_Rock",
       "capital" : false,
@@ -2218,7 +2248,7 @@
     "properties" : {
       "Name" : "Elidir",
       "link" : "https://pathfinderwiki.com/wiki/Elidir",
-      "capital" : false,
+      "capital" : true,
       "size" : 1
     },
     "tippecanoe" : {
@@ -3011,6 +3041,21 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "Name" : "Hagby",
+      "link" : "https://pathfinderwiki.com/wiki/Hagby",
+      "capital" : false,
+      "size" : 2
+    },
+    "tippecanoe" : {
+      "minzoom" : 5
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -26.041985110808, 57.772126421456 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "Name" : "Haigui Wan",
       "link" : "https://pathfinderwiki.com/wiki/Haigui_Wan",
       "capital" : false,
@@ -3298,7 +3343,7 @@
     "properties" : {
       "Name" : "Highhelm",
       "link" : "https://pathfinderwiki.com/wiki/Highhelm",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -3418,7 +3463,7 @@
     "properties" : {
       "Name" : "Iadara",
       "link" : "https://pathfinderwiki.com/wiki/Iadara",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -3613,7 +3658,7 @@
     "properties" : {
       "Name" : "Isarn",
       "link" : "https://pathfinderwiki.com/wiki/Isarn",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -3913,7 +3958,7 @@
     "properties" : {
       "Name" : "Katheer",
       "link" : "https://pathfinderwiki.com/wiki/Katheer",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -4003,7 +4048,7 @@
     "properties" : {
       "Name" : "Kerse",
       "link" : "https://pathfinderwiki.com/wiki/Kerse",
-      "capital" : false,
+      "capital" : true,
       "size" : 1
     },
     "tippecanoe" : {
@@ -4078,7 +4123,7 @@
     "properties" : {
       "Name" : "Kintargo",
       "link" : "https://pathfinderwiki.com/wiki/Kintargo",
-      "capital" : false,
+      "capital" : true,
       "size" : 1
     },
     "tippecanoe" : {
@@ -4372,6 +4417,21 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -5.004, 37.521 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Ledenica",
+      "link" : "https://pathfinderwiki.com/wiki/Ledenica",
+      "capital" : false,
+      "size" : 2
+    },
+    "tippecanoe" : {
+      "minzoom" : 5
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -25.670190630431, 57.000143914131 ]
     }
   }, {
     "type" : "Feature",
@@ -5083,7 +5143,7 @@
     "properties" : {
       "Name" : "Nerosyan",
       "link" : "https://pathfinderwiki.com/wiki/Nerosyan",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -5128,7 +5188,7 @@
     "properties" : {
       "Name" : "New Stetven",
       "link" : "https://pathfinderwiki.com/wiki/New_Stetven",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -5383,7 +5443,7 @@
     "properties" : {
       "Name" : "Oppara",
       "link" : "https://pathfinderwiki.com/wiki/Oppara",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -5638,7 +5698,7 @@
     "properties" : {
       "Name" : "Pangolais",
       "link" : "https://pathfinderwiki.com/wiki/Pangolais",
-      "capital" : false,
+      "capital" : true,
       "size" : 1
     },
     "tippecanoe" : {
@@ -6202,6 +6262,21 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -15.7404, 42.7525 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Riekamesto",
+      "link" : "https://pathfinderwiki.com/wiki/Riekamesto",
+      "capital" : false,
+      "size" : 2
+    },
+    "tippecanoe" : {
+      "minzoom" : 5
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -25.077349813372, 57.312686220499 ]
     }
   }, {
     "type" : "Feature",
@@ -6913,7 +6988,7 @@
     "properties" : {
       "Name" : "Starfall",
       "link" : "https://pathfinderwiki.com/wiki/Starfall",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -7108,7 +7183,7 @@
     "properties" : {
       "Name" : "Tamran",
       "link" : "https://pathfinderwiki.com/wiki/Tamran",
-      "capital" : false,
+      "capital" : true,
       "size" : 1
     },
     "tippecanoe" : {
@@ -7228,7 +7303,7 @@
     "properties" : {
       "Name" : "Thronestep",
       "link" : "https://pathfinderwiki.com/wiki/Thronestep",
-      "capital" : false,
+      "capital" : true,
       "size" : 1
     },
     "tippecanoe" : {
@@ -7633,7 +7708,7 @@
     "properties" : {
       "Name" : "Urgir",
       "link" : "https://pathfinderwiki.com/wiki/Urgir",
-      "capital" : false,
+      "capital" : true,
       "size" : 0
     },
     "tippecanoe" : {
@@ -7828,7 +7903,7 @@
     "properties" : {
       "Name" : "Vigil",
       "link" : "https://pathfinderwiki.com/wiki/Vigil",
-      "capital" : false,
+      "capital" : true,
       "size" : 1
     },
     "tippecanoe" : {
@@ -8293,7 +8368,7 @@
     "properties" : {
       "Name" : "Xin-Shalast",
       "link" : "https://pathfinderwiki.com/wiki/Xin-Shalast",
-      "capital" : false,
+      "capital" : true,
       "size" : 1
     },
     "tippecanoe" : {
@@ -8437,6 +8512,21 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -27.7492, 55.0929 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Ytterjorna",
+      "link" : "https://pathfinderwiki.com/wiki/Ytterjorna",
+      "capital" : false,
+      "size" : 2
+    },
+    "tippecanoe" : {
+      "minzoom" : 5
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -24.456432487506, 57.515716119285 ]
     }
   }, {
     "type" : "Feature",
