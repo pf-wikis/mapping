@@ -22,6 +22,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: false
+          token: ${{ secrets.ACTIONS_PAT }}
       - name: Setup Java
         uses: actions/setup-java@v3
         with:
@@ -38,9 +39,3 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           message: 'Updating wiki derived json files'
-    outputs:
-      pushed: ${{ steps.push.outputs.pushed }}
-  deploy:
-    needs: pull
-    if: needs.pull.outputs.pushed == 'true'
-    uses: pf-wikis/mapping/.github/workflows/deploy-to-gh-pages.yml@main
