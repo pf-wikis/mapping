@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@JsonPropertyOrder({"Name", "link", "type", "capital", "size"})
+@JsonPropertyOrder({"Name", "link", "type", "capital", "size", "filterMinzoom"})
 public class Properties {
 
     @JsonProperty("Name")

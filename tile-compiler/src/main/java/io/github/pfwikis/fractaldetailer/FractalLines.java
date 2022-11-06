@@ -1,14 +1,14 @@
-package io.github.pfwikis;
+package io.github.pfwikis.fractaldetailer;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import io.github.pfwikis.model.Edge;
-import io.github.pfwikis.model.LngLat;
-import io.github.pfwikis.model.Point;
-import io.github.pfwikis.model.Project;
+import io.github.pfwikis.fractaldetailer.model.Edge;
+import io.github.pfwikis.fractaldetailer.model.LngLat;
+import io.github.pfwikis.fractaldetailer.model.Point;
+import io.github.pfwikis.fractaldetailer.model.Project;
 
 public class FractalLines {
 

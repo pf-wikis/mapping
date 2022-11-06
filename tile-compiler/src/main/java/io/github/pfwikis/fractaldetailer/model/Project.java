@@ -1,4 +1,4 @@
-package io.github.pfwikis.model;
+package io.github.pfwikis.fractaldetailer.model;
 
 public class Project {
     private static final int TILE_SIZE = 10000;

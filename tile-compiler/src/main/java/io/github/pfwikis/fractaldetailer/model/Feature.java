@@ -1,4 +1,4 @@
-package io.github.pfwikis.model;
+package io.github.pfwikis.fractaldetailer.model;
 
 import lombok.Getter;
 import lombok.Setter;
