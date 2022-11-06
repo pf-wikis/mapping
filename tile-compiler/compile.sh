@@ -51,15 +51,6 @@ for f in ../sources/*.geojson; do
 	cp $f $target
 	compile $target
 done
-for f in ../sources/*/*.shp; do
-	echo "" && echo ""
-	target="geo/$(basename $f .shp).geojson"
-	echo "Transforming $f to GeoJSON $target"
-	ogr2ogr "$target" "$f" \
-		-dim XY \
-		-mapFieldType DateTime=String
-	compile $target
-done
 
 # compile borders
 mapshaper geo/countries.geojson -clean -snap precision=0.0001 -innerlines -dissolve -o geo/borders.geojson geojson-type=FeatureCollection
