@@ -2,6 +2,8 @@ package io.github.pfwikis;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,6 +17,7 @@ import io.github.pfwikis.model.*;
 
 public class DownloadCities {
 
+    public static final MathContext ROUND_TO_7 = new MathContext(7, RoundingMode.HALF_UP);
     private static final Map<Integer, Integer> SIZE_TO_MIN_ZOOM = Map.of(0, 2,
             1, 4,
             2, 5);
@@ -55,7 +58,10 @@ public class DownloadCities {
                 handlePopulation(city, feature);
 
                 var geometry = new Geometry();
-                geometry.setCoordinates(List.of(city.getCoordsLon(), city.getCoordsLat()));
+                geometry.setCoordinates(List.of(
+                    city.getCoordsLon().round(ROUND_TO_7),
+                    city.getCoordsLat().round(ROUND_TO_7)
+                ));
                 feature.setGeometry(geometry);
                 arr.add(feature);
             } catch (Exception e) {

@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2022-11-06T23:28:16" saveUser="manue" saveUserFull="Manuel Hegner" version="3.26.3-Buenos Aires">
+<qgis projectname="" saveDateTime="2022-11-07T12:33:57" saveUser="manue" saveUserFull="Manuel Hegner" version="3.28.0-Firenze">
   <homePath path="."></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -191,20 +191,20 @@
   </layer-tree-group>
   <snapping-settings enabled="1" intersection-snapping="0" maxScale="0" minScale="0" mode="3" scaleDependencyMode="1" self-snapping="0" tolerance="17" type="1" unit="1">
     <individual-layer-settings>
-      <layer-setting enabled="1" id="forests_1f0825fc_d22c_4420_a486_71a5f5fa2fe0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="waters_1c8ac1d0_b31b_4f02_8f82_efe0f2650a0a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="ice_b0051c87_7a1d_4766_9b20_7f188cf760b0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="mountains_b5410a56_b448_490e_99a1_2b153d259f76" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="rivers_35de65df_09a9_46fd_ab54_1a6900b58146" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="swamps_7de1642c_924d_48e3_b1cd_1a0cc345f514" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="cities_d31beece_c036_41c5_a611_4b2e9e870710" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="continents_35904243_84b5_441f_9015_f9812bacdc2c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="hills_72250f28_6ae0_4717_ba78_88be49eec237" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="chasms_d2dbe908_d236_4256_b7cd_9676009fa25a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="continents_35904243_84b5_441f_9015_f9812bacdc2c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="walls_d0e44ecb_ab06_47e8_ab75_767d456fa8f1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="1" id="deserts_9150d2d1_48b2_4d7d_a371_5619c41aef06" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="districts_032f01a8_4478_49dc_9920_3487d38503ba" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="rivers_35de65df_09a9_46fd_ab54_1a6900b58146" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="swamps_7de1642c_924d_48e3_b1cd_1a0cc345f514" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="forests_1f0825fc_d22c_4420_a486_71a5f5fa2fe0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="ice_b0051c87_7a1d_4766_9b20_7f188cf760b0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="countries_66e7cbd5_ca39_48f9_b6b8_a58a458c2c40" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="cities_d31beece_c036_41c5_a611_4b2e9e870710" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="districts_032f01a8_4478_49dc_9920_3487d38503ba" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="waters_1c8ac1d0_b31b_4f02_8f82_efe0f2650a0a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="hills_72250f28_6ae0_4717_ba78_88be49eec237" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="mountains_b5410a56_b448_490e_99a1_2b153d259f76" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
   <relations></relations>
@@ -550,33 +550,6 @@
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="231,113,72,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -610,17 +583,6 @@
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="231,113,72,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -805,33 +767,6 @@
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="229,182,54,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -865,17 +800,6 @@
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="229,182,54,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -1068,33 +992,6 @@
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="190,178,151,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -1128,17 +1025,6 @@
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="190,178,151,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -1328,33 +1214,6 @@
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="196,60,57,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -1388,17 +1247,6 @@
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="196,60,57,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -1459,18 +1307,18 @@
       </pipe>
       <blendMode>0</blendMode>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>-0.08079767884075</xmin>
-        <ymin>35.58359193322833391</ymin>
-        <xmax>-0.07661301943201</xmax>
-        <ymax>35.5871155037008009</ymax>
+        <xmin>-0.0807977</xmin>
+        <ymin>35.58359190000000183</ymin>
+        <xmax>-0.076613</xmax>
+        <ymax>35.58711550000000301</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-0.08079767884075</xmin>
-        <ymin>35.58359193322833391</ymin>
-        <xmax>-0.07661301943201</xmax>
-        <ymax>35.5871155037008009</ymax>
+        <xmin>-0.0807977</xmin>
+        <ymin>35.58359190000000183</ymin>
+        <xmax>-0.076613</xmax>
+        <ymax>35.58711550000000301</ymax>
       </wgs84extent>
       <id>chasms_d2dbe908_d236_4256_b7cd_9676009fa25a</id>
       <datasource>./chasms.geojson</datasource>
@@ -1504,7 +1352,7 @@
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -1585,33 +1433,6 @@
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="152,125,183,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -1645,17 +1466,6 @@
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="152,125,183,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="109,89,131,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -1697,25 +1507,6 @@
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="152,125,183,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="109,89,131,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -1751,17 +1542,6 @@
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="62,16,0,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -1789,27 +1569,11 @@
       </geometryOptions>
       <legend showLabelLegend="0" type="default-vector"></legend>
       <referencedLayers></referencedLayers>
-      <fieldConfiguration>
-        <field configurationFlags="None" name="FID">
-          <editWidget type="">
-            <config>
-              <Option></Option>
-            </config>
-          </editWidget>
-        </field>
-      </fieldConfiguration>
-      <aliases>
-        <alias field="FID" index="0" name=""></alias>
-      </aliases>
-      <defaults>
-        <default applyOnUpdate="0" expression="" field="FID"></default>
-      </defaults>
-      <constraints>
-        <constraint constraints="0" exp_strength="0" field="FID" notnull_strength="0" unique_strength="0"></constraint>
-      </constraints>
-      <constraintExpressions>
-        <constraint desc="" exp="" field="FID"></constraint>
-      </constraintExpressions>
+      <fieldConfiguration></fieldConfiguration>
+      <aliases></aliases>
+      <defaults></defaults>
+      <constraints></constraints>
+      <constraintExpressions></constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
@@ -1882,7 +1646,7 @@
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -1963,33 +1727,6 @@
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="231,113,72,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -2023,17 +1760,6 @@
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="231,113,72,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="165,81,51,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -2075,25 +1801,6 @@
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="231,113,72,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="165,81,51,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -2137,25 +1844,6 @@
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="183,72,75,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="circle"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="2"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -2171,7 +1859,7 @@
       </renderer-v2>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Arial" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" namedStyle="Regular" previewBkgrdColor="255,255,255,255" textColor="50,50,50,255" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Arial" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255" textColor="50,50,50,255" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families>
               <family name="Open Sans"></family>
               <family name="Liberation Sans"></family>
@@ -2204,17 +1892,6 @@
                     <Option name="outline_width_unit" type="QString" value="Point"></Option>
                     <Option name="style" type="QString" value="solid"></Option>
                   </Option>
-                  <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                  <prop k="color" v="255,255,255,255"></prop>
-                  <prop k="joinstyle" v="bevel"></prop>
-                  <prop k="offset" v="0,0"></prop>
-                  <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                  <prop k="offset_unit" v="MM"></prop>
-                  <prop k="outline_color" v="128,128,128,255"></prop>
-                  <prop k="outline_style" v="no"></prop>
-                  <prop k="outline_width" v="0"></prop>
-                  <prop k="outline_width_unit" v="Point"></prop>
-                  <prop k="style" v="solid"></prop>
                   <data_defined_properties>
                     <Option type="Map">
                       <Option name="name" type="QString" value=""></Option>
@@ -2257,7 +1934,7 @@
               <Option name="drawToAllParts" type="bool" value="false"></Option>
               <Option name="enabled" type="QString" value="0"></Option>
               <Option name="labelAnchorPoint" type="QString" value="point_on_exterior"></Option>
-              <Option name="lineSymbol" type="QString" value="&lt;symbol clip_to_extent=&quot;1&quot; type=&quot;line&quot; force_rhr=&quot;0&quot; frame_rate=&quot;10&quot; alpha=&quot;1&quot; name=&quot;symbol&quot; is_animated=&quot;0&quot;>&lt;data_defined_properties>&lt;Option type=&quot;Map&quot;>&lt;Option value=&quot;&quot; type=&quot;QString&quot; name=&quot;name&quot;/>&lt;Option name=&quot;properties&quot;/>&lt;Option value=&quot;collection&quot; type=&quot;QString&quot; name=&quot;type&quot;/>&lt;/Option>&lt;/data_defined_properties>&lt;layer class=&quot;SimpleLine&quot; locked=&quot;0&quot; pass=&quot;0&quot; enabled=&quot;1&quot;>&lt;Option type=&quot;Map&quot;>&lt;Option value=&quot;0&quot; type=&quot;QString&quot; name=&quot;align_dash_pattern&quot;/>&lt;Option value=&quot;square&quot; type=&quot;QString&quot; name=&quot;capstyle&quot;/>&lt;Option value=&quot;5;2&quot; type=&quot;QString&quot; name=&quot;customdash&quot;/>&lt;Option value=&quot;3x:0,0,0,0,0,0&quot; type=&quot;QString&quot; name=&quot;customdash_map_unit_scale&quot;/>&lt;Option value=&quot;MM&quot; type=&quot;QString&quot; name=&quot;customdash_unit&quot;/>&lt;Option value=&quot;0&quot; type=&quot;QString&quot; name=&quot;dash_pattern_offset&quot;/>&lt;Option value=&quot;3x:0,0,0,0,0,0&quot; type=&quot;QString&quot; name=&quot;dash_pattern_offset_map_unit_scale&quot;/>&lt;Option value=&quot;MM&quot; type=&quot;QString&quot; name=&quot;dash_pattern_offset_unit&quot;/>&lt;Option value=&quot;0&quot; type=&quot;QString&quot; name=&quot;draw_inside_polygon&quot;/>&lt;Option value=&quot;bevel&quot; type=&quot;QString&quot; name=&quot;joinstyle&quot;/>&lt;Option value=&quot;60,60,60,255&quot; type=&quot;QString&quot; name=&quot;line_color&quot;/>&lt;Option value=&quot;solid&quot; type=&quot;QString&quot; name=&quot;line_style&quot;/>&lt;Option value=&quot;0.3&quot; type=&quot;QString&quot; name=&quot;line_width&quot;/>&lt;Option value=&quot;MM&quot; type=&quot;QString&quot; name=&quot;line_width_unit&quot;/>&lt;Option value=&quot;0&quot; type=&quot;QString&quot; name=&quot;offset&quot;/>&lt;Option value=&quot;3x:0,0,0,0,0,0&quot; type=&quot;QString&quot; name=&quot;offset_map_unit_scale&quot;/>&lt;Option value=&quot;MM&quot; type=&quot;QString&quot; name=&quot;offset_unit&quot;/>&lt;Option value=&quot;0&quot; type=&quot;QString&quot; name=&quot;ring_filter&quot;/>&lt;Option value=&quot;0&quot; type=&quot;QString&quot; name=&quot;trim_distance_end&quot;/>&lt;Option value=&quot;3x:0,0,0,0,0,0&quot; type=&quot;QString&quot; name=&quot;trim_distance_end_map_unit_scale&quot;/>&lt;Option value=&quot;MM&quot; type=&quot;QString&quot; name=&quot;trim_distance_end_unit&quot;/>&lt;Option value=&quot;0&quot; type=&quot;QString&quot; name=&quot;trim_distance_start&quot;/>&lt;Option value=&quot;3x:0,0,0,0,0,0&quot; type=&quot;QString&quot; name=&quot;trim_distance_start_map_unit_scale&quot;/>&lt;Option value=&quot;MM&quot; type=&quot;QString&quot; name=&quot;trim_distance_start_unit&quot;/>&lt;Option value=&quot;0&quot; type=&quot;QString&quot; name=&quot;tweak_dash_pattern_on_corners&quot;/>&lt;Option value=&quot;0&quot; type=&quot;QString&quot; name=&quot;use_custom_dash&quot;/>&lt;Option value=&quot;3x:0,0,0,0,0,0&quot; type=&quot;QString&quot; name=&quot;width_map_unit_scale&quot;/>&lt;/Option>&lt;prop k=&quot;align_dash_pattern&quot; v=&quot;0&quot;/>&lt;prop k=&quot;capstyle&quot; v=&quot;square&quot;/>&lt;prop k=&quot;customdash&quot; v=&quot;5;2&quot;/>&lt;prop k=&quot;customdash_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;prop k=&quot;customdash_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;dash_pattern_offset&quot; v=&quot;0&quot;/>&lt;prop k=&quot;dash_pattern_offset_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;prop k=&quot;dash_pattern_offset_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;draw_inside_polygon&quot; v=&quot;0&quot;/>&lt;prop k=&quot;joinstyle&quot; v=&quot;bevel&quot;/>&lt;prop k=&quot;line_color&quot; v=&quot;60,60,60,255&quot;/>&lt;prop k=&quot;line_style&quot; v=&quot;solid&quot;/>&lt;prop k=&quot;line_width&quot; v=&quot;0.3&quot;/>&lt;prop k=&quot;line_width_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;offset&quot; v=&quot;0&quot;/>&lt;prop k=&quot;offset_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;prop k=&quot;offset_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;ring_filter&quot; v=&quot;0&quot;/>&lt;prop k=&quot;trim_distance_end&quot; v=&quot;0&quot;/>&lt;prop k=&quot;trim_distance_end_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;prop k=&quot;trim_distance_end_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;trim_distance_start&quot; v=&quot;0&quot;/>&lt;prop k=&quot;trim_distance_start_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;prop k=&quot;trim_distance_start_unit&quot; v=&quot;MM&quot;/>&lt;prop k=&quot;tweak_dash_pattern_on_corners&quot; v=&quot;0&quot;/>&lt;prop k=&quot;use_custom_dash&quot; v=&quot;0&quot;/>&lt;prop k=&quot;width_map_unit_scale&quot; v=&quot;3x:0,0,0,0,0,0&quot;/>&lt;data_defined_properties>&lt;Option type=&quot;Map&quot;>&lt;Option value=&quot;&quot; type=&quot;QString&quot; name=&quot;name&quot;/>&lt;Option name=&quot;properties&quot;/>&lt;Option value=&quot;collection&quot; type=&quot;QString&quot; name=&quot;type&quot;/>&lt;/Option>&lt;/data_defined_properties>&lt;/layer>&lt;/symbol>"></Option>
+              <Option name="lineSymbol" type="QString" value="&lt;symbol type=&quot;line&quot; alpha=&quot;1&quot; clip_to_extent=&quot;1&quot; is_animated=&quot;0&quot; name=&quot;symbol&quot; force_rhr=&quot;0&quot; frame_rate=&quot;10&quot;>&lt;data_defined_properties>&lt;Option type=&quot;Map&quot;>&lt;Option type=&quot;QString&quot; value=&quot;&quot; name=&quot;name&quot;/>&lt;Option name=&quot;properties&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;collection&quot; name=&quot;type&quot;/>&lt;/Option>&lt;/data_defined_properties>&lt;layer locked=&quot;0&quot; class=&quot;SimpleLine&quot; enabled=&quot;1&quot; pass=&quot;0&quot;>&lt;Option type=&quot;Map&quot;>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;align_dash_pattern&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;square&quot; name=&quot;capstyle&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;5;2&quot; name=&quot;customdash&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;customdash_map_unit_scale&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;customdash_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;dash_pattern_offset&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;dash_pattern_offset_map_unit_scale&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;dash_pattern_offset_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;draw_inside_polygon&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;bevel&quot; name=&quot;joinstyle&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;60,60,60,255&quot; name=&quot;line_color&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;solid&quot; name=&quot;line_style&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0.3&quot; name=&quot;line_width&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;line_width_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;offset&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;offset_map_unit_scale&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;offset_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;ring_filter&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;trim_distance_end&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;trim_distance_end_map_unit_scale&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;trim_distance_end_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;trim_distance_start&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;trim_distance_start_map_unit_scale&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;MM&quot; name=&quot;trim_distance_start_unit&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;tweak_dash_pattern_on_corners&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;0&quot; name=&quot;use_custom_dash&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;3x:0,0,0,0,0,0&quot; name=&quot;width_map_unit_scale&quot;/>&lt;/Option>&lt;data_defined_properties>&lt;Option type=&quot;Map&quot;>&lt;Option type=&quot;QString&quot; value=&quot;&quot; name=&quot;name&quot;/>&lt;Option name=&quot;properties&quot;/>&lt;Option type=&quot;QString&quot; value=&quot;collection&quot; name=&quot;type&quot;/>&lt;/Option>&lt;/data_defined_properties>&lt;/layer>&lt;/symbol>"></Option>
               <Option name="minLength" type="double" value="0"></Option>
               <Option name="minLengthMapUnitScale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               <Option name="minLengthUnit" type="QString" value="MM"></Option>
@@ -2376,17 +2053,17 @@
       <previewExpression>"Name"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
         <xmin>-180</xmin>
-        <ymin>-78.32255719444225406</ymin>
-        <xmax>211.20404352067276932</xmax>
+        <ymin>-78.32255720000000565</ymin>
+        <xmax>180</xmax>
         <ymax>90</ymax>
       </extent>
       <wgs84extent>
         <xmin>-180</xmin>
-        <ymin>-78.32255719444225406</ymin>
-        <xmax>211.20404352067276932</xmax>
+        <ymin>-78.32255720000000565</ymin>
+        <xmax>180</xmax>
         <ymax>90</ymax>
       </wgs84extent>
       <id>continents_35904243_84b5_441f_9015_f9812bacdc2c</id>
@@ -2430,7 +2107,7 @@
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -2519,33 +2196,6 @@
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="152,125,183,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -2579,17 +2229,6 @@
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="152,125,183,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="109,89,131,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -2631,25 +2270,6 @@
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="152,125,183,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="109,89,131,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -2685,17 +2305,6 @@
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="252,170,7,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -2765,33 +2374,6 @@
                   <Option name="use_custom_dash" type="QString" value="0"></Option>
                   <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 </Option>
-                <prop k="align_dash_pattern" v="0"></prop>
-                <prop k="capstyle" v="square"></prop>
-                <prop k="customdash" v="5;2"></prop>
-                <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="customdash_unit" v="MM"></prop>
-                <prop k="dash_pattern_offset" v="0"></prop>
-                <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="dash_pattern_offset_unit" v="MM"></prop>
-                <prop k="draw_inside_polygon" v="0"></prop>
-                <prop k="joinstyle" v="bevel"></prop>
-                <prop k="line_color" v="35,35,35,255"></prop>
-                <prop k="line_style" v="solid"></prop>
-                <prop k="line_width" v="0.26"></prop>
-                <prop k="line_width_unit" v="MM"></prop>
-                <prop k="offset" v="0"></prop>
-                <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="offset_unit" v="MM"></prop>
-                <prop k="ring_filter" v="0"></prop>
-                <prop k="trim_distance_end" v="0"></prop>
-                <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="trim_distance_end_unit" v="MM"></prop>
-                <prop k="trim_distance_start" v="0"></prop>
-                <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="trim_distance_start_unit" v="MM"></prop>
-                <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-                <prop k="use_custom_dash" v="0"></prop>
-                <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
                 <data_defined_properties>
                   <Option type="Map">
                     <Option name="name" type="QString" value=""></Option>
@@ -2898,18 +2480,18 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>"Name"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>-123.77371749711251425</xmin>
-        <ymin>-52.98787031710108408</ymin>
-        <xmax>211.20404352067276932</xmax>
-        <ymax>73.96243230281511671</ymax>
+        <xmin>-180</xmin>
+        <ymin>-52.98787029999999731</ymin>
+        <xmax>180</xmax>
+        <ymax>73.96243230000000324</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-123.77371749711251425</xmin>
-        <ymin>-52.98787031710108408</ymin>
-        <xmax>211.20404352067276932</xmax>
-        <ymax>73.96243230281511671</ymax>
+        <xmin>-180</xmin>
+        <ymin>-52.98787029999999731</ymin>
+        <xmax>180</xmax>
+        <ymax>73.96243230000000324</ymax>
       </wgs84extent>
       <id>countries_66e7cbd5_ca39_48f9_b6b8_a58a458c2c40</id>
       <datasource>./countries.geojson</datasource>
@@ -2952,7 +2534,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -3041,33 +2623,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="232,113,141,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -3101,17 +2656,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="232,113,141,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="166,81,101,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -3153,25 +2697,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="232,113,141,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="166,81,101,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -3223,33 +2748,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="203,61,194,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0"></prop>
-              <prop k="line_width_unit" v="MapUnit"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -3319,33 +2817,6 @@ def my_form_open(dialog, layer, feature):
                   <Option name="use_custom_dash" type="QString" value="0"></Option>
                   <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 </Option>
-                <prop k="align_dash_pattern" v="0"></prop>
-                <prop k="capstyle" v="square"></prop>
-                <prop k="customdash" v="5;2"></prop>
-                <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="customdash_unit" v="MM"></prop>
-                <prop k="dash_pattern_offset" v="0"></prop>
-                <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="dash_pattern_offset_unit" v="MM"></prop>
-                <prop k="draw_inside_polygon" v="0"></prop>
-                <prop k="joinstyle" v="bevel"></prop>
-                <prop k="line_color" v="35,35,35,255"></prop>
-                <prop k="line_style" v="solid"></prop>
-                <prop k="line_width" v="0.26"></prop>
-                <prop k="line_width_unit" v="MM"></prop>
-                <prop k="offset" v="0"></prop>
-                <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="offset_unit" v="MM"></prop>
-                <prop k="ring_filter" v="0"></prop>
-                <prop k="trim_distance_end" v="0"></prop>
-                <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="trim_distance_end_unit" v="MM"></prop>
-                <prop k="trim_distance_start" v="0"></prop>
-                <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="trim_distance_start_unit" v="MM"></prop>
-                <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-                <prop k="use_custom_dash" v="0"></prop>
-                <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
                 <data_defined_properties>
                   <Option type="Map">
                     <Option name="name" type="QString" value=""></Option>
@@ -3452,18 +2923,18 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>"Name"</previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>-120.33304164817917581</xmin>
-        <ymin>-50.3830197317233015</ymin>
-        <xmax>81.22872490174485449</xmax>
-        <ymax>39.04088297339974645</ymax>
+        <xmin>-120.33304160000000138</xmin>
+        <ymin>-50.38301969999999841</ymin>
+        <xmax>81.22872490000000312</xmax>
+        <ymax>39.04088300000000089</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-120.33304164817917581</xmin>
-        <ymin>-50.3830197317233015</ymin>
-        <xmax>81.22872490174485449</xmax>
-        <ymax>39.04088297339974645</ymax>
+        <xmin>-120.33304160000000138</xmin>
+        <ymin>-50.38301969999999841</ymin>
+        <xmax>81.22872490000000312</xmax>
+        <ymax>39.04088300000000089</ymax>
       </wgs84extent>
       <id>deserts_9150d2d1_48b2_4d7d_a371_5619c41aef06</id>
       <datasource>./deserts.geojson</datasource>
@@ -3497,7 +2968,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -3578,33 +3049,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="145,82,45,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -3638,17 +3082,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="145,82,45,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="104,59,32,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -3690,25 +3123,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="145,82,45,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="104,59,32,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -3744,17 +3158,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="255,249,203,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -3830,18 +3233,18 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>-0.146279542571567</xmin>
-        <ymin>35.49549734438757298</ymin>
-        <xmax>-0.016279023642044</xmax>
-        <ymax>35.62267548442508769</ymax>
+        <xmin>-0.14627950000000001</xmin>
+        <ymin>35.4954972999999967</ymin>
+        <xmax>-0.016279</xmax>
+        <ymax>35.62267549999999972</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-0.146279542571567</xmin>
-        <ymin>35.49549734438757298</ymin>
-        <xmax>-0.016279023642044</xmax>
-        <ymax>35.62267548442508769</ymax>
+        <xmin>-0.14627950000000001</xmin>
+        <ymin>35.4954972999999967</ymin>
+        <xmax>-0.016279</xmax>
+        <ymax>35.62267549999999972</ymax>
       </wgs84extent>
       <id>districts_032f01a8_4478_49dc_9920_3487d38503ba</id>
       <datasource>./districts.geojson</datasource>
@@ -3875,7 +3278,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -3956,33 +3359,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="243,166,178,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -4016,17 +3392,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="243,166,178,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="174,119,127,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -4068,25 +3433,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="243,166,178,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="174,119,127,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -4122,17 +3468,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="255,187,99,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="240,215,255,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -4215,18 +3550,18 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>-131.88723259408214972</xmin>
-        <ymin>-52.07571930359544154</ymin>
-        <xmax>198.72048241374699273</xmax>
-        <ymax>77.74698125239015667</ymax>
+        <xmin>-180</xmin>
+        <ymin>-52.07571930000000293</ymin>
+        <xmax>180</xmax>
+        <ymax>77.74698130000000162</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-131.88723259408214972</xmin>
-        <ymin>-52.07571930359544154</ymin>
-        <xmax>198.72048241374699273</xmax>
-        <ymax>77.74698125239015667</ymax>
+        <xmin>-180</xmin>
+        <ymin>-52.07571930000000293</ymin>
+        <xmax>180</xmax>
+        <ymax>77.74698130000000162</ymax>
       </wgs84extent>
       <id>forests_1f0825fc_d22c_4420_a486_71a5f5fa2fe0</id>
       <datasource>./forests.geojson</datasource>
@@ -4269,7 +3604,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -4358,33 +3693,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="183,72,75,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -4418,17 +3726,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="183,72,75,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="131,51,54,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -4470,25 +3767,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="183,72,75,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="131,51,54,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -4524,17 +3802,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="129,192,112,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -4604,33 +3871,6 @@ def my_form_open(dialog, layer, feature):
                   <Option name="use_custom_dash" type="QString" value="0"></Option>
                   <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 </Option>
-                <prop k="align_dash_pattern" v="0"></prop>
-                <prop k="capstyle" v="square"></prop>
-                <prop k="customdash" v="5;2"></prop>
-                <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="customdash_unit" v="MM"></prop>
-                <prop k="dash_pattern_offset" v="0"></prop>
-                <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="dash_pattern_offset_unit" v="MM"></prop>
-                <prop k="draw_inside_polygon" v="0"></prop>
-                <prop k="joinstyle" v="bevel"></prop>
-                <prop k="line_color" v="35,35,35,255"></prop>
-                <prop k="line_style" v="solid"></prop>
-                <prop k="line_width" v="0.26"></prop>
-                <prop k="line_width_unit" v="MM"></prop>
-                <prop k="offset" v="0"></prop>
-                <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="offset_unit" v="MM"></prop>
-                <prop k="ring_filter" v="0"></prop>
-                <prop k="trim_distance_end" v="0"></prop>
-                <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="trim_distance_end_unit" v="MM"></prop>
-                <prop k="trim_distance_start" v="0"></prop>
-                <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="trim_distance_start_unit" v="MM"></prop>
-                <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-                <prop k="use_custom_dash" v="0"></prop>
-                <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
                 <data_defined_properties>
                   <Option type="Map">
                     <Option name="name" type="QString" value=""></Option>
@@ -4672,29 +3912,18 @@ def my_form_open(dialog, layer, feature):
             </config>
           </editWidget>
         </field>
-        <field configurationFlags="None" name="descriptio">
-          <editWidget type="TextEdit">
-            <config>
-              <Option></Option>
-            </config>
-          </editWidget>
-        </field>
       </fieldConfiguration>
       <aliases>
         <alias field="Name" index="0" name=""></alias>
-        <alias field="descriptio" index="1" name=""></alias>
       </aliases>
       <defaults>
         <default applyOnUpdate="0" expression="" field="Name"></default>
-        <default applyOnUpdate="0" expression="" field="descriptio"></default>
       </defaults>
       <constraints>
         <constraint constraints="0" exp_strength="0" field="Name" notnull_strength="0" unique_strength="0"></constraint>
-        <constraint constraints="0" exp_strength="0" field="descriptio" notnull_strength="0" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="Name"></constraint>
-        <constraint desc="" exp="" field="descriptio"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
@@ -4754,16 +3983,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-108.35282190349131781</xmin>
-        <ymin>-49.66007048847730232</ymin>
-        <xmax>79.32554257837348644</xmax>
-        <ymax>23.94779614296175296</ymax>
+        <xmin>-108.35282189999999503</xmin>
+        <ymin>-49.66007050000000334</ymin>
+        <xmax>79.32554260000000568</xmax>
+        <ymax>23.94779610000000147</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-108.35282190349131781</xmin>
-        <ymin>-49.66007048847730232</ymin>
-        <xmax>79.32554257837348644</xmax>
-        <ymax>23.94779614296175296</ymax>
+        <xmin>-108.35282189999999503</xmin>
+        <ymin>-49.66007050000000334</ymin>
+        <xmax>79.32554260000000568</xmax>
+        <ymax>23.94779610000000147</ymax>
       </wgs84extent>
       <id>hills_72250f28_6ae0_4717_ba78_88be49eec237</id>
       <datasource>./hills.geojson</datasource>
@@ -4797,7 +4026,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -4878,33 +4107,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="133,182,111,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -4938,17 +4140,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="133,182,111,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="95,130,79,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -4990,25 +4181,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="133,182,111,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="95,130,79,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -5044,17 +4216,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="204,180,170,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -5082,27 +4243,11 @@ def my_form_open(dialog, layer, feature):
       </geometryOptions>
       <legend showLabelLegend="0" type="default-vector"></legend>
       <referencedLayers></referencedLayers>
-      <fieldConfiguration>
-        <field configurationFlags="None" name="FID">
-          <editWidget type="">
-            <config>
-              <Option></Option>
-            </config>
-          </editWidget>
-        </field>
-      </fieldConfiguration>
-      <aliases>
-        <alias field="FID" index="0" name=""></alias>
-      </aliases>
-      <defaults>
-        <default applyOnUpdate="0" expression="" field="FID"></default>
-      </defaults>
-      <constraints>
-        <constraint constraints="0" exp_strength="0" field="FID" notnull_strength="0" unique_strength="0"></constraint>
-      </constraints>
-      <constraintExpressions>
-        <constraint desc="" exp="" field="FID"></constraint>
-      </constraintExpressions>
+      <fieldConfiguration></fieldConfiguration>
+      <aliases></aliases>
+      <defaults></defaults>
+      <constraints></constraints>
+      <constraintExpressions></constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
@@ -5130,18 +4275,18 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
         <xmin>-180</xmin>
-        <ymin>24.82956871558521073</ymin>
+        <ymin>24.82956869999999938</ymin>
         <xmax>180</xmax>
-        <ymax>89.8315284119522488</ymax>
+        <ymax>89.83152839999999628</ymax>
       </extent>
       <wgs84extent>
         <xmin>-180</xmin>
-        <ymin>24.82956871558521073</ymin>
+        <ymin>24.82956869999999938</ymin>
         <xmax>180</xmax>
-        <ymax>89.8315284119522488</ymax>
+        <ymax>89.83152839999999628</ymax>
       </wgs84extent>
       <id>ice_b0051c87_7a1d_4766_9b20_7f188cf760b0</id>
       <datasource>./ice.geojson</datasource>
@@ -5184,7 +4329,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -5273,33 +4418,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="232,113,141,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -5333,17 +4451,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="232,113,141,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="166,81,101,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -5385,25 +4492,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="232,113,141,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="166,81,101,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -5439,17 +4527,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="232,232,232,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -5516,33 +4593,6 @@ def my_form_open(dialog, layer, feature):
                   <Option name="use_custom_dash" type="QString" value="0"></Option>
                   <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 </Option>
-                <prop k="align_dash_pattern" v="0"></prop>
-                <prop k="capstyle" v="square"></prop>
-                <prop k="customdash" v="5;2"></prop>
-                <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="customdash_unit" v="MM"></prop>
-                <prop k="dash_pattern_offset" v="0"></prop>
-                <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="dash_pattern_offset_unit" v="MM"></prop>
-                <prop k="draw_inside_polygon" v="0"></prop>
-                <prop k="joinstyle" v="bevel"></prop>
-                <prop k="line_color" v="35,35,35,255"></prop>
-                <prop k="line_style" v="solid"></prop>
-                <prop k="line_width" v="0.26"></prop>
-                <prop k="line_width_unit" v="MM"></prop>
-                <prop k="offset" v="0"></prop>
-                <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="offset_unit" v="MM"></prop>
-                <prop k="ring_filter" v="0"></prop>
-                <prop k="trim_distance_end" v="0"></prop>
-                <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="trim_distance_end_unit" v="MM"></prop>
-                <prop k="trim_distance_start" v="0"></prop>
-                <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="trim_distance_start_unit" v="MM"></prop>
-                <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-                <prop k="use_custom_dash" v="0"></prop>
-                <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
                 <data_defined_properties>
                   <Option type="Map">
                     <Option name="name" type="QString" value=""></Option>
@@ -5584,29 +4634,18 @@ def my_form_open(dialog, layer, feature):
             </config>
           </editWidget>
         </field>
-        <field configurationFlags="None" name="descriptio">
-          <editWidget type="TextEdit">
-            <config>
-              <Option></Option>
-            </config>
-          </editWidget>
-        </field>
       </fieldConfiguration>
       <aliases>
         <alias field="Name" index="0" name=""></alias>
-        <alias field="descriptio" index="1" name=""></alias>
       </aliases>
       <defaults>
         <default applyOnUpdate="0" expression="" field="Name"></default>
-        <default applyOnUpdate="0" expression="" field="descriptio"></default>
       </defaults>
       <constraints>
         <constraint constraints="0" exp_strength="0" field="Name" notnull_strength="0" unique_strength="0"></constraint>
-        <constraint constraints="0" exp_strength="0" field="descriptio" notnull_strength="0" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="Name"></constraint>
-        <constraint desc="" exp="" field="descriptio"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
@@ -5840,33 +4879,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="190,207,80,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -5900,17 +4912,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="190,207,80,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -5971,18 +4972,18 @@ def my_form_open(dialog, layer, feature):
       </pipe>
       <blendMode>0</blendMode>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>-131.29989088185476476</xmin>
-        <ymin>-61.87679570228509363</ymin>
-        <xmax>204.41652831786151978</xmax>
-        <ymax>73.82396801503489314</ymax>
+        <xmin>-180</xmin>
+        <ymin>-61.8767957000000024</ymin>
+        <xmax>180</xmax>
+        <ymax>73.82396799999999359</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-131.29989088185476476</xmin>
-        <ymin>-61.87679570228509363</ymin>
-        <xmax>204.41652831786151978</xmax>
-        <ymax>73.82396801503489314</ymax>
+        <xmin>-180</xmin>
+        <ymin>-61.8767957000000024</ymin>
+        <xmax>180</xmax>
+        <ymax>73.82396799999999359</ymax>
       </wgs84extent>
       <id>mountains_b5410a56_b448_490e_99a1_2b153d259f76</id>
       <datasource>./mountains.geojson</datasource>
@@ -6016,7 +5017,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -6097,33 +5098,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="213,180,60,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -6157,17 +5131,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="213,180,60,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="152,129,43,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -6209,25 +5172,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="213,180,60,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="152,129,43,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -6263,17 +5207,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="164,113,88,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -6349,18 +5282,18 @@ def my_form_open(dialog, layer, feature):
       <previewExpression></previewExpression>
       <mapTip></mapTip>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiLineString">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="LineString">
       <extent>
         <xmin>-180</xmin>
-        <ymin>-46.38201078032309255</ymin>
-        <xmax>202.5896914657550667</xmax>
-        <ymax>82.63619432052827563</ymax>
+        <ymin>-46.38201080000000331</ymin>
+        <xmax>180</xmax>
+        <ymax>82.63619429999999966</ymax>
       </extent>
       <wgs84extent>
         <xmin>-180</xmin>
-        <ymin>-46.38201078032309255</ymin>
-        <xmax>202.5896914657550667</xmax>
-        <ymax>82.63619432052827563</ymax>
+        <ymin>-46.38201080000000331</ymin>
+        <xmax>180</xmax>
+        <ymax>82.63619429999999966</ymax>
       </wgs84extent>
       <id>rivers_35de65df_09a9_46fd_ab54_1a6900b58146</id>
       <datasource>./rivers.geojson</datasource>
@@ -6403,7 +5336,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -6492,33 +5425,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="196,60,57,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -6552,17 +5458,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="196,60,57,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="140,43,41,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -6604,25 +5499,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="196,60,57,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="140,43,41,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -6674,33 +5550,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="round"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="RenderMetersInMapUnits"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="RenderMetersInMapUnits"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="72,123,182,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="30000"></prop>
-              <prop k="line_width_unit" v="RenderMetersInMapUnits"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="RenderMetersInMapUnits"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="RenderMetersInMapUnits"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="RenderMetersInMapUnits"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -6776,33 +5625,6 @@ def my_form_open(dialog, layer, feature):
                   <Option name="use_custom_dash" type="QString" value="0"></Option>
                   <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 </Option>
-                <prop k="align_dash_pattern" v="0"></prop>
-                <prop k="capstyle" v="square"></prop>
-                <prop k="customdash" v="5;2"></prop>
-                <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="customdash_unit" v="MM"></prop>
-                <prop k="dash_pattern_offset" v="0"></prop>
-                <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="dash_pattern_offset_unit" v="MM"></prop>
-                <prop k="draw_inside_polygon" v="0"></prop>
-                <prop k="joinstyle" v="bevel"></prop>
-                <prop k="line_color" v="35,35,35,255"></prop>
-                <prop k="line_style" v="solid"></prop>
-                <prop k="line_width" v="0.26"></prop>
-                <prop k="line_width_unit" v="MM"></prop>
-                <prop k="offset" v="0"></prop>
-                <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="offset_unit" v="MM"></prop>
-                <prop k="ring_filter" v="0"></prop>
-                <prop k="trim_distance_end" v="0"></prop>
-                <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="trim_distance_end_unit" v="MM"></prop>
-                <prop k="trim_distance_start" v="0"></prop>
-                <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-                <prop k="trim_distance_start_unit" v="MM"></prop>
-                <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-                <prop k="use_custom_dash" v="0"></prop>
-                <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
                 <data_defined_properties>
                   <Option type="Map">
                     <Option name="name" type="QString" value=""></Option>
@@ -7072,33 +5894,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="133,182,111,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -7132,17 +5927,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="133,182,111,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -7350,33 +6134,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="183,72,75,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -7410,17 +6167,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="183,72,75,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -7628,33 +6374,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="152,125,183,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -7688,17 +6407,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="152,125,183,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -7888,33 +6596,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="141,90,153,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -7948,17 +6629,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="141,90,153,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -8162,33 +6832,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="183,72,75,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -8222,17 +6865,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="183,72,75,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -8296,18 +6928,18 @@ def my_form_open(dialog, layer, feature):
       </pipe>
       <blendMode>0</blendMode>
     </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>-43.87292545248782716</xmin>
-        <ymin>-22.57449167587336802</ymin>
-        <xmax>198.10321705309343088</xmax>
-        <ymax>78.41850886664627751</ymax>
+        <xmin>-174.36627960000001281</xmin>
+        <ymin>-22.57449169999999938</ymin>
+        <xmax>175.75923290000000065</xmax>
+        <ymax>78.41850890000000618</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-43.87292545248782716</xmin>
-        <ymin>-22.57449167587336802</ymin>
-        <xmax>198.10321705309343088</xmax>
-        <ymax>78.41850886664627751</ymax>
+        <xmin>-174.36627960000001281</xmin>
+        <ymin>-22.57449169999999938</ymin>
+        <xmax>175.75923290000000065</xmax>
+        <ymax>78.41850890000000618</ymax>
       </wgs84extent>
       <id>swamps_7de1642c_924d_48e3_b1cd_1a0cc345f514</id>
       <datasource>./swamps.geojson</datasource>
@@ -8341,7 +6973,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -8422,33 +7054,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="243,166,178,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -8482,17 +7087,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="243,166,178,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="174,119,127,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -8534,25 +7128,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="243,166,178,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="174,119,127,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -8588,17 +7163,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="157,95,195,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -8634,29 +7198,18 @@ def my_form_open(dialog, layer, feature):
             </config>
           </editWidget>
         </field>
-        <field configurationFlags="None" name="descriptio">
-          <editWidget type="">
-            <config>
-              <Option></Option>
-            </config>
-          </editWidget>
-        </field>
       </fieldConfiguration>
       <aliases>
         <alias field="Name" index="0" name=""></alias>
-        <alias field="descriptio" index="1" name=""></alias>
       </aliases>
       <defaults>
         <default applyOnUpdate="0" expression="" field="Name"></default>
-        <default applyOnUpdate="0" expression="" field="descriptio"></default>
       </defaults>
       <constraints>
         <constraint constraints="0" exp_strength="0" field="Name" notnull_strength="0" unique_strength="0"></constraint>
-        <constraint constraints="0" exp_strength="0" field="descriptio" notnull_strength="0" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="Name"></constraint>
-        <constraint desc="" exp="" field="descriptio"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
@@ -8829,33 +7382,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="141,90,153,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -8889,17 +7415,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="141,90,153,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -9089,33 +7604,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="183,72,75,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -9149,17 +7637,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="183,72,75,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="no"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -9222,16 +7699,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-0.12847184367773601</xmin>
-        <ymin>35.49535323427578248</ymin>
-        <xmax>-0.023985063225954</xmax>
-        <ymax>35.61448962259363782</ymax>
+        <xmin>-0.1284718</xmin>
+        <ymin>35.49535319999999672</ymin>
+        <xmax>-0.0239851</xmax>
+        <ymax>35.61448959999999886</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-0.12847184367773601</xmin>
-        <ymin>35.49535323427578248</ymin>
-        <xmax>-0.023985063225954</xmax>
-        <ymax>35.61448962259363782</ymax>
+        <xmin>-0.1284718</xmin>
+        <ymin>35.49535319999999672</ymin>
+        <xmax>-0.0239851</xmax>
+        <ymax>35.61448959999999886</ymax>
       </wgs84extent>
       <id>walls_d0e44ecb_ab06_47e8_ab75_767d456fa8f1</id>
       <datasource>./walls.geojson</datasource>
@@ -9265,7 +7742,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -9346,33 +7823,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="183,72,75,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -9406,17 +7856,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="183,72,75,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="131,51,54,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -9458,25 +7897,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="183,72,75,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="131,51,54,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -9512,17 +7932,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="146,146,146,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -9550,27 +7959,11 @@ def my_form_open(dialog, layer, feature):
       </geometryOptions>
       <legend showLabelLegend="0" type="default-vector"></legend>
       <referencedLayers></referencedLayers>
-      <fieldConfiguration>
-        <field configurationFlags="None" name="FID">
-          <editWidget type="">
-            <config>
-              <Option></Option>
-            </config>
-          </editWidget>
-        </field>
-      </fieldConfiguration>
-      <aliases>
-        <alias field="FID" index="0" name=""></alias>
-      </aliases>
-      <defaults>
-        <default applyOnUpdate="0" expression="" field="FID"></default>
-      </defaults>
-      <constraints>
-        <constraint constraints="0" exp_strength="0" field="FID" notnull_strength="0" unique_strength="0"></constraint>
-      </constraints>
-      <constraintExpressions>
-        <constraint desc="" exp="" field="FID"></constraint>
-      </constraintExpressions>
+      <fieldConfiguration></fieldConfiguration>
+      <aliases></aliases>
+      <defaults></defaults>
+      <constraints></constraints>
+      <constraintExpressions></constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
         <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
@@ -9601,15 +7994,15 @@ def my_form_open(dialog, layer, feature):
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
         <xmin>-180</xmin>
-        <ymin>-51.22725366513978429</ymin>
-        <xmax>191.14751656797315604</xmax>
-        <ymax>81.72105898535423307</ymax>
+        <ymin>-51.22725369999999856</ymin>
+        <xmax>180</xmax>
+        <ymax>81.72105899999999679</ymax>
       </extent>
       <wgs84extent>
         <xmin>-180</xmin>
-        <ymin>-51.22725366513978429</ymin>
-        <xmax>191.14751656797315604</xmax>
-        <ymax>81.72105898535423307</ymax>
+        <ymin>-51.22725369999999856</ymin>
+        <xmax>180</xmax>
+        <ymax>81.72105899999999679</ymax>
       </wgs84extent>
       <id>waters_1c8ac1d0_b31b_4f02_8f82_efe0f2650a0a</id>
       <datasource>./waters.geojson</datasource>
@@ -9643,7 +8036,7 @@ def my_form_open(dialog, layer, feature):
         <crs>
           <spatialrefsys nativeFormat="Wkt">
             <wkt></wkt>
-            <proj4></proj4>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
             <srsid>0</srsid>
             <srid>0</srid>
             <authid></authid>
@@ -9724,33 +8117,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="use_custom_dash" type="QString" value="0"></Option>
                 <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
-              <prop k="align_dash_pattern" v="0"></prop>
-              <prop k="capstyle" v="square"></prop>
-              <prop k="customdash" v="5;2"></prop>
-              <prop k="customdash_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="customdash_unit" v="MM"></prop>
-              <prop k="dash_pattern_offset" v="0"></prop>
-              <prop k="dash_pattern_offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="dash_pattern_offset_unit" v="MM"></prop>
-              <prop k="draw_inside_polygon" v="0"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="line_color" v="225,89,137,255"></prop>
-              <prop k="line_style" v="solid"></prop>
-              <prop k="line_width" v="0.6"></prop>
-              <prop k="line_width_unit" v="MM"></prop>
-              <prop k="offset" v="0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="ring_filter" v="0"></prop>
-              <prop k="trim_distance_end" v="0"></prop>
-              <prop k="trim_distance_end_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_end_unit" v="MM"></prop>
-              <prop k="trim_distance_start" v="0"></prop>
-              <prop k="trim_distance_start_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="trim_distance_start_unit" v="MM"></prop>
-              <prop k="tweak_dash_pattern_on_corners" v="0"></prop>
-              <prop k="use_custom_dash" v="0"></prop>
-              <prop k="width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -9784,17 +8150,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="225,89,137,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="161,64,98,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -9836,25 +8191,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="size_unit" type="QString" value="MM"></Option>
                 <Option name="vertical_anchor_point" type="QString" value="1"></Option>
               </Option>
-              <prop k="angle" v="0"></prop>
-              <prop k="cap_style" v="square"></prop>
-              <prop k="color" v="225,89,137,255"></prop>
-              <prop k="horizontal_anchor_point" v="1"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="name" v="diamond"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="161,64,98,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.2"></prop>
-              <prop k="outline_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="scale_method" v="diameter"></prop>
-              <prop k="size" v="3"></prop>
-              <prop k="size_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="size_unit" v="MM"></prop>
-              <prop k="vertical_anchor_point" v="1"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -9890,17 +8226,6 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
               </Option>
-              <prop k="border_width_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="color" v="85,201,255,255"></prop>
-              <prop k="joinstyle" v="bevel"></prop>
-              <prop k="offset" v="0,0"></prop>
-              <prop k="offset_map_unit_scale" v="3x:0,0,0,0,0,0"></prop>
-              <prop k="offset_unit" v="MM"></prop>
-              <prop k="outline_color" v="35,35,35,255"></prop>
-              <prop k="outline_style" v="solid"></prop>
-              <prop k="outline_width" v="0.26"></prop>
-              <prop k="outline_width_unit" v="MM"></prop>
-              <prop k="style" v="solid"></prop>
               <data_defined_properties>
                 <Option type="Map">
                   <Option name="name" type="QString" value=""></Option>
@@ -10183,23 +8508,23 @@ def my_form_open(dialog, layer, feature):
       <TerrainProvider offset="0" scale="1"></TerrainProvider>
     </terrainProvider>
   </ElevationProperties>
-  <ProjectDisplaySettings>
+  <ProjectDisplaySettings CoordinateAxisOrder="Default" CoordinateType="MapCrs">
     <BearingFormat id="bearing">
       <Option type="Map">
-        <Option name="decimal_separator" type="QChar" value=""></Option>
+        <Option name="decimal_separator" type="invalid"></Option>
         <Option name="decimals" type="int" value="6"></Option>
         <Option name="direction_format" type="int" value="0"></Option>
         <Option name="rounding_type" type="int" value="0"></Option>
         <Option name="show_plus" type="bool" value="false"></Option>
         <Option name="show_thousand_separator" type="bool" value="true"></Option>
         <Option name="show_trailing_zeros" type="bool" value="false"></Option>
-        <Option name="thousand_separator" type="QChar" value=""></Option>
+        <Option name="thousand_separator" type="invalid"></Option>
       </Option>
     </BearingFormat>
     <GeographicCoordinateFormat id="geographiccoordinate">
       <Option type="Map">
         <Option name="angle_format" type="QString" value="DecimalDegrees"></Option>
-        <Option name="decimal_separator" type="QChar" value=""></Option>
+        <Option name="decimal_separator" type="invalid"></Option>
         <Option name="decimals" type="int" value="6"></Option>
         <Option name="rounding_type" type="int" value="0"></Option>
         <Option name="show_leading_degree_zeros" type="bool" value="false"></Option>
@@ -10208,8 +8533,21 @@ def my_form_open(dialog, layer, feature):
         <Option name="show_suffix" type="bool" value="false"></Option>
         <Option name="show_thousand_separator" type="bool" value="true"></Option>
         <Option name="show_trailing_zeros" type="bool" value="false"></Option>
-        <Option name="thousand_separator" type="QChar" value=""></Option>
+        <Option name="thousand_separator" type="invalid"></Option>
       </Option>
     </GeographicCoordinateFormat>
+    <CoordinateCustomCrs>
+      <spatialrefsys nativeFormat="Wkt">
+        <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
+        <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+        <srsid>3452</srsid>
+        <srid>4326</srid>
+        <authid>EPSG:4326</authid>
+        <description>WGS 84</description>
+        <projectionacronym>longlat</projectionacronym>
+        <ellipsoidacronym>EPSG:7030</ellipsoidacronym>
+        <geographicflag>true</geographicflag>
+      </spatialrefsys>
+    </CoordinateCustomCrs>
   </ProjectDisplaySettings>
 </qgis>
