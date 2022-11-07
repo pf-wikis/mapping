@@ -2,17 +2,25 @@ package io.github.pfwikis;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
 import io.github.pfwikis.model.*;
 
 public class DownloadCities {
+
+    public static final MathContext ROUND_TO_7 = new MathContext(7, RoundingMode.HALF_UP);
+    private static final Map<Integer, Integer> SIZE_TO_MIN_ZOOM = Map.of(0, 2,
+            1, 4,
+            2, 5);
 
     public static void main(String[] args) throws IOException {
         String url = "https://pathfinderwiki.com/w/index.php?title=Special:CargoExport"
@@ -50,7 +58,10 @@ public class DownloadCities {
                 handlePopulation(city, feature);
 
                 var geometry = new Geometry();
-                geometry.setCoordinates(List.of(city.getCoordsLon(), city.getCoordsLat()));
+                geometry.setCoordinates(List.of(
+                    city.getCoordsLon().round(ROUND_TO_7),
+                    city.getCoordsLat().round(ROUND_TO_7)
+                ));
                 feature.setGeometry(geometry);
                 arr.add(feature);
             } catch (Exception e) {
@@ -73,12 +84,7 @@ public class DownloadCities {
         int size = mapSize(city);
 
         feature.getProperties().setSize(size);
-        feature.getTippecanoe().setMinzoom(switch (size) {
-            case 0 -> 2;
-            case 1 -> 4;
-            case 2 -> 5;
-            default -> 6;
-        });
+        feature.getTippecanoe().setMinzoom(SIZE_TO_MIN_ZOOM.getOrDefault(size, 6));
     }
 
     private static int mapSize(City city) {
@@ -91,21 +97,19 @@ public class DownloadCities {
             } else if (population > 201) {
                 return 2;
             }
-            return 3;
         } else if (city.getSize() != null && !city.getSize().isEmpty()) {
             String size = city.getSize();
-            if (StringUtils.containsAnyIgnoreCase(size, "Category:Thorps", "Category:Hamlets", "Category:Villages")) {
+            if (StringUtils.containsAnyIgnoreCase(size, "Thorp", "Hamlet", "Village")) {
                 return 3;
-            } else if (StringUtils.containsAnyIgnoreCase(size, "Category:Small_towns", "Category:Large_towns", "Town")) {
+            } else if (StringUtils.containsIgnoreCase(size, "Town")) {
                 return 2;
-            } else if (StringUtils.containsAnyIgnoreCase(size, "City", "Category:Small_cities", "Category:Large_cities")) {
+            } else if (StringUtils.containsAnyIgnoreCase(size, "City", "cities")) {
                 return 1;
-            } else if (StringUtils.containsAnyIgnoreCase(size, "Category:Metropolises", "Metropolis")) {
+            } else if (StringUtils.containsIgnoreCase(size, "Metropolis")) {
                 return 0;
             } else if (StringUtils.containsAnyIgnoreCase(size, "Abandoned", "Ruins")) {
                 return 3; //TODO maybe these should be locations instead?
             }
-            return 3;
         }
         return 3;
     }

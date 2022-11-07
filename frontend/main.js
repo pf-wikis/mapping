@@ -572,7 +572,7 @@ const items = [
   {
     label: "Copy Lat/Long",
     callback: (e) => {
-      let text = latLong.lat+", "+latLong.lng;
+      let text = latLong.lat.toFixed(7)+", "+latLong.lng.toFixed(7);
 
       if (!navigator.clipboard) {
         alert(text);

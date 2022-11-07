@@ -2,6 +2,7 @@ package io.github.pfwikis;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +10,8 @@ import java.util.Comparator;
 import java.util.List;
 
 import io.github.pfwikis.model.*;
+
+import static io.github.pfwikis.DownloadCities.ROUND_TO_7;
 
 public class DownloadLoI {
 
@@ -44,7 +47,10 @@ public class DownloadLoI {
                 properties.setLink("https://pathfinderwiki.com/wiki/" + loi.getPageName().replace(' ', '_'));
                 properties.setType(loi.getType());
                 var geometry = new Geometry();
-                geometry.setCoordinates(List.of(loi.getCoordsLon(), loi.getCoordsLat()));
+                geometry.setCoordinates(List.of(
+                    loi.getCoordsLon().round(ROUND_TO_7),
+                    loi.getCoordsLat().round(ROUND_TO_7)
+                ));
 
                 var feature = new Feature(properties, geometry);
                 feature.getTippecanoe().setMinzoom(5);
