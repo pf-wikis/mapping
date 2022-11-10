@@ -13,6 +13,8 @@ import org.apache.commons.io.FileUtils;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.internal.Lists;
 
+import io.github.pfwikis.run.Runner;
+import io.github.pfwikis.run.Tools;
 import lombok.Getter;
 import lombok.extern.java.Log;
 
@@ -71,7 +73,7 @@ public class TileCompiler {
             .flatMap(f->List.of("-L", f.getName().substring(0, f.getName().length()-8)+":"+f.toString()).stream())
             .toList();
 
-        var command = Lists.<Object>newArrayList("tippecanoe",
+        Runner.run("tippecanoe",
             "-z"+options.getMaxZoom(),
             "--no-tile-compression",
             "-n", "golarion",
@@ -82,10 +84,9 @@ public class TileCompiler {
             "-B", "0",
             "--coalesce-densest-as-needed",
             "--maximum-tile-bytes=200000",
-            "--maximum-tile-features=100000"
+            "--maximum-tile-features=100000",
+            layers
         );
-        command.addAll(layers);
-        Tools.run(command);
 
         var time = System.nanoTime();
         //rename extensions for github pages gzipping
@@ -112,7 +113,7 @@ public class TileCompiler {
 
     private void compileSprites() throws IOException {
         log.info("Compiling Sprites");
-        Tools.run("spritezero", new File(spriteDir, "sprites"), "sprites/");
-        Tools.run("spritezero", new File(spriteDir, "sprites@2x"), "sprites/", "--retina");
+        Runner.run("spritezero", new File(spriteDir, "sprites"), "sprites/");
+        Runner.run("spritezero", new File(spriteDir, "sprites@2x"), "sprites/", "--retina");
     }
 }

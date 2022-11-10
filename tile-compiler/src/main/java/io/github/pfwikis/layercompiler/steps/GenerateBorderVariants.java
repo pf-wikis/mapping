@@ -3,15 +3,14 @@ package io.github.pfwikis.layercompiler.steps;
 import java.io.File;
 import java.io.IOException;
 
-import io.github.pfwikis.Tools;
+import io.github.pfwikis.run.Tools;
 
 public class GenerateBorderVariants extends LCStep {
 
     @Override
-    public File process(Ctx ctx, File f) throws IOException {
+    public byte[] process(Ctx ctx, byte[] f) throws IOException {
         //province labels
-        var provinces = tmpGeojson();
-        Tools.mapshaper(f, provinces,
+        var provinces = Tools.mapshaper(f,
             "-filter", "province !== null",
             "-filter-fields", "province",
             "-rename-fields", "Name=province"
@@ -19,8 +18,7 @@ public class GenerateBorderVariants extends LCStep {
         createNewLayer(new Ctx("borders_provinces", ctx.getOptions(), ctx.getGeo(), provinces));
 
         //province borders are only the inner lines within countries
-        var provinceBorders = tmpGeojson();
-        Tools.mapshaper(f, provinceBorders,
+        var provinceBorders = Tools.mapshaper(f,
             "-filter", "province !== null",
             "-split", "nation",
             "-innerlines",
@@ -34,8 +32,7 @@ public class GenerateBorderVariants extends LCStep {
 
 
         //nation labels
-        var nations = tmpGeojson();
-        Tools.mapshaper(f, nations,
+        var nations = Tools.mapshaper(f,
             "-filter", "nation !== null",
             "-rename-fields", "Name=nation",
             "-dissolve", "Name"
@@ -43,21 +40,18 @@ public class GenerateBorderVariants extends LCStep {
         createNewLayer(new Ctx("borders_nations", ctx.getOptions(), ctx.getGeo(), nations));
 
         //nation borders are the inner lines plus the outer lines on land
-        var innerNationBorders = tmpGeojson();
-        Tools.mapshaper(f, innerNationBorders,
+        var innerNationBorders = Tools.mapshaper(f,
             "-filter", "nation !== null",
             "-dissolve", "nation",
             "-innerlines"
         );
-        var outerNationBorders = tmpGeojson();
-        Tools.mapshaper(f, outerNationBorders,
+        var outerNationBorders = Tools.mapshaper(f,
             "-filter", "nation !== null",
             "-dissolve",
             "-lines", "-filter-fields",
             "-clip", new File(ctx.getGeo(), "continents.geojson")
         );
-        var nationBorders = tmpGeojson();
-        Tools.mapshaper(innerNationBorders, nationBorders,
+        var nationBorders = Tools.mapshaper2(innerNationBorders,
             outerNationBorders, "combine-files",
             "-merge-layers"
         );
@@ -67,8 +61,7 @@ public class GenerateBorderVariants extends LCStep {
 
 
         //region labels
-        var regions = tmpGeojson();
-        Tools.mapshaper(f, regions,
+        var regions = Tools.mapshaper(f,
             "-filter", "region !== null",
             "-rename-fields", "Name=region",
             "-dissolve", "Name"
@@ -76,15 +69,12 @@ public class GenerateBorderVariants extends LCStep {
         createNewLayer(new Ctx("borders_regions", ctx.getOptions(), ctx.getGeo(), regions));
 
         //region borders are the inner lines
-        var regionBorders = tmpGeojson();
-        Tools.mapshaper(f, regionBorders,
+        var regionBorders = Tools.mapshaper(f,
             "-filter", "region !== null",
             "-dissolve", "region",
             "-innerlines"
         );
         createNewLayer(new Ctx("borders_regions_borders", ctx.getOptions(), ctx.getGeo(), regionBorders));
-
-
 
         return null;
     }

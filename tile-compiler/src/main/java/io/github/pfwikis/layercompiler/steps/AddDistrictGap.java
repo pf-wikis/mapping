@@ -1,23 +1,21 @@
 package io.github.pfwikis.layercompiler.steps;
 
-import java.io.File;
 import java.io.IOException;
 
-import io.github.pfwikis.Tools;
+import io.github.pfwikis.run.Runner;
+import io.github.pfwikis.run.Tools;
 
 public class AddDistrictGap extends LCStep {
 
     @Override
-    public File process(Ctx ctx, File f) throws IOException {
-        var innerLines = tmpGeojson();
-        Tools.mapshaper(f, innerLines,
+    public byte[] process(Ctx ctx, byte[] f) throws IOException {
+        var innerLines = Tools.mapshaper(f,
             "-clean",
             "-snap", "precision=0.0001",
             "-innerlines", "-dissolve"
         );
 
-        var bufferedLines = tmpGeojson();
-        Tools.qgis("native:buffer", innerLines, bufferedLines,
+        var bufferedLines = Tools.qgis("native:buffer", innerLines,
             "--DISTANCE=0.0004",
             "--SEGMENTS=5",
             "--END_CAP_STYLE=0",
@@ -26,9 +24,7 @@ public class AddDistrictGap extends LCStep {
             "--DISSOLVE=true"
         );
 
-        var result = tmpGeojson();
-        Tools.qgis("native:difference", f, result, "--OVERLAY="+bufferedLines);
-        return result;
+        return Tools.qgis("native:difference", f, new Runner.TmpGeojson("--OVERLAY=", bufferedLines));
     }
 
 
