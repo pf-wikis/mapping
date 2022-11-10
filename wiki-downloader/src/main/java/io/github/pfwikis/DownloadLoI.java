@@ -1,8 +1,9 @@
 package io.github.pfwikis;
 
+import static io.github.pfwikis.DownloadCities.ROUND_TO_7;
+
 import java.io.File;
 import java.io.IOException;
-import java.math.RoundingMode;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,8 +11,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import io.github.pfwikis.model.*;
-
-import static io.github.pfwikis.DownloadCities.ROUND_TO_7;
 
 public class DownloadLoI {
 
@@ -53,7 +52,7 @@ public class DownloadLoI {
                 ));
 
                 var feature = new Feature(properties, geometry);
-                feature.getTippecanoe().setMinzoom(5);
+
                 arr.add(feature);
             } catch (Exception e) {
                 System.err.println("Failed for " + loi.getPageName());

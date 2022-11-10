@@ -1,4 +1,4 @@
-package io.github.pfwikis.model;
+package io.github.pfwikis.fractaldetailer.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;

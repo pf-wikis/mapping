@@ -1,4 +1,4 @@
-package io.github.pfwikis;
+package io.github.pfwikis.fractaldetailer;
 
 // MIT License
 //

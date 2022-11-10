@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.pf-wikis</groupId>
-    <artifactId>fractal-detailer</artifactId>
+    <artifactId>tile-compiler</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <properties>
         <maven.compiler.target>17</maven.compiler.target>
@@ -24,6 +24,11 @@
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.beust</groupId>
+            <artifactId>jcommander</artifactId>
+            <version>1.82</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -32,7 +37,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>1.4.0</version>
                 <configuration>
-                    <mainClass>io.github.pfwikis.AddDetails</mainClass>
+                    <mainClass>io.github.pfwikis.TileCompiler</mainClass>
                 </configuration>
             </plugin>
         </plugins>

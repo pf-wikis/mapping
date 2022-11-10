@@ -1,4 +1,4 @@
-package io.github.pfwikis;
+package io.github.pfwikis.fractaldetailer;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,38 +6,41 @@ import java.util.*;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.pfwikis.model.Edge;
-import io.github.pfwikis.model.FeatureCollection;
-import io.github.pfwikis.model.Geometry.MultiPolygon;
-import io.github.pfwikis.model.Geometry.Polygon;
-import io.github.pfwikis.model.LngLat;
+import io.github.pfwikis.fractaldetailer.model.Edge;
+import io.github.pfwikis.fractaldetailer.model.FeatureCollection;
+import io.github.pfwikis.fractaldetailer.model.Geometry.MultiPolygon;
+import io.github.pfwikis.fractaldetailer.model.Geometry.Polygon;
+import io.github.pfwikis.fractaldetailer.model.LngLat;
 
 public class AddDetails {
     public static void main(String[] args) throws IOException {
-        FractalLines.MAX_DIST = Integer.parseInt(args[0]);
+        int maxDistance = Integer.parseInt(args[0]);
         args = Arrays.copyOfRange(args, 1, args.length);
 
         for (String file : args) {
-            System.out.println("  detailing " + file);
-            var col = new ObjectMapper().readValue(new File(file), FeatureCollection.class);
-
-            System.out.println("    collect Loops");
-            var loops = collectLoops(col);
-            System.out.println("    found " + loops.size() + " loops");
-            System.out.println("    collect inner edges");
-            var innerEdges = collectInnerEdges(loops);
-            System.out.println("    found " + innerEdges.size() + " inner edges");
-
-            int counter = 0;
-            for (var loop : loops) {
-                var result = FractalLines.interpolate(loop, innerEdges);
-                System.out.println("    " + counter++ + "/" + loops.size());
-                loop.clear();
-                loop.addAll(result);
-            }
-
-            new ObjectMapper().writeValue(new File(file), col);
+            addDetails(maxDistance, new File(file), new File(file));
         }
+    }
+
+    public static void addDetails(int maxDistance, File in, File out) throws IOException {
+        FractalLines.MAX_DIST = maxDistance;
+        System.out.println("  detailing " + in);
+        var col = new ObjectMapper().readValue(in, FeatureCollection.class);
+
+        System.out.println("    collect Loops");
+        var loops = collectLoops(col);
+        System.out.println("    found " + loops.size() + " loops");
+        System.out.println("    collect inner edges");
+        var innerEdges = collectInnerEdges(loops);
+        System.out.println("    found " + innerEdges.size() + " inner edges");
+
+        for (var loop : loops) {
+            var result = FractalLines.interpolate(loop, innerEdges);
+            loop.clear();
+            loop.addAll(result);
+        }
+
+        new ObjectMapper().writeValue(out, col);
     }
 
     private static Set<Edge> collectInnerEdges(List<List<LngLat>> loops) {

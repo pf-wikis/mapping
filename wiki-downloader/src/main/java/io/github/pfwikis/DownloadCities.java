@@ -18,9 +18,6 @@ import io.github.pfwikis.model.*;
 public class DownloadCities {
 
     public static final MathContext ROUND_TO_7 = new MathContext(7, RoundingMode.HALF_UP);
-    private static final Map<Integer, Integer> SIZE_TO_MIN_ZOOM = Map.of(0, 2,
-            1, 4,
-            2, 5);
 
     public static void main(String[] args) throws IOException {
         String url = "https://pathfinderwiki.com/w/index.php?title=Special:CargoExport"
@@ -84,7 +81,6 @@ public class DownloadCities {
         int size = mapSize(city);
 
         feature.getProperties().setSize(size);
-        feature.getTippecanoe().setMinzoom(SIZE_TO_MIN_ZOOM.getOrDefault(size, 6));
     }
 
     private static int mapSize(City city) {
