@@ -1,20 +1,18 @@
 package io.github.pfwikis.layercompiler.steps;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Set;
 
-import io.github.pfwikis.Tools;
+import io.github.pfwikis.JSMath;
+import io.github.pfwikis.run.Tools;
 
 public class AddScaleAndZoom extends LCStep {
 
     @Override
-    public File process(Ctx ctx, File f) throws IOException {
+    public byte[] process(Ctx ctx, byte[] f) throws IOException {
 
         if("cities".equals(ctx.getName())) {
-            var result = tmpGeojson();
-            Tools.mapshaper(f, result, "-each", """
+            var result = Tools.mapshaper(f, "-each", """
                 filterMinzoom=(() => {switch(size) {
                     case 0: return 1;
                     case 1: return 2;
@@ -25,9 +23,7 @@ public class AddScaleAndZoom extends LCStep {
             return result;
         }
         else if("locations".equals(ctx.getName())) {
-            var result = tmpGeojson();
-            Tools.mapshaper(f, result, "-each", "filterMinzoom=2");
-            return result;
+            return Tools.mapshaper(f, "-each", "filterMinzoom=2");
         }
 
 
@@ -44,15 +40,13 @@ public class AddScaleAndZoom extends LCStep {
                 width *= $scaleFactor;
                 filterMinzoom = $formula;
             """
-                .replace("$scaleFactor", Tools.jsScaleFactor("(this.bounds[1]+this.bounds[3])/2"))
-                .replace("$formula", Tools.jsPixelSizeMinzoomFunction(0.1, "width"));
+                .replace("$scaleFactor", JSMath.scaleFactor("(this.bounds[1]+this.bounds[3])/2"))
+                .replace("$formula", JSMath.pixelSizeMinzoomFunction(0.1, "width"));
         }
         else {
             return f;
         }
-        var result = tmpGeojson();
-        Tools.mapshaper(f, result, "-each", script);
-        return result;
+        return Tools.mapshaper(f, "-each", script);
     }
 
 }

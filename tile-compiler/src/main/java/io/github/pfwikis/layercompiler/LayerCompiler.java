@@ -23,9 +23,9 @@ public class LayerCompiler {
     private final List<LayerCompiler> dependencies = new ArrayList<>();
     private final CountDownLatch completion = new CountDownLatch(1);
     private final List<LCStep> steps = new ArrayList<>();
+    private byte[] finalResult;
 
     public void init() {
-        steps.add(new ConvertToGeoJson());
         steps.add(new GenerateLabelCenters());
         if("borders".equals(ctx.getName())) {
             steps.add(new GenerateBorderVariants());
@@ -58,7 +58,7 @@ public class LayerCompiler {
             }
         }
 
-        File current = ctx.getInput();
+        byte[] current = ctx.getInput();
         try {
             for(var step:steps) {
                 log.info("  Step "+step.getClass().getSimpleName());
@@ -69,7 +69,8 @@ public class LayerCompiler {
             }
 
             File target = new File(ctx.getGeo(), ctx.getName()+".geojson");
-            FileUtils.copyFile(current, target);
+            FileUtils.writeByteArrayToFile(target, current);
+            finalResult = current;
             completion.countDown();
         } catch(Exception e) {
             throw new RuntimeException("Failed to process "+ctx.getName()+" in "+current, e);

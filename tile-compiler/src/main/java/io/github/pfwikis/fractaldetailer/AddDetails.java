@@ -1,8 +1,11 @@
 package io.github.pfwikis.fractaldetailer;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+
+import org.apache.commons.io.FileUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,11 +21,12 @@ public class AddDetails {
         args = Arrays.copyOfRange(args, 1, args.length);
 
         for (String file : args) {
-            addDetails(maxDistance, new File(file), new File(file));
+            var bytes = addDetails(maxDistance, FileUtils.readFileToByteArray(new File(file)));
+            FileUtils.writeByteArrayToFile(new File(file), bytes);
         }
     }
 
-    public static void addDetails(int maxDistance, File in, File out) throws IOException {
+    public static byte[] addDetails(int maxDistance, byte[] in) throws IOException {
         FractalLines.MAX_DIST = maxDistance;
         System.out.println("  detailing " + in);
         var col = new ObjectMapper().readValue(in, FeatureCollection.class);
@@ -40,7 +44,9 @@ public class AddDetails {
             loop.addAll(result);
         }
 
-        new ObjectMapper().writeValue(out, col);
+        var baos = new ByteArrayOutputStream();
+        new ObjectMapper().writeValue(baos, col);
+        return baos.toByteArray();
     }
 
     private static Set<Edge> collectInnerEdges(List<List<LngLat>> loops) {

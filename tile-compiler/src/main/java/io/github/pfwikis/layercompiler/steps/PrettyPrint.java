@@ -1,16 +1,13 @@
 package io.github.pfwikis.layercompiler.steps;
 
-import java.io.File;
 import java.io.IOException;
 
-import io.github.pfwikis.Tools;
+import io.github.pfwikis.run.Tools;
 
 public class PrettyPrint extends LCStep {
 
     @Override
-    public File process(Ctx ctx, File f) throws IOException {
-        var tmp = tmpGeojson();
-        Tools.runAndPipeTo(tmp, "jq", ".", f);
-        return tmp;
+    public byte[] process(Ctx ctx, byte[] f) throws IOException {
+        return Tools.jq(f, ".");
     }
 }
