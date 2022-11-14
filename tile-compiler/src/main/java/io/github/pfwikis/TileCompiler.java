@@ -11,10 +11,8 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 
 import com.beust.jcommander.JCommander;
-import com.beust.jcommander.internal.Lists;
 
 import io.github.pfwikis.run.Runner;
-import io.github.pfwikis.run.Tools;
 import lombok.Getter;
 import lombok.extern.java.Log;
 
@@ -59,7 +57,7 @@ public class TileCompiler {
 
 
         compileSprites();
-        compileMaps();
+        compileLayers();
         makeTiles();
 
         //give maxZoom to vite
@@ -107,8 +105,8 @@ public class TileCompiler {
 
     }
 
-    private void compileMaps() throws IOException {
-        new MapsCompiler(this).compile();
+    private void compileLayers() throws IOException {
+        new LayersCompiler(this).compile();
     }
 
     private void compileSprites() throws IOException {

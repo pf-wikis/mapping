@@ -1,18 +1,22 @@
 package io.github.pfwikis.run;
 
+import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import lombok.Getter;
 import lombok.extern.java.Log;
@@ -32,11 +36,12 @@ public class Runner {
     }
 
     private static byte[] internalRun(Redirect output, byte[] in, Object... command) throws IOException {
+        var baos = new ByteArrayOutputStream();
         try(var cmd = Command.of(command)) {
-            var proc = new ProcessBuilder()
+            Process proc = new ProcessBuilder()
                 .redirectError(Redirect.INHERIT)
                 .redirectInput(in==null?Redirect.INHERIT:Redirect.PIPE)
-                .redirectOutput(output)
+                .redirectOutput(Redirect.PIPE)
                 .command(cmd.getParts())
                 .start();
 
@@ -52,14 +57,31 @@ public class Runner {
                     }
                 }.start();
             }
+            var outThread=new Thread() {
+                public void run() {
+                    try {
+                        int v;
+                        while((v=proc.getInputStream().read())!=-1) {
+                            baos.write(v);
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            outThread.start();
 
-            byte[] result = null;
-            if(output == Redirect.PIPE) {
-                result = IOUtils.toByteArray(proc.getInputStream());
-            }
             proc.onExit().join();
+            outThread.join();
             if(proc.exitValue() != 0) {
                 throw new RuntimeException("Exited with non-zero code");
+            }
+            byte[] result = new byte[0];
+            if(output == Redirect.PIPE) {
+                result = baos.toByteArray();
+            }
+            else {
+                log(Level.SEVERE, baos.toByteArray());
             }
 
             if(cmd.getResultFile() != null) {
@@ -68,7 +90,21 @@ public class Runner {
             }
 
             return result;
+        } catch(Exception e) {
+            if(in != null) {
+                var str = new String(in);
+                log.severe("Failure for input "+str.substring(0, Math.min(1000, str.length())));
+            }
+            log(Level.SEVERE, baos.toByteArray());
+
+            throw new IOException(e);
         }
+    }
+
+    private static void log(Level level, byte[] out) {
+        String msg = new String(out, StandardCharsets.UTF_8);
+        if(StringUtils.isEmpty(msg)) return;
+        log.log(level, "std/out: "+msg);
     }
 
     public static final File TMP_DIR;
