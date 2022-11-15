@@ -30,6 +30,9 @@ public class LayerCompiler {
         if("borders".equals(ctx.getName())) {
             steps.add(new GenerateBorderVariants());
         }
+        if("continents".equals(ctx.getName())) {
+            steps.add(new AddContinentsBuffer());
+        }
         if("districts".equals(ctx.getName())) {
             steps.add(new AddDistrictGap());
         }

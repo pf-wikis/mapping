@@ -65,6 +65,7 @@ function getOrDefault(field, defaultValue) {
 
 let colors = {
   water:           'rgb(162, 203, 255)',
+  waterDeep:       'rgb(158, 197, 249)',
   waterDarker:     'rgb( 81, 101, 127)',
   land:            'rgb(240, 237, 229)',
   landDarker:      'rgb(207, 195, 160)',
@@ -98,9 +99,15 @@ let layers = [
     id: 'background',
     type: 'background',
     paint: {
-      'background-color': colors.water,
+      'background-color': colors.waterDeep,
     }
   },
+  createLayer('continents_buffer', {
+    type: 'fill',
+    paint: {
+      'fill-color': colors.water,
+    }
+  }),
   createLayer('continents', {
     type: 'fill',
     paint: {
@@ -529,7 +536,6 @@ let layers = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-overlap': 'always',
       'text-size': 20,
     },
     paint: {
