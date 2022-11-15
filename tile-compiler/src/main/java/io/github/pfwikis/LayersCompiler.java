@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -16,7 +18,7 @@ import io.github.pfwikis.run.Tools;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class MapsCompiler {
+public class LayersCompiler {
 
     private final TileCompiler tileCompiler;
     private final File sources = new File("../sources");
@@ -40,7 +42,10 @@ public class MapsCompiler {
             .collect(Collectors.toMap(lc->lc.getCtx().getName(), Function.identity()));
 
         //cross reference dependencies
-        tasks.get("borders").getDependencies().add(tasks.get("continents"));
+        tasks.get("borders").getDependencies().addAll(Arrays.asList(
+            Objects.requireNonNull(tasks.get("continents")),
+            Objects.requireNonNull(tasks.get("waters"))
+        ));
 
 
         tasks.values()

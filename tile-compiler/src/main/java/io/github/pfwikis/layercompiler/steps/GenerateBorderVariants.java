@@ -24,6 +24,7 @@ public class GenerateBorderVariants extends LCStep {
             "-innerlines",
             "-merge-layers",
             "-clip", new File(ctx.getGeo(), "continents.geojson"),
+            "-erase", new File(ctx.getGeo(), "waters.geojson"),
             "-dashlines", "dash-length=20km", "gap-length=15km", "scaled"
         );
         createNewLayer(new Ctx("borders_provinces_borders", ctx.getOptions(), ctx.getGeo(), provinceBorders));
@@ -49,7 +50,8 @@ public class GenerateBorderVariants extends LCStep {
             "-filter", "nation !== null",
             "-dissolve",
             "-lines", "-filter-fields",
-            "-clip", new File(ctx.getGeo(), "continents.geojson")
+            "-clip", new File(ctx.getGeo(), "continents.geojson"),
+            "-erase", new File(ctx.getGeo(), "waters.geojson")
         );
         var nationBorders = Tools.mapshaper2(innerNationBorders,
             outerNationBorders, "combine-files",

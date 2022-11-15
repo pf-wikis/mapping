@@ -30,16 +30,21 @@ public class LayerCompiler {
         if("borders".equals(ctx.getName())) {
             steps.add(new GenerateBorderVariants());
         }
+        if("continents".equals(ctx.getName())) {
+            steps.add(new AddContinentsBuffer());
+        }
         if("districts".equals(ctx.getName())) {
             steps.add(new AddDistrictGap());
         }
         if(Set.of("chasms", "continents", "deserts", "forests", "hills", "ice", "mountains", "swamps", "waters").contains(ctx.getName())) {
             steps.add(new AddFractalDetail());
         }
-        //smooth rivers
-        //does not work as intended right now
-        //mv 'geo/rivers.geojson' 'geo/tmp.geojson'
-        //qgis_process run native:smoothgeometry --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 --ITERATIONS=3 --OFFSET=0.25 --MAX_ANGLE=180 --INPUT='geo/tmp.geojson' --OUTPUT='geo/rivers.geojson'
+        if(Set.of("rivers", "borders_nations_borders", "borders_provinces_borders", "borders_regions_borders").contains(ctx.getName())) {
+            steps.add(new SmoothLines());
+        }
+        if(Set.of("borders_nations", "borders_provinces", "borders_regions").contains(ctx.getName())) {
+            steps.add(new StopProcessing());
+        }
         steps.add(new AddScaleAndZoom());
         steps.add(new CreateTippecanoeProperty());
         if(!ctx.getOptions().isProdDetail()) {
