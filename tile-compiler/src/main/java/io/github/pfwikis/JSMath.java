@@ -10,7 +10,7 @@ public class JSMath {
     }
 
     public static String pixelSizeMinzoomFunction(double minPixelSize, String attribute) {
-        return "Math.floor(Math.log2(($threshold)/($attribute)))"
+        return "Math.max(0, Math.floor(Math.log2(($threshold)/($attribute))))"
             .replace("$threshold", Double.toString(minPixelSize*111319.491))
             .replace("$attribute", attribute);
     }

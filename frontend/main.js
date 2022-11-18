@@ -23,10 +23,13 @@ if(embedded) {
 const equatorMeter2Deg = 1/111319.491 * 1.5; //no idea where this second factor comes from -.-
 function createLayer(name, base) {
   return Object.assign({
-    'id': base.type+'_'+name,
-    'source': 'golarion',
+    id: base.type+'_'+name,
+    source: 'golarion',
     'source-layer': name,
-    'filter': ['any', ['!', ['has', 'filterMinzoom']], ['>=', ['zoom'], ['get', 'filterMinzoom']]],
+    filter: ['all',
+      ['any', ['!', ['has', 'filterMinzoom']], ['>', ["zoom"], ["get", "filterMinzoom"]]],
+      ['any', ['!', ['has', 'filterMaxzoom']], ['<=',["zoom"], ["get", "filterMaxzoom"]]]
+    ],
   }, base);
 }
 
@@ -84,7 +87,6 @@ let colors = {
   mountains:       'rgb(229, 221, 199)',
   mountainsDarker: 'rgb(129, 121, 099)',
   walls:           'rgb(140, 137, 129)',
-  chasms:          'rgb( 59,  51,  29)',
   regionBorders:   'rgb(107,  42,  33)',
   regionNames:     'rgb( 17,  42,  97)',
   regionNamesOut:  'rgb(213, 195, 138)',
@@ -120,10 +122,10 @@ let layers = [
       'fill-color': colors.districts,
     }
   }),
-  createLayer('chasms', {
+  createLayer('specials', {
     type: 'fill',
     paint: {
-      'fill-color': colors.chasms,
+      'fill-color': ['get', 'color'],
     }
   }),
   createLayer('ice', {
@@ -280,6 +282,32 @@ let layers = [
       'text-halo-width': 1
     }
   }),
+  createLayer('specials_labels', {
+    type: 'symbol',
+    layout: {
+      'text-field': ['get', 'Name'],
+      'text-font': ['NotoSans-Medium'],
+      'text-size': 16,
+    },
+    paint: {
+      'text-color': colors.districts,
+      'text-halo-color': colors.districtsDarker,
+      'text-halo-width': 1
+    }
+  }),
+  createLayer('labels_labels', {
+    type: 'symbol',
+    layout: {
+      'text-field': ['get', 'Name'],
+      'text-font': ['NotoSans-Medium'],
+      'text-size': 16,
+    },
+    paint: {
+      'text-color': colors.districts,
+      'text-halo-color': colors.districtsDarker,
+      'text-halo-width': 1
+    }
+  }),
   createLayer('hills_labels', {
     type: 'symbol',
     minzoom: 6,
@@ -355,7 +383,6 @@ let layers = [
     id: 'location-icons',
     type: 'symbol',
     maxzoom: limit.districts,
-    filter: ['>', ["-", ["zoom"], ["get", "filterMinzoom"]], 0],
     layout: {
       'icon-image': ['match', ['get', 'type'],
         'tower', 'location-tower',
@@ -385,7 +412,6 @@ let layers = [
     id: 'city-icons',
     type: 'symbol',
     maxzoom: limit.districts,
-    filter: ['>', ["-", ["zoom"], ["get", "filterMinzoom"]], 0],
     layout: {
       'icon-image': ['case',
         ['get', 'capital'], ['step',
@@ -708,9 +734,4 @@ const menu = new PureContextMenu(mapContainer, items, {
 
 
 //////////debugging options
-/*
-map.showCollisionBoxes = true;
-const interval = setInterval(function() {
-  console.log(map.getZoom());
-}, 5000);
-*/
+//map.showCollisionBoxes = true;

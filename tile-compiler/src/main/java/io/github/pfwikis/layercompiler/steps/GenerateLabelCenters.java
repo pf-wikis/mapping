@@ -21,7 +21,8 @@ public class GenerateLabelCenters extends LCStep {
             var tmp = Tools.mapshaper(f,
                 "-filter", "Name != null",
                 "-dissolve", "Name",
-                "-each", "filterMinzoom="+filterMinzoom(ctx.getName())
+                "-each", "filterMinzoom="+filterMinzoom(ctx.getName()),
+                "-each", "filterMaxzoom=4+filterMinzoom"
             );
             var labelPoints = Tools.geojsonPolygonLabels(tmp,
                 "--precision=0.00001",
@@ -37,6 +38,7 @@ public class GenerateLabelCenters extends LCStep {
     private String filterMinzoom(String name) {
         if(name.startsWith("borders")) return "2";
         if(name.startsWith("districts")) return "10";
+        if(name.startsWith("continents")) return "0";
 
         return JSMath.pixelSizeMinzoomFunction(
             300,
