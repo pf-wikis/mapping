@@ -65,7 +65,7 @@ function getOrDefault(field, defaultValue) {
 
 let colors = {
   water:           'rgb(138, 180, 248)',
-  waterDeep:       'rgb(158, 197, 249)',
+  waterDeep:       'rgb(110, 160, 245)',
   waterDarker:     'rgb(  9,  64, 153)',
   land:            'rgb(248, 241, 225)',
   landDarker:      'rgb(162, 124,  38)',
