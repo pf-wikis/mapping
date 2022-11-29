@@ -42,7 +42,7 @@ public class LayerCompiler {
         if(Set.of("rivers", "borders_nations_borders", "borders_provinces_borders", "borders_regions_borders").contains(ctx.getName())) {
             steps.add(new SmoothLines());
         }
-        if(Set.of("borders_nations", "borders_provinces", "borders_regions").contains(ctx.getName())) {
+        if(Set.of("borders_nations", "borders_provinces", "borders_regions", "labels").contains(ctx.getName())) {
             steps.add(new StopProcessing());
         }
         steps.add(new AddScaleAndZoom());
