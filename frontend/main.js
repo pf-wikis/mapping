@@ -386,6 +386,7 @@ let layers = [
     layout: {
       'icon-image': ['match', ['get', 'type'],
         'tower', 'location-tower',
+        'city-ruins', 'location-city-ruins',
         'location-other'
       ],
       'icon-pitch-alignment': 'map',
