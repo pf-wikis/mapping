@@ -1,7 +1,7 @@
 FROM qgis/qgis:release-3_28
 
 RUN apt-get update \
-	&& apt-get install -y mmv openjdk-17-jdk maven jq \
+	&& apt-get install -y mmv openjdk-17-jdk maven jq bc \
 	&& rm -rf /var/lib/apt/lists/*
 RUN git clone https://github.com/mapbox/tippecanoe.git \
 	&& cd tippecanoe \
@@ -12,5 +12,6 @@ RUN npm install -g geojson-polygon-labels mapshaper @elastic/spritezero-cli curv
 
 ENV QT_QPA_PLATFORM offscreen
 
-COPY entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
+COPY compile.sh /compile.sh
+COPY diff.sh /diff.sh
+ENTRYPOINT ["/bin/bash", "-c"]

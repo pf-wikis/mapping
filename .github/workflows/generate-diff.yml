@@ -1,0 +1,50 @@
+name: Generate Geopackage diffs
+
+on:
+  pull_request:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  pull-requests: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "diff-for-${{github.event.pull_request.number}}"
+  cancel-in-progress: true
+
+jobs:
+  # Build job
+  generateDiff:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Base
+        uses: actions/checkout@v3
+        with:
+          ref: ${{github.event.pull_request.base.ref}}
+      - name: Checkout Head
+        uses: actions/checkout@v3
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+          path: head
+      - name: Create Result Folder
+        run: mkdir results
+      - name: Generate Diff SVGs
+        uses: ./head/.github/compiler-docker
+        with:
+          entrypoint: /diff.sh
+      - name: Push to page branch
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: results
+          branch: diffstore
+          clean: false
+          target-folder: "${{github.event.pull_request.number}}"
+      - name: Comment
+        uses: GrantBirki/comment@v2.0.1
+        with:
+          file: comment.md
+          vars: |
+            pr: ${{github.event.pull_request.number}}
+            

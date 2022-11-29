@@ -1,4 +1,12 @@
-name: 'Compile tiles'
+name: Compile tiles
+description: access to an environment with all required tools
+inputs:
+  entrypoint:
+    description: entrypoint
+    required: false
+    default: '/compile.sh'
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: docker
+  image: Dockerfile
+  args:
+    - ${{ inputs.entrypoint }}
