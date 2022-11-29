@@ -601,7 +601,7 @@ export const map = new maplibre.Map({
     sources: {
       golarion: {
         type: 'vector',
-        attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>',
+        attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
         tiles: [
           root+dataPath+'/golarion/{z}/{x}/{y}.pbf.json'
         ],
