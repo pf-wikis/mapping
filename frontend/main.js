@@ -67,33 +67,33 @@ function getOrDefault(field, defaultValue) {
 }
 
 let colors = {
-  water:           'rgb(162, 203, 255)',
-  waterDeep:       'rgb(158, 197, 249)',
-  waterDarker:     'rgb( 81, 101, 127)',
-  land:            'rgb(240, 237, 229)',
-  landDarker:      'rgb(207, 195, 160)',
-  districts:       'rgb(220, 220, 210)',
-  districtsDarker: 'rgb(067, 065, 060)',
-  deserts:         'rgb(250, 243, 195)',
-  desertsDarker:   'rgb(186, 171, 104)',
-  ice:             'rgb(240, 240, 254)',
-  iceDarker:       'rgb(200, 200, 214)',
-  swamp:           'rgb(200, 205, 179)',
-  swampDarker:     'rgb(100, 105, 079)',
-  forest:          'rgb(210, 228, 200)',
-  forestDarker:    'rgb(110, 128, 100)',
-  hills:           'rgb(235, 230, 215)',
-  hillsDarker:     'rgb(169, 161, 130)',
-  mountains:       'rgb(229, 221, 199)',
-  mountainsDarker: 'rgb(129, 121, 099)',
+  water:           'rgb(138, 180, 248)',
+  waterDeep:       'rgb(110, 160, 245)',
+  waterDarker:     'rgb(  9,  64, 153)',
+  land:            'rgb(248, 241, 225)',
+  landDarker:      'rgb(162, 124,  38)',
+  districts:       'rgb(212, 204, 185)',
+  districtsDarker: 'rgb(104,  92,  64)',
+  deserts:         'rgb(255, 247, 190)',
+  desertsDarker:   'rgb(188, 164,   0)',
+  ice:             'rgb(241, 241, 241)',
+  iceDarker:       'rgb(108, 108, 108)',
+  swamp:           'rgb(183, 197, 188)',
+  swampDarker:     'rgb( 72,  88,  78)',
+  forest:          'rgb(187, 226, 198)',
+  forestDarker:    'rgb( 52, 122,  72)',
+  hills:           'rgb(235, 227, 205)',
+  hillsDarker:     'rgb(132, 111,  53)',
+  mountains:       'rgb(222, 212, 184)',
+  mountainsDarker: 'rgb(117, 100,  54)',
   walls:           'rgb(140, 137, 129)',
   regionBorders:   'rgb(107,  42,  33)',
   regionNames:     'rgb( 17,  42,  97)',
   regionNamesOut:  'rgb(213, 195, 138)',
-  nationBorders:   'rgb(200, 200, 200)',
-  borderDarker:    'rgb(100, 100, 100)',
+  nationBorders:   'rgb(170, 170, 170)',
+  borderDarker:    'rgb( 74,  74,  74)',
   white:           'rgb(255, 255, 255)',
-  black:           'rgb( 20,  20,  20)'
+  black:           'rgb( 10,  10,  10)'
 };
 
 let layers = [
@@ -180,7 +180,7 @@ let layers = [
       'fill-color': colors.water,
     }
   }),
-  
+
   createLayer('walls', {
     type: 'fill',
     paint: {
@@ -193,7 +193,7 @@ let layers = [
     paint: {
       'line-color': colors.nationBorders,
       'line-width': 1,
-      'line-opacity': blendInOut(3,99) 
+      'line-opacity': blendInOut(3,99)
     },
     layout: {
       'line-cap': 'round'
@@ -219,7 +219,7 @@ let layers = [
     paint: {
       'line-color': colors.regionBorders,
       'line-width': 2,
-      'line-opacity': blendInOut(2,4) 
+      'line-opacity': blendInOut(2,4)
     },
     layout: {
       'line-cap': 'round'
@@ -378,7 +378,7 @@ let layers = [
       'text-halo-width': 1
     }
   }),
-  
+
   createLayer('locations', {
     id: 'location-icons',
     type: 'symbol',
