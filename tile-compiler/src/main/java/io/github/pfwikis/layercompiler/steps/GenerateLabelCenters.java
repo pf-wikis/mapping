@@ -18,9 +18,11 @@ public class GenerateLabelCenters extends LCStep {
         String raw = new String(f);
         if(POLYGON_GEOJSON_1.matcher(raw).find() && POLYGON_GEOJSON_2.matcher(raw).find()) {
             log.info("  Generating label points from polygon centers");
-            var tmp = Tools.mapshaper(f,
-                "-filter", "Name != null",
-                "-dissolve", "Name",
+            var tmp = Tools.mapshaper(f, "-filter", "Name != null");
+            if(!"labels".equals(ctx.getName())) {
+                tmp = Tools.mapshaper(tmp, "-dissolve", "Name");
+            }
+            tmp = Tools.mapshaper(tmp,
                 "-each", "filterMinzoom="+filterMinzoom(ctx.getName()),
                 "-each", "filterMaxzoom=4+filterMinzoom"
             );
