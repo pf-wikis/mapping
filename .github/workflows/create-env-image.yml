@@ -6,6 +6,11 @@ on:
     paths:
       - '.github/**'
 
+# Allow one concurrent deployment
+concurrency:
+  group: "create-env-image"
+  cancel-in-progress: true
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
