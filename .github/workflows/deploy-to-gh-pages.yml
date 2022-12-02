@@ -11,6 +11,7 @@ permissions:
   contents: write
   pages: write
   id-token: write
+  packages: read
 
 # Allow one concurrent deployment
 concurrency:
@@ -20,9 +21,6 @@ concurrency:
 jobs:
   # Build job
   build:
-    permissions:
-      contents: read
-      packages: read
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
