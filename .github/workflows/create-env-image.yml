@@ -4,7 +4,7 @@ on:
   push:
     branches: ['main']
     paths:
-      - '.github/**'
+      - '.github/compiler-docker/**'
 
 # Allow one concurrent deployment
 concurrency:

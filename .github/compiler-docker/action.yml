@@ -7,6 +7,6 @@ inputs:
     default: '/compile.sh'
 runs:
   using: docker
-  image: https://ghcr.io/pf-wikis/mapping:main
+  image: ghcr.io/pf-wikis/mapping:main
   args:
     - ${{ inputs.entrypoint }}
