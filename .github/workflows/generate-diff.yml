@@ -17,6 +17,9 @@ concurrency:
 jobs:
   # Build job
   generateDiff:
+    permissions:
+      contents: read
+      packages: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Base

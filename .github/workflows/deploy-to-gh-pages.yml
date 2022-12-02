@@ -20,6 +20,9 @@ concurrency:
 jobs:
   # Build job
   build:
+    permissions:
+      contents: read
+      packages: read
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
