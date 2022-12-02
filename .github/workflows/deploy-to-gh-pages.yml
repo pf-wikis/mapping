@@ -30,7 +30,7 @@ jobs:
         with:
           submodules: false
       - name: Compile tiles
-        uses: ./.github/compiler-docker
+        uses: ghcr.io/pf-wikis/mapping:main
       - name: Setup Pages
         uses: actions/configure-pages@v2
       - name: Upload artifact

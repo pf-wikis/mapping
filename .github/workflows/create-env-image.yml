@@ -1,6 +1,10 @@
+name: Generate environment image
+
 on:
   push:
     branches: ['main']
+    paths:
+      - '.github/**'
 
 env:
   REGISTRY: ghcr.io
