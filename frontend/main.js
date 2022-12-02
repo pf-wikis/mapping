@@ -152,16 +152,16 @@ let layers = [
       'fill-color': colors.forest,
     }
   }),
-  createLayer('hills', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.hills,
-    }
-  }),
   createLayer('mountains', {
     type: 'fill',
     paint: {
       'fill-color': colors.mountains,
+    }
+  }),
+  createLayer('hills', {
+    type: 'fill',
+    paint: {
+      'fill-color': colors.hills,
     }
   }),
   createLayer('rivers', {
