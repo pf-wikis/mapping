@@ -22,4 +22,5 @@ public class City {
     private String population;
     private String size;
     private int capital;
+    private String name;
 }

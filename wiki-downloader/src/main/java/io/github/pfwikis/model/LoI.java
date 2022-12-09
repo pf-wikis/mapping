@@ -17,4 +17,5 @@ public class LoI {
     @JsonProperty("latlong  lat")
     private BigDecimal coordsLat;
     private String type;
+    private String name;
 }

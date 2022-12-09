@@ -4,12 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.math.MathContext;
 import java.math.RoundingMode;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,24 +18,26 @@ public class DownloadCities {
     public static final MathContext ROUND_TO_7 = new MathContext(7, RoundingMode.HALF_UP);
 
     public static void main(String[] args) throws IOException {
-        String url = "https://pathfinderwiki.com/w/index.php?title=Special:CargoExport"
-            + "&tables=City%2C&"
-            + "&fields=City._pageName%2C+City.name%2C+City.population%2C+City.latlong%2C+City.capital%2C+City.size"
-            + "&where=City.latlong__full+IS+NOT+NULL+AND+City._pageNamespace=0"
-            + "&order+by=%60mw_cargo__City%60.%60_pageName%60%2C%60mw_cargo__City%60.%60latlong__full%60"
-            + "&limit=1000&format=json";
+        String url = Helper.buildQuery("https://pathfinderwiki.com/w/index.php",
+            "title","Special:CargoExport",
+            "tables","City",
+            "fields","_pageName,latlong,population,size,name,capital",
+            "where","latlong__full IS NOT NULL AND (_pageNamespace=0 OR _pageName='PathfinderWiki:Map Locations Without Articles')",
+            "order by", "`_pageName`,`name`,`latlong__full`",
+            "limit","1000",
+            "format","json","parse values","yes"
+        );
         int offset = 0;
-        var jackson = Jackson.get();
 
         var cities = new ArrayList<City>();
 
         while (true) {
-            City[] array = jackson.readValue(new URL(url + "&offset=" + offset), City[].class);
-            if (array.length == 0) {
-                break;
-            }
+            City[] array = Helper.read(url + "&offset=" + offset, City[].class);
             offset += 1000;
             cities.addAll(Arrays.asList(array));
+            if (array.length < 1000) {
+                break;
+            }
         }
         cities.sort(Comparator.comparing(City::getPageName));
 
@@ -48,7 +48,7 @@ public class DownloadCities {
             try {
                 var feature = new Feature();
                 var properties = new Properties();
-                handleName(city, properties);
+                properties.setName(Helper.handleName(city.getName(), city.getPageName()));
                 properties.setLink("https://pathfinderwiki.com/wiki/" + city.getPageName().replace(' ', '_'));
                 properties.setCapital(city.getCapital() == 1);
                 feature.setProperties(properties);
@@ -68,13 +68,7 @@ public class DownloadCities {
         }
 
         var result = new FeatureCollection("cities", arr);
-        jackson.writer().withDefaultPrettyPrinter().writeValue(new File("../sources/cities.geojson"), result);
-    }
-
-    private static void handleName(City city, Properties properties) {
-        String name = city.getPageName();
-        name = name.replaceAll(" +\\(.*", "");
-        properties.setName(name);
+        Jackson.get().writer().withDefaultPrettyPrinter().writeValue(new File("../sources/cities.geojson"), result);
     }
 
     private static void handlePopulation(City city, Feature feature) {
