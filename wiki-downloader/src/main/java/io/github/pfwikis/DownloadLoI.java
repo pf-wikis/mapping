@@ -4,35 +4,38 @@ import static io.github.pfwikis.DownloadCities.ROUND_TO_7;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 
 import io.github.pfwikis.model.*;
 
 public class DownloadLoI {
 
     public static void main(String[] args) throws IOException {
-        String url = "https://pathfinderwiki.com/w/index.php?title=Special:CargoExport"
-            + "&tables=LocationOfInterest%2C&"
-            + "&fields=LocationOfInterest._pageName%2C+LocationOfInterest.latlong%2C+LocationOfInterest.type"
-            + "&where=LocationOfInterest.latlong__full+IS+NOT+NULL+AND+LocationOfInterest._pageNamespace=0"
-            + "&order+by=%60mw_cargo__LocationOfInterest%60.%60_pageName%60%2C%60mw_cargo__LocationOfInterest%60.%60latlong__full%60"
-            + "&limit=1000&format=json";
+        String url = Helper.buildQuery("https://pathfinderwiki.com/w/index.php",
+            "title","Special:CargoExport",
+            "tables","LocationOfInterest",
+            "fields","_pageName,latlong,type,name",
+            "where","latlong__full IS NOT NULL AND (_pageNamespace=0 OR _pageName='PathfinderWiki:Map Locations Without Articles')",
+            "order by", "`_pageName`,`name`,`latlong__full`",
+            "limit","1000",
+            "format","json","parse values","yes"
+        );
         int offset = 0;
-        var jackson = Jackson.get();
 
         var lois = new ArrayList<LoI>();
 
         while (true) {
-            LoI[] array = jackson.readValue(new URL(url + "&offset=" + offset), LoI[].class);
-            if (array.length == 0) {
-                break;
-            }
+            LoI[] array = Helper.read(url + "&offset=" + offset, LoI[].class);
             offset += 1000;
             lois.addAll(Arrays.asList(array));
+            if (array.length < 1000) {
+                break;
+            }
         }
         lois.sort(Comparator.comparing(LoI::getPageName));
 
@@ -42,7 +45,7 @@ public class DownloadLoI {
         for (var loi : lois) {
             try {
                 var properties = new Properties();
-                handleName(loi, properties);
+                properties.setName(Helper.handleName(loi.getName(), loi.getPageName()));
                 properties.setLink("https://pathfinderwiki.com/wiki/" + loi.getPageName().replace(' ', '_'));
                 properties.setType(loi.getType());
                 var geometry = new Geometry();
@@ -61,12 +64,6 @@ public class DownloadLoI {
         }
 
         var result = new FeatureCollection("cities", arr);
-        jackson.writer().withDefaultPrettyPrinter().writeValue(new File("../sources/locations.geojson"), result);
-    }
-
-    private static void handleName(LoI city, Properties properties) {
-        String name = city.getPageName();
-        name = name.replaceAll(" +\\(.*", "");
-        properties.setName(name);
+        Jackson.get().writer().withDefaultPrettyPrinter().writeValue(new File("../sources/locations.geojson"), result);
     }
 }
