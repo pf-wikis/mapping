@@ -61,6 +61,22 @@ public class GenerateBorderVariants extends LCStep {
 
 
 
+        //subregion labels
+        var subregions = Tools.mapshaper(f,
+            "-filter", "region !== null",
+            "-rename-fields", "Name=subregion",
+            "-dissolve", "Name"
+        );
+        createNewLayer(new Ctx("borders_subregions", ctx.getOptions(), ctx.getGeo(), subregions));
+
+        //subregion borders are the inner lines
+        var subregionBorders = Tools.mapshaper(f,
+            "-filter", "subregion !== null",
+            "-dissolve", "subregion",
+            "-innerlines"
+        );
+        createNewLayer(new Ctx("borders_subregions_borders", ctx.getOptions(), ctx.getGeo(), subregionBorders));
+
 
         //region labels
         var regions = Tools.mapshaper(f,
