@@ -35,6 +35,30 @@ function createLayer(name, base) {
   }, base);
 }
 
+// Set up some of the distance calculation variables.
+var distanceContainer = document.getElementById('distance');
+
+// GeoJSON object to hold our measurement features
+var distanceGeojson = {
+  'type': 'FeatureCollection',
+  'features': []
+  };
+
+var distanceLineString = {
+  'type': 'Feature',
+  'geometry': {
+    'type': 'LineString',
+    'coordinates': []
+  }
+}
+
+map.on('load', function() {
+  map.addSource('distanceGeojson', {
+    'type': 'geojson',
+    'data': distanceGeojson
+    });
+})
+
 function interpolateTextWithCamera(factor) {
   return [
     'interpolate',
@@ -588,6 +612,26 @@ let layers = [
       'text-halo-width': interpolateTextWithCamera(1)
     }
   }),
+  createLayer('measure-points', {
+    id: 'measure-points',
+    type: 'circle',
+    source: 'distanceGeojson',
+    paint: {
+      'circle-radius': 5,
+      'circle-color': '#000'
+    },
+    filter: ['in', '$type', 'Point']
+  }),
+  createLayer('measure-lines', {
+    id: 'measure-lines',
+    type: 'line',
+    source: 'distanceGeojson',
+    paint: {
+      'line-color': '#000',
+      'line-width': 2.5
+    },
+    filter: ['in', '$type', 'LineString']
+  })
 ];
 
 var root = location.origin + location.pathname
@@ -645,6 +689,71 @@ map.on('contextmenu', function(e) {
   latLong = e.lngLat.wrap();
 });
 
+////////////////////////////////////////// Distance Calculations
+
+function clickOnDistanceCalculator(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+      layers: ['measure-points']
+  });
+     
+  // Remove the linestring from the group
+  // So we can redraw it based on the points collection
+  if (distanceGeojson.features.length > 1) distanceGeojson.features.pop();
+    
+  // Clear the Distance container to populate it with a new value
+  distanceContainer.innerHTML = '';
+    
+  // If a feature was clicked, remove it from the map
+  if (features.length) {
+    var id = features[0].properties.id;
+    distanceGeojson.features = distanceGeojson.features.filter(function (point) {
+      return point.properties.id !== id;
+    });
+  } else {
+    var point = {
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Point',
+        'coordinates': [e.lngLat.lng, e.lngLat.lat]
+      },
+      'properties': {
+        'id': String(new Date().getTime())
+      }
+    };
+    
+    distanceGeojson.features.push(point);
+  }
+    
+  if (distanceGeojson.features.length > 1) {
+    linestring.geometry.coordinates = distanceGeojson.features.map(
+      function (point) {
+        return point.geometry.coordinates;
+      }
+    );
+    
+    distanceGeojson.features.push(linestring);
+    
+    // Populate the distanceContainer with total distance
+    var value = document.createElement('pre');
+    value.textContent = 'Total distance: ' +
+      turf.length(linestring, {units: 'miles'}).toLocaleString() + ' mi (' +
+      turf.length(linestring).toLocaleString() + ' km)'; 
+    distanceContainer.appendChild(value);
+  }
+    
+  map.getSource('distanceGeojson').setData(distanceGeojson);
+}
+
+function mouseMoveDistanceCalculator(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+      layers: ['measure-points']
+  });
+  // UI indicator for clicking/hovering a point on the map
+  map.getCanvas().style.cursor = features.length ? 'pointer' : 'crosshair';
+}
+
+map.on('click',  clickOnDistanceCalculator);
+map.on('mousemove', mouseMoveDistanceCalculator);
 
 ////////////////////////////////////////// make cities clickable
 function showPointer() {
