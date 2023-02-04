@@ -3,12 +3,15 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import * as maplibre from "maplibre-gl";
 import PureContextMenu from "pure-context-menu";
 
-
 //constants
 const limit = {
   districts:    11,
   river_labels:  5
 };
+
+if (!maplibre.supported()) {
+  alert("Your browser does not support the MapLibre GL library. Make sure you're on the latest Chrome, Firefox, Safari, Opera, or Edge.")
+}
 
 //check if running embedded
 var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -18,7 +21,6 @@ const mapContainer = document.getElementById("map-container");
 if(embedded) {
   mapContainer.classList.add("embedded");
 }
-
 
 const equatorMeter2Deg = 1/111319.491 * 1.5; //no idea where this second factor comes from -.-
 function createLayer(name, base) {
@@ -644,7 +646,6 @@ map.on('contextmenu', function(e) {
 });
 
 
-
 ////////////////////////////////////////// make cities clickable
 function showPointer() {
   map.getCanvas().style.cursor = 'pointer';
@@ -700,9 +701,6 @@ map.on('click', 'location-icons',  clickOnWikilink);
 map.on('click', 'location-labels', clickOnWikilink);
 
 
-
-
-
 ///////////////////////////////////////// right click menu
 const items = [
   {
@@ -728,11 +726,6 @@ const menu = new PureContextMenu(mapContainer, items, {
     return e.target.classList.contains('maplibregl-canvas');
   }
 });
-
-
-
-
-
 
 //////////debugging options
 //map.showCollisionBoxes = true;
