@@ -1,96 +1,9 @@
-import './style.scss';
-import 'maplibre-gl/dist/maplibre-gl.css';
-import * as maplibre from "maplibre-gl";
-import PureContextMenu from "pure-context-menu";
+import { DataDrivenPropertyValueSpecification, ExpressionSpecification, LayerSpecification } from "maplibre-gl";
 
-//constants
-const limit = {
+let limit = {
   districts:    11,
   river_labels:  5
 };
-
-if (!maplibre.supported()) {
-  alert("Your browser does not support the MapLibre GL library. Make sure you're on the latest Chrome, Firefox, Safari, Opera, or Edge.")
-}
-
-//check if running embedded
-var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
-const embedded = (urlParams.get('embedded') === 'true');
-const mapContainer = document.getElementById("map-container");
-
-if(embedded) {
-  mapContainer.classList.add("embedded");
-}
-
-const equatorMeter2Deg = 1/111319.491 * 1.5; //no idea where this second factor comes from -.-
-function createLayer(name, base) {
-  return Object.assign({
-    id: base.type+'_'+name,
-    source: 'golarion',
-    'source-layer': name,
-    filter: ['all',
-      ['any', ['!', ['has', 'filterMinzoom']], ['>', ["zoom"], ["get", "filterMinzoom"]]],
-      ['any', ['!', ['has', 'filterMaxzoom']], ['<=',["zoom"], ["get", "filterMaxzoom"]]]
-    ],
-  }, base);
-}
-
-// Set up some of the distance calculation variables.
-var distanceContainer = document.getElementById('distance');
-
-// GeoJSON object to hold our measurement features
-var distanceGeojson = {
-  'type': 'FeatureCollection',
-  'features': []
-  };
-
-var distanceLineString = {
-  'type': 'Feature',
-  'geometry': {
-    'type': 'LineString',
-    'coordinates': []
-  }
-}
-
-map.on('load', function() {
-  map.addSource('distanceGeojson', {
-    'type': 'geojson',
-    'data': distanceGeojson
-    });
-})
-
-function interpolateTextWithCamera(factor) {
-  return [
-    'interpolate',
-    ['exponential', 2],
-    ['zoom'],
-    0, factor,
-    22, factor*(2**22),
-  ]
-}
-
-function interpolateWithCamera(base) {
-  return [
-    'interpolate',
-    ['exponential', 2],
-    ['zoom'],
-     0, ['*', base, equatorMeter2Deg],
-    22, ['*', base, equatorMeter2Deg*(2**22)],
-  ]
-}
-
-function blendInOut(from, to) {
-  return ['interpolate', ['linear'], ['zoom'],
-    from, 0,
-    from+.5, 1,
-    to  -.5, 1,
-    to, 0
-  ]
-}
-
-function getOrDefault(field, defaultValue) {
-  return ['case', ['has', field], ['get', 'field'], defaultValue];
-}
 
 let colors = {
   water:           'rgb(138, 180, 248)',
@@ -122,7 +35,53 @@ let colors = {
   black:           'rgb( 10,  10,  10)'
 };
 
-let layers = [
+const props = {
+  filterMinzoom: ["get", "filterMinzoom"] as ExpressionSpecification
+}
+
+const equatorMeter2Deg = 1/111319.491 * 1.5; //no idea where this second factor comes from -.-
+function interpolateWithCamera(base:ExpressionSpecification):DataDrivenPropertyValueSpecification<number> {
+  return [
+    'interpolate',
+    ['exponential', 2],
+    ['zoom'],
+     0, ['*', base, equatorMeter2Deg],
+    22, ['*', base, equatorMeter2Deg*(2**22)],
+  ] as ExpressionSpecification
+}
+
+function interpolateTextWithCamera(factor:number):ExpressionSpecification {
+  return [
+    'interpolate',
+    ['exponential', 2],
+    ['zoom'],
+    0, factor,
+    22, factor*(2**22),
+  ]
+}
+
+function blendInOut(from:number, to:number):ExpressionSpecification {
+  return ['interpolate', ['linear'], ['zoom'],
+    from, 0,
+    from+.5, 1,
+    to  -.5, 1,
+    to, 0
+  ]
+}
+
+function createLayer(name:string, base:Partial<LayerSpecification>):LayerSpecification {
+  return Object.assign({
+    id: base.type+'_'+name,
+    source: 'golarion',
+    'source-layer': name,
+    filter: ['all',
+      ['any', ['!', ['has', 'filterMinzoom']], ['>', ["zoom"], props.filterMinzoom]],
+      ['any', ['!', ['has', 'filterMaxzoom']], ['<=',["zoom"], ["get", "filterMaxzoom"]]]
+    ],
+  }, base) as LayerSpecification;
+}
+
+let layers:LayerSpecification[] = [
   {
     id: 'background',
     type: 'background',
@@ -233,6 +192,19 @@ let layers = [
         0, .25,
         3, 2,
       ],
+    },
+    layout: {
+      'line-cap': 'round'
+    }
+  }),
+  createLayer('borders_subregions_borders', {
+    type: 'line',
+    minzoom: 3,
+    maxzoom: 4,
+    paint: {
+      'line-color': colors.regionBorders,
+      'line-width': 1.5,
+      'line-opacity': blendInOut(3,4.5)
     },
     layout: {
       'line-cap': 'round'
@@ -419,18 +391,18 @@ let layers = [
       'icon-overlap': 'always',
       'icon-ignore-placement': true,
       'icon-size': ["interpolate", ["exponential", 2], ["zoom"],
-         0,            ["^", 2, ["-", -3, ["get", "filterMinzoom"]]],
-         1,            ["^", 2, ["-", -2, ["get", "filterMinzoom"]]],
-         2, ["min", 1, ["^", 2, ["-", -1, ["get", "filterMinzoom"]]]],
-         3, ["min", 1, ["^", 2, ["-",  0, ["get", "filterMinzoom"]]]],
-         4, ["min", 1, ["^", 2, ["-",  1, ["get", "filterMinzoom"]]]],
-         5, ["min", 1, ["^", 2, ["-",  2, ["get", "filterMinzoom"]]]],
-         6, ["min", 1, ["^", 2, ["-",  3, ["get", "filterMinzoom"]]]],
-         7, ["min", 1, ["^", 2, ["-",  4, ["get", "filterMinzoom"]]]],
-         8, ["min", 1, ["^", 2, ["-",  5, ["get", "filterMinzoom"]]]],
-         9, ["min", 1, ["^", 2, ["-",  6, ["get", "filterMinzoom"]]]],
-        10, ["min", 1, ["^", 2, ["-",  7, ["get", "filterMinzoom"]]]],
-      ]
+         0,            ["^", 2, ["-", -3, props.filterMinzoom]],
+         1,            ["^", 2, ["-", -2, props.filterMinzoom]],
+         2, ["min", 1, ["^", 2, ["-", -1, props.filterMinzoom]]],
+         3, ["min", 1, ["^", 2, ["-",  0, props.filterMinzoom]]],
+         4, ["min", 1, ["^", 2, ["-",  1, props.filterMinzoom]]],
+         5, ["min", 1, ["^", 2, ["-",  2, props.filterMinzoom]]],
+         6, ["min", 1, ["^", 2, ["-",  3, props.filterMinzoom]]],
+         7, ["min", 1, ["^", 2, ["-",  4, props.filterMinzoom]]],
+         8, ["min", 1, ["^", 2, ["-",  5, props.filterMinzoom]]],
+         9, ["min", 1, ["^", 2, ["-",  6, props.filterMinzoom]]],
+        10, ["min", 1, ["^", 2, ["-",  7, props.filterMinzoom]]],
+      ] as any
     },
     paint: {
     }
@@ -459,18 +431,18 @@ let layers = [
       'icon-overlap': 'always',
       'icon-ignore-placement': true,
       'icon-size': ["interpolate", ["exponential", 2], ["zoom"],
-         0,            ["^", 2, ["-", -3, ["get", "filterMinzoom"]]],
-         1,            ["^", 2, ["-", -2, ["get", "filterMinzoom"]]],
-         2, ["min", 1, ["^", 2, ["-", -1, ["get", "filterMinzoom"]]]],
-         3, ["min", 1, ["^", 2, ["-",  0, ["get", "filterMinzoom"]]]],
-         4, ["min", 1, ["^", 2, ["-",  1, ["get", "filterMinzoom"]]]],
-         5, ["min", 1, ["^", 2, ["-",  2, ["get", "filterMinzoom"]]]],
-         6, ["min", 1, ["^", 2, ["-",  3, ["get", "filterMinzoom"]]]],
-         7, ["min", 1, ["^", 2, ["-",  4, ["get", "filterMinzoom"]]]],
-         8, ["min", 1, ["^", 2, ["-",  5, ["get", "filterMinzoom"]]]],
-         9, ["min", 1, ["^", 2, ["-",  6, ["get", "filterMinzoom"]]]],
-        10, ["min", 1, ["^", 2, ["-",  7, ["get", "filterMinzoom"]]]],
-      ]
+         0,            ["^", 2, ["-", -3, props.filterMinzoom]],
+         1,            ["^", 2, ["-", -2, props.filterMinzoom]],
+         2, ["min", 1, ["^", 2, ["-", -1, props.filterMinzoom]]],
+         3, ["min", 1, ["^", 2, ["-",  0, props.filterMinzoom]]],
+         4, ["min", 1, ["^", 2, ["-",  1, props.filterMinzoom]]],
+         5, ["min", 1, ["^", 2, ["-",  2, props.filterMinzoom]]],
+         6, ["min", 1, ["^", 2, ["-",  3, props.filterMinzoom]]],
+         7, ["min", 1, ["^", 2, ["-",  4, props.filterMinzoom]]],
+         8, ["min", 1, ["^", 2, ["-",  5, props.filterMinzoom]]],
+         9, ["min", 1, ["^", 2, ["-",  6, props.filterMinzoom]]],
+        10, ["min", 1, ["^", 2, ["-",  7, props.filterMinzoom]]],
+      ] as any
     },
     paint: {
     }
@@ -479,7 +451,7 @@ let layers = [
     id: 'location-labels',
     type: 'symbol',
     maxzoom: limit.districts,
-    filter: ['>', ["-", ["zoom"], ["get", "filterMinzoom"]], 3],
+    filter: ['>', ["-", ["zoom"], props.filterMinzoom], 3],
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
@@ -498,7 +470,7 @@ let layers = [
     id: 'city-labels',
     type: 'symbol',
     maxzoom: limit.districts,
-    filter: ['>', ["-", ["zoom"], ["get", "filterMinzoom"]], 3],
+    filter: ['>', ["-", ["zoom"], props.filterMinzoom], 3],
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
@@ -532,13 +504,15 @@ let layers = [
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 16,
-      'text-anchor': 'center',
+      'text-variable-anchor': ['center','top','bottom'],
+      'symbol-z-order': 'source',
     },
     paint: {
       'text-color': colors.white,
       'text-halo-color': colors.black,
       'text-halo-width': 1
     }
+    
   }),
   createLayer('borders_provinces_labels', {
     minzoom: 4,
@@ -551,6 +525,8 @@ let layers = [
         5, 5,
         7, 20,
       ],
+      'text-variable-anchor': ['center','top','bottom'],
+      'symbol-z-order': 'source',
     },
     paint: {
       'text-color': colors.white,
@@ -562,7 +538,7 @@ let layers = [
     }
   }),
   createLayer('borders_nations_labels', {
-    minzoom: 2,
+    minzoom: 3,
     maxzoom: 6,
     type: 'symbol',
     layout: {
@@ -572,6 +548,8 @@ let layers = [
         4, 10,
         5, 25,
       ],
+      'text-variable-anchor': ['center','top','bottom'],
+      'symbol-z-order': 'source',
     },
     paint: {
       'text-color': colors.white,
@@ -582,14 +560,33 @@ let layers = [
       ],
     }
   }),
-  createLayer('borders_regions_labels', {
-    minzoom: 2,
+  createLayer('borders_subregions_labels', {
+    minzoom: 3,
     maxzoom: 4,
     type: 'symbol',
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
+      'text-size': 15,
+      'text-variable-anchor': ['center','top','bottom'],
+      'symbol-z-order': 'source',
+    },
+    paint: {
+      'text-color': colors.regionNames,
+      'text-halo-color': colors.regionNamesOut,
+      'text-halo-width': 1.2,
+    }
+  }),
+  createLayer('borders_regions_labels', {
+    minzoom: 1,
+    maxzoom: 3,
+    type: 'symbol',
+    layout: {
+      'text-field': ['get', 'Name'],
+      'text-font': ['NotoSans-Medium'],
       'text-size': 20,
+      'text-variable-anchor': ['center','top','bottom'],
+      'symbol-z-order': 'source',
     },
     paint: {
       'text-color': colors.regionNames,
@@ -604,14 +601,16 @@ let layers = [
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
       'text-overlap': 'always',
+      'text-ignore-placement': true,
       'text-size': interpolateTextWithCamera(10),
+      'symbol-z-order': 'source',
     },
     paint: {
       'text-color': colors.land,
       'text-halo-color': colors.landDarker,
       'text-halo-width': interpolateTextWithCamera(1)
     }
-  }),
+  }),/*
   createLayer('measure-points', {
     id: 'measure-points',
     type: 'circle',
@@ -631,210 +630,7 @@ let layers = [
       'line-width': 2.5
     },
     filter: ['in', '$type', 'LineString']
-  })
+  })*/
 ];
 
-var root = location.origin + location.pathname
-if(!root.endsWith("/")) root += "/";
-const maxZoom = parseInt(import.meta.env.VITE_MAX_ZOOM);
-const dataPath = import.meta.env.VITE_DATA_PATH;
-
-export const map = new maplibre.Map({
-  container: 'map-container',
-  hash: 'location',
-  attributionControl: false,
-  style: {
-    version: 8,
-    sources: {
-      golarion: {
-        type: 'vector',
-        attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
-        tiles: [
-          root+dataPath+'/golarion/{z}/{x}/{y}.pbf.json'
-        ],
-        minzoom: 0,
-        maxzoom: maxZoom
-      }
-    },
-    sprite: root+'sprites/sprites',
-    layers: layers,
-    glyphs: root+'fonts/{fontstack}/{range}.pbf.json',
-    transition: {
-      duration: 300,
-      delay: 0
-    }
-  },
-});
-map.on('error', function(err) {
-  console.log(err.error.message);
-  document.getElementById("map-container").innerHTML = err.error.message;
-});
-if(!embedded) {
-  map.addControl(new maplibre.NavigationControl());
-}
-map.addControl(new maplibre.ScaleControl({
-  unit: 'imperial',
-  maxWidth: embedded?50:100,
-}));
-map.addControl(new maplibre.ScaleControl({
-  unit: 'metric',
-  maxWidth: embedded?50:100,
-}));
-map.addControl(new maplibre.AttributionControl({
-  compact: embedded
-}));
-
-var latLong = null;
-map.on('contextmenu', function(e) {
-  latLong = e.lngLat.wrap();
-});
-
-////////////////////////////////////////// Distance Calculations
-
-function clickOnDistanceCalculator(e) {
-  var features = map.queryRenderedFeatures(e.point, {
-      layers: ['measure-points']
-  });
-     
-  // Remove the linestring from the group
-  // So we can redraw it based on the points collection
-  if (distanceGeojson.features.length > 1) distanceGeojson.features.pop();
-    
-  // Clear the Distance container to populate it with a new value
-  distanceContainer.innerHTML = '';
-    
-  // If a feature was clicked, remove it from the map
-  if (features.length) {
-    var id = features[0].properties.id;
-    distanceGeojson.features = distanceGeojson.features.filter(function (point) {
-      return point.properties.id !== id;
-    });
-  } else {
-    var point = {
-      'type': 'Feature',
-      'geometry': {
-        'type': 'Point',
-        'coordinates': [e.lngLat.lng, e.lngLat.lat]
-      },
-      'properties': {
-        'id': String(new Date().getTime())
-      }
-    };
-    
-    distanceGeojson.features.push(point);
-  }
-    
-  if (distanceGeojson.features.length > 1) {
-    linestring.geometry.coordinates = distanceGeojson.features.map(
-      function (point) {
-        return point.geometry.coordinates;
-      }
-    );
-    
-    distanceGeojson.features.push(linestring);
-    
-    // Populate the distanceContainer with total distance
-    var value = document.createElement('pre');
-    value.textContent = 'Total distance: ' +
-      turf.length(linestring, {units: 'miles'}).toLocaleString() + ' mi (' +
-      turf.length(linestring).toLocaleString() + ' km)'; 
-    distanceContainer.appendChild(value);
-  }
-    
-  map.getSource('distanceGeojson').setData(distanceGeojson);
-}
-
-function mouseMoveDistanceCalculator(e) {
-  var features = map.queryRenderedFeatures(e.point, {
-      layers: ['measure-points']
-  });
-  // UI indicator for clicking/hovering a point on the map
-  map.getCanvas().style.cursor = features.length ? 'pointer' : 'crosshair';
-}
-
-map.on('click',  clickOnDistanceCalculator);
-map.on('mousemove', mouseMoveDistanceCalculator);
-
-////////////////////////////////////////// make cities clickable
-function showPointer() {
-  map.getCanvas().style.cursor = 'pointer';
-}
-
-function hidePointer() {
-  map.getCanvas().style.cursor = '';
-}
-
-map.on('mouseenter', 'city-icons', showPointer);
-map.on('mouseenter', 'city-labels', showPointer);
-map.on('mouseleave', 'city-icons', hidePointer);
-map.on('mouseleave', 'city-labels', hidePointer);
-map.on('mouseenter', 'location-icons', showPointer);
-map.on('mouseenter', 'location-labels', showPointer);
-map.on('mouseleave', 'location-icons', hidePointer);
-map.on('mouseleave', 'location-labels', hidePointer);
-
-
-const popup = new maplibre.Popup();
-function clickOnWikilink(e) {
-  let coordinates = e.features[0].geometry.coordinates.slice();
-  let props = e.features[0].properties;
-
-  //if this feature has multiple geometry use the closest one
-  if(Array.isArray(coordinates[0])) {
-    coordinates = coordinates.reduce((prev, curr) => {
-      if(prev === undefined) {
-        return curr;
-      }
-      let prevDist = e.lngLat.distanceTo(new maplibre.LngLat(...prev));
-      let currDist = e.lngLat.distanceTo(new maplibre.LngLat(...curr));
-      return prevDist < currDist ? prev : curr;
-    });
-  }
-   
-  // Ensure that if the map is zoomed out such that multiple
-  // copies of the feature are visible, the popup appears
-  // over the copy being pointed to.
-  while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-  }
-   
-  popup
-    .setLngLat(coordinates)
-    .setHTML('<a href="'+props.link+'" target="_blank">'+props.Name+"</a>")
-    .addTo(map);
-}
-
-map.on('click', 'city-icons',  clickOnWikilink);
-map.on('click', 'city-labels', clickOnWikilink);
-map.on('click', 'location-icons',  clickOnWikilink);
-map.on('click', 'location-labels', clickOnWikilink);
-
-
-///////////////////////////////////////// right click menu
-const items = [
-  {
-    label: "Copy Lat/Long",
-    callback: (e) => {
-      let text = latLong.lat.toFixed(7)+", "+latLong.lng.toFixed(7);
-
-      if (!navigator.clipboard) {
-        alert(text);
-        return;
-      }
-      navigator.clipboard.writeText(text).then(function() {
-        console.log(`Copied '${text}' into clipboard`);
-      }, function(err) {
-        alert(text);
-      });
-    },
-  },
-];
-const menu = new PureContextMenu(mapContainer, items, {
-  show: (e) => {
-    //only show if map itself is clicked
-    return e.target.classList.contains('maplibregl-canvas');
-  }
-});
-
-//////////debugging options
-//map.showCollisionBoxes = true;
+export default layers;
