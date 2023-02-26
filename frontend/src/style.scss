@@ -1,0 +1,40 @@
+@import "bootstrap/scss/bootstrap";
+@import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+#map-container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+.embedded {
+	.maplibregl-ctrl-scale {
+		background: transparent;
+		height: 5px;
+		margin-bottom: 15px !important;
+	}
+}
+
+.distance-container {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 1;
+}
+	 
+.distance-container > * {
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #fff;
+	font-size: 24px;
+	line-height: 18px;
+	display: block;
+	margin: 0;
+	padding: 5px 10px;
+	border-radius: 3px;
+}

@@ -1,14 +1,20 @@
 {
   "name": "mapbox-vector-tiles",
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.4.1",
+    "@turf/distance": "^6.5.0",
+    "@turf/line-segment": "^6.5.0",
+    "@turf/midpoint": "^6.5.0",
     "bootstrap": "^5.2.2",
+    "mapbox-gl-draw-geodesic": "^2.1.3",
     "maplibre-gl": "^2.4.0",
     "pure-context-menu": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "latest",
+    "@types/mapbox__mapbox-gl-draw": "^1.3.3",
     "sass": "^1.55.0",
-    "vite": "^3.0.3"
+    "vite": "^3.2.5"
   },
   "scripts": {
     "start": "npx vite",
