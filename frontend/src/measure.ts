@@ -2,11 +2,11 @@ import { ControlPosition, GeoJSONSource, IControl, LngLat, Map } from "maplibre-
 import { enable } from "mapbox-gl-draw-geodesic";
 import MapboxDraw, { DrawCustomMode } from "@mapbox/mapbox-gl-draw";
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
-import turfLength from '@turf/length';
-import turfCentroid from "@turf/centroid";
+import turfDistance from '@turf/distance';
+import turfMidpoint from "@turf/midpoint";
 import turfLineSegment from "@turf/line-segment";
 import { Feature, Point } from "@turf/helpers";
-import { LineString } from "geojson";
+import { LineString, GeoJSON } from "geojson";
 
 const DRAW_LABELS_SOURCE = 'draw-labels-source';
 const DRAW_LABELS_LAYER = 'draw-labels-layer';
@@ -44,16 +44,15 @@ export default class MeasureControl implements IControl {
             'layout': {
               'text-font': ['NotoSans-Medium'],
               'text-field': ['get', 'measurement'],
-              'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+              'text-variable-anchor': ['center', 'top', 'bottom', 'left', 'right'],
               'text-radial-offset': 0.5,
-              'text-justify': 'auto',
-              'text-letter-spacing': 0.05,
+              'text-justify': 'right',
               'text-size': 18
             },
             'paint': {
-              'text-color': '#D20C0C',
+              'text-color': '#000',
               'text-halo-color': '#fff',
-              'text-halo-width': 10,
+              'text-halo-width': 4,
             },
           });
         });
@@ -78,13 +77,17 @@ export default class MeasureControl implements IControl {
           if (feature.geometry.type == 'LineString') {
             let segments = turfLineSegment(feature as Feature<LineString>);
             segments.features.forEach((segment) => {
-              let centroid = turfCentroid(segment);
-              let lineLength = (turfLength(segment) * 1000)+ 'km';
-              let measurement = `${lineLength}`;
-              centroid.properties = {
-                measurement,
+              let a = segment.geometry.coordinates[0];
+              let b = segment.geometry.coordinates[1];
+
+              let mid = turfMidpoint(a,b);
+              let dist = turfDistance(a,b);
+
+              let label = `${toKm(dist)}\n${toMi(dist*0.621371)}`;
+              mid.properties = {
+                measurement: label,
               };
-              features.push(centroid);
+              features.push(mid);
             });
           }
         } catch(e) {
@@ -92,11 +95,34 @@ export default class MeasureControl implements IControl {
         }
         
       });
-      let data = {
+      let data:GeoJSON = {
         type: "FeatureCollection",
         features: features
       };
       source.setData(data);
     }
+}
 
+function toKm(val:number):string {
+  if(val >= 100)
+    return val.toFixed(0)+' mi';
+  else if(val >= 10)
+    return val.toFixed(1)+' mi';
+  else if(val >= 1)
+    return val.toFixed(2)+' mi';
+  else
+    return (5280*val).toFixed(0)+' ft';
+  
+}
+
+function toMi(val:number):string {
+  if(val >= 100)
+    return val.toFixed(0)+' km';
+  else if(val >= 10)
+    return val.toFixed(1)+' km';
+  else if(val >= 1)
+    return val.toFixed(2)+' km';
+  else
+    return (1000*val).toFixed(0)+' m';
+  
 }
