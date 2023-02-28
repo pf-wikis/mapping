@@ -105,18 +105,6 @@ export default class MeasureControl implements IControl {
 
 function toKm(val:number):string {
   if(val >= 100)
-    return val.toFixed(0)+' mi';
-  else if(val >= 10)
-    return val.toFixed(1)+' mi';
-  else if(val >= 1)
-    return val.toFixed(2)+' mi';
-  else
-    return (5280*val).toFixed(0)+' ft';
-  
-}
-
-function toMi(val:number):string {
-  if(val >= 100)
     return val.toFixed(0)+' km';
   else if(val >= 10)
     return val.toFixed(1)+' km';
@@ -124,5 +112,17 @@ function toMi(val:number):string {
     return val.toFixed(2)+' km';
   else
     return (1000*val).toFixed(0)+' m';
+  
+}
+
+function toMi(val:number):string {
+  if(val >= 100)
+    return val.toFixed(0)+' mi';
+  else if(val >= 10)
+    return val.toFixed(1)+' mi';
+  else if(val >= 1)
+    return val.toFixed(2)+' mi';
+  else
+    return (5280*val).toFixed(0)+' ft';
   
 }

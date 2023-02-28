@@ -15,8 +15,6 @@ import io.github.pfwikis.model.*;
 
 public class DownloadCities {
 
-    public static final MathContext ROUND_TO_7 = new MathContext(7, RoundingMode.HALF_UP);
-
     public static void main(String[] args) throws IOException {
         String url = Helper.buildQuery("https://pathfinderwiki.com/w/index.php",
             "title","Special:CargoExport",
@@ -47,19 +45,10 @@ public class DownloadCities {
         for (var city : cities) {
             try {
                 var feature = new Feature();
-                var properties = new Properties();
-                properties.setName(Helper.handleName(city.getName(), city.getPageName()));
-                properties.setLink("https://pathfinderwiki.com/wiki/" + city.getPageName().replace(' ', '_'));
-                properties.setCapital(city.getCapital() == 1);
-                feature.setProperties(properties);
+                feature.setProperties(new Properties(city));
                 handlePopulation(city, feature);
 
-                var geometry = new Geometry();
-                geometry.setCoordinates(List.of(
-                    city.getCoordsLon().round(ROUND_TO_7),
-                    city.getCoordsLat().round(ROUND_TO_7)
-                ));
-                feature.setGeometry(geometry);
+                feature.setGeometry(new Geometry(city));
                 arr.add(feature);
             } catch (Exception e) {
                 System.err.println("Failed for " + city.getPageName());
