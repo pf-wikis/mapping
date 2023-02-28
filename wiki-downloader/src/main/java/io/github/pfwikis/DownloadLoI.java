@@ -1,6 +1,6 @@
 package io.github.pfwikis;
 
-import static io.github.pfwikis.DownloadCities.ROUND_TO_7;
+import static io.github.pfwikis.model.Geometry.ROUND_TO_7;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
 
 import io.github.pfwikis.model.*;
 
