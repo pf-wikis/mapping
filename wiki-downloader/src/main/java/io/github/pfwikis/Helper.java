@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -35,7 +36,7 @@ public class Helper {
         return name;
     }
 
-    public static <T> T read(String url, Class<T> type) throws MalformedURLException, IOException {
+    public static <T> T read(String url, JavaType type) throws MalformedURLException, IOException {
         var tree = Jackson.get().readTree(new URL(url));
         stripHTML(tree);
         return Jackson.get().treeToValue(tree, type);

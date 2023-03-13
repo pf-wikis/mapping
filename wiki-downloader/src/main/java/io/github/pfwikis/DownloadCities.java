@@ -2,42 +2,49 @@ package io.github.pfwikis;
 
 import java.io.File;
 import java.io.IOException;
-import java.math.MathContext;
-import java.math.RoundingMode;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.pfwikis.model.*;
 
 public class DownloadCities {
 
     public static void main(String[] args) throws IOException {
-        String url = Helper.buildQuery("https://pathfinderwiki.com/w/index.php",
-            "title","Special:CargoExport",
-            "tables","City",
-            "fields","_pageName,latlong,population,size,name,capital",
-            "where","latlong__full IS NOT NULL AND (_pageNamespace=0 OR _pageName='PathfinderWiki:Map Locations Without Articles')",
-            "order by", "`_pageName`,`name`,`latlong__full`",
-            "limit","1000",
-            "format","json","parse values","yes"
+        String url = Helper.buildQuery("https://pathfinderwiki.com/w/api.php",
+            "action","ask",
+            "format","json",
+            "utf8","1",
+            "api_version","3","formatversion","2",
+            "query", String.join("",
+                   "[[Has meta type::City]][[Has coordinates::+]][[:+]]",
+                "OR [[Has meta type::City]][[Has coordinates::+]][[-Has subobject::PathfinderWiki:Map Locations Without Articles]]",
+                "|?Has population",
+                "|?Is capital",
+                "|?Is size",
+                "|?Has coordinates",
+                "|?Has name"
+            )
         );
         int offset = 0;
 
         var cities = new ArrayList<City>();
 
         while (true) {
-            City[] array = Helper.read(url + "&offset=" + offset, City[].class);
-            offset += 1000;
-            cities.addAll(Arrays.asList(array));
-            if (array.length < 1000) {
+            var type = new ObjectMapper().getTypeFactory().constructParametricType(Response.class, City.class);
+            Response<City> array = Helper.read(url + URLEncoder.encode("|offset=" + offset, StandardCharsets.UTF_8), type);
+            offset += 50;
+            cities.addAll(array.getQuery().getResults());
+            if (array.getQuery().getResults().size() < 50) {
                 break;
             }
         }
-        cities.sort(Comparator.comparing(City::getPageName));
+        cities.sort(Comparator.comparing(City::getName));
 
         System.out.println("Found " + cities.size() + " cities.");
 
@@ -67,7 +74,7 @@ public class DownloadCities {
     }
 
     private static int mapSize(City city) {
-        if (city.getPopulation() != null && !city.getPopulation().isEmpty()) {
+        if (StringUtils.isNumeric(city.getPopulation())) {
             long population = Long.parseLong(city.getPopulation());
             if (population > 25000) {
                 return 0;
