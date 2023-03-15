@@ -20,14 +20,16 @@ public class GenerateLabelCenters extends LCStep {
             log.info("  Generating label points from polygon centers");
             var tmp = Tools.mapshaper(f, "-filter", "Name != null");
             if(!"labels".equals(ctx.getName())) {
-                tmp = Tools.mapshaper(tmp, "-dissolve", "Name");
+                tmp = Tools.mapshaper(tmp, "-dissolve", "Name", "copy-fields=inSubregion");
             }
             tmp = Tools.mapshaper(tmp,
                 "-each", "filterMinzoom="+filterMinzoom(ctx.getName()),
-                "-each", "filterMaxzoom=4+filterMinzoom"
+                "-each", "filterMaxzoom=4+filterMinzoom",
+                "-sort", "this.area", "descending"
             );
             var labelPoints = Tools.geojsonPolygonLabels(tmp,
                 "--precision=0.00001",
+                "--include-area",
                 "--label=center-of-mass",
                 "--style=largest"
             );
@@ -38,7 +40,10 @@ public class GenerateLabelCenters extends LCStep {
     }
 
     private String filterMinzoom(String name) {
-        if(name.startsWith("borders")) return "2";
+        if(name.startsWith("borders_regions")) return "1";
+        if(name.startsWith("borders_subregions")) return "2";
+        if(name.startsWith("borders_nations")) return "3";
+        if(name.startsWith("borders_provinces")) return "4";
         if(name.startsWith("districts")) return "10";
         if(name.startsWith("continents")) return "0";
 

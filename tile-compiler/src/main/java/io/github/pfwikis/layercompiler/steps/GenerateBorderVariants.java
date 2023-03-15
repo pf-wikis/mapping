@@ -35,8 +35,9 @@ public class GenerateBorderVariants extends LCStep {
         //nation labels
         var nations = Tools.mapshaper(f,
             "-filter", "nation !== null",
+            "-each", "inSubregion=(subregion!==null)",
             "-rename-fields", "Name=nation",
-            "-dissolve", "Name"
+            "-dissolve", "Name", "copy-fields=inSubregion"
         );
         createNewLayer(new Ctx("borders_nations", ctx.getOptions(), ctx.getGeo(), nations));
 
@@ -63,19 +64,32 @@ public class GenerateBorderVariants extends LCStep {
 
         //subregion labels
         var subregions = Tools.mapshaper(f,
-            "-filter", "region !== null",
+            "-filter", "subregion !== null",
             "-rename-fields", "Name=subregion",
             "-dissolve", "Name"
         );
         createNewLayer(new Ctx("borders_subregions", ctx.getOptions(), ctx.getGeo(), subregions));
 
-        //subregion borders are the inner lines
-        var subregionBorders = Tools.mapshaper(f,
-            "-filter", "subregion !== null",
-            "-dissolve", "subregion",
+        //subregion borders are like nation border but with subregion overwriting the nations
+        var innerSubRegionBorders = Tools.mapshaper(f,
+            "-each", "if(subregion !== null) {nation = subregion;}",
+            "-filter", "nation !== null",
+            "-dissolve", "nation",
             "-innerlines"
         );
-        createNewLayer(new Ctx("borders_subregions_borders", ctx.getOptions(), ctx.getGeo(), subregionBorders));
+        var outerSubRegionBorders = Tools.mapshaper(f,
+            "-each", "if(subregion !== null) {nation = subregion;}",
+            "-filter", "nation !== null",
+            "-dissolve",
+            "-lines", "-filter-fields",
+            "-clip", new File(ctx.getGeo(), "continents.geojson"),
+            "-erase", new File(ctx.getGeo(), "waters.geojson")
+        );
+        var subRegionBorders = Tools.mapshaper2(innerSubRegionBorders,
+            outerSubRegionBorders, "combine-files",
+            "-merge-layers"
+        );
+        createNewLayer(new Ctx("borders_subregions_borders", ctx.getOptions(), ctx.getGeo(), subRegionBorders));
 
 
         //region labels

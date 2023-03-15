@@ -39,7 +39,7 @@ public class LayerCompiler {
         if(Set.of("chasms", "continents", "deserts", "forests", "hills", "ice", "mountains", "swamps", "waters").contains(ctx.getName())) {
             steps.add(new AddFractalDetail());
         }
-        if(Set.of("rivers", "borders_nations_borders", "borders_provinces_borders", "borders_regions_borders").contains(ctx.getName())) {
+        if(Set.of("rivers", "borders_nations_borders", "borders_provinces_borders", "borders_regions_borders", "borders_subregions_borders").contains(ctx.getName())) {
             steps.add(new SmoothLines());
         }
         if(Set.of("borders_nations", "borders_provinces", "borders_regions", "labels").contains(ctx.getName())) {

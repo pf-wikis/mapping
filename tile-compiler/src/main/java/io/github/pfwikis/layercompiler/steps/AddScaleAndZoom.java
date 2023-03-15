@@ -32,7 +32,7 @@ public class AddScaleAndZoom extends LCStep {
             script = "filterMinzoom=4";
         }
         else if("rivers".equals(ctx.getName())) {
-            //set minzoom so the river is at least .25 pixels wide
+            //set minzoom so the river is at least .1 pixels wide
             script = """
                 if(!width) {
                     width=2000;
@@ -41,7 +41,7 @@ public class AddScaleAndZoom extends LCStep {
                 filterMinzoom = $formula;
             """
                 .replace("$scaleFactor", JSMath.scaleFactor("(this.bounds[1]+this.bounds[3])/2"))
-                .replace("$formula", JSMath.pixelSizeMinzoomFunction(0.1, "width"));
+                .replace("$formula", JSMath.pixelSizeMinzoomFunction(0.05, "width"));
         }
         else {
             return f;

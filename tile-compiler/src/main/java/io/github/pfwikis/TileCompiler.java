@@ -78,7 +78,7 @@ public class TileCompiler {
             "-e", new File(targetDir, "golarion"),
             "--force",
             "--detect-shared-borders",
-            "--coalesce",
+            "--preserve-input-order",
             "-B", "0",
             "--coalesce-densest-as-needed",
             "--maximum-tile-bytes=200000",

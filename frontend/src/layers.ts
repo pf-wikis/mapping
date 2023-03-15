@@ -189,8 +189,8 @@ let layers:LayerSpecification[] = [
     paint: {
       'line-color': colors.nationBorders,
       'line-width': ["interpolate", ["exponential", 2], ["zoom"],
-        0, .25,
-        3, 2,
+        3, .375,
+        6, 3,
       ],
     },
     layout: {
@@ -199,12 +199,13 @@ let layers:LayerSpecification[] = [
   }),
   createLayer('borders_subregions_borders', {
     type: 'line',
-    minzoom: 3,
-    maxzoom: 4,
+    maxzoom: 6,
     paint: {
-      'line-color': colors.regionBorders,
-      'line-width': 1.5,
-      'line-opacity': blendInOut(3,4.5)
+      'line-color': colors.nationBorders,
+      'line-width': ["interpolate", ["exponential", 2], ["zoom"],
+        0, .375,
+        3, 3,
+      ],
     },
     layout: {
       'line-cap': 'round'
@@ -541,6 +542,10 @@ let layers:LayerSpecification[] = [
     minzoom: 3,
     maxzoom: 6,
     type: 'symbol',
+    filter: ['any',
+      ['!', ['get', 'inSubregion']],
+      ['>', ['zoom'], 4]
+    ],
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
@@ -562,24 +567,30 @@ let layers:LayerSpecification[] = [
   }),
   createLayer('borders_subregions_labels', {
     minzoom: 3,
-    maxzoom: 4,
+    maxzoom: 5,
     type: 'symbol',
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 15,
+      'text-size': ['interpolate', ['linear'], ['zoom'],
+        4, 10,
+        5, 25,
+      ],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
     paint: {
-      'text-color': colors.regionNames,
-      'text-halo-color': colors.regionNamesOut,
-      'text-halo-width': 1.2,
+      'text-color': colors.white,
+      'text-halo-color': colors.regionNames,
+      'text-halo-width': ['interpolate', ['linear'], ['zoom'],
+        4, .75,
+        5, 1.875,
+      ],
     }
   }),
   createLayer('borders_regions_labels', {
     minzoom: 1,
-    maxzoom: 3,
+    maxzoom: 4,
     type: 'symbol',
     layout: {
       'text-field': ['get', 'Name'],
@@ -610,27 +621,7 @@ let layers:LayerSpecification[] = [
       'text-halo-color': colors.landDarker,
       'text-halo-width': interpolateTextWithCamera(1)
     }
-  }),/*
-  createLayer('measure-points', {
-    id: 'measure-points',
-    type: 'circle',
-    source: 'distanceGeojson',
-    paint: {
-      'circle-radius': 5,
-      'circle-color': '#000'
-    },
-    filter: ['in', '$type', 'Point']
   }),
-  createLayer('measure-lines', {
-    id: 'measure-lines',
-    type: 'line',
-    source: 'distanceGeojson',
-    paint: {
-      'line-color': '#000',
-      'line-width': 2.5
-    },
-    filter: ['in', '$type', 'LineString']
-  })*/
 ];
 
 export default layers;
