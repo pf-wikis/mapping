@@ -107,12 +107,6 @@ let layers:LayerSpecification[] = [
       'fill-color': colors.districts,
     }
   }),
-  createLayer('specials', {
-    type: 'fill',
-    paint: {
-      'fill-color': ['get', 'color'],
-    }
-  }),
   createLayer('ice', {
     type: 'fill',
     paint: {
@@ -149,6 +143,18 @@ let layers:LayerSpecification[] = [
       'fill-color': colors.mountains,
     }
   }),
+  createLayer('waters', {
+    type: 'fill',
+    paint: {
+      'fill-color': colors.water,
+    }
+  }),
+  createLayer('specials', {
+    type: 'fill',
+    paint: {
+      'fill-color': ['get', 'color'],
+    }
+  }),
   createLayer('rivers', {
     type: 'line',
     paint: {
@@ -159,13 +165,6 @@ let layers:LayerSpecification[] = [
       'line-cap': 'round'
     }
   }),
-  createLayer('waters', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.water,
-    }
-  }),
-
   createLayer('walls', {
     type: 'fill',
     paint: {
