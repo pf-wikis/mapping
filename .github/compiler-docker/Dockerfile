@@ -15,4 +15,6 @@ ENV QT_QPA_PLATFORM offscreen
 COPY compile.sh /compile.sh
 COPY clean.sh /clean.sh
 COPY diff.sh /diff.sh
+RUN chmod 777 /*.sh
+
 ENTRYPOINT ["/bin/bash", "-c"]
