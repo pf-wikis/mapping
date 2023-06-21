@@ -13,5 +13,6 @@ RUN npm install -g geojson-polygon-labels mapshaper @elastic/spritezero-cli curv
 ENV QT_QPA_PLATFORM offscreen
 
 COPY compile.sh /compile.sh
+COPY clean.sh /clean.sh
 COPY diff.sh /diff.sh
 ENTRYPOINT ["/bin/bash", "-c"]

@@ -23,7 +23,7 @@ jobs:
         with:
           submodules: false
           token: ${{ secrets.ACTIONS_PAT }}
-      - name: Compile tiles
+      - name: Clean geopackages
         uses: ./.github/compiler-docker
         with:
           entrypoint: '/clean.sh'
