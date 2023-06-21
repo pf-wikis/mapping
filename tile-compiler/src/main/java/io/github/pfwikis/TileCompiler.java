@@ -26,14 +26,6 @@ public class TileCompiler {
     private File targetRoot;
     private File spriteDir;
 
-    public static void main(String[] args) throws IOException {
-        var options = new CLIOptions();
-        JCommander.newBuilder()
-            .addObject(options)
-            .build()
-            .parse(args);
-        new TileCompiler().run(options);
-    }
 
     public void run(CLIOptions options) throws IOException {
         this.options = options;
