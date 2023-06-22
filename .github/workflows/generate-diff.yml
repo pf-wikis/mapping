@@ -2,6 +2,8 @@ name: Generate Geopackage diffs
 
 on:
   pull_request:
+    paths:
+      - '**.gpkg'
 
 permissions:
   contents: write
