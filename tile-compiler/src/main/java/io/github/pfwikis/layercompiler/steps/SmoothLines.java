@@ -12,6 +12,8 @@ public class SmoothLines extends LCStep {
             "-require", "curve-interpolator", "alias=_",
             "-explode",
             "-each", """
+                if(noSmooth) return;
+
                 let json = this.geojson;
 
                 let Ps = json.geometry.coordinates;
