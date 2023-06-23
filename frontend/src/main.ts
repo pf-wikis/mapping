@@ -1,14 +1,10 @@
-import './style.scss';
+import { MultiPoint, Point } from 'geojson';
+import { AttributionControl, LngLat, Map, MapLayerMouseEvent, NavigationControl, Popup, ScaleControl } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
-import maplibre, { Map, NavigationControl, ScaleControl, AttributionControl, LngLat, Popup, MapLayerMouseEvent, MapMouseEvent } from "maplibre-gl";
 import PureContextMenu from "pure-context-menu";
 import layers from './layers.js';
 import MeasureControl from './measure.js';
-import { Point, MultiPoint, Position } from 'geojson';
-
-if (!maplibre.supported()) {
-  alert("Your browser does not support the MapLibre GL library. Make sure you're on the latest Chrome, Firefox, Safari, Opera, or Edge.")
-}
+import './style.scss';
 
 //check if running embedded
 var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
