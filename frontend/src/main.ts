@@ -135,7 +135,7 @@ map.on('click', 'location-labels', clickOnWikilink);
 
 
 ///////////////////////////////////////// right click menu
-const items = [
+let items = [
   {
     label: "Measure Distance",
     callback: (e:Event) => {
@@ -159,6 +159,18 @@ const items = [
     },
   },
 ];
+if(embedded) {
+  items = [
+    {
+      label: "Open in new tab",
+      callback: (e:Event) => {
+        window.open(window.location.href, '_blank').focus();
+      }
+    },
+    ...items
+  ]
+}
+
 const menu = new PureContextMenu(mapContainer, items, {
   show: (e:Event) => {
     //only show if map itself is clicked
