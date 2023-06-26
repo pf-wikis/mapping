@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2023-06-26T11:50:41" saveUser="manue" saveUserFull="Manuel Hegner" version="3.30.2-'s-Hertogenbosch">
+<qgis projectname="" saveDateTime="2023-06-26T11:55:18" saveUser="manue" saveUserFull="Manuel Hegner" version="3.30.2-'s-Hertogenbosch">
   <homePath path="."></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -383,21 +383,21 @@
   </layer-tree-group>
   <snapping-settings enabled="1" intersection-snapping="1" maxScale="0" minScale="0" mode="2" scaleDependencyMode="1" self-snapping="0" tolerance="17" type="1" unit="1">
     <individual-layer-settings>
-      <layer-setting enabled="1" id="continents_35904243_84b5_441f_9015_f9812bacdc2c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="waters_1c8ac1d0_b31b_4f02_8f82_efe0f2650a0a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="rivers_35de65df_09a9_46fd_ab54_1a6900b58146" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="chasms_d2dbe908_d236_4256_b7cd_9676009fa25a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="swamps_7de1642c_924d_48e3_b1cd_1a0cc345f514" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="hills_72250f28_6ae0_4717_ba78_88be49eec237" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="forests_1f0825fc_d22c_4420_a486_71a5f5fa2fe0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="countries_0cf792be_3fae_4649_8f9f_ff9fc8efeeb7" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="walls_d0e44ecb_ab06_47e8_ab75_767d456fa8f1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="ice_b0051c87_7a1d_4766_9b20_7f188cf760b0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="continents_35904243_84b5_441f_9015_f9812bacdc2c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="labels_76168c26_8955_4ccb_8bf1_b34ca52a624a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="swamps_7de1642c_924d_48e3_b1cd_1a0cc345f514" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="1" id="deserts_9150d2d1_48b2_4d7d_a371_5619c41aef06" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="1" id="mountains_b5410a56_b448_490e_99a1_2b153d259f76" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="waters_1c8ac1d0_b31b_4f02_8f82_efe0f2650a0a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="labels_76168c26_8955_4ccb_8bf1_b34ca52a624a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="districts_032f01a8_4478_49dc_9920_3487d38503ba" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="rivers_35de65df_09a9_46fd_ab54_1a6900b58146" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="walls_d0e44ecb_ab06_47e8_ab75_767d456fa8f1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="hills_72250f28_6ae0_4717_ba78_88be49eec237" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="countries_0cf792be_3fae_4649_8f9f_ff9fc8efeeb7" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="cities_d31beece_c036_41c5_a611_4b2e9e870710" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="forests_1f0825fc_d22c_4420_a486_71a5f5fa2fe0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
   <relations></relations>
@@ -405,10 +405,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>1.76842750626964129</xmin>
-      <ymin>39.07759712869933821</ymin>
-      <xmax>3.24040995705582713</xmax>
-      <ymax>39.85886392303696368</ymax>
+      <xmin>170.11698452999871733</xmin>
+      <ymin>25.67123742809392084</ymin>
+      <xmax>193.66870374257769072</xmax>
+      <ymax>38.17150613749593902</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -2361,16 +2361,16 @@
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-28.53151321411132813</xmin>
-        <ymin>18.77571296691894531</ymin>
-        <xmax>181.5795440673828125</xmax>
-        <ymax>58.83190536499022016</ymax>
+        <xmin>-28.5315132141112997</xmin>
+        <ymin>18.77571296691889913</ymin>
+        <xmax>181.57954406738301145</xmax>
+        <ymax>58.83190536499019885</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-28.53151321411132813</xmin>
-        <ymin>18.77571296691894531</ymin>
-        <xmax>181.5795440673828125</xmax>
-        <ymax>58.83190536499022016</ymax>
+        <xmin>-28.5315132141112997</xmin>
+        <ymin>18.77571296691889913</ymin>
+        <xmax>181.57954406738301145</xmax>
+        <ymax>58.83190536499019885</ymax>
       </wgs84extent>
       <id>chasms_d2dbe908_d236_4256_b7cd_9676009fa25a</id>
       <datasource>./specials.gpkg</datasource>
@@ -2637,8 +2637,8 @@
             <Option type="QString" value="&quot;fid&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -2741,7 +2741,10 @@
         <field configurationFlags="None" name="color">
           <editWidget type="TextEdit">
             <config>
-              <Option></Option>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
             </config>
           </editWidget>
         </field>
@@ -2764,7 +2767,7 @@
       <constraints>
         <constraint constraints="3" exp_strength="0" field="fid" notnull_strength="2" unique_strength="2"></constraint>
         <constraint constraints="0" exp_strength="0" field="Name" notnull_strength="0" unique_strength="0"></constraint>
-        <constraint constraints="0" exp_strength="0" field="color" notnull_strength="0" unique_strength="0"></constraint>
+        <constraint constraints="1" exp_strength="0" field="color" notnull_strength="1" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="fid"></constraint>
@@ -5538,16 +5541,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-131.887237548828125</xmin>
-        <ymin>-52.07572555541992188</ymin>
-        <xmax>198.720489501953125</xmax>
-        <ymax>77.7469940185546875</ymax>
+        <xmin>-131.88723754882801131</xmin>
+        <ymin>-52.07572555541990056</ymin>
+        <xmax>198.72048950195301131</xmax>
+        <ymax>77.74699401855470171</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-131.887237548828125</xmin>
-        <ymin>-52.07572555541992188</ymin>
-        <xmax>198.720489501953125</xmax>
-        <ymax>77.7469940185546875</ymax>
+        <xmin>-131.88723754882801131</xmin>
+        <ymin>-52.07572555541990056</ymin>
+        <xmax>198.72048950195301131</xmax>
+        <ymax>77.74699401855470171</ymax>
       </wgs84extent>
       <id>forests_1f0825fc_d22c_4420_a486_71a5f5fa2fe0</id>
       <datasource>./forests.gpkg</datasource>
@@ -5808,8 +5811,8 @@ def my_form_open(dialog, layer, feature):
             <Option type="QString" value="&quot;Name&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames"></Option>
-          <Option name="variableValues"></Option>
+          <Option name="variableNames" type="invalid"></Option>
+          <Option name="variableValues" type="invalid"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -10705,16 +10708,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiLineString">
       <extent>
-        <xmin>-106.96414829784009726</xmin>
-        <ymin>-46.38201078032309255</ymin>
-        <xmax>212.52505740568437886</xmax>
-        <ymax>82.63619432052827563</ymax>
+        <xmin>-106.96414947509799731</xmin>
+        <ymin>-46.38201141357419743</ymin>
+        <xmax>212.5250854492190058</xmax>
+        <ymax>82.63620758056640625</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-106.96414829784009726</xmin>
-        <ymin>-46.38201078032309255</ymin>
-        <xmax>212.52505740568437886</xmax>
-        <ymax>82.63619432052827563</ymax>
+        <xmin>-106.96414947509799731</xmin>
+        <ymin>-46.38201141357419743</ymin>
+        <xmax>212.5250854492190058</xmax>
+        <ymax>82.63620758056640625</ymax>
       </wgs84extent>
       <id>rivers_35de65df_09a9_46fd_ab54_1a6900b58146</id>
       <datasource>./rivers.gpkg</datasource>
@@ -14003,16 +14006,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-113.82647705078125</xmin>
-        <ymin>-56.47220230102539063</ymin>
-        <xmax>191.14752197265625</xmax>
-        <ymax>81.72106170654296875</ymax>
+        <xmin>-113.8264770507809942</xmin>
+        <ymin>-56.47220230102539773</ymin>
+        <xmax>191.1475219726559942</xmax>
+        <ymax>81.72106170654299717</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-113.82647705078125</xmin>
-        <ymin>-56.47220230102539063</ymin>
-        <xmax>191.14752197265625</xmax>
-        <ymax>81.72106170654296875</ymax>
+        <xmin>-113.8264770507809942</xmin>
+        <ymin>-56.47220230102539773</ymin>
+        <xmax>191.1475219726559942</xmax>
+        <ymax>81.72106170654299717</ymax>
       </wgs84extent>
       <id>waters_1c8ac1d0_b31b_4f02_8f82_efe0f2650a0a</id>
       <datasource>./waters.gpkg</datasource>
@@ -14757,7 +14760,7 @@ def my_form_open(dialog, layer, feature):
   <Bookmarks></Bookmarks>
   <ProjectViewSettings UseProjectScales="0" rotation="0">
     <Scales></Scales>
-    <DefaultViewExtent xmax="3.24040995705582713" xmin="1.76842750626964129" ymax="40.00489079438394668" ymin="38.93157025735235521">
+    <DefaultViewExtent xmax="193.66870374257769072" xmin="170.11698452999871733" ymax="40.50793607904768123" ymin="23.33480748654217862">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
         <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -14822,7 +14825,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="waters_1c8ac1d0_b31b_4f02_8f82_efe0f2650a0a" destinationLayerName="waters" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-wsl/pathfinder-mapping/sources/waters.gpkg">
+  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="chasms_d2dbe908_d236_4256_b7cd_9676009fa25a" destinationLayerName="specials" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-wsl/pathfinder-mapping/sources/specials.gpkg">
     <timeStampFields></timeStampFields>
   </ProjectGpsSettings>
 </qgis>
