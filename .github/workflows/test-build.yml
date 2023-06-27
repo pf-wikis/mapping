@@ -1,0 +1,23 @@
+name: Build Frontend
+
+on:
+  workflow_call:
+  push:
+    paths:
+      - 'frontend/**'
+  workflow_dispatch:
+
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: false
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm run build
+      
