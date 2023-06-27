@@ -3,6 +3,8 @@ name: Clean
 on:
   workflow_call:
   push:
+    paths:
+      - 'sources/**'
   workflow_dispatch:
 
 permissions:
