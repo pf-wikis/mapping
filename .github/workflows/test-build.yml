@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          submodules: false
+          sparse-checkout: frontend
       - name: Build Frontend
         run: |
           cd frontend
