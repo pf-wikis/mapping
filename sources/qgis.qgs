@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2023-07-13T00:51:21" saveUser="manue" saveUserFull="Manuel Hegner" version="3.30.2-'s-Hertogenbosch">
+<qgis projectname="" saveDateTime="2023-07-14T15:24:34" saveUser="manue" saveUserFull="Manuel Hegner" version="3.30.2-'s-Hertogenbosch">
   <homePath path="."></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -21,7 +21,7 @@
     <customproperties>
       <Option></Option>
     </customproperties>
-    <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="images_a05422ba_d9b0_4dbe_9ef4_08468f8204c2" name="images">
+    <layer-tree-group checked="Qt::Unchecked" expanded="0" groupLayer="images_a05422ba_d9b0_4dbe_9ef4_08468f8204c2" name="images">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -281,7 +281,7 @@
         <Option></Option>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="countries_0cf792be_3fae_4649_8f9f_ff9fc8efeeb7" legend_exp="" legend_split_behavior="0" name="borders" patch_size="-1,-1" providerKey="ogr" source="./borders.gpkg|layername=countries">
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="countries_0cf792be_3fae_4649_8f9f_ff9fc8efeeb7" legend_exp="" legend_split_behavior="0" name="borders" patch_size="-1,-1" providerKey="ogr" source="./borders.gpkg|layername=countries">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -297,11 +297,6 @@
       </customproperties>
     </layer-tree-layer>
     <layer-tree-layer checked="Qt::Checked" expanded="1" id="rivers_35de65df_09a9_46fd_ab54_1a6900b58146" legend_exp="" legend_split_behavior="0" name="rivers" patch_size="-1,-1" providerKey="ogr" source="./rivers.gpkg">
-      <customproperties>
-        <Option></Option>
-      </customproperties>
-    </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="rivers_2dd1306b_7d4e_4654_b58a_bef7a94ff31a" legend_exp="" legend_split_behavior="0" name="rivers" patch_size="-1,-1" providerKey="ogr" source="//wsl.localhost/Ubuntu/home/manu/workspace-pf/mapping/tile-compiler/geo/rivers.geojson|geometrytype=Polygon|uniqueGeometryType=yes">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -392,7 +387,6 @@
       <item>county_of_meratt_labels_modified_cdf35a51_2c6b_4984_bcfa_8cd722a80e93</item>
       <item>osirion_labeled_modified_d8c36a50_740f_486c_9088_370425c0a94f</item>
       <item>cheliax_archduchies_labels_modified_6f0083cb_d56b_40cd_844c_dc575f671684</item>
-      <item>rivers_2dd1306b_7d4e_4654_b58a_bef7a94ff31a</item>
       <item>broken_lands_modified_94942782_b8c7_4237_842e_0333e79fa1dd</item>
       <item>eye_of_terror_modified_e94cd44e_97be_49d5_9cde_f8f5a32a94ac</item>
       <item>golden_rox_modified_66814197_ea66_475e_8736_66377ed6aa6b</item>
@@ -406,22 +400,21 @@
   </layer-tree-group>
   <snapping-settings enabled="1" intersection-snapping="0" maxScale="0" minScale="0" mode="2" scaleDependencyMode="1" self-snapping="0" tolerance="17" type="1" unit="1">
     <individual-layer-settings>
-      <layer-setting enabled="0" id="chasms_d2dbe908_d236_4256_b7cd_9676009fa25a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="rivers_35de65df_09a9_46fd_ab54_1a6900b58146" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="cities_d31beece_c036_41c5_a611_4b2e9e870710" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="forests_1f0825fc_d22c_4420_a486_71a5f5fa2fe0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="districts_032f01a8_4478_49dc_9920_3487d38503ba" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="hills_72250f28_6ae0_4717_ba78_88be49eec237" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="mountains_b5410a56_b448_490e_99a1_2b153d259f76" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="labels_76168c26_8955_4ccb_8bf1_b34ca52a624a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="ice_b0051c87_7a1d_4766_9b20_7f188cf760b0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="1" id="waters_1c8ac1d0_b31b_4f02_8f82_efe0f2650a0a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="countries_0cf792be_3fae_4649_8f9f_ff9fc8efeeb7" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="walls_d0e44ecb_ab06_47e8_ab75_767d456fa8f1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="rivers_2dd1306b_7d4e_4654_b58a_bef7a94ff31a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="swamps_7de1642c_924d_48e3_b1cd_1a0cc345f514" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="1" id="deserts_9150d2d1_48b2_4d7d_a371_5619c41aef06" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="labels_76168c26_8955_4ccb_8bf1_b34ca52a624a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="1" id="continents_35904243_84b5_441f_9015_f9812bacdc2c" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="hills_72250f28_6ae0_4717_ba78_88be49eec237" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="districts_032f01a8_4478_49dc_9920_3487d38503ba" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="mountains_b5410a56_b448_490e_99a1_2b153d259f76" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="countries_0cf792be_3fae_4649_8f9f_ff9fc8efeeb7" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="cities_d31beece_c036_41c5_a611_4b2e9e870710" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="ice_b0051c87_7a1d_4766_9b20_7f188cf760b0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="chasms_d2dbe908_d236_4256_b7cd_9676009fa25a" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="deserts_9150d2d1_48b2_4d7d_a371_5619c41aef06" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="rivers_35de65df_09a9_46fd_ab54_1a6900b58146" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="forests_1f0825fc_d22c_4420_a486_71a5f5fa2fe0" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="walls_d0e44ecb_ab06_47e8_ab75_767d456fa8f1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="swamps_7de1642c_924d_48e3_b1cd_1a0cc345f514" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
   <relations></relations>
@@ -429,10 +422,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>2.66716761282091408</xmin>
-      <ymin>52.12785171906957515</ymin>
-      <xmax>11.91371672326041775</xmax>
-      <ymax>57.03553111863916314</ymax>
+      <xmin>-8.07090638441295738</xmin>
+      <ymin>34.86701945018099735</ymin>
+      <xmax>15.33442105139455691</xmax>
+      <ymax>47.28958293034335014</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -453,7 +446,7 @@
   </mapcanvas>
   <projectModels></projectModels>
   <legend updateDrawingOrder="true">
-    <legendgroup checked="Qt::Checked" name="images" open="true">
+    <legendgroup checked="Qt::Unchecked" name="images" open="false">
       <legendgroup checked="Qt::Checked" name="1e" open="true">
         <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="cheliax-archduchies-labels_modified" open="false" showFeatureCount="0">
           <filegroup hidden="false" open="false">
@@ -596,47 +589,47 @@
           <legendgroup checked="Qt::Checked" name="online" open="true">
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="shining-kingdoms" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="shining_kingdoms_modified_df281f03_b7d4_4361_8e38_871e4d3854a3" visible="1"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="shining_kingdoms_modified_df281f03_b7d4_4361_8e38_871e4d3854a3" visible="0"></legendlayerfile>
               </filegroup>
             </legendlayer>
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="starstone-isle" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="starstone_isle_modified_557dd2a7_d93d_440c_aeb8_5b44a57d41ab" visible="1"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="starstone_isle_modified_557dd2a7_d93d_440c_aeb8_5b44a57d41ab" visible="0"></legendlayerfile>
               </filegroup>
             </legendlayer>
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="saga-lands" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="saga_lands_modified_05707021_a069_4706_8799_ad1030ba3dd2" visible="1"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="saga_lands_modified_05707021_a069_4706_8799_ad1030ba3dd2" visible="0"></legendlayerfile>
               </filegroup>
             </legendlayer>
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="old-cheliax" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="old_cheliax_modified_f73df419_fa78_4ab0_90d9_825019d984ba" visible="1"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="old_cheliax_modified_f73df419_fa78_4ab0_90d9_825019d984ba" visible="0"></legendlayerfile>
               </filegroup>
             </legendlayer>
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="mwangi-expanse" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="mwangi_expanse_modified_efe81545_cf99_4753_8324_3e9b59e3d38f" visible="1"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="mwangi_expanse_modified_efe81545_cf99_4753_8324_3e9b59e3d38f" visible="0"></legendlayerfile>
               </filegroup>
             </legendlayer>
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="impossible-lands" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="impossible_lands_modified_a42e3391_1db8_4642_b218_ce4d853f5e9d" visible="1"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="impossible_lands_modified_a42e3391_1db8_4642_b218_ce4d853f5e9d" visible="0"></legendlayerfile>
               </filegroup>
             </legendlayer>
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="golden-road" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="golden_rox_modified_66814197_ea66_475e_8736_66377ed6aa6b" visible="1"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="golden_rox_modified_66814197_ea66_475e_8736_66377ed6aa6b" visible="0"></legendlayerfile>
               </filegroup>
             </legendlayer>
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="eye-of-dread" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="eye_of_terror_modified_e94cd44e_97be_49d5_9cde_f8f5a32a94ac" visible="1"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="eye_of_terror_modified_e94cd44e_97be_49d5_9cde_f8f5a32a94ac" visible="0"></legendlayerfile>
               </filegroup>
             </legendlayer>
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="broken-lands" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="broken_lands_modified_94942782_b8c7_4237_842e_0333e79fa1dd" visible="1"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="broken_lands_modified_94942782_b8c7_4237_842e_0333e79fa1dd" visible="0"></legendlayerfile>
               </filegroup>
             </legendlayer>
           </legendgroup>
@@ -647,7 +640,7 @@
           </legendlayer>
           <legendlayer checked="Qt::Checked" drawingOrder="-1" name="world_guide" open="false" showFeatureCount="0">
             <filegroup hidden="false" open="false">
-              <legendlayerfile isInOverview="0" layerid="avistan_modified_bae2770e_d853_4317_abe8_3446656e37cd" visible="1"></legendlayerfile>
+              <legendlayerfile isInOverview="0" layerid="avistan_modified_bae2770e_d853_4317_abe8_3446656e37cd" visible="0"></legendlayerfile>
             </filegroup>
           </legendlayer>
         </legendgroup>
@@ -663,9 +656,9 @@
         <legendlayerfile isInOverview="0" layerid="labels_76168c26_8955_4ccb_8bf1_b34ca52a624a" visible="0"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="borders" open="true" showFeatureCount="0">
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="borders" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="countries_0cf792be_3fae_4649_8f9f_ff9fc8efeeb7" visible="0"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="countries_0cf792be_3fae_4649_8f9f_ff9fc8efeeb7" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="walls" open="true" showFeatureCount="0">
@@ -681,11 +674,6 @@
     <legendlayer checked="Qt::Checked" drawingOrder="-1" name="rivers" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
         <legendlayerfile isInOverview="0" layerid="rivers_35de65df_09a9_46fd_ab54_1a6900b58146" visible="1"></legendlayerfile>
-      </filegroup>
-    </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="rivers" open="true" showFeatureCount="0">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="rivers_2dd1306b_7d4e_4654_b58a_bef7a94ff31a" visible="0"></legendlayerfile>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Checked" drawingOrder="-1" name="waters" open="true" showFeatureCount="0">
@@ -8306,18 +8294,6 @@ def my_form_open(dialog, layer, feature):
       <mapTip></mapTip>
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" legendPlaceholderImage="" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" type="group">
-      <extent>
-        <xmin>0</xmin>
-        <ymin>0</ymin>
-        <xmax>0</xmax>
-        <ymax>0</ymax>
-      </extent>
-      <wgs84extent>
-        <xmin>0</xmin>
-        <ymin>0</ymin>
-        <xmax>0</xmax>
-        <ymax>0</ymax>
-      </wgs84extent>
       <id>images_a05422ba_d9b0_4dbe_9ef4_08468f8204c2</id>
       <datasource></datasource>
       <keywordList>
@@ -8363,18 +8339,7 @@ def my_form_open(dialog, layer, feature):
         </crs>
         <extent></extent>
       </resourceMetadata>
-      <childLayers>
-        <child layerid="avistan_modified_bae2770e_d853_4317_abe8_3446656e37cd"></child>
-        <child layerid="broken_lands_modified_94942782_b8c7_4237_842e_0333e79fa1dd"></child>
-        <child layerid="eye_of_terror_modified_e94cd44e_97be_49d5_9cde_f8f5a32a94ac"></child>
-        <child layerid="golden_rox_modified_66814197_ea66_475e_8736_66377ed6aa6b"></child>
-        <child layerid="impossible_lands_modified_a42e3391_1db8_4642_b218_ce4d853f5e9d"></child>
-        <child layerid="mwangi_expanse_modified_efe81545_cf99_4753_8324_3e9b59e3d38f"></child>
-        <child layerid="old_cheliax_modified_f73df419_fa78_4ab0_90d9_825019d984ba"></child>
-        <child layerid="saga_lands_modified_05707021_a069_4706_8799_ad1030ba3dd2"></child>
-        <child layerid="starstone_isle_modified_557dd2a7_d93d_440c_aeb8_5b44a57d41ab"></child>
-        <child layerid="shining_kingdoms_modified_df281f03_b7d4_4361_8e38_871e4d3854a3"></child>
-      </childLayers>
+      <childLayers></childLayers>
       <layerOpacity>0.676</layerOpacity>
       <blendMode>0</blendMode>
     </maplayer>
@@ -11147,302 +11112,6 @@ def my_form_open(dialog, layer, feature):
         <resamplingStage>resamplingFilter</resamplingStage>
       </pipe>
       <blendMode>0</blendMode>
-    </maplayer>
-    <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
-      <extent>
-        <xmin>-106.97529210000000433</xmin>
-        <ymin>-46.47501539999999665</ymin>
-        <xmax>212.5944998999999882</xmax>
-        <ymax>82.68187770000000114</ymax>
-      </extent>
-      <wgs84extent>
-        <xmin>-106.97529210000000433</xmin>
-        <ymin>-46.47501539999999665</ymin>
-        <xmax>212.5944998999999882</xmax>
-        <ymax>82.68187770000000114</ymax>
-      </wgs84extent>
-      <id>rivers_2dd1306b_7d4e_4654_b58a_bef7a94ff31a</id>
-      <datasource>//wsl.localhost/Ubuntu/home/manu/workspace-pf/mapping/tile-compiler/geo/rivers.geojson|geometrytype=Polygon|uniqueGeometryType=yes</datasource>
-      <keywordList>
-        <value></value>
-      </keywordList>
-      <layername>rivers</layername>
-      <srs>
-        <spatialrefsys nativeFormat="Wkt">
-          <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
-          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
-          <srsid>3452</srsid>
-          <srid>4326</srid>
-          <authid>EPSG:4326</authid>
-          <description>WGS 84</description>
-          <projectionacronym>longlat</projectionacronym>
-          <ellipsoidacronym>EPSG:7030</ellipsoidacronym>
-          <geographicflag>true</geographicflag>
-        </spatialrefsys>
-      </srs>
-      <resourceMetadata>
-        <identifier></identifier>
-        <parentidentifier></parentidentifier>
-        <language></language>
-        <type>dataset</type>
-        <title></title>
-        <abstract></abstract>
-        <links></links>
-        <dates></dates>
-        <fees></fees>
-        <encoding></encoding>
-        <crs>
-          <spatialrefsys nativeFormat="Wkt">
-            <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
-            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
-            <srsid>3452</srsid>
-            <srid>4326</srid>
-            <authid>EPSG:4326</authid>
-            <description>WGS 84</description>
-            <projectionacronym>longlat</projectionacronym>
-            <ellipsoidacronym>EPSG:7030</ellipsoidacronym>
-            <geographicflag>true</geographicflag>
-          </spatialrefsys>
-        </crs>
-        <extent></extent>
-      </resourceMetadata>
-      <provider encoding="UTF-8">ogr</provider>
-      <vectorjoins></vectorjoins>
-      <layerDependencies></layerDependencies>
-      <dataDependencies></dataDependencies>
-      <expressionfields></expressionfields>
-      <map-layer-style-manager current="default">
-        <map-layer-style name="default"></map-layer-style>
-      </map-layer-style-manager>
-      <auxiliaryLayer></auxiliaryLayer>
-      <metadataUrls></metadataUrls>
-      <flags>
-        <Identifiable>1</Identifiable>
-        <Removable>1</Removable>
-        <Searchable>1</Searchable>
-        <Private>0</Private>
-      </flags>
-      <temporal accumulate="0" durationField="" durationUnit="min" enabled="0" endExpression="" endField="" fixedDuration="0" limitMode="0" mode="0" startExpression="" startField="">
-        <fixedRange>
-          <start></start>
-          <end></end>
-        </fixedRange>
-      </temporal>
-      <elevation binding="Centroid" clamping="Terrain" extrusion="0" extrusionEnabled="0" respectLayerSymbol="1" showMarkerSymbolInSurfacePlots="0" symbology="Line" type="IndividualFeatures" zoffset="0" zscale="1">
-        <data-defined-properties>
-          <Option type="Map">
-            <Option name="name" type="QString" value=""></Option>
-            <Option name="properties"></Option>
-            <Option name="type" type="QString" value="collection"></Option>
-          </Option>
-        </data-defined-properties>
-        <profileLineSymbol>
-          <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
-            <data_defined_properties>
-              <Option type="Map">
-                <Option name="name" type="QString" value=""></Option>
-                <Option name="properties"></Option>
-                <Option name="type" type="QString" value="collection"></Option>
-              </Option>
-            </data_defined_properties>
-            <layer class="SimpleLine" enabled="1" id="{b0f6c600-3971-4e55-b8a6-a427ee34c4c5}" locked="0" pass="0">
-              <Option type="Map">
-                <Option name="align_dash_pattern" type="QString" value="0"></Option>
-                <Option name="capstyle" type="QString" value="square"></Option>
-                <Option name="customdash" type="QString" value="5;2"></Option>
-                <Option name="customdash_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="customdash_unit" type="QString" value="MM"></Option>
-                <Option name="dash_pattern_offset" type="QString" value="0"></Option>
-                <Option name="dash_pattern_offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
-                <Option name="draw_inside_polygon" type="QString" value="0"></Option>
-                <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="133,182,111,255"></Option>
-                <Option name="line_style" type="QString" value="solid"></Option>
-                <Option name="line_width" type="QString" value="0.6"></Option>
-                <Option name="line_width_unit" type="QString" value="MM"></Option>
-                <Option name="offset" type="QString" value="0"></Option>
-                <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="ring_filter" type="QString" value="0"></Option>
-                <Option name="trim_distance_end" type="QString" value="0"></Option>
-                <Option name="trim_distance_end_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="trim_distance_end_unit" type="QString" value="MM"></Option>
-                <Option name="trim_distance_start" type="QString" value="0"></Option>
-                <Option name="trim_distance_start_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="trim_distance_start_unit" type="QString" value="MM"></Option>
-                <Option name="tweak_dash_pattern_on_corners" type="QString" value="0"></Option>
-                <Option name="use_custom_dash" type="QString" value="0"></Option>
-                <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-              </Option>
-              <data_defined_properties>
-                <Option type="Map">
-                  <Option name="name" type="QString" value=""></Option>
-                  <Option name="properties"></Option>
-                  <Option name="type" type="QString" value="collection"></Option>
-                </Option>
-              </data_defined_properties>
-            </layer>
-          </symbol>
-        </profileLineSymbol>
-        <profileFillSymbol>
-          <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="fill">
-            <data_defined_properties>
-              <Option type="Map">
-                <Option name="name" type="QString" value=""></Option>
-                <Option name="properties"></Option>
-                <Option name="type" type="QString" value="collection"></Option>
-              </Option>
-            </data_defined_properties>
-            <layer class="SimpleFill" enabled="1" id="{debf6265-0c2c-4ba4-ad63-1e5de1b86627}" locked="0" pass="0">
-              <Option type="Map">
-                <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="133,182,111,255"></Option>
-                <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="offset" type="QString" value="0,0"></Option>
-                <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="95,130,79,255"></Option>
-                <Option name="outline_style" type="QString" value="solid"></Option>
-                <Option name="outline_width" type="QString" value="0.2"></Option>
-                <Option name="outline_width_unit" type="QString" value="MM"></Option>
-                <Option name="style" type="QString" value="solid"></Option>
-              </Option>
-              <data_defined_properties>
-                <Option type="Map">
-                  <Option name="name" type="QString" value=""></Option>
-                  <Option name="properties"></Option>
-                  <Option name="type" type="QString" value="collection"></Option>
-                </Option>
-              </data_defined_properties>
-            </layer>
-          </symbol>
-        </profileFillSymbol>
-        <profileMarkerSymbol>
-          <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="marker">
-            <data_defined_properties>
-              <Option type="Map">
-                <Option name="name" type="QString" value=""></Option>
-                <Option name="properties"></Option>
-                <Option name="type" type="QString" value="collection"></Option>
-              </Option>
-            </data_defined_properties>
-            <layer class="SimpleMarker" enabled="1" id="{f0d0d019-b887-47ff-9964-33a24c8d8c51}" locked="0" pass="0">
-              <Option type="Map">
-                <Option name="angle" type="QString" value="0"></Option>
-                <Option name="cap_style" type="QString" value="square"></Option>
-                <Option name="color" type="QString" value="133,182,111,255"></Option>
-                <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
-                <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="name" type="QString" value="diamond"></Option>
-                <Option name="offset" type="QString" value="0,0"></Option>
-                <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="95,130,79,255"></Option>
-                <Option name="outline_style" type="QString" value="solid"></Option>
-                <Option name="outline_width" type="QString" value="0.2"></Option>
-                <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="outline_width_unit" type="QString" value="MM"></Option>
-                <Option name="scale_method" type="QString" value="diameter"></Option>
-                <Option name="size" type="QString" value="3"></Option>
-                <Option name="size_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="size_unit" type="QString" value="MM"></Option>
-                <Option name="vertical_anchor_point" type="QString" value="1"></Option>
-              </Option>
-              <data_defined_properties>
-                <Option type="Map">
-                  <Option name="name" type="QString" value=""></Option>
-                  <Option name="properties"></Option>
-                  <Option name="type" type="QString" value="collection"></Option>
-                </Option>
-              </data_defined_properties>
-            </layer>
-          </symbol>
-        </profileMarkerSymbol>
-      </elevation>
-      <renderer-v2 enableorderby="0" forceraster="0" referencescale="-1" symbollevels="0" type="singleSymbol">
-        <symbols>
-          <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="0" type="fill">
-            <data_defined_properties>
-              <Option type="Map">
-                <Option name="name" type="QString" value=""></Option>
-                <Option name="properties"></Option>
-                <Option name="type" type="QString" value="collection"></Option>
-              </Option>
-            </data_defined_properties>
-            <layer class="SimpleFill" enabled="1" id="{e045c5a7-fa50-446d-8e76-1ac41408cb1d}" locked="0" pass="0">
-              <Option type="Map">
-                <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="125,139,143,255"></Option>
-                <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="offset" type="QString" value="0,0"></Option>
-                <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="35,35,35,255"></Option>
-                <Option name="outline_style" type="QString" value="solid"></Option>
-                <Option name="outline_width" type="QString" value="0.26"></Option>
-                <Option name="outline_width_unit" type="QString" value="MM"></Option>
-                <Option name="style" type="QString" value="solid"></Option>
-              </Option>
-              <data_defined_properties>
-                <Option type="Map">
-                  <Option name="name" type="QString" value=""></Option>
-                  <Option name="properties"></Option>
-                  <Option name="type" type="QString" value="collection"></Option>
-                </Option>
-              </data_defined_properties>
-            </layer>
-          </symbol>
-        </symbols>
-        <rotation></rotation>
-        <sizescale></sizescale>
-      </renderer-v2>
-      <customproperties>
-        <Option></Option>
-      </customproperties>
-      <blendMode>0</blendMode>
-      <featureBlendMode>0</featureBlendMode>
-      <layerOpacity>1</layerOpacity>
-      <geometryOptions geometryPrecision="0" removeDuplicateNodes="0">
-        <activeChecks type="StringList">
-          <Option type="QString" value=""></Option>
-        </activeChecks>
-        <checkConfiguration></checkConfiguration>
-      </geometryOptions>
-      <legend showLabelLegend="0" type="default-vector"></legend>
-      <referencedLayers></referencedLayers>
-      <fieldConfiguration></fieldConfiguration>
-      <aliases></aliases>
-      <splitPolicies></splitPolicies>
-      <defaults></defaults>
-      <constraints></constraints>
-      <constraintExpressions></constraintExpressions>
-      <expressionfields></expressionfields>
-      <attributeactions>
-        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"></defaultAction>
-      </attributeactions>
-      <attributetableconfig actionWidgetStyle="dropDown" sortExpression="" sortOrder="0">
-        <columns></columns>
-      </attributetableconfig>
-      <conditionalstyles>
-        <rowstyles></rowstyles>
-        <fieldstyles></fieldstyles>
-      </conditionalstyles>
-      <storedexpressions></storedexpressions>
-      <editform tolerant="1"></editform>
-      <editforminit></editforminit>
-      <editforminitcodesource>0</editforminitcodesource>
-      <editforminitfilepath></editforminitfilepath>
-      <editforminitcode></editforminitcode>
-      <featformsuppress>0</featformsuppress>
-      <editorlayout>generatedlayout</editorlayout>
-      <editable></editable>
-      <labelOnTop></labelOnTop>
-      <reuseLastValue></reuseLastValue>
-      <dataDefinedFieldProperties></dataDefinedFieldProperties>
-      <widgets></widgets>
-      <previewExpression></previewExpression>
-      <mapTip></mapTip>
     </maplayer>
     <maplayer autoRefreshEnabled="0" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiLineString">
       <extent>
@@ -15735,7 +15404,6 @@ def my_form_open(dialog, layer, feature):
     <layer id="county_of_meratt_labels_modified_cdf35a51_2c6b_4984_bcfa_8cd722a80e93"></layer>
     <layer id="osirion_labeled_modified_d8c36a50_740f_486c_9088_370425c0a94f"></layer>
     <layer id="cheliax_archduchies_labels_modified_6f0083cb_d56b_40cd_844c_dc575f671684"></layer>
-    <layer id="rivers_2dd1306b_7d4e_4654_b58a_bef7a94ff31a"></layer>
     <layer id="broken_lands_modified_94942782_b8c7_4237_842e_0333e79fa1dd"></layer>
     <layer id="eye_of_terror_modified_e94cd44e_97be_49d5_9cde_f8f5a32a94ac"></layer>
     <layer id="golden_rox_modified_66814197_ea66_475e_8736_66377ed6aa6b"></layer>
@@ -15905,7 +15573,7 @@ def my_form_open(dialog, layer, feature):
   <Bookmarks></Bookmarks>
   <ProjectViewSettings UseProjectScales="0" rotation="0">
     <Scales></Scales>
-    <DefaultViewExtent xmax="11.91371672326041775" xmin="2.66716761282091408" ymax="57.98555860756793834" ymin="51.17782423014079995">
+    <DefaultViewExtent xmax="15.33442105139455691" xmin="-8.07090638441295738" ymax="49.67347793222538144" ymin="32.48312444829896606">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
         <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -15970,7 +15638,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="waters_1c8ac1d0_b31b_4f02_8f82_efe0f2650a0a" destinationLayerName="waters" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-wsl/pathfinder-mapping/sources/waters.gpkg">
+  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="rivers_35de65df_09a9_46fd_ab54_1a6900b58146" destinationLayerName="rivers" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-wsl/pathfinder-mapping/sources/rivers.gpkg">
     <timeStampFields></timeStampFields>
   </ProjectGpsSettings>
 </qgis>
