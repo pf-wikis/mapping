@@ -33,10 +33,6 @@ public class Tools {
         );
     }
 
-    public static byte[] jq(byte[] in, String... jqCommands) throws IOException {
-        return Runner.runPipeInOut(in, "jq", jqCommands);
-    }
-
     public static byte[] geojsonPolygonLabels(byte[] in, String... args) throws IOException {
         return Runner.runPipeOut("geojson-polygon-labels", args, new Runner.TmpGeojson(in));
     }

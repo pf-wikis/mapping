@@ -1,8 +1,7 @@
 import { DataDrivenPropertyValueSpecification, ExpressionSpecification, LayerSpecification } from "maplibre-gl";
 
 let limit = {
-  districts:    11,
-  river_labels:  5
+  districts:    11
 };
 
 let colors = {
@@ -75,7 +74,7 @@ function createLayer(name:string, base:Partial<LayerSpecification>):LayerSpecifi
     source: 'golarion',
     'source-layer': name,
     filter: ['all',
-      ['any', ['!', ['has', 'filterMinzoom']], ['>', ["zoom"], props.filterMinzoom]],
+      ['any', ['!', ['has', 'filterMinzoom']], ['>=', ["zoom"], props.filterMinzoom]],
       ['any', ['!', ['has', 'filterMaxzoom']], ['<=',["zoom"], ["get", "filterMaxzoom"]]]
     ],
   }, base) as LayerSpecification;
@@ -89,13 +88,13 @@ let layers:LayerSpecification[] = [
       'background-color': colors.waterDeep,
     }
   },
-  createLayer('continents_buffer', {
+  createLayer('deep-waters', {
     type: 'fill',
     paint: {
       'fill-color': colors.water,
     }
   }),
-  createLayer('continents', {
+  createLayer('land', {
     type: 'fill',
     paint: {
       'fill-color': colors.land,
@@ -150,13 +149,9 @@ let layers:LayerSpecification[] = [
     }
   }),
   createLayer('rivers', {
-    type: 'line',
+    type: 'fill',
     paint: {
-      'line-color': colors.water,
-      'line-width': interpolateWithCamera(['get', 'width']),
-    },
-    layout: {
-      'line-cap': 'round'
+      'fill-color': colors.water
     }
   }),
   createLayer('specials', {
@@ -171,7 +166,7 @@ let layers:LayerSpecification[] = [
       'fill-color': colors.walls,
     }
   }),
-  createLayer('borders_provinces_borders', {
+  createLayer('province-borders', {
     type: 'line',
     minzoom: 3,
     paint: {
@@ -183,7 +178,7 @@ let layers:LayerSpecification[] = [
       'line-cap': 'round'
     }
   }),
-  createLayer('borders_nations_borders', {
+  createLayer('nation-borders', {
     type: 'line',
     paint: {
       'line-color': colors.nationBorders,
@@ -196,7 +191,7 @@ let layers:LayerSpecification[] = [
       'line-cap': 'round'
     }
   }),
-  createLayer('borders_subregions_borders', {
+  createLayer('subregion-borders', {
     type: 'line',
     maxzoom: 6,
     paint: {
@@ -210,7 +205,7 @@ let layers:LayerSpecification[] = [
       'line-cap': 'round'
     }
   }),
-  createLayer('borders_regions_borders', {
+  createLayer('region-borders', {
     type: 'line',
     minzoom: 2,
     maxzoom: 4,
@@ -223,9 +218,8 @@ let layers:LayerSpecification[] = [
       'line-cap': 'round'
     }
   }),
-  createLayer('rivers', {
+  createLayer('river-labels', {
     type: 'symbol',
-    minzoom: limit.river_labels,
     layout: {
       'symbol-placement': 'line',
       'text-max-angle': 20,
@@ -252,7 +246,7 @@ let layers:LayerSpecification[] = [
       ],
     }
   }),
-  createLayer('ice_labels', {
+  createLayer('ice-labels', {
     type: 'symbol',
     layout: {
       'text-field': ['get', 'Name'],
@@ -266,7 +260,7 @@ let layers:LayerSpecification[] = [
       'text-halo-width': 1
     }
   }),
-  createLayer('forests_labels', {
+  createLayer('forest-labels', {
     type: 'symbol',
     minzoom: 6,
     layout: {
@@ -280,7 +274,7 @@ let layers:LayerSpecification[] = [
       'text-halo-width': 1
     }
   }),
-  createLayer('specials_labels', {
+  createLayer('special-labels', {
     type: 'symbol',
     layout: {
       'text-field': ['get', 'Name'],
@@ -293,7 +287,7 @@ let layers:LayerSpecification[] = [
       'text-halo-width': 1
     }
   }),
-  createLayer('labels_labels', {
+  createLayer('labels', {
     type: 'symbol',
     layout: {
       'text-field': ['get', 'Name'],
@@ -306,7 +300,7 @@ let layers:LayerSpecification[] = [
       'text-halo-width': 1
     }
   }),
-  createLayer('hills_labels', {
+  createLayer('hill-labels', {
     type: 'symbol',
     minzoom: 6,
     layout: {
@@ -320,7 +314,7 @@ let layers:LayerSpecification[] = [
       'text-halo-width': 1
     }
   }),
-  createLayer('mountains_labels', {
+  createLayer('mountain-labels', {
     type: 'symbol',
     minzoom: 6,
     layout: {
@@ -334,7 +328,7 @@ let layers:LayerSpecification[] = [
       'text-halo-width': 1
     }
   }),
-  createLayer('deserts_labels', {
+  createLayer('desert-labels', {
     type: 'symbol',
     minzoom: 6,
     layout: {
@@ -348,7 +342,7 @@ let layers:LayerSpecification[] = [
       'text-halo-width': 1
     }
   }),
-  createLayer('swamps_labels', {
+  createLayer('swamp-labels', {
     type: 'symbol',
     minzoom: 6,
     layout: {
@@ -362,7 +356,7 @@ let layers:LayerSpecification[] = [
       'text-halo-width': 1
     }
   }),
-  createLayer('waters_labels', {
+  createLayer('water-labels', {
     type: 'symbol',
     minzoom: 6,
     layout: {
@@ -497,7 +491,7 @@ let layers:LayerSpecification[] = [
       'text-halo-width': .8
     }
   }),
-  createLayer('districts_labels', {
+  createLayer('district-labels', {
     type: 'symbol',
     minzoom: limit.districts,
     layout: {
@@ -514,7 +508,7 @@ let layers:LayerSpecification[] = [
     }
     
   }),
-  createLayer('borders_provinces_labels', {
+  createLayer('province-labels', {
     minzoom: 4,
     maxzoom: 7,
     type: 'symbol',
@@ -537,7 +531,7 @@ let layers:LayerSpecification[] = [
       ],
     }
   }),
-  createLayer('borders_nations_labels', {
+  createLayer('nation-labels', {
     minzoom: 3,
     maxzoom: 6,
     type: 'symbol',
@@ -564,7 +558,7 @@ let layers:LayerSpecification[] = [
       ],
     }
   }),
-  createLayer('borders_subregions_labels', {
+  createLayer('subregion-labels', {
     minzoom: 3,
     maxzoom: 5,
     type: 'symbol',
@@ -587,7 +581,7 @@ let layers:LayerSpecification[] = [
       ],
     }
   }),
-  createLayer('borders_regions_labels', {
+  createLayer('region-labels', {
     minzoom: 1,
     maxzoom: 4,
     type: 'symbol',
@@ -604,7 +598,7 @@ let layers:LayerSpecification[] = [
       'text-halo-width': 1.5,
     }
   }),
-  createLayer('continents_labels', {
+  createLayer('continent-labels', {
     type: 'symbol',
     maxzoom: 2,
     layout: {

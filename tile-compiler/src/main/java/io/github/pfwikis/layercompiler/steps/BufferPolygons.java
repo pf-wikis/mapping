@@ -2,14 +2,13 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.io.IOException;
 
-import io.github.pfwikis.layercompiler.LayerCompiler;
 import io.github.pfwikis.run.Tools;
 
-public class AddContinentsBuffer extends LCStep {
+public class BufferPolygons extends LCStep {
 
     @Override
-    public byte[] process(Ctx ctx, byte[] f) throws IOException {
-        var buffered = Tools.qgis("native:buffer", f,
+    public byte[] process() throws IOException {
+        var buffered = Tools.qgis("native:buffer", getInput(),
             "--DISTANCE=0.5",
             "--SEGMENTS=20",
             "--END_CAP_STYLE=0", "--JOIN_STYLE=0", "--MITER_LIMIT=2",
@@ -20,8 +19,7 @@ public class AddContinentsBuffer extends LCStep {
             "--OFFSET=0.3",
             "--MAX_ANGLE=180"
         );
-        new LayerCompiler(new Ctx("continents_buffer", ctx.getOptions(), ctx.getGeo(), smooth)).compile();
-        return f;
+       return smooth;
     }
 
 }

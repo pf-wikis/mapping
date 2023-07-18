@@ -1,51 +1,54 @@
 package io.github.pfwikis.layercompiler.steps;
 
 import java.io.IOException;
-import java.util.regex.Pattern;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
+import com.beust.jcommander.internal.Lists;
 
 import io.github.pfwikis.JSMath;
 import io.github.pfwikis.run.Tools;
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
-@Log
+@Slf4j
 public class GenerateLabelCenters extends LCStep {
 
-    private static final Pattern POLYGON_GEOJSON_1 = Pattern.compile("type\": *\"(Multi)?Polygon");
-    private static final Pattern POLYGON_GEOJSON_2 = Pattern.compile("Name\": *\"");
-
     @Override
-    public byte[] process(Ctx ctx, byte[] f) throws IOException {
-        String raw = new String(f);
-        if(POLYGON_GEOJSON_1.matcher(raw).find() && POLYGON_GEOJSON_2.matcher(raw).find()) {
-            log.info("  Generating label points from polygon centers");
-            var tmp = Tools.mapshaper(f, "-filter", "Name != null");
-            if(!"labels".equals(ctx.getName())) {
-                tmp = Tools.mapshaper(tmp, "-dissolve", "Name", "copy-fields=inSubregion");
-            }
-            tmp = Tools.mapshaper(tmp,
-                "-each", "filterMinzoom="+filterMinzoom(ctx.getName()),
-                "-each", "filterMaxzoom=4+filterMinzoom",
-                "-sort", "this.area", "descending"
-            );
-            var labelPoints = Tools.geojsonPolygonLabels(tmp,
-                "--precision=0.00001",
-                "--include-area",
-                "--label=center-of-mass",
-                "--style=largest"
-            );
-
-            createNewLayer(new Ctx(ctx.getName()+"_labels", ctx.getOptions(), ctx.getGeo(), labelPoints));
+    public byte[] process() throws IOException {
+        byte[] in = getInput();
+        if(!new String(in).contains("\"Name\":")) {
+            return "{\"type\":\"FeatureCollection\", \"features\": []}".getBytes(StandardCharsets.UTF_8);
         }
-        return f;
+
+        log.info("  Generating label points from polygon centers");
+        var commands = Lists.newArrayList(
+            "-filter", "Name != null"
+        );
+        if(!"labels".equals(this.getName())) {
+            commands.addAll(List.of("-dissolve", "Name", "copy-fields=inSubregion"));
+        }
+        commands.addAll(List.of(
+            "-each", "filterMinzoom="+filterMinzoom(this.getName()),
+            "-each", "filterMaxzoom=4+filterMinzoom",
+            "-sort", "this.area", "descending"
+        ));
+        var tmp = Tools.mapshaper(in, commands.toArray());
+        var labelPoints = Tools.geojsonPolygonLabels(tmp,
+            "--precision=0.00001",
+            "--include-area",
+            "--label=center-of-mass",
+            "--style=largest"
+        );
+        return labelPoints;
     }
 
     private String filterMinzoom(String name) {
-        if(name.startsWith("borders_regions")) return "1";
-        if(name.startsWith("borders_subregions")) return "2";
-        if(name.startsWith("borders_nations")) return "3";
-        if(name.startsWith("borders_provinces")) return "4";
-        if(name.startsWith("districts")) return "10";
-        if(name.startsWith("continents")) return "0";
+        if(name.startsWith("region-labels")) return "1";
+        if(name.startsWith("subregion-labels")) return "2";
+        if(name.startsWith("nation-labels")) return "3";
+        if(name.startsWith("province-labels")) return "4";
+        if(name.startsWith("district-labels")) return "10";
+        if(name.startsWith("continent-labels")) return "0";
 
         return JSMath.pixelSizeMinzoomFunction(
             300,

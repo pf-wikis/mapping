@@ -1,0 +1,281 @@
+- name: chasms
+  steps:
+    - step: READ_FILE
+      file: chasms.gpkg
+    - step: ADD_FRACTAL_DETAIL
+    - step: OUTPUT
+
+- name: cities
+  steps:
+    - step: READ_FILE
+      file: cities.geojson
+    - step: ADD_SCALE_AND_ZOOM
+    - step: OUTPUT
+
+- name: land
+  steps:
+    - step: READ_FILE
+      file: continents.gpkg
+    - step: ADD_FRACTAL_DETAIL
+    - step: OUTPUT
+
+- name: land_without_water
+  steps:
+    - step: SUBTRACT
+      dependsOn:
+        in: land.READ_FILE
+        subtrahend: waters.READ_FILE
+
+- name: continent-labels
+  steps:
+    - step: GENERATE_LABEL_CENTERS
+      dependsOn:
+        in: land.READ_FILE
+    - step: OUTPUT
+
+- name: deserts
+  steps:
+    - step: READ_FILE
+      file: deserts.gpkg
+    - step: ADD_FRACTAL_DETAIL
+    - step: OUTPUT
+
+- name: desert-labels
+  steps:
+    - step: GENERATE_LABEL_CENTERS
+      dependsOn:
+        in: deserts.READ_FILE
+    - step: OUTPUT
+
+- name: districts
+  steps:
+    - step: READ_FILE
+      file: districts.gpkg
+    - step: DISTRICT_GAP
+    - step: ADD_SCALE_AND_ZOOM
+    - step: OUTPUT
+
+- name: district-labels
+  steps:
+    - step: GENERATE_LABEL_CENTERS
+      dependsOn:
+        in: districts.READ_FILE
+    - step: ADD_SCALE_AND_ZOOM
+    - step: OUTPUT
+
+- name: forests
+  steps:
+    - step: READ_FILE
+      file: forests.gpkg
+    - step: ADD_FRACTAL_DETAIL
+    - step: OUTPUT
+
+- name: forest-labels
+  steps:
+    - step: GENERATE_LABEL_CENTERS
+      dependsOn:
+        in: forests.READ_FILE
+    - step: OUTPUT
+
+- name: hills
+  steps:
+    - step: READ_FILE
+      file: hills.gpkg
+    - step: ADD_FRACTAL_DETAIL
+    - step: OUTPUT
+
+- name: hill-labels
+  steps:
+    - step: GENERATE_LABEL_CENTERS
+      dependsOn:
+        in: hills.READ_FILE
+    - step: OUTPUT
+
+- name: ice
+  steps:
+    - step: READ_FILE
+      file: ice.gpkg
+    - step: ADD_FRACTAL_DETAIL
+    - step: OUTPUT
+
+- name: ice-labels
+  steps:
+    - step: GENERATE_LABEL_CENTERS
+      dependsOn:
+        in: ice.READ_FILE
+    - step: OUTPUT
+
+- name: labels
+  steps:
+    - step: READ_FILE
+      file: labels.gpkg
+    - step: GENERATE_LABEL_CENTERS
+    - step: OUTPUT
+
+- name: locations
+  steps:
+    - step: READ_FILE
+      file: locations.geojson
+    - step: ADD_SCALE_AND_ZOOM
+    - step: OUTPUT
+
+- name: mountains
+  steps:
+    - step: READ_FILE
+      file: mountains.gpkg
+    - step: ADD_FRACTAL_DETAIL
+    - step: OUTPUT
+
+- name: mountain-labels
+  steps:
+    - step: GENERATE_LABEL_CENTERS
+      dependsOn:
+        in: mountains.READ_FILE
+    - step: OUTPUT
+
+- name: rivers
+  steps:
+    - step: READ_FILE
+      file: rivers.gpkg
+    - step: SMOOTH_LINES
+    - step: SHAPE_RIVERS
+      dependsOn:
+        land_without_water: land_without_water
+
+- name: river-labels
+  steps:
+    - step: RIVER_LABELS
+      dependsOn:
+        in: rivers.SMOOTH_LINES
+    - step: OUTPUT
+
+
+- name: specials
+  steps:
+    - step: READ_FILE
+      file: specials.gpkg
+    - step: OUTPUT
+
+- name: special-labels
+  steps:
+    - step: GENERATE_LABEL_CENTERS
+      dependsOn:
+        in: specials
+    - step: OUTPUT
+
+- name: swamps
+  steps:
+    - step: READ_FILE
+      file: swamps.gpkg
+    - step: ADD_FRACTAL_DETAIL
+    - step: OUTPUT
+
+- name: swamp-labels
+  steps:
+    - step: GENERATE_LABEL_CENTERS
+      dependsOn:
+        in: swamps.READ_FILE
+    - step: OUTPUT
+
+- name: walls
+  steps:
+    - step: READ_FILE
+      file: walls.gpkg
+    - step: OUTPUT
+
+- name: waters
+  steps:
+    - step: READ_FILE
+      file: waters.gpkg
+    - step: ADD_FRACTAL_DETAIL
+    - step: ADD
+      dependsOn:
+        summand: rivers
+    - step: OUTPUT
+
+- name: deep-waters
+  steps:
+    - step: BUFFER_POLYGONS
+      dependsOn:
+        in: land_without_water
+    - step: OUTPUT
+
+- name: water-labels
+  steps:
+    - step: GENERATE_LABEL_CENTERS
+      dependsOn:
+        in: waters.READ_FILE
+    - step: OUTPUT
+
+########### BORDERS #########################
+- name: borders
+  steps:
+    - step: READ_FILE
+      file: borders.gpkg
+
+- name: nation-borders
+  steps:
+    - step: BORDER_VARIANTS__NATION_BORDERS
+      dependsOn:
+        in: borders
+        land_without_water: land_without_water
+    - step: SMOOTH_LINES
+    - step: OUTPUT
+
+- name: nation-labels
+  steps:
+    - step: BORDER_VARIANTS__NATIONS
+      dependsOn:
+        in: borders
+    - step: GENERATE_LABEL_CENTERS
+    - step: OUTPUT
+
+- name: province-borders
+  steps:
+    - step: BORDER_VARIANTS__PROVINCE_BORDERS
+      dependsOn:
+        in: borders
+        land_without_water: land_without_water
+    - step: SMOOTH_LINES
+    - step: OUTPUT
+
+- name: province-labels
+  steps:
+    - step: BORDER_VARIANTS__PROVINCES
+      dependsOn:
+        in: borders
+    - step: GENERATE_LABEL_CENTERS
+    - step: OUTPUT
+
+- name: subregion-borders
+  steps:
+    - step: BORDER_VARIANTS__SUBREGION_BORDERS
+      dependsOn:
+        in: borders
+        land_without_water: land_without_water
+    - step: SMOOTH_LINES
+    - step: OUTPUT
+
+- name: subregion-labels
+  steps:
+    - step: BORDER_VARIANTS__SUBREGIONS
+      dependsOn:
+        in: borders
+    - step: GENERATE_LABEL_CENTERS
+    - step: OUTPUT
+
+- name: region-borders
+  steps:
+    - step: BORDER_VARIANTS__REGION_BORDERS
+      dependsOn:
+        in: borders
+    - step: SMOOTH_LINES
+    - step: OUTPUT
+
+- name: region-labels
+  steps:
+    - step: BORDER_VARIANTS__REGIONS
+      dependsOn:
+        in: borders
+    - step: GENERATE_LABEL_CENTERS
+    - step: OUTPUT

@@ -10,13 +10,11 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 
-import com.beust.jcommander.JCommander;
-
 import io.github.pfwikis.run.Runner;
 import lombok.Getter;
-import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
-@Log
+@Slf4j
 @Getter
 public class TileCompiler {
 
@@ -27,7 +25,7 @@ public class TileCompiler {
     private File spriteDir;
 
 
-    public void run(CLIOptions options) throws IOException {
+    public void run(CLIOptions options) throws Exception {
         this.options = options;
         targetRoot = new File(options.isUseBuildShortcut()
             ?"../frontend/dist"
@@ -48,9 +46,9 @@ public class TileCompiler {
         spriteDir.mkdirs();
 
 
-        compileSprites();
         compileLayers();
         makeTiles();
+        compileSprites();
 
         //give maxZoom to vite
         log.info("Writing .env.local");
@@ -97,7 +95,7 @@ public class TileCompiler {
 
     }
 
-    private void compileLayers() throws IOException {
+    private void compileLayers() throws Exception {
         new LayersCompiler(this).compile();
     }
 

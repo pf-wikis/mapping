@@ -17,10 +17,12 @@ import java.util.logging.Level;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import io.github.pfwikis.layercompiler.steps.rivers.ShapeRivers;
 import lombok.Getter;
 import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 
-@Log
+@Slf4j
 public class Runner {
     public static byte[] run(Object... command) throws IOException {
         return internalRun(Redirect.INHERIT, null, command);
@@ -92,7 +94,10 @@ public class Runner {
         } catch(Exception e) {
             if(in != null) {
                 var str = new String(in);
-                log.severe("Failure for input "+str.substring(0, Math.min(1000, str.length())));
+                log.error("Failure for input "+str.substring(0, Math.min(1000, str.length())));
+                var tmp = Files.createTempFile("pf-mapping-debug", ".json");
+                Files.write(tmp, in);
+                log.error("Full input in "+tmp.toAbsolutePath());
             }
             log(Level.SEVERE, baos.toByteArray());
 
@@ -103,7 +108,7 @@ public class Runner {
     private static void log(Level level, byte[] out) {
         String msg = new String(out, StandardCharsets.UTF_8);
         if(StringUtils.isEmpty(msg)) return;
-        log.log(level, "std/out: "+msg);
+        log.error("std/out: "+msg);
     }
 
     public static final File TMP_DIR;

@@ -5,11 +5,11 @@ import java.io.IOException;
 import io.github.pfwikis.run.Runner;
 import io.github.pfwikis.run.Tools;
 
-public class AddDistrictGap extends LCStep {
+public class DistrictGap extends LCStep {
 
     @Override
-    public byte[] process(Ctx ctx, byte[] f) throws IOException {
-        var innerLines = Tools.mapshaper(f,
+    public byte[] process() throws IOException {
+        var innerLines = Tools.mapshaper(getInput(),
             "-clean",
             "-snap", "precision=0.0001",
             "-innerlines", "-dissolve"
@@ -24,7 +24,7 @@ public class AddDistrictGap extends LCStep {
             "--DISSOLVE=true"
         );
 
-        return Tools.qgis("native:difference", f, new Runner.TmpGeojson("--OVERLAY=", bufferedLines));
+        return Tools.qgis("native:difference", getInput(), new Runner.TmpGeojson("--OVERLAY=", bufferedLines));
     }
 
 

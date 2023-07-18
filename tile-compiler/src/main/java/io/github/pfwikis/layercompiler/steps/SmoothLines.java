@@ -7,8 +7,8 @@ import io.github.pfwikis.run.Tools;
 public class SmoothLines extends LCStep {
 
     @Override
-    public byte[] process(Ctx ctx, byte[] f) throws IOException {
-        return Tools.mapshaper(f,
+    public byte[] process() throws IOException {
+        return Tools.mapshaper(getInput(),
             "-require", "curve-interpolator", "alias=_",
             "-explode",
             "-each", """
@@ -31,7 +31,6 @@ public class SmoothLines extends LCStep {
                         """+interpolate(10)+"""
                     }
                 }
-
                 json.geometry.coordinates = result;
                 this.geojson=json;
             """

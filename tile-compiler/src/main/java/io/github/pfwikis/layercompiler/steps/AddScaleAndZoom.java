@@ -3,16 +3,15 @@ package io.github.pfwikis.layercompiler.steps;
 import java.io.IOException;
 import java.util.Set;
 
-import io.github.pfwikis.JSMath;
 import io.github.pfwikis.run.Tools;
 
 public class AddScaleAndZoom extends LCStep {
 
     @Override
-    public byte[] process(Ctx ctx, byte[] f) throws IOException {
+    public byte[] process() throws IOException {
 
-        if("cities".equals(ctx.getName())) {
-            var result = Tools.mapshaper(f, "-each", """
+        if("cities".equals(getName())) {
+            var result = Tools.mapshaper(getInput(), "-each", """
                 filterMinzoom=(() => {switch(size) {
                     case 0: return 1;
                     case 1: return 2;
@@ -22,31 +21,16 @@ public class AddScaleAndZoom extends LCStep {
             """);
             return result;
         }
-        else if("locations".equals(ctx.getName())) {
-            return Tools.mapshaper(f, "-each", "filterMinzoom=2");
+        else if("locations".equals(getName())) {
+            return Tools.mapshaper(getInput(), "-each", "filterMinzoom=2");
         }
-
-
-        String script;
-        if(Set.of("districts", "districts_label").contains(ctx.getName())) {
-            script = "filterMinzoom=4";
-        }
-        else if("rivers".equals(ctx.getName())) {
-            //set minzoom so the river is at least .1 pixels wide
-            script = """
-                if(!width) {
-                    width=2000;
-                }
-                width *= $scaleFactor;
-                filterMinzoom = $formula;
-            """
-                .replace("$scaleFactor", JSMath.scaleFactor("(this.bounds[1]+this.bounds[3])/2"))
-                .replace("$formula", JSMath.pixelSizeMinzoomFunction(0.05, "width"));
+        else if(Set.of("districts", "district-labels").contains(getName())) {
+            return Tools.mapshaper(getInput(), "-each", "filterMinzoom=4");
         }
         else {
-            return f;
+            throw new IllegalStateException("Unhandled layer "+getName());
         }
-        return Tools.mapshaper(f, "-each", script);
+
     }
 
 }
