@@ -1,9 +1,6 @@
 package io.github.pfwikis.layercompiler.steps.rivers;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.*;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -13,10 +10,7 @@ import com.beust.jcommander.internal.Lists;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.pfwikis.layercompiler.steps.LCStep;
-import io.github.pfwikis.layercompiler.steps.LCStep.Ctx;
 import io.github.pfwikis.run.Tools;
-import io.github.pfwikis.util.Projection;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import mil.nga.sf.geojson.*;
 
@@ -74,10 +68,6 @@ public class ShapeRivers extends LCStep {
 
     private double metersToDeg(double meters, double lat) {
         return meters * ((1. + 0.00001120378 * (Math.cos(2 * lat / 180 * Math.PI) - 1)) / Math.cos(lat / 180 * Math.PI) / 111319.491 / 2d);
-    }
-
-    private double degToMeters(double lon, double lat) {
-        return lon / ((1. + 0.00001120378 * (Math.cos(2 * lat / 180 * Math.PI) - 1)) / Math.cos(lat / 180 * Math.PI) / 111319.491 / 2d);
     }
 
     private void markSprings(Ctx ctx, byte[] riversIn, Collection<RPoint> rivers) throws IOException {
