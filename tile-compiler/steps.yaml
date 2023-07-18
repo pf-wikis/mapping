@@ -9,7 +9,7 @@
   steps:
     - step: READ_FILE
       file: cities.geojson
-    - step: ADD_SCALE_AND_ZOOM
+    - step: ADD_CITY_ZOOM
     - step: OUTPUT
 
 - name: land
@@ -52,15 +52,17 @@
     - step: READ_FILE
       file: districts.gpkg
     - step: DISTRICT_GAP
-    - step: ADD_SCALE_AND_ZOOM
+    - step: ADD_ZOOM
+      minZoom: 4
     - step: OUTPUT
 
 - name: district-labels
   steps:
-    - step: GENERATE_LABEL_CENTERS
+    - step: ADD_ZOOM
+      minZoom: 9
       dependsOn:
         in: districts.READ_FILE
-    - step: ADD_SCALE_AND_ZOOM
+    - step: GENERATE_LABEL_CENTERS
     - step: OUTPUT
 
 - name: forests
@@ -116,7 +118,8 @@
   steps:
     - step: READ_FILE
       file: locations.geojson
-    - step: ADD_SCALE_AND_ZOOM
+    - step: ADD_ZOOM
+      minZoom: 3
     - step: OUTPUT
 
 - name: mountains
@@ -237,6 +240,8 @@
         in: borders
         land_without_water: land_without_water
     - step: SMOOTH_LINES
+    - step: ADD_ZOOM
+      minZoom: 3
     - step: OUTPUT
 
 - name: province-labels
@@ -270,6 +275,9 @@
       dependsOn:
         in: borders
     - step: SMOOTH_LINES
+    - step: ADD_ZOOM
+      minZoom: 2
+      maxZoom: 3
     - step: OUTPUT
 
 - name: region-labels

@@ -15,17 +15,15 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.google.common.base.CaseFormat;
 
 import io.github.classgraph.ClassGraph;
-import io.github.pfwikis.layercompiler.steps.GenerateLabelCenters;
-import io.github.pfwikis.layercompiler.steps.LCStep;
+import io.github.pfwikis.layercompiler.steps.*;
 import io.github.pfwikis.layercompiler.steps.LCStep.Ctx;
-import io.github.pfwikis.layercompiler.steps.ReadFile;
-import io.github.pfwikis.layercompiler.steps.Subtract;
 import lombok.Getter;
 import lombok.Setter;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "step", visible = true, defaultImpl = StepDescription.Simple.class)
 @JsonSubTypes({
-    @Type(name = "READ_FILE", value = StepDescription.ReadFileStep.class)
+    @Type(name = "READ_FILE", value = StepDescription.ReadFileStep.class),
+    @Type(name = "ADD_ZOOM", value = StepDescription.AddZoomStep.class)
 })
 @Getter
 @Setter
@@ -67,6 +65,18 @@ public abstract class StepDescription {
         @Override
         protected LCStep create() {
             return new ReadFile(file);
+        }
+    }
+
+    @Getter
+    @Setter
+    public static class AddZoomStep extends StepDescription {
+        private Integer minZoom;
+        private Integer maxZoom;
+
+        @Override
+        protected LCStep create() {
+            return new AddZoom(minZoom, maxZoom);
         }
     }
 
