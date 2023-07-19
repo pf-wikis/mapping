@@ -1,5 +1,6 @@
 package io.github.pfwikis.layercompiler.steps.rivers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
@@ -8,8 +9,10 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.beust.jcommander.internal.Lists;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.io.Files;
 
 import io.github.pfwikis.layercompiler.steps.LCStep;
+import io.github.pfwikis.run.Runner;
 import io.github.pfwikis.run.Tools;
 import lombok.extern.slf4j.Slf4j;
 import mil.nga.sf.geojson.*;
@@ -31,7 +34,7 @@ public class ShapeRivers extends LCStep {
 
         var ownResult = JACKSON.writeValueAsBytes(result);
 
-        return Tools.mapshaper(ownResult, "--filter-fields", "-clean", "-dissolve2", "-explode");
+        return Tools.mapshaper(ownResult, "--filter-fields", "-clean", "keep-shapes", "-dissolve2", "-explode");
 
         // merge this into the water afterwards
     }
@@ -72,12 +75,16 @@ public class ShapeRivers extends LCStep {
 
     private void markSprings(Ctx ctx, byte[] riversIn, Collection<RPoint> rivers) throws IOException {
         // clip rivers to land and not water
+        // wait until https://github.com/mbloch/mapshaper/issues/595 is fixed
         var clipped = Tools
             .mapshaper(
                 riversIn,
                 "-clip", getInput("land_without_water"),
                 "-explode"
             );
+        //var clipped = Tools.qgis("native:clip", riversIn, new Runner.TmpGeojson("--OVERLAY=", getInput("land_without_water")));
+        Files.write(getInput("land_without_water"), new File(ctx.getGeo(), "clipper.geojson"));
+        Files.write(clipped, new File(ctx.getGeo(), "clipped.geojson"));
 
         var reducedRivers = collectRivers(clipped);
 
@@ -137,11 +144,11 @@ public class ShapeRivers extends LCStep {
         // set width to zero at a spring
         // set midpoint to max 50km or 3/4ths from spring
         if (first.isSpring()) {
-            interpY[0] = 0;
+            interpY[0] = first.getWidth()/10;
             interpX[1] = geoLength * 3 / 4;
         }
         if (last.isSpring()) {
-            interpY[2] = 0;
+            interpY[2] = last.getWidth()/10;
             interpX[1] = geoLength * 1 / 4;
         }
         if (last.isSpring() && first.isSpring()) {
