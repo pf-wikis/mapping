@@ -2,4 +2,5 @@
 set -e
 
 cd ./tile-compiler
-mvn -B compile exec:java -Dexec.args="clean"
+mvn -B compile package
+java -jar target/tile-compiler.jar clean
