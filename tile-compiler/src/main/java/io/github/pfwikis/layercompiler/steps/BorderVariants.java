@@ -1,5 +1,9 @@
 package io.github.pfwikis.layercompiler.steps;
 
+import java.io.File;
+
+import com.google.common.io.Files;
+
 import io.github.pfwikis.run.Tools;
 
 public class BorderVariants {
@@ -36,7 +40,7 @@ public class BorderVariants {
                 "-filter", "nation !== null",
                 "-each", "inSubregion=(subregion!==null)",
                 "-rename-fields", "Name=nation",
-                "-dissolve", "Name", "copy-fields=inSubregion"
+                "-dissolve2", "Name", "copy-fields=inSubregion"
             );
         }
     }
@@ -46,12 +50,12 @@ public class BorderVariants {
         public byte[] process() throws Exception {
             var innerNationBorders = Tools.mapshaper(getInput(),
                 "-filter", "nation !== null",
-                "-dissolve", "nation",
+                "-dissolve2", "nation",
                 "-innerlines"
             );
             var outerNationBorders = Tools.mapshaper(getInput(),
                 "-filter", "nation !== null",
-                "-dissolve",
+                "-dissolve2",
                 "-lines", "-filter-fields",
                 "-clip", getInput("land_without_water")
             );
@@ -68,7 +72,7 @@ public class BorderVariants {
             return Tools.mapshaper(getInput(),
                 "-filter", "subregion !== null",
                 "-rename-fields", "Name=subregion",
-                "-dissolve", "Name"
+                "-dissolve2", "Name"
             );
         }
     }
@@ -80,13 +84,13 @@ public class BorderVariants {
             var innerSubRegionBorders = Tools.mapshaper(getInput(),
                 "-each", "if(subregion !== null) {nation = subregion;}",
                 "-filter", "nation !== null",
-                "-dissolve", "nation",
+                "-dissolve2", "nation",
                 "-innerlines"
             );
             var outerSubRegionBorders = Tools.mapshaper(getInput(),
                 "-each", "if(subregion !== null) {nation = subregion;}",
                 "-filter", "nation !== null",
-                "-dissolve",
+                "-dissolve2",
                 "-lines", "-filter-fields",
                 "-clip", getInput("land_without_water")
             );
@@ -100,11 +104,12 @@ public class BorderVariants {
     public static class Regions extends LCStep {
         @Override
         public byte[] process() throws Exception {
-            return Tools.mapshaper(getInput(),
+            var regions = Tools.mapshaper(getInput(),
                 "-filter", "region !== null",
                 "-rename-fields", "Name=region",
-                "-dissolve", "Name"
+                "-dissolve2", "Name"
             );
+            return regions;
         }
     }
 
@@ -113,7 +118,7 @@ public class BorderVariants {
         public byte[] process() throws Exception {
             return Tools.mapshaper(getInput(),
                 "-filter", "region !== null",
-                "-dissolve", "region",
+                "-dissolve2", "region",
                 "-innerlines"
             );
         }

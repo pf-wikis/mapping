@@ -75,16 +75,12 @@ public class ShapeRivers extends LCStep {
 
     private void markSprings(Ctx ctx, byte[] riversIn, Collection<RPoint> rivers) throws IOException {
         // clip rivers to land and not water
-        // wait until https://github.com/mbloch/mapshaper/issues/595 is fixed
         var clipped = Tools
             .mapshaper(
                 riversIn,
                 "-clip", getInput("land_without_water"),
                 "-explode"
             );
-        //var clipped = Tools.qgis("native:clip", riversIn, new Runner.TmpGeojson("--OVERLAY=", getInput("land_without_water")));
-        Files.write(getInput("land_without_water"), new File(ctx.getGeo(), "clipper.geojson"));
-        Files.write(clipped, new File(ctx.getGeo(), "clipped.geojson"));
 
         var reducedRivers = collectRivers(clipped);
 
