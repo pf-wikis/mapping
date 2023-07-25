@@ -13,10 +13,10 @@ for new in head/sources/*.gpkg; do
 
 
         if grep -q "\"type\": \"LineString\"" "$oldJ" || grep -q "\"type\": \"MultiLineString\"" "$oldJ" ; then
-            mv "$oldJ" "$oldJ.unbuffered"
-            mv "$newJ" "$newJ.unbuffered"
-            qgis_process run native:buffer --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 "--INPUT='$oldJ.unbuffered'" --DISTANCE='expression:"width" *0.000005' --SEGMENTS=5 --END_CAP_STYLE=0 --JOIN_STYLE=0 --MITER_LIMIT=2 --DISSOLVE=false "--OUTPUT='$oldJ'"
-            qgis_process run native:buffer --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 "--INPUT='$newJ.unbuffered'" --DISTANCE='expression:"width" *0.000005' --SEGMENTS=5 --END_CAP_STYLE=0 --JOIN_STYLE=0 --MITER_LIMIT=2 --DISSOLVE=false "--OUTPUT='$newJ'"
+            mv "$oldJ" "unbuffered.$oldJ"
+            mv "$newJ" "unbuffered.$newJ"
+            qgis_process run native:buffer --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 "--INPUT='unbuffered.$oldJ'" --DISTANCE='expression:"width" *0.000005' --SEGMENTS=5 --END_CAP_STYLE=0 --JOIN_STYLE=0 --MITER_LIMIT=2 --DISSOLVE=false "--OUTPUT='$oldJ'"
+            qgis_process run native:buffer --distance_units=meters --area_units=m2 --ellipsoid=EPSG:7030 "--INPUT='unbuffered.$newJ'" --DISTANCE='expression:"width" *0.000005' --SEGMENTS=5 --END_CAP_STYLE=0 --JOIN_STYLE=0 --MITER_LIMIT=2 --DISSOLVE=false "--OUTPUT='$newJ'"
         fi
 
 
