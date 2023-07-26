@@ -21,7 +21,8 @@ public class Tools {
         return Runner.runPipeInOut(in,
             "mapshaper", "-",
             args,
-            "-o", "-", "format=geojson", "geojson-type=FeatureCollection"
+            "-o", "-", "format=geojson", "geojson-type=FeatureCollection",
+            "precision=0.00000001"
         );
     }
 
