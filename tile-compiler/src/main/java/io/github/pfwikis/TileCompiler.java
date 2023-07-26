@@ -71,8 +71,7 @@ public class TileCompiler {
             "--preserve-input-order",
             "-B", "0",
             "--coalesce-densest-as-needed",
-            "--maximum-tile-bytes=200000",
-            "--maximum-tile-features=100000",
+            "--maximum-tile-bytes=153600",
             layers
         );
 
