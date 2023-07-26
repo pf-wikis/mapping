@@ -71,6 +71,7 @@ public class TileCompiler {
             "-B", "0",
             "--coalesce-densest-as-needed",
             "--maximum-tile-bytes=153600",
+            "-T", "./tippecanoe-tmp",
             layers
         );
     }

@@ -14,7 +14,7 @@ let colors = {
   districtsDarker: 'rgb(104,  92,  64)',
   deserts:         'rgb(255, 247, 190)',
   desertsDarker:   'rgb(188, 164,   0)',
-  ice:             'rgb(241, 241, 241)',
+  ice:             'rgb(255, 255, 255)',
   iceDarker:       'rgb(108, 108, 108)',
   swamp:           'rgb(183, 197, 188)',
   swampDarker:     'rgb( 72,  88,  78)',
@@ -110,7 +110,7 @@ let layers:LayerSpecification[] = [
     type: 'fill',
     paint: {
       'fill-color': colors.ice,
-      
+      'fill-opacity': .8,
     }
   }),
   createLayer('swamps', {
