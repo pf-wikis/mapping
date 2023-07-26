@@ -8,7 +8,7 @@ RUN git clone https://github.com/mapbox/tippecanoe.git \
 	&& make -j \
 	&& make install
 
-RUN npm install -g geojson-polygon-labels mapshaper @elastic/spritezero-cli curve-interpolator@3.0.1
+RUN npm install -g geojson-polygon-labels mapshaper @indoorequal/spritezero-cli curve-interpolator@3.0.1
 
 ENV QT_QPA_PLATFORM offscreen
 
