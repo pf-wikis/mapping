@@ -63,7 +63,6 @@ public class TileCompiler {
 
         Runner.run("tippecanoe",
             "-z"+options.getMaxZoom(),
-            "--no-tile-compression",
             "-n", "golarion",
             "-e", new File(targetDir, "golarion"),
             "--force",
@@ -75,24 +74,6 @@ public class TileCompiler {
             "--maximum-tile-features=100000",
             layers
         );
-
-        var time = System.nanoTime();
-        //rename extensions for github pages gzipping
-        log.info("Renaming .pbf files to .pbf.json");
-        Files.walk(new File(targetDir, "golarion").toPath())
-            .map(Path::toFile)
-            .filter(f->f.getName().endsWith(".pbf"))
-            .toList()
-            .parallelStream()
-            .forEach(f->{
-                try {
-                    FileUtils.moveFile(f, new File(f.getParentFile(), f.getName()+".json"));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-        log.info("Renaming took "+TimeUnit.NANOSECONDS.toSeconds(System.nanoTime()-time)+"s");
-
     }
 
     private void compileLayers() throws Exception {

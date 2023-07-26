@@ -110,6 +110,7 @@ let layers:LayerSpecification[] = [
     type: 'fill',
     paint: {
       'fill-color': colors.ice,
+      
     }
   }),
   createLayer('swamps', {
@@ -230,7 +231,7 @@ let layers:LayerSpecification[] = [
         'interpolate',
         ['linear'],
         ['zoom'],
-         5,  2,
+        5,  2,
         10, 16,
       ],
     },
@@ -241,7 +242,7 @@ let layers:LayerSpecification[] = [
         'interpolate',
         ['linear'],
         ['zoom'],
-         5, .125,
+        5, .125,
         10, 1,
       ],
     }

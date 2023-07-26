@@ -1,10 +1,11 @@
 import { MultiPoint, Point } from 'geojson';
-import { AttributionControl, LngLat, Map, MapLayerMouseEvent, NavigationControl, Popup, ScaleControl } from "maplibre-gl";
+import Maplibre, { AttributionControl, LngLat, Map, MapLayerMouseEvent, NavigationControl, Popup, ScaleControl } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
 import PureContextMenu from "pure-context-menu";
 import layers from './layers.js';
 import MeasureControl from './measure.js';
 import './style.scss';
+import { decompress } from './utils.js';
 
 //check if running embedded
 var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -18,10 +19,30 @@ if(embedded) {
 // Set up some of the distance calculation variables.
 var distanceContainer = document.getElementById('distance');
 
-var root = location.origin + location.pathname
+var root = location.host + location.pathname
 if(!root.endsWith("/")) root += "/";
+const protocol = location.protocol+'//';
 const maxZoom = parseInt(import.meta.env.VITE_MAX_ZOOM);
 const dataPath = import.meta.env.VITE_DATA_PATH;
+
+Maplibre.addProtocol("custom", (params, callback) => {
+  fetch(`${protocol}${params.url.substring(9)}`)
+      .then(t => {
+          if (t.status == 200) {
+              t.arrayBuffer().then(arr=> {
+                return decompress(arr);
+              }).then(arr => {
+                  callback(null, arr, null, null);
+              });
+          } else {
+              callback(new Error(`Tile fetch error: ${t.statusText}`));
+          }
+      })
+      .catch(e => {
+          callback(new Error(e));
+      });
+  return { cancel: () => { } };
+});
 
 export const map = new Map({
   container: 'map-container',
@@ -34,24 +55,24 @@ export const map = new Map({
         type: 'vector',
         attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
         tiles: [
-          root+dataPath+'/golarion/{z}/{x}/{y}.pbf.json'
+          'custom://'+root+dataPath+'/golarion/{z}/{x}/{y}.pbf'
         ],
         minzoom: 0,
         maxzoom: maxZoom
       }
     },
-    sprite: root+'sprites/sprites',
+    sprite: protocol+root+'sprites/sprites',
     layers: layers,
-    glyphs: root+'fonts/{fontstack}/{range}.pbf.json',
+    glyphs: 'custom://'+root+'fonts/{fontstack}/{range}.pbf',
     transition: {
       duration: 300,
       delay: 0
     }
   },
 });
+
 map.on('error', function(err) {
   console.log(err.error.message);
-  document.getElementById("map-container").innerHTML = err.error.message;
 });
 if(!embedded) {
   map.addControl(new NavigationControl({}));
