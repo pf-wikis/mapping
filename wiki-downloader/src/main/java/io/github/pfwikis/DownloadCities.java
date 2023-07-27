@@ -28,7 +28,8 @@ public class DownloadCities {
                 "|?Is capital",
                 "|?Is size",
                 "|?Has coordinates",
-                "|?Has name"
+                "|?Has name",
+                "|?Has infobox type"
             )
         );
         int offset = 0;
@@ -44,6 +45,7 @@ public class DownloadCities {
                 break;
             }
         }
+        cities.removeIf(c->"City district".equals(c.getIbtype()));
         cities.sort(Comparator.comparing(City::getName));
 
         System.out.println("Found " + cities.size() + " cities.");

@@ -22,6 +22,7 @@ public class City {
     private String size;
     private boolean capital;
     private String name;
+    private String ibtype;
 
     @JsonCreator
     public static City fromJson(ObjectNode n) {
@@ -33,6 +34,8 @@ public class City {
 
         var pop = (ArrayNode)fields.get("Has population");
         if(!pop.isEmpty()) c.setPopulation(pop.get(0).asText());
+        var ibtype = (ArrayNode)fields.get("Has infobox type");
+        if(!ibtype.isEmpty()) c.setIbtype(ibtype.get(0).asText());
         var size = (ArrayNode)fields.get("Is size");
         if(!size.isEmpty()) c.setSize(size.get(0).asText());
         var cap = (ArrayNode)fields.get("Is capital");
