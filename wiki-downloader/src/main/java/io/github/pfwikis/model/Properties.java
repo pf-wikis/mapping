@@ -20,6 +20,7 @@ public class Properties {
     private Boolean capital;
     private Integer size;
     private String type;
+    private String fullUrl;
 
     public Properties(City city) {
         Name = Helper.handleName(city.getName(), city.getPageName());

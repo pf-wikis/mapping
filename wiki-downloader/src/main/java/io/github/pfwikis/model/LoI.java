@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LoI {
+    private String fullUrl;
     private String pageName;
     private BigDecimal coordsLon;
     private BigDecimal coordsLat;
@@ -26,6 +27,7 @@ public class LoI {
         var fields = (ObjectNode) n.get(name).get("printouts");
         c.setName(name.substring(name.indexOf('#')+1));
         c.setPageName(name.substring(0,name.indexOf('#')));
+        c.setFullUrl(n.get(name).get("fullurl").asText());
 
         var type = (ArrayNode)fields.get("Has location type");
         if(!type.isEmpty()) c.setType(type.get(0).asText());

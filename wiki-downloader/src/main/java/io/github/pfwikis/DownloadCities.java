@@ -55,6 +55,7 @@ public class DownloadCities {
             try {
                 var feature = new Feature();
                 feature.setProperties(new Properties(city));
+                feature.getProperties().setFullUrl(city.getFullUrl());
                 handlePopulation(city, feature);
 
                 feature.setGeometry(new Geometry(city));

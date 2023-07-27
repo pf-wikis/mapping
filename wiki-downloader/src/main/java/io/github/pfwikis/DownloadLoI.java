@@ -55,6 +55,7 @@ public class DownloadLoI {
                 properties.setName(Helper.handleName(loi.getName(), loi.getPageName()));
                 properties.setLink("https://pathfinderwiki.com/wiki/" + loi.getPageName().replace(' ', '_'));
                 properties.setType(loi.getType());
+                properties.setFullUrl(loi.getFullUrl());
                 var geometry = new Geometry();
                 geometry.setCoordinates(List.of(
                     loi.getCoordsLon().round(ROUND_TO_7),
