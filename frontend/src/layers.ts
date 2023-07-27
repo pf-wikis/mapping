@@ -106,17 +106,16 @@ let layers:LayerSpecification[] = [
       'fill-color': colors.districts,
     }
   }),
-  createLayer('ice', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.ice,
-      'fill-opacity': .8,
-    }
-  }),
   createLayer('swamps', {
     type: 'fill',
     paint: {
       'fill-color': colors.swamp,
+    }
+  }),
+  createLayer('deserts', {
+    type: 'fill',
+    paint: {
+      'fill-color': colors.deserts,
     }
   }),
   createLayer('hills', {
@@ -131,16 +130,23 @@ let layers:LayerSpecification[] = [
       'fill-color': colors.mountains,
     }
   }),
+  createLayer('ice', {
+    type: 'fill',
+    paint: {
+      'fill-color': colors.ice,
+      'fill-opacity': .8,
+    }
+  }),
   createLayer('forests', {
     type: 'fill',
     paint: {
       'fill-color': colors.forest,
     }
   }),
-  createLayer('deserts', {
+  createLayer('specials', {
     type: 'fill',
     paint: {
-      'fill-color': colors.deserts,
+      'fill-color': ['get', 'color'],
     }
   }),
   createLayer('waters', {
@@ -153,12 +159,6 @@ let layers:LayerSpecification[] = [
     type: 'fill',
     paint: {
       'fill-color': colors.water
-    }
-  }),
-  createLayer('specials', {
-    type: 'fill',
-    paint: {
-      'fill-color': ['get', 'color'],
     }
   }),
   createLayer('walls', {
