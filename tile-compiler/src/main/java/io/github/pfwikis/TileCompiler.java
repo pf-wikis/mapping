@@ -61,6 +61,9 @@ public class TileCompiler {
             .flatMap(f->List.of("-L", f.getName().substring(0, f.getName().length()-8)+":"+f.toString()).stream())
             .toList();
 
+        var ttmp = new File("./tippecanoe-tmp").getAbsoluteFile().getCanonicalFile();
+        ttmp.mkdirs();
+
         Runner.run("tippecanoe",
             "-z"+options.getMaxZoom(),
             "-n", "golarion",
@@ -71,7 +74,7 @@ public class TileCompiler {
             "-B", "0",
             "--coalesce-densest-as-needed",
             "--maximum-tile-bytes=153600",
-            "-t", "./tippecanoe-tmp",
+            "-t", ttmp,
             layers
         );
     }
