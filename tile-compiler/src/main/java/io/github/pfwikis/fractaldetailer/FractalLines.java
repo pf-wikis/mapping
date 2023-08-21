@@ -7,17 +7,16 @@ import java.util.Set;
 
 import io.github.pfwikis.fractaldetailer.model.Edge;
 import io.github.pfwikis.fractaldetailer.model.LngLat;
-import io.github.pfwikis.fractaldetailer.model.Point;
-import io.github.pfwikis.fractaldetailer.model.Project;
+import io.github.pfwikis.util.Projection;
 
 public class FractalLines {
-
-    public static double MAX_DIST = 100;
+    public static double MAX_DIST = .25;
     private final static double FRACTAL_STRENGTH = 0.2;
     private final static float FRACTAL_SCALE = 10;
     private final static FastNoiseLite NOISE = new FastNoiseLite(7, FRACTAL_SCALE);
 
     public static List<LngLat> interpolate(List<LngLat> points, Set<Edge> innerEdges) {
+        points = points.stream().map(ll->new LngLat(ll.lng(), Projection.geoToMercator(ll.lat()))).toList();
         ArrayDeque<LngLat> open = new ArrayDeque<>(points);
         List<LngLat> result = new ArrayList<>();
         result.add(open.pop());
@@ -33,6 +32,7 @@ public class FractalLines {
             a = b;
             result.add(b);
         }
+        result = result.stream().map(ll->new LngLat(ll.lng(), Projection.mercatorToGeo(ll.lat()))).toList();
         return result;
     }
 
@@ -40,23 +40,17 @@ public class FractalLines {
         return innerEdges.contains(new Edge(a, b)) || (a.lng() == 180.0 && b.lng() == 180.0) || (a.lng() == -180.0 && b.lng() == -180.0);
     }
 
-    private static void collectFractally(LngLat lngLatA, LngLat lngLatB, int iterations, List<LngLat> result) {
-        var b = Project.fromLatLngToPoint(lngLatB);
-        var a = Project.fromLatLngToPoint(lngLatA);
-        collectFractally(a, b, iterations, result);
-    }
-
-    private static void collectFractally(Point a, Point b, int iterations, List<LngLat> result) {
+    private static void collectFractally(LngLat a, LngLat b, int iterations, List<LngLat> result) {
         if (iterations == 0) return;
 
-        double r = NOISE.getNoise((float) (a.x() + b.x()), (float) ((a.y() + b.y())));
+        double r = NOISE.getNoise((float) (a.lng() + b.lng()), (float) ((a.lat() + b.lat())));
 
         double d = FRACTAL_STRENGTH * r;
 
-        double aY = a.y();
-        double aX = a.x();
-        double bY = b.y();
-        double bX = b.x();
+        double aY = a.lat();
+        double aX = a.lng();
+        double bY = b.lat();
+        double bX = b.lng();
 
         //this makes sure that we do not care in which direction we go through an edge
         double dx, dy;
@@ -68,20 +62,18 @@ public class FractalLines {
             dy = bY - aY;
         }
 
-        var m = new Point((aX + bX) / 2 + dy * d, (aY + bY) / 2 - dx * d);
+        var m = new LngLat((aX + bX) / 2 + dy * d, (aY + bY) / 2 - dx * d);
 
         collectFractally(a, m, iterations - 1, result);
-        result.add(Project.fromPointToLatLng(m));
+        result.add(m);
         collectFractally(m, b, iterations - 1, result);
     }
 
+    /*simple distance since this is a graphical upgrade*/
     public static double distance(LngLat p1, LngLat p2) {
-        final int R = 6371; // Radius of the earth
-
-        double latDistance = Math.toRadians(p2.lat() - p1.lat());
-        double lonDistance = Math.toRadians(p2.lng() - p1.lng());
-        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2) + Math.cos(Math.toRadians(p1.lat())) * Math.cos(Math.toRadians(p2.lat())) * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        return R * c * 1000; // convert to meters
+        return Math.sqrt(
+            (p1.lat()-p2.lat())*(p1.lat()-p2.lat())
+            +(p1.lng()-p2.lng())*(p1.lng()-p2.lng())
+        );
     }
 }

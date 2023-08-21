@@ -26,7 +26,7 @@ public class AddDetails {
         }
     }
 
-    public static byte[] addDetails(int maxDistance, byte[] in) throws IOException {
+    public static byte[] addDetails(double maxDistance, byte[] in) throws IOException {
         FractalLines.MAX_DIST = maxDistance;
         System.out.println("  detailing " + in);
         var col = new ObjectMapper().readValue(in, FeatureCollection.class);
@@ -56,11 +56,11 @@ public class AddDetails {
         for (var loop : loops) {
             for (int i = 0; i < loop.size() - 1; i++) {
                 Edge e1 = new Edge(loop.get(i), loop.get(i + 1));
-                if (!edges.add(e1)) {
+                if (!edges.add(e1.norm())) {
                     innerEdges.add(e1);
                 }
                 Edge e2 = new Edge(loop.get(i + 1), loop.get(i));
-                if (!edges.add(e2)) {
+                if (!edges.add(e2.norm())) {
                     innerEdges.add(e2);
                 }
             }

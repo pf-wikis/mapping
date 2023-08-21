@@ -8,7 +8,9 @@ public class AddFractalDetail extends LCStep {
 
     @Override
     public byte[] process() throws IOException {
-        int maxDistance = ctx.getOptions().isProdDetail()?400:500;
+        double maxDistance = ctx.getOptions().isProdDetail()?.15:.25;
+        if("ice".equals(getName()))
+            System.out.println();
         return AddDetails.addDetails(maxDistance, getInput());
     }
 
