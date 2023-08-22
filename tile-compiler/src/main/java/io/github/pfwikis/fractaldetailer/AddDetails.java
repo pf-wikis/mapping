@@ -63,6 +63,12 @@ public class AddDetails {
                 if (!edges.add(e2.norm())) {
                     innerEdges.add(e2);
                 }
+
+                //prevent fractal details on the poles
+                if(Math.abs(e1.a().lat())>88 || Math.abs(e1.b().lat())>88) {
+                    innerEdges.add(e1);
+                    innerEdges.add(e2);
+                }
             }
         }
         return innerEdges;
