@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 
@@ -13,6 +14,7 @@ import io.github.pfwikis.fractaldetailer.model.Edge;
 import io.github.pfwikis.fractaldetailer.model.FeatureCollection;
 import io.github.pfwikis.fractaldetailer.model.Geometry.MultiPolygon;
 import io.github.pfwikis.fractaldetailer.model.Geometry.Polygon;
+import io.github.pfwikis.util.Projection;
 import io.github.pfwikis.fractaldetailer.model.LngLat;
 
 public class AddDetails {
@@ -36,6 +38,10 @@ public class AddDetails {
         System.out.println("    found " + loops.size() + " loops");
         System.out.println("    collect inner edges");
         var innerEdges = collectInnerEdges(loops);
+        innerEdges = innerEdges.stream().map(e->new Edge(
+            new LngLat(e.a().lng(), Projection.geoToMercator(e.a().lat())),
+            new LngLat(e.b().lng(), Projection.geoToMercator(e.b().lat()))
+        )).collect(Collectors.toSet());
         System.out.println("    found " + innerEdges.size() + " inner edges");
 
         for (var loop : loops) {
