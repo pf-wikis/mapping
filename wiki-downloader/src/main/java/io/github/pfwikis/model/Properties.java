@@ -26,5 +26,6 @@ public class Properties {
         Name = Helper.handleName(city.getName(), city.getPageName());
         link = "https://pathfinderwiki.com/wiki/" + city.getPageName().replace(' ', '_');
         capital = city.isCapital();
+        fullUrl = city.getFullUrl();
     }
 }
