@@ -254,7 +254,7 @@ public class ShapeRivers extends LCStep {
         var dir1 = new Vector2D(-ab.getY(), ab.getX()).normalize().multiply(b.getWidth());
         var dir2 = new Vector2D(-bc.getY(), bc.getX()).normalize().multiply(b.getWidth());
         var dir = dir1.add(dir2).normalize().multiply(b.getWidth());
-        if (ab.angleTo(bc) < 0) {
+        if (ab.angleTo(bc) < -.075*Math.PI) {
             points.add(RPoint.p(b.getLocation().add(dir1)));
             points.add(RPoint.p(b.getLocation().add(dir)));
             points.add(RPoint.p(b.getLocation().add(dir2)));
