@@ -194,6 +194,9 @@
     - step: ADD
       dependsOn:
         summand: rivers
+    - step: REMOVE_POINTS_NOT_ON_LAND
+      dependsOn:
+        land: land.OUTPUT
     - step: OUTPUT
 
 - name: deep-waters

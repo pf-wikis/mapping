@@ -1,21 +1,29 @@
 package io.github.pfwikis.layercompiler.steps.rivers;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.locationtech.jts.math.Vector2D;
 
 import com.beust.jcommander.internal.Lists;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.io.Files;
 
 import io.github.pfwikis.layercompiler.steps.LCStep;
-import io.github.pfwikis.run.Runner;
 import io.github.pfwikis.run.Tools;
 import lombok.extern.slf4j.Slf4j;
-import mil.nga.sf.geojson.*;
+import mil.nga.sf.geojson.Feature;
+import mil.nga.sf.geojson.FeatureCollection;
+import mil.nga.sf.geojson.LineString;
+import mil.nga.sf.geojson.Point;
+import mil.nga.sf.geojson.Polygon;
 
 @Slf4j
 public class ShapeRivers extends LCStep {
@@ -74,18 +82,14 @@ public class ShapeRivers extends LCStep {
     }
 
     private void markSprings(Ctx ctx, byte[] riversIn, Collection<RPoint> rivers) throws IOException {
-        // clip rivers to land and not water
-        var clipped = Tools
-            .mapshaper(
-                riversIn,
-                "-clip", getInput("land_without_water"),
-                "-explode"
-            );
-
-        var reducedRivers = collectRivers(clipped);
+        var landPoints = PointsOnLandSelector
+        		.collectLandPoints(ctx, riversIn, getInput("land_without_water"))
+        		.stream()
+        		.map(RPoint::v)
+        		.collect(Collectors.toSet());
 
         for (var p : rivers) {
-            if (p.getNeighbors().size() == 1 && reducedRivers.contains(p)) {
+            if (p.getNeighbors().size() == 1 && landPoints.contains(p.getLocation())) {
                 p.setSpring(true);
             }
         }
