@@ -300,9 +300,15 @@ public class ShapeRivers extends LCStep {
 
         // round cap
         if (b.getNeighbors().size() == 1) {
-            for (int i = -10; i <= 10; i += 2) {
-                points.add(RPoint.p(b.getLocation().add(ab.rotate(-Math.PI * i / 20).multiply(b.getWidth()))));
-            }
+        	if(!b.isSpring()) {
+        		points.add(RPoint.p(b.getLocation().add(ab.rotate(-Math.PI / 2).multiply(b.getWidth()))));
+        		points.add(RPoint.p(b.getLocation().add(ab.rotate( Math.PI / 2).multiply(b.getWidth()))));
+        	}
+        	else {
+	            for (int i = -10; i <= 10; i += 2) {
+	                points.add(RPoint.p(b.getLocation().add(ab.rotate(-Math.PI * i / 20).multiply(b.getWidth()))));
+	            }
+        	}
         } else {
             points.add(RPoint.p(b.getLocation()));
         }
