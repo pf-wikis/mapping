@@ -8,3 +8,11 @@ updates:
       frontend-dependencies:
         patterns:
           - "*"
+  - package-ecosystem: "maven"
+    directory: "/tile-compiler"
+    schedule:
+      interval: "weekly"
+    groups:
+      compiler-dependencies:
+        patterns:
+          - "*"
