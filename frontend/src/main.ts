@@ -185,7 +185,7 @@ if(embedded) {
     {
       label: "Open in new tab",
       callback: (e:Event) => {
-        window.open(window.location.href, '_blank').focus();
+        window.open(window.location.href.replace('&embedded=true', ''), '_blank').focus();
       }
     },
     ...items
