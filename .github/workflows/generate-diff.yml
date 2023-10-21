@@ -26,12 +26,12 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{github.event.pull_request.base.ref}}
-          repository: ${{github.event.pull_request.base.repo}}
+          repository: ${{github.event.pull_request.base.repo.full_name}}
       - name: Checkout Head
         uses: actions/checkout@v3
         with:
           ref: ${{github.event.pull_request.head.ref}}
-          repository: ${{github.event.pull_request.base.repo}}
+          repository: ${{github.event.pull_request.base.repo.full_name}}
           path: head
       - name: Create Result Folder
         run: mkdir results
