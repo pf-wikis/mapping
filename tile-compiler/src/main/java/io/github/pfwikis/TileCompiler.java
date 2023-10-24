@@ -77,6 +77,19 @@ public class TileCompiler {
             "-t", ttmp,
             layers
         );
+
+        Runner.run("tippecanoe",
+            "-z"+options.getMaxZoom(),
+            "-n", "golarion",
+            "-o", new File(targetDir, "golarion.pmtiles"),
+            "--force",
+            "--detect-shared-borders",
+            "--preserve-input-order",
+            "-B", "0",
+            "--coalesce-densest-as-needed",
+            "-t", ttmp,
+            layers
+        );
     }
 
     private void compileLayers() throws Exception {
