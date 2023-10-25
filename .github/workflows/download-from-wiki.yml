@@ -28,6 +28,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+          cache: 'maven'
       - name: Download changes
         run: |
           cd wiki-downloader
