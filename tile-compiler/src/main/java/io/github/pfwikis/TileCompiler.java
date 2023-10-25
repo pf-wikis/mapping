@@ -52,7 +52,7 @@ public class TileCompiler {
 
         //give maxZoom to vite
         log.info("Writing .env.local");
-        Files.writeString(new File(targetRoot, "../.env.local").toPath(), "VITE_MAX_ZOOM="+options.getMaxZoom()+"\nVITE_DATA_PATH="+options.getDataPath());
+        Files.writeString(new File(targetRoot, "../.env.local").toPath(), "VITE_DATA_PATH="+options.getDataPath());
     }
 
     private void makeTiles() throws IOException {
@@ -63,20 +63,6 @@ public class TileCompiler {
 
         var ttmp = new File("./tippecanoe-tmp").getAbsoluteFile().getCanonicalFile();
         ttmp.mkdirs();
-
-        Runner.run("tippecanoe",
-            "-z"+options.getMaxZoom(),
-            "-n", "golarion",
-            "-e", new File(targetDir, "golarion"),
-            "--force",
-            "--detect-shared-borders",
-            "--preserve-input-order",
-            "-B", "0",
-            "--coalesce-densest-as-needed",
-            "--maximum-tile-bytes=153600",
-            "-t", ttmp,
-            layers
-        );
 
         Runner.run("tippecanoe",
             "-z"+options.getMaxZoom(),

@@ -6,6 +6,7 @@ import layers from './layers.js';
 import MeasureControl from './measure.js';
 import './style.scss';
 import { decompress } from './utils.js';
+import { Protocol } from 'pmtiles';
 
 //check if running embedded
 var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -21,10 +22,11 @@ var distanceContainer = document.getElementById('distance');
 
 var root = location.host + location.pathname
 if(!root.endsWith("/")) root += "/";
-const protocol = location.protocol+'//';
-const maxZoom = parseInt(import.meta.env.VITE_MAX_ZOOM);
 const dataPath = import.meta.env.VITE_DATA_PATH;
 
+const protocol = location.protocol+'//';
+const pmProtocol = new Protocol();
+Maplibre.addProtocol("pmtiles", pmProtocol.tile);
 Maplibre.addProtocol("custom", (params, callback) => {
   fetch(`${protocol}${params.url.substring(9)}`)
       .then(t => {
@@ -54,11 +56,7 @@ export const map = new Map({
       golarion: {
         type: 'vector',
         attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
-        tiles: [
-          'custom://'+root+dataPath+'/golarion/{z}/{x}/{y}.pbf'
-        ],
-        minzoom: 0,
-        maxzoom: maxZoom
+        url: 'pmtiles://'+protocol+root+dataPath+'/golarion.pmtiles'
       }
     },
     sprite: protocol+root+'sprites/sprites',
@@ -73,6 +71,7 @@ export const map = new Map({
 
 map.on('error', function(err) {
   console.log(err.error.message);
+  debugger;
 });
 if(!embedded) {
   map.addControl(new NavigationControl({}));
