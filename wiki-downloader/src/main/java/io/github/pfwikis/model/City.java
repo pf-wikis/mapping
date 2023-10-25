@@ -15,7 +15,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class City {
-    private String fullUrl;
     private String pageName;
     private BigDecimal coordsLon;
     private BigDecimal coordsLat;
@@ -32,7 +31,6 @@ public class City {
         var fields = (ObjectNode) n.get(name).get("printouts");
         c.setName(name.substring(name.indexOf('#')+1));
         c.setPageName(name.substring(0,name.indexOf('#')));
-        c.setFullUrl(n.get(name).get("fullurl").asText());
 
         var pop = (ArrayNode)fields.get("Has population");
         if(!pop.isEmpty()) c.setPopulation(pop.get(0).asText());
