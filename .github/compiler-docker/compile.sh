@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-maxzoom=13
+maxzoom=12
 datapath=data-$RANDOM
 cd frontend
 printf "VITE_DATA_PATH=$datapath" > .env.local
