@@ -40,9 +40,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: false
-      - name: Checkout data
-        run: |
-          kart clone https://github.com/pf-wikis/mapping-data.git mapping-data
       - name: Compile tiles
         uses: ./.github/compiler-docker
       - name: Setup Pages

@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+kart clone https://github.com/pf-wikis/mapping-data.git mapping-data
 maxzoom=12
 datapath=data-$RANDOM
 cd frontend
