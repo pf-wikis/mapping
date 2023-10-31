@@ -16,8 +16,6 @@ RUN curl https://github.com/koordinates/kart/releases/download/v0.14.2/kart_0.14
 ENV QT_QPA_PLATFORM offscreen
 
 COPY compile.sh /compile.sh
-COPY clean.sh /clean.sh
-COPY diff.sh /diff.sh
 RUN chmod 777 /*.sh
 
 ENTRYPOINT ["/bin/bash", "-c"]
