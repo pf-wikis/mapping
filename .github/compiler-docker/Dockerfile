@@ -1,4 +1,4 @@
-FROM qgis/qgis:release-3_28
+FROM qgis/qgis:release-3_34
 
 RUN apt-get update \
 	&& apt-get install -y mmv openjdk-17-jdk maven jq bc \
@@ -10,7 +10,7 @@ RUN git clone https://github.com/felt/tippecanoe.git \
 
 RUN npm install -g geojson-polygon-labels mapshaper @indoorequal/spritezero-cli curve-interpolator@3.0.1
 
-RUN curl https://github.com/koordinates/kart/releases/download/v0.14.2/kart_0.14.2_amd64.deb -o kart.deb \
+RUN curl -L https://github.com/koordinates/kart/releases/download/v0.14.2/kart_0.14.2_amd64.deb -o kart.deb \
 	&& dpkg -i kart.deb \
 	&& rm -f kart.deb
 
