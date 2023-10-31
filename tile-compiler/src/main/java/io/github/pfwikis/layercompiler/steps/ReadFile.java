@@ -13,13 +13,14 @@ import lombok.RequiredArgsConstructor;
 public class ReadFile extends LCStep {
 
     private final File file;
+    private final String layer;
 
     @Override
     public byte[] process() throws IOException {
         var finalFile = Path.of("../sources").resolve(file.toPath()).toFile().getCanonicalFile();
 
         if(finalFile.getName().endsWith(".gpkg")) {
-            return Tools.ogr2ogr(finalFile.toString(), "-dim", "XY", "-mapFieldType", "DateTime=String");
+            return Tools.ogr2ogr(ctx.getMappingDataFile().toString(), "-dim", "XY", "-mapFieldType", "DateTime=String", layer);
         }
         return FileUtils.readFileToByteArray(finalFile);
     }

@@ -12,6 +12,14 @@ One of the main tools used for this is QGIS: https://qgis.org/en/site/
 * oznogon for continuing this work [here](https://oznogon.com/golarion)
 * everyone contributing to the continuation of this project in this repository
 
+## How to to work with the mapping-data
+
+We are keeping the actual data used by qgis in its own repository. That repository is managed with [kart](https://kartproject.org) instead of git. From a user perspective kart works very similar to kart, but it works with a geopackage file instead of the normal filesystem. To check out the geopackage file you need to:
+
+1. Install [kart](https://kartproject.org)
+2. Clone [pf-wikis/mapping-data](https://github.com/pf-wikis/mapping-data) into a directoy called `mapping-data` next to the directory containing this repo.
+3. Open the qgis file in this repository. If everything is correct it should automatically find the data file for the layers.
+
 ## How to check out the source images
 
 The mapping files in this repository are created by tracing information from maps created by Paizo. These images are protected legally and thus can not be publicly shared. To access them follow these steps:

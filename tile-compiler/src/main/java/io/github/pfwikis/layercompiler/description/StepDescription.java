@@ -61,10 +61,11 @@ public abstract class StepDescription {
     @Setter
     public static class ReadFileStep extends StepDescription {
         private File file;
+        private String layer;
 
         @Override
         protected LCStep create() {
-            return new ReadFile(file);
+            return new ReadFile(file, layer);
         }
     }
 

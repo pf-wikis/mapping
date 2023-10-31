@@ -48,6 +48,7 @@ public abstract class LCStep extends Task<String, byte[]> {
     public static class Ctx {
         private final CLIOptions options;
         private final File geo;
+        private final File mappingDataFile;
     }
 
     public void init(Ctx ctx) {

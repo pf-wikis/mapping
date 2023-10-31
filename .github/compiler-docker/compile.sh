@@ -9,4 +9,4 @@ npm ci
 npm run build
 cd ../tile-compiler
 mvn -B compile package
-java -jar target/tile-compiler.jar compileTiles -maxZoom $maxzoom -useBuildShortcut -dataPath $datapath -prodDetail
+java -jar target/tile-compiler.jar compileTiles -maxZoom $maxzoom -useBuildShortcut -dataPath $datapath -prodDetail -mappingDataFile ../mapping-data/mapping-data.gpkg

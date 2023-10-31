@@ -64,7 +64,8 @@ public class LayersCompiler {
                 var lcstep = step.create(
                     new Ctx(
                         tileCompiler.getOptions(),
-                        tileCompiler.getGeo()
+                        tileCompiler.getGeo(),
+                        tileCompiler.getOptions().getMappingDataFile()
                     )
                 );
                 lcstep.setName(lsDescription.getName());

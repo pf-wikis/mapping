@@ -1,6 +1,8 @@
 package io.github.pfwikis;
 
 
+import java.io.File;
+
 import com.beust.jcommander.Parameter;
 
 import lombok.Getter;
@@ -15,4 +17,6 @@ public class CLIOptions {
     private String dataPath = "data";
     @Parameter(names = "-prodDetail")
     private boolean prodDetail = false;
+    @Parameter(names = "-mappingDataFile")
+    private File mappingDataFile = new File("../../mapping-data/mapping-data.gpkg");
 }
