@@ -8,6 +8,7 @@ import java.lang.ProcessBuilder.Redirect;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -17,9 +18,7 @@ import java.util.logging.Level;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import io.github.pfwikis.layercompiler.steps.rivers.ShapeRivers;
 import lombok.Getter;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -154,6 +153,7 @@ public class Runner {
 
         private void addCommandParts(Object[] commandParts) throws IOException {
             for(var part : commandParts) {
+            	Objects.requireNonNull(part, ()->"null Argument when executing "+Arrays.toString(commandParts));
                 if(part instanceof byte[] bytes) {
                     var tmpFile = tmpGeojson();
                     files.add(tmpFile);
