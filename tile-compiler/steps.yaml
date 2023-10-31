@@ -1,7 +1,7 @@
 - name: chasms
   steps:
     - step: READ_FILE
-      file: chasms.gpkg
+      layer: chasms
     - step: ADD_FRACTAL_DETAIL
     - step: OUTPUT
 
@@ -15,7 +15,7 @@
 - name: land
   steps:
     - step: READ_FILE
-      file: continents.gpkg
+      layer: land
     - step: ADD_FRACTAL_DETAIL
     - step: OUTPUT
 
@@ -36,7 +36,7 @@
 - name: deserts
   steps:
     - step: READ_FILE
-      file: deserts.gpkg
+      layer: deserts
     - step: ADD_FRACTAL_DETAIL
     - step: OUTPUT
 
@@ -50,7 +50,7 @@
 - name: districts
   steps:
     - step: READ_FILE
-      file: districts.gpkg
+      layer: districts
     - step: DISTRICT_GAP
     - step: ADD_ZOOM
       minZoom: 4
@@ -68,7 +68,7 @@
 - name: forests
   steps:
     - step: READ_FILE
-      file: forests.gpkg
+      layer: forests
     - step: ADD_FRACTAL_DETAIL
     - step: OUTPUT
 
@@ -82,7 +82,7 @@
 - name: hills
   steps:
     - step: READ_FILE
-      file: hills.gpkg
+      layer: hills
     - step: ADD_FRACTAL_DETAIL
     - step: OUTPUT
 
@@ -96,7 +96,7 @@
 - name: ice
   steps:
     - step: READ_FILE
-      file: ice.gpkg
+      layer: ice
     - step: ADD_FRACTAL_DETAIL
     - step: OUTPUT
 
@@ -110,7 +110,7 @@
 - name: labels
   steps:
     - step: READ_FILE
-      file: labels.gpkg
+      layer: labels
     - step: GENERATE_LABEL_CENTERS
     - step: OUTPUT
 
@@ -125,7 +125,7 @@
 - name: mountains
   steps:
     - step: READ_FILE
-      file: mountains.gpkg
+      layer: mountains
     - step: ADD_FRACTAL_DETAIL
     - step: OUTPUT
 
@@ -139,7 +139,7 @@
 - name: rivers
   steps:
     - step: READ_FILE
-      file: rivers.gpkg
+      layer: rivers
     - step: SMOOTH_LINES
     - step: SHAPE_RIVERS
       dependsOn:
@@ -156,7 +156,7 @@
 - name: specials
   steps:
     - step: READ_FILE
-      file: specials.gpkg
+      layer: specials
     - step: OUTPUT
 
 - name: special-labels
@@ -169,7 +169,7 @@
 - name: swamps
   steps:
     - step: READ_FILE
-      file: swamps.gpkg
+      layer: swamps
     - step: ADD_FRACTAL_DETAIL
     - step: OUTPUT
 
@@ -183,13 +183,13 @@
 - name: walls
   steps:
     - step: READ_FILE
-      file: walls.gpkg
+      layer: walls
     - step: OUTPUT
 
 - name: waters
   steps:
     - step: READ_FILE
-      file: waters.gpkg
+      layer: waters
     - step: ADD_FRACTAL_DETAIL
     - step: ADD
       dependsOn:
@@ -214,7 +214,7 @@
 - name: borders
   steps:
     - step: READ_FILE
-      file: borders.gpkg
+      layer: borders
 
 - name: nation-borders
   steps:
