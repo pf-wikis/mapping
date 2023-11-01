@@ -25,9 +25,21 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-      - name: Build & Deploy
+      - name: Build
         run: |
           cd tile-compiler
-          mvn -B compile deploy
+          mvn -B package
+      - name: Delete old package
+        uses: actions/delete-package-versions@v4
+        continue-on-error: true
+        with:
+          package-name: io.github.pf-wikis.tile-compiler
+          package-type: maven
+          token: ${{ secrets.GITHUB_TOKEN }}
+          min-versions-to-keep: 0
+      - name: Deploy
+        run: |
+          cd tile-compiler
+          mvn -B deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
