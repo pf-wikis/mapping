@@ -1,4 +1,4 @@
-name: Tile Compiler Deploy
+name: Tile Compiler Publish
 
 on:
   workflow_call:
@@ -12,8 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -25,9 +24,17 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-      - name: Build & Deploy
+      - name: Build
         run: |
           cd tile-compiler
-          mvn -B compile deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          mvn -B package
+          ls -lha target
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: tile-compiler/target/tile-compiler.jar
+          tag: latest-tile-compiler-dummy
+          asset_name: tile-compiler.jar
+          overwrite: true
+
