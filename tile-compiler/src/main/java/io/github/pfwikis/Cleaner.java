@@ -28,6 +28,7 @@ public class Cleaner {
     	log.info("Cleaning {}", f);
         try(var geoPackage = GeoPackageManager.open(f)) {
             for(var featureTable:geoPackage.getFeatureTables()) {
+            	log.info("Cleaning {}: {}", f, featureTable);
                 var featureDao = geoPackage.getFeatureDao(featureTable);
                 var result=featureDao.queryForAll();
                 while(result.moveToNext()) {
