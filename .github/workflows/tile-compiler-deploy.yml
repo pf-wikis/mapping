@@ -1,0 +1,33 @@
+name: Tile Compiler Deploy
+
+on:
+  workflow_call:
+  push:
+    branch: 'main'
+    paths:
+      - 'tile-compiler/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          sparse-checkout: tile-compiler
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'maven'
+      - name: Build & Deploy
+        run: |
+          cd tile-compiler
+          mvn -X -B compile deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
