@@ -28,6 +28,6 @@ jobs:
       - name: Build & Deploy
         run: |
           cd tile-compiler
-          mvn -X -B compile deploy
+          mvn -B compile deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
