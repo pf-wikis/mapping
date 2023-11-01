@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import lombok.extern.slf4j.Slf4j;
 import mil.nga.geopackage.GeoPackageManager;
 
+@Slf4j
 public class Cleaner {
 
     public static void main(String[] args) throws IOException {
@@ -14,13 +16,16 @@ public class Cleaner {
     }
 
     public void run() throws IOException {
-        Files.walk(new File("../sources").toPath())
+    	var root = new File("../sources");
+    	log.info("Starting cleaning in {}", root.getAbsolutePath());
+        Files.walk(root.toPath())
             .map(Path::toFile)
             .filter(f->f.getName().endsWith(".gpkg"))
             .forEach(this::clean);
     }
 
     private void clean(File f) {
+    	log.info("Cleaning {}", f);
         try(var geoPackage = GeoPackageManager.open(f)) {
             for(var featureTable:geoPackage.getFeatureTables()) {
                 var featureDao = geoPackage.getFeatureDao(featureTable);
@@ -28,7 +33,7 @@ public class Cleaner {
                 while(result.moveToNext()) {
                     if(result.getGeometry() == null || result.getGeometry().isEmpty()) {
                         geoPackage.beginTransaction();
-                        System.out.println("Removing "+result.getId()+" from "+f);
+                        log.info("Removing "+result.getId()+" from "+f);
                         featureDao.deleteById(result.getId());
                         geoPackage.endTransaction(true);
                     }
