@@ -6,6 +6,8 @@ on:
     branches:
       - main
   workflow_dispatch:
+  repository_dispatch:
+    types: [data_release] # this is a trigger used by the mapping-data repository
 
 permissions:
   contents: write
