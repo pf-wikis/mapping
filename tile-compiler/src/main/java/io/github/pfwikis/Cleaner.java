@@ -22,7 +22,6 @@ public class Cleaner {
 
     private void clean(File f) {
         try(var geoPackage = GeoPackageManager.open(f)) {
-            var changed = false;
             for(var featureTable:geoPackage.getFeatureTables()) {
                 var featureDao = geoPackage.getFeatureDao(featureTable);
                 var result=featureDao.queryForAll();
@@ -31,7 +30,6 @@ public class Cleaner {
                         geoPackage.beginTransaction();
                         System.out.println("Removing "+result.getId()+" from "+f);
                         featureDao.deleteById(result.getId());
-                        changed = true;
                         geoPackage.endTransaction(true);
                     }
                 }
