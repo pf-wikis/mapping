@@ -1,4 +1,4 @@
-name: Tile Compiler Build
+name: Tile Compiler Deploy
 
 on:
   workflow_call:
@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -22,7 +25,9 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
-      - name: Build
+      - name: Build & Deploy
         run: |
           cd tile-compiler
-          mvn -B compile
+          mvn -X -B compile deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
