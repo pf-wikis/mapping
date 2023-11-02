@@ -10,12 +10,11 @@ import io.github.pfwikis.fractaldetailer.model.LngLat;
 import io.github.pfwikis.util.Projection;
 
 public class FractalLines {
-    public static double MAX_DIST = .25;
     private final static double FRACTAL_STRENGTH = 0.2;
     private final static float FRACTAL_SCALE = 10;
     private final static FastNoiseLite NOISE = new FastNoiseLite(7, FRACTAL_SCALE);
 
-    public static List<LngLat> interpolate(List<LngLat> points, Set<Edge> innerEdges) {
+    public static List<LngLat> interpolate(List<LngLat> points, Set<Edge> innerEdges, double maxDist) {
         points = points.stream().map(ll->new LngLat(ll.lng(), Projection.geoToMercator(ll.lat()))).toList();
         ArrayDeque<LngLat> open = new ArrayDeque<>(points);
         List<LngLat> result = new ArrayList<>();
@@ -26,8 +25,8 @@ public class FractalLines {
             LngLat b = open.pop();
             double distance = distance(a, b);
 
-            if (distance > MAX_DIST && !isInnerEdge(a, b, innerEdges)) {
-                collectFractally(a, b, (int) Math.ceil(Math.log(distance / MAX_DIST) / Math.log(2)), result);
+            if (distance > maxDist && !isInnerEdge(a, b, innerEdges)) {
+                collectFractally(a, b, (int) Math.ceil(Math.log(distance / maxDist) / Math.log(2)), result);
             }
             a = b;
             result.add(b);

@@ -31,7 +31,6 @@ public class AddDetails {
     }
 
     public static byte[] addDetails(double maxDistance, byte[] in) throws IOException {
-        FractalLines.MAX_DIST = maxDistance;
         log.info("  detailing by {} ", maxDistance);
         var col = new ObjectMapper().readValue(in, FeatureCollection.class);
 
@@ -47,7 +46,7 @@ public class AddDetails {
         log.info("    found " + innerEdges.size() + " inner edges");
 
         for (var loop : loops) {
-            var result = FractalLines.interpolate(loop, innerEdges);
+            var result = FractalLines.interpolate(loop, innerEdges, maxDistance);
             loop.clear();
             loop.addAll(result);
         }
