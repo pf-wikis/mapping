@@ -1,10 +1,3 @@
-- name: chasms
-  steps:
-    - step: READ_FILE
-      layer: chasms
-    - step: ADD_FRACTAL_DETAIL
-    - step: OUTPUT
-
 - name: cities
   steps:
     - step: READ_FILE
