@@ -15,8 +15,10 @@ import io.github.pfwikis.fractaldetailer.model.FeatureCollection;
 import io.github.pfwikis.fractaldetailer.model.Geometry.MultiPolygon;
 import io.github.pfwikis.fractaldetailer.model.Geometry.Polygon;
 import io.github.pfwikis.util.Projection;
+import lombok.extern.slf4j.Slf4j;
 import io.github.pfwikis.fractaldetailer.model.LngLat;
 
+@Slf4j
 public class AddDetails {
     public static void main(String[] args) throws IOException {
         int maxDistance = Integer.parseInt(args[0]);
@@ -30,19 +32,19 @@ public class AddDetails {
 
     public static byte[] addDetails(double maxDistance, byte[] in) throws IOException {
         FractalLines.MAX_DIST = maxDistance;
-        System.out.println("  detailing " + in);
+        log.info("  detailing by {} ", maxDistance);
         var col = new ObjectMapper().readValue(in, FeatureCollection.class);
 
-        System.out.println("    collect Loops");
+        log.info("    collect Loops");
         var loops = collectLoops(col);
-        System.out.println("    found " + loops.size() + " loops");
-        System.out.println("    collect inner edges");
+        log.info("    found " + loops.size() + " loops");
+        log.info("    collect inner edges");
         var innerEdges = collectInnerEdges(loops);
         innerEdges = innerEdges.stream().map(e->new Edge(
             new LngLat(e.a().lng(), Projection.geoToMercator(e.a().lat())),
             new LngLat(e.b().lng(), Projection.geoToMercator(e.b().lat()))
         )).collect(Collectors.toSet());
-        System.out.println("    found " + innerEdges.size() + " inner edges");
+        log.info("    found " + innerEdges.size() + " inner edges");
 
         for (var loop : loops) {
             var result = FractalLines.interpolate(loop, innerEdges);
