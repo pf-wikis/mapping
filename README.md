@@ -14,7 +14,7 @@ One of the main tools used for this is QGIS: https://qgis.org/en/site/
 
 ## How to to work with the mapping-data
 
-We are keeping the actual data used by qgis in its own repository. That repository is managed with [kart](https://kartproject.org) instead of git. From a user perspective kart works very similar to kart, but it works with a geopackage file instead of the normal filesystem. To check out the geopackage file you need to:
+We are keeping the actual data used by qgis in its own repository. That repository is managed with [kart](https://kartproject.org) instead of git. From a user perspective kart works very similar to git, but it works with a geopackage file instead of the normal filesystem. To check out the geopackage file you need to:
 
 1. Install [kart](https://kartproject.org)
 2. Clone [pf-wikis/mapping-data](https://github.com/pf-wikis/mapping-data) into a directoy called `mapping-data` next to the directory containing this repo.
