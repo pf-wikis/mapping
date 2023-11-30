@@ -4651,8 +4651,8 @@
     "properties" : {
       "Name" : "Kragnaroth",
       "link" : "https://pathfinderwiki.com/wiki/Kragnaroth",
-      "capital" : false,
-      "size" : 1
+      "capital" : true,
+      "size" : 2
     },
     "geometry" : {
       "type" : "Point",
@@ -5725,6 +5725,18 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -27.17017, 16.80890 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Niishan",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "capital" : false,
+      "size" : 3
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -88.26293, 25.96471 ]
     }
   }, {
     "type" : "Feature",
