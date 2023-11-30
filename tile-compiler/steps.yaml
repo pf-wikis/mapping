@@ -145,6 +145,19 @@
         in: rivers.SMOOTH_LINES
     - step: OUTPUT
 
+- name: roads
+  steps:
+    - step: READ_FILE
+      layer: roads
+    - step: SMOOTH_LINES
+    - step: OUTPUT
+
+- name: roads-labels
+  steps:
+    - step: RIVER_LABELS
+      dependsOn:
+        in: roads.SMOOTH_LINES
+    - step: OUTPUT
 
 - name: specials
   steps:
