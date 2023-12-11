@@ -144,7 +144,7 @@ function clickOnWikilink(e:MapLayerMouseEvent) {
    
   popup
     .setLngLat(coordinates)
-    .setHTML('<a href="'+props.link+'" target="_blank">'+props.Name+"</a>")
+    .setHTML(`<div class="wiki-popup"><h3><a href="${props.link}" target="_blank">${props.Name}</a></h3>${props.text}</div>`)
     .addTo(map);
 }
 
