@@ -23,6 +23,7 @@ public class City {
     private boolean capital;
     private String name;
     private String ibtype;
+    private String text;
 
     @JsonCreator
     public static City fromJson(ObjectNode n) {

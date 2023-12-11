@@ -2,6 +2,7 @@ package io.github.pfwikis;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -57,4 +58,58 @@ public class Helper {
     private static String stripHTML(String textValue) {
         return Jsoup.parseBodyFragment(textValue).text();
     }
+
+    private static String[] REMOVED_SELECTORS = {
+		"table",
+		"div",
+		"script",
+		"input",
+		"style",
+		"ul.gallery",
+		".mw-editsection",
+		"sup.reference",
+		".reference-group",
+		"ol.references",
+		".error",
+		".nomobile",
+		".noprint",
+		".noexcerpt",
+		".sortkey",
+		"#spoilerWarning"
+	};
+	public static String downloadText(String pageName) throws IOException {
+		var resp = Jackson.get().readTree(URI.create(
+			buildQuery("https://pathfinderwiki.com/w/api.php",
+				"format", "json",
+				"utf8", "1",
+				"formatversion", "2",
+				"action", "parse",
+				"disablelimitreport", "true",
+				"disableeditsection", "true",
+				"disabletoc", "true",
+				"page", pageName
+		)).toURL());
+		var parsed = resp.at("/parse/text").asText();
+		if(StringUtils.isBlank(parsed)) {
+			return null;
+		}
+		
+		var doc = Jsoup.parseBodyFragment(parsed, "https://pathfinderwiki.com");
+		var output = doc.select(".mw-parser-output").first();
+		doc.body().children().remove();
+		output.children().forEach(doc.body()::appendChild);
+		
+		for(var select:REMOVED_SELECTORS) {
+			doc.select(select).remove();
+		}
+		//make URLs absolute
+		doc.getElementsByAttribute("href").forEach(e->e.attr("href", e.absUrl("href")));
+		
+		var raw = doc.body().html();
+		
+		//cut off sections
+		raw = raw.replaceAll("(?s)<h\\d.*", "");
+		doc = Jsoup.parseBodyFragment(raw);
+		return doc.body().html();
+	}
 }

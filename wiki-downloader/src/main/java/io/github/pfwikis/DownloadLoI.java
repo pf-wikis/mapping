@@ -47,14 +47,18 @@ public class DownloadLoI {
         lois.sort(Comparator.comparing(LoI::getName));
 
         System.out.println("Found " + lois.size() + " LoIs.");
+        System.out.println("Downloading texts");
+        for (var loi : lois) {
+        	if(!loi.getPageName().startsWith("PathfinderWiki:")) {
+        		System.out.println("\t"+loi.getPageName());
+        		loi.setText(Helper.downloadText(loi.getPageName()));
+        	}
+        }
 
         var arr = new ArrayList<Feature>();
         for (var loi : lois) {
             try {
-                var properties = new Properties();
-                properties.setName(Helper.handleName(loi.getName(), loi.getPageName()));
-                properties.setLink("https://pathfinderwiki.com/wiki/" + loi.getPageName().replace(' ', '_'));
-                properties.setType(loi.getType());
+                var properties = new Properties(loi);
                 var geometry = new Geometry();
                 geometry.setCoordinates(List.of(
                     loi.getCoordsLon().round(ROUND_TO_7),

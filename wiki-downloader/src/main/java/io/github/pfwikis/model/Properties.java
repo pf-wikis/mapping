@@ -20,10 +20,19 @@ public class Properties {
     private Boolean capital;
     private Integer size;
     private String type;
+    private String text;
 
     public Properties(City city) {
         Name = Helper.handleName(city.getName(), city.getPageName());
         link = "https://pathfinderwiki.com/wiki/" + city.getPageName().replace(' ', '_');
         capital = city.isCapital();
+        text = city.getText();
     }
+
+	public Properties(LoI loi) {
+		Name = Helper.handleName(loi.getName(), loi.getPageName());
+        link = "https://pathfinderwiki.com/wiki/" + loi.getPageName().replace(' ', '_');
+        type = loi.getType();
+        text = loi.getText();
+	}
 }

@@ -49,6 +49,13 @@ public class DownloadCities {
         cities.sort(Comparator.comparing(City::getName));
 
         System.out.println("Found " + cities.size() + " cities.");
+        System.out.println("Downloading texts");
+        for (var city : cities) {
+        	if(!city.getPageName().startsWith("PathfinderWiki:")) {
+        		System.out.println("\t"+city.getPageName());
+        		city.setText(Helper.downloadText(city.getPageName()));
+        	}
+        }
 
         var arr = new ArrayList<Feature>();
         for (var city : cities) {

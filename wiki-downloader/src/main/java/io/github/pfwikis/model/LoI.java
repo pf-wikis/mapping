@@ -18,6 +18,7 @@ public class LoI {
     private BigDecimal coordsLat;
     private String type;
     private String name;
+    private String text;
 
     @JsonCreator
     public static LoI fromJson(ObjectNode n) {
