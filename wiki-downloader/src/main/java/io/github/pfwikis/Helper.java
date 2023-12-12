@@ -104,6 +104,7 @@ public class Helper {
 		}
 		//make URLs absolute
 		doc.getElementsByAttribute("href").forEach(e->e.attr("href", e.absUrl("href")));
+		doc.getElementsByTag("a").attr("target", "_blank");
 		
 		var raw = doc.body().html();
 		
