@@ -36,10 +36,20 @@ jobs:
         uses: ./.github/compiler-docker
       - name: Setup Pages
         uses: actions/configure-pages@v2
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Copy map to server
+        uses: appleboy/scp-action@v0.1.4
         with:
-          path: frontend/dist
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          source: "frontend/dist/*"
+          target: /wikis/volumes/map
+          strip_components: 1
+          overwrite: true
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v2
+      #   with:
+      #     path: frontend/dist
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v1
