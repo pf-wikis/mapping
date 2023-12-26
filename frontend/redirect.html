@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="refresh" content="0; url='https://map.pathfinderwiki.com'" />
-  </head>
   <body>
-    <p>The map has moved to <a href="https://map.pathfinderwiki.com"></a>. You will be redirected automatically.</p>
+    <div id="content"></div>
+    <script type="text/javascript">
+        var target = 'https://map.pathfinderwiki.com/'+window.location.hash;
+        document.getElementById('content').innerHTML=`The map has moved to <a href="${target}">${target}</a>. You will be redirected.`;
+        window.location.replace(target);
+    </script>
   </body>
 </html>
