@@ -44,8 +44,8 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           source: "frontend/dist/*"
           target: /wikis/volumes/map
-          strip_components: 1
-          overwrite: true
+          strip_components: 2
+          rm: true
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v2
       #   with:
