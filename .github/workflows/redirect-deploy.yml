@@ -36,7 +36,7 @@ jobs:
         uses: actions/configure-pages@v2
       - run: |
           mkdir result
-          cp frontend/src/redirect.html result/
+          cp frontend/redirect.html result/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
