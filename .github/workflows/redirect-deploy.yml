@@ -34,16 +34,6 @@ jobs:
           submodules: false
       - name: Setup Pages
         uses: actions/configure-pages@v2
-      - name: Copy map to server
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          source: "frontend/dist/*"
-          target: /wikis/volumes/map
-          strip_components: 2
-          rm: true
       - run: |
           mkdir result
           cp frontend/src/redirect.html result/
