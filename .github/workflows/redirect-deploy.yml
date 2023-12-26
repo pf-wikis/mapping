@@ -1,4 +1,4 @@
-name: Map Deployment
+name: Redirect Deployment
 
 on:
   workflow_call:
@@ -9,22 +9,31 @@ on:
   repository_dispatch:
     types: [data_release] # this is a trigger used by the mapping-data repository
 
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+  packages: read
+
 # Allow one concurrent deployment
 concurrency:
-  group: "pages"
+  group: "redirect"
   cancel-in-progress: true
 
 jobs:
   # Build job
   build:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           submodules: false
-      - name: Compile tiles
-        uses: ./.github/compiler-docker
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
       - name: Copy map to server
         uses: appleboy/scp-action@v0.1.4
         with:
@@ -35,10 +44,13 @@ jobs:
           target: /wikis/volumes/map
           strip_components: 2
           rm: true
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v2
-      #   with:
-      #     path: frontend/dist
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v1
+      - run: |
+          mkdir result
+          cp frontend/src/redirect.html result/
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: result
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
