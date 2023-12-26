@@ -34,7 +34,7 @@ jobs:
           source: "frontend/dist/*"
           target: /wikis/volumes/map
           strip_components: 2
-          rm: true
+          overwrite: true
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v2
       #   with:

@@ -13,8 +13,8 @@ public class CLIOptions {
     private int maxZoom=8;
     @Parameter(names = "-useBuildShortcut")
     private boolean useBuildShortcut=false;
-    @Parameter(names = "-dataPath")
-    private String dataPath = "data";
+    @Parameter(names = "-dataHash")
+    private String dataHash = "data";
     @Parameter(names = "-prodDetail")
     private boolean prodDetail = false;
     @Parameter(names = "-mappingDataFile")

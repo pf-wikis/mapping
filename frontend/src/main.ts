@@ -22,7 +22,6 @@ var distanceContainer = document.getElementById('distance');
 
 var root = location.host + location.pathname
 if(!root.endsWith("/")) root += "/";
-const dataPath = import.meta.env.VITE_DATA_PATH;
 
 const protocol = location.protocol+'//';
 const pmProtocol = new Protocol();
@@ -56,7 +55,7 @@ export const map = new Map({
       golarion: {
         type: 'vector',
         attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
-        url: 'pmtiles://'+protocol+root+dataPath+'/golarion.pmtiles'
+        url: 'pmtiles://'+protocol+root+'/golarion.pmtiles?'+import.meta.env.VITE_DATA_HASH
       }
     },
     sprite: protocol+root+'sprites/sprites',
@@ -71,7 +70,6 @@ export const map = new Map({
 
 map.on('error', function(err) {
   console.log(err.error.message);
-  debugger;
 });
 if(!embedded) {
   map.addControl(new NavigationControl({}));

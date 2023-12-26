@@ -30,7 +30,7 @@ public class TileCompiler {
         targetRoot = new File(options.isUseBuildShortcut()
             ?"../frontend/dist"
             : "../frontend/public");
-        targetDir = new File(targetRoot, options.getDataPath());
+        targetDir = new File(targetRoot, ".");
         spriteDir = new File(targetRoot, "sprites");
         geo = new File("geo");
 
@@ -52,7 +52,7 @@ public class TileCompiler {
 
         //give maxZoom to vite
         log.info("Writing .env.local");
-        Files.writeString(new File(targetRoot, "../.env.local").toPath(), "VITE_DATA_PATH="+options.getDataPath());
+        Files.writeString(new File(targetRoot, "../.env.local").toPath(), "VITE_DATA_HASH="+options.getDataHash());
     }
 
     private void makeTiles() throws IOException {
