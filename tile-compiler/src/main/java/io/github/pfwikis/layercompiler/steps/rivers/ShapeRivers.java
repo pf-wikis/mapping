@@ -42,7 +42,7 @@ public class ShapeRivers extends LCStep {
 
         var ownResult = JACKSON.writeValueAsBytes(result);
 
-        return Tools.mapshaper(ownResult, "--filter-fields", "-clean", "sliver-control=0", "gap-fill-area=5m2", "-dissolve2", "-explode");
+        return Tools.mapshaper(ownResult, "--filter-fields", "-clean", "sliver-control=0", "-dissolve2", "-explode");
 
         // merge this into the water afterwards
     }
