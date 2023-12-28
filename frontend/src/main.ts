@@ -55,7 +55,7 @@ export const map = new Map({
       golarion: {
         type: 'vector',
         attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
-        url: 'pmtiles://'+protocol+root+'/golarion.pmtiles?'+import.meta.env.VITE_DATA_HASH
+        url: 'pmtiles://'+protocol+root+'golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH
       }
     },
     sprite: protocol+root+'sprites/sprites',
