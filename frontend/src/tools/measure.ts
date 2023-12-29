@@ -1,4 +1,4 @@
-import { ControlPosition, GeoJSONSource, IControl, LngLat, Map } from "maplibre-gl";
+import { GeoJSONSource, IControl, LngLat, Map } from "maplibre-gl";
 import { enable } from "mapbox-gl-draw-geodesic";
 import MapboxDraw, { DrawCustomMode } from "@mapbox/mapbox-gl-draw";
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';

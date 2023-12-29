@@ -1,12 +1,14 @@
-import { MultiPoint, Point } from 'geojson';
-import Maplibre, { AttributionControl, LngLat, Map, MapLayerMouseEvent, NavigationControl, Popup, ScaleControl } from "maplibre-gl";
+import Maplibre, { AttributionControl, Map, NavigationControl, ScaleControl } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
-import PureContextMenu from "pure-context-menu";
+
 import layers from './layers.js';
-import MeasureControl from './measure.js';
+import MeasureControl from './tools/measure.js';
 import './style.scss';
 import { decompress } from './utils.js';
 import { Protocol } from 'pmtiles';
+import { makeLocationsClickable } from "./tools/location-popup.js";
+import { addRightClickMenu } from "./tools/right-click-menu.js";
+import { addSpecialURLOptions } from "./tools/special-url-options.js";
 
 //check if running embedded
 var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -17,17 +19,12 @@ if(embedded) {
   mapContainer.classList.add("embedded");
 }
 
-// Set up some of the distance calculation variables.
-var distanceContainer = document.getElementById('distance');
+var root = `${location.protocol}//${location.host}/`;
 
-var root = location.host + location.pathname
-if(!root.endsWith("/")) root += "/";
-
-const protocol = location.protocol+'//';
 const pmProtocol = new Protocol();
 Maplibre.addProtocol("pmtiles", pmProtocol.tile);
 Maplibre.addProtocol("custom", (params, callback) => {
-  fetch(`${protocol}${params.url.substring(9)}`)
+  fetch(params.url.substring(9))
       .then(t => {
           if (t.status == 200) {
               t.arrayBuffer().then(arr=> {
@@ -49,16 +46,17 @@ export const map = new Map({
   container: 'map-container',
   hash: 'location',
   attributionControl: false,
+  pitchWithRotate: false,
   style: {
     version: 8,
     sources: {
       golarion: {
         type: 'vector',
         attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
-        url: 'pmtiles://'+protocol+root+'golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH
+        url: 'pmtiles://'+root+'golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH
       }
     },
-    sprite: protocol+root+'sprites/sprites',
+    sprite: root+'sprites/sprites',
     layers: layers,
     glyphs: 'custom://'+root+'fonts/{fontstack}/{range}.pbf',
     transition: {
@@ -67,12 +65,15 @@ export const map = new Map({
     }
   },
 });
+//diable rotation
+map.dragRotate.disable();
+map.touchZoomRotate.disableRotation();
 
 map.on('error', function(err) {
   console.log(err.error.message);
 });
 if(!embedded) {
-  map.addControl(new NavigationControl({}));
+  map.addControl(new NavigationControl({showCompass: false}));
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',
@@ -88,113 +89,10 @@ map.addControl(new AttributionControl({
 let measureControl = new MeasureControl();
 map.addControl(measureControl);
 
-var latLong:LngLat = null;
-map.on('contextmenu', function(e) {
-  latLong = e.lngLat;
-});
+makeLocationsClickable(map);
+addRightClickMenu(embedded, map, measureControl);
+addSpecialURLOptions(map);
 
-////////////////////////////////////////// make cities clickable
-function showPointer() {
-  map.getCanvas().style.cursor = 'pointer';
-}
-
-function hidePointer() {
-  map.getCanvas().style.cursor = '';
-}
-
-map.on('mouseenter', 'city-icons', showPointer);
-map.on('mouseenter', 'city-labels', showPointer);
-map.on('mouseleave', 'city-icons', hidePointer);
-map.on('mouseleave', 'city-labels', hidePointer);
-map.on('mouseenter', 'location-icons', showPointer);
-map.on('mouseenter', 'location-labels', showPointer);
-map.on('mouseleave', 'location-icons', hidePointer);
-map.on('mouseleave', 'location-labels', hidePointer);
-
-
-const popup = new Popup();
-function clickOnWikilink(e:MapLayerMouseEvent) {
-  let geom = e.features[0].geometry as Point|MultiPoint;
-  let coordinates:[number, number];
-  let props = e.features[0].properties;
-
-  //if this feature has multiple geometry use the closest one
-  if(geom.type === 'MultiPoint') {
-    coordinates = (geom.coordinates.slice() as [number,number][]).reduce((prev, curr) => {
-      if(prev === undefined) {
-        return curr;
-      }
-      let prevDist = e.lngLat.distanceTo(new LngLat(...prev));
-      let currDist = e.lngLat.distanceTo(new LngLat(...curr));
-      return prevDist < currDist ? prev : curr;
-    });
-  }
-  else {
-    coordinates = geom.coordinates.slice() as [number, number];
-  }
-   
-  // Ensure that if the map is zoomed out such that multiple
-  // copies of the feature are visible, the popup appears
-  // over the copy being pointed to.
-  while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-  }
-   
-  popup
-    .setLngLat(coordinates)
-    .setHTML(`<div class="wiki-popup"><h3><a href="${props.link}" target="_blank">${props.Name}</a></h3>${props.text}</div>`)
-    .addTo(map);
-}
-
-map.on('click', 'city-icons',  clickOnWikilink);
-map.on('click', 'city-labels', clickOnWikilink);
-map.on('click', 'location-icons',  clickOnWikilink);
-map.on('click', 'location-labels', clickOnWikilink);
-
-
-///////////////////////////////////////// right click menu
-let items = [
-  {
-    label: "Measure Distance",
-    callback: (e:Event) => {
-      measureControl.startMeasurement(latLong);
-    }
-  },
-  {
-    label: "Copy Lat/Long",
-    callback: (e:Event) => {
-      let text = latLong.wrap().lat.toFixed(7)+", "+latLong.wrap().lng.toFixed(7);
-
-      if (!navigator.clipboard) {
-        alert(text);
-        return;
-      }
-      navigator.clipboard.writeText(text).then(function() {
-        console.log(`Copied '${text}' into clipboard`);
-      }, function(err) {
-        alert(text);
-      });
-    },
-  },
-];
-if(embedded) {
-  items = [
-    {
-      label: "Open in new tab",
-      callback: (e:Event) => {
-        window.open(window.location.href.replace('&embedded=true', ''), '_blank').focus();
-      }
-    },
-    ...items
-  ]
-}
-
-const menu = new PureContextMenu(mapContainer, items, {
-  show: (e:Event) => {
-    //only show if map itself is clicked
-    return (e.target as HTMLElement).classList.contains('maplibregl-canvas');
-  }
-});
 
 //////////debugging options
 //map.showCollisionBoxes = true;

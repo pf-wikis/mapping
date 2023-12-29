@@ -1,5 +1,4 @@
-// vite.config.js
-
+/** @type {import('vite').UserConfig} */
 export default {
   base: '',
   build: {
@@ -11,6 +10,12 @@ export default {
   resolve: {
     alias: {
       '~bootstrap': 'node_modules/bootstrap',
+    }
+  },
+  server: {
+    proxy: {
+      '/sprites': 'https://map.pathfinderwiki.com',
+      '/golarion.pmtiles': 'https://map.pathfinderwiki.com',
     }
   }
 }
