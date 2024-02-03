@@ -1,7 +1,7 @@
 import { DataDrivenPropertyValueSpecification, ExpressionSpecification, LayerSpecification } from "maplibre-gl";
 
 let limit = {
-  districts:    11
+  districts:    18
 };
 
 let colors = {
@@ -62,8 +62,8 @@ function interpolateTextWithCamera(factor:number):ExpressionSpecification {
 function blendInOut(from:number, to:number):ExpressionSpecification {
   return ['interpolate', ['linear'], ['zoom'],
     from, 0,
-    from+.5, 1,
-    to  -.5, 1,
+    from+.5, .5,
+    to  -.5, .5,
     to, 0
   ]
 }
@@ -134,7 +134,7 @@ let layers:LayerSpecification[] = [
     type: 'fill',
     paint: {
       'fill-color': colors.ice,
-      'fill-opacity': .8,
+      'fill-opacity': .9,
     }
   }),
   createLayer('forests', {
@@ -236,14 +236,14 @@ let layers:LayerSpecification[] = [
       ],
     },
     paint: {
-      'text-color': colors.water,
-      'text-halo-color': colors.waterDarker,
+      'text-color': colors.waterDarker,
+      'text-halo-color': colors.water,
       'text-halo-width': [
         'interpolate',
         ['linear'],
         ['zoom'],
         5, .125,
-        10, 1,
+        10, .5,
       ],
     }
   }),
@@ -256,9 +256,9 @@ let layers:LayerSpecification[] = [
       'text-size': 32,
     },
     paint: {
-      'text-color': colors.ice,
-      'text-halo-color': colors.iceDarker,
-      'text-halo-width': 1
+      'text-color': colors.iceDarker,
+      'text-halo-color': colors.ice,
+      'text-halo-width': .5
     }
   }),
   createLayer('forest-labels', {
@@ -270,9 +270,9 @@ let layers:LayerSpecification[] = [
       'text-size': 16,
     },
     paint: {
-      'text-color': colors.forest,
-      'text-halo-color': colors.forestDarker,
-      'text-halo-width': 1
+      'text-color': colors.forestDarker,
+      'text-halo-color': colors.forest,
+      'text-halo-width': .5
     }
   }),
   createLayer('special-labels', {
@@ -283,9 +283,9 @@ let layers:LayerSpecification[] = [
       'text-size': 16,
     },
     paint: {
-      'text-color': colors.districts,
-      'text-halo-color': colors.districtsDarker,
-      'text-halo-width': 1
+      'text-color': colors.districtsDarker,
+      'text-halo-color': colors.districts,
+      'text-halo-width': .5
     }
   }),
   createLayer('labels', {
@@ -296,9 +296,9 @@ let layers:LayerSpecification[] = [
       'text-size': 16,
     },
     paint: {
-      'text-color': colors.districts,
-      'text-halo-color': colors.districtsDarker,
-      'text-halo-width': 1
+      'text-color': colors.districtsDarker,
+      'text-halo-color': colors.districts,
+      'text-halo-width': .5
     }
   }),
   createLayer('hill-labels', {
@@ -310,9 +310,9 @@ let layers:LayerSpecification[] = [
       'text-size': 16,
     },
     paint: {
-      'text-color': colors.hills,
-      'text-halo-color': colors.hillsDarker,
-      'text-halo-width': 1
+      'text-color': colors.hillsDarker,
+      'text-halo-color': colors.hills,
+      'text-halo-width': .5
     }
   }),
   createLayer('mountain-labels', {
@@ -324,9 +324,9 @@ let layers:LayerSpecification[] = [
       'text-size': 16,
     },
     paint: {
-      'text-color': colors.mountains,
-      'text-halo-color': colors.mountainsDarker,
-      'text-halo-width': 1
+      'text-color': colors.mountainsDarker,
+      'text-halo-color': colors.mountains,
+      'text-halo-width': .5
     }
   }),
   createLayer('desert-labels', {
@@ -338,9 +338,9 @@ let layers:LayerSpecification[] = [
       'text-size': 16,
     },
     paint: {
-      'text-color': colors.deserts,
-      'text-halo-color': colors.desertsDarker,
-      'text-halo-width': 1
+      'text-color': colors.desertsDarker,
+      'text-halo-color': colors.deserts,
+      'text-halo-width': .5
     }
   }),
   createLayer('swamp-labels', {
@@ -352,9 +352,9 @@ let layers:LayerSpecification[] = [
       'text-size': 16,
     },
     paint: {
-      'text-color': colors.swamp,
-      'text-halo-color': colors.swampDarker,
-      'text-halo-width': 1
+      'text-color': colors.swampDarker,
+      'text-halo-color': colors.swamp,
+      'text-halo-width': .5
     }
   }),
   createLayer('water-labels', {
@@ -366,9 +366,9 @@ let layers:LayerSpecification[] = [
       'text-size': 16,
     },
     paint: {
-      'text-color': colors.water,
-      'text-halo-color': colors.waterDarker,
-      'text-halo-width': 1
+      'text-color': colors.waterDarker,
+      'text-halo-color': colors.water,
+      'text-halo-width': .5
     }
   }),
 
@@ -456,9 +456,9 @@ let layers:LayerSpecification[] = [
       'text-radial-offset': .3,
     },
     paint: {
-      'text-color': colors.white,
-      'text-halo-color': colors.black,
-      'text-halo-width': .8
+      'text-color': colors.black,
+      'text-halo-color': colors.white,
+      'text-halo-width': .5
     }
   }),
   createLayer('cities', {
@@ -467,14 +467,14 @@ let layers:LayerSpecification[] = [
     maxzoom: limit.districts,
     filter: ['>', ["-", ["zoom"], props.filterMinzoom], 3],
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['upcase', ['get', 'Name']],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['step',
         ['get', 'size'],
-        18,
-        1, 16,
-        2, 14,
-        3, 12
+        16,
+        1, 14,
+        2, 12,
+        3, 10
       ],
       'text-variable-anchor': ["left", "right"],
       'symbol-sort-key': ['get', 'size'],
@@ -487,25 +487,25 @@ let layers:LayerSpecification[] = [
       ],
     },
     paint: {
-      'text-color': colors.white,
-      'text-halo-color': colors.black,
-      'text-halo-width': .8
+      'text-color': colors.black,
+      'text-halo-color': colors.white,
+      'text-halo-width': .875
     }
   }),
   createLayer('district-labels', {
     type: 'symbol',
     minzoom: limit.districts,
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['upcase', ['get', 'Name']],
       'text-font': ['NotoSans-Medium'],
       'text-size': 16,
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
     paint: {
-      'text-color': colors.white,
-      'text-halo-color': colors.black,
-      'text-halo-width': 1
+      'text-color': colors.black,
+      'text-halo-color': colors.white,
+      'text-halo-width': .5
     }
     
   }),
@@ -514,21 +514,21 @@ let layers:LayerSpecification[] = [
     maxzoom: 7,
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['upcase', ['get', 'Name']],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        5, 5,
-        7, 20,
+        5, 10,
+        7, 16,
       ],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
     paint: {
-      'text-color': colors.white,
-      'text-halo-color': colors.regionNames,
+      'text-color': colors.black,
+      'text-halo-color': colors.white,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
         5, .375,
-        7, 1.5,
+        7, .5,
       ],
     }
   }),
@@ -541,21 +541,21 @@ let layers:LayerSpecification[] = [
       ['>', ['zoom'], 4]
     ],
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['upcase', ['get', 'Name']],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        4, 10,
-        5, 25,
+        4, 12,
+        5, 20,
       ],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
     paint: {
-      'text-color': colors.white,
-      'text-halo-color': colors.regionNames,
+      'text-color': colors.black,
+      'text-halo-color': colors.white,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
-        4, .75,
-        5, 1.875,
+        4, 1,
+        5, 1.5,
       ],
     }
   }),
@@ -564,7 +564,7 @@ let layers:LayerSpecification[] = [
     maxzoom: 5,
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['upcase', ['get', 'Name']],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
         4, 10,
@@ -574,11 +574,11 @@ let layers:LayerSpecification[] = [
       'symbol-z-order': 'source',
     },
     paint: {
-      'text-color': colors.white,
-      'text-halo-color': colors.regionNames,
+      'text-color': colors.black,
+      'text-halo-color': colors.white,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
         4, .75,
-        5, 1.875,
+        5, .875,
       ],
     }
   }),
@@ -596,7 +596,7 @@ let layers:LayerSpecification[] = [
     paint: {
       'text-color': colors.regionNames,
       'text-halo-color': colors.regionNamesOut,
-      'text-halo-width': 1.5,
+      'text-halo-width': .5,
     }
   }),
   createLayer('continent-labels', {
@@ -611,9 +611,9 @@ let layers:LayerSpecification[] = [
       'symbol-z-order': 'source',
     },
     paint: {
-      'text-color': colors.land,
-      'text-halo-color': colors.landDarker,
-      'text-halo-width': interpolateTextWithCamera(1)
+      'text-color': colors.landDarker,
+      'text-halo-color': colors.land,
+      'text-halo-width': interpolateTextWithCamera(.5)
     }
   }),
 ];
