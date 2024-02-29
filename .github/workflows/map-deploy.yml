@@ -35,6 +35,13 @@ jobs:
           target: /wikis/volumes/map
           strip_components: 2
           overwrite: true
+      - name: Delete old files
+        uses: garygrossgarten/github-action-ssh@v0.6.4
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          command: sudo find /wikis/volumes/map -mtime +7 -type f -delete
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v2
       #   with:
