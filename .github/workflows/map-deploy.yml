@@ -41,7 +41,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          command: sudo find /wikis/volumes/map -mtime +7 -type f -delete
+          command: find /wikis/volumes/map -mtime +7 -type f -delete
       # - name: Upload artifact
       #   uses: actions/upload-pages-artifact@v2
       #   with:
