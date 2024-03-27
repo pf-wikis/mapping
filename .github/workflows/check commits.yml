@@ -10,6 +10,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Check that no images are in the repo
+      run: |
+        ! find . -name '*.png' | grep .
+        ! find . -name '*.jpg' | grep .
+        ! find . -name '*.tif' | grep .
+        ! find . -name '*.webp' | grep .
     - name: Install dvc
       env:
         GDRIVE_SERVICE_ACCOUNT: ${{ secrets.GDRIVE_SERVICE_ACCOUNT }}
