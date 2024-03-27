@@ -10,11 +10,6 @@ wiki-downloader/target
 **/.settings
 tile-compiler/target
 
-#ingore image sources so they are not added accidentally
-sources/images/**/*
-!sources/images/**/*.dvc
-!sources/images/**/.gitignore
-
 # IntelliJ
 .idea/*
 *.iml
