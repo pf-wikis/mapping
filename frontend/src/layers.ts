@@ -379,6 +379,8 @@ let layers:LayerSpecification[] = [
     layout: {
       'icon-image': ['match', ['get', 'type'],
         'tower', 'location-tower',
+        'mountain', 'location-mountain',
+        'castle', 'location-castle',
         'city-ruins', 'location-city-ruins',
         'location-other'
       ],
