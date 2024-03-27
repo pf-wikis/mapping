@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Install dvc
-      run: snap install dvc --classic
+      run: sudo snap install dvc --classic
     - name: Check if dvc pull works
       run: |
         dvc pull
