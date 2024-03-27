@@ -1,0 +1,18 @@
+# This workflow will check commits to contain no images and if dvc is up to date
+
+name: Check Commit
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dvc
+      run: snap install dvc --classic
+    - name: Check if dvc pull works
+      run: |
+        dvc pull
+        dvc checkout
