@@ -16,6 +16,7 @@ jobs:
       run: |
         sudo snap install dvc --classic
         echo "$GDRIVE_CLIENT_ID" >> /tmp/srvacc.json
+        stat --printf="%s" /tmp/srvacc.json
         dvc remote modify imagestore gdrive_use_service_account true
         dvc remote modify imagestore gdrive_service_account_json_file_path /tmp/srvacc.json
     - name: Check if dvc pull works
