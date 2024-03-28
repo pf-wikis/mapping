@@ -9,7 +9,7 @@ public class SmoothLines extends LCStep {
     @Override
     public byte[] process() throws IOException {
         return Tools.mapshaper(getInput(),
-            "-require", "curve-interpolator", "alias=_",
+            "-require", "curve-interpolator@3.0.1", "alias=_",
             "-explode",
             "-each", """
                 if(this.properties.noSmooth) return;
