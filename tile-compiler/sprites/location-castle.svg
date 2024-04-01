@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="8"
-   height="8"
+   width="12"
+   height="12"
    viewBox="0 0 100 100"
    version="1.1"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <path
-     style="paint-order:stroke;fill:#ffffff;stroke:#141414;stroke-width:16;stroke-linejoin:miter"
-     d="M 10,90 L 10,10 h 7 v 7 h 7 v -7 h 7 v 7 h 7 v -7 h 7 v 40 h 7 v -7 h 7 v 7 h 7 v -7 h 7 v 7 h 7 v -7 h 7 V 90 z" />
-   <path stlye="fill:#141414" d="M 20,90 v -20 h 15 V 90 z"/>
-   <path stlye="fill:#141414" d="M 23.75,45 v -15 h 7.5 v 15 z"/>
-   <path stlye="fill:#141414" d="M 50,70 v -15 h 7.5 v 15 z"/>
-   <path stlye="fill:#141414" d="M 70,80 v -15 h 7.5 v 15 z"/>
+   <defs>
+      <path id="path" d="M 6,94 L 6,6 h 8 v 8 h 8 v -8 h 8 v 8 h 8 v -8 h 8 v 40 h 8 v -8 h 8 v 8 h 8 v -8 h 8 v 8 h 8 v -8 h 8 V 94 z" />
+   </defs>
+   <use xlink:href="#path"style="stroke:#141414;stroke-width:12" />
+   <use xlink:href="#path" style="fill:#ffffff" />
+   <path style="fill:#141414;" d="M 20,100 v -26 h 15 V 100 z"/>
+   <path style="fill:#141414;" d="M 23.75,45 v -15 h 7.5 v 15 z"/>
+   <path style="fill:#141414;" d="M 50,70 v -15 h 7.5 v 15 z"/>
+   <path style="fill:#141414;" d="M 75,80 v -15 h 7.5 v 15 z"/>
 </svg>

@@ -14,8 +14,9 @@ export default {
   },
   server: {
     proxy: {
-      '/sprites': 'https://map.pathfinderwiki.com',
-      '/golarion.pmtiles': 'https://map.pathfinderwiki.com',
+      //uncomment to use remote data
+      //'/sprites': 'https://map.pathfinderwiki.com',
+      //'/golarion.pmtiles': 'https://map.pathfinderwiki.com',
     }
   }
 }

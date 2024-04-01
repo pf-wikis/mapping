@@ -47,10 +47,10 @@ export function makeLocationsClickable(map: Map) {
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
-     
+
     popup
       .setLngLat(coordinates)
-      .setHTML(`<div class="wiki-popup"><h3><a href="${props.link}" target="_blank">${props.Name}</a></h3>${props.text}</div>`)
+      .setHTML(`<div class="wiki-popup"><h3><a href="${props.link}" target="_blank">${props.Name}</a></h3>${props.text||''}</div>`)
       .addTo(map);
   }
   

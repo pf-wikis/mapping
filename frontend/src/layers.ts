@@ -377,13 +377,7 @@ let layers:LayerSpecification[] = [
     type: 'symbol',
     maxzoom: limit.districts,
     layout: {
-      'icon-image': ['match', ['get', 'type'],
-        'tower', 'location-tower',
-        'mountain', 'location-mountain',
-        'castle', 'location-castle',
-        'city-ruins', 'location-city-ruins',
-        'location-other'
-      ],
+      'icon-image': ['get', 'icon'],
       'icon-pitch-alignment': 'map',
       'icon-overlap': 'always',
       'icon-ignore-placement': true,
@@ -454,8 +448,7 @@ let layers:LayerSpecification[] = [
       'text-font': ['NotoSans-Medium'],
       'text-size': 14,
       'text-variable-anchor': ["left", "right"],
-      'symbol-sort-key': ['get', 'size'],
-      'text-radial-offset': .3,
+      'text-radial-offset': .5,
     },
     paint: {
       'text-color': colors.white,

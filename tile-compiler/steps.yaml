@@ -113,6 +113,7 @@
       file: locations.geojson
     - step: ADD_ZOOM
       minZoom: 3
+    - step: LOCATION_TYPE_TO_ICON
     - step: OUTPUT
 
 - name: mountains
