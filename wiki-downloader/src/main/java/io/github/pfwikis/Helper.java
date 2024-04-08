@@ -111,6 +111,8 @@ public class Helper {
 				a.remove();
 			}
 		});
+		//remove titles from links
+		doc.getElementsByTag("a").removeAttr("title");
 		//open links in new tab
 		doc.getElementsByTag("a").attr("target", "_blank");
 		
