@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2024-04-01T06:20:35" saveUser="manue" saveUserFull="Manuel Hegner" version="3.34.3-Prizren">
+<qgis projectname="" saveDateTime="2024-04-05T21:49:26" saveUser="manue" saveUserFull="Manuel Hegner" version="3.34.3-Prizren">
   <homePath path="."></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -25,11 +25,11 @@
       <customproperties>
         <Option></Option>
       </customproperties>
-      <layer-tree-group checked="Qt::Unchecked" expanded="0" groupLayer="" name="avistan">
+      <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="avistan">
         <customproperties>
           <Option></Option>
         </customproperties>
-        <layer-tree-group checked="Qt::Unchecked" expanded="0" groupLayer="" name="absalom">
+        <layer-tree-group checked="Qt::Unchecked" expanded="1" groupLayer="" name="absalom">
           <customproperties>
             <Option></Option>
           </customproperties>
@@ -64,7 +64,7 @@
             </layer-tree-layer>
           </layer-tree-group>
         </layer-tree-group>
-        <layer-tree-group checked="Qt::Unchecked" expanded="0" groupLayer="" name="saga lands">
+        <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="saga lands">
           <customproperties>
             <Option></Option>
           </customproperties>
@@ -236,7 +236,7 @@
         <Option></Option>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Checked" expanded="1" id="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" legend_exp="" legend_split_behavior="0" name="forests" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=forests">
+    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" legend_exp="" legend_split_behavior="0" name="forests" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=forests">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -261,7 +261,7 @@
         <Option></Option>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Checked" expanded="1" id="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" legend_exp="" legend_split_behavior="0" name="swamps" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=swamps">
+    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" legend_exp="" legend_split_behavior="0" name="swamps" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=swamps">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -315,23 +315,23 @@
   </layer-tree-group>
   <snapping-settings enabled="1" intersection-snapping="0" maxScale="0" minScale="0" mode="2" scaleDependencyMode="1" self-snapping="0" tolerance="17" type="1" unit="1">
     <individual-layer-settings>
-      <layer-setting enabled="0" id="waters_ffcf32fb_950c_400d_8017_4af9540e8da3" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="land_48aa2040_f185_4ba4_a64a_5b3a275264c1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="specials_c128e960_556c_4ede_a0c3_f1da18d388a2" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="borders_80959533_4778_401e_b8cd_8ba655123abe" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="roads_7e038ab7_ac9b_4762_96b1_2ac7d9a2c175" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="land_48aa2040_f185_4ba4_a64a_5b3a275264c1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="mountains_da232536_72ca_402a_b0c2_4d749d051c5f" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="waters_ffcf32fb_950c_400d_8017_4af9540e8da3" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="roads_7e038ab7_ac9b_4762_96b1_2ac7d9a2c175" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="hills_ce4f9894_b2c5_4ad4_a1c6_511fdead97eb" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="rivers_37f0454d_322e_45b4_8a2a_e95e0f10c44e" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="mountains_da232536_72ca_402a_b0c2_4d749d051c5f" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
   <relations></relations>
@@ -339,10 +339,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>-21.38919254278176041</xmin>
-      <ymin>13.14749421407866592</ymin>
-      <xmax>-11.12581462228240881</xmax>
-      <ymax>27.11831551787615879</ymax>
+      <xmin>-27.15597111350529502</xmin>
+      <ymin>44.00028146595847289</ymin>
+      <xmax>-27.06576564350090308</xmax>
+      <ymax>44.12307188757387877</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -364,8 +364,8 @@
   <projectModels></projectModels>
   <legend updateDrawingOrder="true">
     <legendgroup checked="Qt::Checked" name="images" open="true">
-      <legendgroup checked="Qt::Unchecked" name="avistan" open="false">
-        <legendgroup checked="Qt::Unchecked" name="absalom" open="false">
+      <legendgroup checked="Qt::Checked" name="avistan" open="true">
+        <legendgroup checked="Qt::Unchecked" name="absalom" open="true">
           <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="swardlands" open="false" showFeatureCount="0">
             <filegroup hidden="false" open="false">
               <legendlayerfile isInOverview="0" layerid="swardlands_labels_modified_ad60d85c_ccf9_4fb9_a119_ddc83896dee3" visible="0"></legendlayerfile>
@@ -388,16 +388,16 @@
             </legendlayer>
           </legendgroup>
         </legendgroup>
-        <legendgroup checked="Qt::Unchecked" name="saga lands" open="false">
+        <legendgroup checked="Qt::Checked" name="saga lands" open="true">
           <legendgroup checked="Qt::Checked" name="varisia" open="true">
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="sandpoint_labeled" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="sandpoint_labeled_604c96b7_befe_426c_831c_b8c8410cc2dc" visible="0"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="sandpoint_labeled_604c96b7_befe_426c_831c_b8c8410cc2dc" visible="1"></legendlayerfile>
               </filegroup>
             </legendlayer>
             <legendlayer checked="Qt::Checked" drawingOrder="-1" name="sandpoint" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="sandpoint_5ed87d6e_4099_4eb3_a860_308b8e3f4d9d" visible="0"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="sandpoint_5ed87d6e_4099_4eb3_a860_308b8e3f4d9d" visible="1"></legendlayerfile>
               </filegroup>
             </legendlayer>
             <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="devil's elbow" open="false" showFeatureCount="0">
@@ -527,9 +527,9 @@
         <legendlayerfile isInOverview="0" layerid="specials_c128e960_556c_4ede_a0c3_f1da18d388a2" visible="0"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="forests" open="true" showFeatureCount="0">
+    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="forests" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" visible="1"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" visible="0"></legendlayerfile>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="ice" open="true" showFeatureCount="0">
@@ -552,9 +552,9 @@
         <legendlayerfile isInOverview="0" layerid="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="swamps" open="true" showFeatureCount="0">
+    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="swamps" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" visible="1"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" visible="0"></legendlayerfile>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="districts" open="true" showFeatureCount="0">
@@ -2447,13 +2447,13 @@ def my_form_open(dialog, layer, feature):
         <xmin>-178.45179999999999154</xmin>
         <ymin>-39.76729999999999876</ymin>
         <xmax>179.99830000000000041</xmax>
-        <ymax>78.18054999999999666</ymax>
+        <ymax>79.11194999999999311</ymax>
       </extent>
       <wgs84extent>
         <xmin>-178.45179999999999154</xmin>
         <ymin>-39.76729999999999876</ymin>
         <xmax>179.99830000000000041</xmax>
-        <ymax>78.18054999999999666</ymax>
+        <ymax>79.11194999999999311</ymax>
       </wgs84extent>
       <id>cities_b2839d80_d946_48d1_8c42_83b3b917d8d5</id>
       <datasource>./cities.geojson</datasource>
@@ -4761,16 +4761,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-122.26187392682399491</xmin>
-        <ymin>-58.24634573044689745</ymin>
-        <xmax>199.0809183448259887</xmax>
-        <ymax>71.47907260393239426</ymax>
+        <xmin>-122.26188659668000014</xmin>
+        <ymin>-58.24635314941409803</ymin>
+        <xmax>199.08094787597698883</xmax>
+        <ymax>71.47908020019529829</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-122.26187392682399491</xmin>
-        <ymin>-58.24634573044689745</ymin>
-        <xmax>199.0809183448259887</xmax>
-        <ymax>71.47907260393239426</ymax>
+        <xmin>-122.26188659668000014</xmin>
+        <ymin>-58.24635314941409803</ymin>
+        <xmax>199.08094787597698883</xmax>
+        <ymax>71.47908020019529829</ymax>
       </wgs84extent>
       <id>forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=forests</datasource>
@@ -6120,6 +6120,8 @@ def my_form_open(dialog, layer, feature):
       <childLayers>
         <child layerid="Golarion_modified_8711cd5f_ea2a_451f_b1ac_40f919de7cb3"></child>
         <child layerid="Strength_of_Thousands_modified_922bf51c_a84b_4ec9_89ff_e3f724e2350a"></child>
+        <child layerid="sandpoint_5ed87d6e_4099_4eb3_a860_308b8e3f4d9d"></child>
+        <child layerid="sandpoint_labeled_604c96b7_befe_426c_831c_b8c8410cc2dc"></child>
       </childLayers>
       <layerOpacity>0.556</layerOpacity>
       <blendMode>0</blendMode>
@@ -6570,16 +6572,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="1" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>-137.69166564941400566</xmin>
-        <ymin>-90.16999816894529829</ymin>
-        <xmax>211.30696105956999986</xmax>
-        <ymax>80.7415771484375</ymax>
+        <xmin>-137.69166268099499462</xmin>
+        <ymin>-90.16999054668470137</ymin>
+        <xmax>211.30693801952500621</xmax>
+        <ymax>80.74157025444390001</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-137.69166564941400566</xmin>
-        <ymin>-90.16999816894529829</ymin>
-        <xmax>211.30696105956999986</xmax>
-        <ymax>80.7415771484375</ymax>
+        <xmin>-137.69166268099499462</xmin>
+        <ymin>-90.16999054668470137</ymin>
+        <xmax>211.30693801952500621</xmax>
+        <ymax>80.74157025444390001</ymax>
       </wgs84extent>
       <id>labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=labels</datasource>
@@ -7986,16 +7988,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiLineString">
       <extent>
-        <xmin>-122.70342697030899615</xmin>
-        <ymin>-60.44586618964749647</ymin>
-        <xmax>203.24331346220898808</xmax>
-        <ymax>77.80775147351039323</ymax>
+        <xmin>-122.7034301757809942</xmin>
+        <ymin>-60.44587326049799714</ymin>
+        <xmax>203.24331665039099448</xmax>
+        <ymax>77.80775451660160513</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-122.70342697030899615</xmin>
-        <ymin>-60.44586618964749647</ymin>
-        <xmax>203.24331346220898808</xmax>
-        <ymax>77.80775147351039323</ymax>
+        <xmin>-122.7034301757809942</xmin>
+        <ymin>-60.44587326049799714</ymin>
+        <xmax>203.24331665039099448</xmax>
+        <ymax>77.80775451660160513</ymax>
       </wgs84extent>
       <id>rivers_37f0454d_322e_45b4_8a2a_e95e0f10c44e</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=rivers</datasource>
@@ -10564,16 +10566,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-28.60832591944040004</xmin>
-        <ymin>-16.06733576426080035</ymin>
-        <xmax>199.50903758122800014</xmax>
-        <ymax>56.02451791439519724</ymax>
+        <xmin>-28.60832595825189983</xmin>
+        <ymin>-16.06733703613279829</ymin>
+        <xmax>199.50906372070301131</xmax>
+        <ymax>56.02452468872070313</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-28.60832591944040004</xmin>
-        <ymin>-16.06733576426080035</ymin>
-        <xmax>199.50903758122800014</xmax>
-        <ymax>56.02451791439519724</ymax>
+        <xmin>-28.60832595825189983</xmin>
+        <ymin>-16.06733703613279829</ymin>
+        <xmax>199.50906372070301131</xmax>
+        <ymax>56.02452468872070313</ymax>
       </wgs84extent>
       <id>swamps_92ae1780_aeca_4355_866a_cc4af5f68520</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=swamps</datasource>
@@ -11883,16 +11885,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-107.54858167508500344</xmin>
-        <ymin>-52.89849145364050287</ymin>
-        <xmax>191.87993800836099467</xmax>
-        <ymax>80.28022859488349638</ymax>
+        <xmin>-107.548583984375</xmin>
+        <ymin>-52.89849853515620026</ymin>
+        <xmax>191.8799438476559942</xmax>
+        <ymax>80.28023529052740059</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-107.54858167508500344</xmin>
-        <ymin>-52.89849145364050287</ymin>
-        <xmax>191.87993800836099467</xmax>
-        <ymax>80.28022859488349638</ymax>
+        <xmin>-107.548583984375</xmin>
+        <ymin>-52.89849853515620026</ymin>
+        <xmax>191.8799438476559942</xmax>
+        <ymax>80.28023529052740059</ymax>
       </wgs84extent>
       <id>waters_ffcf32fb_950c_400d_8017_4af9540e8da3</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=waters</datasource>
@@ -12506,7 +12508,7 @@ def my_form_open(dialog, layer, feature):
   <Sensors></Sensors>
   <ProjectViewSettings UseProjectScales="0" rotation="0">
     <Scales></Scales>
-    <DefaultViewExtent xmax="-3.63946282400603671" xmin="-28.87554434105813073" ymax="27.11831551787615879" ymin="13.14749421407866592">
+    <DefaultViewExtent xmax="-27.00568539113652022" xmin="-27.21605136586967788" ymax="44.12307188757387877" ymin="44.00028146595847289">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
         <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -12571,7 +12573,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="">
+  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="rivers_37f0454d_322e_45b4_8a2a_e95e0f10c44e" destinationLayerName="rivers" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-paizo/mapping-data/mapping-data.gpkg|layername=rivers">
     <timeStampFields></timeStampFields>
   </ProjectGpsSettings>
 </qgis>
