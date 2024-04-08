@@ -104,6 +104,14 @@ public class Helper {
 		}
 		//make URLs absolute
 		doc.getElementsByAttribute("href").forEach(e->e.attr("href", e.absUrl("href")));
+		//remove red links
+		doc.getElementsByTag("a").forEach(a->{
+			if(a.classNames().contains("new")) {
+				a.childNodes().forEach(c->a.before(c));
+				a.remove();
+			}
+		});
+		//open links in new tab
 		doc.getElementsByTag("a").attr("target", "_blank");
 		
 		var raw = doc.body().html();
