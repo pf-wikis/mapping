@@ -32,4 +32,4 @@ The mapping files in this repository are created by tracing information from map
 
 ## How to Contribute
 
-TODO
+Information can be found [on the wiki](https://pathfinderwiki.com/wiki/PathfinderWiki:Map)
