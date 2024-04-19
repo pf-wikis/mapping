@@ -16,6 +16,7 @@ import org.locationtech.jts.math.Vector2D;
 import com.beust.jcommander.internal.Lists;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.github.pfwikis.layercompiler.steps.LCContent;
 import io.github.pfwikis.layercompiler.steps.LCStep;
 import io.github.pfwikis.run.Tools;
 import lombok.extern.slf4j.Slf4j;
@@ -28,10 +29,8 @@ import mil.nga.sf.geojson.Polygon;
 @Slf4j
 public class ShapeRivers extends LCStep {
 
-    private final static ObjectMapper JACKSON = new ObjectMapper();
-
     @Override
-    public byte[] process() throws IOException {
+    public LCContent process() throws IOException {
         var result = new FeatureCollection();
 
         var rivers = collectRivers(getInput());
@@ -40,16 +39,14 @@ public class ShapeRivers extends LCStep {
         log.info("Processing " + rivers.size() + " river points");
         drawShapes(rivers, result);
 
-        var ownResult = JACKSON.writeValueAsBytes(result);
-
-        return Tools.mapshaper(ownResult, "--filter-fields", "-clean", "sliver-control=0", "-dissolve2", "-explode");
+        return Tools.mapshaper(LCContent.from(result), "--filter-fields", "-clean", "sliver-control=0", "-dissolve2", "-explode");
 
         // merge this into the water afterwards
     }
 
-    private Collection<RPoint> collectRivers(byte[] in) throws IOException {
+    private Collection<RPoint> collectRivers(LCContent in) throws IOException {
         var rivers = new HashMap<Vector2D, RPoint>();
-        var featureCol = new ObjectMapper().readValue(in, FeatureCollection.class);
+        var featureCol = in.toNgaFeatureCollection();
         for (var feature : featureCol.getFeatures()) {
             if (feature.getGeometry() instanceof LineString line) {
                 double defaultWidth = Objects.requireNonNullElse((Integer) feature.getProperties().get("width"), 2000);
@@ -81,7 +78,7 @@ public class ShapeRivers extends LCStep {
         return meters * ((1. + 0.00001120378 * (Math.cos(2 * lat / 180 * Math.PI) - 1)) / Math.cos(lat / 180 * Math.PI) / 111319.491 / 2d);
     }
 
-    private void markSprings(Ctx ctx, byte[] riversIn, Collection<RPoint> rivers) throws IOException {
+    private void markSprings(Ctx ctx, LCContent riversIn, Collection<RPoint> rivers) throws IOException {
         var landPoints = PointsOnLandSelector
         		.collectLandPoints(ctx, riversIn, getInput("land_without_water"))
         		.stream()

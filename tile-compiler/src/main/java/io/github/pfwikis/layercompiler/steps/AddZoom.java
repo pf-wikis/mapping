@@ -12,7 +12,7 @@ public class AddZoom extends LCStep {
     private final Integer maxZoom;
 
     @Override
-    public byte[] process() throws IOException {
+    public LCContent process() throws IOException {
         var props = new StringBuilder();
         if(minZoom != null) {
             props.append(" filterMinzoom="+minZoom+";");

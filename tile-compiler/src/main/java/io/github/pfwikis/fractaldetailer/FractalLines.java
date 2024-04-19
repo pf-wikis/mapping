@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import io.github.pfwikis.fractaldetailer.model.Edge;
-import io.github.pfwikis.fractaldetailer.model.LngLat;
+import io.github.pfwikis.model.Edge;
+import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.util.Projection;
 
 public class FractalLines {

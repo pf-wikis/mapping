@@ -7,7 +7,7 @@ import io.github.pfwikis.run.Tools;
 public class BufferPolygons extends LCStep {
 
     @Override
-    public byte[] process() throws IOException {
+    public LCContent process() throws IOException {
         var buffered = Tools.qgis("native:buffer", getInput(),
             "--DISTANCE=0.5",
             "--SEGMENTS=20",

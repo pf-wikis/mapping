@@ -2,10 +2,10 @@ package io.github.pfwikis.layercompiler.steps;
 
 import io.github.pfwikis.run.Tools;
 
-public class Add extends LCStep {
+public class AddPolygons extends LCStep {
 
     @Override
-    public byte[] process() throws Exception {
+    public LCContent process() throws Exception {
         return Tools.mapshaper2(getInput(), getInput("summand"), "combine-files",
             "-merge-layers", "force",
             "-dissolve2",

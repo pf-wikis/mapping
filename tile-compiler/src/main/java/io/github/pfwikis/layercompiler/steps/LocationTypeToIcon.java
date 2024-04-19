@@ -10,7 +10,7 @@ import io.github.pfwikis.run.Tools;
 public class LocationTypeToIcon extends LCStep {
 
     @Override
-    public byte[] process() throws IOException {
+    public LCContent process() throws IOException {
     	var icons = Arrays.stream(new File("sprites").list())
     		.filter(n->n.startsWith("location-") && n.endsWith(".svg"))
     		.map(n->n.substring(9, n.length()-4))

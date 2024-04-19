@@ -35,7 +35,8 @@ let colors = {
 };
 
 const props = {
-  filterMinzoom: ["get", "filterMinzoom"] as ExpressionSpecification
+  filterMinzoom: ["get", "filterMinzoom"] as ExpressionSpecification,
+  filterMaxzoom: ["get", "filterMaxzoom"] as ExpressionSpecification
 }
 
 const equatorMeter2Deg = 1/111319.491 * 1.5; //no idea where this second factor comes from -.-
@@ -75,7 +76,7 @@ function createLayer(name:string, base:Partial<LayerSpecification>):LayerSpecifi
     'source-layer': name,
     filter: ['all',
       ['any', ['!', ['has', 'filterMinzoom']], ['>=', ["zoom"], props.filterMinzoom]],
-      ['any', ['!', ['has', 'filterMaxzoom']], ['<=',["zoom"], ["get", "filterMaxzoom"]]]
+      ['any', ['!', ['has', 'filterMaxzoom']], ['<=', ["zoom"], props.filterMaxzoom]]
     ],
   }, base) as LayerSpecification;
 }
@@ -375,49 +376,8 @@ let layers:LayerSpecification[] = [
   createLayer('locations', {
     id: 'location-icons',
     type: 'symbol',
-    maxzoom: limit.districts,
     layout: {
       'icon-image': ['get', 'icon'],
-      'icon-pitch-alignment': 'map',
-      'icon-overlap': 'always',
-      'icon-ignore-placement': true,
-      'icon-size': ["interpolate", ["exponential", 2], ["zoom"],
-         0,            ["^", 2, ["-", -3, props.filterMinzoom]],
-         1,            ["^", 2, ["-", -2, props.filterMinzoom]],
-         2, ["min", 1, ["^", 2, ["-", -1, props.filterMinzoom]]],
-         3, ["min", 1, ["^", 2, ["-",  0, props.filterMinzoom]]],
-         4, ["min", 1, ["^", 2, ["-",  1, props.filterMinzoom]]],
-         5, ["min", 1, ["^", 2, ["-",  2, props.filterMinzoom]]],
-         6, ["min", 1, ["^", 2, ["-",  3, props.filterMinzoom]]],
-         7, ["min", 1, ["^", 2, ["-",  4, props.filterMinzoom]]],
-         8, ["min", 1, ["^", 2, ["-",  5, props.filterMinzoom]]],
-         9, ["min", 1, ["^", 2, ["-",  6, props.filterMinzoom]]],
-        10, ["min", 1, ["^", 2, ["-",  7, props.filterMinzoom]]],
-      ] as any
-    },
-    paint: {
-    }
-  }),
-  createLayer('cities', {
-    id: 'city-icons',
-    type: 'symbol',
-    maxzoom: limit.districts,
-    layout: {
-      'icon-image': ['case',
-        ['get', 'capital'], ['step',
-          ['get', 'size'],
-          'city-major-capital',
-          1, 'city-large-capital',
-          2, 'city-medium-capital',
-          3, 'city-small-capital'
-        ], ['step',
-          ['get', 'size'],
-          'city-major',
-          1, 'city-large',
-          2, 'city-medium',
-          3, 'city-small'
-        ]
-      ],
       'icon-pitch-alignment': 'map',
       'icon-overlap': 'always',
       'icon-ignore-placement': true,
@@ -441,45 +401,16 @@ let layers:LayerSpecification[] = [
   createLayer('locations', {
     id: 'location-labels',
     type: 'symbol',
-    maxzoom: limit.districts,
-    filter: ['>', ["-", ["zoom"], props.filterMinzoom], 3],
+    filter: ['all',
+      ['>', ["zoom"], ["+", props.filterMinzoom, 3]],
+      ['<=', ["zoom"], ["+", props.filterMaxzoom, 3]]
+    ],
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 14,
       'text-variable-anchor': ["left", "right"],
       'text-radial-offset': .5,
-    },
-    paint: {
-      'text-color': colors.white,
-      'text-halo-color': colors.black,
-      'text-halo-width': .8
-    }
-  }),
-  createLayer('cities', {
-    id: 'city-labels',
-    type: 'symbol',
-    maxzoom: limit.districts,
-    filter: ['>', ["-", ["zoom"], props.filterMinzoom], 3],
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': ['step',
-        ['get', 'size'],
-        18,
-        1, 16,
-        2, 14,
-        3, 12
-      ],
-      'text-variable-anchor': ["left", "right"],
-      'symbol-sort-key': ['get', 'size'],
-      'text-radial-offset': ['step',
-        ['get', 'size'],
-        .5,
-        1, .4,
-        2, .25,
-        3, .2
-      ],
     },
     paint: {
       'text-color': colors.white,

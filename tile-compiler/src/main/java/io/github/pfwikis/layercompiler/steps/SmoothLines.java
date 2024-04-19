@@ -7,7 +7,7 @@ import io.github.pfwikis.run.Tools;
 public class SmoothLines extends LCStep {
 
     @Override
-    public byte[] process() throws IOException {
+    public LCContent process() throws IOException {
         return Tools.mapshaper(getInput(),
             "-require", "curve-interpolator", "alias=_",
             "-explode",

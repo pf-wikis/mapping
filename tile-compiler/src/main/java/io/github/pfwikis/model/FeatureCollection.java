@@ -1,4 +1,4 @@
-package io.github.pfwikis.fractaldetailer.model;
+package io.github.pfwikis.model;
 
 import java.util.List;
 

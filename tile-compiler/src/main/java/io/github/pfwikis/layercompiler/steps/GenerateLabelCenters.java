@@ -14,10 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 public class GenerateLabelCenters extends LCStep {
 
     @Override
-    public byte[] process() throws IOException {
-        byte[] in = getInput();
-        if(!new String(in).contains("\"Name\":")) {
-            return "{\"type\":\"FeatureCollection\", \"features\": []}".getBytes(StandardCharsets.UTF_8);
+    public LCContent process() throws IOException {
+    	LCContent in = getInput();
+        if(!in.toJSONString().contains("\"Name\":")) {
+            return LCContent.from("{\"type\":\"FeatureCollection\", \"features\": []}".getBytes(StandardCharsets.UTF_8));
         }
 
         log.info("  Generating label points from polygon centers");

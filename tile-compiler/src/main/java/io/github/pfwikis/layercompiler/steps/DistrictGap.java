@@ -8,7 +8,7 @@ import io.github.pfwikis.run.Tools;
 public class DistrictGap extends LCStep {
 
     @Override
-    public byte[] process() throws IOException {
+    public LCContent process() throws IOException {
         var innerLines = Tools.mapshaper(getInput(),
             "-clean",
             "-snap", "precision=0.0001",

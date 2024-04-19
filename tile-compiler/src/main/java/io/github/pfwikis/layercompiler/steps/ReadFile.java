@@ -26,13 +26,13 @@ public class ReadFile extends LCStep {
 
 
 	@Override
-    public byte[] process() throws IOException {
+    public LCContent process() throws IOException {
 		if(file != null) {
 			var finalFile = Path.of("../sources").resolve(file.toPath()).toFile().getCanonicalFile();
-			return FileUtils.readFileToByteArray(finalFile);
+			return LCContent.from(finalFile);
 		}
 		else {
-            return Tools.ogr2ogr(ctx.getMappingDataFile().toString(), "-dim", "XY", "-mapFieldType", "DateTime=String", layer);
+            return Tools.ogr2ogr(ctx.getMappingDataFile().toPath(), "-dim", "XY", "-mapFieldType", "DateTime=String", layer);
         }
     }
 

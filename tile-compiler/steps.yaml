@@ -1,10 +1,3 @@
-- name: cities
-  steps:
-    - step: READ_FILE
-      file: cities.geojson
-    - step: ADD_CITY_ZOOM
-    - step: OUTPUT
-
 - name: land
   steps:
     - step: READ_FILE
@@ -107,6 +100,13 @@
     - step: GENERATE_LABEL_CENTERS
     - step: OUTPUT
 
+- name: cities
+  steps:
+    - step: READ_FILE
+      file: cities.geojson
+    - step: ADD_CITY_ZOOM
+    - step: CITY_TYPE_TO_ICON
+
 - name: locations
   steps:
     - step: READ_FILE
@@ -114,6 +114,10 @@
     - step: ADD_ZOOM
       minZoom: 3
     - step: LOCATION_TYPE_TO_ICON
+    - step: ADD_POINTS
+      dependsOn:
+        summand: cities
+    - step: LOCATION_GROUP
     - step: OUTPUT
 
 - name: mountains
@@ -198,7 +202,7 @@
     - step: READ_FILE
       layer: waters
     - step: ADD_FRACTAL_DETAIL
-    - step: ADD
+    - step: ADD_POLYGONS
       dependsOn:
         summand: rivers
     - step: OUTPUT

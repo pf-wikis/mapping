@@ -6,6 +6,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.github.pfwikis.layercompiler.steps.LCContent;
 import io.github.pfwikis.layercompiler.steps.LCStep.Ctx;
 import io.github.pfwikis.run.Tools;
 import mil.nga.sf.geojson.FeatureCollection;
@@ -16,14 +17,14 @@ import mil.nga.sf.Point;
 
 public class PointsOnLandSelector {
 
-	public static Set<Point> collectLandPoints(Ctx ctx, byte[] input, byte[] land) throws IOException {
+	public static Set<Point> collectLandPoints(Ctx ctx, LCContent input, LCContent land) throws IOException {
 		var clipped = Tools
             .mapshaper(
             	input,
                 "-clip", land,
                 "-explode"
             );
-		var featureCol = new ObjectMapper().readValue(clipped, FeatureCollection.class);
+		var featureCol = clipped.toNgaFeatureCollection();
 		var result = new HashSet<Point>();
 		for (var feature : featureCol.getFeatures()) {
 			collect(feature.getGeometry(), result);

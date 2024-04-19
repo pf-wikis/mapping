@@ -3,14 +3,13 @@ package io.github.pfwikis;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 
-import io.github.pfwikis.run.Runner;
+import io.github.pfwikis.run.ToolVariant;
+import io.github.pfwikis.run.Tools;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -58,13 +57,13 @@ public class TileCompiler {
     private void makeTiles() throws IOException {
         var layers = Arrays.stream(geo.listFiles())
             .filter(f->f.getName().endsWith(".geojson"))
-            .flatMap(f->List.of("-L", f.getName().substring(0, f.getName().length()-8)+":"+f.toString()).stream())
+            .flatMap(f->List.of("-L", f.getName().substring(0, f.getName().length()-8)+":"+ToolVariant.getTippecanoe().translateFile(f.toPath().toAbsolutePath())).stream())
             .toList();
 
         var ttmp = new File("./tippecanoe-tmp").getAbsoluteFile().getCanonicalFile();
         ttmp.mkdirs();
 
-        Runner.run("tippecanoe",
+        Tools.tippecanoe(
             "-z"+options.getMaxZoom(),
             "-n", "golarion",
             "-o", new File(targetDir, "golarion.pmtiles"),
@@ -84,7 +83,7 @@ public class TileCompiler {
 
     private void compileSprites() throws IOException {
         log.info("Compiling Sprites");
-        Runner.run("spritezero", new File(spriteDir, "sprites"), "sprites/");
-        Runner.run("spritezero", new File(spriteDir, "sprites@2x"), "sprites/", "--retina");
+        Tools.spriteZero(new File(spriteDir, "sprites"), new File("sprites/"));
+        Tools.spriteZero(new File(spriteDir, "sprites@2x"), new File("sprites/"), "--retina");
     }
 }

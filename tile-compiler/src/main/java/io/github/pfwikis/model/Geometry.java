@@ -1,4 +1,4 @@
-package io.github.pfwikis.fractaldetailer.model;
+package io.github.pfwikis.model;
 
 import java.util.List;
 
@@ -15,7 +15,8 @@ import lombok.Data;
     property = "type")
   @JsonSubTypes({
     @Type(value = Geometry.Polygon.class, name = "Polygon"),
-    @Type(value = Geometry.MultiPolygon.class, name = "MultiPolygon")
+    @Type(value = Geometry.MultiPolygon.class, name = "MultiPolygon"),
+    @Type(value = Geometry.Point.class, name = "Point")
   })
 public abstract class Geometry {
 
@@ -27,5 +28,10 @@ public abstract class Geometry {
     @Data
     public static class MultiPolygon extends Geometry {
         private List<List<List<LngLat>>> coordinates;
+    }
+    
+    @Data
+    public static class Point extends Geometry {
+        private LngLat coordinates;
     }
 }

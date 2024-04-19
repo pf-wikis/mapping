@@ -15,6 +15,7 @@ import com.github.dexecutor.core.DexecutorConfig;
 import com.github.dexecutor.core.ExecutionConfig;
 
 import io.github.pfwikis.layercompiler.description.LCDescription;
+import io.github.pfwikis.layercompiler.steps.LCContent;
 import io.github.pfwikis.layercompiler.steps.LCStep;
 import io.github.pfwikis.layercompiler.steps.LCStep.Ctx;
 import lombok.RequiredArgsConstructor;
@@ -31,10 +32,10 @@ public class LayersCompiler {
         var lsDescriptions = new ObjectMapper(new YAMLFactory()).readValue(stepsFile, LCDescription[].class);
 
         Map<String, LCStep> steps = new HashMap<>();
-        var pool = Executors.newWorkStealingPool();
+        var pool = Executors.newFixedThreadPool(4);
 
         try {
-            var config = new DexecutorConfig<String, byte[]>(pool, id-> {
+            var config = new DexecutorConfig<String, LCContent>(pool, id-> {
                 return Objects.requireNonNull(steps.get(id), "Could not resolve step "+id);
             });
             var executor = new DefaultDexecutor<>(config);
@@ -52,7 +53,7 @@ public class LayersCompiler {
         }
     }
 
-    private void createSteps(LCDescription[] lsDescriptions, Map<String, LCStep> steps, DefaultDexecutor<String, byte[]> executor) {
+    private void createSteps(LCDescription[] lsDescriptions, Map<String, LCStep> steps, DefaultDexecutor<String, LCContent> executor) {
         for(var lsDescription : lsDescriptions) {
             for(int i=0;i<lsDescription.getSteps().size();i++) {
                 var step = lsDescription.getSteps().get(i);

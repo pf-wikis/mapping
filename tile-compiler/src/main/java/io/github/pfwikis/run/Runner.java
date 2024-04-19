@@ -1,5 +1,6 @@
 package io.github.pfwikis.run;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
 import java.io.File;
@@ -7,99 +8,91 @@ import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecuteResultHandler;
+import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.ExecuteWatchdog;
+import org.apache.commons.exec.Executor;
+import org.apache.commons.exec.PumpStreamHandler;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import io.github.pfwikis.layercompiler.steps.LCContent;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Runner {
-    public static byte[] run(Object... command) throws IOException {
-        return internalRun(Redirect.INHERIT, null, command);
+    /*package*/ static LCContent run(String command, Object... args) throws IOException {
+        return internalRun(Redirect.INHERIT, null, command, args);
     }
 
-    public static byte[] runPipeOut(Object... command) throws IOException {
-        return internalRun(Redirect.PIPE, null, command);
+    /*package*/ static LCContent runPipeOut(String command, Object... args) throws IOException {
+        return internalRun(Redirect.PIPE, null, command, args);
     }
 
-    public static byte[] runPipeInOut(byte[] in, Object... command) throws IOException {
-        return internalRun(Redirect.PIPE, in, command);
+    /*package*/ static LCContent runPipeInOut(LCContent in, String command, Object... args) throws IOException {
+        return internalRun(Redirect.PIPE, in, command, args);
     }
+    
+    private static LCContent internalRun(Redirect output, LCContent in, String command, Object... args) throws IOException {
+    	var out = new ByteArrayOutputStream();
+    	var error = new ByteArrayOutputStream();
+        try(var cmd = Command.of(command, args)) {
+        	var cmdl = new CommandLine(cmd.getParts().get(0));
+        	cmdl.addArguments(
+    			cmd.getParts().subList(1, cmd.getParts().size()).toArray(String[]::new),
+    			false
+        	);
+        	DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
 
-    private static byte[] internalRun(Redirect output, byte[] in, Object... command) throws IOException {
-        var baos = new ByteArrayOutputStream();
-        try(var cmd = Command.of(command)) {
-            Process proc = new ProcessBuilder()
-                .redirectError(Redirect.INHERIT)
-                .redirectInput(in==null?Redirect.INHERIT:Redirect.PIPE)
-                .redirectOutput(Redirect.PIPE)
-                .command(cmd.getParts())
-                .start();
-
-            if(in != null) {
-                new Thread() {
-                    public void run() {
-                        try {
-                            proc.getOutputStream().write(in);
-                            proc.getOutputStream().close();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }.start();
+        	Executor executor = DefaultExecutor.builder().get();
+        	executor.setExitValue(0);
+        	if(in != null)
+        		executor.setStreamHandler(new PumpStreamHandler(out, error, in.toInputStream()));
+        	else
+        		executor.setStreamHandler(new PumpStreamHandler(out, error));
+        	executor.execute(cmdl, resultHandler);
+        	resultHandler.waitFor();
+        	
+            if(resultHandler.getExitValue() != 0) {
+                throw new RuntimeException("Exited command "+cmd.getParts()+" with non-zero code: "+resultHandler.getExitValue());
             }
-            var outThread=new Thread() {
-                public void run() {
-                    try {
-                        int v;
-                        while((v=proc.getInputStream().read())!=-1) {
-                            baos.write(v);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
-            outThread.start();
-
-            proc.onExit().join();
-            outThread.join();
-            if(proc.exitValue() != 0) {
-                throw new RuntimeException("Exited with non-zero code");
-            }
-            byte[] result = new byte[0];
+            LCContent result = LCContent.empty();
             if(output == Redirect.PIPE) {
-                result = baos.toByteArray();
+                result = LCContent.from(out.toByteArray());
             }
             else {
-                log(Level.SEVERE, baos.toByteArray());
+            	log(Level.INFO, out.toByteArray());
+            	log(Level.SEVERE, error.toByteArray());
             }
 
             if(cmd.getResultFile() != null) {
-                result = FileUtils.readFileToByteArray(cmd.getResultFile());
-                FileUtils.delete(cmd.getResultFile());
+                result = LCContent.from(cmd.getResultFile());
             }
 
             return result;
         } catch(Exception e) {
             if(in != null) {
-                var str = new String(in);
+                var str = in.toJSONString();
                 log.error("Failure for input "+str.substring(0, Math.min(1000, str.length())));
                 var tmp = Files.createTempFile("pf-mapping-debug", ".json");
-                Files.write(tmp, in);
+                Files.write(tmp, in.toBytes());
                 log.error("Full input in "+tmp.toAbsolutePath());
             }
-            log(Level.SEVERE, baos.toByteArray());
-
+            log(Level.INFO, out.toByteArray());
+        	log(Level.SEVERE, error.toByteArray());
             throw new IOException(e);
         }
     }
@@ -123,11 +116,13 @@ public class Runner {
     private static final AtomicInteger TMP_COUNTER = new AtomicInteger();
 
     public static File tmpGeojson() {
-        return new File(TMP_DIR, TMP_COUNTER.getAndIncrement()+".geojson");
+        var f = new File(TMP_DIR, TMP_COUNTER.getAndIncrement()+".geojson");
+        f.deleteOnExit();
+        return f;
     }
 
-    public static record TmpGeojson(String commandPrefix, byte[] content){
-        public TmpGeojson(byte[] content) {
+    public static record TmpGeojson(String commandPrefix, LCContent content){
+        public TmpGeojson(LCContent content) {
             this("", content);
         }
     }
@@ -140,13 +135,16 @@ public class Runner {
     @Getter
     private static class Command implements Closeable {
 
-        private final List<File> files = new ArrayList<>();
         private final List<String> parts = new ArrayList<>();
         private File resultFile;
+        private ToolVariant toolVariant;
 
-        public static Command of(Object... commandParts) throws IOException {
+        public static Command of(String command, Object... commandParts) throws IOException {
             var result = new Command();
+            result.toolVariant = ToolVariant.getFor(command);
+            result.addCommandParts(new String[] {command});
             result.addCommandParts(commandParts);
+            result.toolVariant.modifyArguments(result.parts);
             log.info(String.join(" ", result.parts));
             return result;
         }
@@ -154,24 +152,24 @@ public class Runner {
         private void addCommandParts(Object[] commandParts) throws IOException {
             for(var part : commandParts) {
             	Objects.requireNonNull(part, ()->"null Argument when executing "+Arrays.toString(commandParts));
-                if(part instanceof byte[] bytes) {
-                    var tmpFile = tmpGeojson();
-                    files.add(tmpFile);
-                    FileUtils.writeByteArrayToFile(tmpFile, bytes);
-                    parts.add(tmpFile.toString());
+                if(part instanceof LCContent content) {
+                	parts.add(toolVariant.translateFile(content.toTmpFile()));
                 }
                 else if(part instanceof TmpGeojson json) {
-                    var tmpFile = tmpGeojson();
-                    files.add(tmpFile);
-                    FileUtils.writeByteArrayToFile(tmpFile, json.content());
-                    parts.add(json.commandPrefix()+tmpFile.toString());
+                    parts.add(json.commandPrefix()+toolVariant.translateFile(json.content().toTmpFile()));
                 }
                 else if(part instanceof OutGeojson json) {
                     resultFile = tmpGeojson();
-                    parts.add(json.commandPrefix()+resultFile.toString());
+                    parts.add(json.commandPrefix()+toolVariant.translateFile(resultFile.toPath()));
                 }
-                else if(part instanceof String || part instanceof File) {
-                    parts.add(Objects.toString(part));
+                else if(part instanceof String v) {
+                	parts.add(v.replace("\n", ""));
+                }
+                else if(part instanceof File f) {
+                	parts.add(toolVariant.translateFile(f.toPath()));
+                }
+                else if(part instanceof Path p) {
+                	parts.add(toolVariant.translateFile(p));
                 }
                 else if(part instanceof String[] arr) {
                     addCommandParts(arr);
@@ -183,16 +181,13 @@ public class Runner {
                     addCommandParts(col.toArray(Object[]::new));
                 }
                 else {
-                    throw new IllegalStateException("Can't handle "+part.getClass().getName());
+                    throw new IllegalStateException("Can't handle command part "+part.getClass().getName());
                 }
             }
         }
 
         @Override
         public void close() throws IOException {
-            for(var f : files) {
-                FileUtils.delete(f);
-            }
         }
     }
 }

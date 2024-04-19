@@ -7,9 +7,9 @@ import io.github.pfwikis.fractaldetailer.AddDetails;
 public class AddFractalDetail extends LCStep {
 
     @Override
-    public byte[] process() throws IOException {
+    public LCContent process() throws IOException {
         double maxDistance = ctx.getOptions().isProdDetail()?.10:.25;
-        return AddDetails.addDetails(maxDistance, getInput());
+        return LCContent.from(AddDetails.addDetails(maxDistance, getInput().toFeatureCollection()));
     }
 
 }

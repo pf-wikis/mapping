@@ -12,35 +12,33 @@ import lombok.Setter;
 import lombok.Value;
 
 @Getter @Setter
-public abstract class LCStep extends Task<String, byte[]> {
+public abstract class LCStep extends Task<String, LCContent> {
 
     protected Ctx ctx;
     private String name;
     private String step;
     private Map<String, String> inputMapping = new HashMap<>();
 
-    public abstract byte[] process() throws Exception;
-/*
-    protected void createNewLayer(Ctx ctx) {
-        var lc = new LayerCompiler(ctx);
-        lc.init();
-        lc.compile();
-    }*/
+    public abstract LCContent process() throws Exception;
 
     @Override
-    public byte[] execute() {
+    public LCContent execute() {
+    	var oldName = Thread.currentThread().getName();
         try {
+        	Thread.currentThread().setName(name+"."+step);
             return process();
         } catch (Exception e) {
             throw new RuntimeException(e);
+        } finally {
+        	Thread.currentThread().setName(oldName);
         }
     }
 
-    protected byte[] getInput() {
+    protected LCContent getInput() {
         return getInput("in");
     }
 
-    protected byte[] getInput(String key) {
+    protected LCContent getInput(String key) {
         return this.getResult(inputMapping.get(key)).getResult();
     }
 

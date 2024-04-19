@@ -18,7 +18,7 @@ public class Output extends LCStep {
     private final ObjectWriter printer = om.writer().withDefaultPrettyPrinter();
 
     @Override
-    public byte[] process() throws IOException {
+    public LCContent process() throws IOException {
         var value = createTippecanoeProperties();
 
         byte[] result;
@@ -29,7 +29,7 @@ public class Output extends LCStep {
             result = om.writeValueAsBytes(value);
         }
         Files.write(result, new File(ctx.getGeo(), getName()+".geojson"));
-        return result;
+        return LCContent.from(value);
     }
 
     private JsonNode createTippecanoeProperties() throws IOException {
@@ -45,7 +45,7 @@ public class Output extends LCStep {
             """.replace("$maxzoom", Integer.toString(ctx.getOptions().getMaxZoom()))
         );
 
-        var tree = om.readTree(withProp);
+        var tree = withProp.toJSONNode(); 
         var arr = (ArrayNode)tree.required("features");
         for(var n:arr) {
             var props = (ObjectNode)n.required("properties");
@@ -53,6 +53,12 @@ public class Output extends LCStep {
             if(tippecanoe != null && !tippecanoe.isNull()) {
                 ((ObjectNode)n).set("tippecanoe", tippecanoe);
             }
+            //remove null values
+            var it=props.properties().iterator();
+            it.forEachRemaining(e->{
+            	if(e.getValue().isNull())
+            		it.remove();
+            });
         }
         return tree;
     }
