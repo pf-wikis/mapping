@@ -12,14 +12,12 @@ public class SmoothLines extends LCStep {
             "-require", "curve-interpolator", "alias=_",
             "-explode",
             "-each", """
-                if(this.properties.noSmooth) return;
-
                 let json = this.geojson;
 
                 let Ps = json.geometry.coordinates;
                 let l = Ps.length;
 
-                let interp = new _.CurveInterpolator(Ps, { tension: 0.25 });
+                let interp = new _.CurveInterpolator(Ps, { tension: this.properties.noSmooth?1.0:0.25 });
 
                 var Ts = Ps.map((_, i) => i / (l - 1));
                 var Us = Ts.map(t => _.getTtoUmapping(t, interp.arcLengths));
