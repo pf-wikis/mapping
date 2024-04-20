@@ -1,7 +1,7 @@
 FROM qgis/qgis:release-3_34
 
 RUN apt-get update \
-	&& apt-get install -y mmv openjdk-17-jdk maven jq bc \
+	&& apt-get install -y mmv openjdk-21-jdk maven jq bc \
 	&& rm -rf /var/lib/apt/lists/*
 RUN git clone https://github.com/felt/tippecanoe.git \
 	&& cd tippecanoe \
