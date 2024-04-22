@@ -28,6 +28,8 @@ import org.apache.commons.exec.PumpStreamHandler;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -55,23 +57,26 @@ public class Runner {
     			cmd.getParts().subList(1, cmd.getParts().size()).toArray(String[]::new),
     			false
         	);
-        	DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
-
         	Executor executor = DefaultExecutor.builder().get();
         	executor.setExitValue(0);
         	if(in != null)
         		executor.setStreamHandler(new PumpStreamHandler(out, error, in.toInputStream()));
         	else
         		executor.setStreamHandler(new PumpStreamHandler(out, error));
-        	executor.execute(cmdl, resultHandler);
-        	resultHandler.waitFor();
+        	int exitValue = executor.execute(cmdl);
         	
-            if(resultHandler.getExitValue() != 0) {
-                throw new RuntimeException("Exited command "+cmd.getParts()+" with non-zero code: "+resultHandler.getExitValue());
+            if(exitValue != 0) {
+                throw new RuntimeException("Exited command "+cmd.getParts()+" with non-zero code: "+exitValue);
             }
             LCContent result = LCContent.empty();
             if(output == Redirect.PIPE) {
-                result = LCContent.from(out.toByteArray());
+            	var bytes = out.toByteArray();
+            	try {
+            		new ObjectMapper().readTree(bytes);
+            	} catch(Exception e) {
+            		log.error("Output of {} is not valid JSON:\n{}", cmd.getParts(), new String(bytes, StandardCharsets.UTF_8));
+            	}
+                result = LCContent.from(bytes);
             }
             else {
             	log(Level.INFO, out.toByteArray());
