@@ -14,7 +14,12 @@ import lombok.Getter;
 
 public enum ToolVariant {
 	
-	NATIVE,
+	NATIVE {
+		@Override
+		public boolean isStdInSupported() {
+			return true;
+		}
+	},
 	CMD {
 		@Override
 		public void modifyArguments(List<String> args) {
@@ -118,5 +123,9 @@ public enum ToolVariant {
 	}
 
 	public void modifyArguments(List<String> args) {}
+
+	public boolean isStdInSupported() {
+		return false;
+	}
 
 }
