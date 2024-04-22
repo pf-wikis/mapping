@@ -28,14 +28,14 @@ public class LayersCompiler {
 
     private final TileCompiler tileCompiler;
     private final File stepsFile = new File("steps.yaml");
+    private final int parallelism;
 
     public void compile() throws Exception {
         var lsDescriptions = new ObjectMapper(new YAMLFactory()).readValue(stepsFile, LCDescription[].class);
 
         Map<String, LCStep> steps = new HashMap<>();
-        int poolSize = Math.min(4, Runtime.getRuntime().availableProcessors());
-        var pool = Executors.newFixedThreadPool(poolSize);
-        log.info("Running with pool size {}", poolSize);
+        var pool = Executors.newFixedThreadPool(parallelism);
+        log.info("Running with pool size {}", parallelism);
 
         try {
             var config = new DexecutorConfig<String, LCContent>(pool, id-> {

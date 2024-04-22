@@ -78,7 +78,10 @@ public class TileCompiler {
     }
 
     private void compileLayers() throws Exception {
-        new LayersCompiler(this).compile();
+        new LayersCompiler(
+    		this,
+    		1//Math.min(4, Runtime.getRuntime().availableProcessors())
+		).compile();
     }
 
     private void compileSprites() throws IOException {
