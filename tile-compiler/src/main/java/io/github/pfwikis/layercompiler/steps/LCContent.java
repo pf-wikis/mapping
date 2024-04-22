@@ -11,8 +11,11 @@ import java.nio.file.Path;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.TokenBuffer;
+
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Runner;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +23,8 @@ import lombok.SneakyThrows;
 
 public interface LCContent {
 	
-	static final ObjectMapper MAPPER = new ObjectMapper();
+	static final ObjectMapper MAPPER = new ObjectMapper()
+		.enable(JsonParser.Feature.INCLUDE_SOURCE_IN_LOCATION);
 
 	public InputStream toInputStream();
 
@@ -146,12 +150,11 @@ public interface LCContent {
 			return new ByteArrayInputStream(toBytes());
 		}
 		
-		@SuppressWarnings("unchecked")
-		@Override
+		@Override @SneakyThrows
 		public <R> R toParsed(Class<R> cl) {
-			if(cl.equals(type))
-				return (R)val;
-			return LCContent.super.toParsed(cl);
+			TokenBuffer tb = new TokenBuffer(MAPPER.getFactory().getCodec(), false);
+			MAPPER.writeValue(tb, val);
+			return MAPPER.readValue(tb.asParser(), cl);
 		}
 	}
 

@@ -32,7 +32,9 @@ public class LayersCompiler {
         var lsDescriptions = new ObjectMapper(new YAMLFactory()).readValue(stepsFile, LCDescription[].class);
 
         Map<String, LCStep> steps = new HashMap<>();
-        var pool = Executors.newFixedThreadPool(4);
+        int poolSize = Math.min(4, Runtime.getRuntime().availableProcessors());
+        var pool = Executors.newFixedThreadPool(poolSize);
+        log.info("Running with pool size {}", poolSize);
 
         try {
             var config = new DexecutorConfig<String, LCContent>(pool, id-> {
