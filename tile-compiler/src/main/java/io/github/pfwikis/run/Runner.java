@@ -26,9 +26,11 @@ import org.apache.commons.exec.ExecuteWatchdog;
 import org.apache.commons.exec.Executor;
 import org.apache.commons.exec.PumpStreamHandler;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import lombok.Getter;
@@ -52,19 +54,65 @@ public class Runner {
     	var out = new ByteArrayOutputStream();
     	var error = new ByteArrayOutputStream();
         try(var cmd = Command.of(command, args)) {
-        	var cmdl = new CommandLine(cmd.getParts().get(0));
+        	/*var cmdl = new CommandLine(cmd.getParts().get(0));
         	cmdl.addArguments(
     			cmd.getParts().subList(1, cmd.getParts().size()).toArray(String[]::new),
     			false
+        	);*/
+        	
+        	var proc = new ProcessBuilder()
+        		.command(cmd.getParts())
+        		.redirectError(Redirect.PIPE)
+        		.redirectInput(in==null?Redirect.INHERIT:Redirect.PIPE)
+        		.redirectOutput(Redirect.PIPE)
+        		.start();
+        	var threats = Lists.newArrayList(
+	        	Executors.defaultThreadFactory().newThread(()->{
+	        		try {
+						IOUtils.copy(proc.getErrorStream(), error);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        	}),
+	        	Executors.defaultThreadFactory().newThread(()->{
+	        		try {
+						IOUtils.copy(proc.getInputStream(), out);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        	})
         	);
-        	Executor executor = DefaultExecutor.builder().get();
+        	if(in != null) {
+        		threats.add(Executors.defaultThreadFactory().newThread(()->{
+            		try {
+						IOUtils.copy(in.toInputStream(), proc.getOutputStream());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+            	}));
+        	}
+        	threats.forEach(Thread::start);
+        	int exitValue = proc.waitFor();
+        	threats.forEach(t -> {
+				try {
+					t.join();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			});
+        	
+        	
+        	/*Executor executor = DefaultExecutor.builder().get();
         	executor.setExitValue(0);
         	if(in != null)
         		executor.setStreamHandler(new PumpStreamHandler(out, error, in.toInputStream()));
         	else
         		executor.setStreamHandler(new PumpStreamHandler(out, error));
         	int exitValue = executor.execute(cmdl);
-        	
+        	*/
             if(exitValue != 0) {
                 throw new RuntimeException("Exited command "+cmd.getParts()+" with non-zero code: "+exitValue);
             }
