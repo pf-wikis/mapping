@@ -19,4 +19,11 @@ ENV QT_QPA_PLATFORM offscreen
 COPY compile.sh /compile.sh
 RUN chmod 777 /*.sh
 
+# this should reduce compile time by already downloading maven dependencies
+RUN git clone https://github.com/pf-wikis/mapping.git mapping \
+  && cd mapping/tile-compiler \
+  && mvn compile package \
+  && cd ../.. \
+  && rm -rf mapping
+
 ENTRYPOINT ["/bin/bash", "-c"]
