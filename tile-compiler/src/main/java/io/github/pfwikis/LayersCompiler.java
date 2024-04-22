@@ -13,11 +13,12 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.dexecutor.core.DefaultDexecutor;
 import com.github.dexecutor.core.DexecutorConfig;
 import com.github.dexecutor.core.ExecutionConfig;
+import com.google.common.collect.HashMultiset;
 
 import io.github.pfwikis.layercompiler.description.LCDescription;
-import io.github.pfwikis.layercompiler.steps.LCContent;
-import io.github.pfwikis.layercompiler.steps.LCStep;
-import io.github.pfwikis.layercompiler.steps.LCStep.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.LCStep.Ctx;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,6 +57,8 @@ public class LayersCompiler {
     }
 
     private void createSteps(LCDescription[] lsDescriptions, Map<String, LCStep> steps, DefaultDexecutor<String, LCContent> executor) {
+    	var requiredCount = HashMultiset.<String>create();
+    	
         for(var lsDescription : lsDescriptions) {
             for(int i=0;i<lsDescription.getSteps().size();i++) {
                 var step = lsDescription.getSteps().get(i);
@@ -80,19 +83,26 @@ public class LayersCompiler {
                     var dep = lsDescription.createName(i-1);
                     lcstep.getInputMapping().put("in", dep);
                     executor.addDependency(dep, name);
+                    requiredCount.add(dep);
                 }
                 if(step.getDependsOn().getIn() != null) {
                     var dep = resolveName(step.getDependsOn().getIn(), lsDescriptions);
                     lcstep.getInputMapping().put("in", dep);
                     executor.addDependency(dep, name);
+                    requiredCount.add(dep);
                 }
 
                 for(var e:step.getDependsOn().getOtherDependencies().entrySet()) {
                     var dep = resolveName(e.getValue(), lsDescriptions);
                     lcstep.getInputMapping().put(e.getKey(), dep);
                     executor.addDependency(dep, name);
+                    requiredCount.add(dep);
                 }
             }
+        }
+        
+        for(var required:requiredCount.entrySet()) {
+        	steps.get(required.getElement()).setNumberOfDependents(required.getCount());
         }
     }
 

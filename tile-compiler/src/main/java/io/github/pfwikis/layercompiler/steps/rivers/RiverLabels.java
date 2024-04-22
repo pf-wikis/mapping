@@ -1,7 +1,7 @@
 package io.github.pfwikis.layercompiler.steps.rivers;
 
-import io.github.pfwikis.layercompiler.steps.LCContent;
-import io.github.pfwikis.layercompiler.steps.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Tools;
 
 public class RiverLabels extends LCStep {

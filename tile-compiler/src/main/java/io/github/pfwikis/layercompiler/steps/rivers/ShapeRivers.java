@@ -16,8 +16,8 @@ import org.locationtech.jts.math.Vector2D;
 import com.beust.jcommander.internal.Lists;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.pfwikis.layercompiler.steps.LCContent;
-import io.github.pfwikis.layercompiler.steps.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Tools;
 import lombok.extern.slf4j.Slf4j;
 import mil.nga.sf.geojson.Feature;

@@ -2,6 +2,8 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.io.IOException;
 
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Runner;
 import io.github.pfwikis.run.Tools;
 
@@ -23,8 +25,11 @@ public class DistrictGap extends LCStep {
             "--MITER_LIMIT=2",
             "--DISSOLVE=true"
         );
-
-        return Tools.qgis("native:difference", getInput(), new Runner.TmpGeojson("--OVERLAY=", bufferedLines));
+        
+        innerLines.finishUsage();
+        var result = Tools.qgis("native:difference", getInput(), new Runner.TmpGeojson("--OVERLAY=", bufferedLines));
+        bufferedLines.finishUsage();
+        return result;
     }
 
 

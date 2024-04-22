@@ -1,12 +1,13 @@
 package io.github.pfwikis.layercompiler.steps;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import com.beust.jcommander.internal.Lists;
 
 import io.github.pfwikis.JSMath;
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Tools;
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,9 +17,9 @@ public class GenerateLabelCenters extends LCStep {
     @Override
     public LCContent process() throws IOException {
     	LCContent in = getInput();
-        if(!in.toJSONString().contains("\"Name\":")) {
+        /*if(!in.toJSONString().contains("\"Name\":")) {
             return LCContent.from("{\"type\":\"FeatureCollection\", \"features\": []}".getBytes(StandardCharsets.UTF_8));
-        }
+        }*/
 
         log.info("  Generating label points from polygon centers");
         var commands = Lists.newArrayList(
@@ -39,6 +40,7 @@ public class GenerateLabelCenters extends LCStep {
             "--label=center-of-mass",
             "--style=largest"
         );
+        tmp.finishUsage();
         return labelPoints;
     }
 

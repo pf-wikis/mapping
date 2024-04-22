@@ -2,6 +2,8 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.io.IOException;
 
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Tools;
 
 public class BufferPolygons extends LCStep {
@@ -19,7 +21,11 @@ public class BufferPolygons extends LCStep {
             "--OFFSET=0.3",
             "--MAX_ANGLE=180"
         );
-       return smooth;
+        
+        buffered.finishUsage();
+        reduced.finishUsage();
+       
+        return smooth;
     }
 
 }

@@ -1,9 +1,7 @@
 package io.github.pfwikis.layercompiler.steps;
 
-import java.io.File;
-
-import com.google.common.io.Files;
-
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Tools;
 
 public class BorderVariants {
@@ -59,10 +57,14 @@ public class BorderVariants {
                 "-lines", "-filter-fields",
                 "-clip", getInput("land_without_water")
             );
-            return Tools.mapshaper2(innerNationBorders,
+            var res = Tools.mapshaper2(innerNationBorders,
                 outerNationBorders, "combine-files",
                 "-merge-layers"
             );
+            innerNationBorders.finishUsage();
+            outerNationBorders.finishUsage();
+            
+            return res;
         }
     }
 
@@ -94,10 +96,14 @@ public class BorderVariants {
                 "-lines", "-filter-fields",
                 "-clip", getInput("land_without_water")
             );
-            return Tools.mapshaper2(innerSubRegionBorders,
+            var res = Tools.mapshaper2(innerSubRegionBorders,
                 outerSubRegionBorders, "combine-files",
                 "-merge-layers"
             );
+            innerSubRegionBorders.finishUsage();
+            outerSubRegionBorders.finishUsage();
+            
+            return res;
         }
     }
 

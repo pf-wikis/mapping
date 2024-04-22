@@ -1,4 +1,4 @@
-package io.github.pfwikis.layercompiler.steps;
+package io.github.pfwikis.layercompiler.steps.model;
 
 import java.io.File;
 import java.util.HashMap;
@@ -17,6 +17,7 @@ public abstract class LCStep extends Task<String, LCContent> {
     protected Ctx ctx;
     private String name;
     private String step;
+    private int numberOfDependents;
     private Map<String, String> inputMapping = new HashMap<>();
 
     public abstract LCContent process() throws Exception;
@@ -26,7 +27,12 @@ public abstract class LCStep extends Task<String, LCContent> {
     	var oldName = Thread.currentThread().getName();
         try {
         	Thread.currentThread().setName(name+"."+step);
-            return process();
+            var result = process();
+            result.setNumberOfValidUses(numberOfDependents);
+            for(var input:inputMapping.values()) {
+            	this.getResult(input).getResult().finishUsage();
+            }
+            return result;
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -52,5 +58,4 @@ public abstract class LCStep extends Task<String, LCContent> {
     public void init(Ctx ctx) {
         this.ctx = ctx;
     }
-
 }

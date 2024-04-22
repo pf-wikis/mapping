@@ -6,8 +6,8 @@ import java.util.Set;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.pfwikis.layercompiler.steps.LCContent;
-import io.github.pfwikis.layercompiler.steps.LCStep.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep.Ctx;
 import io.github.pfwikis.run.Tools;
 import mil.nga.sf.geojson.FeatureCollection;
 import mil.nga.sf.geojson.Geometry;

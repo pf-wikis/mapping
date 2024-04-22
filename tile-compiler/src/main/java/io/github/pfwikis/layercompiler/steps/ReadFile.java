@@ -7,6 +7,8 @@ import java.util.Objects;
 
 import org.apache.commons.io.FileUtils;
 
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Tools;
 
 public class ReadFile extends LCStep {
@@ -29,7 +31,7 @@ public class ReadFile extends LCStep {
     public LCContent process() throws IOException {
 		if(file != null) {
 			var finalFile = Path.of("../sources").resolve(file.toPath()).toFile().getCanonicalFile();
-			return LCContent.from(finalFile);
+			return LCContent.from(finalFile, false);
 		}
 		else {
             return Tools.ogr2ogr(ctx.getMappingDataFile().toPath(), "-dim", "XY", "-mapFieldType", "DateTime=String", layer);

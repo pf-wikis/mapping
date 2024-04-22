@@ -28,7 +28,7 @@ import org.apache.commons.exec.PumpStreamHandler;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import io.github.pfwikis.layercompiler.steps.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -79,7 +79,7 @@ public class Runner {
             }
 
             if(cmd.getResultFile() != null) {
-                result = LCContent.from(cmd.getResultFile());
+                result = LCContent.from(cmd.getResultFile(), true);
             }
 
             return result;

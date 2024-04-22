@@ -16,7 +16,8 @@ import com.google.common.base.CaseFormat;
 
 import io.github.classgraph.ClassGraph;
 import io.github.pfwikis.layercompiler.steps.*;
-import io.github.pfwikis.layercompiler.steps.LCStep.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.LCStep.Ctx;
 import lombok.Getter;
 import lombok.Setter;
 

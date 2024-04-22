@@ -2,7 +2,7 @@ package io.github.pfwikis.run;
 
 import java.io.IOException;
 
-import io.github.pfwikis.layercompiler.steps.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCContent;
 
 public class Tools {
 
