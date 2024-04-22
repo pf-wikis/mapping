@@ -39,19 +39,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Runner {
     /*package*/ static LCContent run(String command, Object... args) throws IOException {
-        return internalRun(Redirect.INHERIT, null, command, args);
+        return internalRun(false, null, command, args);
     }
 
     /*package*/ static LCContent runPipeOut(String command, Object... args) throws IOException {
-        return internalRun(Redirect.PIPE, null, command, args);
+        return internalRun(true, null, command, args);
     }
 
     /*package*/ static LCContent runPipeInOut(LCContent in, String command, Object... args) throws IOException {
-        return internalRun(Redirect.PIPE, in, command, args);
+        return internalRun(true, in, command, args);
     }
     
-    private static LCContent internalRun(Redirect output, LCContent in, String command, Object... args) throws IOException {
-    	var out = new ByteArrayOutputStream();
+    private static LCContent internalRun(boolean readStdOut, LCContent in, String command, Object... args) throws IOException {
     	var error = new ByteArrayOutputStream();
         try(var cmd = Command.of(command, args)) {
         	/*var cmdl = new CommandLine(cmd.getParts().get(0));
@@ -60,24 +59,24 @@ public class Runner {
     			false
         	);*/
         	
-        	var proc = new ProcessBuilder()
+        	var pb = new ProcessBuilder()
         		.command(cmd.getParts())
         		.redirectError(Redirect.PIPE)
-        		.redirectInput(in==null?Redirect.INHERIT:Redirect.PIPE)
-        		.redirectOutput(Redirect.PIPE)
-        		.start();
+        		.redirectInput(in==null?Redirect.INHERIT:Redirect.PIPE);
+
+        	File tmpOutput = null;
+    		if(readStdOut) {
+    			tmpOutput = tmpGeojson();
+    			pb = pb.redirectOutput(tmpOutput);
+    		}
+    		else {
+    			pb = pb.redirectOutput(Redirect.DISCARD);
+    		}
+        	var proc = pb.start();
         	var threats = Lists.newArrayList(
 	        	Executors.defaultThreadFactory().newThread(()->{
 	        		try {
 						IOUtils.copy(proc.getErrorStream(), error);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-	        	}),
-	        	Executors.defaultThreadFactory().newThread(()->{
-	        		try {
-						IOUtils.copy(proc.getInputStream(), out);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -118,17 +117,17 @@ public class Runner {
                 throw new RuntimeException("Exited command "+cmd.getParts()+" with non-zero code: "+exitValue);
             }
             LCContent result = LCContent.empty();
-            if(output == Redirect.PIPE) {
-            	var bytes = out.toByteArray();
-            	try {
-            		new ObjectMapper().readTree(bytes);
+            if(readStdOut) {
+                result = LCContent.from(tmpOutput, true);
+                try {
+            		result.toJSONNode();
             	} catch(Exception e) {
-            		log.error("Output of {} is not valid JSON:\n{}", cmd.getParts(), new String(bytes, StandardCharsets.UTF_8));
+            		var jsonStr = result.toJSONString();
+            		log.error("Output of {} is not valid JSON. Length {}. End is: {}", jsonStr.length(), jsonStr.substring(Math.max(0, jsonStr.length()-100)));
             	}
-                result = LCContent.from(bytes);
             }
             else {
-            	log(Level.INFO, out.toByteArray());
+            	//log(Level.INFO, out.toByteArray());
             	log(Level.SEVERE, error.toByteArray());
             }
 
@@ -145,7 +144,7 @@ public class Runner {
                 Files.write(tmp, in.toBytes());
                 log.error("Full input in "+tmp.toAbsolutePath());
             }
-            log(Level.INFO, out.toByteArray());
+            //log(Level.INFO, out.toByteArray());
         	log(Level.SEVERE, error.toByteArray());
             throw new IOException(e);
         }
