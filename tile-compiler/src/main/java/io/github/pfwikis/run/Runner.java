@@ -86,8 +86,9 @@ public class Runner {
         	);
         	if(in != null) {
         		threats.add(Executors.defaultThreadFactory().newThread(()->{
-            		try {
-						IOUtils.copy(in.toInputStream(), proc.getOutputStream());
+            		try(var is = in.toInputStream()) {
+						IOUtils.copy(is, proc.getOutputStream());
+						proc.getOutputStream().close();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
