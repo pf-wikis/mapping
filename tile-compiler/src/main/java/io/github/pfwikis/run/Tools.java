@@ -20,12 +20,23 @@ public class Tools {
     }
 
     public static LCContent mapshaper(LCContent in, Object... args) throws IOException {
-        return Runner.runPipeOut(
-            "mapshaper", "-i", new Runner.TmpGeojson(in),
-            args,
-            "-o", "-", "format=geojson", "geojson-type=FeatureCollection",
-            "precision=0.00000001"
-        );
+    	if(ToolVariant.getMapshaper().isStdInSupported()) {
+    		return Runner.runPipeInOut(
+				in,
+	            "mapshaper", "-",
+	            args,
+	            "-o", "-", "format=geojson", "geojson-type=FeatureCollection",
+	            "precision=0.00000001"
+	        );
+    	}
+    	else {
+	        return Runner.runPipeOut(
+	            "mapshaper", "-i", new Runner.TmpGeojson(in),
+	            args,
+	            "-o", "-", "format=geojson", "geojson-type=FeatureCollection",
+	            "precision=0.00000001"
+	        );
+    	}
     }
 
     public static LCContent mapshaper2(LCContent in1, LCContent in2, Object... args) throws IOException {
