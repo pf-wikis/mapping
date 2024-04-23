@@ -403,7 +403,7 @@ let layers:LayerSpecification[] = [
     type: 'symbol',
     filter: ['all',
       ['>', ["zoom"], ["+", props.filterMinzoom, 3]],
-      ['<=', ["zoom"], ["+", props.filterMaxzoom, 3]]
+      ['any', ['!', ['has', 'filterMaxzoom']], ['<=', ["zoom"], props.filterMaxzoom]]
     ],
     layout: {
       'text-field': ['get', 'Name'],
