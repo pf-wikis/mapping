@@ -53,7 +53,9 @@ public class DownloadCities {
         for (var city : cities) {
         	if(!city.getPageName().startsWith("PathfinderWiki:")) {
         		System.out.println("\t"+city.getPageName());
-        		city.setText(Helper.downloadText(city.getPageName()));
+        		var txt = Helper.downloadText(city.getPageName());
+        		city.setText(txt.excerpt());
+        		city.setArticleLength(txt.totalArticleLength());
         	}
         }
 

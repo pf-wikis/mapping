@@ -24,6 +24,7 @@ public class City {
     private String name;
     private String ibtype;
     private String text;
+    private int articleLength;
 
     @JsonCreator
     public static City fromJson(ObjectNode n) {

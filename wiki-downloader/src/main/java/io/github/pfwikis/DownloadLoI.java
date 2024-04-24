@@ -51,7 +51,9 @@ public class DownloadLoI {
         for (var loi : lois) {
         	if(!loi.getPageName().startsWith("PathfinderWiki:")) {
         		System.out.println("\t"+loi.getPageName());
-        		loi.setText(Helper.downloadText(loi.getPageName()));
+        		var txt = Helper.downloadText(loi.getPageName());
+        		loi.setText(txt.excerpt());
+        		loi.setArticleLength(txt.totalArticleLength());
         	}
         }
 

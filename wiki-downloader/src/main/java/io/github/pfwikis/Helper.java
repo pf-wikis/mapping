@@ -77,7 +77,8 @@ public class Helper {
 		".sortkey",
 		"#spoilerWarning"
 	};
-	public static String downloadText(String pageName) throws IOException {
+    public record ArticleText(int totalArticleLength, String excerpt) {}
+	public static ArticleText downloadText(String pageName) throws IOException {
 		var resp = Jackson.get().readTree(URI.create(
 			buildQuery("https://pathfinderwiki.com/w/api.php",
 				"format", "json",
@@ -118,9 +119,11 @@ public class Helper {
 		
 		var raw = doc.body().html();
 		
+		int totalArticleLength = doc.body().text().length();
+		
 		//cut off sections
 		raw = raw.replaceAll("(?s)<h\\d.*", "");
 		doc = Jsoup.parseBodyFragment(raw);
-		return doc.body().html();
+		return new ArticleText(totalArticleLength, doc.body().html());
 	}
 }

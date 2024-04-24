@@ -19,6 +19,7 @@ public class LoI {
     private String type;
     private String name;
     private String text;
+    private int articleLength;
 
     @JsonCreator
     public static LoI fromJson(ObjectNode n) {

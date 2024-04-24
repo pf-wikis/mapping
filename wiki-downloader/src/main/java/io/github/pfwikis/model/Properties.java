@@ -21,12 +21,14 @@ public class Properties {
     private Integer size;
     private String type;
     private String text;
+    private int articleLength;
 
     public Properties(City city) {
         Name = Helper.handleName(city.getName(), city.getPageName());
         link = "https://pathfinderwiki.com/wiki/" + city.getPageName().replace(' ', '_');
         capital = city.isCapital();
         text = city.getText();
+        articleLength = city.getArticleLength();
     }
 
 	public Properties(LoI loi) {
@@ -34,5 +36,6 @@ public class Properties {
         link = "https://pathfinderwiki.com/wiki/" + loi.getPageName().replace(' ', '_');
         type = loi.getType();
         text = loi.getText();
+        articleLength = loi.getArticleLength();
 	}
 }
