@@ -1,11 +1,8 @@
 package io.github.pfwikis.layercompiler.steps.model;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +10,7 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -24,8 +22,9 @@ import lombok.SneakyThrows;
 
 public abstract class LCContent {
 	
-	static final ObjectMapper MAPPER = new ObjectMapper()
-		.enable(JsonParser.Feature.INCLUDE_SOURCE_IN_LOCATION);
+	public static final ObjectMapper MAPPER = new ObjectMapper()
+		.enable(JsonParser.Feature.INCLUDE_SOURCE_IN_LOCATION)
+		.setDefaultPropertyInclusion(Include.NON_NULL);
 
 	@Setter
 	private int numberOfValidUses = 1;

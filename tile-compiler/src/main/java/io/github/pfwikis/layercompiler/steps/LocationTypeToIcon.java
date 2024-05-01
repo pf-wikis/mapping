@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
-import io.github.pfwikis.run.Tools;
 
 public class LocationTypeToIcon extends LCStep {
 
@@ -16,14 +15,18 @@ public class LocationTypeToIcon extends LCStep {
     	var icons = Arrays.stream(new File("sprites").list())
     		.filter(n->n.startsWith("location-") && n.endsWith(".svg"))
     		.map(n->n.substring(9, n.length()-4))
-    		.map(n->"if(this.properties.type==='"+n+"') {this.properties.icon='location-"+n+"';}")
-    		.collect(Collectors.joining("\nelse "));
+    		.collect(Collectors.toSet());
     	
-        return Tools.mapshaper(getInput(),
-            "-each", icons+"""
-            	\nelse {this.properties.icon='location-other';}
-            	delete this.properties.type;
-            """
-        );
+    	var fc = getInput().toFeatureCollection();
+    	fc.getFeatures().forEach(f-> {
+    		if(icons.contains(f.getProperties().getType())) {
+    			f.getProperties().setIcon("location-"+f.getProperties().getType());
+    		}
+    		else {
+    			f.getProperties().setIcon("location-other");
+    		}
+    		f.getProperties().setType(null);
+    	});
+    	return LCContent.from(fc);
     }
 }
