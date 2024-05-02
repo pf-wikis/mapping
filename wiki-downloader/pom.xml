@@ -6,8 +6,8 @@
 	<artifactId>wiki-downloader</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
-		<maven.compiler.target>17</maven.compiler.target>
-		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<maven.compiler.source>21</maven.compiler.source>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.26</version>
+			<version>1.18.32</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
