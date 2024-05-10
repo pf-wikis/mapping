@@ -20,10 +20,14 @@ public class Geometry {
     private String type = "Point";
     private List<BigDecimal> coordinates;
 
-    public Geometry(City city) {
-        coordinates = List.of(
-                city.getCoordsLon().round(ROUND_TO_7),
-                city.getCoordsLat().round(ROUND_TO_7)
+	public Geometry(BigDecimal lon, BigDecimal lat) {
+		//wrap around for better viewing in qgis
+    	if(lon.compareTo(BigDecimal.valueOf(-138))<0)
+    		lon=lon.add(BigDecimal.valueOf(360));
+		
+		coordinates = List.of(
+            lon.round(ROUND_TO_7),
+            lat.round(ROUND_TO_7)
         );
-    }
+	}
 }

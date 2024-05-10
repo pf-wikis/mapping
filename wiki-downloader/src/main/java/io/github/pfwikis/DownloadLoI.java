@@ -61,11 +61,7 @@ public class DownloadLoI {
         for (var loi : lois) {
             try {
                 var properties = new Properties(loi);
-                var geometry = new Geometry();
-                geometry.setCoordinates(List.of(
-                    loi.getCoordsLon().round(ROUND_TO_7),
-                    loi.getCoordsLat().round(ROUND_TO_7)
-                ));
+                var geometry = new Geometry(loi.getCoordsLon(), loi.getCoordsLat());
 
                 var feature = new Feature(properties, geometry);
 

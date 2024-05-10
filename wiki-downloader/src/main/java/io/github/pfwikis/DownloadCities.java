@@ -66,7 +66,7 @@ public class DownloadCities {
                 feature.setProperties(new Properties(city));
                 handlePopulation(city, feature);
 
-                feature.setGeometry(new Geometry(city));
+                feature.setGeometry(new Geometry(city.getCoordsLon(), city.getCoordsLat()));
                 arr.add(feature);
             } catch (Exception e) {
                 System.err.println("Failed for " + city.getPageName());
