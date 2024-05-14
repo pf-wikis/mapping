@@ -227,7 +227,6 @@ let layers:LayerSpecification[] = [
     }
   }),
   createLayer('river-labels', {
-
     type: 'symbol',
     layout: {
       'symbol-placement': 'line',
