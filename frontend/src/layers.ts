@@ -227,20 +227,22 @@ let layers:LayerSpecification[] = [
     }
   }),
   createLayer('river-labels', {
+
     type: 'symbol',
     layout: {
       'symbol-placement': 'line',
-      'text-max-angle': 20,
+      'text-max-angle': 40,
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'symbol-spacing': 300,
-      'text-size': [
+      'symbol-spacing': [
         'interpolate',
         ['linear'],
         ['zoom'],
-        5,  2,
-        10, 16,
+        1, 1,
+        6, 250,
+        12, 400,
       ],
+      'text-size': 14,
     },
     paint: {
       'text-color': colors.waterDarker,
