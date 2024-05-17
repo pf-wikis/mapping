@@ -1,6 +1,15 @@
+import viteCompression from 'vite-plugin-compression';
+
 /** @type {import('vite').UserConfig} */
 export default {
   base: '',
+  plugins: [viteCompression({
+    filter: /\.(js|mjs|json|css|html|pbf)$/i,
+    threshold: 0,
+    compressionOptions: {
+      level: 9
+    }
+  })],
   build: {
     sourcemap: true,
     modulePreload: {
