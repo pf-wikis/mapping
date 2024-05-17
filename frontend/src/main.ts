@@ -23,23 +23,22 @@ var root = `${location.protocol}//${location.host}/`;
 
 const pmProtocol = new Protocol();
 Maplibre.addProtocol("pmtiles", pmProtocol.tile);
-Maplibre.addProtocol("custom", (params, callback) => {
-  fetch(params.url.substring(9))
-      .then(t => {
-          if (t.status == 200) {
-              t.arrayBuffer().then(arr=> {
-                return decompress(arr);
-              }).then(arr => {
-                  callback(null, arr, null, null);
-              });
-          } else {
-              callback(new Error(`Tile fetch error: ${t.statusText}`));
-          }
-      })
-      .catch(e => {
-          callback(new Error(e));
-      });
-  return { cancel: () => { } };
+Maplibre.addProtocol("custom", (params, abortController) => {
+  return fetch(params.url.substring(9))
+    .then(t => {
+      if (t.status == 200) {
+        return t.arrayBuffer().then(arr => {
+          return decompress(arr);
+        }).then(arr => {
+          return { data: arr };
+        });
+      } else {
+        throw new Error(`Failed request to ${params.url} with response code ${t.status}`);
+      }
+    })
+    .catch(e => {
+      throw new Error(e);
+    });
 });
 
 export const map = new Map({

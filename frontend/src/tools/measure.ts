@@ -55,11 +55,11 @@ export default class MeasureControl implements IControl {
               'text-halo-width': 4,
             },
           });
+          map.on('draw.create', this._updateLabels.bind(this));
+          map.on('draw.update', this._updateLabels.bind(this));
+          map.on('draw.delete', this._updateLabels.bind(this));
+          map.on('draw.render', this._updateLabels.bind(this));
         });
-        map.on('draw.create', this._updateLabels.bind(this));
-        map.on('draw.update', this._updateLabels.bind(this));
-        map.on('draw.delete', this._updateLabels.bind(this));
-        map.on('draw.render', this._updateLabels.bind(this));
 
         return document.createElement('div');
     }
