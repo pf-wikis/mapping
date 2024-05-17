@@ -4,7 +4,6 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import layers from './layers.js';
 import MeasureControl from './tools/measure.js';
 import './style.scss';
-import { decompress } from './utils.js';
 import { Protocol } from 'pmtiles';
 import { makeLocationsClickable } from "./tools/location-popup.js";
 import { addRightClickMenu } from "./tools/right-click-menu.js";
@@ -21,25 +20,7 @@ if(embedded) {
 
 var root = `${location.protocol}//${location.host}/`;
 
-const pmProtocol = new Protocol();
-Maplibre.addProtocol("pmtiles", pmProtocol.tile);
-Maplibre.addProtocol("custom", (params, abortController) => {
-  return fetch(params.url.substring(9))
-    .then(t => {
-      if (t.status == 200) {
-        return t.arrayBuffer().then(arr => {
-          return decompress(arr);
-        }).then(arr => {
-          return { data: arr };
-        });
-      } else {
-        throw new Error(`Failed request to ${params.url} with response code ${t.status}`);
-      }
-    })
-    .catch(e => {
-      throw new Error(e);
-    });
-});
+Maplibre.addProtocol("pmtiles", new Protocol().tile);
 
 export const map = new Map({
   container: 'map-container',
@@ -57,7 +38,7 @@ export const map = new Map({
     },
     sprite: root+'sprites/sprites',
     layers: layers,
-    glyphs: 'custom://'+root+'fonts/{fontstack}/{range}.pbf',
+    glyphs: root+'fonts/{fontstack}/{range}.pbf',
     transition: {
       duration: 300,
       delay: 0
@@ -83,7 +64,7 @@ map.addControl(new ScaleControl({
   maxWidth: embedded?50:100,
 }));
 map.addControl(new AttributionControl({
-  compact: embedded
+  compact: true
 }));
 let measureControl = new MeasureControl();
 map.addControl(measureControl);
