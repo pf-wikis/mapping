@@ -20,7 +20,8 @@ if(embedded) {
 
 var root = `${location.protocol}//${location.host}/`;
 
-Maplibre.addProtocol("pmtiles", new Protocol().tile);
+let pmtilesProt = new Protocol().tile as Maplibre.AddProtocolAction;
+Maplibre.addProtocol("pmtiles", pmtilesProt);
 
 export const map = new Map({
   container: 'map-container',
