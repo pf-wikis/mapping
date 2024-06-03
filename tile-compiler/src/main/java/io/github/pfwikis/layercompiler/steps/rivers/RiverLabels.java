@@ -9,7 +9,7 @@ public class RiverLabels extends LCStep {
     @Override
     public LCContent process() throws Exception {
         return Tools.mapshaper(getInput(),
-            "-explode", "-clean",
+            "-clean",
             "-dissolve", "Name",
             "-filter", "Name !== null",
             "-each", "filterMinzoom=5"

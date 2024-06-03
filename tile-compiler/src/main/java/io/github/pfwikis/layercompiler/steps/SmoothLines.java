@@ -10,6 +10,7 @@ import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.model.Geometry.LineString;
 import io.github.pfwikis.model.Geometry.MultiLineString;
 import io.github.pfwikis.model.LngLat;
+import io.github.pfwikis.run.Tools;
 import io.github.pfwikis.util.CatmullRomSpline;
 import io.github.pfwikis.util.Projection;
 
@@ -26,7 +27,10 @@ public class SmoothLines extends LCStep {
     			lines.getCoordinates().replaceAll(SmoothLines::interpolate);
     		}
     	}
-    	return LCContent.from(fc);
+    	
+    	//this explosion also guarantees that any in-memory work uses exactly the same
+    	//data as any mapshaper work
+    	return Tools.mapshaper(LCContent.from(fc), "-explode");
     }
 
     private static List<LngLat> interpolate(List<LngLat> coordinates) {
@@ -76,12 +80,4 @@ public class SmoothLines extends LCStep {
 		if(angle > 180) angle=360-angle;
 		return angle;
 	}
-
-	private String interpolate(int number) {
-        var sb = new StringBuilder();
-        for(int i=0;i<number;i++) {
-            sb.append("result.push(interp.getPointAt(("+(number-i)+"*Us[i]+"+(i+1)+"*Us[i+1])/"+(number+1)+"));");
-        }
-        return sb.toString();
-    }
 }
