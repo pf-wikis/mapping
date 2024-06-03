@@ -4,10 +4,11 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import layers from './layers.js';
 import MeasureControl from './tools/measure.js';
 import './style.scss';
-import { Protocol } from 'pmtiles';
+import { PMTiles, Protocol } from 'pmtiles';
 import { makeLocationsClickable } from "./tools/location-popup.js";
 import { addRightClickMenu } from "./tools/right-click-menu.js";
 import { addSpecialURLOptions } from "./tools/special-url-options.js";
+import { CachedSource } from "./CachedPmTiles.js";
 
 //check if running embedded
 var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -20,8 +21,17 @@ if(embedded) {
 
 var root = `${location.protocol}//${location.host}/`;
 
-let pmtilesProt = new Protocol().tile as Maplibre.AddProtocolAction;
-Maplibre.addProtocol("pmtiles", pmtilesProt);
+let pmtilesProt = new Protocol();
+Maplibre.addProtocol("pmtiles", pmtilesProt.tilev4);
+//add custom tile caching
+if(indexedDB) {
+  try {
+    pmtilesProt.add(new PMTiles(new CachedSource(root+'golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH, parseInt(import.meta.env.VITE_DATA_HASH))))
+  } catch(e) {
+    console.log("Failed to initialize IndexDB cache")
+    console.log(e)
+  }
+}
 
 export const map = new Map({
   container: 'map-container',

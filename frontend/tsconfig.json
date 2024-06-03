@@ -1,12 +1,10 @@
 {
     "compilerOptions": {
-      "target": "es2020",
-      "module": "es2022",
-      "moduleResolution": "node16",
-      "esModuleInterop": true,
+      "target": "ESNext",
+      "module": "ESNext",
+      "moduleResolution": "Bundler",
       "noImplicitAny": true,
       "removeComments": true,
-      "preserveConstEnums": true,
       "sourceMap": true,
       "isolatedModules": true
     },

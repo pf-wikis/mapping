@@ -11,6 +11,7 @@ export default {
     }
   })],
   build: {
+    target: 'esnext',
     sourcemap: true,
     modulePreload: {
       polyfill: false
