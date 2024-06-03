@@ -19,7 +19,9 @@ import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Runner;
 import lombok.Setter;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public abstract class LCContent {
 	
 	public static final ObjectMapper MAPPER = new ObjectMapper()
@@ -28,7 +30,9 @@ public abstract class LCContent {
 
 	@Setter
 	private int numberOfValidUses = 1;
-	protected int numberOfUses;
+	private int numberOfUses;
+	@Setter
+	protected String name;
 	protected List<Path> temporaryFilesToDelete = new ArrayList<>();
 	
 	public synchronized void finishUsage() {
@@ -41,7 +45,7 @@ public abstract class LCContent {
 	
 	protected synchronized void checkValidUsage() {
 		if(numberOfUses >= numberOfValidUses) {
-			throw new IllegalStateException("This content was used "+(numberOfUses+1)+" times even though it is only allows to be used "+numberOfValidUses);
+			throw new IllegalStateException("Content "+name+" was used "+(numberOfUses+1)+" times even though it is only allows to be used "+numberOfValidUses);
 		}
 	}
 

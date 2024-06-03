@@ -8,7 +8,7 @@ RUN git clone https://github.com/felt/tippecanoe.git \
 	&& make -j \
 	&& make install
 
-RUN npm install -g geojson-polygon-labels mapshaper @indoorequal/spritezero-cli curve-interpolator@3.0.1
+RUN npm install -g geojson-polygon-labels mapshaper @indoorequal/spritezero-cli
 
 RUN curl -L https://github.com/koordinates/kart/releases/download/v0.14.2/kart_0.14.2_amd64.deb -o kart.deb \
 	&& dpkg -i kart.deb \

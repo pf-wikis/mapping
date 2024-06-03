@@ -25,6 +25,7 @@ public class PointsOnLandSelector {
                 "-explode"
             );
 		var featureCol = clipped.toNgaFeatureCollection();
+		clipped.finishUsage();
 		var result = new HashSet<Point>();
 		for (var feature : featureCol.getFeatures()) {
 			collect(feature.getGeometry(), result);
@@ -33,7 +34,9 @@ public class PointsOnLandSelector {
 	}
 
 	private static void collect(Geometry feature, HashSet<Point> result) {
-		if (feature instanceof LineString line) {
+		if(feature == null) {
+			//noop
+		} else if (feature instanceof LineString line) {
             var points = line.getLineString().getPoints();
             result.addAll(points);
         } else if (feature instanceof Polygon pol) {

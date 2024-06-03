@@ -14,7 +14,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.locationtech.jts.math.Vector2D;
 
 import com.beust.jcommander.internal.Lists;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
@@ -23,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 import mil.nga.sf.geojson.Feature;
 import mil.nga.sf.geojson.FeatureCollection;
 import mil.nga.sf.geojson.LineString;
+import mil.nga.sf.geojson.MultiLineString;
 import mil.nga.sf.geojson.Point;
 import mil.nga.sf.geojson.Polygon;
 
@@ -49,24 +49,15 @@ public class ShapeRivers extends LCStep {
         var featureCol = in.toNgaFeatureCollection();
         for (var feature : featureCol.getFeatures()) {
             if (feature.getGeometry() instanceof LineString line) {
-                double defaultWidth = Objects.requireNonNullElse((Integer) feature.getProperties().get("width"), 2000);
+                double defaultWidth = Objects.requireNonNullElse((Number) feature.getProperties().get("width"), 2000).doubleValue();
 
                 var points = line.getLineString().getPoints();
-                for (int i = 0; i < points.size() - 1; i++) {
-                    var a = RPoint.v(points.get(i));
-                    var b = RPoint.v(points.get(i + 1));
-                    var pA = rivers.computeIfAbsent(a, RPoint::new);
-                    var pB = rivers.computeIfAbsent(b, RPoint::new);
-                    pA.getNeighbors().add(pB);
-                    pB.getNeighbors().add(pA);
-                    pA.setWidth(Math.max(metersToDeg(defaultWidth, points.get(i).getY()), pA.getWidth()));
-                    pB.setWidth(Math.max(metersToDeg(defaultWidth, points.get(i + 1).getY()), pB.getWidth()));
-
-                    if (i == 0)
-                        pA.setSegmentEnd(true);
-                    if (i == points.size() - 2)
-                        pB.setSegmentEnd(true);
-                }
+                collectRivers(defaultWidth, points, rivers);
+            } else if(feature.getGeometry() instanceof MultiLineString lines) {
+            	double defaultWidth = Objects.requireNonNullElse((Number) feature.getProperties().get("width"), 2000).doubleValue();
+            	lines.getMultiLineString().getLineStrings().forEach(ls->
+            		collectRivers(defaultWidth, ls.getPoints(), rivers)
+    			);
             } else {
                 throw new IllegalStateException("Unhandled type " + feature.getGeometryType());
             }
@@ -74,7 +65,25 @@ public class ShapeRivers extends LCStep {
         return rivers.values();
     }
 
-    private double metersToDeg(double meters, double lat) {
+    private void collectRivers(double defaultWidth, List<mil.nga.sf.Point> points, HashMap<Vector2D, RPoint> rivers) {
+    	for (int i = 0; i < points.size() - 1; i++) {
+            var a = RPoint.v(points.get(i));
+            var b = RPoint.v(points.get(i + 1));
+            var pA = rivers.computeIfAbsent(a, RPoint::new);
+            var pB = rivers.computeIfAbsent(b, RPoint::new);
+            pA.getNeighbors().add(pB);
+            pB.getNeighbors().add(pA);
+            pA.setWidth(Math.max(metersToDeg(defaultWidth, points.get(i).getY()), pA.getWidth()));
+            pB.setWidth(Math.max(metersToDeg(defaultWidth, points.get(i + 1).getY()), pB.getWidth()));
+
+            if (i == 0)
+                pA.setSegmentEnd(true);
+            if (i == points.size() - 2)
+                pB.setSegmentEnd(true);
+        }
+	}
+
+	private double metersToDeg(double meters, double lat) {
         return meters * ((1. + 0.00001120378 * (Math.cos(2 * lat / 180 * Math.PI) - 1)) / Math.cos(lat / 180 * Math.PI) / 111319.491 / 2d);
     }
 

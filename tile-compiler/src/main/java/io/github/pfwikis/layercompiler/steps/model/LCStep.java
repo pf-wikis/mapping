@@ -29,6 +29,7 @@ public abstract class LCStep extends Task<String, LCContent> {
         	Thread.currentThread().setName(name+"."+step);
             var result = process();
             result.setNumberOfValidUses(numberOfDependents);
+            result.setName(name+"."+step);
             for(var input:inputMapping.values()) {
             	this.getResult(input).getResult().finishUsage();
             }

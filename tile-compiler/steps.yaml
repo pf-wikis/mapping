@@ -147,7 +147,7 @@
   steps:
     - step: RIVER_LABELS
       dependsOn:
-        in: rivers.SMOOTH_LINES
+        in: rivers.READ_FILE
     - step: OUTPUT
 
 - name: roads

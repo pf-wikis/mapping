@@ -6,7 +6,6 @@ import java.io.InputStream;
 import com.fasterxml.jackson.databind.util.TokenBuffer;
 
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 
 @AllArgsConstructor
@@ -19,7 +18,6 @@ public class LCContentOM<T> extends LCContent {
 	public byte[] toBytes() {
 		checkValidUsage();
 		var res = MAPPER.writeValueAsBytes(val);
-		finishUsage();
 		return res;
 	}
 
@@ -35,7 +33,6 @@ public class LCContentOM<T> extends LCContent {
 		TokenBuffer tb = new TokenBuffer(MAPPER.getFactory().getCodec(), false);
 		MAPPER.writeValue(tb, val);
 		var res = MAPPER.readValue(tb.asParser(), cl);
-		finishUsage();
 		return res;
 	}
 	

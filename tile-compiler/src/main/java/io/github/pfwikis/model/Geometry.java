@@ -6,9 +6,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Data
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -20,30 +21,32 @@ import lombok.Data;
     @Type(value = Geometry.LineString.class, name = "LineString"),
     @Type(value = Geometry.MultiLineString.class, name = "MultiLineString")
   })
-public abstract class Geometry {
+public interface Geometry {
 
     @Data
-    public static class Polygon extends Geometry {
+    public static class Polygon implements Geometry {
         private List<List<LngLat>> coordinates;
     }
 
     @Data
-    public static class MultiPolygon extends Geometry {
+    public static class MultiPolygon implements Geometry {
         private List<List<List<LngLat>>> coordinates;
     }
     
     @Data
-    public static class Point extends Geometry {
+    public static class Point implements Geometry {
         private LngLat coordinates;
     }
     
     @Data
-    public static class LineString extends Geometry {
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class LineString implements Geometry {
         private List<LngLat> coordinates;
     }
     
     @Data
-    public static class MultiLineString extends Geometry {
+    public static class MultiLineString implements Geometry {
         private List<List<LngLat>> coordinates;
     }
 }

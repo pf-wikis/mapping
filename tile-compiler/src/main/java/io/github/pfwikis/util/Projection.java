@@ -7,13 +7,14 @@ public class Projection {
 
     private final static MercatorProjection PROJ = new MercatorProjection();
     private final static ProjCoordinate PROJ_OUT = new ProjCoordinate();
-    private final static double SPECIAL_NUMBER = toMercator(85);
+    private final static double SPECIAL_CUTOFF = 85;
+    public final static double SPECIAL_NUMBER = toMercator(SPECIAL_CUTOFF);
 
     public synchronized static double geoToMercator(double lat) {
-        if(lat>85)
-            return toMercator(lat-85)+SPECIAL_NUMBER;
-        else if(lat<-85)
-            return toMercator(lat+85)-SPECIAL_NUMBER;
+        if(lat>SPECIAL_CUTOFF)
+            return toMercator(lat-SPECIAL_CUTOFF)+SPECIAL_NUMBER;
+        else if(lat<-SPECIAL_CUTOFF)
+            return toMercator(lat+SPECIAL_CUTOFF)-SPECIAL_NUMBER;
         else
             return toMercator(lat);
     }
@@ -24,9 +25,9 @@ public class Projection {
 
     public synchronized static double mercatorToGeo(double y) {
         if(y>SPECIAL_NUMBER)
-            return toGeo(y-SPECIAL_NUMBER)+85;
+            return toGeo(y-SPECIAL_NUMBER)+SPECIAL_CUTOFF;
         else if(y<-SPECIAL_NUMBER)
-            return toGeo(y+SPECIAL_NUMBER)-85;
+            return toGeo(y+SPECIAL_NUMBER)-SPECIAL_CUTOFF;
         else
             return toGeo(y);
     }
