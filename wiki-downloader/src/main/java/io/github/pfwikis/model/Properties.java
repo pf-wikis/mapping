@@ -28,7 +28,8 @@ public class Properties {
         link = "https://pathfinderwiki.com/wiki/" + city.getPageName().replace(' ', '_');
         capital = city.isCapital();
         text = city.getText();
-        articleLength = city.getArticleLength();
+        
+        articleLength = city.getArticleLength()/100*100;
     }
 
 	public Properties(LoI loi) {
@@ -36,6 +37,6 @@ public class Properties {
         link = "https://pathfinderwiki.com/wiki/" + loi.getPageName().replace(' ', '_');
         type = loi.getType();
         text = loi.getText();
-        articleLength = loi.getArticleLength();
+        articleLength = loi.getArticleLength()/100*100;
 	}
 }
