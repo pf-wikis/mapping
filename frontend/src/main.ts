@@ -26,7 +26,7 @@ Maplibre.addProtocol("pmtiles", pmtilesProt.tilev4);
 //add custom tile caching
 if(indexedDB) {
   try {
-    pmtilesProt.add(new PMTiles(new CachedSource(root+'golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH, parseInt(import.meta.env.VITE_DATA_HASH))))
+    pmtilesProt.add(new PMTiles(new CachedSource(root+'golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH)))
   } catch(e) {
     console.log("Failed to initialize IndexDB cache")
     console.log(e)
