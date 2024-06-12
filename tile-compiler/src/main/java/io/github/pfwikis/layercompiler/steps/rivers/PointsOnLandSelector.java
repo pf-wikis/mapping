@@ -4,16 +4,13 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep.Ctx;
 import io.github.pfwikis.run.Tools;
-import mil.nga.sf.geojson.FeatureCollection;
+import mil.nga.sf.Point;
 import mil.nga.sf.geojson.Geometry;
 import mil.nga.sf.geojson.LineString;
 import mil.nga.sf.geojson.Polygon;
-import mil.nga.sf.Point;
 
 public class PointsOnLandSelector {
 

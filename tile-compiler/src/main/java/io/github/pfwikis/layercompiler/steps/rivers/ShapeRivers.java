@@ -301,20 +301,16 @@ public class ShapeRivers extends LCStep {
 				return next;
 		}
 	}
+	
+	private static final double[] SPRING_CAP = {-1,-.8,-.6,-.4,-.2,0,.2,.4,.6,.8,1};
+	private static final double[] SEA_CAP = {-1,1};
 
 	private void drawSimpleCap(RPoint a, RPoint b, ArrayList<Point> points) {
-		var ab = b.getLocation().subtract(a.getLocation()).normalize();
-
 		// round cap
 		if (b.getNeighbors().size() == 1) {
-			if(!b.isSpring()) {
-				points.add(RPoint.p(b.getLocation().add(ab.rotate(-Math.PI / 2).multiply(b.getWidth()))));
-				points.add(RPoint.p(b.getLocation().add(ab.rotate( Math.PI / 2).multiply(b.getWidth()))));
-			}
-			else {
-				for (int i = -10; i <= 10; i += 2) {
-					points.add(RPoint.p(b.getLocation().add(ab.rotate(-Math.PI * i / 20).multiply(b.getWidth()))));
-				}
+			var ab = b.getLocation().subtract(a.getLocation()).normalize();
+			for (double i : b.isSpring()?SPRING_CAP:SEA_CAP) {
+				points.add(RPoint.p(b.getLocation().add(ab.rotate(-Math.PI * i / 2).multiply(b.getWidth()))));
 			}
 		} else {
 			points.add(RPoint.p(b.getLocation()));
