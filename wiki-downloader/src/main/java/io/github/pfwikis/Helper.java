@@ -75,7 +75,8 @@ public class Helper {
 		".noprint",
 		".noexcerpt",
 		".sortkey",
-		"#spoilerWarning"
+		"#spoilerWarning",
+	    	"dl"
 	};
     public record ArticleText(int totalArticleLength, String excerpt) {}
 	public static ArticleText downloadText(String pageName) throws IOException {
