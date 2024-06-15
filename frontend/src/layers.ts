@@ -164,7 +164,11 @@ let layers:LayerSpecification[] = [
   createLayer('buildings', {
     type: 'fill',
     paint: {
-      'fill-color': 'rgb(140, 137, 129)',
+      'fill-color': ["to-color", ['match', ['get', 'type'],
+        'fortification', 'rgb(105, 105, 105)',
+        'bridge', 'rgb(169, 169, 169)',
+        'rgb(119, 136, 153)'
+      ]]
     }
   }),
   createLayer('province-borders', {
