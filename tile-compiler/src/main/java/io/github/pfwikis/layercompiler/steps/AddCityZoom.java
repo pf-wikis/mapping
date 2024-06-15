@@ -13,7 +13,8 @@ public class AddCityZoom extends LCStep {
 		"Shoreline",
 		"Westerhold",
 		"Copperwood",
-		"Dawnfoot"
+		"Dawnfoot",
+		"Magnimar"
 	);
 	
     @Override

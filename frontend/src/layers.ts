@@ -24,7 +24,6 @@ let colors = {
   hillsDarker:     'rgb(132, 111,  53)',
   mountains:       'rgb(222, 212, 184)',
   mountainsDarker: 'rgb(117, 100,  54)',
-  walls:           'rgb(140, 137, 129)',
   regionBorders:   'rgb(107,  42,  33)',
   regionNames:     'rgb( 17,  42,  97)',
   regionNamesOut:  'rgb(213, 195, 138)',
@@ -162,10 +161,10 @@ let layers:LayerSpecification[] = [
       'fill-color': colors.water
     }
   }),
-  createLayer('walls', {
+  createLayer('buildings', {
     type: 'fill',
     paint: {
-      'fill-color': colors.walls,
+      'fill-color': 'rgb(140, 137, 129)',
     }
   }),
   createLayer('province-borders', {

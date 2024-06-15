@@ -191,10 +191,10 @@
         in: swamps.READ_FILE
     - step: OUTPUT
 
-- name: walls
+- name: buildings
   steps:
     - step: READ_FILE
-      layer: walls
+      layer: buildings
     - step: OUTPUT
 
 - name: waters
