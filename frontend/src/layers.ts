@@ -33,6 +33,9 @@ let colors = {
   black:           'rgb( 10,  10,  10)'
 };
 
+//scale font larger for lower dpr displays
+const fs = window.devicePixelRatio===1?2:1;
+
 const props = {
   filterMinzoom: ["get", "filterMinzoom"] as ExpressionSpecification,
   filterMaxzoom: ["get", "filterMaxzoom"] as ExpressionSpecification
@@ -54,8 +57,8 @@ function interpolateTextWithCamera(factor:number):ExpressionSpecification {
     'interpolate',
     ['exponential', 2],
     ['zoom'],
-    0, factor,
-    22, factor*(2**22),
+    0, factor*fs,
+    22, factor*(2**22)*fs,
   ]
 }
 
@@ -257,7 +260,7 @@ let layers:LayerSpecification[] = [
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
       'text-overlap': 'always',
-      'text-size': 32,
+      'text-size': 32*fs,
     },
     paint: {
       'text-color': colors.ice,
@@ -271,7 +274,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 16,
+      'text-size': 16*fs,
     },
     paint: {
       'text-color': colors.forest,
@@ -284,7 +287,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 16,
+      'text-size': 16*fs,
     },
     paint: {
       'text-color': colors.districts,
@@ -297,7 +300,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 16,
+      'text-size': 16*fs,
     },
     paint: {
       'text-color': colors.districts,
@@ -311,7 +314,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 16,
+      'text-size': 16*fs,
     },
     paint: {
       'text-color': colors.hills,
@@ -325,7 +328,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 16,
+      'text-size': 16*fs,
     },
     paint: {
       'text-color': colors.mountains,
@@ -339,7 +342,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 16,
+      'text-size': 16*fs,
     },
     paint: {
       'text-color': colors.deserts,
@@ -353,7 +356,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 16,
+      'text-size': 16*fs,
     },
     paint: {
       'text-color': colors.swamp,
@@ -367,7 +370,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 16,
+      'text-size': 16*fs,
     },
     paint: {
       'text-color': colors.water,
@@ -411,7 +414,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 14,
+      'text-size': 14*fs,
       'text-variable-anchor': ["left", "right"],
       'text-radial-offset': .5,
     },
@@ -427,7 +430,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 16,
+      'text-size': 16*fs,
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
@@ -446,8 +449,8 @@ let layers:LayerSpecification[] = [
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        5, 5,
-        7, 20,
+        5, 5*fs,
+        7, 20*fs,
       ],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
@@ -473,8 +476,8 @@ let layers:LayerSpecification[] = [
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        4, 10,
-        5, 25,
+        4, 10*fs,
+        5, 25*fs,
       ],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
@@ -496,8 +499,8 @@ let layers:LayerSpecification[] = [
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        4, 10,
-        5, 25,
+        4, 10*fs,
+        5, 25*fs,
       ],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
@@ -518,7 +521,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 20,
+      'text-size': 20*fs,
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
