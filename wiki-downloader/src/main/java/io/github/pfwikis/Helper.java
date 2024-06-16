@@ -76,7 +76,7 @@ public class Helper {
 		".noexcerpt",
 		".sortkey",
 		"#spoilerWarning",
-	    	"dl"
+		"dl"
 	};
     public record ArticleText(int totalArticleLength, String excerpt) {}
 	public static ArticleText downloadText(String pageName) throws IOException {
@@ -115,8 +115,7 @@ public class Helper {
 		});
 		//remove titles from links
 		doc.getElementsByTag("a").removeAttr("title");
-		//open links in new tab
-		doc.getElementsByTag("a").attr("target", "_blank");
+		doc.getAllElements().removeAttr("class");
 		
 		var raw = doc.body().html();
 		
