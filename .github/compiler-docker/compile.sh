@@ -2,7 +2,7 @@
 set -e
 
 kart clone https://github.com/pf-wikis/mapping-data.git mapping-data
-maxzoom=12
+maxzoom=13
 datahash=$RANDOM
 cd frontend
 printf "VITE_DATA_HASH=$datahash" > .env.local
