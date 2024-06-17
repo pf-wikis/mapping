@@ -2,21 +2,21 @@
   "name": "mapbox-vector-tiles",
   "dependencies": {
     "@mapbox/mapbox-gl-draw": "^1.4.3",
-    "@turf/distance": "^6.5.0",
-    "@turf/line-segment": "^6.5.0",
-    "@turf/midpoint": "^6.5.0",
+    "@turf/distance": "^7.0.0",
+    "@turf/line-segment": "^7.0.0",
+    "@turf/midpoint": "^7.0.0",
     "bootstrap": "^5.3.3",
     "idb": "^8.0.0",
     "mapbox-gl-draw-geodesic": "^2.3.1",
-    "maplibre-gl": "^4.3.2",
+    "maplibre-gl": "^4.4.1",
     "pmtiles": "^3.0.6",
     "pure-context-menu": "^1.2.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.6",
+    "@babel/core": "^7.24.7",
     "@types/mapbox__mapbox-gl-draw": "^1.4.6",
-    "sass": "^1.77.4",
-    "vite": "^5.2.12",
+    "sass": "^1.77.5",
+    "vite": "^5.3.1",
     "vite-plugin-compression": "^0.5.1"
   },
   "scripts": {
