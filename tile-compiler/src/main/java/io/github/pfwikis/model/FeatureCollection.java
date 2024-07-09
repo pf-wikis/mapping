@@ -8,5 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class FeatureCollection extends AnyJson {
+	private String type = "FeatureCollection";
     private List<Feature> features;
 }

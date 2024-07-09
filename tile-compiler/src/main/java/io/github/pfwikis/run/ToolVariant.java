@@ -5,6 +5,7 @@ import java.lang.ProcessBuilder.Redirect;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 
@@ -29,12 +30,23 @@ public enum ToolVariant {
 	WSL {
 		@Override
 		public void modifyArguments(List<String> args) {
-			args.addFirst("wsl");
+			var oArgs = List.copyOf(args);
+			args.clear();
+			args.add("wsl");
+			args.add(oArgs.get(0));
+			oArgs.stream()
+				.skip(1)
+				.map(v->v.replace("\\", "\\\\"))
+				.map(v->v.replace("'", "'\\''"))
+				.forEach(v->args.add("'"+v+"'"));
 		}
 
 		@Override
 		public String translateFile(Path p) {
 			var wslPath = p.toAbsolutePath().normalize().toString();
+			if(wslPath.startsWith("\\\\wsl$\\Ubuntu\\tmp\\")) {
+				return wslPath.substring(13).replace("\\", "/");
+			}
 			var letter = Character.toLowerCase(wslPath.charAt(0));
 			return "/mnt/"+letter+wslPath.substring(2).replace("\\", "/");
 		}
@@ -51,7 +63,13 @@ public enum ToolVariant {
 			var oArgs = List.copyOf(args);
 			args.clear();
 			args.addAll(List.of("wsl", "-e", "bash", "-li", "-c"));
-			args.add(String.join(" ", oArgs));
+			var toCall = oArgs.get(0)+" ";
+			toCall+=oArgs.stream()
+				.skip(1)
+				.map(v->v.replace("\\", "\\\\"))
+				.map(v->v.replace("'", "'\\''"))
+				.collect(Collectors.joining("' '", "'", "'"));
+			args.add(toCall);
 		}
 	};
 	

@@ -6,11 +6,14 @@ import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.io.FileUtils;
@@ -20,31 +23,34 @@ import org.slf4j.event.Level;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCContentPath;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Runner {
-    /*package*/ static LCContent run(String command, Object... args) throws IOException {
-        return internalRun(false, null, command, args);
+    /*package*/ static LCContent run(LCStep step, String command, Object... args) throws IOException {
+        return internalRun(step, false, null, command, args);
     }
 
-    /*package*/ static LCContent runPipeOut(String command, Object... args) throws IOException {
-        return internalRun(true, null, command, args);
+    /*package*/ static LCContent runPipeOut(LCStep step, String command, Object... args) throws IOException {
+        return internalRun(step, true, null, command, args);
     }
 
-    /*package*/ static LCContent runPipeInOut(LCContent in, String command, Object... args) throws IOException {
-        return internalRun(true, in, command, args);
+    /*package*/ static LCContent runPipeInOut(LCStep step, LCContent in, String command, Object... args) throws IOException {
+        return internalRun(step, true, in, command, args);
     }
     
-    private static LCContent internalRun(boolean readStdOut, LCContent in, String command, Object... args) throws IOException {
-    	File stdOutF = tmpGeojson();
-    	File errOutF = tmpGeojson();
-        try(var cmd = Command.of(command, args)) {
+    private static LCContent internalRun(LCStep step, boolean readStdOut, LCContent in, String command, Object... args) throws IOException {
+    	File stdOutF = tmpGeojson(step);
+    	File errOutF = tmpGeojson(step);
+        try(var cmd = Command.of(step, command, args)) {
         	var proc = new ProcessBuilder()
         		.command(cmd.getParts())
         		.redirectError(errOutF)
-        		.redirectInput(in==null?Redirect.INHERIT:(in instanceof LCContentPath?Redirect.from(in.toTmpFile().toFile()):Redirect.PIPE))
+        		.redirectInput(in==null?Redirect.INHERIT:(in instanceof LCContentPath?Redirect.from(in.toTmpFile(step).toFile()):Redirect.PIPE))
         		.redirectOutput(stdOutF)
 	    		.start();
         	
@@ -91,7 +97,7 @@ public class Runner {
             }
             if(errOutF.isFile()) {
             	var errOut = LCContent.from(errOutF, true);
-            	log(Level.INFO, errOut.toJSONString());
+            	log(Level.ERROR, errOut.toJSONString());
             	errOut.finishUsage();
             }
             throw new IOException(e);
@@ -105,18 +111,27 @@ public class Runner {
 
     public static final File TMP_DIR;
     static {
-        try {
-            TMP_DIR = Files.createTempDirectory("pathfinder-mapping-").toFile();
-            FileUtils.forceDeleteOnExit(TMP_DIR);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    	try {
+    	String dirname = "pathfinder-mapping-"+(Instant.now().toEpochMilli()/1000);
+	    	File dir = null;
+	    	try {
+	    		dir = Files.createDirectory(Path.of("//wsl$/Ubuntu/tmp/"+dirname)).toFile();
+	    	} catch (Exception e) {
+	        	dir = Files.createTempDirectory(dirname).toFile();
+	    	}
+	    	TMP_DIR = dir;
+	    	FileUtils.forceDeleteOnExit(TMP_DIR);
+    	} catch (IOException e2) {
+            throw new RuntimeException(e2);
         }
     }
 
-    private static final AtomicInteger TMP_COUNTER = new AtomicInteger();
+    private static final ConcurrentMap<String, AtomicInteger> TMP_COUNTER = new ConcurrentHashMap<>(); 
 
-    public static File tmpGeojson() {
-        var f = new File(TMP_DIR, TMP_COUNTER.getAndIncrement()+".geojson");
+    public static File tmpGeojson(LCStep step) {
+    	String prefix = step!=null?(step.getId()+"_"):"";
+    	int uniqueCounter = TMP_COUNTER.computeIfAbsent(prefix, key->new AtomicInteger(1)).getAndIncrement();
+        var f = new File(TMP_DIR, prefix+"%02d.geojson".formatted(uniqueCounter));
         f.deleteOnExit();
         return f;
     }
@@ -133,14 +148,16 @@ public class Runner {
     }
 
     @Getter
+    @RequiredArgsConstructor
     private static class Command implements Closeable {
 
         private final List<String> parts = new ArrayList<>();
+        private final LCStep step;
         private File resultFile;
         private ToolVariant toolVariant;
 
-        public static Command of(String command, Object... commandParts) throws IOException {
-            var result = new Command();
+        public static Command of(LCStep step, String command, Object... commandParts) throws IOException {
+            var result = new Command(step);
             result.toolVariant = ToolVariant.getFor(command);
             result.addCommandParts(new String[] {command});
             result.addCommandParts(commandParts);
@@ -152,18 +169,21 @@ public class Runner {
         private void addCommandParts(Object[] commandParts) throws IOException {
             for(var part : commandParts) {
             	Objects.requireNonNull(part, ()->"null Argument when executing "+Arrays.toString(commandParts));
-                if(part instanceof LCContent content) {
-                	parts.add(toolVariant.translateFile(content.toTmpFile()));
+            	if(part instanceof String v) {
+                	parts.add(v.replace("\n", ""));
+                }
+            	else if(part instanceof LCContent content) {
+                	parts.add(toolVariant.translateFile(content.toTmpFile(step)));
                 }
                 else if(part instanceof TmpGeojson json) {
-                    parts.add(json.commandPrefix()+toolVariant.translateFile(json.content().toTmpFile()));
+                    parts.add(json.commandPrefix()+toolVariant.translateFile(json.content().toTmpFile(step)));
                 }
                 else if(part instanceof OutGeojson json) {
-                    resultFile = tmpGeojson();
+                    resultFile = tmpGeojson(step);
                     parts.add(json.commandPrefix()+toolVariant.translateFile(resultFile.toPath()));
                 }
-                else if(part instanceof String v) {
-                	parts.add(v.replace("\n", ""));
+                else if(part instanceof List<?> l) {
+                	addCommandParts(l.toArray());
                 }
                 else if(part instanceof File f) {
                 	parts.add(toolVariant.translateFile(f.toPath()));

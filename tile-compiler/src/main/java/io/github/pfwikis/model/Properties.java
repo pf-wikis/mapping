@@ -19,4 +19,6 @@ public class Properties extends AnyJson {
 	private Integer size;
 	private Boolean capital;
 	private String type;
+	private String color;
+	private String halo;
 }

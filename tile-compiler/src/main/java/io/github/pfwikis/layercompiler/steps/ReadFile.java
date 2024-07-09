@@ -34,7 +34,7 @@ public class ReadFile extends LCStep {
 			return LCContent.from(finalFile, false);
 		}
 		else {
-            return Tools.ogr2ogr(ctx.getMappingDataFile().toPath(), "-dim", "XY", "-mapFieldType", "DateTime=String", layer);
+            return Tools.ogr2ogr(this, ctx.getMappingDataFile().toPath(), "-dim", "XY", "-mapFieldType", "DateTime=String", layer);
         }
     }
 

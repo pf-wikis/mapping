@@ -3,7 +3,6 @@
     - step: READ_FILE
       layer: land
     - step: ADD_FRACTAL_DETAIL
-    - step: OUTPUT
 
 - name: land_without_water
   steps:
@@ -15,6 +14,8 @@
 - name: continent-labels
   steps:
     - step: GENERATE_LABEL_CENTERS
+      generateSubLabels: false
+      forceMinzoom: 0
       dependsOn:
         in: land.READ_FILE
     - step: OUTPUT
@@ -24,14 +25,12 @@
     - step: READ_FILE
       layer: deserts
     - step: ADD_FRACTAL_DETAIL
-    - step: OUTPUT
 
 - name: desert-labels
   steps:
     - step: GENERATE_LABEL_CENTERS
       dependsOn:
         in: deserts.READ_FILE
-    - step: OUTPUT
 
 - name: districts
   steps:
@@ -40,7 +39,6 @@
     - step: DISTRICT_GAP
     - step: ADD_ZOOM
       minZoom: 4
-    - step: OUTPUT
 
 - name: district-labels
   steps:
@@ -49,56 +47,51 @@
       dependsOn:
         in: districts.READ_FILE
     - step: GENERATE_LABEL_CENTERS
-    - step: OUTPUT
 
 - name: forests
   steps:
     - step: READ_FILE
       layer: forests
     - step: ADD_FRACTAL_DETAIL
-    - step: OUTPUT
 
 - name: forest-labels
   steps:
     - step: GENERATE_LABEL_CENTERS
       dependsOn:
         in: forests.READ_FILE
-    - step: OUTPUT
 
 - name: hills
   steps:
     - step: READ_FILE
       layer: hills
     - step: ADD_FRACTAL_DETAIL
-    - step: OUTPUT
 
 - name: hill-labels
   steps:
     - step: GENERATE_LABEL_CENTERS
       dependsOn:
         in: hills.READ_FILE
-    - step: OUTPUT
 
 - name: ice
   steps:
     - step: READ_FILE
       layer: ice
     - step: ADD_FRACTAL_DETAIL
-    - step: OUTPUT
 
 - name: ice-labels
   steps:
     - step: GENERATE_LABEL_CENTERS
       dependsOn:
         in: ice.READ_FILE
-    - step: OUTPUT
 
-- name: labels
+- name: generic-labels
   steps:
     - step: READ_FILE
       layer: labels
     - step: GENERATE_LABEL_CENTERS
-    - step: OUTPUT
+      generateSubLabels: false
+      dissolve: false
+    - step: COLOR_LABELS
 
 - name: cities
   steps:
@@ -125,14 +118,12 @@
     - step: READ_FILE
       layer: mountains
     - step: ADD_FRACTAL_DETAIL
-    - step: OUTPUT
 
 - name: mountain-labels
   steps:
     - step: GENERATE_LABEL_CENTERS
       dependsOn:
         in: mountains.READ_FILE
-    - step: OUTPUT
 
 - name: rivers
   steps:
@@ -168,34 +159,30 @@
   steps:
     - step: READ_FILE
       layer: specials
-    - step: OUTPUT
 
 - name: special-labels
   steps:
     - step: GENERATE_LABEL_CENTERS
       dependsOn:
         in: specials
-    - step: OUTPUT
 
 - name: swamps
   steps:
     - step: READ_FILE
       layer: swamps
     - step: ADD_FRACTAL_DETAIL
-    - step: OUTPUT
 
 - name: swamp-labels
   steps:
     - step: GENERATE_LABEL_CENTERS
       dependsOn:
         in: swamps.READ_FILE
-    - step: OUTPUT
 
 - name: buildings
   steps:
     - step: READ_FILE
       layer: buildings
-    - step: OUTPUT
+    - step: COLOR_BUILDINGS
 
 - name: waters
   steps:
@@ -205,21 +192,18 @@
     - step: ADD_POLYGONS
       dependsOn:
         summand: rivers
-    - step: OUTPUT
 
-- name: deep-waters
+- name: shallow-waters
   steps:
     - step: BUFFER_POLYGONS
       dependsOn:
         in: land_without_water
-    - step: OUTPUT
 
 - name: water-labels
   steps:
     - step: GENERATE_LABEL_CENTERS
       dependsOn:
         in: waters.READ_FILE
-    - step: OUTPUT
 
 ########### BORDERS #########################
 - name: borders
@@ -242,6 +226,8 @@
       dependsOn:
         in: borders
     - step: GENERATE_LABEL_CENTERS
+      generateSubLabels: false
+      forceMinzoom: 3
     - step: OUTPUT
 
 - name: province-borders
@@ -261,6 +247,8 @@
       dependsOn:
         in: borders
     - step: GENERATE_LABEL_CENTERS
+      generateSubLabels: false
+      forceMinzoom: 4
     - step: OUTPUT
 
 - name: subregion-borders
@@ -278,6 +266,8 @@
       dependsOn:
         in: borders
     - step: GENERATE_LABEL_CENTERS
+      generateSubLabels: false
+      forceMinzoom: 2
     - step: OUTPUT
 
 - name: region-borders
@@ -297,4 +287,41 @@
       dependsOn:
         in: borders
     - step: GENERATE_LABEL_CENTERS
+      generateSubLabels: false
+      forceMinzoom: 1
+    - step: OUTPUT
+
+########################## merge all geometry together
+- name: geometry
+  steps:
+    - step: MERGE_GEOMETRY
+      dependsOn:
+        shallow-waters: shallow-waters
+        land: land
+        deserts: deserts
+        hills: hills
+        mountains: mountains
+        swamps: swamps
+        ice: ice
+        districts: districts
+        forests: forests
+        specials: specials
+        waters: waters
+        buildings: buildings
+    - step: OUTPUT
+
+- name: labels
+  steps:
+    - step: MERGE_LABELS
+      dependsOn:
+        ice: ice-labels
+        forests: forest-labels
+        specials: special-labels
+        generic: generic-labels
+        hills: hill-labels
+        mountains: mountain-labels
+        deserts: desert-labels
+        swamps: swamp-labels
+        waters: water-labels
+        districts: district-labels
     - step: OUTPUT

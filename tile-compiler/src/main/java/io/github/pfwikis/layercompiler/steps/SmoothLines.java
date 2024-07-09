@@ -30,7 +30,7 @@ public class SmoothLines extends LCStep {
     	
     	//this explosion also guarantees that any in-memory work uses exactly the same
     	//data as any mapshaper work
-    	return Tools.mapshaper(LCContent.from(fc), "-explode");
+    	return Tools.mapshaper(this, LCContent.from(fc), "-explode");
     }
 
     private static List<LngLat> interpolate(List<LngLat> coordinates) {

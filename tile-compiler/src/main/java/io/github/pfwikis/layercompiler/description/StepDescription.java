@@ -1,8 +1,10 @@
 package io.github.pfwikis.layercompiler.description;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,6 +13,9 @@ import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.google.common.base.CaseFormat;
 
@@ -38,7 +43,7 @@ public abstract class StepDescription {
     public static class Dependencies {
         private String in;
         @Getter(onMethod_=@JsonAnyGetter)
-        private Map<String, String> otherDependencies = new HashMap<>();
+        private LinkedHashMap<String, String> otherDependencies = new LinkedHashMap<>();
 
         @JsonAnySetter
         public void addDependency(String name, String value) {
@@ -85,7 +90,9 @@ public abstract class StepDescription {
     @SuppressWarnings("unchecked")
     public static class Simple extends StepDescription {
 
+    	private static final ObjectMapper OM = new ObjectMapper();
         private static Map<String, Class<? extends LCStep>> MAP = new HashMap<>();
+
         static {
             var caseConv=CaseFormat.UPPER_CAMEL.converterTo(CaseFormat.UPPER_UNDERSCORE);
             try (var scan =new ClassGraph()
@@ -100,14 +107,23 @@ public abstract class StepDescription {
                 });
             }
         }
+        
+        private Map<String, JsonNode> unknownFields = new HashMap<>();
+        @JsonAnySetter
+        public void setOtherField(String name, JsonNode value) {
+            unknownFields.put(name, value);
+        }
 
         @Override
         protected LCStep create() {
             try {
-                return MAP.get(this.getStep()).getConstructor().newInstance();
+                var step = MAP.get(this.getStep()).getConstructor().newInstance();
+                if(!unknownFields.isEmpty())
+                	step = OM.readerForUpdating(step).readValue((ObjectNode)OM.valueToTree(unknownFields));
+                return step;
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-                | NoSuchMethodException | SecurityException e) {
-                throw new IllegalStateException();
+                | NoSuchMethodException | SecurityException | IOException e) {
+                throw new IllegalStateException(e);
             }
         }
     }

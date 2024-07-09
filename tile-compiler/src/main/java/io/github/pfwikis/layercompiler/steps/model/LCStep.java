@@ -1,8 +1,8 @@
 package io.github.pfwikis.layercompiler.steps.model;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
+import java.util.SequencedMap;
 
 import com.github.dexecutor.core.task.Task;
 
@@ -18,7 +18,7 @@ public abstract class LCStep extends Task<String, LCContent> {
     private String name;
     private String step;
     private int numberOfDependents;
-    private Map<String, String> inputMapping = new HashMap<>();
+    private SequencedMap<String, String> inputMapping = new LinkedHashMap<>();
 
     public abstract LCContent process() throws Exception;
 
@@ -47,6 +47,14 @@ public abstract class LCStep extends Task<String, LCContent> {
 
     protected LCContent getInput(String key) {
         return this.getResult(inputMapping.get(key)).getResult();
+    }
+    
+    protected SequencedMap<String, LCContent> getInputs() {
+    	var result = new LinkedHashMap<String, LCContent>();
+    	for(var e:inputMapping.entrySet()) {
+    		result.put(e.getKey(), this.getResult(e.getValue()).getResult());
+    	}
+    	return result;
     }
 
     @Value

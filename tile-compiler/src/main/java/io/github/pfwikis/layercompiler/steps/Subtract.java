@@ -8,7 +8,7 @@ public class Subtract extends LCStep {
 
     @Override
     public LCContent process() throws Exception {
-        return Tools.mapshaper(getInput(),
+        return Tools.mapshaper(this, getInput(),
             "-dissolve2",
             "-explode",
             "-erase", getInput("subtrahend")

@@ -8,7 +8,7 @@ public class AddPolygons extends LCStep {
 
     @Override
     public LCContent process() throws Exception {
-        return Tools.mapshaper2(getInput(), getInput("summand"), "combine-files",
+        return Tools.mapshaper2(this, getInput(), getInput("summand"), "combine-files",
             "-merge-layers", "force",
             "-dissolve2",
             "-explode"

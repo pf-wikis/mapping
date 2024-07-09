@@ -39,7 +39,7 @@ public class ShapeRivers extends LCStep {
 		log.info("Processing " + rivers.size() + " river points");
 		drawShapes(rivers, result);
 
-		var cleaned = Tools.mapshaper(LCContent.from(result), "--filter-fields", "-clean", "sliver-control=0", "-dissolve2", "-explode");
+		var cleaned = Tools.mapshaper(this, LCContent.from(result), "--filter-fields", "-clean", "sliver-control=0", "-dissolve2", "-explode");
 		/*log.info(
 			"Shaped rivers\nfrom {}\nto\n{}",
 			getInput().toTmpFile(),
@@ -90,7 +90,7 @@ public class ShapeRivers extends LCStep {
 
 	private void markSprings(Ctx ctx, LCContent riversIn, Collection<RPoint> rivers) throws IOException {
 		var landPoints = PointsOnLandSelector
-				.collectLandPoints(ctx, riversIn, getInput("land_without_water"))
+				.collectLandPoints(this, ctx, riversIn, getInput("land_without_water"))
 				.stream()
 				.map(RPoint::v)
 				.collect(Collectors.toSet());

@@ -10,7 +10,7 @@ import lombok.Getter;
 @Getter
 public class CLIOptions {
     @Parameter(names = "-maxZoom")
-    private int maxZoom=8;
+    private int maxZoom=9;
     @Parameter(names = "-useBuildShortcut")
     private boolean useBuildShortcut=false;
     @Parameter(names = "-dataHash")

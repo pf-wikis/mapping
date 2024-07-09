@@ -34,7 +34,7 @@ let colors = {
 };
 
 //scale font larger for lower dpr displays
-const fs = window.devicePixelRatio===1?2:1;
+const fs = window.devicePixelRatio===1?1.5:1;
 
 const props = {
   filterMinzoom: ["get", "filterMinzoom"] as ExpressionSpecification,
@@ -91,87 +91,12 @@ let layers:LayerSpecification[] = [
       'background-color': colors.waterDeep,
     }
   },
-  createLayer('deep-waters', {
+  createLayer('geometry', {
     type: 'fill',
     paint: {
-      'fill-color': colors.water,
-    }
-  }),
-  createLayer('land', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.land,
-    }
-  }),
-  createLayer('districts', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.districts,
-    }
-  }),
-  createLayer('swamps', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.swamp,
-    }
-  }),
-  createLayer('deserts', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.deserts,
-    }
-  }),
-  createLayer('hills', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.hills,
-    }
-  }),
-  createLayer('mountains', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.mountains,
-    }
-  }),
-  createLayer('ice', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.ice,
-      'fill-opacity': .8,
-    }
-  }),
-  createLayer('forests', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.forest,
-    }
-  }),
-  createLayer('specials', {
-    type: 'fill',
-    paint: {
+      'fill-antialias': false,
       'fill-color': ['get', 'color'],
-    }
-  }),
-  createLayer('waters', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.water,
-    }
-  }),
-  createLayer('rivers', {
-    type: 'fill',
-    paint: {
-      'fill-color': colors.water
-    }
-  }),
-  createLayer('buildings', {
-    type: 'fill',
-    paint: {
-      'fill-color': ["to-color", ['match', ['get', 'type'],
-        'fortification', 'rgb(105, 105, 105)',
-        'bridge', 'rgb(169, 169, 169)',
-        'rgb(119, 136, 153)'
-      ]]
+      //'fill-outline-color': 'rgb(0,0,0)'
     }
   }),
   createLayer('province-borders', {
@@ -254,131 +179,20 @@ let layers:LayerSpecification[] = [
       ],
     }
   }),
-  createLayer('ice-labels', {
-    type: 'symbol',
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-overlap': 'always',
-      'text-size': 32*fs,
-    },
-    paint: {
-      'text-color': colors.ice,
-      'text-halo-color': colors.iceDarker,
-      'text-halo-width': 1
-    }
-  }),
-  createLayer('forest-labels', {
-    type: 'symbol',
-    minzoom: 6,
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
-    },
-    paint: {
-      'text-color': colors.forest,
-      'text-halo-color': colors.forestDarker,
-      'text-halo-width': 1
-    }
-  }),
-  createLayer('special-labels', {
-    type: 'symbol',
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
-    },
-    paint: {
-      'text-color': colors.districts,
-      'text-halo-color': colors.districtsDarker,
-      'text-halo-width': 1
-    }
-  }),
   createLayer('labels', {
     type: 'symbol',
     layout: {
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 16*fs,
+      'text-overlap': 'always',
     },
     paint: {
-      'text-color': colors.districts,
-      'text-halo-color': colors.districtsDarker,
-      'text-halo-width': 1
+      'text-color': '#000',//['get', 'color'],
+      'text-halo-color': ['get', 'halo'],
+      'text-halo-width': 2
     }
   }),
-  createLayer('hill-labels', {
-    type: 'symbol',
-    minzoom: 6,
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
-    },
-    paint: {
-      'text-color': colors.hills,
-      'text-halo-color': colors.hillsDarker,
-      'text-halo-width': 1
-    }
-  }),
-  createLayer('mountain-labels', {
-    type: 'symbol',
-    minzoom: 6,
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
-    },
-    paint: {
-      'text-color': colors.mountains,
-      'text-halo-color': colors.mountainsDarker,
-      'text-halo-width': 1
-    }
-  }),
-  createLayer('desert-labels', {
-    type: 'symbol',
-    minzoom: 6,
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
-    },
-    paint: {
-      'text-color': colors.deserts,
-      'text-halo-color': colors.desertsDarker,
-      'text-halo-width': 1
-    }
-  }),
-  createLayer('swamp-labels', {
-    type: 'symbol',
-    minzoom: 6,
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
-    },
-    paint: {
-      'text-color': colors.swamp,
-      'text-halo-color': colors.swampDarker,
-      'text-halo-width': 1
-    }
-  }),
-  createLayer('water-labels', {
-    type: 'symbol',
-    minzoom: 6,
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
-    },
-    paint: {
-      'text-color': colors.water,
-      'text-halo-color': colors.waterDarker,
-      'text-halo-width': 1
-    }
-  }),
-
   createLayer('locations', {
     id: 'location-icons',
     type: 'symbol',
@@ -404,6 +218,7 @@ let layers:LayerSpecification[] = [
     paint: {
     }
   }),
+  /*
   createLayer('locations', {
     id: 'location-labels',
     type: 'symbol',
@@ -423,23 +238,6 @@ let layers:LayerSpecification[] = [
       'text-halo-color': colors.black,
       'text-halo-width': .8
     }
-  }),
-  createLayer('district-labels', {
-    type: 'symbol',
-    minzoom: limit.districts,
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
-      'text-variable-anchor': ['center','top','bottom'],
-      'symbol-z-order': 'source',
-    },
-    paint: {
-      'text-color': colors.white,
-      'text-halo-color': colors.black,
-      'text-halo-width': 1
-    }
-    
   }),
   createLayer('province-labels', {
     minzoom: 4,
@@ -547,7 +345,7 @@ let layers:LayerSpecification[] = [
       'text-halo-color': colors.landDarker,
       'text-halo-width': interpolateTextWithCamera(1)
     }
-  }),
+  }),*/
 ];
 
 export default layers;

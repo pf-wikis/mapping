@@ -73,7 +73,9 @@ public class AddDetails {
                 loops.addAll(geom.getCoordinates());
             } else if (feature.getGeometry() instanceof MultiPolygon geom) {
                 geom.getCoordinates().forEach(loops::addAll);
-            } else {
+            } else if(feature.getGeometry() == null) {
+            	//do nothing
+            }else {
                 throw new RuntimeException("Unknown type " + feature.getGeometry().getClass());
             }
         }
