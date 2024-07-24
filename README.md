@@ -87,7 +87,7 @@ The Kart plugin for QGIS can visualize differences between your working changes 
 
 #### (Optional) Check out raster source map images
 
-Geometry in the `mapping-data` repository is created by project volunteers who attempt to georeference raster maps published by Paizo and interpret features on those maps as vector layer data in QGIS. Paizo owns the copyright of these raster source map images, which **cannot** be publicly shared under the Community Use Policy or other licenses. The mapping project provides access to these images only to volunteers who have individually requested and been granted access.
+Geometry in the `mapping-data` repository is created by project volunteers who attempt to georeference raster maps published by Paizo and interpret features on those maps as vector layer data in QGIS. Paizo owns the copyright of these raster source map images, which **cannot** be publicly shared under the Fan Content Policy or other licenses. The mapping project provides access to these images only to volunteers who have individually requested and been granted access.
 
 If you have been granted permission to access these raster maps, you can download them by following these steps:
 
@@ -157,7 +157,7 @@ See also the [GitHub Actions Dockerfile](https://github.com/pf-wikis/mapping/blo
 
 ## Acknowledgments
 
-This mapping project uses trademarks and/or copyrights owned by Paizo Inc., used under Paizo's Community Use Policy ([paizo.com/communityuse](https://paizo.com/community/communityuse)). We are expressly prohibited from charging you to use or access this content. This project is not published, endorsed, or specifically approved by Paizo. For more information about Paizo Inc. and Paizo products, visit paizo.com.
+This mapping project uses trademarks and/or copyrights owned by Paizo Inc., used under Paizo's Fan Content Policy ([paizo.com/licenses/fancontent](https://paizo.com/licenses/fancontent)). This mapping project is not published, endorsed, or specifically approved by Paizo. For more information about Paizo Inc. and Paizo products, visit [paizo.com](https://paizo.com).
 
 Significant data in this project is based on GIS data first compiled by [John Mechalas](https://www.dungeonetics.com/golarion-geography/index.html) and contributions to that project from Oznogon, who produced and previously hosted the [first interactive map](https://oznogon.com/golarion-tile) from that data.
 
