@@ -1,5 +1,8 @@
 package io.github.pfwikis.model;
 
+import java.math.BigDecimal;
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
@@ -21,4 +24,8 @@ public class Properties extends AnyJson {
 	private String type;
 	private String color;
 	private String halo;
+	private UUID uuid;
+	private BigDecimal angle;
+	private BigDecimal width;
+	private BigDecimal height;
 }

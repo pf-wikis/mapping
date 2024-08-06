@@ -9,6 +9,7 @@ import lombok.Setter;
 public class Feature extends AnyJson {
 
 	private Geometry geometry;
+	private String type = "Feature";
     private Properties properties = new Properties();
     private Tippecanoe tippecanoe = new Tippecanoe();
     

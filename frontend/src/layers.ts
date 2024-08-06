@@ -179,20 +179,6 @@ let layers:LayerSpecification[] = [
       ],
     }
   }),
-  createLayer('labels', {
-    type: 'symbol',
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
-      'text-overlap': 'always',
-    },
-    paint: {
-      'text-color': '#000',//['get', 'color'],
-      'text-halo-color': ['get', 'halo'],
-      'text-halo-width': 2
-    }
-  }),
   createLayer('locations', {
     id: 'location-icons',
     type: 'symbol',
@@ -216,6 +202,21 @@ let layers:LayerSpecification[] = [
       ] as any
     },
     paint: {
+    }
+  }),
+  createLayer('labels', {
+    type: 'symbol',
+    layout: {
+      'text-field': ['get', 'Name'],
+      'text-rotate': ['get', 'angle'],
+      'text-font': ['NotoSans-Medium'],
+      'text-size': 16*fs,
+      'text-overlap': 'always',
+    },
+    paint: {
+      'text-color': '#000',//['get', 'color'],
+      'text-halo-color': ['get', 'halo'],
+      'text-halo-width': 2
     }
   }),
   /*

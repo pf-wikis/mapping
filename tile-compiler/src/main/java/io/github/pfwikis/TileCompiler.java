@@ -68,6 +68,7 @@ public class TileCompiler {
         Tools.tippecanoe(
         	null,
             "-z"+options.getMaxZoom(),
+            "--extra-detail="+Math.max(12,32-options.getMaxZoom()), //increase detail level on max-zoom
             "-n", "golarion",
             "-o", tmpPMTiles,
             "--force",

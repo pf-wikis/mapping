@@ -1,6 +1,7 @@
 package io.github.pfwikis.run;
 
 import java.io.IOException;
+import java.util.List;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
@@ -11,7 +12,9 @@ public class Tools {
     public static LCContent qgis(LCStep step, String qgisCommand, LCContent in, Object... args) throws IOException {
         return Runner.run(
         	step,
-            "qgis_process", "run", qgisCommand,
+            "qgis_process",
+            qgisCommand.startsWith("native:")?"--no-python":List.of(),
+            "run", qgisCommand,
             "--distance_units=meters",
             "--area_units=m2",
             "--ellipsoid=EPSG:4326",
