@@ -1,11 +1,6 @@
 [core]
     remote = webdav
     autostage = true
-['remote "imagestore"']
-    url = gdrive://1OcF0ARa_GVRdbCSxP0uY8ZF-AMRZhuHo
-    gdrive_acknowledge_abuse = true
-    gdrive_trash_only = true
-    jobs = 4
 ['remote "webdav"']
     url = webdavs://webdav.pathfinderwiki.com
     user = pf-mapping
