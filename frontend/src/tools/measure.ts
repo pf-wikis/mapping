@@ -42,7 +42,7 @@ export default class MeasureControl implements IControl {
             'type': 'symbol',
             'source': DRAW_LABELS_SOURCE,
             'layout': {
-              'text-font': ['NotoSans-Medium'],
+              'text-font': ['Alegreya-Regular'],
               'text-field': ['get', 'measurement'],
               'text-variable-anchor': ['center', 'top', 'bottom', 'left', 'right'],
               'text-radial-offset': 0.5,

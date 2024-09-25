@@ -30,11 +30,16 @@ let colors = {
   nationBorders:   'rgb(170, 170, 170)',
   borderDarker:    'rgb( 74,  74,  74)',
   white:           'rgb(255, 255, 255)',
-  black:           'rgb( 10,  10,  10)'
+  whiteHalo:       'rgba(255, 255, 255, 0.8)',
+  red:             'rgb(255,   0,   0)',
+  black:           'rgb( 25,  25,  25)'
 };
 
 //scale font larger for lower dpr displays
 const fs = window.devicePixelRatio===1?2:1;
+const base_font_size = 8*fs;
+const sans_font = 'AlegreyaSans-Regular';
+const serif_font = 'Alegreya-Regular';
 
 const props = {
   filterMinzoom: ["get", "filterMinzoom"] as ExpressionSpecification,
@@ -201,7 +206,7 @@ let layers:LayerSpecification[] = [
   }),
   createLayer('subregion-borders', {
     type: 'line',
-    maxzoom: 6,
+    maxzoom: 8,
     paint: {
       'line-color': colors.nationBorders,
       'line-width': ["interpolate", ["exponential", 2], ["zoom"],
@@ -215,12 +220,12 @@ let layers:LayerSpecification[] = [
   }),
   createLayer('region-borders', {
     type: 'line',
-    minzoom: 2,
-    maxzoom: 4,
+    minzoom: 1,
+    maxzoom: 6,
     paint: {
       'line-color': colors.regionBorders,
       'line-width': 2,
-      'line-opacity': blendInOut(2,4)
+      'line-opacity': blendInOut(1,6)
     },
     layout: {
       'line-cap': 'round'
@@ -231,8 +236,9 @@ let layers:LayerSpecification[] = [
     layout: {
       'symbol-placement': 'line',
       'text-max-angle': 40,
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
+      'text-letter-spacing': 0.1,
       'symbol-spacing': [
         'interpolate',
         ['linear'],
@@ -241,7 +247,14 @@ let layers:LayerSpecification[] = [
         6, 250,
         12, 400,
       ],
-      'text-size': 14,
+      'text-size': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        1, base_font_size - (base_font_size / 2),
+        6, base_font_size - (base_font_size / 4),
+        10, base_font_size,
+      ],
     },
     paint: {
       'text-color': colors.waterDarker,
@@ -258,10 +271,11 @@ let layers:LayerSpecification[] = [
   createLayer('ice-labels', {
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
       'text-overlap': 'always',
-      'text-size': 32*fs,
+      'text-size': base_font_size,
+      'text-letter-spacing': 0.25,
     },
     paint: {
       'text-color': colors.iceDarker,
@@ -273,9 +287,10 @@ let layers:LayerSpecification[] = [
     type: 'symbol',
     minzoom: 6,
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
+      'text-size': base_font_size,
+      'text-letter-spacing': 0.25,
     },
     paint: {
       'text-color': colors.forestDarker,
@@ -286,9 +301,10 @@ let layers:LayerSpecification[] = [
   createLayer('special-labels', {
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
+      'text-size': base_font_size,
+      'text-letter-spacing': 0.25,
     },
     paint: {
       'text-color': colors.districtsDarker,
@@ -299,13 +315,22 @@ let layers:LayerSpecification[] = [
   createLayer('labels', {
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
+      'text-size': base_font_size + (base_font_size / 3),
+      'text-letter-spacing': 0.25,
     },
     paint: {
-      'text-color': colors.districtsDarker,
-      'text-halo-color': colors.districts,
+      'text-color': ['match', ['get', 'type'],
+        'land', colors.districtsDarker,
+        'waters', colors.waterDarker,
+        colors.districtsDarker,
+      ],
+      'text-halo-color': ['match', ['get', 'type'],
+        'land', colors.districts,
+        'waters', colors.water,
+        colors.districts,
+      ],
       'text-halo-width': .5
     }
   }),
@@ -313,9 +338,10 @@ let layers:LayerSpecification[] = [
     type: 'symbol',
     minzoom: 6,
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
+      'text-size': base_font_size,
+      'text-letter-spacing': 0.25,
     },
     paint: {
       'text-color': colors.hillsDarker,
@@ -327,9 +353,10 @@ let layers:LayerSpecification[] = [
     type: 'symbol',
     minzoom: 6,
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
+      'text-size': base_font_size,
+      'text-letter-spacing': 0.25,
     },
     paint: {
       'text-color': colors.mountainsDarker,
@@ -341,9 +368,10 @@ let layers:LayerSpecification[] = [
     type: 'symbol',
     minzoom: 6,
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
+      'text-size': base_font_size,
+      'text-letter-spacing': 0.25,
     },
     paint: {
       'text-color': colors.desertsDarker,
@@ -355,9 +383,10 @@ let layers:LayerSpecification[] = [
     type: 'symbol',
     minzoom: 6,
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
+      'text-size': base_font_size,
+      'text-letter-spacing': 0.25,
     },
     paint: {
       'text-color': colors.swampDarker,
@@ -369,9 +398,10 @@ let layers:LayerSpecification[] = [
     type: 'symbol',
     minzoom: 6,
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
+      'text-size': base_font_size,
+      'text-letter-spacing': 0.25,
     },
     paint: {
       'text-color': colors.waterDarker,
@@ -413,18 +443,22 @@ let layers:LayerSpecification[] = [
       ['any', ['!', ['has', 'filterMaxzoom']], ['<=', ["zoom"], props.filterMaxzoom]]
     ],
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 14*fs,
+      'text-field': ['match', ['get', 'icon'],
+        'city-major-capital', ['upcase', ['get', 'Name']],
+        ['get', 'Name'],
+      ],
+      'text-font': ['AlegreyaSans-Regular'],
+      'text-size': base_font_size,
       'text-variable-anchor': ["left", "right"],
-      'text-radial-offset': .5,
+      'text-radial-offset': .5
     },
     paint: {
       'text-color': colors.black,
-      'text-halo-color': colors.white,
-      'text-halo-width': .5
+      'text-halo-color': colors.whiteHalo,
+      'text-halo-width': .875
     }
   }),
+  /* This seems to have no effect, and settlements appear to use the locations layer instead
   createLayer('cities', {
     id: 'city-labels',
     type: 'symbol',
@@ -432,13 +466,13 @@ let layers:LayerSpecification[] = [
     filter: ['>', ["-", ["zoom"], props.filterMinzoom], 3],
     layout: {
       'text-field': ['upcase', ['get', 'Name']],
-      'text-font': ['NotoSans-Medium'],
+      'text-font': ['AlegreyaSans-Regular'],
       'text-size': ['step',
         ['get', 'size'],
-        16,
-        1, 14,
-        2, 12,
-        3, 10
+        base_font_size + (base_font_size / 6),
+        1, base_font_size,
+        2, base_font_size - (base_font_size / 6),
+        3, base_font_size - (base_font_size / 3)
       ],
       'text-variable-anchor': ["left", "right"],
       'symbol-sort-key': ['get', 'size'],
@@ -453,52 +487,52 @@ let layers:LayerSpecification[] = [
     paint: {
       'text-color': colors.black,
       'text-halo-color': colors.white,
-      'text-halo-width': .875
+      'text-halo-width': .5
     }
-  }),
+  }),*/
   createLayer('district-labels', {
     type: 'symbol',
     minzoom: limit.districts,
     layout: {
       'text-field': ['upcase', ['get', 'Name']],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
+      'text-font': ['AlegreyaSans-Regular'],
+      'text-size': base_font_size,
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
     paint: {
       'text-color': colors.black,
-      'text-halo-color': colors.white,
-      'text-halo-width': .5
+      'text-halo-color': colors.whiteHalo,
+      'text-halo-width': .875,
     }
-    
   }),
   createLayer('province-labels', {
-    minzoom: 4,
+    minzoom: 5,
     maxzoom: 7,
     type: 'symbol',
     layout: {
       'text-field': ['upcase', ['get', 'Name']],
-      'text-font': ['NotoSans-Medium'],
+      'text-font': ['AlegreyaSans-Regular'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        5, 10*fs,
-        7, 16*fs,
+        5, base_font_size - (base_font_size / 6),
+        7, base_font_size + (base_font_size / 6),
       ],
+      'text-letter-spacing': 0.1,
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
     paint: {
       'text-color': colors.black,
-      'text-halo-color': colors.white,
+      'text-halo-color': colors.whiteHalo,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
-        5, .375,
-        7, .5,
+        5, .5,
+        7, .875,
       ],
     }
   }),
   createLayer('nation-labels', {
     minzoom: 3,
-    maxzoom: 6,
+    maxzoom: 8,
     type: 'symbol',
     filter: ['any',
       ['!', ['get', 'inSubregion']],
@@ -506,42 +540,43 @@ let layers:LayerSpecification[] = [
     ],
     layout: {
       'text-field': ['upcase', ['get', 'Name']],
-      'text-font': ['NotoSans-Medium'],
+      'text-font': ['AlegreyaSans-Regular'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        4, 12*fs,
-        5, 20*fs,
+        3, base_font_size - (base_font_size / 4),
+        6, base_font_size + (base_font_size / 2),
       ],
+      'text-letter-spacing': 0.1,
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
     paint: {
       'text-color': colors.black,
-      'text-halo-color': colors.white,
+      'text-halo-color': colors.whiteHalo,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
-        4, 1,
-        5, 1.5,
+        4, 2,
+        5, .875,
       ],
     }
   }),
   createLayer('subregion-labels', {
-    minzoom: 3,
-    maxzoom: 5,
+    minzoom: 6,
+    maxzoom: 8,
     type: 'symbol',
     layout: {
       'text-field': ['upcase', ['get', 'Name']],
-      'text-font': ['NotoSans-Medium'],
+      'text-font': ['AlegreyaSans-Regular'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        4, 10*fs,
-        5, 25*fs,
+        4, base_font_size,
+        5, base_font_size + (base_font_size / 2),
       ],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
     paint: {
       'text-color': colors.black,
-      'text-halo-color': colors.white,
+      'text-halo-color': colors.whiteHalo,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
-        4, .75,
+        4, 2,
         5, .875,
       ],
     }
@@ -551,16 +586,17 @@ let layers:LayerSpecification[] = [
     maxzoom: 4,
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-size': 20*fs,
+      'text-field': ['upcase', ['get', 'Name']],
+      'text-font': ['Alegreya-Regular'],
+      'text-size': base_font_size + (base_font_size / 3),
+      'text-letter-spacing': 0.1,
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
     paint: {
       'text-color': colors.regionNames,
       'text-halo-color': colors.regionNamesOut,
-      'text-halo-width': .5,
+      'text-halo-width': .875,
     }
   }),
   createLayer('continent-labels', {
@@ -568,7 +604,7 @@ let layers:LayerSpecification[] = [
     maxzoom: 2,
     layout: {
       'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
+      'text-font': ['AlegreyaSans-Regular'],
       'text-overlap': 'always',
       'text-ignore-placement': true,
       'text-size': interpolateTextWithCamera(10),
@@ -577,7 +613,7 @@ let layers:LayerSpecification[] = [
     paint: {
       'text-color': colors.landDarker,
       'text-halo-color': colors.land,
-      'text-halo-width': interpolateTextWithCamera(.5)
+      'text-halo-width': interpolateTextWithCamera(.25)
     }
   }),
 ];
