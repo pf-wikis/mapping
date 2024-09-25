@@ -43,7 +43,7 @@ export const map = new Map({
     sources: {
       golarion: {
         type: 'vector',
-        attribution: '<a href="https://paizo.com/licenses/fancontent">Paizo FCP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
+        attribution: '<a href="https://paizo.com/licenses/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
         url: 'pmtiles://'+root+'golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH
       }
     },
