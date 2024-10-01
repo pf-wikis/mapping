@@ -1,4 +1,4 @@
-import Maplibre, { AttributionControl, Map, NavigationControl, ScaleControl } from "maplibre-gl";
+import Maplibre, { AttributionControl, Map, NavigationControl, ScaleControl, FullscreenControl } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 import layers from './layers.js';
@@ -65,6 +65,8 @@ map.on('error', function(err) {
 });
 if(!embedded) {
   map.addControl(new NavigationControl({showCompass: false}));
+} else  {
+  map.addControl(new FullscreenControl());
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',
