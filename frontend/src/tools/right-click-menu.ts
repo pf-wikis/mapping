@@ -32,17 +32,6 @@ export function addRightClickMenu(embedded: boolean, map: Map, measureControl: M
       },
     },
   ];
-  if(embedded) {
-    items = [
-      {
-        label: "Open in new tab",
-        callback: (e:Event) => {
-          window.open(window.location.href.replace('&embedded=true', ''), '_blank').focus();
-        }
-      },
-      ...items
-    ]
-  }
   
   const menu = new PureContextMenu(map.getContainer(), items, {
     show: (e:Event) => {
