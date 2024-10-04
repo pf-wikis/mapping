@@ -92,8 +92,9 @@ Geometry in the `mapping-data` repository is created by project volunteers who a
 If you have been granted permission to access these raster maps, you can download them by following these steps:
 
 1. Download and install [DVC](https://dvc.org/).
-2. Within this repository's root, run ```dvc install```. This sets up automatic git hooks so that DVC pushes content when you push with git.
-3. Run ```dvc pull``` to download the images. If this is your first time pulling images, you will have to authenticate with the account that has been granted access to the external map storage.
+2. Run ```dvc remote modify --local webdav password THEPASSWORD```
+3. Within this repository's root, run ```dvc install```. This sets up automatic git hooks so that DVC pushes content when you push with git.
+4. Run ```dvc pull``` to download the images. If this is your first time pulling images, you will have to authenticate with the account that has been granted access to the external map storage.
 
 Georeferencing these images is a complex and subjective process that requires coordination with other volunteers. To request access or coordinate georeferencing efforts, please join the [PathfinderWiki Discord server's](https://discord.gg/xueae4g) [`#golarion-mapping` channel](https://discord.com/channels/499368889176555520/1133657894181671023).
 
@@ -157,7 +158,7 @@ See also the [GitHub Actions Dockerfile](https://github.com/pf-wikis/mapping/blo
 
 ## Acknowledgments
 
-This mapping project uses trademarks and/or copyrights owned by Paizo Inc., used under Paizo's Community Use Policy ([paizo.com/communityuse](https://paizo.com/community/communityuse)). We are expressly prohibited from charging you to use or access this content. This project is not published, endorsed, or specifically approved by Paizo. For more information about Paizo Inc. and Paizo products, visit paizo.com.
+This mapping project uses trademarks and/or copyrights owned by Paizo Inc., used under Paizo's Community Use Policy ([paizo.com/licenses/communityuse](https://paizo.com/licenses/communityuse)). We are expressly prohibited from charging you to use or access this content. This mapping project is not published, endorsed, or specifically approved by Paizo. For more information about Paizo Inc. and Paizo products, visit [paizo.com](https://paizo.com).
 
 Significant data in this project is based on GIS data first compiled by [John Mechalas](https://www.dungeonetics.com/golarion-geography/index.html) and contributions to that project from Oznogon, who produced and previously hosted the [first interactive map](https://oznogon.com/golarion-tile) from that data.
 

@@ -9,6 +9,7 @@ import { makeLocationsClickable } from "./tools/location-popup.js";
 import { addRightClickMenu } from "./tools/right-click-menu.js";
 import { addSpecialURLOptions } from "./tools/special-url-options.js";
 import { CachedSource } from "./CachedPmTiles.js";
+import NewTab from "./tools/NewTab.js";
 
 //check if running embedded
 var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -43,7 +44,7 @@ export const map = new Map({
     sources: {
       golarion: {
         type: 'vector',
-        attribution: '<a href="https://paizo.com/community/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
+        attribution: '<a href="https://paizo.com/licenses/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
         url: 'pmtiles://'+root+'golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH
       }
     },
@@ -79,6 +80,9 @@ map.addControl(new AttributionControl({
 }));
 let measureControl = new MeasureControl();
 map.addControl(measureControl);
+if(embedded) {
+  map.addControl(new NewTab());
+}
 
 makeLocationsClickable(map);
 addRightClickMenu(embedded, map, measureControl);
