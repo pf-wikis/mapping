@@ -1010,6 +1010,30 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "Name" : "Blackwarn's Gallows",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "type" : "waterfall",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -28.61125, 17.77167 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Blackwarn's Gallows",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "type" : "cliff",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -28.88357, 17.68995 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "Name" : "Bleachbone Cave",
       "link" : "https://pathfinderwiki.com/wiki/Bleachbone_Cave",
       "type" : "cave",
@@ -1058,6 +1082,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -22.1131, 18.5658 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Bloodsworn Vale",
+      "link" : "https://pathfinderwiki.com/wiki/Bloodsworn_Vale",
+      "type" : "valley",
+      "text" : "<p>The <b>Bloodsworn Vale</b> is a valley and battlefield site within the <a href=\"https://pathfinderwiki.com/wiki/Mindspin_Mountains\">Mindspin Mountains</a> on the border between <a href=\"https://pathfinderwiki.com/wiki/Varisia\">Varisia</a> and <a href=\"https://pathfinderwiki.com/wiki/Nirmathas\">Nirmathas</a>.</p>",
+      "articleLength" : 1500
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -16.84408, 43.4 ]
     }
   }, {
     "type" : "Feature",
@@ -3519,7 +3556,7 @@
       "link" : "https://pathfinderwiki.com/wiki/Fangwood_Keep",
       "type" : "castle",
       "text" : "<p><b>Fangwood Keep</b> is a fortress near the <a href=\"https://pathfinderwiki.com/wiki/Nirmathas\">Nirmathas</a>–<a href=\"https://pathfinderwiki.com/wiki/Molthune\">Molthune</a> border in the <a href=\"https://pathfinderwiki.com/wiki/Marideth_River_valley\">Marideth River valley</a>. Ownership of the fortress has alternated between the two nations since the beginning of the <a href=\"https://pathfinderwiki.com/wiki/Freedom_War\">Nirmathi war of independence</a>. It was built on top of the ancient tower of an <a href=\"https://pathfinderwiki.com/wiki/Elf\">elven</a> <a href=\"https://pathfinderwiki.com/wiki/Wizard\">wizard</a>.</p>",
-      "articleLength" : 1200
+      "articleLength" : 1400
     },
     "geometry" : {
       "type" : "Point",
@@ -3820,6 +3857,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -6.692233, 50.41372 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Fort Dagh",
+      "link" : "https://pathfinderwiki.com/wiki/Fort_Dagh",
+      "type" : "castle",
+      "text" : "<p><b>Fort Dagh</b> is located at the summit of a mountain peak south of <a href=\"https://pathfinderwiki.com/wiki/Tar-Kazmukh\">Tar-Kazmukh</a> and overlooks the Great Pass of the northwestern <a href=\"https://pathfinderwiki.com/wiki/Five_Kings_Mountains\">Five Kings Mountains</a>. It is renowned for its view despite a reputation among soldiers as a hardship posting, and its commander is First Captain Hannah Drasten, a rare <a href=\"https://pathfinderwiki.com/wiki/Human\">human</a> among the Five Kings Mountains' militlary leaders.</p>\n<p>A nearby peak bears the <a href=\"https://pathfinderwiki.com/wiki/Carved_Kings\">Carved Kings</a> sculpture of <a href=\"https://pathfinderwiki.com/wiki/Kazmukh\">King Kazmukh</a> of <a href=\"https://pathfinderwiki.com/wiki/Doggadth\">Doggadth</a>, which also overlooks the Great Pass.</p>",
+      "articleLength" : 400
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -3.599886, 41.28796 ]
     }
   }, {
     "type" : "Feature",
@@ -4551,8 +4601,8 @@
       "Name" : "Growling Skald",
       "link" : "https://pathfinderwiki.com/wiki/Growling_Skald",
       "type" : "volcano",
-      "text" : "<p><b>Growling Skald</b> is a mountain ridge of the larger <a href=\"https://pathfinderwiki.com/wiki/Mindspin_Mountains\">Mindspin Mountains</a> range that contains one of its few <a href=\"https://pathfinderwiki.com/wiki/Volcano\">volcanically</a> active areas. The low rumble churning underneath is a clear sign of geological activity, though the more poetically minded say that the rumble is a restless <a href=\"https://pathfinderwiki.com/wiki/Giant\">giant</a> spirit that haunts the ridge.</p>",
-      "articleLength" : 400
+      "text" : "<p><b>Growling Skald</b> is a mountain ridge of the larger <a href=\"https://pathfinderwiki.com/wiki/Mindspin_Mountains\">Mindspin Mountains</a> range that contains one of its few <a href=\"https://pathfinderwiki.com/wiki/Volcano\">volcanically</a> active areas. The low rumble churning underneath is a clear sign of geological activity, though the more poetically minded say that the rumble is a restless <a href=\"https://pathfinderwiki.com/wiki/Giant\">giant</a> spirit that haunts the ridge. The ridge's elevation averages 11,000 feet.</p>",
+      "articleLength" : 1000
     },
     "geometry" : {
       "type" : "Point",
@@ -6308,7 +6358,7 @@
     },
     "geometry" : {
       "type" : "Point",
-      "coordinates" : [ -1.437072, 41.34023 ]
+      "coordinates" : [ -1.025488, 41.27436 ]
     }
   }, {
     "type" : "Feature",
@@ -7793,6 +7843,18 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "Name" : "Onokin",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "type" : "island",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -29.31845, 17.47712 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "Name" : "Orcmoot",
       "link" : "https://pathfinderwiki.com/wiki/Orcmoot",
       "type" : "camp",
@@ -9045,6 +9107,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "Name" : "Sanctum of the Sorrowmaker",
+      "link" : "https://pathfinderwiki.com/wiki/Sanctum_of_the_Sorrowmaker",
+      "type" : "cave",
+      "text" : "<p><b>Sanctum of the Sorrowmaker</b> is a labyrinthine cavern complex in <a href=\"https://pathfinderwiki.com/wiki/Dahak%27s_Fang\">Dahak's Fang</a> island that <a href=\"https://pathfinderwiki.com/wiki/Aashaq\">Aashaq the Annihilator</a> and her minions call home.</p>",
+      "articleLength" : 1100
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -27.08356, 18.19227 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "Name" : "Sanctum's Watch",
       "link" : "https://pathfinderwiki.com/wiki/Sanctum's_Watch",
       "type" : "castle",
@@ -9828,6 +9903,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ 8.752748, 24.30901 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Sombrefell Hall",
+      "link" : "https://pathfinderwiki.com/wiki/Sombrefell_Hall",
+      "type" : "manor-house",
+      "text" : "<p>The massive manor known as <b>Sombrefell Hall</b> is located about 25 miles northeast of <a href=\"https://pathfinderwiki.com/wiki/Rozenport\">Rozenport</a> in <a href=\"https://pathfinderwiki.com/wiki/Ustalav\">Ustalav</a>. It is situated at the end of a fairly well demarcated road abutting the <a href=\"https://pathfinderwiki.com/wiki/Lantern_Lake\">Lantern Lake</a>. The manor has belonged to the Oscilar family for generations. It is built in the gothic Ustalavic fashion and its grand entrance consists of mahogany double doors.</p>",
+      "articleLength" : 300
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -7.439676, 47.09190 ]
     }
   }, {
     "type" : "Feature",
