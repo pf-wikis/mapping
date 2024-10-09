@@ -303,18 +303,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "Name" : "Anglemire",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
-      "type" : "city-ruins",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -25.24397, 32.51253 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "Name" : "Aphet Mines",
       "link" : "https://pathfinderwiki.com/wiki/Aphet_Mines",
       "type" : "mine",
@@ -1391,9 +1379,10 @@
     "type" : "Feature",
     "properties" : {
       "Name" : "Burozi",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "link" : "https://pathfinderwiki.com/wiki/Burozi",
       "type" : "island",
-      "articleLength" : 0
+      "text" : "<p><b>Burozi</b> is a small island in the <a href=\"https://pathfinderwiki.com/wiki/Steaming_Sea\">Steaming Sea</a> west of <a href=\"https://pathfinderwiki.com/wiki/Varisia\">Varisia</a> that was rediscovered by the <a href=\"https://pathfinderwiki.com/wiki/Pathfinder_Society\">Pathfinder Society</a> <i>ca.</i> <a href=\"https://pathfinderwiki.com/wiki/4720_AR\">4720 AR</a>. The island contains ruins of the <a href=\"https://pathfinderwiki.com/wiki/Azlanti_Empire\">Azlanti Empire</a>.</p>",
+      "articleLength" : 300
     },
     "geometry" : {
       "type" : "Point",
@@ -1540,6 +1529,18 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -11.72498, 47.57480 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Castinlee Hollows Burying Ground",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "type" : "graveyard",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -1.561554, 31.01938 ]
     }
   }, {
     "type" : "Feature",
@@ -3312,6 +3313,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "Name" : "Eagle Garrison Fort",
+      "link" : "https://pathfinderwiki.com/wiki/Eagle_Garrison_Fort",
+      "type" : "castle",
+      "text" : "<p>The <b>Eagle Garrison Fort</b> is a fortress of the <a href=\"https://pathfinderwiki.com/wiki/Eagle_Garrison\">Eagle Garrison</a> located in the northern <a href=\"https://pathfinderwiki.com/wiki/Kortos_Mounts\">Kortos Mounts</a> foothills, about 100 miles' travel from <a href=\"https://pathfinderwiki.com/wiki/Diobel\">Diobel</a> on land by way of <a href=\"https://pathfinderwiki.com/wiki/Merovan\">Merovan</a>.</p>",
+      "articleLength" : 1500
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.7482127, 31.38700 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "Name" : "Earthnavel",
       "link" : "https://pathfinderwiki.com/wiki/Earthnavel",
       "type" : "pit",
@@ -4183,6 +4197,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "Name" : "Fort Scourbone",
+      "link" : "https://pathfinderwiki.com/wiki/Fort_Scourbone",
+      "type" : "castle",
+      "text" : "<p><b>Fort Scourbone</b> is a location in northwestern <a href=\"https://pathfinderwiki.com/wiki/Geb\">Geb</a> about which little is known. It is located on the western edge of the <a href=\"https://pathfinderwiki.com/wiki/Shattered_Range\">Shattered Range</a> near the <a href=\"https://pathfinderwiki.com/wiki/Mana_Wastes\">Mana Wastes</a>.</p>",
+      "articleLength" : 100
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -8.121232, 17.83559 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "Name" : "Fort Serenko",
       "link" : "https://pathfinderwiki.com/wiki/Fort_Serenko",
       "type" : "castle",
@@ -4557,9 +4584,10 @@
     "type" : "Feature",
     "properties" : {
       "Name" : "Gloaming Arbor",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "link" : "https://pathfinderwiki.com/wiki/Gloaming_Arbor",
       "type" : "plant",
-      "articleLength" : 0
+      "text" : "<p><b>Gloaming Arbor</b> is a region of the western <a href=\"https://pathfinderwiki.com/wiki/Verduran_Forest\">Verduran Forest</a> with an intense connection to the <a href=\"https://pathfinderwiki.com/wiki/Netherworld\">Netherworld</a>.</p>",
+      "articleLength" : 1300
     },
     "geometry" : {
       "type" : "Point",
@@ -4654,6 +4682,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -3.041721, 33.76443 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "Name" : "Goldenflame",
+      "link" : "https://pathfinderwiki.com/wiki/Goldenflame",
+      "type" : "city-ruins",
+      "text" : "<p><b>Goldenflame</b> is an abandoned college town in southeastern <a href=\"https://pathfinderwiki.com/wiki/Lastwall\">Lastwall</a>, immediately north of the <a href=\"https://pathfinderwiki.com/wiki/Iomedae\">Iomedaean</a> Goldenflame College.</p>",
+      "articleLength" : 900
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -10.18637, 44.98727 ]
     }
   }, {
     "type" : "Feature",
@@ -5199,9 +5240,10 @@
     "type" : "Feature",
     "properties" : {
       "Name" : "Hekastor",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "link" : "https://pathfinderwiki.com/wiki/Hekastor",
       "type" : "city-ruins",
-      "articleLength" : 0
+      "text" : "<p><b>Hekastor</b> was a city and <a href=\"https://pathfinderwiki.com/wiki/Golem\">golemworks</a> of the <a href=\"https://pathfinderwiki.com/wiki/Jistka_Imperium\">Jistka Imperium</a> known to be active <i>ca.</i> -3600 <a href=\"https://pathfinderwiki.com/wiki/Absalom_Reckoning\">AR</a>. It was destroyed and buried by <a href=\"https://pathfinderwiki.com/wiki/Earthquake\">earthquakes</a> of <a href=\"https://pathfinderwiki.com/wiki/Divine\">divine</a> nature millennia ago. Golems still roam the site, and its former residents slowly evolved into <a href=\"https://pathfinderwiki.com/wiki/Morlock\">morlocks</a> who remain active in the area. These Jistkan morlocks obsessively work to power 17 glowing <a href=\"https://pathfinderwiki.com/wiki/Magic\">magical</a> pylons out of fear of releasing a destructive threat. The morlocks have been unable to power the pylons by any means other than the sacrifice of <a href=\"https://pathfinderwiki.com/wiki/Arcane_magic\">arcane magic</a> <a href=\"https://pathfinderwiki.com/wiki/Spellcaster\">spellcasters</a> beneath the pillars.</p>",
+      "articleLength" : 500
     },
     "geometry" : {
       "type" : "Point",
@@ -5411,18 +5453,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -30.72428, 46.35778 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "Name" : "Hollows",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
-      "type" : "graveyard",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -1.561554, 31.01938 ]
     }
   }, {
     "type" : "Feature",
@@ -6628,7 +6658,7 @@
       "Name" : "Liferoot Stone",
       "link" : "https://pathfinderwiki.com/wiki/Liferoot_Stone",
       "type" : "tower",
-      "text" : "<p>The <b>Liferoot Stone</b> is one of the <a href=\"https://pathfinderwiki.com/wiki/Aeon_tower\">aeon towers</a> that <a href=\"https://pathfinderwiki.com/wiki/Aroden\">Aroden</a> placed around the <a href=\"https://pathfinderwiki.com/wiki/Isle_of_Kortos\">Isle of Kortos</a>. The tower was a 300-foot-tall mudbrick step pyramid with a flat 10-foot-wide top and four uneven tiers, though it is now partially collapsed.</p>\n<p>The tower is located in the <a href=\"https://pathfinderwiki.com/wiki/Swardlands\">Swardlands</a> on the Isle of Kortos, and is the southernmost of the towers, located near the town of Castinlee.</p>",
+      "text" : "<p>The <b>Liferoot Stone</b> is one of the <a href=\"https://pathfinderwiki.com/wiki/Aeon_tower\">aeon towers</a> that <a href=\"https://pathfinderwiki.com/wiki/Aroden\">Aroden</a> placed around the <a href=\"https://pathfinderwiki.com/wiki/Isle_of_Kortos\">Isle of Kortos</a>. The tower was a 300-foot-tall mudbrick step pyramid with a flat 10-foot-wide top and four uneven tiers, though it is now partially collapsed.</p>\n<p>The tower is located in the <a href=\"https://pathfinderwiki.com/wiki/Swardlands\">Swardlands</a> on the Isle of Kortos, and is the southernmost of the towers, located near the town of <a href=\"https://pathfinderwiki.com/wiki/Castinlee\">Castinlee</a>.</p>",
       "articleLength" : 300
     },
     "geometry" : {
@@ -6819,10 +6849,11 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "Name" : "Lumber Consortium's Main Camp",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "Name" : "Lumber Consortium Camp",
+      "link" : "https://pathfinderwiki.com/wiki/Lumber_Consortium_Camp",
       "type" : "camp",
-      "articleLength" : 0
+      "text" : "<p>As of <a href=\"https://pathfinderwiki.com/wiki/4708_AR\">4708 AR</a>, the <b><a href=\"https://pathfinderwiki.com/wiki/Lumber_Consortium\">Lumber Consortium</a> Camp</b> in <a href=\"https://pathfinderwiki.com/wiki/Andoran\">Andoran</a>'s <a href=\"https://pathfinderwiki.com/wiki/Darkmoon_Vale\">Darkmoon Vale</a> was the <a href=\"https://pathfinderwiki.com/wiki/Lumber\">lumber</a> cartel's main camp in the region. It specializes in harvesting copses of valuable <a href=\"https://pathfinderwiki.com/wiki/Duskwood\">duskwood</a>.</p>",
+      "articleLength" : 500
     },
     "geometry" : {
       "type" : "Point",
@@ -9196,8 +9227,8 @@
     "properties" : {
       "Name" : "Reiver's Right",
       "link" : "https://pathfinderwiki.com/wiki/Reiver's_Right",
-      "type" : "city-ruins",
-      "text" : "<p><b>Reiver's Right</b> is a former logging camp that has been long abandoned. The former loggers here became victims of a <a href=\"https://pathfinderwiki.com/wiki/Forest_blight\">forest blight</a> and were transformed into trees, and the blight still remains here.</p>",
+      "type" : "ruins",
+      "text" : "<p><b>Reiver's Right</b> is a former <a href=\"https://pathfinderwiki.com/wiki/Lumber\">logging</a> camp that has been long abandoned. The former loggers here became victims of a <a href=\"https://pathfinderwiki.com/wiki/Forest_blight\">forest blight</a> and were transformed into <a href=\"https://pathfinderwiki.com/wiki/Tree\">trees</a>, and the blight still remains here.</p>",
       "articleLength" : 200
     },
     "geometry" : {
@@ -11812,6 +11843,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "Name" : "Tilxar",
+      "link" : "https://pathfinderwiki.com/wiki/Tilxar",
+      "type" : "other",
+      "text" : "<p>Little is known about <b>Tilxar</b>, a location in northeastern <a href=\"https://pathfinderwiki.com/wiki/Geb\">Geb</a> near the Yanwe River.</p>",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -3.515769, 17.13498 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "Name" : "Tintavex's Aerie",
       "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
       "type" : "creature-lair",
@@ -12901,7 +12945,7 @@
       "Name" : "Wellspring Tower",
       "link" : "https://pathfinderwiki.com/wiki/Wellspring_Tower",
       "type" : "tower",
-      "text" : "<p>The <b>Wellspring Tower</b> is one of the <a href=\"https://pathfinderwiki.com/wiki/Aeon_tower\">aeon towers</a> that <a href=\"https://pathfinderwiki.com/wiki/Aroden\">Aroden</a> placed around the <a href=\"https://pathfinderwiki.com/wiki/Isle_of_Kortos\">Isle of Kortos</a>. The tower is a 300-foot-tall mudbrick step pyramid with a flat 10-foot-wide top and four uneven tiers.</p>\n<p>The tower is located on the north side of the Isle of Kortos, near the Verdant Passage and the small town of Matten Cleave. It is known for having a sweet water spring at its base that provides water and greenery to the surrounding area.</p>",
+      "text" : "<p>The <b>Wellspring Tower</b> is one of the <a href=\"https://pathfinderwiki.com/wiki/Aeon_tower\">aeon towers</a> that <a href=\"https://pathfinderwiki.com/wiki/Aroden\">Aroden</a> placed around the <a href=\"https://pathfinderwiki.com/wiki/Isle_of_Kortos\">Isle of Kortos</a>. The tower is a 300-foot-tall mudbrick step pyramid with a flat 10-foot-wide top and four uneven tiers.</p>\n<p>The tower is located on the north side of the Isle of Kortos, near the Verdant Passage and the small town of <a href=\"https://pathfinderwiki.com/wiki/Matten_Cleave\">Matten Cleave</a>. It is known for having a sweet water spring at its base that provides water and greenery to the surrounding area.</p>",
       "articleLength" : 400
     },
     "geometry" : {
