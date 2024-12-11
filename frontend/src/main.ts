@@ -91,3 +91,4 @@ addSpecialURLOptions(map);
 
 //////////debugging options
 //map.showCollisionBoxes = true;
+window.map = map;
