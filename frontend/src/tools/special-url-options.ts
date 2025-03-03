@@ -20,7 +20,7 @@ export function addSpecialURLOptions(map: Map) {
         }
 
         if(options.get('bbox')) {
-            let pad = window.innerWidth*0.075;
+            let pad = 0;//window.innerWidth*0.075;
             console.log(`bbox with padding ${pad}`);
             let bbox = options.get('bbox').split(',').map(Number.parseFloat) as LngLatBoundsLike;
             options.delete('bbox');
