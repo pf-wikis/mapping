@@ -8,22 +8,6 @@ let colors = {
   water:           'rgb(138, 180, 248)',
   waterDeep:       'rgb(110, 160, 245)',
   waterDarker:     'rgb(  9,  64, 153)',
-  land:            'rgb(248, 241, 225)',
-  landDarker:      'rgb(162, 124,  38)',
-  districts:       'rgb(212, 204, 185)',
-  districtsDarker: 'rgb(104,  92,  64)',
-  deserts:         'rgb(255, 247, 190)',
-  desertsDarker:   'rgb(188, 164,   0)',
-  ice:             'rgb(255, 255, 255)',
-  iceDarker:       'rgb(108, 108, 108)',
-  swamp:           'rgb(183, 197, 188)',
-  swampDarker:     'rgb( 72,  88,  78)',
-  forest:          'rgb(187, 226, 198)',
-  forestDarker:    'rgb( 52, 122,  72)',
-  hills:           'rgb(235, 227, 205)',
-  hillsDarker:     'rgb(132, 111,  53)',
-  mountains:       'rgb(222, 212, 184)',
-  mountainsDarker: 'rgb(117, 100,  54)',
   regionBorders:   'rgb(107,  42,  33)',
   regionNames:     'rgb( 17,  42,  97)',
   regionNamesOut:  'rgb(213, 195, 138)',
@@ -94,9 +78,9 @@ let layers:LayerSpecification[] = [
   createLayer('geometry', {
     type: 'fill',
     paint: {
-      'fill-antialias': false,
       'fill-color': ['get', 'color'],
-      //'fill-outline-color': 'rgb(0,0,0)'
+      'fill-antialias': false,/*true,
+      'fill-outline-color': 'rgb(255,0,0)'*/
     }
   }),
   createLayer('province-borders', {
@@ -174,8 +158,8 @@ let layers:LayerSpecification[] = [
         'interpolate',
         ['linear'],
         ['zoom'],
-        5, .125,
-        10, 1,
+        5, .125*fs,
+        10, 1*fs,
       ],
     }
   }),
@@ -211,15 +195,13 @@ let layers:LayerSpecification[] = [
       'text-rotate': ['get', 'angle'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 16*fs,
-      'text-overlap': 'always',
     },
     paint: {
-      'text-color': '#000',//['get', 'color'],
+      'text-color': ['get', 'color'],
       'text-halo-color': ['get', 'halo'],
-      'text-halo-width': 2
+      'text-halo-width': 1.5*fs
     }
   }),
-  /*
   createLayer('locations', {
     id: 'location-labels',
     type: 'symbol',
@@ -237,7 +219,7 @@ let layers:LayerSpecification[] = [
     paint: {
       'text-color': colors.white,
       'text-halo-color': colors.black,
-      'text-halo-width': .8
+      'text-halo-width': .8*fs
     }
   }),
   createLayer('province-labels', {
@@ -258,8 +240,8 @@ let layers:LayerSpecification[] = [
       'text-color': colors.white,
       'text-halo-color': colors.regionNames,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
-        5, .375,
-        7, 1.5,
+        5, .375*fs,
+        7, 1.5*fs,
       ],
     }
   }),
@@ -285,8 +267,8 @@ let layers:LayerSpecification[] = [
       'text-color': colors.white,
       'text-halo-color': colors.regionNames,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
-        4, .75,
-        5, 1.875,
+        4, .75*fs,
+        5, 1.875*fs,
       ],
     }
   }),
@@ -308,8 +290,8 @@ let layers:LayerSpecification[] = [
       'text-color': colors.white,
       'text-halo-color': colors.regionNames,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
-        4, .75,
-        5, 1.875,
+        4, .75*fs,
+        5, 1.875*fs,
       ],
     }
   }),
@@ -327,26 +309,9 @@ let layers:LayerSpecification[] = [
     paint: {
       'text-color': colors.regionNames,
       'text-halo-color': colors.regionNamesOut,
-      'text-halo-width': 1.5,
+      'text-halo-width': 1.5*fs,
     }
   }),
-  createLayer('continent-labels', {
-    type: 'symbol',
-    maxzoom: 2,
-    layout: {
-      'text-field': ['get', 'Name'],
-      'text-font': ['NotoSans-Medium'],
-      'text-overlap': 'always',
-      'text-ignore-placement': true,
-      'text-size': interpolateTextWithCamera(10),
-      'symbol-z-order': 'source',
-    },
-    paint: {
-      'text-color': colors.land,
-      'text-halo-color': colors.landDarker,
-      'text-halo-width': interpolateTextWithCamera(1)
-    }
-  }),*/
 ];
 
 export default layers;

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration>
+
+<configuration>
+  <import class="ch.qos.logback.classic.encoder.PatternLayoutEncoder"/>
+  <import class="ch.qos.logback.core.ConsoleAppender"/>
+
+  <appender name="STDOUT" class="ConsoleAppender">
+    <encoder class="PatternLayoutEncoder">
+      <pattern>%.-1level %d{HH:mm:ss} %-30.-30(%thread %logger{0}) %replace(%msg){'
+', '
+	'}\n</pattern><!--these linebreaks and tabstops are important!-->
+    </encoder>
+  </appender>
+
+  <root level="debug">
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

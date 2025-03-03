@@ -61,6 +61,9 @@ public class Runner {
         	int exitValue = proc.waitFor();
 
         	if(exitValue != 0) {
+        		var errOut = LCContent.from(errOutF, true);
+        		log(Level.ERROR, errOut.toJSONString());
+        		errOut.finishUsage();
                 throw new RuntimeException("Exited command "+cmd.getParts()+" with non-zero code: "+exitValue);
             }
             LCContent result = LCContent.empty();

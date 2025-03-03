@@ -30,4 +30,12 @@ public class Feature extends AnyJson {
     	private Integer minzoom;
     	private Integer maxzoom;
     }
+    
+    @Override
+    public String toString() {
+    	if(properties != null && properties.getName() != null)
+    		return properties.getName();
+    	else
+    		return "unnamed";
+    }
 }

@@ -2,13 +2,16 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
+import java.util.function.BiConsumer;
+import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
@@ -16,7 +19,7 @@ import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Geometry.Point;
 import io.github.pfwikis.model.LngLat;
-import io.github.pfwikis.run.Runner;
+import io.github.pfwikis.model.Properties;
 import io.github.pfwikis.run.Tools;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +28,17 @@ import lombok.extern.slf4j.Slf4j;
 @Setter
 public class GenerateLabelCenters extends LCStep {
 	
-	private static final int LABEL_RANGE = 3;
+	private static record Field<T>(String name, Function<Properties, T> getter, BiConsumer<Properties, T> setter) {
+		void copy(Properties from, Properties to) {
+			setter.accept(to, getter.apply(from));
+		}
+	}
+	private static final List<Field<?>> FIELDS_TO_COPY = List.of(
+			new Field<>("color", Properties::getColor, Properties::setColor),
+			new Field<>("type", Properties::getType, Properties::setType)
+	);
+	
+	private int labelRange = 3;
 
 	private boolean dissolve = true;
 	private boolean generateSubLabels = true;
@@ -45,12 +58,12 @@ public class GenerateLabelCenters extends LCStep {
 		);
 
         var withZoomRes = Tools.mapshaper(this, withArea,
-    		"-filter", "Name != null",
-    		dissolve?List.of("-dissolve2", "Name", "sum-fields=areaSqkm", "copy-fields=inSubregion,areaSqkm"):List.of(),
+    		"-filter", "Boolean(Name)",
+    		dissolve?List.of("-dissolve2", "Name", "sum-fields=areaSqkm", "copy-fields=inSubregion,color"):List.of(),
     		"-each", "tmpMercatorScaling="+mercatorScaling("this.centroidY"),
     		"-each", "tmpAdjustedSize=Math.sqrt(areaSqkm)*tmpMercatorScaling",
 			"-each", "filterMinzoom="+filterMinzoom(this.getName()),
-            "-each", "filterMaxzoom=filterMinzoom+"+LABEL_RANGE,
+            "-each", "filterMaxzoom=filterMinzoom+"+labelRange,
             "-each", "bufferSize=Math.sqrt(areaSqkm)*0.0002"
 		);
         withArea.finishUsage();
@@ -58,60 +71,64 @@ public class GenerateLabelCenters extends LCStep {
         var withUuid = withZoomRes.toFeatureCollection();
         withZoomRes.finishUsage();
         withUuid.getFeatures().forEach(f->f.getProperties().setUuid(UUID.randomUUID()));
+        
+        var fieldsToCopy = new ArrayList<>(FIELDS_TO_COPY);
+        fieldsToCopy.removeIf(f->withUuid.getFeatures().stream().noneMatch(fet->f.getter.apply(fet.getProperties())!=null));
+
         var withUuidRes = LCContent.from(withUuid);
         
-        var polesOfInaccessibility = calcPoleOfInaccessibility(withUuidRes);
-        //var centroids = calcContainedCentroids(withUuidRes);
-        var innerPoints = calcInnerPoints(withUuidRes);
+        var innerPoints = calcInnerPoint(withUuidRes);
         var angles = calcAngles(withUuidRes);
 
-        var result = mergeInfos(withUuid, polesOfInaccessibility, Map.of()/*centroids*/, innerPoints, angles);
+        var withInfo = mergeInfos(withUuid, innerPoints, angles);
         
         if(!generateSubLabels) {
-        	return LCContent.from(result);
+        	return LCContent.from(cleanProperties(withInfo, fieldsToCopy));
         }
 
-        /*
-        for(int i=0;true;i++) {
-        	var changed=addLowerZoomLabels(result, withZoom, i+1);
+        FeatureCollection merged = withInfo.copy();
+        for(int i=1;true;i++) {
+        	var changed=addLowerZoomLabels(merged, withUuidRes, fieldsToCopy, i);
         	if(!changed) {
         		break;
         	}
         } 
-        */
-        return LCContent.from(result);
+
+        return LCContent.from(cleanProperties(merged, fieldsToCopy));
     }
 
-    private FeatureCollection mergeInfos(
+    private FeatureCollection cleanProperties(FeatureCollection fc, List<Field<?>> fieldsToCopy) {
+    	for(var f:fc.getFeatures()) {
+    		var cl = new Properties();
+    		cl.setName(f.getProperties().getName());
+    		cl.setColor(f.getProperties().getColor());
+    		cl.setFilterMaxzoom(f.getProperties().getFilterMaxzoom());
+    		cl.setFilterMinzoom(f.getProperties().getFilterMinzoom());
+    		for(var field:fieldsToCopy) {
+    			field.copy(f.getProperties(), cl);
+    		}
+    		f.setProperties(cl);
+    	}
+		return fc;
+	}
+
+	private FeatureCollection mergeInfos(
 			FeatureCollection withUuid,
-			Map<UUID, LngLat> polesOfInaccessibility,
-			Map<UUID, LngLat> centroids,
 			Map<UUID, LngLat> innerPoints,
 			Map<UUID, BigDecimal> angles) {
 
     	var res = new FeatureCollection();
-    	var maps = List.of(polesOfInaccessibility, centroids, innerPoints);
     	for(var f : withUuid.getFeatures()) {
-    		for(var map:maps) {
-    			var props = f.getProperties();
-    			if(!map.containsKey(props.getUuid())) continue;
-    			var newF = new Feature();
-        		newF.setProperties(props);
-        		props.setAngle(angles.get(props.getUuid()));
-        		var p = new Point();
-        		p.setCoordinates(map.get(props.getUuid()));
-        		newF.setGeometry(p);
-        		res.getFeatures().add(newF);
-    		}
-    		/*
-    		var newF = new Feature();
-    		var props = f.getProperties();
+			Properties props = f.getProperties().copy();
+			if(!innerPoints.containsKey(props.getUuid())) throw new IllegalStateException(f+" has no inner point");
+			var newF = new Feature();
     		newF.setProperties(props);
+    		props.setName(newF.getProperties().getName());
     		props.setAngle(angles.get(props.getUuid()));
     		var p = new Point();
-    		p.setCoordinates(polesOfInaccessibility.get(props.getUuid()).middle(centroids.get(props.getUuid())));
+    		p.setCoordinates(innerPoints.get(props.getUuid()));
     		newF.setGeometry(p);
-    		res.getFeatures().add(newF);*/
+    		res.getFeatures().add(newF);
     	}
     	return res;
 	}
@@ -137,7 +154,7 @@ public class GenerateLabelCenters extends LCStep {
 						.subtract(BigDecimal.valueOf(90))
 						.setScale(0, RoundingMode.HALF_UP)
 						.intValueExact();
-    				if(angle < 15 && angle > -15)
+    				if(angle < 10 && angle > -10)
     					return BigDecimal.ZERO;
     				else
     					return BigDecimal.valueOf(angle);
@@ -147,7 +164,7 @@ public class GenerateLabelCenters extends LCStep {
         return angles;
 	}
 	
-	private Map<UUID, LngLat> calcInnerPoints(LCContent withUuid) throws IOException {
+	private Map<UUID, LngLat> calcInnerPoint(LCContent withUuid) throws IOException {
         var innerRes = Tools.mapshaper(this, withUuid, "-points", "inner");
         var inner = innerRes.toFeatureCollection();
         innerRes.finishUsage();
@@ -160,22 +177,31 @@ public class GenerateLabelCenters extends LCStep {
 			));
 	}
 
-	/*returns centroids only if they are within their parent polygon*/
-	/*private Map<UUID, LngLat> calcContainedCentroids(LCContent withUuid) throws IOException {
-        var centroidsRes = Tools.qgis(this, "native:centroids", withUuid);
-        var containedOnly = Tools.qgis(this, "qgis:intersection", centroidsRes,
-    		new Runner.TmpGeojson("--OVERLAY=", withUuid)
-    		"--OVERLAY=")
-        centroidsRes.finishUsage();
-        return centroids
+	
+	//no longer used, kept bcs they might be useful in the future
+	/*
+	//returns centroids only if they are within their parent polygon
+	private Map<UUID, LngLat> calcContainedCentroids(LCContent withUuid) throws IOException {
+        var centroidsRes = Tools.qgis(this, "native:centroids", withUuid, "--ALL_PARTS=false");
+        var containedOnly = Tools.qgis(this, "qgis:clip", centroidsRes,
+    		new Runner.TmpGeojson("--OVERLAY=", withUuid));
+        //centroidsRes.finishUsage();
+        return containedOnly.toFeatureCollection()
     		.getFeatures()
     		.stream()
     		.collect(Collectors.<Feature,UUID,LngLat>toMap(
 				f->f.getProperties().getUuid(),
-				f->((Point)f.getGeometry()).getCoordinates()
+				f->{
+					if(f.getGeometry() instanceof Point p)
+						return p.getCoordinates();
+					if(f.getGeometry() instanceof MultiPoint p && p.getCoordinates().size()==1)
+						return p.getCoordinates().get(0);
+					throw new ClassCastException(f.getGeometry().getClass()+" can't be cast to Point");
+				}
 			));
-	}*/
-
+	}
+	
+	
 	private Map<UUID, LngLat> calcPoleOfInaccessibility(LCContent withUuid) throws IOException {
     	//buffer first to fill gaps in highly distributed forests
         var buffered = Tools.qgis(this, "native:buffer", withUuid,
@@ -197,26 +223,31 @@ public class GenerateLabelCenters extends LCStep {
 				f->((Point)f.getGeometry()).getCoordinates()
 			));
 	}
+*/
 
-	private boolean addLowerZoomLabels(FeatureCollection result, LCContent withZoom, int step) throws IOException {
-    	int extraZoom = (LABEL_RANGE+1)*step;
+	private boolean addLowerZoomLabels(FeatureCollection result, LCContent polygons, List<Field<?>> fieldsToCopy, int step) throws IOException {
+    	int extraZoom = (labelRange+1)*step;
     	var reduced = Tools.mapshaper(
 			this, 
-			withZoom,			
-			"-filter", "filterMinzoom+"+extraZoom+"<="+(ctx.getOptions().getMaxZoom()+LABEL_RANGE),
-			"-each", "dots=2**("+(extraZoom/2)+")",
-			"-dots",
-    			"dots",
-    			"copy-fields=dots,Name,filterMinzoom,filterMaxzoom,areaSqkm",
-    			"multipart",
+			polygons,			
+			"-filter", "filterMinzoom+"+extraZoom+"<="+(ctx.getOptions().getMaxZoom()+labelRange),
+			"-each", "dots=4**("+step+")",
 			"-each", "filterMinzoom=filterMinzoom+"+extraZoom,
-			"-each", "filterMaxzoom=filterMaxzoom+"+extraZoom
+			"-each", "filterMaxzoom=filterMaxzoom+"+extraZoom,
+			"-each", "name=name+' +"+step+"'",
+			"-dots",
+				"dots",
+				"evenness=1",
+				"copy-fields=dots,Name,filterMinzoom,filterMaxzoom,areaSqkm"+(fieldsToCopy.isEmpty()?"":(","+fieldsToCopy.stream().map(Field::name).collect(Collectors.joining(",")))),
+				"multipart"
 		);
     	var features = reduced.toFeatureCollection();
-    	add(result, features, Map.of());
+    	log.info("Added {} label points at zoom shift {}", features.getFeatures().size(), step);
+    	result.getFeatures().addAll(features.getFeatures());
     	reduced.finishUsage();
     	return !features.getFeatures().isEmpty();
 	}
+	
 
 	private String filterMinzoom(String name) {
 		if(forceMinzoom != null)

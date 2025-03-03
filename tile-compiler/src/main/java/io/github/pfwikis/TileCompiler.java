@@ -68,7 +68,10 @@ public class TileCompiler {
         Tools.tippecanoe(
         	null,
             "-z"+options.getMaxZoom(),
-            "--extra-detail="+Math.max(12,32-options.getMaxZoom()), //increase detail level on max-zoom
+            "--full-detail="+Math.max(14,32-options.getMaxZoom()), //increase detail level on max-zoom
+            // |
+            // V does not work yet
+            //"--generate-variable-depth-tile-pyramid", //does not add levels if the detail is already maxed
             "-n", "golarion",
             "-o", tmpPMTiles,
             "--force",

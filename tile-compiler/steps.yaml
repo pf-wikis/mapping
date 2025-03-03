@@ -13,12 +13,15 @@
 
 - name: continent-labels
   steps:
+    - step: SUBTRACT
+      keepName: true
+      dependsOn:
+        in: land.READ_FILE
+        subtrahend: waters.READ_FILE
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 0
-      dependsOn:
-        in: land.READ_FILE
-    - step: OUTPUT
+      labelRange: 1
 
 - name: deserts
   steps:
@@ -91,7 +94,7 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       dissolve: false
-    - step: COLOR_LABELS
+    - step: COLOR_GENERIC_LABELS
 
 - name: cities
   steps:
@@ -314,6 +317,7 @@
   steps:
     - step: MERGE_LABELS
       dependsOn:
+        continents: continent-labels
         ice: ice-labels
         forests: forest-labels
         specials: special-labels
