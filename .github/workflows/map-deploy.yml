@@ -33,6 +33,6 @@ jobs:
             cd /pf-mapping
             git pull
             docker build -t pf-wikis/mapping -f build/Dockerfile .
-            docker run -v /wikis/volumes/map:/w/output -v /pf-mapping/data:/w/data pf-wikis/mapping
+            docker run -it -v /wikis/volumes/map:/w/output -v /pf-mapping/data:/w/data pf-wikis/mapping
             docker restart page_cache
             docker container prune -f
