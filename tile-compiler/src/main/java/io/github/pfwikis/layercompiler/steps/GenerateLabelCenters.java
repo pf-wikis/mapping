@@ -102,6 +102,7 @@ public class GenerateLabelCenters extends LCStep {
     		var cl = new Properties();
     		cl.setName(f.getProperties().getName());
     		cl.setColor(f.getProperties().getColor());
+    		cl.setAngle(f.getProperties().getAngle());
     		cl.setFilterMaxzoom(f.getProperties().getFilterMaxzoom());
     		cl.setFilterMinzoom(f.getProperties().getFilterMinzoom());
     		for(var field:fieldsToCopy) {

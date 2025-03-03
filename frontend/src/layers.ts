@@ -67,7 +67,7 @@ function createLayer(name:string, base:Partial<LayerSpecification>):LayerSpecifi
   }, base) as LayerSpecification;
 }
 
-let layers:LayerSpecification[] = [
+let allLayers:LayerSpecification[] = [
   {
     id: 'background',
     type: 'background',
@@ -193,6 +193,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'Name'],
       'text-rotate': ['get', 'angle'],
+      'text-rotation-alignment': 'map',
       'text-font': ['NotoSans-Medium'],
       'text-size': 16*fs,
     },
@@ -215,6 +216,7 @@ let layers:LayerSpecification[] = [
       'text-size': 14*fs,
       'text-variable-anchor': ["left", "right"],
       'text-radial-offset': .5,
+      'text-rotation-alignment': 'map',
     },
     paint: {
       'text-color': colors.white,
@@ -233,6 +235,7 @@ let layers:LayerSpecification[] = [
         5, 5*fs,
         7, 20*fs,
       ],
+      'text-rotation-alignment': 'map',
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
@@ -260,6 +263,7 @@ let layers:LayerSpecification[] = [
         4, 10*fs,
         5, 25*fs,
       ],
+      'text-rotation-alignment': 'map',
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
@@ -283,6 +287,7 @@ let layers:LayerSpecification[] = [
         4, 10*fs,
         5, 25*fs,
       ],
+      'text-rotation-alignment': 'map',
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
@@ -303,6 +308,7 @@ let layers:LayerSpecification[] = [
       'text-field': ['get', 'Name'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 20*fs,
+      'text-rotation-alignment': 'map',
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
@@ -313,5 +319,20 @@ let layers:LayerSpecification[] = [
     }
   }),
 ];
+
+function layers(options:URLSearchParams):LayerSpecification[] {
+  let res = allLayers;
+  if(options.get('hideLabels') === 'true') {
+    res=res.filter(l=>!l.id.includes('label'));
+  }
+  if(options.get('hideLocations') === 'true') {
+    res=res.filter(l=>!l.id.includes('location'));
+  }
+  if(options.get('hideBorders') === 'true') {
+    res=res.filter(l=>!l.id.includes('border'));
+  }
+
+  return res;
+}
 
 export default layers;

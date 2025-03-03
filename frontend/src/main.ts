@@ -12,12 +12,12 @@ import { CachedSource } from "./CachedPmTiles.js";
 import NewTab from "./tools/NewTab.js";
 
 //check if running embedded
-var urlParams = new URLSearchParams(window.location.hash.replace("#","?"));
-const embedded = (urlParams.get('embedded') === 'true');
+var options = new URLSearchParams(window.location.hash.replace("#","?"));
+const embedded = (options.get('embedded') === 'true');
 const mapContainer = document.getElementById("map-container");
 
-if(embedded) {
-  mapContainer.classList.add("embedded");
+if(!embedded) {
+  mapContainer.classList.remove("embedded");
 }
 
 var root = `${location.protocol}//${location.host}/`;
@@ -49,14 +49,42 @@ export const map = new Map({
       }
     },
     sprite: root+'sprites/sprites',
-    layers: layers,
+    layers: layers(options),
     glyphs: root+'fonts/{fontstack}/{range}.pbf',
     transition: {
       duration: 300,
       delay: 0
+    },
+    sky: {
+      'atmosphere-blend': 0.5
     }
   },
 });
+//project to globe
+let projection:Maplibre.PropertyValueSpecification<Maplibre.ProjectionDefinitionSpecification>;
+if(options.get('projection') === 'globe') {
+  projection = 'globe';
+}
+else if(options.get('projection') === 'mercator') {
+  projection = 'mercator';
+}
+else {
+  projection = [
+    "interpolate",
+    ["linear"],
+    ["zoom"],
+    4,
+    "vertical-perspective",
+    5,
+    "mercator"
+  ];
+}
+map.on('style.load', () => {
+  map.setProjection({
+    type: projection
+  });
+});
+
 //diable rotation
 map.dragRotate.disable();
 map.touchZoomRotate.disableRotation();
@@ -90,5 +118,6 @@ addSpecialURLOptions(map);
 
 
 //////////debugging options
+//map.showTileBoundaries = true;
 //map.showCollisionBoxes = true;
 window.map = map;

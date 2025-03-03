@@ -11,6 +11,11 @@ body {
 	top: 0;
 	bottom: 0;
 	width: 100%;
+	background: black url(stars.webp) 0% 0%/cover;
+	
+	&.embedded {
+		background: transparent;
+	}
 }
 
 .embedded {

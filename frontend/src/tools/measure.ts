@@ -5,11 +5,7 @@ import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 import turfDistance from '@turf/distance';
 import turfMidpoint from "@turf/midpoint";
 import turfLineSegment from "@turf/line-segment";
-import { Feature, Point } from "@turf/helpers";
-import { LineString, GeoJSON } from "geojson";
-
-const DRAW_LABELS_SOURCE = 'draw-labels-source';
-const DRAW_LABELS_LAYER = 'draw-labels-layer';
+import { LineString, GeoJSON, Feature, Point } from "geojson";
 
 export default class MeasureControl implements IControl {
     drawCtrl: MapboxDraw;
@@ -19,31 +15,43 @@ export default class MeasureControl implements IControl {
       this.drawCtrl.deleteAll();
 
       let lineStart = this.drawCtrl.add({type: 'LineString', coordinates: [lngLat.toArray()]})[0];
-      console.log(lngLat);
       this.drawCtrl.changeMode(this.drawCtrl.modes.DRAW_LINE_STRING, {featureId: lineStart, from: lngLat.toArray()});
     }
 
     onAdd(map: Map): HTMLElement {
         this.map = map;
-        let modes:{ [modeKey: string]: DrawCustomMode } = enable(MapboxDraw.modes);
-        this.drawCtrl = new MapboxDraw({ displayControlsDefault: false, modes });
-        map.addControl(this.drawCtrl as any);
-
-        map.on('load', () => {
-          map.addSource(DRAW_LABELS_SOURCE, {
-            type: 'geojson',
-            data: {
-              type: "FeatureCollection",
-              features: []
+        this.drawCtrl = new MapboxDraw({
+          displayControlsDefault: false,
+          userProperties: true,
+          modes: enable(MapboxDraw.modes),
+          styles: [{
+            "id": "lines",
+            "type": "line",
+            "filter": ["all", ["==", "$type", "LineString"]],
+            "layout": {
+              "line-cap": "round",
+              "line-join": "round"
+            },
+            "paint": {
+              "line-color": "#D20000",
+              "line-dasharray": [0.2, 2],
+              "line-width": 2
             }
-          });
-          map.addLayer({
-            'id': DRAW_LABELS_LAYER,
+          },{
+            "id": "endpoints",
+            "type": "circle",
+            "filter": ["all", ["==", "meta", "vertex"], ["==", "$type", "Point"]],
+            "paint": {
+              "circle-radius": 3,
+              "circle-color": "#D20000"
+            }
+          },{
+            'id': 'labels',
             'type': 'symbol',
-            'source': DRAW_LABELS_SOURCE,
+            "filter": ["all", ["==", "$type", "Point"], ['has', 'user_measurement']],
             'layout': {
               'text-font': ['NotoSans-Medium'],
-              'text-field': ['get', 'measurement'],
+              'text-field': ['get', 'user_measurement'],
               'text-variable-anchor': ['center', 'top', 'bottom', 'left', 'right'],
               'text-radial-offset': 0.5,
               'text-justify': 'right',
@@ -52,13 +60,17 @@ export default class MeasureControl implements IControl {
             'paint': {
               'text-color': '#000',
               'text-halo-color': '#fff',
-              'text-halo-width': 4,
+              'text-halo-width': 3,
             },
-          });
+          }],
+        });
+        map.addControl(this.drawCtrl as any);
+
+        map.on('load', () => {
           map.on('draw.create', this._updateLabels.bind(this));
           map.on('draw.update', this._updateLabels.bind(this));
           map.on('draw.delete', this._updateLabels.bind(this));
-          map.on('draw.render', this._updateLabels.bind(this));
+          //map.on('draw.render', this._updateLabels.bind(this));
         });
 
         return document.createElement('div');
@@ -66,12 +78,14 @@ export default class MeasureControl implements IControl {
     onRemove(map: Map): void {}
 
     _updateLabels() {
-      let source = this.map.getSource(DRAW_LABELS_SOURCE) as GeoJSONSource;
       // Build up the centroids for each segment into a features list, containing a property 
       // to hold up the measurements
-      let features = [] as Feature<Point>[];
+      let features:Feature<Point>[] = [];
       // Generate features from what we have on the drawControl:
       let drawnFeatures = this.drawCtrl.getAll();
+      //delete old labels
+      let toDelete = drawnFeatures.features.filter(f=>f.properties.measurement && f.id).map(f=>f.id as string);
+      this.drawCtrl.delete(toDelete);
       drawnFeatures.features.forEach((feature) => {
         try {
           if (feature.geometry.type == 'LineString') {
@@ -84,10 +98,12 @@ export default class MeasureControl implements IControl {
               let dist = turfDistance(a,b);
 
               let label = `${toKm(dist)}\n${toMi(dist*0.621371)}`;
-              mid.properties = {
-                measurement: label,
-              };
-              features.push(mid);
+              let res = this.drawCtrl.add({
+                ...mid,
+                id: `${feature.id}-${segment.id}-mid`,
+                properties: {measurement: label}
+              });
+              console.log(res);
             });
           }
         } catch(e) {
@@ -95,11 +111,6 @@ export default class MeasureControl implements IControl {
         }
         
       });
-      let data:GeoJSON = {
-        type: "FeatureCollection",
-        features: features
-      };
-      source.setData(data);
     }
 }
 
