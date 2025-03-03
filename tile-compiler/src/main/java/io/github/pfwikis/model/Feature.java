@@ -9,6 +9,7 @@ import lombok.Setter;
 public class Feature extends AnyJson {
 
 	private Geometry geometry;
+	private String type = "Feature";
     private Properties properties = new Properties();
     private Tippecanoe tippecanoe = new Tippecanoe();
     
@@ -28,5 +29,13 @@ public class Feature extends AnyJson {
     public static class Tippecanoe {
     	private Integer minzoom;
     	private Integer maxzoom;
+    }
+    
+    @Override
+    public String toString() {
+    	if(properties != null && properties.getName() != null)
+    		return properties.getName();
+    	else
+    		return "unnamed";
     }
 }

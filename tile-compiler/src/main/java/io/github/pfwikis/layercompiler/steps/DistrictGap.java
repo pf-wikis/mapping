@@ -11,13 +11,13 @@ public class DistrictGap extends LCStep {
 
     @Override
     public LCContent process() throws IOException {
-        var innerLines = Tools.mapshaper(getInput(),
+        var innerLines = Tools.mapshaper(this, getInput(),
             "-clean",
             "-snap", "precision=0.0001",
             "-innerlines", "-dissolve"
         );
 
-        var bufferedLines = Tools.qgis("native:buffer", innerLines,
+        var bufferedLines = Tools.qgis(this, "native:buffer", innerLines,
             "--DISTANCE=0.0004",
             "--SEGMENTS=5",
             "--END_CAP_STYLE=0",
@@ -27,7 +27,7 @@ public class DistrictGap extends LCStep {
         );
         
         innerLines.finishUsage();
-        var result = Tools.qgis("native:difference", getInput(), new Runner.TmpGeojson("--OVERLAY=", bufferedLines));
+        var result = Tools.qgis(this, "native:difference", getInput(), new Runner.TmpGeojson("--OVERLAY=", bufferedLines));
         bufferedLines.finishUsage();
         return result;
     }

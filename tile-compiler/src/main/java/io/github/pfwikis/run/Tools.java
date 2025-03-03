@@ -1,15 +1,20 @@
 package io.github.pfwikis.run;
 
 import java.io.IOException;
+import java.util.List;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
 
 public class Tools {
 
     //some helper to make the code a bit cleaner
-    public static LCContent qgis(String qgisCommand, LCContent in, Object... args) throws IOException {
+    public static LCContent qgis(LCStep step, String qgisCommand, LCContent in, Object... args) throws IOException {
         return Runner.run(
-            "qgis_process", "run", qgisCommand,
+        	step,
+            "qgis_process",
+            qgisCommand.startsWith("native:")?"--no-python":List.of(),
+            "run", qgisCommand,
             "--distance_units=meters",
             "--area_units=m2",
             "--ellipsoid=EPSG:4326",
@@ -19,47 +24,49 @@ public class Tools {
         );
     }
 
-    public static LCContent mapshaper(LCContent in, Object... args) throws IOException {
-    	if(ToolVariant.getMapshaper().isStdInSupported()) {
-    		return Runner.runPipeInOut(
-				in,
-	            "mapshaper", "-",
-	            args,
-	            "-o", "-", "format=geojson", "geojson-type=FeatureCollection",
-	            "precision=0.00000001"
-	        );
-    	}
-    	else {
-	        return Runner.runPipeOut(
-	            "mapshaper", "-i", new Runner.TmpGeojson(in),
-	            args,
-	            "-o", "-", "format=geojson", "geojson-type=FeatureCollection",
-	            "precision=0.00000001"
-	        );
-    	}
-    }
-
-    public static LCContent mapshaper2(LCContent in1, LCContent in2, Object... args) throws IOException {
-        return Runner.runPipeOut(
-            "mapshaper", "-i", new Runner.TmpGeojson(in1), new Runner.TmpGeojson(in2),
+    public static LCContent mapshaper(LCStep step, LCContent in, Object... args) throws IOException {
+        return Runner.run(
+        	step,
+            "mapshaper", "-i", new Runner.TmpGeojson(in),
             args,
-            "-o", "-", "format=geojson", "geojson-type=FeatureCollection"
+            "-o", new Runner.OutGeojson(), "format=geojson", "geojson-type=FeatureCollection",
+            "precision=0.00000001"
+        );
+    }
+    
+    public static LCContent mapshaper0(LCStep step, Object... args) throws IOException {
+    	return Runner.run(
+    		step,
+            "mapshaper",
+            args,
+            "-o", new Runner.OutGeojson(), "format=geojson", "geojson-type=FeatureCollection",
+            "precision=0.00000001"
         );
     }
 
-    public static LCContent geojsonPolygonLabels(LCContent in, String... args) throws IOException {
-        return Runner.runPipeOut("geojson-polygon-labels", args, new Runner.TmpGeojson(in));
+    public static LCContent mapshaper2(LCStep step, LCContent in1, LCContent in2, Object... args) throws IOException {
+        return Runner.run(
+        	step,
+            "mapshaper", "-i", new Runner.TmpGeojson(in1), new Runner.TmpGeojson(in2),
+            args,
+            "-o", new Runner.OutGeojson(), "format=geojson", "geojson-type=FeatureCollection",
+            "precision=0.00000001"
+        );
     }
 
-    public static LCContent ogr2ogr(Object... args) throws IOException {
-        return Runner.run("ogr2ogr", new Runner.OutGeojson(), args);
+    public static LCContent geojsonPolygonLabels(LCStep step, LCContent in, String... args) throws IOException {
+        return Runner.runPipeOut(step, "geojson-polygon-labels", args, new Runner.TmpGeojson(in));
     }
 
-    public static void spriteZero(Object... args) throws IOException {
-		Runner.run("spritezero", args);
+    public static LCContent ogr2ogr(LCStep step, Object... args) throws IOException {
+        return Runner.run(step, "ogr2ogr", new Runner.OutGeojson(), args);
+    }
+
+    public static void spriteZero(LCStep step, Object... args) throws IOException {
+		Runner.run(step, "spritezero", args);
 	}
     
-    public static void tippecanoe(Object... args) throws IOException {
-		Runner.run("tippecanoe", args);
+    public static void tippecanoe(LCStep step, Object... args) throws IOException {
+		Runner.run(step, "tippecanoe", args);
 	}
 }

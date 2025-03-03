@@ -21,4 +21,8 @@ public record LngLat(double lng, double lat) {
         while(nlng > 180) nlng-=360;
         return new LngLat(nlng, lat);
     }
+
+	public LngLat middle(LngLat o) {
+		return new LngLat((lng+o.lng)/2d, (lat+o.lat)/2d);
+	}
 }

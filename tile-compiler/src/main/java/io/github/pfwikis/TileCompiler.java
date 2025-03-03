@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 
+import io.github.pfwikis.run.Runner;
 import io.github.pfwikis.run.ToolVariant;
 import io.github.pfwikis.run.Tools;
 import lombok.Getter;
@@ -60,13 +61,19 @@ public class TileCompiler {
             .flatMap(f->List.of("-L", f.getName().substring(0, f.getName().length()-8)+":"+ToolVariant.getTippecanoe().translateFile(f.toPath().toAbsolutePath())).stream())
             .toList();
 
-        var ttmp = new File("./tippecanoe-tmp").getAbsoluteFile().getCanonicalFile();
+        var ttmp = new File(Runner.TMP_DIR, "tippecanoe-tmp").getAbsoluteFile().getCanonicalFile();
         ttmp.mkdirs();
+        var tmpPMTiles = new File(ttmp, "golarion.pmtiles");
 
         Tools.tippecanoe(
+        	null,
             "-z"+options.getMaxZoom(),
+            "--full-detail="+Math.max(14,32-options.getMaxZoom()), //increase detail level on max-zoom
+            // |
+            // V does not work yet
+            //"--generate-variable-depth-tile-pyramid", //does not add levels if the detail is already maxed
             "-n", "golarion",
-            "-o", new File(targetDir, "golarion.pmtiles"),
+            "-o", tmpPMTiles,
             "--force",
             "--detect-shared-borders",
             "--preserve-input-order",
@@ -75,6 +82,9 @@ public class TileCompiler {
             "-t", ttmp,
             layers
         );
+        var finalOutput = new File(targetDir, "golarion.pmtiles");
+        FileUtils.deleteQuietly(finalOutput);
+        FileUtils.moveFile(tmpPMTiles, finalOutput);
     }
 
     private void compileLayers() throws Exception {
@@ -86,7 +96,7 @@ public class TileCompiler {
 
     private void compileSprites() throws IOException {
         log.info("Compiling Sprites");
-        Tools.spriteZero(new File(spriteDir, "sprites"), new File("sprites/"));
-        Tools.spriteZero(new File(spriteDir, "sprites@2x"), new File("sprites/"), "--retina");
+        Tools.spriteZero(null, new File(spriteDir, "sprites"), new File("sprites/"));
+        Tools.spriteZero(null, new File(spriteDir, "sprites@2x"), new File("sprites/"), "--retina");
     }
 }

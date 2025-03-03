@@ -9,7 +9,7 @@ public class BorderVariants {
     public static class Provinces extends LCStep {
         @Override
         public LCContent process() throws Exception {
-            return Tools.mapshaper(getInput(),
+            return Tools.mapshaper(this, getInput(),
                 "-filter", "province !== null",
                 "-filter-fields", "province",
                 "-rename-fields", "Name=province"
@@ -20,7 +20,7 @@ public class BorderVariants {
     public static class ProvinceBorders extends LCStep {
         @Override
         public LCContent process() throws Exception {
-            return Tools.mapshaper(getInput(),
+            return Tools.mapshaper(this, getInput(),
                 "-filter", "province !== null",
                 "-split", "nation",
                 "-innerlines",
@@ -34,7 +34,7 @@ public class BorderVariants {
     public static class Nations extends LCStep {
         @Override
         public LCContent process() throws Exception {
-            return Tools.mapshaper(getInput(),
+            return Tools.mapshaper(this, getInput(),
                 "-filter", "nation !== null",
                 "-each", "inSubregion=(subregion!==null)",
                 "-rename-fields", "Name=nation",
@@ -46,18 +46,18 @@ public class BorderVariants {
     public static class NationBorders extends LCStep {
         @Override
         public LCContent process() throws Exception {
-            var innerNationBorders = Tools.mapshaper(getInput(),
+            var innerNationBorders = Tools.mapshaper(this, getInput(),
                 "-filter", "nation !== null",
                 "-dissolve2", "nation",
                 "-innerlines"
             );
-            var outerNationBorders = Tools.mapshaper(getInput(),
+            var outerNationBorders = Tools.mapshaper(this, getInput(),
                 "-filter", "nation !== null",
                 "-dissolve2",
                 "-lines", "-filter-fields",
                 "-clip", getInput("land_without_water")
             );
-            var res = Tools.mapshaper2(innerNationBorders,
+            var res = Tools.mapshaper2(this, innerNationBorders,
                 outerNationBorders, "combine-files",
                 "-merge-layers"
             );
@@ -71,7 +71,7 @@ public class BorderVariants {
     public static class Subregions extends LCStep {
         @Override
         public LCContent process() throws Exception {
-            return Tools.mapshaper(getInput(),
+            return Tools.mapshaper(this, getInput(),
                 "-filter", "subregion !== null",
                 "-rename-fields", "Name=subregion",
                 "-dissolve2", "Name"
@@ -83,20 +83,20 @@ public class BorderVariants {
         @Override
         public LCContent process() throws Exception {
             //subregion borders are like nation border but with subregion overwriting the nations
-            var innerSubRegionBorders = Tools.mapshaper(getInput(),
+            var innerSubRegionBorders = Tools.mapshaper(this, getInput(),
                 "-each", "if(subregion !== null) {nation = subregion;}",
                 "-filter", "nation !== null",
                 "-dissolve2", "nation",
                 "-innerlines"
             );
-            var outerSubRegionBorders = Tools.mapshaper(getInput(),
+            var outerSubRegionBorders = Tools.mapshaper(this, getInput(),
                 "-each", "if(subregion !== null) {nation = subregion;}",
                 "-filter", "nation !== null",
                 "-dissolve2",
                 "-lines", "-filter-fields",
                 "-clip", getInput("land_without_water")
             );
-            var res = Tools.mapshaper2(innerSubRegionBorders,
+            var res = Tools.mapshaper2(this, innerSubRegionBorders,
                 outerSubRegionBorders, "combine-files",
                 "-merge-layers"
             );
@@ -110,7 +110,7 @@ public class BorderVariants {
     public static class Regions extends LCStep {
         @Override
         public LCContent process() throws Exception {
-            var regions = Tools.mapshaper(getInput(),
+            var regions = Tools.mapshaper(this, getInput(),
                 "-filter", "region !== null",
                 "-rename-fields", "Name=region",
                 "-dissolve2", "Name"
@@ -122,7 +122,7 @@ public class BorderVariants {
     public static class RegionBorders extends LCStep {
         @Override
         public LCContent process() throws Exception {
-            return Tools.mapshaper(getInput(),
+            return Tools.mapshaper(this, getInput(),
                 "-filter", "region !== null",
                 "-dissolve2", "region",
                 "-innerlines"

@@ -18,6 +18,7 @@ import lombok.NoArgsConstructor;
     @Type(value = Geometry.Polygon.class, name = "Polygon"),
     @Type(value = Geometry.MultiPolygon.class, name = "MultiPolygon"),
     @Type(value = Geometry.Point.class, name = "Point"),
+    @Type(value = Geometry.MultiPoint.class, name = "MultiPoint"),
     @Type(value = Geometry.LineString.class, name = "LineString"),
     @Type(value = Geometry.MultiLineString.class, name = "MultiLineString")
   })
@@ -36,6 +37,11 @@ public interface Geometry {
     @Data
     public static class Point implements Geometry {
         private LngLat coordinates;
+    }
+    
+    @Data
+    public static class MultiPoint implements Geometry {
+        private List<LngLat> coordinates;
     }
     
     @Data

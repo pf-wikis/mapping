@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
+import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.layercompiler.steps.model.LCStep.Ctx;
 import io.github.pfwikis.run.Tools;
 import mil.nga.sf.Point;
@@ -14,9 +15,10 @@ import mil.nga.sf.geojson.Polygon;
 
 public class PointsOnLandSelector {
 
-	public static Set<Point> collectLandPoints(Ctx ctx, LCContent input, LCContent land) throws IOException {
+	public static Set<Point> collectLandPoints(LCStep step, Ctx ctx, LCContent input, LCContent land) throws IOException {
 		var clipped = Tools
             .mapshaper(
+            	step,
             	input,
                 "-clip", land,
                 "-explode"

@@ -90,9 +90,9 @@ public abstract class LCContent {
 	}
 	
 	@SneakyThrows
-	public Path toTmpFile() {
+	public Path toTmpFile(LCStep step) {
 		checkValidUsage();
-		var tmpFile = Runner.tmpGeojson();
+		var tmpFile = Runner.tmpGeojson(step);
 		temporaryFilesToDelete.add(tmpFile.toPath());
         tmpFile.deleteOnExit();
         FileUtils.writeByteArrayToFile(tmpFile, toBytes());

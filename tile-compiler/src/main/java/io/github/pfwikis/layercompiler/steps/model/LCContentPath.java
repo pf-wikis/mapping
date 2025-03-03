@@ -32,7 +32,7 @@ public class LCContentPath extends LCContent {
 	}
 	
 	@Override
-	public Path toTmpFile() {
+	public Path toTmpFile(LCStep step) {
 		return path;
 	}
 }
