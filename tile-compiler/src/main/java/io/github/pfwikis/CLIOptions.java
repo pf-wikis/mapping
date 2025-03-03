@@ -19,4 +19,11 @@ public class CLIOptions {
     private boolean prodDetail = false;
     @Parameter(names = "-mappingDataFile")
     private File mappingDataFile = new File("../../mapping-data/mapping-data.gpkg");
+	
+    public File targetDirectory() {
+		return new File(useBuildShortcut
+            ?"../frontend/dist"
+            : "../frontend/public"
+        );
+	}
 }

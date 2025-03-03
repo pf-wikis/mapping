@@ -32,7 +32,8 @@ jobs:
           command: |
             cd /pf-mapping
             git pull
+            docker stop pf-map-compiler || true
             docker build -t pf-wikis/mapping -f build/Dockerfile .
-            docker run -i -v /wikis/volumes/map:/w/output -v /pf-mapping/data:/w/data pf-wikis/mapping
+            docker run --name pf-map-compiler --rm -v /wikis/volumes/map:/w/output -v /pf-mapping/data:/w/data pf-wikis/mapping
             docker restart page_cache
             docker container prune -f

@@ -27,9 +27,7 @@ public class TileCompiler {
 
     public void run(CLIOptions options) throws Exception {
         this.options = options;
-        targetRoot = new File(options.isUseBuildShortcut()
-            ?"../frontend/dist"
-            : "../frontend/public");
+        targetRoot = options.targetDirectory();
         targetDir = new File(targetRoot, ".");
         spriteDir = new File(targetRoot, "sprites");
         geo = new File("geo");
