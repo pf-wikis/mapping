@@ -23,18 +23,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: false
-      - name: Compile tiles
-        uses: ./.github/compiler-docker
-      - name: Copy map to server
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.SSH_PASSWORD }}
-          source: "frontend/dist/*"
-          target: /wikis/volumes/map
-          strip_components: 2
-          overwrite: true
       - name: Delete old files
         uses: garygrossgarten/github-action-ssh@v0.6.4
         with:
@@ -42,13 +30,9 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           command: |
-            cd /wikis
-            find /wikis/volumes/map -mtime +7 -type f -delete
+            cd /pf-mapping
+            git pull
+            docker build -t pf-wikis/mapping -f build/Dockerfile .
+            docker run -v /wikis/volumes/map:/w/output -v /pf-mapping/data:/w/data pf-wikis/mapping
             docker restart page_cache
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v2
-      #   with:
-      #     path: frontend/dist
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v1
+            docker container prune -f
