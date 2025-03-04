@@ -1,4 +1,4 @@
-import Maplibre, { AttributionControl, LngLat, Map, MapLayerMouseEvent, NavigationControl, Popup, ScaleControl } from "maplibre-gl";
+import { LngLat, Map, MapLayerMouseEvent, Popup } from "maplibre-gl";
 import { MultiPoint, Point } from 'geojson';
 
 export function makeLocationsClickable(map: Map) {

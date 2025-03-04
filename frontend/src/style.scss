@@ -1,5 +1,6 @@
-@import "bootstrap/scss/bootstrap";
-@import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
+@import "pure-context-menu/styles.min.css";
+//@import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
+//currently not needed
 
 body {
 	margin: 0;
@@ -64,4 +65,10 @@ body {
 	a {
 		text-decoration: none;
 	}
+}
+
+.pure-context-menu.dropdown-menu {
+	font-family: arial;
+	padding: .2em;
+	color: #222;
 }
