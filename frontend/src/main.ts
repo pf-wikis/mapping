@@ -10,6 +10,7 @@ import { addRightClickMenu } from "./tools/right-click-menu.js";
 import { addSpecialURLOptions } from "./tools/special-url-options.js";
 import { CachedSource } from "./CachedPmTiles.js";
 import NewTab from "./tools/NewTab.js";
+import { CompactAttributionControl } from "./tools/CompactAttributionControl.js";
 
 //check if running embedded
 var options = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -103,13 +104,13 @@ map.addControl(new ScaleControl({
   unit: 'metric',
   maxWidth: embedded?50:100,
 }));
-map.addControl(new AttributionControl({
-  compact: true
-}));
+map.addControl(new CompactAttributionControl(embedded));
 let measureControl = new MeasureControl();
 map.addControl(measureControl);
 if(embedded) {
   map.addControl(new NewTab());
+  //attribution._toggleAttribution();
+  //map.once('load', e=>attribution._toggleAttribution());
 }
 
 makeLocationsClickable(map);
@@ -120,4 +121,4 @@ addSpecialURLOptions(map);
 //////////debugging options
 //map.showTileBoundaries = true;
 //map.showCollisionBoxes = true;
-window.map = map;
+(window as any).map = map;
