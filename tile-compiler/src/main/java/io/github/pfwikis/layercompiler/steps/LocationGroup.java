@@ -63,20 +63,7 @@ public class LocationGroup extends LCStep {
 				f.getTippecanoe().setMaxzoom(g.maxZoom);
 			result.getFeatures().add(f);
 			if(g.entries.size() > 1) {
-				f.getProperties().setText(
-					g.entries.size()
-					+ " locations:<ul>\n<li>"
-					+ g.entries.stream()
-						.sorted(Comparator.comparing(v->v.feature.getProperties().getName()))
-						.map(v->
-							"<a href=\""
-							+ v.feature.getProperties().getLink()
-							+ "\">"
-							+ v.feature.getProperties().getName()
-							+ "</a>"
-						).collect(Collectors.joining("</li>\n<li>"))
-					+ "</li>\n</ul>"
-				);
+				f.getProperties().setText(createGroupText(g));
 			}
 			f.getProperties().setArticleLength(null);
 		}
@@ -87,6 +74,41 @@ public class LocationGroup extends LCStep {
 			.forEachOrdered(f->log.info("{} {}-{} with {} entries", f.getProperties().getName(), f.getTippecanoe().getMinzoom(), f.getTippecanoe().getMaxzoom(), f.getProperties().getText().substring(0,2)));
 		*/
 		return LCContent.from(result);
+	}
+
+	private String createGroupText(Group g) {
+		var subEntries = new ArrayList<>(g.entries);
+		subEntries.remove(g.best);
+		
+		if(subEntries.size()<=10) {
+			return subEntries.size()
+				+ " locations:<ul>\n<li>"
+				+ subEntries.stream()
+					.sorted(Comparator.comparing(v->v.feature.getProperties().getName()))
+					.map(v->
+						"<a href=\""
+						+ v.feature.getProperties().getLink()
+						+ "\">"
+						+ v.feature.getProperties().getName()
+						+ "</a>"
+					).collect(Collectors.joining("</li>\n<li>"))
+				+ "</li>\n</ul>";
+		}
+		else {
+			return subEntries.size()
+				+ " locations:<ul>\n<li>"
+				+ subEntries.stream()
+					.sorted(Comparator.<Entry,Double>comparing(v->v.sortValue).reversed())
+					.limit(9)
+					.map(v->
+						"<a href=\""
+						+ v.feature.getProperties().getLink()
+						+ "\">"
+						+ v.feature.getProperties().getName()
+						+ "</a>"
+					).collect(Collectors.joining("</li>\n<li>"))
+				+ "</li>\n<li>and "+(subEntries.size()-9)+" others…</li>\n</ul>";
+		}
 	}
 
 	private void addEntry(List<Group> groups, Entry entry, double groupingDistance, int zoom) {
@@ -134,7 +156,8 @@ public class LocationGroup extends LCStep {
 			));
 		}
 		int maximumArticleLength = entries.stream().mapToInt(e->e.feature.getProperties().getArticleLength()).max().getAsInt();
-		Collections.sort(entries, Comparator.<Entry, Double>comparing(e->e.toSortValue(maximumArticleLength)).reversed());
+		entries.forEach(e->e.calcSortValue(maximumArticleLength));
+		Collections.sort(entries, Comparator.<Entry, Double>comparing(e->e.sortValue).reversed());
 		
 		return entries;
 	}
@@ -145,8 +168,9 @@ public class LocationGroup extends LCStep {
 		private final double y;
 		private final Feature feature;
 		private final Integer maxZoom;
+		private double sortValue;
 		
-		public double toSortValue(double maximumArticleLength) {
+		public void calcSortValue(double maximumArticleLength) {
 			int base = switch(feature.getProperties().getIcon()) {
 				case "city-major-capital" -> 9;
 				case "city-large-capital" -> 8;
@@ -159,7 +183,7 @@ public class LocationGroup extends LCStep {
 				case "location-other" -> -1;
 				default -> 0;
 			};
-			return base + 0.9*feature.getProperties().getArticleLength()/maximumArticleLength;
+			sortValue = base + 0.9*feature.getProperties().getArticleLength()/maximumArticleLength;
 		}
 	}
 	
