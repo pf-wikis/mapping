@@ -334,7 +334,6 @@
   steps:
     - step: CREATE_SEARCH_INDEX
       dependsOn:
-        shallow-waters: shallow-waters
         land: land
         deserts: deserts
         hills: hills
@@ -344,10 +343,11 @@
         districts: districts
         forests: forests
         specials: specials
-        waters: waters
+        waters: waters.READ_FILE
         buildings: buildings
         generic: generic-labels.READ_FILE
         regions: region-labels.BORDER_VARIANTS__REGIONS
         nations: nation-labels.BORDER_VARIANTS__NATIONS
         subregions: subregion-labels.BORDER_VARIANTS__SUBREGIONS
         provinces: province-labels.BORDER_VARIANTS__PROVINCES
+        rivers: rivers.SMOOTH_LINES

@@ -24,7 +24,7 @@ jobs:
         with:
           submodules: false
       - name: Build map
-        uses: garygrossgarten/github-action-ssh@v0.6.4
+        uses: garygrossgarten/github-action-ssh@v0.8.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
