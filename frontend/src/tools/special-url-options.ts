@@ -18,14 +18,14 @@ export function addSpecialURLOptions(map: Map) {
                 speed: .8 
             });
         }
-
-        if(options.get('bbox')) {
-            let pad = 0;//window.innerWidth*0.075;
-            console.log(`bbox with padding ${pad}`);
-            let bbox = options.get('bbox').split(',').map(Number.parseFloat) as LngLatBoundsLike;
-            options.delete('bbox');
-            window.location.hash = '#'+options.toString();
-            map.fitBounds(bbox, {animate: false, padding: pad});
-        }
     });
+    
+    if(options.get('bbox')) {
+        let pad = 0;//window.innerWidth*0.075;
+        console.log(`bbox with padding ${pad}`);
+        let bbox = options.get('bbox').split(',').map(Number.parseFloat) as LngLatBoundsLike;
+        options.delete('bbox');
+        window.location.hash = '#'+options.toString();
+        map.fitBounds(bbox, {animate: false, padding: pad});
+    }
 }
