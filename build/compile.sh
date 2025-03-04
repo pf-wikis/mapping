@@ -20,7 +20,7 @@ npm run build
 echo "Compiling tiles"
 cd ../tile-compiler
 mvn -B compile package
-java -jar target/tile-compiler.jar compileTiles -maxZoom 13 -useBuildShortcut -dataHash $datahash -prodDetail -mappingDataFile ../data/data.gpkg
+java -jar target/tile-compiler.jar compileTiles -maxZoom 12 -useBuildShortcut -dataHash $datahash -prodDetail -mappingDataFile ../data/data.gpkg
 cd ..
 
 # copy results to output
