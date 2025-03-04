@@ -46,14 +46,15 @@ body {
 	border-radius: 3px;
 }
 
+.maplibregl-popup-content {
+	padding-top: 0;
+}
+
 .wiki-popup {
 	margin: -5px 0 -10px 0;
 
 	p {
 		margin-bottom: 0;
-		& + p {
-			margin-bottom: 1rem;
-		}
 	}
 	
 	h3 {
@@ -61,7 +62,19 @@ body {
 		font-weight: bold;
 		width: 100%;
 		border-bottom: 1px solid gray;
+		margin-right: .5rem;
+		margin-bottom: 0;
 	}
+
+	ul {
+		margin: 0;
+		padding-left: 1.5em;
+	}
+
+	h3 + p {
+		margin-top: .25em;
+	}
+
 	a {
 		text-decoration: none;
 	}
