@@ -33,7 +33,8 @@ public class Helper {
 
     public static String handleName(String name, String pageName) {
         if(StringUtils.isBlank(name)) name = pageName;
-        name = name.replaceAll(" +\\(.*", "");
+        name = name.replaceAll(" +\\(.*", "")
+        	.replaceAll(" *<br */?> *", " ");
         return name;
     }
 
