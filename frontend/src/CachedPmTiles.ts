@@ -34,7 +34,7 @@ export class CachedSource implements Source {
 
   constructor(url:string) {
     this.fetcher = new FetchSource(url);
-    this.getBytes = this.load; //at first we just redirect loads to the fetcher
+    this.getBytes = this.waitToLoad; //at first we just redirect loads to the fetcher
 
     dbPromise.then(db => {
       //as soon as the cache runs we want to load and store
@@ -42,6 +42,9 @@ export class CachedSource implements Source {
       //and we want to try loading from the cache first, if we are not in a DEV scenario
       if(buildId)
         this.getBytes = (offset: number, length: number, signal?: AbortSignal, etag?: string) => this.loadCachedOrFresh(db, offset, length, signal, etag);
+    }).catch(e => {
+      //if the db fails we load directly from web
+      this.getBytes = this.load;
     });
   }
 
@@ -66,6 +69,10 @@ export class CachedSource implements Source {
       db.put(ranges, resp.data, this.key(offset, length));
       return resp;
     });
+  }
+
+  waitToLoad(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
+    return dbPromise.then(db=>this.loadCachedOrFresh(db, offset, length, signal, etag));
   }
 
   load(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
