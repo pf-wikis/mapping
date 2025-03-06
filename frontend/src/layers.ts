@@ -302,7 +302,7 @@ let allLayers:LayerSpecification[] = [
   }),
   createLayer('region-labels', {
     minzoom: 1,
-    maxzoom: 4,
+    maxzoom: 3,
     type: 'symbol',
     layout: {
       'text-field': ['get', 'Name'],

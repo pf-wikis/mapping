@@ -35,7 +35,8 @@ public class GenerateLabelCenters extends LCStep {
 	}
 	private static final List<Field<?>> FIELDS_TO_COPY = List.of(
 			new Field<>("color", Properties::getColor, Properties::setColor),
-			new Field<>("type", Properties::getType, Properties::setType)
+			new Field<>("type", Properties::getType, Properties::setType),
+			new Field<>("inSubregion", Properties::getInSubregion, Properties::setInSubregion)
 	);
 	
 	private int labelRange = 3;

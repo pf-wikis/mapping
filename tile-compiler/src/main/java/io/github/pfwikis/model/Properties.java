@@ -30,4 +30,5 @@ public class Properties extends AnyJson {
 	private BigDecimal angle;
 	private BigDecimal width;
 	private BigDecimal height;
+	private Boolean inSubregion;
 }

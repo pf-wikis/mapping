@@ -34,17 +34,17 @@ export class CachedSource implements Source {
 
   constructor(url:string) {
     this.fetcher = new FetchSource(url);
-    this.getBytes = this.waitToLoad; //at first we just redirect loads to the fetcher
+    this.getBytes = buildId?this.waitLoadCacheStore:this.waitLoadWebStore;
 
     dbPromise.then(db => {
-      //as soon as the cache runs we want to load and store
-      this.getBytes = this.load = (offset: number, length: number, signal?: AbortSignal, etag?: string) => this.loadAndStore(db, offset, length, signal, etag);
-      //and we want to try loading from the cache first, if we are not in a DEV scenario
+      //we want to try loading from the cache first, if we are not in a DEV scenario
       if(buildId)
-        this.getBytes = (offset: number, length: number, signal?: AbortSignal, etag?: string) => this.loadCachedOrFresh(db, offset, length, signal, etag);
+        this.getBytes = (offset: number, length: number, signal?: AbortSignal, etag?: string) => this.loadCacheStore(db, offset, length, signal, etag);
+      else
+        this.getBytes = (offset: number, length: number, signal?: AbortSignal, etag?: string) => this.loadWebStore(db, offset, length, signal, etag);
     }).catch(e => {
       //if the db fails we load directly from web
-      this.getBytes = this.load;
+      this.getBytes = this.loadWeb;
     });
   }
 
@@ -54,28 +54,35 @@ export class CachedSource implements Source {
     return [offset, length]
   }
 
-  loadCachedOrFresh(db:IDBPDatabase<Schema>, offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
+  loadCacheStore(db:IDBPDatabase<Schema>, offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
     return db.get(ranges, this.key(offset, length))
-      .catch(e=>this.load(offset, length, signal, etag))
+      .catch(e=>{
+        console.log(e);
+        this.loadWeb(offset, length, signal, etag);
+      })
       .then(content=>{
         if(content)
           return {data:content} as RangeResponse
-        return this.load(offset, length, signal, etag)
+        return this.loadWebStore(db, offset, length, signal, etag);
       });
   }
 
-  loadAndStore(db:IDBPDatabase<Schema>, offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
-    return this.fetcher.getBytes(offset, length, signal, etag).then(resp => {
+  loadWebStore(db:IDBPDatabase<Schema>, offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
+    return this.loadWeb(offset, length, signal, etag).then(resp => {
       db.put(ranges, resp.data, this.key(offset, length));
       return resp;
     });
   }
 
-  waitToLoad(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
-    return dbPromise.then(db=>this.loadCachedOrFresh(db, offset, length, signal, etag));
+  waitLoadWebStore(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
+    return dbPromise.then(db=>this.loadWebStore(db, offset, length, signal, etag));
   }
 
-  load(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
+  waitLoadCacheStore(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
+    return dbPromise.then(db=>this.loadCacheStore(db, offset, length, signal, etag));
+  }
+
+  loadWeb(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
     return this.fetcher.getBytes(offset, length, signal, etag);
   }
 
