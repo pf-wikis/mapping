@@ -22,8 +22,19 @@ const dbPromise=openDB<Schema>(dbId, 1, {
 setTimeout(async ()=>{
   let databases = await indexedDB.databases()
   databases.forEach(other => {
-    if(other.name !== dbId) {
-      deleteDB(other.name)
+    if(other.name.startsWith('map-db-')) {
+      try {
+        let otherId = parseInt(other.name.substring(7));
+        if(otherId < buildId) {
+          console.log(`Deleting old version ${otherId} as the new version is ${buildId}`);
+          deleteDB(other.name)
+        }
+        else {
+          console.log(`Can't delete version ${otherId} as the my version is ${buildId}`);
+        }
+      } catch(e) {
+        console.error(e);
+      }
     }
   })
 }, 5000);

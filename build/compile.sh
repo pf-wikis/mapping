@@ -11,7 +11,7 @@ else
 fi
 
 echo "Building frontend"
-datahash=$RANDOM
+datahash=`expr $(date +%s) / 60`
 cd frontend
 printf "VITE_DATA_HASH=$datahash" > ./.env.local
 npm ci
