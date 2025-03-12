@@ -13,8 +13,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Properties extends AnyJson {
-	@JsonProperty("Name")
-	private String name;
+	private Labels label;
 	private String link;
 	private String text;
 	private String icon;
@@ -31,4 +30,10 @@ public class Properties extends AnyJson {
 	private BigDecimal width;
 	private BigDecimal height;
 	private Boolean inSubregion;
+	
+	public String simpleLabel() {
+		if(label!=null)
+			return label.toString();
+		return null;
+	}
 }

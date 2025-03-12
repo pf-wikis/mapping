@@ -14,7 +14,7 @@
 - name: continent-labels
   steps:
     - step: SUBTRACT
-      keepName: true
+      keepLabel: true
       dependsOn:
         in: land.READ_FILE
         subtrahend: waters.READ_FILE
