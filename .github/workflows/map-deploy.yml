@@ -24,12 +24,12 @@ jobs:
         with:
           submodules: false
       - name: Build map
-        uses: garygrossgarten/github-action-ssh@release
+        uses: appleboy/ssh-action@v1.2.2
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          command: |
+          script: |
             cd /pf-mapping
             git pull
             docker stop pf-map-compiler || true
