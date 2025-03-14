@@ -32,7 +32,7 @@ jobs:
           command_timeout: 6h
           script: |
             #!/usr/bin/env bash
-+           set -e
+            set -e
             cd /pf-mapping
             git pull
             docker stop pf-map-compiler || true
