@@ -20,6 +20,7 @@ public class StdHelper implements Closeable {
 	private final File file;
 	private final LCContent content;
 	private String alreadyPrinted = "";
+	private String alreadyPrintedButPotential = "";
 	private String prefix;
 
 	public StdHelper(String prefix, LCStep step) {
@@ -30,15 +31,28 @@ public class StdHelper implements Closeable {
 	}
 
 	public void intermediatePrint() {
-		var ct = content.toRawString();
-		//unify linebreaks
-		ct = ct.replaceAll("[\r\n]+", "\n");
-		if(ct.contains("\n"))
-			ct = ct.substring(0,ct.lastIndexOf('\n'));
-		else
-			ct = "";
+		var ct = content.toRawString().stripTrailing();
 		
-		var toPrint = StringUtils.removeStart(ct, alreadyPrinted);
+		if(ct.contains("\r")) {
+			int i=0;
+		}
+		
+		//remove deleted lines
+		ct = ct.replaceAll("[^\n]*\r", "");
+		String potential;
+		if(ct.contains("\n")) {
+			int i = ct.lastIndexOf('\n');
+			potential=ct.substring(i);
+			ct = ct.substring(0,i);
+		}
+		else {
+			potential = ct;
+			ct = "";
+		}
+		
+		var toPrint = ct+potential;
+		toPrint = StringUtils.removeStart(toPrint, alreadyPrinted);
+		toPrint = StringUtils.removeStart(toPrint, alreadyPrintedButPotential);
 		
 		if(!toPrint.isBlank()) {
 			log(Level.INFO, toPrint);
@@ -46,6 +60,7 @@ public class StdHelper implements Closeable {
 		}
 		
 		alreadyPrinted = ct;
+		alreadyPrintedButPotential = potential;
 	}
 
 	private void log(Level level, String msg) {
