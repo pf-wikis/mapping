@@ -366,24 +366,24 @@
 
 - name: tiles
   steps:
-	- step: COMPILE_TILES
-	  dependsOn:
-		labels: labels
-		geometry: geometry
-		nation-borders: nation-borders
-		nation-labels: nation-labels
-		province-borders: province-borders
-		province-labels: province-labels
-		subregion-borders: subregion-borders
-		subregion-labels: subregion-labels
-		region-borders: region-borders
-		region-labels: region-labels
-		locations: locations
-		river-labels: river-labels
-		roads: roads
-		road-labels: road-labels
+    - step: COMPILE_TILES
+      dependsOn:
+        labels: labels
+        geometry: geometry
+        nation-borders: nation-borders
+        nation-labels: nation-labels
+        province-borders: province-borders
+        province-labels: province-labels
+        subregion-borders: subregion-borders
+        subregion-labels: subregion-labels
+        region-borders: region-borders
+        region-labels: region-labels
+        locations: locations
+        river-labels: river-labels
+        roads: roads
+        road-labels: road-labels
 
 ############################ unrelated steps
 - name: sprites
   steps:
-	- step: COMPILE_SPRITES
+    - step: COMPILE_SPRITES
