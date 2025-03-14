@@ -1,6 +1,7 @@
 package io.github.pfwikis.layercompiler.steps;
 
 import java.io.File;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -23,6 +24,7 @@ public class CompileTiles extends LCStep {
     	var layers = getInputs().entrySet()
     		.stream()
     		.map(e->Pair.of(e.getKey(), createTippecanoeProperties(e.getValue())))
+    		.map(e->List.of("-L", new Runner.TmpGeojson(e.getKey()+":", LCContent.from(e.getValue()))))
     		.toList();
 
         var ttmp = new File(Runner.TMP_DIR, "tippecanoe-tmp").getAbsoluteFile().getCanonicalFile();
