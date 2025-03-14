@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -102,7 +103,9 @@ public class LayersCompiler {
         }
         
         for(var required:requiredCount.entrySet()) {
-        	steps.get(required.getElement()).setNumberOfDependents(required.getCount());
+        	Optional.ofNullable(steps.get(required.getElement()))
+        		.orElseThrow(()->new IllegalArgumentException("Unknown dependent '"+required.getElement()+"'"))
+        		.setNumberOfDependents(required.getCount());
         }
     }
 

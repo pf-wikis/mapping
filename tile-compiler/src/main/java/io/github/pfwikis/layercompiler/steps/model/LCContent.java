@@ -61,7 +61,7 @@ public abstract class LCContent {
 		}
 	}
 
-	public String toJSONString() {
+	public String toRawString() {
 		checkValidUsage();
 		return new String(toBytes(), StandardCharsets.UTF_8);
 	}
@@ -82,6 +82,12 @@ public abstract class LCContent {
 	@SneakyThrows
 	public FeatureCollection toFeatureCollection() {
 		return toParsed(FeatureCollection.class);
+	}
+	
+	public FeatureCollection toFeatureCollectionAndFinish() {
+		var res = toFeatureCollection();
+		this.finishUsage();
+		return res;
 	}
 
 	@SneakyThrows

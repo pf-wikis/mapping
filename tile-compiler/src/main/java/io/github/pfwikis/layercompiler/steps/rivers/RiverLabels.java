@@ -10,8 +10,8 @@ public class RiverLabels extends LCStep {
     public LCContent process() throws Exception {
         return Tools.mapshaper(this, getInput(),
             "-clean",
-            "-dissolve", "Name",
-            "-filter", "Name !== null",
+            "-dissolve", "label",
+            "-filter", "label !== null",
             "-each", "filterMinzoom=5"
         );
     }

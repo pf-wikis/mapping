@@ -28,7 +28,7 @@ public class AddCityZoom extends LCStep {
     			case null,
     			default -> 3;
     		});
-    		if(DISTRICT_CITIES.contains(f.getProperties().getName())) {
+    		if(DISTRICT_CITIES.contains(f.getProperties().simpleLabel())) {
     			f.getProperties().setFilterMaxzoom(11);
     		}
     	});

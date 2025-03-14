@@ -28,9 +28,12 @@ public class CreateSearchIndex extends LCStep {
     	for(var e:this.getInputs().entrySet()) {
     		
     		for(var f : e.getValue().toFeatureCollection().getFeatures()) {
-    			if(StringUtils.isEmpty(f.getProperties().getName())) continue;
-    			
-    			var box = map.computeIfAbsent(f.getProperties().getName(), k->{
+    			if(f.getProperties().getLabels() != null)
+    				throw new IllegalStateException("Unresolved labels in layer "+e.getKey()+" in "+f.getProperties());
+
+    			if(f.getProperties().getLabel() == null) continue;
+
+    			var box = map.computeIfAbsent(f.getProperties().getLabel().identifier(), k->{
     				var p = f.getGeometry().streamPoints().findAny().get();
     				return new BoundingBox(p.lng(), p.lat(), p.lng(), p.lat());
     			});

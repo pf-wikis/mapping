@@ -20,7 +20,7 @@ public class ColorGenericLabels extends LCStep {
 				case null, default -> {
 					throw new IllegalStateException(
 						"Can't determine color for generic label "
-						+ f.getProperties().getName()
+						+ f.getProperties().simpleLabel()
 						+ " of type "
 						+ t
 					);

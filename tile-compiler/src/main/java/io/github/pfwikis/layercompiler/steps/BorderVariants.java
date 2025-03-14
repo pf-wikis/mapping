@@ -12,7 +12,7 @@ public class BorderVariants {
             return Tools.mapshaper(this, getInput(),
                 "-filter", "province !== null",
                 "-filter-fields", "province",
-                "-rename-fields", "Name=province"
+                "-rename-fields", "label=province"
             );
         }
     }
@@ -37,8 +37,8 @@ public class BorderVariants {
             return Tools.mapshaper(this, getInput(),
                 "-filter", "nation !== null",
                 "-each", "inSubregion=(subregion!==null)",
-                "-rename-fields", "Name=nation",
-                "-dissolve2", "Name", "copy-fields=inSubregion"
+                "-rename-fields", "label=nation",
+                "-dissolve2", "label", "copy-fields=inSubregion"
             );
         }
     }
@@ -73,8 +73,8 @@ public class BorderVariants {
         public LCContent process() throws Exception {
             return Tools.mapshaper(this, getInput(),
                 "-filter", "subregion !== null",
-                "-rename-fields", "Name=subregion",
-                "-dissolve2", "Name"
+                "-rename-fields", "label=subregion",
+                "-dissolve2", "label"
             );
         }
     }
@@ -112,8 +112,8 @@ public class BorderVariants {
         public LCContent process() throws Exception {
             var regions = Tools.mapshaper(this, getInput(),
                 "-filter", "region !== null",
-                "-rename-fields", "Name=region",
-                "-dissolve2", "Name"
+                "-rename-fields", "label=region",
+                "-dissolve2", "label"
             );
             return regions;
         }

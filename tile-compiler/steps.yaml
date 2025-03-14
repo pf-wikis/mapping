@@ -4,6 +4,14 @@
       layer: land
     - step: ADD_FRACTAL_DETAIL
 
+- name: land-labels
+  steps:
+    - step: RESOLVE_LABELS
+      dependsOn:
+        in: land.READ_FILE
+    - step: GENERATE_LABEL_CENTERS
+      generateSubLabels: false
+
 - name: land_without_water
   steps:
     - step: SUBTRACT
@@ -14,10 +22,12 @@
 - name: continent-labels
   steps:
     - step: SUBTRACT
-      keepLabel: true
+      keepField: continent
       dependsOn:
         in: land.READ_FILE
         subtrahend: waters.READ_FILE
+    - step: RESOLVE_LABELS
+      from: continent
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 0
@@ -31,9 +41,10 @@
 
 - name: desert-labels
   steps:
-    - step: GENERATE_LABEL_CENTERS
+    - step: RESOLVE_LABELS
       dependsOn:
         in: deserts.READ_FILE
+    - step: GENERATE_LABEL_CENTERS
 
 - name: districts
   steps:
@@ -49,6 +60,7 @@
       minZoom: 9
       dependsOn:
         in: districts.READ_FILE
+    - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
 
 - name: forests
@@ -59,9 +71,10 @@
 
 - name: forest-labels
   steps:
-    - step: GENERATE_LABEL_CENTERS
+    - step: RESOLVE_LABELS
       dependsOn:
         in: forests.READ_FILE
+    - step: GENERATE_LABEL_CENTERS
 
 - name: hills
   steps:
@@ -71,9 +84,10 @@
 
 - name: hill-labels
   steps:
-    - step: GENERATE_LABEL_CENTERS
+    - step: RESOLVE_LABELS
       dependsOn:
         in: hills.READ_FILE
+    - step: GENERATE_LABEL_CENTERS
 
 - name: ice
   steps:
@@ -83,14 +97,16 @@
 
 - name: ice-labels
   steps:
-    - step: GENERATE_LABEL_CENTERS
+    - step: RESOLVE_LABELS
       dependsOn:
         in: ice.READ_FILE
+    - step: GENERATE_LABEL_CENTERS
 
 - name: generic-labels
   steps:
     - step: READ_FILE
       layer: labels
+    - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       dissolve: false
@@ -113,6 +129,7 @@
     - step: ADD_POINTS
       dependsOn:
         summand: cities
+    - step: RESOLVE_LABELS
     - step: LOCATION_GROUP
     - step: OUTPUT
 
@@ -124,9 +141,10 @@
 
 - name: mountain-labels
   steps:
-    - step: GENERATE_LABEL_CENTERS
+    - step: RESOLVE_LABELS
       dependsOn:
         in: mountains.READ_FILE
+    - step: GENERATE_LABEL_CENTERS
 
 - name: rivers
   steps:
@@ -139,9 +157,10 @@
 
 - name: river-labels
   steps:
-    - step: RIVER_LABELS
+    - step: RESOLVE_LABELS
       dependsOn:
         in: rivers.READ_FILE
+    - step: RIVER_LABELS
     - step: OUTPUT
 
 - name: roads
@@ -151,11 +170,12 @@
     - step: SMOOTH_LINES
     - step: OUTPUT
 
-- name: roads-labels
+- name: road-labels
   steps:
-    - step: RIVER_LABELS
+    - step: RESOLVE_LABELS
       dependsOn:
         in: roads.SMOOTH_LINES
+    - step: RIVER_LABELS
     - step: OUTPUT
 
 - name: specials
@@ -165,9 +185,10 @@
 
 - name: special-labels
   steps:
-    - step: GENERATE_LABEL_CENTERS
+    - step: RESOLVE_LABELS
       dependsOn:
         in: specials
+    - step: GENERATE_LABEL_CENTERS
 
 - name: swamps
   steps:
@@ -177,9 +198,10 @@
 
 - name: swamp-labels
   steps:
-    - step: GENERATE_LABEL_CENTERS
+    - step: RESOLVE_LABELS
       dependsOn:
         in: swamps.READ_FILE
+    - step: GENERATE_LABEL_CENTERS
 
 - name: buildings
   steps:
@@ -204,9 +226,10 @@
 
 - name: water-labels
   steps:
-    - step: GENERATE_LABEL_CENTERS
+    - step: RESOLVE_LABELS
       dependsOn:
         in: waters.READ_FILE
+    - step: GENERATE_LABEL_CENTERS
 
 ########### BORDERS #########################
 - name: borders
@@ -228,6 +251,7 @@
     - step: BORDER_VARIANTS__NATIONS
       dependsOn:
         in: borders
+    - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 3
@@ -249,6 +273,7 @@
     - step: BORDER_VARIANTS__PROVINCES
       dependsOn:
         in: borders
+    - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 4
@@ -268,6 +293,7 @@
     - step: BORDER_VARIANTS__SUBREGIONS
       dependsOn:
         in: borders
+    - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 2
@@ -289,6 +315,7 @@
     - step: BORDER_VARIANTS__REGIONS
       dependsOn:
         in: borders
+    - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 1
@@ -318,6 +345,7 @@
     - step: MERGE_LABELS
       dependsOn:
         continents: continent-labels
+        land: land-labels
         ice: ice-labels
         forests: forest-labels
         specials: special-labels
@@ -334,20 +362,22 @@
   steps:
     - step: CREATE_SEARCH_INDEX
       dependsOn:
-        land: land
-        deserts: deserts
-        hills: hills
-        mountains: mountains
-        swamps: swamps
-        ice: ice
-        districts: districts
-        forests: forests
-        specials: specials
-        waters: waters.READ_FILE
+        continents: continent-labels.RESOLVE_LABELS
+        land: land-labels
+        deserts: desert-labels.RESOLVE_LABELS
+        hills: hill-labels.RESOLVE_LABELS
+        mountains: mountain-labels.RESOLVE_LABELS
+        swamps: swamp-labels.RESOLVE_LABELS
+        ice: ice-labels.RESOLVE_LABELS
+        districts: district-labels.RESOLVE_LABELS
+        forests: forest-labels.RESOLVE_LABELS
+        specials: special-labels.RESOLVE_LABELS
+        waters: water-labels.RESOLVE_LABELS
         buildings: buildings
-        generic: generic-labels.READ_FILE
+        generic: generic-labels.RESOLVE_LABELS
         regions: region-labels.BORDER_VARIANTS__REGIONS
         nations: nation-labels.BORDER_VARIANTS__NATIONS
         subregions: subregion-labels.BORDER_VARIANTS__SUBREGIONS
         provinces: province-labels.BORDER_VARIANTS__PROVINCES
-        rivers: rivers.SMOOTH_LINES
+        rivers: river-labels.RESOLVE_LABELS
+        roads: road-labels.RESOLVE_LABELS

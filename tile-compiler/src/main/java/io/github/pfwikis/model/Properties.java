@@ -3,7 +3,7 @@ package io.github.pfwikis.model;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +13,8 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Properties extends AnyJson {
-	private Labels label;
+	private Label label;
+	private JsonNode labels;
 	private String link;
 	private String text;
 	private String icon;
@@ -34,6 +35,13 @@ public class Properties extends AnyJson {
 	public String simpleLabel() {
 		if(label!=null)
 			return label.toString();
+		if(labels != null && !labels.isNull()) {
+			if(labels.isTextual() && !labels.textValue().isBlank()) {
+				return labels.textValue();
+			}
+			return labels.toString();
+		}
+			
 		return null;
 	}
 }
