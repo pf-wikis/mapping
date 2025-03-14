@@ -31,6 +31,8 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           command_timeout: 6h
           script: |
+            #!/usr/bin/env bash
++           set -e
             cd /pf-mapping
             git pull
             docker stop pf-map-compiler || true
