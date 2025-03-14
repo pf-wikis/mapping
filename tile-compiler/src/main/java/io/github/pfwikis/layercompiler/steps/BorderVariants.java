@@ -10,7 +10,7 @@ public class BorderVariants {
         @Override
         public LCContent process() throws Exception {
             return Tools.mapshaper(this, getInput(),
-                "-filter", "province !== null",
+                "-filter", "Boolean(province)",
                 "-filter-fields", "province",
                 "-rename-fields", "label=province"
             );
@@ -21,7 +21,7 @@ public class BorderVariants {
         @Override
         public LCContent process() throws Exception {
             return Tools.mapshaper(this, getInput(),
-                "-filter", "province !== null",
+                "-filter", "Boolean(province)",
                 "-split", "nation",
                 "-innerlines",
                 "-merge-layers",
@@ -35,8 +35,8 @@ public class BorderVariants {
         @Override
         public LCContent process() throws Exception {
             return Tools.mapshaper(this, getInput(),
-                "-filter", "nation !== null",
-                "-each", "inSubregion=(subregion!==null)",
+                "-filter", "Boolean(nation)",
+                "-each", "inSubregion=Boolean(subregion)",
                 "-rename-fields", "label=nation",
                 "-dissolve2", "label", "copy-fields=inSubregion"
             );
@@ -47,12 +47,12 @@ public class BorderVariants {
         @Override
         public LCContent process() throws Exception {
             var innerNationBorders = Tools.mapshaper(this, getInput(),
-                "-filter", "nation !== null",
+                "-filter", "Boolean(nation)",
                 "-dissolve2", "nation",
                 "-innerlines"
             );
             var outerNationBorders = Tools.mapshaper(this, getInput(),
-                "-filter", "nation !== null",
+                "-filter", "Boolean(nation)",
                 "-dissolve2",
                 "-lines", "-filter-fields",
                 "-clip", getInput("land_without_water")
@@ -72,7 +72,7 @@ public class BorderVariants {
         @Override
         public LCContent process() throws Exception {
             return Tools.mapshaper(this, getInput(),
-                "-filter", "subregion !== null",
+                "-filter", "Boolean(subregion)",
                 "-rename-fields", "label=subregion",
                 "-dissolve2", "label"
             );
@@ -84,14 +84,14 @@ public class BorderVariants {
         public LCContent process() throws Exception {
             //subregion borders are like nation border but with subregion overwriting the nations
             var innerSubRegionBorders = Tools.mapshaper(this, getInput(),
-                "-each", "if(subregion !== null) {nation = subregion;}",
-                "-filter", "nation !== null",
+                "-each", "if(subregion) {nation = subregion;}",
+                "-filter", "Boolean(nation)",
                 "-dissolve2", "nation",
                 "-innerlines"
             );
             var outerSubRegionBorders = Tools.mapshaper(this, getInput(),
-                "-each", "if(subregion !== null) {nation = subregion;}",
-                "-filter", "nation !== null",
+                "-each", "if(subregion) {nation = subregion;}",
+                "-filter", "Boolean(nation)",
                 "-dissolve2",
                 "-lines", "-filter-fields",
                 "-clip", getInput("land_without_water")
@@ -111,7 +111,7 @@ public class BorderVariants {
         @Override
         public LCContent process() throws Exception {
             var regions = Tools.mapshaper(this, getInput(),
-                "-filter", "region !== null",
+                "-filter", "Boolean(region)",
                 "-rename-fields", "label=region",
                 "-dissolve2", "label"
             );
@@ -123,7 +123,7 @@ public class BorderVariants {
         @Override
         public LCContent process() throws Exception {
             return Tools.mapshaper(this, getInput(),
-                "-filter", "region !== null",
+                "-filter", "Boolean(region)",
                 "-dissolve2", "region",
                 "-innerlines"
             );

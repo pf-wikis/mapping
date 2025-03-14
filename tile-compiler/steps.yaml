@@ -251,7 +251,6 @@
     - step: BORDER_VARIANTS__NATIONS
       dependsOn:
         in: borders
-    - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 3
@@ -273,7 +272,6 @@
     - step: BORDER_VARIANTS__PROVINCES
       dependsOn:
         in: borders
-    - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 4
@@ -293,7 +291,6 @@
     - step: BORDER_VARIANTS__SUBREGIONS
       dependsOn:
         in: borders
-    - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 2
@@ -315,7 +312,6 @@
     - step: BORDER_VARIANTS__REGIONS
       dependsOn:
         in: borders
-    - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 1

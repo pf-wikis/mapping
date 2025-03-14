@@ -52,7 +52,7 @@ public class Label {
 	}
 
 	public String identifier() {
-		if(id == null) {
+		if(id != null) {
 			return id;
 		}
 		return label;

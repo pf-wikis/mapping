@@ -33,10 +33,6 @@ public class StdHelper implements Closeable {
 	public void intermediatePrint() {
 		var ct = content.toRawString().stripTrailing();
 		
-		if(ct.contains("\r")) {
-			int i=0;
-		}
-		
 		//remove deleted lines
 		ct = ct.replaceAll("[^\n]*\r", "");
 		String potential;
