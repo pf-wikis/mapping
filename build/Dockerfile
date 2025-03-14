@@ -21,16 +21,16 @@ ENV QT_QPA_PLATFORM offscreen
 USER 1000:1000
 
 WORKDIR /w
-COPY --link --chown=1000:1000 tile-compiler ./tile-compiler
+COPY --link --chown=1000:1000 tile-compiler /w/tile-compiler
 RUN cd tile-compiler \
   && mvn compile package
 
-COPY --link --chown=1000:1000 frontend ./frontend
+COPY --link --chown=1000:1000 frontend /w/frontend
 
 COPY --link --chown=1000:1000 build/compile.sh /w/compile.sh
 RUN chmod 777 /w/compile.sh
 
-COPY --link --chown=1000:1000 sources ./sources
+COPY --link --chown=1000:1000 sources /w/sources
 
 
 

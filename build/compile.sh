@@ -4,24 +4,20 @@ set -e
 echo "I am '$(whoami)'"
 
 echo "Downloading newest mapping data."
-if [ -f data/data.gpkg ]; then
-   cd data && kart pull && cd ..
-else
-   kart clone https://github.com/pf-wikis/mapping-data.git data
-fi
+kart clone https://github.com/pf-wikis/mapping-data.git /w/data
 
 echo "Building frontend"
 datahash=`expr $(date +%s) / 60`
-cd frontend
+cd /w/frontend
 printf "VITE_DATA_HASH=$datahash" > ./.env.local
 npm ci
 npm run build
 
 echo "Compiling tiles"
-cd ../tile-compiler
+cd /w/tile-compiler
 mvn -B compile package
 java -jar target/tile-compiler.jar compileTiles -maxZoom 12 -useBuildShortcut -dataHash $datahash -prodDetail -mappingDataFile ../data/data.gpkg
-cd ..
+cd /w
 
 # copy results to output
 echo "Copying results"
