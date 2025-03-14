@@ -1,10 +1,10 @@
 package io.github.pfwikis.layercompiler.steps;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -46,42 +46,19 @@ public class GenerateLabelCenters extends LCStep {
 	
     @Override
     public LCContent process() throws IOException {
-    	LCContent in = getInput();
-
         log.info("  Generating label points from polygon centers");
-        //mapshaper area is sometimes inconsistent so we use qgis
-        var withArea = Tools.qgis(this, "native:fieldcalculator", in,
-    		"--FIELD_NAME=areaSqkm",
-    		"--FIELD_TYPE=0", //float
-    		"--FIELD_PRECISION=7",
-    		"--FORMULA=$area/1000000"
-		);
-        
-        var withZoomRes = Tools.mapshaper(this, withArea,
-    		"-filter", "Boolean(label)",
-    		dissolve?List.of("-dissolve2", "label", "sum-fields=areaSqkm", "copy-fields=inSubregion,color"):List.of(),
-    		"-sort", "areaSqkm", "descending", //to make bigger feature more important
-    		"-each", "tmpMercatorScaling="+mercatorScaling("this.centroidY"),
-    		"-each", "tmpAdjustedSize=Math.sqrt(areaSqkm)*tmpMercatorScaling",
-			"-each", "filterMinzoom="+filterMinzoom(),
-            "-each", "filterMaxzoom=filterMinzoom+"+labelRange,
-            "-each", "bufferSize=Math.sqrt(areaSqkm)*0.0002"
-		);
-        withArea.finishUsage();
-        
-        var withUuid = withZoomRes.toFeatureCollection();
-        withZoomRes.finishUsage();
-        withUuid.getFeatures().forEach(f->f.getProperties().setUuid(UUID.randomUUID()));
+
+        var polygonsRes = prepareGeometry();
+        var polygons = polygonsRes.toFeatureCollection();
         
         var fieldsToCopy = new ArrayList<>(FIELDS_TO_COPY);
-        fieldsToCopy.removeIf(f->withUuid.getFeatures().stream().noneMatch(fet->f.getter.apply(fet.getProperties())!=null));
+        fieldsToCopy.removeIf(f->polygons.getFeatures().stream().noneMatch(fet->f.getter.apply(fet.getProperties())!=null));
 
-        var withUuidRes = LCContent.from(withUuid);
         
-        var innerPoints = calcInnerPoint(withUuidRes);
-        var angles = calcAngles(withUuidRes);
+        var innerPoints = calcInnerPoint(polygonsRes);
+        var angles = calcAngles(polygonsRes);
 
-        var withInfo = mergeInfos(withUuid, innerPoints, angles);
+        var withInfo = mergeInfos(polygons, innerPoints, angles);
         
         if(!generateSubLabels) {
         	return LCContent.from(cleanProperties(withInfo, fieldsToCopy));
@@ -89,16 +66,48 @@ public class GenerateLabelCenters extends LCStep {
 
         FeatureCollection merged = withInfo.copy();
         for(int i=1;true;i++) {
-        	var changed=addLowerZoomLabels(merged, withUuidRes, fieldsToCopy, i);
+        	var changed=addLowerZoomLabels(merged, polygonsRes, fieldsToCopy, i);
         	if(!changed) {
         		break;
         	}
-        } 
+        }
+        
+        polygonsRes.finishUsage();
 
         return LCContent.from(cleanProperties(merged, fieldsToCopy));
     }
 
-    private FeatureCollection cleanProperties(FeatureCollection fc, List<Field<?>> fieldsToCopy) {
+    private LCContent prepareGeometry() throws IOException {
+    	var dissolved = Tools.mapshaper(this, getInput(),
+    		"-filter", "Boolean(label)",
+    		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color"):List.of()
+    	);
+        
+    	//mapshaper sometimes gives weird results here
+        var withArea = Tools.qgis(this, "native:fieldcalculator", dissolved,
+    		"--FIELD_NAME=areaSqkm",
+    		"--FIELD_TYPE=0", //float
+    		"--FIELD_PRECISION=7",
+    		"--FORMULA=$area/1000000"
+		);
+        dissolved.finishUsage();
+
+        var buffered = Tools.qgis(this, "native:buffer", withArea, "--DISTANCE=expression:sqrt(\"areaSqkm\")*0.0002");
+        withArea.finishUsage();
+        
+        var withFields = Tools.mapshaper(this, buffered,
+    		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm"):List.of(),
+    		"-sort", "areaSqkm", "descending", //to make bigger feature more important
+			"-each", "filterMinzoom="+filterMinzoom(),
+            "-each", "filterMaxzoom=filterMinzoom+"+labelRange,
+            "-require", "crypto",
+            "-each", "uuid=crypto.randomUUID()"
+    	);
+        buffered.finishUsage();
+        return withFields;
+	}
+
+	private FeatureCollection cleanProperties(FeatureCollection fc, List<Field<?>> fieldsToCopy) {
     	for(var f:fc.getFeatures()) {
     		var cl = new Properties();
     		cl.setLabel(f.getProperties().getLabel());
@@ -122,7 +131,8 @@ public class GenerateLabelCenters extends LCStep {
     	var res = new FeatureCollection();
     	for(var f : withUuid.getFeatures()) {
 			Properties props = f.getProperties().copy();
-			if(!innerPoints.containsKey(props.getUuid())) throw new IllegalStateException(f+" has no inner point");
+			if(!innerPoints.containsKey(props.getUuid()))
+				throw new IllegalStateException(f+" has no inner point");
 			var newF = new Feature();
     		newF.setProperties(props);
     		props.setLabel(newF.getProperties().getLabel());
@@ -165,12 +175,9 @@ public class GenerateLabelCenters extends LCStep {
         return angles;
 	}
 	
-	private Map<UUID, LngLat> calcInnerPoint(LCContent withUuid) throws IOException {
-		//sometimes buffering fails so we have to fallback on normal inner points
-		var buffered = Tools.qgis(this, "native:buffer", withUuid, "--DISTANCE=field:bufferSize");
-        var inner = Tools.mapshaper(this, buffered, "-dissolve2", "uuid", "-points", "inner").toFeatureCollectionAndFinish();
-        buffered.finishUsage();
-        var best = inner
+	private Map<UUID, LngLat> calcInnerPoint(LCContent in) throws IOException {
+        var inner = Tools.mapshaper(this, in, "-points", "inner").toFeatureCollectionAndFinish();
+        return inner
     		.getFeatures()
     		.stream()
     		.filter(f->f.getGeometry()!=null)
@@ -178,18 +185,6 @@ public class GenerateLabelCenters extends LCStep {
 				f->f.getProperties().getUuid(),
 				f->((Point)f.getGeometry()).getCoordinates()
 			));
-        
-        var fallback = Tools.mapshaper(this, withUuid, "-points", "inner").toFeatureCollectionAndFinish()
-    		.getFeatures()
-    		.stream()
-    		.collect(Collectors.<Feature,UUID,LngLat>toMap(
-				f->f.getProperties().getUuid(),
-				f->((Point)f.getGeometry()).getCoordinates()
-			));
-        
-        var result = new HashMap<>(fallback);
-        result.putAll(best);
-        return result;
 	}
 
 	private boolean addLowerZoomLabels(FeatureCollection result, LCContent polygons, List<Field<?>> fieldsToCopy, int step) throws IOException {
