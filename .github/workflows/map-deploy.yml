@@ -29,6 +29,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
+          command_timeout: 6h
           script: |
             cd /pf-mapping
             git pull
