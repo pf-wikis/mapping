@@ -31,6 +31,8 @@ public class StdHelper implements Closeable {
 
 	public void intermediatePrint() {
 		var ct = content.toRawString();
+		//unify linebreaks
+		ct = ct.replaceAll("[\r\n]+", "\n");
 		if(ct.contains("\n"))
 			ct = ct.substring(0,ct.lastIndexOf('\n'));
 		else
@@ -51,7 +53,7 @@ public class StdHelper implements Closeable {
 			"{}|{}:\n\t{}",
 			step==null?"no step":step.getName(),
 			prefix,
-			msg.replaceAll("[\r\n]+", "\n\t")
+			msg.replace("\n", "\n\t")
 		);
 	}
 
