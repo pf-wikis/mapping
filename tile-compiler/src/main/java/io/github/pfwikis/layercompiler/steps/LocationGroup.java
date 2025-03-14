@@ -67,12 +67,6 @@ public class LocationGroup extends LCStep {
 			}
 			f.getProperties().setArticleLength(null);
 		}
-		/*
-		result.getFeatures().stream()
-			.sorted(Comparator.comparing(f->f.getProperties().getName()))
-			.filter(f->f.getProperties().getText() != null)
-			.forEachOrdered(f->log.info("{} {}-{} with {} entries", f.getProperties().getName(), f.getTippecanoe().getMinzoom(), f.getTippecanoe().getMaxzoom(), f.getProperties().getText().substring(0,2)));
-		*/
 		return LCContent.from(result);
 	}
 
@@ -84,12 +78,12 @@ public class LocationGroup extends LCStep {
 			return subEntries.size()
 				+ " locations:<ul>\n<li>"
 				+ subEntries.stream()
-					.sorted(Comparator.comparing(v->v.feature.getProperties().getName()))
+					.sorted(Comparator.comparing(v->v.feature.getProperties().simpleLabel()))
 					.map(v->
 						"<a href=\""
 						+ v.feature.getProperties().getLink()
 						+ "\">"
-						+ v.feature.getProperties().getName()
+						+ v.feature.getProperties().simpleLabel()
 						+ "</a>"
 					).collect(Collectors.joining("</li>\n<li>"))
 				+ "</li>\n</ul>";
@@ -104,7 +98,7 @@ public class LocationGroup extends LCStep {
 						"<a href=\""
 						+ v.feature.getProperties().getLink()
 						+ "\">"
-						+ v.feature.getProperties().getName()
+						+ v.feature.getProperties().simpleLabel()
 						+ "</a>"
 					).collect(Collectors.joining("</li>\n<li>"))
 				+ "</li>\n<li>and "+(subEntries.size()-9)+" others…</li>\n</ul>";

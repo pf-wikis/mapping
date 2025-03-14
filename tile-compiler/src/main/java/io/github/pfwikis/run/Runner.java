@@ -14,102 +14,64 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.event.Level;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCContentPath;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Runner {
     /*package*/ static LCContent run(LCStep step, String command, Object... args) throws IOException {
-        return internalRun(step, false, null, command, args);
-    }
-
-    /*package*/ static LCContent runPipeOut(LCStep step, String command, Object... args) throws IOException {
-        return internalRun(step, true, null, command, args);
-    }
-
-    /*package*/ static LCContent runPipeInOut(LCStep step, LCContent in, String command, Object... args) throws IOException {
-        return internalRun(step, true, in, command, args);
+        return internalRun(step, command, args);
     }
     
-    private static LCContent internalRun(LCStep step, boolean readStdOut, LCContent in, String command, Object... args) throws IOException {
-    	File stdOutF = tmpGeojson(step);
-    	File errOutF = tmpGeojson(step);
-        try(var cmd = Command.of(step, command, args)) {
-        	var proc = new ProcessBuilder()
-        		.command(cmd.getParts())
-        		.redirectError(errOutF)
-        		.redirectInput(in==null?Redirect.INHERIT:(in instanceof LCContentPath?Redirect.from(in.toTmpFile(step).toFile()):Redirect.PIPE))
-        		.redirectOutput(stdOutF)
-	    		.start();
-        	
-        	if(in != null && !(in instanceof LCContentPath)) {
-        		IOUtils.copy(in.toInputStream(), proc.getOutputStream());
-        		proc.getOutputStream().close();
-        	}
-        	int exitValue = proc.waitFor();
-
-        	if(exitValue != 0) {
-        		var errOut = LCContent.from(errOutF, true);
-        		log(Level.ERROR, errOut.toJSONString());
-        		errOut.finishUsage();
-                throw new RuntimeException("Exited command "+cmd.getParts()+" with non-zero code: "+exitValue);
-            }
-            LCContent result = LCContent.empty();
-            var stdOut = LCContent.from(stdOutF, true);
-            var errOut = LCContent.from(errOutF, true);
-            
-            if(!readStdOut) {
-            	log(Level.INFO, stdOut.toJSONString());
-            	stdOut.finishUsage();
-            }
-            else {
-            	result = stdOut;
-            }
-            log(Level.ERROR, errOut.toJSONString());
-            errOut.finishUsage();
-            
-            if(cmd.getResultFile() != null) {
-                result = LCContent.from(cmd.getResultFile(), true);
-            }
-
-            return result;
-        } catch(Exception e) {
-            if(in != null) {
-                var str = in.toJSONString();
-                log.error("Failure for input "+str.substring(0, Math.min(1000, str.length())));
-                var tmp = Files.createTempFile("pf-mapping-debug", ".json");
-                Files.write(tmp, in.toBytes());
-                log.error("Full input in "+tmp.toAbsolutePath());
-            }
-            if(stdOutF.isFile()) {
-            	var stdOut = LCContent.from(stdOutF, true);
-            	log(Level.INFO, stdOut.toJSONString());
-            	stdOut.finishUsage();
-            }
-            if(errOutF.isFile()) {
-            	var errOut = LCContent.from(errOutF, true);
-            	log(Level.ERROR, errOut.toJSONString());
-            	errOut.finishUsage();
-            }
-            throw new IOException(e);
-        }
-    }
-
-    private static void log(Level level, String msg) {
-        if(StringUtils.isEmpty(msg)) return;
-        log.atLevel(level).log("std|{}: {}", level.name(), msg);
+    private static LCContent internalRun(LCStep step, String command, Object... args) throws IOException {
+    	try(
+    			var stdOut = new StdHelper("std", step);
+            	var stdErr = new StdHelper("err", step);) {
+	        try(var cmd = Command.of(step, command, args);) {
+	        	var proc = new ProcessBuilder()
+	        		.command(cmd.getParts())
+	        		.redirectError(stdOut.getFile())
+	        		.redirectInput(Redirect.INHERIT)
+	        		.redirectOutput(stdErr.getFile())
+		    		.start();
+	        	
+	        	while(!proc.waitFor(1, TimeUnit.SECONDS)) {
+	        		stdOut.intermediatePrint();
+	        		stdErr.intermediatePrint();
+	        	}
+	        	
+	        	int exitValue = proc.waitFor();
+	        	
+	        	//print any remaining content
+	        	stdOut.intermediatePrint();
+	        	stdErr.intermediatePrint();
+	
+	        	if(exitValue != 0) {
+	                throw new IOException("Exited command "+cmd.getParts()+" with non-zero code: "+exitValue);
+	            }
+	            LCContent result = LCContent.empty();
+	
+	            if(cmd.getResultFile() != null) {
+	                result = LCContent.from(cmd.getResultFile(), true);
+	            }
+	            return result;
+	        } catch(Exception e) {
+	        	if(e instanceof IOException ioe && e.getMessage().startsWith("Exited command ")) {
+	        		throw ioe;
+	        	}
+        		stdOut.intermediatePrint();
+        		stdErr.intermediatePrint();
+        		throw new IOException(e);
+	        }
+    	}
     }
 
     public static final File TMP_DIR;

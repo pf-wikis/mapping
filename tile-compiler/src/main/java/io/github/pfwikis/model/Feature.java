@@ -33,8 +33,8 @@ public class Feature extends AnyJson {
     
     @Override
     public String toString() {
-    	if(properties != null && properties.getName() != null)
-    		return properties.getName();
+    	if(properties.simpleLabel() != null)
+    		return properties.simpleLabel();
     	else
     		return "unnamed";
     }

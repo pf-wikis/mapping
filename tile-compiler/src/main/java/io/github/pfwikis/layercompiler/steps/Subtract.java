@@ -10,13 +10,13 @@ import lombok.Setter;
 @Setter
 public class Subtract extends LCStep {
 	
-	private boolean keepName = false;
+	private String keepField = null;
 
     @Override
     public LCContent process() throws Exception {
         return Tools.mapshaper(this, getInput(),
             "-dissolve2",
-            keepName?"Name":Collections.emptyList(),
+            keepField!=null?keepField:Collections.emptyList(),
             "-explode",
             "-erase", getInput("subtrahend")
         );

@@ -9,8 +9,8 @@ let colors = {
   waterDeep:       'rgb(110, 160, 245)',
   waterDarker:     'rgb(  9,  64, 153)',
   regionBorders:   'rgb(107,  42,  33)',
-  regionNames:     'rgb( 17,  42,  97)',
-  regionNamesOut:  'rgb(213, 195, 138)',
+  regionLabels:     'rgb( 17,  42,  97)',
+  regionLabelsOut:  'rgb(213, 195, 138)',
   nationBorders:   'rgb(170, 170, 170)',
   borderDarker:    'rgb( 74,  74,  74)',
   white:           'rgb(255, 255, 255)',
@@ -140,7 +140,7 @@ let allLayers:LayerSpecification[] = [
     layout: {
       'symbol-placement': 'line',
       'text-max-angle': 20,
-      'text-field': ['get', 'Name'],
+      'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'symbol-spacing': 300,
       'text-size': [
@@ -191,7 +191,7 @@ let allLayers:LayerSpecification[] = [
   createLayer('labels', {
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['get', 'label'],
       'text-rotate': ['get', 'angle'],
       'text-rotation-alignment': 'map',
       'text-font': ['NotoSans-Medium'],
@@ -211,7 +211,7 @@ let allLayers:LayerSpecification[] = [
       ['any', ['!', ['has', 'filterMaxzoom']], ['<=', ["zoom"], props.filterMaxzoom]]
     ],
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 14*fs,
       'text-variable-anchor': ["left", "right"],
@@ -229,7 +229,7 @@ let allLayers:LayerSpecification[] = [
     maxzoom: 7,
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
         5, 5*fs,
@@ -241,7 +241,7 @@ let allLayers:LayerSpecification[] = [
     },
     paint: {
       'text-color': colors.white,
-      'text-halo-color': colors.regionNames,
+      'text-halo-color': colors.regionLabels,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
         5, .375*fs,
         7, 1.5*fs,
@@ -257,7 +257,7 @@ let allLayers:LayerSpecification[] = [
       ['>', ['zoom'], 4]
     ],
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
         4, 10*fs,
@@ -269,7 +269,7 @@ let allLayers:LayerSpecification[] = [
     },
     paint: {
       'text-color': colors.white,
-      'text-halo-color': colors.regionNames,
+      'text-halo-color': colors.regionLabels,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
         4, .75*fs,
         5, 1.875*fs,
@@ -281,7 +281,7 @@ let allLayers:LayerSpecification[] = [
     maxzoom: 5,
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
         4, 10*fs,
@@ -293,7 +293,7 @@ let allLayers:LayerSpecification[] = [
     },
     paint: {
       'text-color': colors.white,
-      'text-halo-color': colors.regionNames,
+      'text-halo-color': colors.regionLabels,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
         4, .75*fs,
         5, 1.875*fs,
@@ -305,7 +305,7 @@ let allLayers:LayerSpecification[] = [
     maxzoom: 3,
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'Name'],
+      'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 20*fs,
       'text-rotation-alignment': 'map',
@@ -313,8 +313,8 @@ let allLayers:LayerSpecification[] = [
       'symbol-z-order': 'source',
     },
     paint: {
-      'text-color': colors.regionNames,
-      'text-halo-color': colors.regionNamesOut,
+      'text-color': colors.regionLabels,
+      'text-halo-color': colors.regionLabelsOut,
       'text-halo-width': 1.5*fs,
     }
   }),

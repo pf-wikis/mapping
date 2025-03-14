@@ -50,7 +50,7 @@ export function makeLocationsClickable(map: Map) {
 
     popup
       .setLngLat(coordinates)
-      .setHTML(`<div class="wiki-popup"><h3><a href="${props.link}" target="_blank">${props.Name}</a></h3>${props.text||''}</div>`)
+      .setHTML(`<div class="wiki-popup"><h3><a href="${props.link}" target="_blank">${props.label}</a></h3>${props.text||''}</div>`)
       .addTo(map);
   }
   

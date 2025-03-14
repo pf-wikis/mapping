@@ -54,10 +54,6 @@ public class Tools {
         );
     }
 
-    public static LCContent geojsonPolygonLabels(LCStep step, LCContent in, String... args) throws IOException {
-        return Runner.runPipeOut(step, "geojson-polygon-labels", args, new Runner.TmpGeojson(in));
-    }
-
     public static LCContent ogr2ogr(LCStep step, Object... args) throws IOException {
         return Runner.run(step, "ogr2ogr", new Runner.OutGeojson(), args);
     }
