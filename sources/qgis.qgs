@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2025-03-13T10:52:37" version="3.40.4-Bratislava">
+<qgis projectname="" saveDateTime="2025-03-14T22:13:30" version="3.40.4-Bratislava">
   <homePath path="."></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -34,7 +34,7 @@
     <customproperties>
       <Option></Option>
     </customproperties>
-    <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="images_a05422ba_d9b0_4dbe_9ef4_08468f8204c2" name="images">
+    <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="images_a05422ba_d9b0_4dbe_9ef4_08468f8204c2" name="images">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -564,9 +564,9 @@
       <layer-setting enabled="0" id="rivers_37f0454d_322e_45b4_8a2a_e95e0f10c44e" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="roads_7e038ab7_ac9b_4762_96b1_2ac7d9a2c175" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="specials_c128e960_556c_4ede_a0c3_f1da18d388a2" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-    <layer-setting enabled="0" id="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="waters_ffcf32fb_950c_400d_8017_4af9540e8da3" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+    <layer-setting enabled="0" id="waters_ffcf32fb_950c_400d_8017_4af9540e8da3" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       </individual-layer-settings>
   </snapping-settings>
   <relations></relations>
@@ -574,10 +574,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>-34.44721940276599526</xmin>
-      <ymin>6.08785703334935313</ymin>
-      <xmax>-17.8656194027660149</xmax>
-      <ymax>22.63673703345560284</ymax>
+      <xmin>-21.58883907778969657</xmin>
+      <ymin>24.84386747808518692</ymin>
+      <xmax>5.71175482327676676</xmax>
+      <ymax>49.5422260715946976</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -598,7 +598,7 @@
   </mapcanvas>
   <projectModels></projectModels>
   <legend updateDrawingOrder="true">
-    <legendgroup checked="Qt::Checked" name="images" open="true">
+    <legendgroup checked="Qt::Checked" name="images" open="false">
       <legendgroup checked="Qt::Checked" name="avistan" open="true">
         <legendgroup checked="Qt::Checked" name="absalom" open="true">
           <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="Pariol Island" open="false" showFeatureCount="0">
@@ -1114,7 +1114,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -1328,7 +1328,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -1566,7 +1566,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -1790,7 +1790,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -2012,7 +2012,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -2234,7 +2234,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -2456,7 +2456,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -2678,7 +2678,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -2916,7 +2916,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -3141,7 +3141,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -3380,7 +3380,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -3605,7 +3605,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -3827,7 +3827,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -4049,7 +4049,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -4271,7 +4271,7 @@
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -4422,6 +4422,18 @@
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="1" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-116.13607517952199544</xmin>
+        <ymin>-47.99445671366149924</ymin>
+        <xmax>213.2194470832239972</xmax>
+        <ymax>80.33745825440439603</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-116.13607517952199544</xmin>
+        <ymin>-47.99445671366149924</ymin>
+        <xmax>213.2194470832239972</xmax>
+        <ymax>80.33745825440439603</ymax>
+      </wgs84extent>
       <id>borders_80959533_4778_401e_b8cd_8ba655123abe</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=borders</datasource>
       <keywordList>
@@ -5105,7 +5117,19 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>"fid"</previewExpression>
       <mapTip enabled="1"></mapTip>
     </maplayer>
-    <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
+    <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="1" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
+      <extent>
+        <xmin>-102.93309999999999604</xmin>
+        <ymin>-39.76729999999999876</ymin>
+        <xmax>213.23099999999999454</xmax>
+        <ymax>79.11194999999999311</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-102.93309999999999604</xmin>
+        <ymin>-39.76729999999999876</ymin>
+        <xmax>213.23099999999999454</xmax>
+        <ymax>79.11194999999999311</ymax>
+      </wgs84extent>
       <id>cities_b2839d80_d946_48d1_8c42_83b3b917d8d5</id>
       <datasource>./cities.geojson</datasource>
       <keywordList>
@@ -5504,7 +5528,19 @@ def my_form_open(dialog, layer, feature):
       <previewExpression>"Name"</previewExpression>
       <mapTip enabled="1"></mapTip>
     </maplayer>
-    <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
+    <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="1" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
+      <extent>
+        <xmin>-102.82750000000000057</xmin>
+        <ymin>-44.27067000000000263</ymin>
+        <xmax>204.47530000000000427</xmax>
+        <ymax>89.04971000000000458</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-102.82750000000000057</xmin>
+        <ymin>-44.27067000000000263</ymin>
+        <xmax>204.47530000000000427</xmax>
+        <ymax>89.04971000000000458</ymax>
+      </wgs84extent>
       <id>cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8</id>
       <datasource>./locations.geojson</datasource>
       <keywordList>
@@ -5961,7 +5997,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -6183,7 +6219,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -6405,7 +6441,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -6627,7 +6663,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -6849,7 +6885,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -7071,7 +7107,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -7293,7 +7329,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -7444,6 +7480,18 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-113.12354144755799723</xmin>
+        <ymin>-47.37710595785259926</ymin>
+        <xmax>179.30145473159601011</xmax>
+        <ymax>67.30632209808679534</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-113.12354144755799723</xmin>
+        <ymin>-47.37710595785259926</ymin>
+        <xmax>179.30145473159601011</xmax>
+        <ymax>67.30632209808679534</ymax>
+      </wgs84extent>
       <id>deserts_644ce1f6_9e06_4b66_ba44_bb030b005719</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=deserts</datasource>
       <keywordList>
@@ -7673,7 +7721,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{f222cb12-83a2-44ad-a033-19f0d93731ca}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="255,249,203,255,rgb:1,0.97647058823529409,0.79607843137254897,1"></Option>
+                <Option name="color" type="QString" value="255,247,190,255,rgb:1,0.96862745098039216,0.74509803921568629,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -7746,8 +7794,8 @@ def my_form_open(dialog, layer, feature):
             <Option type="QString" value="&quot;Name&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -7759,7 +7807,7 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -7935,7 +7983,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -8086,6 +8134,18 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-30.75685727093020105</xmin>
+        <ymin>17.81950903643609863</ymin>
+        <xmax>-0.17495428837490201</xmax>
+        <ymax>51.24486873476440252</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-30.75685727093020105</xmin>
+        <ymin>17.81950903643609863</ymin>
+        <xmax>-0.17495428837490201</xmax>
+        <ymax>51.24486873476440252</ymax>
+      </wgs84extent>
       <id>districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=districts</datasource>
       <keywordList>
@@ -8508,6 +8568,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-122.26187392682399491</xmin>
+        <ymin>-58.24634573044689745</ymin>
+        <xmax>199.19142301106799664</xmax>
+        <ymax>71.47907260393239426</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-122.26187392682399491</xmin>
+        <ymin>-58.24634573044689745</ymin>
+        <xmax>199.19142301106799664</xmax>
+        <ymax>71.47907260393239426</ymax>
+      </wgs84extent>
       <id>forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=forests</datasource>
       <keywordList>
@@ -8737,7 +8809,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{a4d00313-270e-46f0-b42a-d0d6fc345ce7}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="129,192,112,255,rgb:0.50588235294117645,0.75294117647058822,0.4392156862745098,1"></Option>
+                <Option name="color" type="QString" value="187,226,198,255,rgb:0.73333333333333328,0.88627450980392153,0.77647058823529413,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -8901,8 +8973,8 @@ def my_form_open(dialog, layer, feature):
             <Option type="QString" value="&quot;Name&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -8978,7 +9050,7 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -9090,6 +9162,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-121.24824965926799791</xmin>
+        <ymin>-81.3593033006471984</ymin>
+        <xmax>206.64328288371100939</xmax>
+        <ymax>88.66408223173010583</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-121.24824965926799791</xmin>
+        <ymin>-81.3593033006471984</ymin>
+        <xmax>206.64328288371100939</xmax>
+        <ymax>88.66408223173010583</ymax>
+      </wgs84extent>
       <id>hills_ce4f9894_b2c5_4ad4_a1c6_511fdead97eb</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=hills</datasource>
       <keywordList>
@@ -9319,7 +9403,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{e8ed2133-23d3-4c4d-abdb-5520054a3468}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="204,180,170,255,rgb:0.80000000000000004,0.70588235294117652,0.66666666666666663,1"></Option>
+                <Option name="color" type="QString" value="235,227,205,255,rgb:0.92156862745098034,0.8901960784313725,0.80392156862745101,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -9392,8 +9476,8 @@ def my_form_open(dialog, layer, feature):
             <Option type="QString" value="&quot;fid&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -9405,7 +9489,7 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -9508,6 +9592,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-138</xmin>
+        <ymin>-90</ymin>
+        <xmax>222</xmax>
+        <ymax>90</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-138</xmin>
+        <ymin>-90</ymin>
+        <xmax>222</xmax>
+        <ymax>90</ymax>
+      </wgs84extent>
       <id>ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=ice</datasource>
       <keywordList>
@@ -10067,7 +10163,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -10339,7 +10435,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -10561,7 +10657,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -10783,7 +10879,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -11005,7 +11101,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -11156,6 +11252,18 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="1" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
+      <extent>
+        <xmin>-137.57020568847698883</xmin>
+        <ymin>-90.16999816894529829</ymin>
+        <xmax>265.51989746093801159</xmax>
+        <ymax>80.35028076171880684</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-137.57020568847698883</xmin>
+        <ymin>-90.16999816894529829</ymin>
+        <xmax>265.51989746093801159</xmax>
+        <ymax>80.35028076171880684</ymax>
+      </wgs84extent>
       <id>labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=labels</datasource>
       <keywordList>
@@ -11983,7 +12091,7 @@ def my_form_open(dialog, layer, feature):
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Noto Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="15" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="255,255,255,255,rgb:1,1,1,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Noto Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="15" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="1" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="255,255,255,255,rgb:1,1,1,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families></families>
             <text-buffer bufferBlendMode="0" bufferColor="32,32,32,255,rgb:0.12549019607843137,0.12549019607843137,0.12549019607843137,1" bufferDraw="1" bufferJoinStyle="128" bufferNoFill="1" bufferOpacity="1" bufferSize="0.80000000000000004" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferSizeUnits="MM"></text-buffer>
             <text-mask maskEnabled="0" maskJoinStyle="128" maskOpacity="1" maskSize="1.5" maskSize2="1.5" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskSizeUnits="MM" maskType="0" maskedSymbolLayers=""></text-mask>
@@ -12108,17 +12216,19 @@ def my_form_open(dialog, layer, feature):
       <customproperties>
         <Option type="Map">
           <Option name="dualview/previewExpressions" type="List">
+            <Option type="QString" value="&quot;labels&quot;"></Option>
             <Option type="QString" value="&quot;Name&quot;"></Option>
+            <Option type="QString" value="&quot;labels&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
       <featureBlendMode>0</featureBlendMode>
       <layerOpacity>1</layerOpacity>
-      <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
+      <LinearlyInterpolatedDiagramRenderer attributeLegend="1" classificationAttributeExpression="" diagramType="Histogram" lowerHeight="0" lowerValue="0" lowerWidth="0" upperHeight="5" upperValue="0" upperWidth="5">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramMode="Horizontal" stackedDiagramSpacing="0" stackedDiagramSpacingUnit="MM" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" width="15">
           <fontProperties bold="0" description="MS Shell Dlg 2,7.875,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
           <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
@@ -12172,7 +12282,7 @@ def my_form_open(dialog, layer, feature):
             </symbol>
           </axisSymbol>
         </DiagramCategory>
-      </SingleCategoryDiagramRenderer>
+      </LinearlyInterpolatedDiagramRenderer>
       <DiagramLayerSettings dist="0" linePlacementFlags="18" obstacle="0" placement="1" priority="0" showAll="1" zIndex="0">
         <properties>
           <Option type="Map">
@@ -12188,7 +12298,7 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -12206,9 +12316,12 @@ def my_form_open(dialog, layer, feature):
           </editWidget>
         </field>
         <field configurationFlags="NoFlag" name="labels">
-          <editWidget type="">
+          <editWidget type="TextEdit">
             <config>
-              <Option></Option>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
             </config>
           </editWidget>
         </field>
@@ -12221,7 +12334,7 @@ def my_form_open(dialog, layer, feature):
                     <Option name="water (bay, ocean, sea)" type="QString" value="waters"></Option>
                   </Option>
                   <Option type="Map">
-                    <Option name="region (island, area)" type="QString" value="land"></Option>
+                    <Option name="region (island, area) DO NOT USE THIS ANYMORE, USE LAND LABELS" type="QString" value="land"></Option>
                   </Option>
                 </Option>
               </Option>
@@ -12302,24 +12415,39 @@ def my_form_open(dialog, layer, feature):
       <editable>
         <field editable="1" name="Name"></field>
         <field editable="1" name="fid"></field>
+        <field editable="1" name="labels"></field>
         <field editable="1" name="type"></field>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="Name"></field>
         <field labelOnTop="0" name="fid"></field>
+        <field labelOnTop="0" name="labels"></field>
         <field labelOnTop="0" name="type"></field>
       </labelOnTop>
       <reuseLastValue>
         <field name="Name" reuseLastValue="0"></field>
         <field name="fid" reuseLastValue="0"></field>
+        <field name="labels" reuseLastValue="0"></field>
         <field name="type" reuseLastValue="1"></field>
       </reuseLastValue>
       <dataDefinedFieldProperties></dataDefinedFieldProperties>
       <widgets></widgets>
-      <previewExpression>"Name"</previewExpression>
+      <previewExpression>"labels"</previewExpression>
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-138</xmin>
+        <ymin>-81.3593033006471984</ymin>
+        <xmax>222</xmax>
+        <ymax>90</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-138</xmin>
+        <ymin>-81.3593033006471984</ymin>
+        <xmax>222</xmax>
+        <ymax>90</ymax>
+      </wgs84extent>
       <id>land_48aa2040_f185_4ba4_a64a_5b3a275264c1</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=land</datasource>
       <keywordList>
@@ -12549,7 +12677,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{899b0e66-e3f4-476a-a44e-1d52ed3232c7}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="252,170,7,255,rgb:0.9882352941176471,0.66666666666666663,0.02745098039215686,1"></Option>
+                <Option name="color" type="QString" value="248,241,225,255,rgb:0.97254901960784312,0.94509803921568625,0.88235294117647056,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -12619,16 +12747,17 @@ def my_form_open(dialog, layer, feature):
       <customproperties>
         <Option type="Map">
           <Option name="dualview/previewExpressions" type="List">
-            <Option type="QString" value="coalesce(&quot;label&quot;,&quot;continent&quot;)"></Option>
-            <Option type="QString" value="&quot;name&quot;"></Option>
-            <Option type="QString" value="$area "></Option>
-            <Option type="QString" value=" $area "></Option>
-            <Option type="QString" value="&quot;Name&quot;"></Option>
+            <Option type="QString" value="coalesce(&quot;labels&quot;,&quot;continent&quot;)"></Option>
             <Option type="QString" value="&quot;label&quot;"></Option>
+            <Option type="QString" value="&quot;Name&quot;"></Option>
+            <Option type="QString" value=" $area "></Option>
+            <Option type="QString" value="$area "></Option>
+            <Option type="QString" value="&quot;name&quot;"></Option>
+            <Option type="QString" value="coalesce(&quot;label&quot;,&quot;continent&quot;)"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -12704,7 +12833,7 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -12906,7 +13035,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -13057,6 +13186,18 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-120.60862324237899657</xmin>
+        <ymin>-80.26618537790609764</ymin>
+        <xmax>206.64328288371100939</xmax>
+        <ymax>87.3669429126484971</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-120.60862324237899657</xmin>
+        <ymin>-80.26618537790609764</ymin>
+        <xmax>206.64328288371100939</xmax>
+        <ymax>87.3669429126484971</ymax>
+      </wgs84extent>
       <id>mountains_da232536_72ca_402a_b0c2_4d749d051c5f</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=mountains</datasource>
       <keywordList>
@@ -13286,7 +13427,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{cc5131f6-5ec6-41dc-98b0-7008cbc35116}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="164,113,88,255,rgb:0.64313725490196083,0.44313725490196076,0.34509803921568627,1"></Option>
+                <Option name="color" type="QString" value="222,212,184,255,rgb:0.87058823529411766,0.83137254901960789,0.72156862745098038,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -13450,8 +13591,8 @@ def my_form_open(dialog, layer, feature):
             <Option type="QString" value="&quot;Name&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -13463,7 +13604,7 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -13657,7 +13798,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -13882,7 +14023,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -14104,7 +14245,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -14326,7 +14467,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -14548,7 +14689,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -15240,8 +15381,8 @@ def my_form_open(dialog, layer, feature):
             <Option type="QString" value="&quot;Name&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames"></Option>
-          <Option name="variableValues"></Option>
+          <Option name="variableNames" type="invalid"></Option>
+          <Option name="variableValues" type="invalid"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -15458,6 +15599,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiLineString">
+      <extent>
+        <xmin>-28.35947854146019864</xmin>
+        <ymin>13.62046545917229956</ymin>
+        <xmax>12.58587412594440025</xmax>
+        <ymax>48.50874312604239691</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-28.35947854146019864</xmin>
+        <ymin>13.62046545917229956</ymin>
+        <xmax>12.58587412594440025</xmax>
+        <ymax>48.50874312604239691</ymax>
+      </wgs84extent>
       <id>roads_7e038ab7_ac9b_4762_96b1_2ac7d9a2c175</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=roads</datasource>
       <keywordList>
@@ -16258,7 +16411,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -16480,7 +16633,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -16702,7 +16855,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -16924,7 +17077,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -17075,6 +17228,18 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-28.49574987830219897</xmin>
+        <ymin>8.39275642728338056</ymin>
+        <xmax>182.28908546861899254</xmax>
+        <ymax>54.74378063590619803</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-28.49574987830219897</xmin>
+        <ymin>8.39275642728338056</ymin>
+        <xmax>182.28908546861899254</xmax>
+        <ymax>54.74378063590619803</ymax>
+      </wgs84extent>
       <id>specials_c128e960_556c_4ede_a0c3_f1da18d388a2</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=specials</datasource>
       <keywordList>
@@ -17752,7 +17917,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -17903,6 +18068,18 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-28.60832591944040004</xmin>
+        <ymin>-15.85654450813560068</ymin>
+        <xmax>199.37869486909301031</xmax>
+        <ymax>57.25691727428409905</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-28.60832591944040004</xmin>
+        <ymin>-15.85654450813560068</ymin>
+        <xmax>199.37869486909301031</xmax>
+        <ymax>57.25691727428409905</ymax>
+      </wgs84extent>
       <id>swamps_92ae1780_aeca_4355_866a_cc4af5f68520</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=swamps</datasource>
       <keywordList>
@@ -18132,7 +18309,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{18efaf62-3b47-4a17-93e6-db7600656795}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="157,95,195,255,rgb:0.61568627450980395,0.37254901960784315,0.76470588235294112,1"></Option>
+                <Option name="color" type="QString" value="183,197,188,255,rgb:0.71764705882352942,0.77254901960784317,0.73725490196078436,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -18205,8 +18382,8 @@ def my_form_open(dialog, layer, feature):
             <Option type="QString" value="&quot;Name&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -18218,7 +18395,7 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -18395,7 +18572,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -18617,7 +18794,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -18838,7 +19015,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -19060,7 +19237,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -19282,7 +19459,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -19521,7 +19698,7 @@ def my_form_open(dialog, layer, feature):
       <flags>
         <Identifiable>1</Identifiable>
         <Removable>1</Removable>
-        <Searchable>1</Searchable>
+        <Searchable>0</Searchable>
         <Private>0</Private>
       </flags>
       <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
@@ -19675,6 +19852,18 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
+      <extent>
+        <xmin>-30.75495431971389948</xmin>
+        <ymin>16.48168488768790141</ymin>
+        <xmax>-0.18155506990273099</xmax>
+        <ymax>51.25305502413039704</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-30.75495431971389948</xmin>
+        <ymin>16.48168488768790141</ymin>
+        <xmax>-0.18155506990273099</xmax>
+        <ymax>51.25305502413039704</ymax>
+      </wgs84extent>
       <id>walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=buildings</datasource>
       <keywordList>
@@ -20175,6 +20364,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-107.54858167508500344</xmin>
+        <ymin>-52.89849145364050287</ymin>
+        <xmax>191.89236118462000036</xmax>
+        <ymax>80.28022859488349638</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-107.54858167508500344</xmin>
+        <ymin>-52.89849145364050287</ymin>
+        <xmax>191.89236118462000036</xmax>
+        <ymax>80.28022859488349638</ymax>
+      </wgs84extent>
       <id>waters_ffcf32fb_950c_400d_8017_4af9540e8da3</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=waters</datasource>
       <keywordList>
@@ -20404,7 +20605,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{8a878a29-982d-4ab8-9000-5ef7b31a2044}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="85,201,255,255,rgb:0.33333333333333331,0.78823529411764703,1,1"></Option>
+                <Option name="color" type="QString" value="138,180,248,255,rgb:0.54117647058823526,0.70588235294117652,0.97254901960784312,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -20568,8 +20769,8 @@ def my_form_open(dialog, layer, feature):
             <Option type="QString" value="&quot;Name&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -20581,7 +20782,7 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -20766,9 +20967,9 @@ def my_form_open(dialog, layer, feature):
       <browseRasterDir type="QString">E:/workspace-paizo/mapping/sources/images/avistan/saga lands/varisia/Shattered Star</browseRasterDir>
     </FreehandRasterGeoreferencer>
     <Gui>
-      <CanvasColorBluePart type="int">255</CanvasColorBluePart>
-      <CanvasColorGreenPart type="int">255</CanvasColorGreenPart>
-      <CanvasColorRedPart type="int">255</CanvasColorRedPart>
+      <CanvasColorBluePart type="int">245</CanvasColorBluePart>
+      <CanvasColorGreenPart type="int">160</CanvasColorGreenPart>
+      <CanvasColorRedPart type="int">110</CanvasColorRedPart>
       <SelectionColorAlphaPart type="int">255</SelectionColorAlphaPart>
       <SelectionColorBluePart type="int">0</SelectionColorBluePart>
       <SelectionColorGreenPart type="int">255</SelectionColorGreenPart>
@@ -20824,6 +21025,7 @@ def my_form_open(dialog, layer, feature):
     </WFSTLayers>
     <WFSUrl type="QString"></WFSUrl>
     <WMSAccessConstraints type="QString">None</WMSAccessConstraints>
+    <WMSAddLayerGroupsLegendGraphic type="bool">false</WMSAddLayerGroupsLegendGraphic>
     <WMSAddWktGeometry type="bool">false</WMSAddWktGeometry>
     <WMSContactMail type="QString"></WMSContactMail>
     <WMSContactOrganization type="QString"></WMSContactOrganization>
@@ -20845,6 +21047,7 @@ def my_form_open(dialog, layer, feature):
     <WMSServiceAbstract type="QString"></WMSServiceAbstract>
     <WMSServiceCapabilities type="bool">false</WMSServiceCapabilities>
     <WMSServiceTitle type="QString"></WMSServiceTitle>
+    <WMSSkipNameForGroup type="bool">false</WMSSkipNameForGroup>
     <WMSTileBuffer type="int">0</WMSTileBuffer>
     <WMSUrl type="QString"></WMSUrl>
     <WMSUseLayerIDs type="bool">false</WMSUseLayerIDs>
@@ -20909,7 +21112,7 @@ def my_form_open(dialog, layer, feature):
   <Sensors></Sensors>
   <ProjectViewSettings UseProjectScales="0" rotation="0">
     <Scales></Scales>
-    <DefaultViewExtent xmax="-15.01881931310883012" xmin="-37.29401949242318182" ymax="22.63673703345560284" ymin="6.08785703334935313">
+    <DefaultViewExtent xmax="11.78142391660947297" xmin="-27.65850817112240279" ymax="49.5422260715946976" ymin="24.84386747808518692">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
         <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -20974,7 +21177,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="rivers_37f0454d_322e_45b4_8a2a_e95e0f10c44e" destinationLayerName="rivers" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-paizo/mapping-data/mapping-data.gpkg|layername=rivers">
+  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="waters_ffcf32fb_950c_400d_8017_4af9540e8da3" destinationLayerName="waters" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-paizo/mapping-data/mapping-data.gpkg|layername=waters">
     <timeStampFields></timeStampFields>
   </ProjectGpsSettings>
 </qgis>
