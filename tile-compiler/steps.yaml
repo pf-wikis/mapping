@@ -131,7 +131,6 @@
         summand: cities
     - step: RESOLVE_LABELS
     - step: LOCATION_GROUP
-    - step: OUTPUT
 
 - name: mountains
   steps:
@@ -161,14 +160,12 @@
       dependsOn:
         in: rivers.READ_FILE
     - step: RIVER_LABELS
-    - step: OUTPUT
 
 - name: roads
   steps:
     - step: READ_FILE
       layer: roads
     - step: SMOOTH_LINES
-    - step: OUTPUT
 
 - name: road-labels
   steps:
@@ -176,7 +173,6 @@
       dependsOn:
         in: roads.SMOOTH_LINES
     - step: RIVER_LABELS
-    - step: OUTPUT
 
 - name: specials
   steps:
@@ -244,7 +240,6 @@
         in: borders
         land_without_water: land_without_water
     - step: SMOOTH_LINES
-    - step: OUTPUT
 
 - name: nation-labels
   steps:
@@ -254,7 +249,6 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 3
-    - step: OUTPUT
 
 - name: province-borders
   steps:
@@ -265,7 +259,6 @@
     - step: SMOOTH_LINES
     - step: ADD_ZOOM
       minZoom: 3
-    - step: OUTPUT
 
 - name: province-labels
   steps:
@@ -275,7 +268,6 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 4
-    - step: OUTPUT
 
 - name: subregion-borders
   steps:
@@ -284,7 +276,6 @@
         in: borders
         land_without_water: land_without_water
     - step: SMOOTH_LINES
-    - step: OUTPUT
 
 - name: subregion-labels
   steps:
@@ -294,7 +285,6 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 2
-    - step: OUTPUT
 
 - name: region-borders
   steps:
@@ -305,7 +295,6 @@
     - step: ADD_ZOOM
       minZoom: 2
       maxZoom: 3
-    - step: OUTPUT
 
 - name: region-labels
   steps:
@@ -315,7 +304,6 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 1
-    - step: OUTPUT
 
 ########################## merge all geometry together
 - name: geometry
@@ -334,7 +322,6 @@
         specials: specials
         waters: waters
         buildings: buildings
-    - step: OUTPUT
 
 - name: labels
   steps:
@@ -352,7 +339,6 @@
         swamps: swamp-labels
         waters: water-labels
         districts: district-labels
-    - step: OUTPUT
 
 - name: search-index
   steps:
@@ -377,3 +363,27 @@
         provinces: province-labels.BORDER_VARIANTS__PROVINCES
         rivers: river-labels.RESOLVE_LABELS
         roads: road-labels.RESOLVE_LABELS
+
+- name: tiles
+  steps:
+	- step: COMPILE_TILES
+	  dependsOn:
+		labels: labels
+		geometry: geometry
+		nation-borders: nation-borders
+		nation-labels: nation-labels
+		province-borders: province-borders
+		province-labels: province-labels
+		subregion-borders: subregion-borders
+		subregion-labels: subregion-labels
+		region-borders: region-borders
+		region-labels: region-labels
+		locations: locations
+		river-labels: river-labels
+		roads: roads
+		road-labels: road-labels
+
+############################ unrelated steps
+- name: sprites
+  steps:
+	- step: COMPILE_SPRITES
