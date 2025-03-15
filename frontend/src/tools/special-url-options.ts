@@ -21,8 +21,8 @@ export function addSpecialURLOptions(map: Map) {
     });
     
     if(options.get('bbox')) {
-        console.log(`bbox with padding ${pad}`);
         let bbox = options.get('bbox').split(',').map(Number.parseFloat) as float[];
+        console.log(`bbox with ${bbox}`);
         options.delete('bbox');
         window.location.hash = '#'+options.toString();
         let cam:CenterZoomBearing;
