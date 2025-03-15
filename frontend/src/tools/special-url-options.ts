@@ -21,11 +21,20 @@ export function addSpecialURLOptions(map: Map) {
     });
     
     if(options.get('bbox')) {
-        let pad = 0;//window.innerWidth*0.075;
         console.log(`bbox with padding ${pad}`);
-        let bbox = options.get('bbox').split(',').map(Number.parseFloat) as LngLatBoundsLike;
+        let bbox = options.get('bbox').split(',').map(Number.parseFloat) as float[];
         options.delete('bbox');
         window.location.hash = '#'+options.toString();
-        map.fitBounds(bbox, {animate: false, padding: pad});
+        let cam:CenterZoomBearing;
+        if(bbox.length==4) {
+            cam = map.cameraForBounds(bbox);
+        }
+        else if(bbox.length==2) {
+            cam = {center:bbox, zoom:7};
+        }
+        else {
+            cam = {center:[0,0], zoom:7}
+        }
+        map.jumpTo(cam);
     }
 }

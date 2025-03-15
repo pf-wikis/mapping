@@ -71,12 +71,7 @@ public class CreateSearchIndex extends LCStep {
     		.map(e->new Category(
 				e.getValue().getFirst().getValue().category(),
 				e.getValue().stream()
-					.map(b->new Result(b.getKey(), new double[] {
-						b.getValue().box.getMinLongitude(),
-						b.getValue().box.getMinLatitude(),
-						b.getValue().box.getMaxLongitude(),
-						b.getValue().box.getMaxLatitude()
-		    		}))
+					.map(b->new Result(b.getKey(), toArray(b.getValue().box)))
 					.sorted(Comparator.comparing(Result::label))
 					.toList()
     		))
@@ -94,5 +89,17 @@ public class CreateSearchIndex extends LCStep {
     	
     	return LCContent.empty();
     }
+
+	private double[] toArray(BoundingBox box) {
+		if(box.getMinLatitude()==box.getMaxLatitude() && box.getMinLongitude()==box.getMaxLongitude()) {
+			return new double[] {box.getMinLongitude(), box.getMinLatitude()};
+		}
+		return new double[] {
+			box.getMinLongitude(),
+			box.getMinLatitude(),
+			box.getMaxLongitude(),
+			box.getMaxLatitude()
+		};
+	}
 }
 
