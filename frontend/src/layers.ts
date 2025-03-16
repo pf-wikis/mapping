@@ -81,7 +81,7 @@ let allLayers:LayerSpecification[] = [
     type: 'fill',
     paint: {
       'fill-color': ['get', 'color'],
-      'fill-antialias': true
+      'fill-antialias': false
     }
   }),
   createLayer('province-borders', {
