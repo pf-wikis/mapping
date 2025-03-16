@@ -8,9 +8,11 @@ let colors = {
   water:           'rgb(138, 180, 248)',
   waterDeep:       'rgb(110, 160, 245)',
   waterDarker:     'rgb(  9,  64, 153)',
+  road:            'rgb(185, 157,  92)',
+  roadDarker:      'rgb( 90,  76,  44)',
   regionBorders:   'rgb(107,  42,  33)',
-  regionLabels:     'rgb( 17,  42,  97)',
-  regionLabelsOut:  'rgb(213, 195, 138)',
+  regionLabels:    'rgb( 17,  42,  97)',
+  regionLabelsOut: 'rgb(213, 195, 138)',
   nationBorders:   'rgb(170, 170, 170)',
   borderDarker:    'rgb( 74,  74,  74)',
   white:           'rgb(255, 255, 255)',
@@ -79,8 +81,7 @@ let allLayers:LayerSpecification[] = [
     type: 'fill',
     paint: {
       'fill-color': ['get', 'color'],
-      'fill-antialias': false,/*true,
-      'fill-outline-color': 'rgb(255,0,0)'*/
+      'fill-antialias': true
     }
   }),
   createLayer('province-borders', {
@@ -135,6 +136,7 @@ let allLayers:LayerSpecification[] = [
       'line-cap': 'round'
     }
   }),
+  /*
   createLayer('river-labels', {
     type: 'symbol',
     layout: {
@@ -154,6 +156,62 @@ let allLayers:LayerSpecification[] = [
     paint: {
       'text-color': colors.water,
       'text-halo-color': colors.waterDarker,
+      'text-halo-width': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        5, .125*fs,
+        10, 1*fs,
+      ],
+    }
+  }),
+  createLayer('road-labels', {
+    type: 'symbol',
+    layout: {
+      'symbol-placement': 'line',
+      'text-max-angle': 20,
+      'text-field': ['get', 'label'],
+      'text-font': ['NotoSans-Medium'],
+      'symbol-spacing': 300,
+      'text-size': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        5,  2,
+        10, 16,
+      ],
+    },
+    paint: {
+      'text-color': colors.road,
+      'text-halo-color': colors.roadDarker,
+      'text-halo-width': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        5, .125*fs,
+        10, 1*fs,
+      ],
+    }
+  }),*/
+  createLayer('line-labels', {
+    type: 'symbol',
+    layout: {
+      'symbol-placement': 'line',
+      'text-max-angle': 20,
+      'text-field': ['get', 'label'],
+      'text-font': ['NotoSans-Medium'],
+      'symbol-spacing': 300,
+      'text-size': [
+        'interpolate',
+        ['linear'],
+        ['zoom'],
+        5,  2,
+        10, 16,
+      ],
+    },
+    paint: {
+      'text-color': ['get', 'color'],
+      'text-halo-color': ['get', 'halo'],
       'text-halo-width': [
         'interpolate',
         ['linear'],

@@ -18,6 +18,7 @@ import com.beust.jcommander.internal.Lists;
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Tools;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import mil.nga.sf.geojson.Feature;
 import mil.nga.sf.geojson.FeatureCollection;
@@ -26,8 +27,10 @@ import mil.nga.sf.geojson.MultiLineString;
 import mil.nga.sf.geojson.Point;
 import mil.nga.sf.geojson.Polygon;
 
+@Setter
 @Slf4j
 public class ShapeRivers extends LCStep {
+	
 
 	@Override
 	public LCContent process() throws IOException {

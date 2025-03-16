@@ -52,8 +52,9 @@ public class MergeGeometry extends LCStep {
 			case "hills" -> new Color(235, 227, 205);
 			case "forests" -> new Color(187, 226, 198);
 			case "swamps" -> new Color(183, 197, 188);
-			case "shallow-waters", "waters" -> new Color(138, 180, 248);
+			case "rivers", "shallow-waters", "waters" -> new Color(138, 180, 248);
 			case "buildings" -> new Color(119, 136, 153);
+			case "roads" -> new Color(185, 157,  92);
 			case "specials" -> null;//new Color(255, 0, 0);
 			case "continents" -> new Color(248, 241, 225);
 			case "generic" -> null;//new Color(255, 0, 0);

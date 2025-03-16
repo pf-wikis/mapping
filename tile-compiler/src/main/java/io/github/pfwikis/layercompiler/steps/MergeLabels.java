@@ -9,11 +9,15 @@ import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.util.ColorUtil;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+@Setter
 @Slf4j
 public class MergeLabels extends LCStep {
 
+	private boolean invert = false;
+	
     @Override
     public LCContent process() throws Exception {
     	var result = new FeatureCollection();
@@ -32,6 +36,12 @@ public class MergeLabels extends LCStep {
     			
     			f.getProperties().setColor(ColorUtil.toHex(ColorUtil.darkenTo(color, .15)));
 				f.getProperties().setHalo(ColorUtil.toHex(ColorUtil.brightenBy(color, .1)));
+				
+				if(invert) {
+					var oldHalo = f.getProperties().getHalo();
+					f.getProperties().setHalo(f.getProperties().getColor());
+					f.getProperties().setColor(oldHalo);
+				}
     		}
     	}
     	return LCContent.from(result);

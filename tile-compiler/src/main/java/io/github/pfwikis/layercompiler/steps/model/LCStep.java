@@ -34,8 +34,8 @@ public abstract class LCStep extends Task<String, LCContent> {
             	this.getResult(input).getResult().finishUsage();
             }
             return result;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        } catch (Throwable t) {
+            throw new RuntimeException(t);
         } finally {
         	Thread.currentThread().setName(oldName);
         }

@@ -11,7 +11,7 @@ public class RiverLabels extends LCStep {
         return Tools.mapshaper(this, getInput(),
             "-clean",
             "-dissolve", "label",
-            "-filter", "label !== null",
+            "-filter", "Boolean(label)",
             "-each", "filterMinzoom=5"
         );
     }
