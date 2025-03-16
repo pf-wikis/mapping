@@ -345,7 +345,7 @@
     - step: CREATE_SEARCH_INDEX
       dependsOn:
         continents: continent-labels.RESOLVE_LABELS
-        land: land-labels
+        land: land-labels.RESOLVE_LABELS
         deserts: desert-labels.RESOLVE_LABELS
         hills: hill-labels.RESOLVE_LABELS
         mountains: mountain-labels.RESOLVE_LABELS
