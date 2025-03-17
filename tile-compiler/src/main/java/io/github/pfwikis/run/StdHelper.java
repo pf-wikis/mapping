@@ -2,6 +2,7 @@ package io.github.pfwikis.run;
 
 import java.io.Closeable;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
@@ -31,32 +32,38 @@ public class StdHelper implements Closeable {
 	}
 
 	public void intermediatePrint() {
-		var ct = content.toRawString().stripTrailing();
-		
-		//remove deleted lines
-		ct = ct.replaceAll("[^\n]*\r", "");
-		String potential;
-		if(ct.contains("\n")) {
-			int i = ct.lastIndexOf('\n');
-			potential=ct.substring(i);
-			ct = ct.substring(0,i);
-		}
-		else {
-			potential = ct;
-			ct = "";
-		}
-		
-		var toPrint = ct+potential;
-		toPrint = StringUtils.removeStart(toPrint, alreadyPrinted);
-		toPrint = StringUtils.removeStart(toPrint, alreadyPrintedButPotential);
-		
-		if(!toPrint.isBlank()) {
-			log(Level.INFO, toPrint);
+		try {
+			var ct = content.toRawString().stripTrailing();
 			
+			//remove deleted lines
+			ct = ct.replaceAll("[^\n]*\r", "");
+			String potential;
+			if(ct.contains("\n")) {
+				int i = ct.lastIndexOf('\n');
+				potential=ct.substring(i);
+				ct = ct.substring(0,i);
+			}
+			else {
+				potential = ct;
+				ct = "";
+			}
+			
+			var toPrint = ct+potential;
+			toPrint = StringUtils.removeStart(toPrint, alreadyPrinted);
+			toPrint = StringUtils.removeStart(toPrint, alreadyPrintedButPotential);
+			
+			if(!toPrint.isBlank()) {
+				log(Level.INFO, toPrint);
+				
+			}
+			
+			alreadyPrinted = ct;
+			alreadyPrintedButPotential = potential;
+		} catch(Exception e) {
+			if(e instanceof FileNotFoundException || e.getCause() instanceof FileNotFoundException)
+				return; //we can ignore this case
+			log.error("Could not print", e);
 		}
-		
-		alreadyPrinted = ct;
-		alreadyPrintedButPotential = potential;
 	}
 
 	private void log(Level level, String msg) {

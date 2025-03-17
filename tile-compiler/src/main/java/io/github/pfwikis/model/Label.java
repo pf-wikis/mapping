@@ -2,6 +2,7 @@ package io.github.pfwikis.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.StreamSupport;
 
 import com.beust.jcommander.internal.Lists;
@@ -48,7 +49,7 @@ public class Label {
 		if(id == null) {
 			return label;
 		}
-		return this;
+		return Map.of("label", label, "id", id);
 	}
 
 	public String identifier() {
