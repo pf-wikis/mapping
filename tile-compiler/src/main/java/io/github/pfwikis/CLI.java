@@ -12,11 +12,6 @@ public class CLI {
             .build();
         jc.parse(args);
 
-        if("clean".equals(jc.getParsedCommand())) {
-            new Cleaner().run();
-        }
-        else {
-            new TileCompiler().run(options);
-        }
+        new TileCompiler().run(options);
     }
 }

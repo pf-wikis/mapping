@@ -5,13 +5,12 @@ import java.util.List;
 
 import org.locationtech.jts.math.Vector2D;
 
+import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.util.Projection;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import mil.nga.sf.geojson.Point;
-import mil.nga.sf.geojson.Position;
 
 @Getter @Setter
 @RequiredArgsConstructor
@@ -53,16 +52,16 @@ public class RPoint implements Comparable<RPoint> {
         return new Point(new Position(v.getX()*3/2, v.getY()));
     }*/
 
-    public static Vector2D v(mil.nga.sf.Point p) {
-        return new Vector2D(p.getX(), Projection.geoToMercator(p.getY()));
+    public static Vector2D v(LngLat p) {
+        return new Vector2D(p.lng(), Projection.geoToMercator(p.lat()));
     }
 
-    public static Point p(Vector2D v) {
-        return new Point(new Position(v.getX(), Projection.mercatorToGeo(v.getY())));
+    public static LngLat p(Vector2D v) {
+        return new LngLat(v.getX(), Projection.mercatorToGeo(v.getY()));
     }
 
     @Override
     public String toString() {
-        return "[lat="+p(location).getPosition().getY()+", lon="+p(location).getPosition().getX()+"]";
+        return "[lat="+p(location).lat()+", lon="+p(location).lng()+"]";
     }
 }

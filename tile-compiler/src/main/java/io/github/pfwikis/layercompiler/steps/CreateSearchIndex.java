@@ -15,15 +15,25 @@ import org.apache.commons.lang3.StringUtils;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import mil.nga.geopackage.BoundingBox;
 
 @Slf4j
 public class CreateSearchIndex extends LCStep {
 
+	@Data
+	@AllArgsConstructor
+	private static class BBox {
+		private double minLng;
+		private double maxLng;
+		private double minLat;
+		private double maxLat;
+	}
+	
 	record Category(String category, List<Result> entries) {}
 	record Result(String label, double[] bbox) {}
-	record BoxEntry(BoundingBox box, Set<String> source) {
+	record BoxEntry(BBox box, Set<String> source) {
 		public String category() {
 			if(source.size()>1)
 				return "mixed";
@@ -49,14 +59,14 @@ public class CreateSearchIndex extends LCStep {
 
     			var box = map.computeIfAbsent(f.getProperties().getLabel().identifier(), k->{
     				var p = f.getGeometry().streamPoints().findAny().get();
-    				return new BoxEntry(new BoundingBox(p.lng(), p.lat(), p.lng(), p.lat()), new HashSet<>());
+    				return new BoxEntry(new BBox(p.lng(), p.lat(), p.lng(), p.lat()), new HashSet<>());
     			});
     			box.source.add(e.getKey());
     			f.getGeometry().streamPoints().forEach(p->{
-    				box.box.setMaxLatitude (Math.max(box.box.getMaxLatitude(), p.lat()));
-    				box.box.setMinLatitude (Math.min(box.box.getMinLatitude(), p.lat()));
-    				box.box.setMaxLongitude(Math.max(box.box.getMaxLongitude(), p.lng()));
-    				box.box.setMinLongitude(Math.min(box.box.getMinLongitude(), p.lng()));
+    				box.box.setMaxLat(Math.max(box.box.getMaxLat(), p.lat()));
+    				box.box.setMinLat(Math.min(box.box.getMinLat(), p.lat()));
+    				box.box.setMaxLng(Math.max(box.box.getMaxLng(), p.lng()));
+    				box.box.setMinLng(Math.min(box.box.getMinLng(), p.lng()));
     			});	
     		}
 
@@ -90,15 +100,15 @@ public class CreateSearchIndex extends LCStep {
     	return LCContent.empty();
     }
 
-	private double[] toArray(BoundingBox box) {
-		if(box.getMinLatitude()==box.getMaxLatitude() && box.getMinLongitude()==box.getMaxLongitude()) {
-			return new double[] {box.getMinLongitude(), box.getMinLatitude()};
+	private double[] toArray(BBox box) {
+		if(box.getMinLat()==box.getMaxLat() && box.getMinLng()==box.getMaxLng()) {
+			return new double[] {box.getMinLng(), box.getMinLat()};
 		}
 		return new double[] {
-			box.getMinLongitude(),
-			box.getMinLatitude(),
-			box.getMaxLongitude(),
-			box.getMaxLatitude()
+			box.getMinLng(),
+			box.getMinLat(),
+			box.getMaxLng(),
+			box.getMaxLat()
 		};
 	}
 }

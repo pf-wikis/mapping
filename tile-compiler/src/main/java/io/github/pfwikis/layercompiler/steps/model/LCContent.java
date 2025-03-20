@@ -89,11 +89,6 @@ public abstract class LCContent {
 		this.finishUsage();
 		return res;
 	}
-
-	@SneakyThrows
-	public mil.nga.sf.geojson.FeatureCollection toNgaFeatureCollection() {
-		return toParsed(mil.nga.sf.geojson.FeatureCollection.class);
-	}
 	
 	@SneakyThrows
 	public Path toTmpFile(LCStep step) {
@@ -131,11 +126,6 @@ public abstract class LCContent {
 	
 	public static LCContent from(FeatureCollection col) {
 		return new LCContentOM<>(FeatureCollection.class, col);
-	}
-	
-	@SneakyThrows
-	public static LCContent from(mil.nga.sf.geojson.FeatureCollection v) {
-		return new LCContentOM<>(mil.nga.sf.geojson.FeatureCollection.class, v);
 	}
 	
 	public static LCContent from(JsonNode n) {

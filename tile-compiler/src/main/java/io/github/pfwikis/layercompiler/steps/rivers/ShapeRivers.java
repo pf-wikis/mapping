@@ -17,15 +17,15 @@ import com.beust.jcommander.internal.Lists;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.model.Feature;
+import io.github.pfwikis.model.FeatureCollection;
+import io.github.pfwikis.model.Geometry;
+import io.github.pfwikis.model.Geometry.LineString;
+import io.github.pfwikis.model.Geometry.MultiLineString;
+import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.run.Tools;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import mil.nga.sf.geojson.Feature;
-import mil.nga.sf.geojson.FeatureCollection;
-import mil.nga.sf.geojson.LineString;
-import mil.nga.sf.geojson.MultiLineString;
-import mil.nga.sf.geojson.Point;
-import mil.nga.sf.geojson.Polygon;
 
 @Setter
 @Slf4j
@@ -53,23 +53,23 @@ public class ShapeRivers extends LCStep {
 
 	private Collection<RPoint> collectRivers(LCContent in) throws IOException {
 		var rivers = new HashMap<Vector2D, RPoint>();
-		var featureCol = in.toNgaFeatureCollection();
+		var featureCol = in.toFeatureCollection();
 		for (var feature : featureCol.getFeatures()) {
-			double defaultWidth = Objects.requireNonNullElse((Number) feature.getProperties().get("width"), 2000).doubleValue();
+			double defaultWidth = Objects.requireNonNullElse(feature.getProperties().getWidth(), 2000).doubleValue();
 			if (feature.getGeometry() instanceof LineString line) {
-				collectRivers(defaultWidth, line.getLineString().getPoints(), rivers);
+				collectRivers(defaultWidth, line.getCoordinates(), rivers);
 			} else if(feature.getGeometry() instanceof MultiLineString lines) {
-				lines.getMultiLineString().getLineStrings().forEach(ls->
-					collectRivers(defaultWidth, ls.getPoints(), rivers)
+				lines.getCoordinates().forEach(ls->
+					collectRivers(defaultWidth, ls, rivers)
 				);
 			} else {
-				throw new IllegalStateException("Unhandled type " + feature.getGeometryType());
+				throw new IllegalStateException("Unhandled type " + feature.getClass().getSimpleName());
 			}
 		}
 		return rivers.values();
 	}
 
-	private void collectRivers(double defaultWidth, List<mil.nga.sf.Point> points, HashMap<Vector2D, RPoint> rivers) {
+	private void collectRivers(double defaultWidth, List<LngLat> points, HashMap<Vector2D, RPoint> rivers) {
 		for (int i = 0; i < points.size() - 1; i++) {
 			var a = RPoint.v(points.get(i));
 			var b = RPoint.v(points.get(i + 1));
@@ -77,8 +77,8 @@ public class ShapeRivers extends LCStep {
 			var pB = rivers.computeIfAbsent(b, RPoint::new);
 			pA.getNeighbors().add(pB);
 			pB.getNeighbors().add(pA);
-			pA.setWidth(Math.max(metersToDeg(defaultWidth, points.get(i).getY()), pA.getWidth()));
-			pB.setWidth(Math.max(metersToDeg(defaultWidth, points.get(i + 1).getY()), pB.getWidth()));
+			pA.setWidth(Math.max(metersToDeg(defaultWidth, points.get(i).lat()), pA.getWidth()));
+			pB.setWidth(Math.max(metersToDeg(defaultWidth, points.get(i + 1).lat()), pB.getWidth()));
 
 			if (i == 0)
 				pA.setSegmentEnd(true);
@@ -243,7 +243,7 @@ public class ShapeRivers extends LCStep {
 			log.warn("very short river chain around " + chain.get(0));
 			return;
 		}
-		var points = new ArrayList<Point>();
+		var points = new ArrayList<LngLat>();
 
 		for (int i = 0; i < chain.size() - 2; i++) {
 			drawSimpleSection(chain.get(i), chain.get(i + 1), chain.get(i + 2), points);
@@ -254,10 +254,14 @@ public class ShapeRivers extends LCStep {
 		}
 		drawSimpleCap(chain.get(1), chain.get(0), points);
 
-		resultCollector.addFeature(new Feature(new Polygon(List.of(new LineString(points)))));
+		var f = new Feature();
+		var p = new Geometry.Polygon();
+		p.setCoordinates(List.of(points));
+		f.setGeometry(p);
+		resultCollector.getFeatures().add(f);
 	}
 
-	private void drawSimpleSection(RPoint a, RPoint b, RPoint c, ArrayList<Point> points) {
+	private void drawSimpleSection(RPoint a, RPoint b, RPoint c, List<LngLat> points) {
 		var ab = b.getLocation().subtract(a.getLocation()).normalize();
 		var bc = c.getLocation().subtract(b.getLocation()).normalize();
 
@@ -308,7 +312,7 @@ public class ShapeRivers extends LCStep {
 	private static final double[] SPRING_CAP = {-1,-.8,-.6,-.4,-.2,0,.2,.4,.6,.8,1};
 	private static final double[] SEA_CAP = {-1,1};
 
-	private void drawSimpleCap(RPoint a, RPoint b, ArrayList<Point> points) {
+	private void drawSimpleCap(RPoint a, RPoint b, List<LngLat> points) {
 		// round cap
 		if (b.getNeighbors().size() == 1) {
 			var ab = b.getLocation().subtract(a.getLocation()).normalize();
