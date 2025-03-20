@@ -50,18 +50,12 @@ To install QGIS:
 
 The current LTS version of QGIS is sufficient for editing, and the latest stable version might also be compatible. If in doubt, check with other volunteers in the [PathfinderWiki Discord server's](https://discord.gg/xueae4g) [`#golarion-mapping` channel](https://discord.com/channels/499368889176555520/1133657894181671023). Editing the project file itself is not necessary unless you've added a georeferenced raster image; _see "(Optional) Check out raster source map images"_.
 
-After installing QGIS, launch it and install the **Trackable QGIS Project** plugins required for working on this project.
-
-1. In QGIS, click **Plugins** in the menu, then click **Manage and Install Plugins...**.
-2. Click the **All** tab on the left sidebar.
-3. Click the **Search...** bar and type _Trackable QGIS Project_.
-4. Click **Trackable QGIS Project** in the search results. If it doesn't appear, your device or operating system might not be supported for this project.
-5. Click the **Install Plugin** button.
-
-These plugins are also recommended for installation:
+After installing QGIS, launch it and install the **Stable QGIS Project** plugin from the zip file in this repository.
+These plugins are also recommended for installation and should be enabled:
 
 - Kart
 - Freehand raster georeferencer
+- Topology Checker
 
 #### Install Kart and clone the mapping-data repository
 
