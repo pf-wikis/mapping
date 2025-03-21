@@ -1,6 +1,7 @@
 package io.github.pfwikis.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -25,6 +26,7 @@ public class Properties extends AnyJson {
 	private Boolean capital;
 	private String type;
 	private String color;
+	private List<String> colorStack;
 	private String halo;
 	private UUID uuid;
 	private BigDecimal angle;

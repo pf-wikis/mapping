@@ -16,7 +16,7 @@ public class MergeGeometry extends LCStep {
 
     @Override
     public LCContent process() throws Exception {
-    	var result = new FeatureCollection();
+    	var agg = new FeatureCollection();
     	log.info("Geometry layer order: {}", getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining("->")));
     	for(var e:this.getInputs().entrySet()) {
     		var defaultColor = Optional.ofNullable(colorFor(e.getKey()))
@@ -35,10 +35,43 @@ public class MergeGeometry extends LCStep {
     		var features = dissolved.toFeatureCollection();
     		dissolved.finishUsage();
     		for(var f : features.getFeatures()) {
-    			result.getFeatures().add(f);
+    			agg.getFeatures().add(f);
     		}
     	}
-    	return LCContent.from(result);
+    	var aggC = LCContent.from(agg);
+    	//return LCContent.from(result);
+    	var mosaicC = Tools.mapshaper(this, aggC,
+			"-mosaic", "calc='colorStack=collect(color)'",
+			"-filter", "Boolean(colorStack)",
+			"-filter", "!this.isNull"
+		);
+    	aggC.finishUsage();
+    	agg = null;
+    	var mosaic = mosaicC.toFeatureCollectionAndFinish();
+    	for(var f:mosaic.getFeatures()) {
+    		Color c = new Color(110, 160, 245);
+    		for(var rawNext:f.getProperties().getColorStack()) {
+    			var next = ColorUtil.fromHex(rawNext);
+    			if(next.getAlpha()==255) {
+    				c=next;
+    			}
+    			else {
+    				c = new Color(
+						(next.getRed()  *next.getAlpha()+c.getRed()  *(255-next.getAlpha()))/255,
+						(next.getGreen()*next.getAlpha()+c.getGreen()*(255-next.getAlpha()))/255,
+						(next.getBlue() *next.getAlpha()+c.getBlue() *(255-next.getAlpha()))/255
+					);
+    			}
+    		}
+    		f.getProperties().setColorStack(null);
+    		f.getProperties().setColor(ColorUtil.toHex(c));
+    	}
+
+    	var coloredC = LCContent.from(mosaic);
+    	return Tools.mapshaper(this, coloredC,
+			"-dissolve2", "color",
+			"-explode"
+		);
     }
 
 	public static Color colorFor(String layer) {
