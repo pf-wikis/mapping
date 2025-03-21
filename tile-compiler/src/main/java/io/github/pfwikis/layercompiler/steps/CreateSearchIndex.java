@@ -26,8 +26,8 @@ public class CreateSearchIndex extends LCStep {
 	@AllArgsConstructor
 	private static class BBox {
 		private double minLng;
-		private double maxLng;
 		private double minLat;
+		private double maxLng;
 		private double maxLat;
 	}
 	
