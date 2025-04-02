@@ -50,7 +50,8 @@ To install QGIS:
 
 The current LTS version of QGIS is sufficient for editing, and the latest stable version might also be compatible. If in doubt, check with other volunteers in the [PathfinderWiki Discord server's](https://discord.gg/xueae4g) [`#golarion-mapping` channel](https://discord.com/channels/499368889176555520/1133657894181671023). Editing the project file itself is not necessary unless you've added a georeferenced raster image; _see "(Optional) Check out raster source map images"_.
 
-After installing QGIS, launch it and install the **Stable QGIS Project** plugin from the zip file in this repository.
+After installing QGIS, launch it and install the **Stable QGIS Project** plugin by creating a zip file from the `sources/qgis-plugins/stable_project_files` directory in this repository.
+
 These plugins are also recommended for installation and should be enabled:
 
 - Kart
@@ -130,14 +131,6 @@ See also the [GitHub Actions Dockerfile](https://github.com/pf-wikis/mapping/blo
     ```
 
     If this step fails, examine any error messages for information about potentially missing dependencies or errors in the source data.
-
-    If you have multiple versions of the JDK installed on your system, you might need to specify a compatible JDK using the `JAVA_HOME` environment variable. For example, when invoking the `run.sh` script, use:
-
-    ```
-    JAVAHOME=/usr/lib/jvm/java-21-openjdk-21.0.3.0.9-1.fc40.x86_64/bin ./run.sh
-    ```
-
-    where `/usr/lib/jvm/java-21-openjdk-21.0.3.0.9-1.fc40.x86_64/bin` is the path to a compatible JDK installation's `java` and `javac` binaries.
 9.  Install frontend dependencies using `npm install` from the `frontend` directory:
     ```
     cd ../frontend
@@ -149,6 +142,22 @@ See also the [GitHub Actions Dockerfile](https://github.com/pf-wikis/mapping/blo
     ```
 
     This launches a local webserver on a non-privileged port, such as `http://localhost:5173/`. Open this URL in a web browser to view the locally built map.
+
+### Troubleshooting
+
+If you have multiple versions of the JDK installed on your system, you might need to specify a compatible JDK using the `JAVA_HOME` environment variable. For example, when invoking the `run.sh` script, use:
+
+```
+JAVAHOME=/usr/lib/jvm/java-21-openjdk-21.0.3.0.9-1.fc40.x86_64/bin ./run.sh
+```
+
+where `/usr/lib/jvm/java-21-openjdk-21.0.3.0.9-1.fc40.x86_64/bin` is the path to a compatible JDK installation's `java` and `javac` binaries.
+
+If the `GENERATE_LABEL_CENTERS` step fails with an error (such as error code 134), it might be due to QGIS attempting to launch a UI to execute a QGIS processing script. Set the `QT_QPA_PLATFORM` environment variable to `offscreen` to force it to run headless without generating errors:
+
+```
+export QT_QPA_PLATFORM=offscreen
+```
 
 ## Acknowledgments
 
