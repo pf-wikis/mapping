@@ -12,10 +12,15 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.locationtech.jts.algorithm.hull.ConcaveHullOfPolygons;
+import org.locationtech.jts.io.geojson.GeoJsonReader;
+import org.locationtech.jts.io.geojson.GeoJsonWriter;
+
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
+import io.github.pfwikis.model.Geometry;
 import io.github.pfwikis.model.Geometry.Point;
 import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.model.Properties;
@@ -91,11 +96,8 @@ public class GenerateLabelCenters extends LCStep {
     		"--FORMULA=$area/1000000"
 		);
         dissolved.finishUsage();
-
-        var buffered = Tools.qgis(this, "native:buffer", withArea, "--DISTANCE=expression:sqrt(\"areaSqkm\")*0.0002");
-        withArea.finishUsage();
         
-        var withFields = Tools.mapshaper(this, buffered,
+        var withFields = Tools.mapshaper(this, withArea,
     		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm"):List.of(),
     		"-sort", "areaSqkm", "descending", //to make bigger feature more important
 			"-each", "filterMinzoom="+filterMinzoom(),
@@ -103,7 +105,7 @@ public class GenerateLabelCenters extends LCStep {
             "-require", "crypto",
             "-each", "uuid=crypto.randomUUID()"
     	);
-        buffered.finishUsage();
+        withArea.finishUsage();
         return withFields;
 	}
 
@@ -175,8 +177,39 @@ public class GenerateLabelCenters extends LCStep {
         return angles;
 	}
 	
+	private static final GeoJsonWriter GEO_WRITER;
+	
+	static {
+		GEO_WRITER = new GeoJsonWriter();
+		GEO_WRITER.setEncodeCRS(false);
+	}
+	
 	private Map<UUID, LngLat> calcInnerPoint(LCContent in) throws IOException {
-        var inner = Tools.mapshaper(this, in, "-points", "inner").toFeatureCollectionAndFinish();
+		var fc = in.toFeatureCollection();
+        var hulled = new FeatureCollection();
+        fc.getFeatures()
+        	.stream()
+        	.map(f -> {
+        		try {
+	        		var json = LCContent.MAPPER.writeValueAsString(f);
+	        		
+	        		var hull = ConcaveHullOfPolygons.concaveHullByLengthRatio(new GeoJsonReader().read(json), 0.15);
+	        		var geom = LCContent.MAPPER.readValue(GEO_WRITER.write(hull), Geometry.class);
+	        		var res = new Feature();
+	        		res.setProperties(f.getProperties());
+	        		res.setTippecanoe(f.getTippecanoe());
+	        		res.setGeometry(geom);
+	        		return res;
+        		} catch(Exception e) {
+        			log.error("Can't generate concave hull for {}:{}", this.getName(), f, e);
+        			return f;
+        		}
+        	})
+        	.forEach(hulled.getFeatures()::add);
+        var buffered = LCContent.from(hulled);
+		
+        var inner = Tools.mapshaper(this, buffered, "-points", "inner").toFeatureCollectionAndFinish();
+        buffered.finishUsage();
         return inner
     		.getFeatures()
     		.stream()
