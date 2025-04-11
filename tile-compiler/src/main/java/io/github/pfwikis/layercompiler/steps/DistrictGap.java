@@ -13,6 +13,7 @@ public class DistrictGap extends LCStep {
     public LCContent process() throws IOException {
         var innerLines = Tools.mapshaper(this, getInput(),
             "-clean",
+            "-filter", "Boolean(labels)",
             "-snap", "precision=0.0001",
             "-innerlines", "-dissolve"
         );

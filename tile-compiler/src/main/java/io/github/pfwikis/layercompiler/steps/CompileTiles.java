@@ -11,10 +11,16 @@ import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Runner;
 import io.github.pfwikis.run.Tools;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Getter @Setter
 public class CompileTiles extends LCStep {
+	
+	private String filename = "golarion.pmtiles";
 	
     @Override
     public LCContent process() throws Exception {
@@ -29,7 +35,7 @@ public class CompileTiles extends LCStep {
 
         var ttmp = new File(Runner.TMP_DIR, "tippecanoe-tmp").getAbsoluteFile().getCanonicalFile();
         ttmp.mkdirs();
-        var tmpPMTiles = new File(ttmp, "golarion.pmtiles");
+        var tmpPMTiles = new File(ttmp, filename);
 
         Tools.tippecanoe(
         	null,
@@ -49,7 +55,7 @@ public class CompileTiles extends LCStep {
             "-t", ttmp,
             layers
         );
-        var finalOutput = new File(ctx.getOptions().targetDirectory(), "golarion.pmtiles");
+        var finalOutput = new File(ctx.getOptions().targetDirectory(), filename);
         FileUtils.deleteQuietly(finalOutput);
         FileUtils.moveFile(tmpPMTiles, finalOutput);
         FileUtils.deleteDirectory(ttmp);

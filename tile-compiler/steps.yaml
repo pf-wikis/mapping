@@ -54,6 +54,13 @@
     - step: ADD_ZOOM
       minZoom: 4
 
+- name: city-polygons
+  steps:
+    - step: CITY_POLYGONS
+      dependsOn:
+        in: districts.READ_FILE
+    - step: RESOLVE_LABELS
+
 - name: district-labels
   steps:
     - step: ADD_ZOOM
@@ -391,6 +398,13 @@
         region-labels: region-labels
         locations: locations
         line-labels: line-labels
+
+- name: debug-tiles
+  steps:
+    - step: COMPILE_TILES
+      filename: debug.pmtiles
+      dependsOn:
+        city-polygons: city-polygons
 
 ############################ unrelated steps
 - name: sprites
