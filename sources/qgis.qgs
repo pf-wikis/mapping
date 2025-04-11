@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2025-03-20T04:33:01" version="3.40.4-Bratislava">
+<qgis projectname="" saveDateTime="2025-04-11T13:38:01" version="3.40.4-Bratislava">
   <homePath path="."></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -34,7 +34,7 @@
     <customproperties>
       <Option></Option>
     </customproperties>
-    <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="images_a05422ba_d9b0_4dbe_9ef4_08468f8204c2" name="images">
+    <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="images_a05422ba_d9b0_4dbe_9ef4_08468f8204c2" name="images">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -46,7 +46,7 @@
           <customproperties>
             <Option></Option>
           </customproperties>
-          <layer-tree-layer checked="Qt::Unchecked" expanded="0" id="PariolIsland_modified_340fb99e_8e1a_4a70_8258_8689f03062aa" legend_exp="" legend_split_behavior="0" name="Pariol Island" patch_size="-1,-1" providerKey="gdal" source="./images/avistan/absalom/The Blakros Matrimony/PariolIsland_modified.png">
+          <layer-tree-layer checked="Qt::Checked" expanded="0" id="PariolIsland_modified_340fb99e_8e1a_4a70_8258_8689f03062aa" legend_exp="" legend_split_behavior="0" name="Pariol Island" patch_size="-1,-1" providerKey="gdal" source="./images/avistan/absalom/The Blakros Matrimony/PariolIsland_modified.png">
             <customproperties>
               <Option></Option>
             </customproperties>
@@ -398,8 +398,33 @@
       <customproperties>
         <Option></Option>
       </customproperties>
+      <layer-tree-layer checked="Qt::Checked" expanded="1" id="cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8" legend_exp="" legend_split_behavior="0" name="locations" patch_size="-1,-1" providerKey="ogr" source="./locations.geojson">
+        <customproperties>
+          <Option></Option>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" expanded="1" id="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" legend_exp="" legend_split_behavior="0" name="cities" patch_size="-1,-1" providerKey="ogr" source="./cities.geojson">
+        <customproperties>
+          <Option></Option>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" expanded="1" id="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" legend_exp="" legend_split_behavior="0" name="buildings" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=buildings">
+        <customproperties>
+          <Option></Option>
+        </customproperties>
+      </layer-tree-layer>
+      <layer-tree-layer checked="Qt::Checked" expanded="1" id="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" legend_exp="" legend_split_behavior="0" name="districts" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=districts">
+        <customproperties>
+          <Option></Option>
+        </customproperties>
+      </layer-tree-layer>
+    </layer-tree-group>
+    <layer-tree-layer checked="Qt::Unchecked" expanded="0" id="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" legend_exp="" legend_split_behavior="0" name="labels" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=labels">
+      <customproperties>
+        <Option></Option>
+      </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" legend_exp="" legend_split_behavior="0" name="cities" patch_size="-1,-1" providerKey="ogr" source="./cities.geojson">
+    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="borders_80959533_4778_401e_b8cd_8ba655123abe" legend_exp="" legend_split_behavior="0" name="borders" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=borders">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -411,21 +436,6 @@
             <Option type="QString" value="{b50192f1-4045-4b87-b99c-bcd9b1ff9fbb}"></Option>
           </Option>
         </Option>
-      </customproperties>
-    </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="0" id="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" legend_exp="" legend_split_behavior="0" name="labels" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=labels">
-      <customproperties>
-        <Option></Option>
-      </customproperties>
-    </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="borders_80959533_4778_401e_b8cd_8ba655123abe" legend_exp="" legend_split_behavior="0" name="borders" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=borders">
-      <customproperties>
-        <Option></Option>
-      </customproperties>
-    </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Checked" expanded="1" id="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" legend_exp="" legend_split_behavior="0" name="buildings" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=buildings">
-      <customproperties>
-        <Option></Option>
       </customproperties>
     </layer-tree-layer>
     <layer-tree-layer checked="Qt::Checked" expanded="0" id="roads_7e038ab7_ac9b_4762_96b1_2ac7d9a2c175" legend_exp="" legend_split_behavior="0" name="roads" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=roads">
@@ -469,11 +479,6 @@
       </customproperties>
     </layer-tree-layer>
     <layer-tree-layer checked="Qt::Checked" expanded="1" id="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" legend_exp="" legend_split_behavior="0" name="deserts" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=deserts">
-      <customproperties>
-        <Option></Option>
-      </customproperties>
-    </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Checked" expanded="1" id="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" legend_exp="" legend_split_behavior="0" name="districts" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=districts">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -569,15 +574,19 @@
       <layer-setting enabled="0" id="waters_ffcf32fb_950c_400d_8017_4af9540e8da3" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
     </individual-layer-settings>
   </snapping-settings>
-  <relations></relations>
+  <relations>
+    <relation id="districts__city_cities_b28_link" name="city-districs" referencedLayer="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" referencingLayer="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" strength="Association">
+      <fieldRef referencedField="link" referencingField="city"></fieldRef>
+    </relation>
+  </relations>
   <polymorphicRelations></polymorphicRelations>
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>-35.45901436453046074</xmin>
-      <ymin>26.08092812348680667</ymin>
-      <xmax>31.82419913186724614</xmax>
-      <ymax>62.11409705139177362</ymax>
+      <xmin>-0.42618724333469993</xmin>
+      <ymin>30.69136227370340819</ymin>
+      <xmax>0.06592853485210759</xmax>
+      <ymax>31.07237635439746626</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -598,12 +607,12 @@
   </mapcanvas>
   <projectModels></projectModels>
   <legend updateDrawingOrder="true">
-    <legendgroup checked="Qt::Checked" name="images" open="true">
+    <legendgroup checked="Qt::Checked" name="images" open="false">
       <legendgroup checked="Qt::Checked" name="avistan" open="true">
         <legendgroup checked="Qt::Checked" name="absalom" open="true">
-          <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="Pariol Island" open="false" showFeatureCount="0">
+          <legendlayer checked="Qt::Checked" drawingOrder="-1" name="Pariol Island" open="false" showFeatureCount="0">
             <filegroup hidden="false" open="false">
-              <legendlayerfile isInOverview="0" layerid="PariolIsland_modified_340fb99e_8e1a_4a70_8258_8689f03062aa" visible="0"></legendlayerfile>
+              <legendlayerfile isInOverview="0" layerid="PariolIsland_modified_340fb99e_8e1a_4a70_8258_8689f03062aa" visible="1"></legendlayerfile>
             </filegroup>
           </legendlayer>
           <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="swardlands" open="false" showFeatureCount="0">
@@ -877,21 +886,28 @@
         </legendlayer>
       </legendgroup>
     </legendgroup>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="locations" open="true" showFeatureCount="0">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8" visible="0"></legendlayerfile>
-      </filegroup>
-    </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="cities" open="true" showFeatureCount="0">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" visible="0"></legendlayerfile>
-      </filegroup>
-    </legendlayer>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="rivers" open="false" showFeatureCount="0">
-      <filegroup hidden="false" open="false">
-        <legendlayerfile isInOverview="0" layerid="rivers_37f0454d_322e_45b4_8a2a_e95e0f10c44e" visible="1"></legendlayerfile>
-      </filegroup>
-    </legendlayer>
+    <legendgroup checked="Qt::Checked" name="Detail" open="true">
+      <legendlayer checked="Qt::Checked" drawingOrder="-1" name="locations" open="true" showFeatureCount="0">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" layerid="cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8" visible="1"></legendlayerfile>
+        </filegroup>
+      </legendlayer>
+      <legendlayer checked="Qt::Checked" drawingOrder="-1" name="cities" open="true" showFeatureCount="0">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" layerid="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" visible="1"></legendlayerfile>
+        </filegroup>
+      </legendlayer>
+      <legendlayer checked="Qt::Checked" drawingOrder="-1" name="buildings" open="true" showFeatureCount="0">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" layerid="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" visible="1"></legendlayerfile>
+        </filegroup>
+      </legendlayer>
+      <legendlayer checked="Qt::Checked" drawingOrder="-1" name="districts" open="true" showFeatureCount="0">
+        <filegroup hidden="false" open="true">
+          <legendlayerfile isInOverview="0" layerid="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" visible="1"></legendlayerfile>
+        </filegroup>
+      </legendlayer>
+    </legendgroup>
     <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="labels" open="false" showFeatureCount="0">
       <filegroup hidden="false" open="false">
         <legendlayerfile isInOverview="0" layerid="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" visible="0"></legendlayerfile>
@@ -902,9 +918,9 @@
         <legendlayerfile isInOverview="0" layerid="borders_80959533_4778_401e_b8cd_8ba655123abe" visible="0"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="buildings" open="true" showFeatureCount="0">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" visible="1"></legendlayerfile>
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="rivers" open="false" showFeatureCount="0">
+      <filegroup hidden="false" open="false">
+        <legendlayerfile isInOverview="0" layerid="rivers_37f0454d_322e_45b4_8a2a_e95e0f10c44e" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Checked" drawingOrder="-1" name="roads" open="false" showFeatureCount="0">
@@ -950,11 +966,6 @@
     <legendlayer checked="Qt::Checked" drawingOrder="-1" name="deserts" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
         <legendlayerfile isInOverview="0" layerid="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" visible="1"></legendlayerfile>
-      </filegroup>
-    </legendlayer>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="districts" open="true" showFeatureCount="0">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Checked" drawingOrder="-1" name="land" open="true" showFeatureCount="0">
@@ -4423,16 +4434,16 @@
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="1" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-116.136077880859375</xmin>
-        <ymin>-47.99445724487304688</ymin>
-        <xmax>213.219451904296875</xmax>
-        <ymax>80.33747100830078125</ymax>
+        <xmin>-116.13607517952199544</xmin>
+        <ymin>-47.99445671366149924</ymin>
+        <xmax>213.2194470832239972</xmax>
+        <ymax>80.33745825440439603</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-116.136077880859375</xmin>
-        <ymin>-47.99445724487304688</ymin>
-        <xmax>213.219451904296875</xmax>
-        <ymax>80.33747100830078125</ymax>
+        <xmin>-116.13607517952199544</xmin>
+        <ymin>-47.99445671366149924</ymin>
+        <xmax>213.2194470832239972</xmax>
+        <ymax>80.33745825440439603</ymax>
       </wgs84extent>
       <id>borders_80959533_4778_401e_b8cd_8ba655123abe</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=borders</datasource>
@@ -5118,6 +5129,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="1" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
+      <extent>
+        <xmin>-102.93309999999999604</xmin>
+        <ymin>-39.76729999999999876</ymin>
+        <xmax>213.23099999999999454</xmax>
+        <ymax>79.11194999999999311</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-102.93309999999999604</xmin>
+        <ymin>-39.76729999999999876</ymin>
+        <xmax>213.23099999999999454</xmax>
+        <ymax>79.11194999999999311</ymax>
+      </wgs84extent>
       <id>cities_b2839d80_d946_48d1_8c42_83b3b917d8d5</id>
       <datasource>./cities.geojson</datasource>
       <keywordList>
@@ -5513,10 +5536,22 @@ def my_form_open(dialog, layer, feature):
       <reuseLastValue></reuseLastValue>
       <dataDefinedFieldProperties></dataDefinedFieldProperties>
       <widgets></widgets>
-      <previewExpression>"Name"</previewExpression>
+      <previewExpression>labels</previewExpression>
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Point" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="1" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Point">
+      <extent>
+        <xmin>-102.82750000000000057</xmin>
+        <ymin>-44.27067000000000263</ymin>
+        <xmax>204.47530000000000427</xmax>
+        <ymax>89.04971000000000458</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-102.82750000000000057</xmin>
+        <ymin>-44.27067000000000263</ymin>
+        <xmax>204.47530000000000427</xmax>
+        <ymax>89.04971000000000458</ymax>
+      </wgs84extent>
       <id>cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8</id>
       <datasource>./locations.geojson</datasource>
       <keywordList>
@@ -7457,16 +7492,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-113.12354278564453125</xmin>
-        <ymin>-47.37711334228515625</ymin>
-        <xmax>179.301483154296875</xmax>
-        <ymax>67.30632781982421875</ymax>
+        <xmin>-113.12354144755799723</xmin>
+        <ymin>-47.37710595785259926</ymin>
+        <xmax>179.30145473159601011</xmax>
+        <ymax>67.30632209808679534</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-113.12354278564453125</xmin>
-        <ymin>-47.37711334228515625</ymin>
-        <xmax>179.301483154296875</xmax>
-        <ymax>67.30632781982421875</ymax>
+        <xmin>-113.12354144755799723</xmin>
+        <ymin>-47.37710595785259926</ymin>
+        <xmax>179.30145473159601011</xmax>
+        <ymax>67.30632209808679534</ymax>
       </wgs84extent>
       <id>deserts_644ce1f6_9e06_4b66_ba44_bb030b005719</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=deserts</datasource>
@@ -8110,6 +8145,18 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-30.75686073303222656</xmin>
+        <ymin>17.81950759887695313</ymin>
+        <xmax>-0.17495426535606384</xmax>
+        <ymax>51.24486923217773438</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-30.75686073303222656</xmin>
+        <ymin>17.81950759887695313</ymin>
+        <xmax>-0.17495426535606384</xmax>
+        <ymax>51.24486923217773438</ymax>
+      </wgs84extent>
       <id>districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=districts</datasource>
       <keywordList>
@@ -8339,7 +8386,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{c6ccca5f-6fc7-424d-9b8c-56b7b7d90835}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="255,187,99,255,rgb:1,0.73333333333333328,0.38823529411764707,1"></Option>
+                <Option name="color" type="QString" value="255,187,99,77,rgb:1,0.73333333333333328,0.38823529411764707,0.30000762951094834"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -8349,6 +8396,44 @@ def my_form_open(dialog, layer, feature):
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
                 <Option name="style" type="QString" value="solid"></Option>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""></Option>
+                  <Option name="properties"></Option>
+                  <Option name="type" type="QString" value="collection"></Option>
+                </Option>
+              </data_defined_properties>
+            </layer>
+            <layer class="SimpleLine" enabled="1" id="{7b115fb6-6c6d-4859-ada5-94049e175a2b}" locked="0" pass="0">
+              <Option type="Map">
+                <Option name="align_dash_pattern" type="QString" value="0"></Option>
+                <Option name="capstyle" type="QString" value="square"></Option>
+                <Option name="customdash" type="QString" value="5;2"></Option>
+                <Option name="customdash_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="customdash_unit" type="QString" value="MM"></Option>
+                <Option name="dash_pattern_offset" type="QString" value="0"></Option>
+                <Option name="dash_pattern_offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
+                <Option name="draw_inside_polygon" type="QString" value="0"></Option>
+                <Option name="joinstyle" type="QString" value="bevel"></Option>
+                <Option name="line_color" type="QString" value="255,192,26,255,hsv:0.12069444444444444,0.89742885481040668,1,1"></Option>
+                <Option name="line_style" type="QString" value="solid"></Option>
+                <Option name="line_width" type="QString" value="0.26"></Option>
+                <Option name="line_width_unit" type="QString" value="MM"></Option>
+                <Option name="offset" type="QString" value="0"></Option>
+                <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="offset_unit" type="QString" value="MM"></Option>
+                <Option name="ring_filter" type="QString" value="0"></Option>
+                <Option name="trim_distance_end" type="QString" value="0"></Option>
+                <Option name="trim_distance_end_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="trim_distance_end_unit" type="QString" value="MM"></Option>
+                <Option name="trim_distance_start" type="QString" value="0"></Option>
+                <Option name="trim_distance_start_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="trim_distance_start_unit" type="QString" value="MM"></Option>
+                <Option name="tweak_dash_pattern_on_corners" type="QString" value="0"></Option>
+                <Option name="use_custom_dash" type="QString" value="0"></Option>
+                <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
               </Option>
               <data_defined_properties>
                 <Option type="Map">
@@ -8409,12 +8494,11 @@ def my_form_open(dialog, layer, feature):
       <customproperties>
         <Option type="Map">
           <Option name="dualview/previewExpressions" type="List">
-            <Option type="QString" value="&quot;Name&quot;"></Option>
-            <Option type="QString" value="'[Bitte Vorschautext festlegen]'"></Option>
+            <Option type="QString" value="&quot;labels&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -8426,12 +8510,16 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
       <legend showLabelLegend="0" type="default-vector"></legend>
-      <referencedLayers></referencedLayers>
+      <referencedLayers>
+        <relation dataSource="./cities.geojson" id="districts__city_cities_b28_link" layerId="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" layerName="cities" name="city-districs" providerKey="ogr" referencedLayer="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" referencingLayer="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" strength="Association">
+          <fieldRef referencedField="link" referencingField="city"></fieldRef>
+        </relation>
+      </referencedLayers>
       <fieldConfiguration>
         <field configurationFlags="NoFlag" name="fid">
           <editWidget type="TextEdit">
@@ -8443,7 +8531,31 @@ def my_form_open(dialog, layer, feature):
         <field configurationFlags="NoFlag" name="labels">
           <editWidget type="TextEdit">
             <config>
-              <Option></Option>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field configurationFlags="NoFlag" name="city">
+          <editWidget type="RelationReference">
+            <config>
+              <Option type="Map">
+                <Option name="AllowAddFeatures" type="bool" value="false"></Option>
+                <Option name="AllowNULL" type="bool" value="true"></Option>
+                <Option name="FetchLimitActive" type="bool" value="true"></Option>
+                <Option name="FetchLimitNumber" type="int" value="10"></Option>
+                <Option name="MapIdentification" type="bool" value="true"></Option>
+                <Option name="ReadOnly" type="bool" value="false"></Option>
+                <Option name="ReferencedLayerDataSource" type="QString" value="E:/workspace-paizo/mapping/sources/cities.geojson"></Option>
+                <Option name="ReferencedLayerId" type="QString" value="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5"></Option>
+                <Option name="ReferencedLayerName" type="QString" value="cities"></Option>
+                <Option name="ReferencedLayerProviderKey" type="QString" value="ogr"></Option>
+                <Option name="Relation" type="QString" value="districts__city_cities_b28_link"></Option>
+                <Option name="ShowForm" type="bool" value="false"></Option>
+                <Option name="ShowOpenFormButton" type="bool" value="true"></Option>
+              </Option>
             </config>
           </editWidget>
         </field>
@@ -8451,26 +8563,32 @@ def my_form_open(dialog, layer, feature):
       <aliases>
         <alias field="fid" index="0" name=""></alias>
         <alias field="labels" index="1" name=""></alias>
+        <alias field="city" index="2" name=""></alias>
       </aliases>
       <splitPolicies>
         <policy field="fid" policy="Duplicate"></policy>
         <policy field="labels" policy="Duplicate"></policy>
+        <policy field="city" policy="Duplicate"></policy>
       </splitPolicies>
       <duplicatePolicies>
         <policy field="fid" policy="Duplicate"></policy>
         <policy field="labels" policy="Duplicate"></policy>
+        <policy field="city" policy="Duplicate"></policy>
       </duplicatePolicies>
       <defaults>
         <default applyOnUpdate="0" expression="" field="fid"></default>
         <default applyOnUpdate="0" expression="" field="labels"></default>
+        <default applyOnUpdate="0" expression="" field="city"></default>
       </defaults>
       <constraints>
         <constraint constraints="3" exp_strength="0" field="fid" notnull_strength="1" unique_strength="1"></constraint>
         <constraint constraints="0" exp_strength="0" field="labels" notnull_strength="0" unique_strength="0"></constraint>
+        <constraint constraints="1" exp_strength="0" field="city" notnull_strength="1" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="fid"></constraint>
         <constraint desc="" exp="" field="labels"></constraint>
+        <constraint desc="" exp="" field="city"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
@@ -8480,6 +8598,7 @@ def my_form_open(dialog, layer, feature):
         <columns>
           <column hidden="0" name="fid" type="field" width="-1"></column>
           <column hidden="0" name="labels" type="field" width="-1"></column>
+          <column hidden="0" name="city" type="field" width="-1"></column>
           <column hidden="1" type="actions" width="-1"></column>
         </columns>
       </attributetableconfig>
@@ -8511,17 +8630,55 @@ def my_form_open(dialog, layer, feature):
 </editforminitcode>
       <featformsuppress>0</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
+      <attributeEditorForm>
+        <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
+          <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+        </labelStyle>
+        <attributeEditorField horizontalStretch="0" index="0" name="fid" showLabel="1" verticalStretch="0">
+          <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+          </labelStyle>
+        </attributeEditorField>
+        <attributeEditorField horizontalStretch="0" index="1" name="labels" showLabel="1" verticalStretch="0">
+          <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+          </labelStyle>
+        </attributeEditorField>
+        <attributeEditorField horizontalStretch="0" index="2" name="city" showLabel="1" verticalStretch="0">
+          <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+          </labelStyle>
+        </attributeEditorField>
+      </attributeEditorForm>
       <editable>
+        <field editable="0" name="cities_articleLength"></field>
+        <field editable="0" name="cities_capital"></field>
+        <field editable="0" name="cities_labels"></field>
+        <field editable="0" name="cities_size"></field>
+        <field editable="0" name="cities_text"></field>
+        <field editable="1" name="city"></field>
         <field editable="1" name="fid"></field>
         <field editable="1" name="label"></field>
         <field editable="1" name="labels"></field>
       </editable>
       <labelOnTop>
+        <field labelOnTop="0" name="cities_articleLength"></field>
+        <field labelOnTop="0" name="cities_capital"></field>
+        <field labelOnTop="0" name="cities_labels"></field>
+        <field labelOnTop="0" name="cities_size"></field>
+        <field labelOnTop="0" name="cities_text"></field>
+        <field labelOnTop="0" name="city"></field>
         <field labelOnTop="0" name="fid"></field>
         <field labelOnTop="0" name="label"></field>
         <field labelOnTop="0" name="labels"></field>
       </labelOnTop>
       <reuseLastValue>
+        <field name="cities_articleLength" reuseLastValue="0"></field>
+        <field name="cities_capital" reuseLastValue="0"></field>
+        <field name="cities_labels" reuseLastValue="0"></field>
+        <field name="cities_size" reuseLastValue="0"></field>
+        <field name="cities_text" reuseLastValue="0"></field>
+        <field name="city" reuseLastValue="1"></field>
         <field name="fid" reuseLastValue="0"></field>
         <field name="label" reuseLastValue="0"></field>
         <field name="labels" reuseLastValue="0"></field>
@@ -8533,16 +8690,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-122.26188659668000014</xmin>
-        <ymin>-58.24635314941409803</ymin>
-        <xmax>199.19145202636698855</xmax>
-        <ymax>71.47908020019529829</ymax>
+        <xmin>-122.26187392682399491</xmin>
+        <ymin>-58.24634573044689745</ymin>
+        <xmax>199.19142301106799664</xmax>
+        <ymax>71.47907260393239426</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-122.26188659668000014</xmin>
-        <ymin>-58.24635314941409803</ymin>
-        <xmax>199.19145202636698855</xmax>
-        <ymax>71.47908020019529829</ymax>
+        <xmin>-122.26187392682399491</xmin>
+        <ymin>-58.24634573044689745</ymin>
+        <xmax>199.19142301106799664</xmax>
+        <ymax>71.47907260393239426</ymax>
       </wgs84extent>
       <id>forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=forests</datasource>
@@ -9126,6 +9283,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-121.24825286865200269</xmin>
+        <ymin>-81.35930633544920454</ymin>
+        <xmax>206.643310546875</xmax>
+        <ymax>88.66408538818359375</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-121.24825286865200269</xmin>
+        <ymin>-81.35930633544920454</ymin>
+        <xmax>206.643310546875</xmax>
+        <ymax>88.66408538818359375</ymax>
+      </wgs84extent>
       <id>hills_ce4f9894_b2c5_4ad4_a1c6_511fdead97eb</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=hills</datasource>
       <keywordList>
@@ -9544,6 +9713,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
+      <extent>
+        <xmin>-138</xmin>
+        <ymin>-90</ymin>
+        <xmax>222</xmax>
+        <ymax>90</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-138</xmin>
+        <ymin>-90</ymin>
+        <xmax>222</xmax>
+        <ymax>90</ymax>
+      </wgs84extent>
       <id>ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=ice</datasource>
       <keywordList>
@@ -10299,7 +10480,9 @@ def my_form_open(dialog, layer, feature):
         </crs>
         <extent></extent>
       </resourceMetadata>
-      <childLayers></childLayers>
+      <childLayers>
+        <child layerid="PariolIsland_modified_340fb99e_8e1a_4a70_8258_8689f03062aa"></child>
+      </childLayers>
       <layerOpacity>0.762</layerOpacity>
       <blendMode>0</blendMode>
     </maplayer>
@@ -11192,6 +11375,18 @@ def my_form_open(dialog, layer, feature):
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="1" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
+      <extent>
+        <xmin>-137.57019350627200538</xmin>
+        <ymin>-90.16999054668470137</ymin>
+        <xmax>265.51987695090997477</xmax>
+        <ymax>80.35026897390389422</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-137.57019350627200538</xmin>
+        <ymin>-90.16999054668470137</ymin>
+        <xmax>265.51987695090997477</xmax>
+        <ymax>80.35026897390389422</ymax>
+      </wgs84extent>
       <id>labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=labels</datasource>
       <keywordList>
@@ -12366,13 +12561,13 @@ def my_form_open(dialog, layer, feature):
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
         <xmin>-138</xmin>
-        <ymin>-81.35930633544921875</ymin>
+        <ymin>-81.35930633544920454</ymin>
         <xmax>222</xmax>
         <ymax>90</ymax>
       </extent>
       <wgs84extent>
         <xmin>-138</xmin>
-        <ymin>-81.35930633544921875</ymin>
+        <ymin>-81.35930633544920454</ymin>
         <xmax>222</xmax>
         <ymax>90</ymax>
       </wgs84extent>
@@ -15527,6 +15722,18 @@ def my_form_open(dialog, layer, feature):
       <mapTip enabled="1"></mapTip>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiLineString">
+      <extent>
+        <xmin>-28.35947854146019864</xmin>
+        <ymin>13.62046545917229956</ymin>
+        <xmax>12.58587412594440025</xmax>
+        <ymax>53.15581976957920318</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-28.35947854146019864</xmin>
+        <ymin>13.62046545917229956</ymin>
+        <xmax>12.58587412594440025</xmax>
+        <ymax>53.15581976957920318</ymax>
+      </wgs84extent>
       <id>roads_7e038ab7_ac9b_4762_96b1_2ac7d9a2c175</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=roads</datasource>
       <keywordList>
@@ -17985,16 +18192,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-28.60832595825195313</xmin>
-        <ymin>-15.85654640197753906</ymin>
-        <xmax>199.37872314453125</xmax>
-        <ymax>57.25692367553710938</ymax>
+        <xmin>-28.60832591944040004</xmin>
+        <ymin>-15.85654450813560068</ymin>
+        <xmax>199.37869486909301031</xmax>
+        <ymax>57.25691727428409905</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-28.60832595825195313</xmin>
-        <ymin>-15.85654640197753906</ymin>
-        <xmax>199.37872314453125</xmax>
-        <ymax>57.25692367553710938</ymax>
+        <xmin>-28.60832591944040004</xmin>
+        <ymin>-15.85654450813560068</ymin>
+        <xmax>199.37869486909301031</xmax>
+        <ymax>57.25691727428409905</ymax>
       </wgs84extent>
       <id>swamps_92ae1780_aeca_4355_866a_cc4af5f68520</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=swamps</datasource>
@@ -19769,16 +19976,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
-        <xmin>-30.75495719909667969</xmin>
-        <ymin>16.48168373107910156</ymin>
-        <xmax>-0.18155506253242493</xmax>
-        <ymax>51.25305557250976563</ymax>
+        <xmin>-30.75495431971389948</xmin>
+        <ymin>16.48168488768790141</ymin>
+        <xmax>-0.18155506990273099</xmax>
+        <ymax>51.25305502413039704</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-30.75495719909667969</xmin>
-        <ymin>16.48168373107910156</ymin>
-        <xmax>-0.18155506253242493</xmax>
-        <ymax>51.25305557250976563</ymax>
+        <xmin>-30.75495431971389948</xmin>
+        <ymin>16.48168488768790141</ymin>
+        <xmax>-0.18155506990273099</xmax>
+        <ymax>51.25305502413039704</ymax>
       </wgs84extent>
       <id>walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=buildings</datasource>
@@ -21143,7 +21350,7 @@ def my_form_open(dialog, layer, feature):
   <Sensors></Sensors>
   <ProjectViewSettings UseProjectScales="0" rotation="0">
     <Scales></Scales>
-    <DefaultViewExtent xmax="31.82419913186724614" xmin="-35.45901436453046074" ymax="69.62168831058421858" ymin="18.57333686429436526">
+    <DefaultViewExtent xmax="0.07096447161363462" xmin="-0.43122318009622695" ymax="31.07237635439746626" ymin="30.69136227370340819">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
         <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -21208,7 +21415,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="borders_80959533_4778_401e_b8cd_8ba655123abe" destinationLayerName="borders" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-paizo/mapping-data/mapping-data.gpkg|layername=borders">
+  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="">
     <timeStampFields></timeStampFields>
   </ProjectGpsSettings>
 </qgis>
