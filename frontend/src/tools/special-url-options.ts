@@ -1,4 +1,4 @@
-import { LngLat, LngLatBoundsLike, Map } from "maplibre-gl";
+import { CenterZoomBearing, Map } from "maplibre-gl";
 
 export function addSpecialURLOptions(map: Map) {
     if(!window.location.hash) return;
@@ -21,19 +21,20 @@ export function addSpecialURLOptions(map: Map) {
     });
     
     if(options.get('bbox')) {
-        let bbox = options.get('bbox').split(',').map(Number.parseFloat) as float[];
+        let bbox = options.get('bbox').split(',').map(Number.parseFloat) as number[];
+        let zoom = options.get('zoom')?Number.parseFloat(options.get('zoom')):7;
         console.log(`bbox with ${bbox}`);
         options.delete('bbox');
         window.location.hash = '#'+options.toString();
         let cam:CenterZoomBearing;
         if(bbox.length==4) {
-            cam = map.cameraForBounds(bbox);
+            cam = map.cameraForBounds(bbox as [number, number, number, number]);
         }
         else if(bbox.length==2) {
-            cam = {center:bbox, zoom:7};
+            cam = {center:bbox as [number, number], zoom:zoom};
         }
         else {
-            cam = {center:[0,0], zoom:7}
+            cam = {center:[0,0], zoom:zoom}
         }
         map.jumpTo(cam);
     }
