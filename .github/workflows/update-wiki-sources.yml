@@ -2,7 +2,7 @@ name: Update sources from the wiki
 
 on:
   schedule:
-    - cron: "0 */8 * * *"
+    - cron: "0 1 * * *"
   workflow_dispatch:
 
 permissions:
