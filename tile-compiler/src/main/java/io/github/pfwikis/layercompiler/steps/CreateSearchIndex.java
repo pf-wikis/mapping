@@ -2,11 +2,11 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 
@@ -33,23 +33,16 @@ public class CreateSearchIndex extends LCStep {
 	
 	record Category(String category, List<Result> entries) {}
 	record Result(String label, double[] bbox) {}
-	record BoxEntry(BBox box, Set<String> source) {
-		public String category() {
-			if(source.size()>1)
-				return "mixed";
-			if(source.size()==0)
-				return "none";
-			return source.iterator().next();
-		}
-	}
+	record BoxEntry(BBox box) {}
 	
     @Override
     public LCContent process() throws Exception {
     	log.info("Creating a searchIndex over "+getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining(", ")));
     	
-    	var map = new HashMap<String, BoxEntry>();
+    	var res = new ArrayList<Category>();
+    	
     	for(var e:this.getInputs().entrySet()) {
-    		
+    		var map = new HashMap<String, BoxEntry>();
     		for(var f : e.getValue().toFeatureCollection().getFeatures()) {
     			if(f.getProperties().getLabels() != null)
     				throw new IllegalStateException("Unresolved labels in layer "+e.getKey()+" in "+f.getProperties());
@@ -59,9 +52,8 @@ public class CreateSearchIndex extends LCStep {
 
     			var box = map.computeIfAbsent(f.getProperties().getLabel().identifier(), k->{
     				var p = f.getGeometry().streamPoints().findAny().get();
-    				return new BoxEntry(new BBox(p.lng(), p.lat(), p.lng(), p.lat()), new HashSet<>());
+    				return new BoxEntry(new BBox(p.lng(), p.lat(), p.lng(), p.lat()));
     			});
-    			box.source.add(e.getKey());
     			f.getGeometry().streamPoints().forEach(p->{
     				box.box.setMaxLat(Math.max(box.box.getMaxLat(), p.lat()));
     				box.box.setMinLat(Math.min(box.box.getMinLat(), p.lat()));
@@ -69,24 +61,17 @@ public class CreateSearchIndex extends LCStep {
     				box.box.setMinLng(Math.min(box.box.getMinLng(), p.lng()));
     			});	
     		}
-
+    		res.add(
+    				new Category(e.getKey(),
+    				map.entrySet().stream()
+    				.map(b->new Result(b.getKey(), toArray(b.getValue().box)))
+					.sorted(Comparator.comparing(Result::label))
+					.toList())
+    		);
     	}
     	
-    	var res = map.entrySet()
-    		.stream()
-    		//group by category
-    		.collect(Collectors.groupingBy(e->e.getValue().category()))
-    		.entrySet()
-    		.stream()
-    		.map(e->new Category(
-				e.getValue().getFirst().getValue().category(),
-				e.getValue().stream()
-					.map(b->new Result(b.getKey(), toArray(b.getValue().box)))
-					.sorted(Comparator.comparing(Result::label))
-					.toList()
-    		))
-    		.sorted(Comparator.comparing(Category::category))
-    		.toList();
+    	Collections.sort(res, Comparator.comparing(Category::category));
+    	
     	LCContent.MAPPER.writeValue(new File(this.getCtx().getOptions().targetDirectory(), "search.json"), res);
     	var t = this.getCtx().getOptions().targetDirectory();
     	try(
