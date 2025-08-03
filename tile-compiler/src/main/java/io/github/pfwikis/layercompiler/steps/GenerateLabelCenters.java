@@ -201,7 +201,7 @@ public class GenerateLabelCenters extends LCStep {
 	        		res.setGeometry(geom);
 	        		return res;
         		} catch(Exception e) {
-        			log.error("Can't generate concave hull for {}:{}", this.getName(), f, e);
+        			log.warn("Can't generate concave hull for {}:{}", this.getName(), f, e.getMessage());
         			return f;
         		}
         	})

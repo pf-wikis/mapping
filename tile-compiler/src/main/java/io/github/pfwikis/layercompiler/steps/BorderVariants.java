@@ -47,7 +47,7 @@ public class BorderVariants {
         @Override
         public LCContent process() throws Exception {
             var innerNationBorders = Tools.mapshaper(this, getInput(),
-                "-filter", "Boolean(nation)",
+                "-filter", "Boolean(nation) || Boolean(region)",
                 "-dissolve2", "nation",
                 "-innerlines"
             );
@@ -59,7 +59,8 @@ public class BorderVariants {
             );
             var res = Tools.mapshaper2(this, innerNationBorders,
                 outerNationBorders, "combine-files",
-                "-merge-layers"
+                "-merge-layers",
+                "-dissolve" //dissolve2 does not support lines
             );
             innerNationBorders.finishUsage();
             outerNationBorders.finishUsage();
