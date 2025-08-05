@@ -36,20 +36,21 @@ public class SmoothLines extends LCStep {
     private static List<LngLat> interpolate(List<LngLat> coordinates) {
     	List<Point2D> points = new ArrayList<Point2D>(coordinates.stream().map(p->new Point2D.Double(p.lng(), Projection.geoToMercator(p.lat()))).toList());
     	
-    	while(true) {
-    		boolean changed = false;
+    	//limit the maximum detail to 2^10
+    	for(int loop=0;loop<3;loop++) {
+    		int changed = 0;
     		var mask = new boolean[points.size()];
     		for(int i=0;i<points.size()-2;i++) {
     			//area of triangle
     			double angle = angle(points.get(i), points.get(i+1), points.get(i+2));
     			// angle>0.1 is a sanity check since the spline runs rampant on extreme angles
     			if(angle < 175 && angle > 0.1) {
-    				changed = true;
+    				changed++;
     				mask[i] = true;
     				mask[i+1] = true;
     			}
     		}
-    		if(!changed)
+    		if(changed == 0)
     			break;
     		var spline = CatmullRomSpline.create(points, 2,	0.5).getInterpolatedPoints();
     		var newPoints = new ArrayList<Point2D>();
@@ -67,7 +68,7 @@ public class SmoothLines extends LCStep {
 		
 		//because of the 3 point angel problem we could still try to interpolate
 		//on an angle of 0°
-		//since we keep the control points we can savely remove errored points
+		//since we keep the control points we can safely remove errored points
 		result.removeIf(p->Double.isNaN(p.lat()) || Double.isNaN(p.lng()));
 		
 		return result;

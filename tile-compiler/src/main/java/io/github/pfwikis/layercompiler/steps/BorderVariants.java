@@ -60,7 +60,8 @@ public class BorderVariants {
             var res = Tools.mapshaper2(this, innerNationBorders,
                 outerNationBorders, "combine-files",
                 "-merge-layers",
-                "-dissolve" //dissolve2 does not support lines
+                "-dissolve", //dissolve2 does not support lines
+                "-explode"
             );
             innerNationBorders.finishUsage();
             outerNationBorders.finishUsage();
