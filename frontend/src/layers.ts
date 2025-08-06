@@ -48,15 +48,6 @@ function interpolateTextWithCamera(factor:number):ExpressionSpecification {
   ]
 }
 
-function blendInOut(from:number, to:number):ExpressionSpecification {
-  return ['interpolate', ['linear'], ['zoom'],
-    from, 0,
-    from+.5, 1,
-    to  -.5, 1,
-    to, 0
-  ]
-}
-
 function createLayer(name:string, base:Partial<LayerSpecification>):LayerSpecification {
   return Object.assign({
     id: base.type+'_'+name,
@@ -84,25 +75,15 @@ let allLayers:LayerSpecification[] = [
       'fill-antialias': false
     }
   }),
-  createLayer('province-borders', {
-    type: 'line',
-    minzoom: 3,
-    paint: {
-      'line-color': colors.nationBorders,
-      'line-width': 1,
-      'line-opacity': blendInOut(3,99)
-    },
-    layout: {
-      'line-cap': 'round'
-    }
-  }),
   createLayer('nation-borders', {
+    'source-layer': 'borders',
     type: 'line',
+    filter: ['==', ['get', 'borderType'], 3],
     paint: {
       'line-color': colors.nationBorders,
       'line-width': ["interpolate", ["exponential", 2], ["zoom"],
         3, .375,
-        6, 3,
+        5, 2,
       ],
     },
     layout: {
@@ -110,89 +91,55 @@ let allLayers:LayerSpecification[] = [
     }
   }),
   createLayer('subregion-borders', {
+    'source-layer': 'borders',
     type: 'line',
-    maxzoom: 6,
+    filter: ['==', ['get', 'borderType'], 2],
     paint: {
       'line-color': colors.nationBorders,
       'line-width': ["interpolate", ["exponential", 2], ["zoom"],
         0, .375,
-        3, 3,
+        3, 2,
       ],
     },
     layout: {
       'line-cap': 'round'
     }
   }),
-  createLayer('region-borders', {
+  createLayer('borders-regions', {
+    'source-layer': 'borders',
     type: 'line',
-    minzoom: 2,
-    maxzoom: 4,
+    filter: ['==', ['get', 'borderType'], 1],
     paint: {
-      'line-color': colors.regionBorders,
-      'line-width': 2,
-      'line-opacity': blendInOut(2,4)
+      'line-color': ['interpolate', ["exponential", 2], ['zoom'],
+        4, colors.regionBorders,
+        5, colors.nationBorders,
+      ],
+      'line-width': ['interpolate', ["exponential", 2], ['zoom'],
+        4, 3,
+        5, 2,
+      ]
     },
     layout: {
       'line-cap': 'round'
     }
   }),
-  /*
-  createLayer('river-labels', {
-    type: 'symbol',
-    layout: {
-      'symbol-placement': 'line',
-      'text-max-angle': 20,
-      'text-field': ['get', 'label'],
-      'text-font': ['NotoSans-Medium'],
-      'symbol-spacing': 300,
-      'text-size': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        5,  2,
-        10, 16,
-      ],
-    },
+  createLayer('province-borders', {
+    'source-layer': 'borders',
+    type: 'line',
+    filter: ['==', ['get', 'borderType'], 4],
+    minzoom: 4,
     paint: {
-      'text-color': colors.water,
-      'text-halo-color': colors.waterDarker,
-      'text-halo-width': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        5, .125*fs,
-        10, 1*fs,
+      'line-color': colors.nationBorders,
+      'line-opacity': ["interpolate", ["exponential", 2], ["zoom"],
+        4, 0,
+        6, 1,
       ],
+      'line-dasharray': [5, 10]
+    },
+    layout: {
+      'line-cap': 'round'
     }
   }),
-  createLayer('road-labels', {
-    type: 'symbol',
-    layout: {
-      'symbol-placement': 'line',
-      'text-max-angle': 20,
-      'text-field': ['get', 'label'],
-      'text-font': ['NotoSans-Medium'],
-      'symbol-spacing': 300,
-      'text-size': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        5,  2,
-        10, 16,
-      ],
-    },
-    paint: {
-      'text-color': colors.road,
-      'text-halo-color': colors.roadDarker,
-      'text-halo-width': [
-        'interpolate',
-        ['linear'],
-        ['zoom'],
-        5, .125*fs,
-        10, 1*fs,
-      ],
-    }
-  }),*/
   createLayer('line-labels', {
     type: 'symbol',
     layout: {

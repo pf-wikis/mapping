@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @JsonTypeInfo(
@@ -67,25 +68,39 @@ public interface Geometry {
         }
     }
     
+    public static interface ILineString {
+    	List<List<LngLat>> toLines();
+    }
+    
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class LineString implements Geometry {
+    public static class LineString implements Geometry, ILineString {
         private List<LngLat> coordinates;
         
         @Override
         public Stream<LngLat> streamPoints() {
         	return coordinates.stream();
         }
+
+		@Override
+		public List<List<LngLat>> toLines() {
+			return List.of(coordinates);
+		}
     }
     
     @Data
-    public static class MultiLineString implements Geometry {
+    public static class MultiLineString implements Geometry, ILineString {
         private List<List<LngLat>> coordinates;
         
         @Override
         public Stream<LngLat> streamPoints() {
         	return coordinates.stream().flatMap(List::stream);
         }
+
+		@Override
+		public List<List<LngLat>> toLines() {
+			return coordinates;
+		}
     }
 }

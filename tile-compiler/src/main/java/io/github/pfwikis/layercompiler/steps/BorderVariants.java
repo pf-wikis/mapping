@@ -25,8 +25,7 @@ public class BorderVariants {
                 "-split", "nation",
                 "-innerlines",
                 "-merge-layers",
-                "-clip", getInput("land_without_water"),
-                "-dashlines", "dash-length=20km", "gap-length=15km", "scaled"
+                "-clip", getInput("land_without_water")
             );
         }
     }
@@ -46,27 +45,17 @@ public class BorderVariants {
     public static class NationBorders extends LCStep {
         @Override
         public LCContent process() throws Exception {
-            var innerNationBorders = Tools.mapshaper(this, getInput(),
-                "-filter", "Boolean(nation) || Boolean(region)",
-                "-dissolve2", "nation",
-                "-innerlines"
-            );
-            var outerNationBorders = Tools.mapshaper(this, getInput(),
-                "-filter", "Boolean(nation)",
-                "-dissolve2",
-                "-lines", "-filter-fields",
-                "-clip", getInput("land_without_water")
-            );
-            var res = Tools.mapshaper2(this, innerNationBorders,
-                outerNationBorders, "combine-files",
-                "-merge-layers",
-                "-dissolve", //dissolve2 does not support lines
-                "-explode"
-            );
-            innerNationBorders.finishUsage();
-            outerNationBorders.finishUsage();
-            
-            return res;
+        	return Tools.mapshaper(this, getInput(),
+        		"-each", "key=nation||subregion", //because subregions without nations are probably empires
+        		"-filter", "Boolean(key)", //filter out gap fillers
+        		"-dissolve2", "key",
+        		"-lines",
+        		"-split", "TYPE", //splits into inner and outer
+        		"-clip", getInput("land_without_water"), "target=outer",
+        		"-merge-layers", "target=inner,outer",
+        		"-filter-fields",
+        		"-explode"
+        	);
         }
     }
 
@@ -85,27 +74,17 @@ public class BorderVariants {
         @Override
         public LCContent process() throws Exception {
             //subregion borders are like nation border but with subregion overwriting the nations
-            var innerSubRegionBorders = Tools.mapshaper(this, getInput(),
-                "-each", "if(subregion) {nation = subregion;}",
-                "-filter", "Boolean(nation)",
-                "-dissolve2", "nation",
-                "-innerlines"
-            );
-            var outerSubRegionBorders = Tools.mapshaper(this, getInput(),
-                "-each", "if(subregion) {nation = subregion;}",
-                "-filter", "Boolean(nation)",
-                "-dissolve2",
-                "-lines", "-filter-fields",
-                "-clip", getInput("land_without_water")
-            );
-            var res = Tools.mapshaper2(this, innerSubRegionBorders,
-                outerSubRegionBorders, "combine-files",
-                "-merge-layers"
-            );
-            innerSubRegionBorders.finishUsage();
-            outerSubRegionBorders.finishUsage();
-            
-            return res;
+        	return Tools.mapshaper(this, getInput(),
+        		"-each", "key=subregion||nation",
+        		"-filter", "Boolean(key)", //filter out gap fillers
+        		"-dissolve2", "key",
+        		"-lines",
+        		"-split", "TYPE", //splits into inner and outer
+        		"-clip", getInput("land_without_water"), "target=outer",
+        		"-merge-layers", "target=inner,outer",
+        		"-filter-fields",
+        		"-explode"
+        	);
         }
     }
 

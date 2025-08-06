@@ -236,7 +236,7 @@
     - step: GENERATE_LABEL_CENTERS
 
 ########### BORDERS #########################
-- name: borders
+- name: borders-raw
   steps:
     - step: READ_FILE
       layer: borders
@@ -245,15 +245,14 @@
   steps:
     - step: BORDER_VARIANTS__NATION_BORDERS
       dependsOn:
-        in: borders
+        in: borders-raw
         land_without_water: land_without_water
-    - step: SMOOTH_LINES
 
 - name: nation-labels
   steps:
     - step: BORDER_VARIANTS__NATIONS
       dependsOn:
-        in: borders
+        in: borders-raw
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 3
@@ -262,17 +261,14 @@
   steps:
     - step: BORDER_VARIANTS__PROVINCE_BORDERS
       dependsOn:
-        in: borders
+        in: borders-raw
         land_without_water: land_without_water
-    - step: SMOOTH_LINES
-    - step: ADD_ZOOM
-      minZoom: 3
 
 - name: province-labels
   steps:
     - step: BORDER_VARIANTS__PROVINCES
       dependsOn:
-        in: borders
+        in: borders-raw
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 4
@@ -281,15 +277,14 @@
   steps:
     - step: BORDER_VARIANTS__SUBREGION_BORDERS
       dependsOn:
-        in: borders
+        in: borders-raw
         land_without_water: land_without_water
-    - step: SMOOTH_LINES
 
 - name: subregion-labels
   steps:
     - step: BORDER_VARIANTS__SUBREGIONS
       dependsOn:
-        in: borders
+        in: borders-raw
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 2
@@ -298,22 +293,28 @@
   steps:
     - step: BORDER_VARIANTS__REGION_BORDERS
       dependsOn:
-        in: borders
-    - step: SMOOTH_LINES
-    - step: ADD_ZOOM
-      minZoom: 2
-      maxZoom: 3
+        in: borders-raw
 
 - name: region-labels
   steps:
     - step: BORDER_VARIANTS__REGIONS
       dependsOn:
-        in: borders
+        in: borders-raw
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 1
 
 ########################## merge all geometry together
+- name: borders
+  steps:
+    - step: MERGE_BORDERS
+      dependsOn:
+        nation: nation-borders
+        province: province-borders
+        subregion: subregion-borders
+        region: region-borders
+    - step: SMOOTH_LINES
+
 - name: geometry
   steps:
     - step: MERGE_GEOMETRY
@@ -388,13 +389,10 @@
       dependsOn:
         labels: labels
         geometry: geometry
-        nation-borders: nation-borders
-        nation-labels: nation-labels
-        province-borders: province-borders
+        borders: borders
         province-labels: province-labels
-        subregion-borders: subregion-borders
+        nation-labels: nation-labels
         subregion-labels: subregion-labels
-        region-borders: region-borders
         region-labels: region-labels
         locations: locations
         line-labels: line-labels

@@ -20,8 +20,7 @@ import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Geometry;
-import io.github.pfwikis.model.Geometry.LineString;
-import io.github.pfwikis.model.Geometry.MultiLineString;
+import io.github.pfwikis.model.Geometry.ILineString;
 import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.run.Tools;
 import lombok.Setter;
@@ -56,10 +55,8 @@ public class ShapeRivers extends LCStep {
 		var featureCol = in.toFeatureCollection();
 		for (var feature : featureCol.getFeatures()) {
 			double defaultWidth = Objects.requireNonNullElse(feature.getProperties().getWidth(), 2000).doubleValue();
-			if (feature.getGeometry() instanceof LineString line) {
-				collectRivers(defaultWidth, line.getCoordinates(), rivers);
-			} else if(feature.getGeometry() instanceof MultiLineString lines) {
-				lines.getCoordinates().forEach(ls->
+			if(feature.getGeometry() instanceof ILineString lines) {
+				lines.toLines().forEach(ls->
 					collectRivers(defaultWidth, ls, rivers)
 				);
 			} else {

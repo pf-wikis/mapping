@@ -33,6 +33,7 @@ public class Properties extends AnyJson {
 	private BigDecimal width;
 	private BigDecimal height;
 	private Boolean inSubregion;
+	private Integer borderType;
 	
 	public String simpleLabel() {
 		if(label!=null)

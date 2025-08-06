@@ -117,7 +117,11 @@ public abstract class StepDescription {
         @Override
         protected LCStep create() {
             try {
-                var step = MAP.get(this.getStep()).getConstructor().newInstance();
+            	var type = MAP.get(this.getStep());
+            	if(type == null) {
+            		throw new IllegalArgumentException("Can't resolve class "+this.getStep());
+            	}
+                var step = type.getConstructor().newInstance();
                 if(!unknownFields.isEmpty())
                 	step = OM.readerForUpdating(step).readValue((ObjectNode)OM.valueToTree(unknownFields));
                 return step;
