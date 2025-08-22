@@ -6,7 +6,8 @@
       "noImplicitAny": true,
       "removeComments": true,
       "sourceMap": true,
-      "isolatedModules": true
+      "isolatedModules": true,
+      "resolveJsonModule": true
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules", "**/*.spec.ts"]

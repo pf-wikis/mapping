@@ -19,9 +19,6 @@ let colors = {
   black:           'rgb( 10,  10,  10)'
 };
 
-//scale font larger for lower dpr displays
-const fs = window.devicePixelRatio===1?1.5:1;
-
 const props = {
   filterMinzoom: ["get", "filterMinzoom"] as ExpressionSpecification,
   filterMaxzoom: ["get", "filterMaxzoom"] as ExpressionSpecification
@@ -43,8 +40,8 @@ function interpolateTextWithCamera(factor:number):ExpressionSpecification {
     'interpolate',
     ['exponential', 2],
     ['zoom'],
-    0, factor*fs,
-    22, factor*(2**22)*fs,
+    0, factor,
+    22, factor*(2**22),
   ]
 }
 
@@ -60,7 +57,7 @@ function createLayer(name:string, base:Partial<LayerSpecification>):LayerSpecifi
   }, base) as LayerSpecification;
 }
 
-let allLayers:LayerSpecification[] = [
+let layers:LayerSpecification[] = [
   {
     id: 'background',
     type: 'background',
@@ -163,8 +160,8 @@ let allLayers:LayerSpecification[] = [
         'interpolate',
         ['linear'],
         ['zoom'],
-        5, .125*fs,
-        10, 1*fs,
+        5, .125,
+        10, 1,
       ],
     }
   }),
@@ -200,12 +197,12 @@ let allLayers:LayerSpecification[] = [
       'text-rotate': ['get', 'angle'],
       'text-rotation-alignment': 'map',
       'text-font': ['NotoSans-Medium'],
-      'text-size': 16*fs,
+      'text-size': 16,
     },
     paint: {
       'text-color': ['get', 'color'],
       'text-halo-color': ['get', 'halo'],
-      'text-halo-width': 1.5*fs
+      'text-halo-width': 1.5
     }
   }),
   createLayer('locations', {
@@ -218,7 +215,7 @@ let allLayers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 14*fs,
+      'text-size': 14,
       'text-variable-anchor': ["left", "right"],
       'text-radial-offset': .5,
       'text-rotation-alignment': 'map',
@@ -226,7 +223,7 @@ let allLayers:LayerSpecification[] = [
     paint: {
       'text-color': colors.white,
       'text-halo-color': colors.black,
-      'text-halo-width': .8*fs
+      'text-halo-width': .8
     }
   }),
   createLayer('province-labels', {
@@ -237,8 +234,8 @@ let allLayers:LayerSpecification[] = [
       'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        5, 5*fs,
-        7, 20*fs,
+        5, 5,
+        7, 20,
       ],
       'text-rotation-alignment': 'map',
       'text-variable-anchor': ['center','top','bottom'],
@@ -248,8 +245,8 @@ let allLayers:LayerSpecification[] = [
       'text-color': colors.white,
       'text-halo-color': colors.regionLabels,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
-        5, .375*fs,
-        7, 1.5*fs,
+        5, .375,
+        7, 1.5,
       ],
     }
   }),
@@ -265,8 +262,8 @@ let allLayers:LayerSpecification[] = [
       'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        4, 10*fs,
-        5, 25*fs,
+        4, 10,
+        5, 25,
       ],
       'text-rotation-alignment': 'map',
       'text-variable-anchor': ['center','top','bottom'],
@@ -276,8 +273,8 @@ let allLayers:LayerSpecification[] = [
       'text-color': colors.white,
       'text-halo-color': colors.regionLabels,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
-        4, .75*fs,
-        5, 1.875*fs,
+        4, .75,
+        5, 1.875,
       ],
     }
   }),
@@ -289,8 +286,8 @@ let allLayers:LayerSpecification[] = [
       'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
-        4, 10*fs,
-        5, 25*fs,
+        4, 10,
+        5, 25,
       ],
       'text-rotation-alignment': 'map',
       'text-variable-anchor': ['center','top','bottom'],
@@ -300,8 +297,8 @@ let allLayers:LayerSpecification[] = [
       'text-color': colors.white,
       'text-halo-color': colors.regionLabels,
       'text-halo-width': ['interpolate', ['linear'], ['zoom'],
-        4, .75*fs,
-        5, 1.875*fs,
+        4, .75,
+        5, 1.875,
       ],
     }
   }),
@@ -312,7 +309,7 @@ let allLayers:LayerSpecification[] = [
     layout: {
       'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
-      'text-size': 20*fs,
+      'text-size': 20,
       'text-rotation-alignment': 'map',
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
@@ -320,24 +317,28 @@ let allLayers:LayerSpecification[] = [
     paint: {
       'text-color': colors.regionLabels,
       'text-halo-color': colors.regionLabelsOut,
-      'text-halo-width': 1.5*fs,
+      'text-halo-width': 1.5,
     }
   }),
 ];
 
-function layers(options:URLSearchParams):LayerSpecification[] {
-  let res = allLayers;
-  if(options.get('hideLabels') === 'true') {
-    res=res.filter(l=>!l.id.includes('label'));
+export default {
+  version: 8,
+  sources: {
+    golarion: {
+      type: 'vector',
+      attribution: '<a href="https://paizo.com/licenses/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
+      url: 'pmtiles://https://map.pathfinderwiki.com/golarion.pmtiles'
+    }
+  },
+  sprite: 'https://map.pathfinderwiki.com/sprites/sprites',
+  layers: layers,
+  glyphs: 'https://map.pathfinderwiki.com/fonts/{fontstack}/{range}.pbf',
+  transition: {
+    duration: 300,
+    delay: 0
+  },
+  sky: {
+    'atmosphere-blend': 0.5
   }
-  if(options.get('hideLocations') === 'true') {
-    res=res.filter(l=>!l.id.includes('location'));
-  }
-  if(options.get('hideBorders') === 'true') {
-    res=res.filter(l=>!l.id.includes('border'));
-  }
-
-  return res;
-}
-
-export default layers;
+};

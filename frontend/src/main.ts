@@ -1,7 +1,7 @@
-import Maplibre, { AttributionControl, Map, NavigationControl, ScaleControl } from "maplibre-gl";
+import Maplibre, { AttributionControl, Map, NavigationControl, ScaleControl, StyleSpecification } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
 
-import layers from './layers.js';
+import style from 'virtual:style';
 import MeasureControl from './tools/measure.js';
 import './style.scss';
 import { PMTiles, Protocol } from 'pmtiles';
@@ -21,7 +21,7 @@ if(!embedded) {
   mapContainer.classList.remove("embedded");
 }
 
-var root = `${location.protocol}//${location.host}/`;
+var root = `${location.protocol}//${location.host}`;
 
 let pmtilesProt = new Protocol();
 Maplibre.addProtocol("pmtiles", pmtilesProt.tilev4);
@@ -35,31 +35,34 @@ if(indexedDB) {
   }
 }
 
+/******************************* update style according to option *******************************/
+const normalRoot = 'https://map.pathfinderwiki.com';
+if(root!=normalRoot) {
+  style.sprite = (style.sprite as string).replace(normalRoot, root);
+  style.glyphs = style.glyphs.replace(normalRoot, root);
+  (style.sources.golarion as any).url = (style.sources.golarion as any).url.replace(normalRoot, root);
+}
+(style.sources.golarion as any).url += '?v='+import.meta.env.VITE_DATA_HASH;
+
+if(options.get('hideLabels') === 'true') {
+  style.layers = style.layers.filter(l=>!l.id.includes('label'));
+}
+if(options.get('hideLocations') === 'true') {
+  style.layers = style.layers.filter(l=>!l.id.includes('location'));
+}
+if(options.get('hideBorders') === 'true') {
+  style.layers = style.layers.filter(l=>!l.id.includes('border'));
+}
+
+/************************* end of style adjustments ****************************************/
+
+
 export const map = new Map({
   container: 'map-container',
   hash: 'location',
   attributionControl: false,
   pitchWithRotate: false,
-  style: {
-    version: 8,
-    sources: {
-      golarion: {
-        type: 'vector',
-        attribution: '<a href="https://paizo.com/licenses/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
-        url: 'pmtiles://'+root+'golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH
-      }
-    },
-    sprite: root+'sprites/sprites',
-    layers: layers(options),
-    glyphs: root+'fonts/{fontstack}/{range}.pbf',
-    transition: {
-      duration: 300,
-      delay: 0
-    },
-    sky: {
-      'atmosphere-blend': 0.5
-    }
-  },
+  style: style,
 });
 //project to globe
 let projection:Maplibre.PropertyValueSpecification<Maplibre.ProjectionDefinitionSpecification>;
