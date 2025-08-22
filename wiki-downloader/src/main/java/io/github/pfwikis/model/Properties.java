@@ -1,5 +1,7 @@
 package io.github.pfwikis.model;
 
+import java.time.Instant;
+
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import io.github.pfwikis.Helper;
@@ -10,7 +12,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonPropertyOrder({"labels", "link", "type", "capital", "size", "filterMinzoom", "articleLength", "text"})
+@JsonPropertyOrder({"labels", "link", "modificationDate", "type", "capital", "size", "filterMinzoom", "articleLength", "text"})
 public class Properties {
 
     private String labels;
@@ -20,21 +22,13 @@ public class Properties {
     private String type;
     private String text;
     private int articleLength;
+    private Instant modificationDate;
 
-    public Properties(City city) {
-        labels = Helper.handleName(city.getName(), city.getPageName());
-        link = "https://pathfinderwiki.com/wiki/" + city.getPageName().replace(' ', '_');
-        capital = city.isCapital();
-        text = city.getText();
-        
-        articleLength = city.getArticleLength()/100*100;
+    public Properties(Location loc) {
+        labels = Helper.handleName(loc.getName(), loc.getPageName());
+        link = "https://pathfinderwiki.com/wiki/" + loc.getPageName().replace(' ', '_');
+        capital = loc.getCapital();
+        type = loc.getLoiType();
+        modificationDate = loc.getModificationDate();
     }
-
-	public Properties(LoI loi) {
-		labels = Helper.handleName(loi.getName(), loi.getPageName());
-        link = "https://pathfinderwiki.com/wiki/" + loi.getPageName().replace(' ', '_');
-        type = loi.getType();
-        text = loi.getText();
-        articleLength = loi.getArticleLength()/100*100;
-	}
 }

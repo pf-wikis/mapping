@@ -2,7 +2,7 @@ name: Update sources from the wiki
 
 on:
   schedule:
-    - cron: "0 1 * * *"
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -33,8 +33,7 @@ jobs:
         run: |
           cd wiki-downloader
           mvn -B compile
-          mvn -B exec:java -Dexec.mainClass="io.github.pfwikis.DownloadCities"
-          mvn -B exec:java -Dexec.mainClass="io.github.pfwikis.DownloadLoI"
+          mvn -B exec:java -Dexec.mainClass="io.github.pfwikis.Download"
       - name: Push changes
         id: push
         uses: EndBug/add-and-commit@v9
