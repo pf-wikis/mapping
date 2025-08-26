@@ -117,14 +117,18 @@ public class Download {
 	}
 
     private void downloadExcerpt(Location city, Feature feature, FeatureCollection oldFeatures) throws IOException {
-    	for(var f:oldFeatures.getFeatures()) {
-    		if(f.getProperties().getLabels().equals(feature.getProperties().getLabels())
-				&& f.getGeometry().equals(feature.getGeometry())
-				&& f.getProperties().getModificationDate().equals(feature.getProperties().getModificationDate())) {
-    			
+    	var oldMatches = oldFeatures.getFeatures().stream()
+    		.filter(old->feature.getProperties().getLabels().equals(old.getProperties().getLabels()))
+    		.filter(old->feature.getGeometry().equals(old.getGeometry()))
+    		.toList();  		
+    	
+    	for(var old:oldMatches) {
+    		if(old.getProperties().getModificationDate().equals(feature.getProperties().getModificationDate())
+				&& old.getProperties().getText() != null
+				&& old.getProperties().getText().length()>0) {
     			System.out.println("\t\tCopying old excerpt based on modification date");
-    			feature.getProperties().setText(f.getProperties().getText());
-    			feature.getProperties().setArticleLength(f.getProperties().getArticleLength());
+    			feature.getProperties().setText(old.getProperties().getText());
+    			feature.getProperties().setArticleLength(old.getProperties().getArticleLength());
     			return;
     		}
     	}
@@ -132,7 +136,7 @@ public class Download {
     	System.out.println("\t\tDownloading text");
     	var txt = Helper.downloadText(city.getPageName());
 		feature.getProperties().setText(txt.excerpt());
-		feature.getProperties().setArticleLength(txt.totalArticleLength()/100*100);
+		feature.getProperties().setArticleLength((int)Math.ceil(txt.totalArticleLength()/100.0)*100);
 	}
 
 	private static int mapPopulationSize(Location city) {
