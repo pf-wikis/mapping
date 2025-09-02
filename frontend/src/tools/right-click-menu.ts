@@ -10,9 +10,9 @@ export function addRightClickMenu(embedded: boolean, map: Map, measureControl: M
 
   let items = [
     {
-      label: "Measure Distance",
+      label: "Toggle Measure Distance",
       callback: (e:Event) => {
-        measureControl.startMeasurement(latLong);
+        measureControl.toggleMeasurement(latLong);
       }
     },
     {

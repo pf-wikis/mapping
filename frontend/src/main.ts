@@ -11,6 +11,7 @@ import { addSpecialURLOptions } from "./tools/special-url-options.js";
 import { CachedSource } from "./CachedPmTiles.js";
 import NewTab from "./tools/NewTab.js";
 import { CompactAttributionControl } from "./tools/CompactAttributionControl.js";
+import { GolarionMap } from "./tools/GolarionMap.js";
 
 //check if running embedded
 var options = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -64,6 +65,8 @@ export const map = new Map({
   pitchWithRotate: false,
   style: style,
 });
+export const golarionMap = new GolarionMap();
+golarionMap.map = map;
 //project to globe
 let projection:Maplibre.PropertyValueSpecification<Maplibre.ProjectionDefinitionSpecification>;
 if(options.get('projection') === 'globe') {
@@ -108,7 +111,7 @@ map.addControl(new ScaleControl({
   maxWidth: embedded?50:100,
 }));
 map.addControl(new CompactAttributionControl(embedded));
-let measureControl = new MeasureControl();
+let measureControl = new MeasureControl(golarionMap);
 map.addControl(measureControl);
 if(embedded) {
   map.addControl(new NewTab());
@@ -116,7 +119,7 @@ if(embedded) {
   //map.once('load', e=>attribution._toggleAttribution());
 }
 
-makeLocationsClickable(map);
+makeLocationsClickable(golarionMap);
 addRightClickMenu(embedded, map, measureControl);
 addSpecialURLOptions(map);
 

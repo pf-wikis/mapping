@@ -1,13 +1,18 @@
 import { LngLat, Map, MapLayerMouseEvent, Popup } from "maplibre-gl";
 import { MultiPoint, Point } from 'geojson';
+import { GolarionMap } from "./GolarionMap";
+import changeCursor from "./ChangeCursor";
 
-export function makeLocationsClickable(map: Map) {
+export function makeLocationsClickable(gmap: GolarionMap) {
+  let map = gmap.map;
   function showPointer() {
-    map.getCanvas().style.cursor = 'pointer';
+    if(gmap.mode === 'view')
+      changeCursor(gmap, 'pointer');
   }
   
   function hidePointer() {
-    map.getCanvas().style.cursor = '';
+    if(gmap.mode === 'view')
+      changeCursor(gmap, '');
   }
   
   map.on('mouseenter', 'city-icons', showPointer);
@@ -22,6 +27,8 @@ export function makeLocationsClickable(map: Map) {
   
   const popup = new Popup();
   function clickOnWikilink(e:MapLayerMouseEvent) {
+    if(gmap.mode !== 'view') return;
+
     let geom = e.features[0].geometry as Point|MultiPoint;
     let coordinates:[number, number];
     let props = e.features[0].properties;
