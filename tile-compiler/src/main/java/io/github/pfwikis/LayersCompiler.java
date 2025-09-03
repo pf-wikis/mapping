@@ -17,6 +17,8 @@ import com.github.dexecutor.core.ExecutionConfig;
 import com.google.common.collect.HashMultiset;
 
 import io.github.pfwikis.layercompiler.description.LCDescription;
+import io.github.pfwikis.layercompiler.steps.CheckGeometry;
+import io.github.pfwikis.layercompiler.steps.ReadFile;
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.layercompiler.steps.model.LCStep.Ctx;
@@ -59,6 +61,11 @@ public class LayersCompiler {
 
     private void createSteps(LCDescription[] lsDescriptions, Map<String, LCStep> steps, DefaultDexecutor<String, LCContent> executor) {
     	var requiredCount = HashMultiset.<String>create();
+    	var ctx = new Ctx(
+            tileCompiler.getOptions(),
+            tileCompiler.getGeo(),
+            tileCompiler.getOptions().getMappingDataFile()
+        );
     	
         for(var lsDescription : lsDescriptions) {
             for(int i=0;i<lsDescription.getSteps().size();i++) {
@@ -68,13 +75,7 @@ public class LayersCompiler {
                     throw new IllegalStateException("Duplicate name "+name);
                 }
 
-                var lcstep = step.create(
-                    new Ctx(
-                        tileCompiler.getOptions(),
-                        tileCompiler.getGeo(),
-                        tileCompiler.getOptions().getMappingDataFile()
-                    )
-                );
+                var lcstep = step.create(ctx);
                 lcstep.setName(lsDescription.getName());
                 lcstep.setStep(step.getStep());
                 steps.put(name, lcstep);
@@ -91,6 +92,19 @@ public class LayersCompiler {
                     lcstep.getInputMapping().put("in", dep);
                     executor.addDependency(dep, name);
                     requiredCount.add(dep);
+                }
+                //Create checking step for each reading
+                if(step.getStep().equals("READ_FILE")) {
+                	var checker = new CheckGeometry();
+                	checker.init(ctx);
+                	checker.setName(lsDescription.getName()+"-check-geometry");
+                	checker.setStep("CHECK_GEOMETRY");
+                	requiredCount.add(name);
+                	checker.setLayer(((ReadFile)lcstep).getLayer());
+                	checker.getInputMapping().put("in", name);
+                	steps.put(name+"-check-geometry", checker);
+                	executor.addIndependent(name+"-check-geometry");
+                	executor.addDependency(name, name+"-check-geometry");
                 }
 
                 for(var e:step.getDependsOn().getOtherDependencies().entrySet()) {

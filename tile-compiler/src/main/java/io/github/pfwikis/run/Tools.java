@@ -5,11 +5,15 @@ import java.util.List;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.run.Runner.OutGeojson;
 
 public class Tools {
 
-    //some helper to make the code a bit cleaner
-    public static LCContent qgis(LCStep step, String qgisCommand, LCContent in, Object... args) throws IOException {
+	public static LCContent qgis(LCStep step, String qgisCommand, LCContent in, Object... args) throws IOException {
+    	return qgis(step, qgisCommand, "OUTPUT", in, args);
+    }
+
+	public static LCContent qgis(LCStep step, String qgisCommand, String outputName, LCContent in, Object... args) throws IOException {
         return Runner.run(
         	step,
             "qgis_process",
@@ -19,7 +23,7 @@ public class Tools {
             "--area_units=m2",
             "--ellipsoid=EPSG:4326",
             new Runner.TmpGeojson("--INPUT=", in),
-            new Runner.OutGeojson("--OUTPUT="),
+            new Runner.OutGeojson("--"+outputName+"="),
             args
         );
     }

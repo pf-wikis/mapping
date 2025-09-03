@@ -14,6 +14,7 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Properties extends AnyJson {
+	private Long fid;
 	private Label label;
 	private JsonNode labels;
 	private String link;
@@ -34,6 +35,8 @@ public class Properties extends AnyJson {
 	private BigDecimal height;
 	private Boolean inSubregion;
 	private Integer borderType;
+	private BigDecimal gc_errorx;
+	private BigDecimal gc_errory;
 	
 	public String simpleLabel() {
 		if(label!=null)

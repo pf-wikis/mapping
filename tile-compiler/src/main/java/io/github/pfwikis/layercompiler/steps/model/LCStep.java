@@ -35,7 +35,7 @@ public abstract class LCStep extends Task<String, LCContent> {
             }
             return result;
         } catch (Throwable t) {
-            throw new RuntimeException(t);
+            throw new RuntimeException("Error in "+name+"."+step, t);
         } finally {
         	Thread.currentThread().setName(oldName);
         }

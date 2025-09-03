@@ -45,7 +45,7 @@ public abstract class LCContent {
 	
 	protected synchronized void checkValidUsage() {
 		if(numberOfUses >= numberOfValidUses) {
-			throw new IllegalStateException("Content "+name+" was used "+(numberOfUses+1)+" times even though it is only allows to be used "+numberOfValidUses);
+			throw new IllegalStateException("Content "+name+" was used "+(numberOfUses+1)+" times even though it is only allowed to be used "+numberOfValidUses);
 		}
 	}
 

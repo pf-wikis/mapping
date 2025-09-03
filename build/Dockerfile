@@ -1,4 +1,4 @@
-FROM qgis/qgis:3.40
+FROM qgis/qgis:3.44
 
 RUN apt-get update \
 	&& apt-get install -y mmv openjdk-21-jdk maven jq bc gcc g++ make libsqlite3-dev zlib1g-dev nodejs npm curl \

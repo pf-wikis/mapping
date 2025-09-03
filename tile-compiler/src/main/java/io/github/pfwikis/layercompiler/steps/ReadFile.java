@@ -10,10 +10,12 @@ import org.apache.commons.io.FileUtils;
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Tools;
+import lombok.Getter;
 
 public class ReadFile extends LCStep {
 
     private final File file;
+    @Getter
     private final String layer;
 
     
@@ -34,7 +36,7 @@ public class ReadFile extends LCStep {
 			return LCContent.from(finalFile, false);
 		}
 		else {
-            return Tools.ogr2ogr(this, ctx.getMappingDataFile().toPath(), "-dim", "XY", "-mapFieldType", "DateTime=String", layer);
+            return Tools.ogr2ogr(this, ctx.getMappingDataFile().toPath(), "-preserve_fid", "-dim", "XY", "-mapFieldType", "DateTime=String", layer);
         }
     }
 

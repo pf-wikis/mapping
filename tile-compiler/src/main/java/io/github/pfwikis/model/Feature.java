@@ -35,6 +35,8 @@ public class Feature extends AnyJson {
     public String toString() {
     	if(properties.simpleLabel() != null)
     		return properties.simpleLabel();
+    	else if(properties.getFid() != null)
+    		return "fid:"+properties.getFid();
     	else
     		return "unnamed";
     }
