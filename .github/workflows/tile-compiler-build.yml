@@ -25,4 +25,4 @@ jobs:
       - name: Build
         run: |
           cd tile-compiler
-          mvn -B compile
+          mvn -B compile test
