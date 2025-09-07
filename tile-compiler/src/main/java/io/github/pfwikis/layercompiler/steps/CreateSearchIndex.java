@@ -75,7 +75,8 @@ public class CreateSearchIndex extends LCStep {
     				box.box.setMaxLng(Math.max(box.box.getMaxLng(), p.lng()));
     				box.box.setMinLng(Math.min(box.box.getMinLng(), p.lng()));
     			});
-    			box.areaKm2.addAndGet(f.getProperties().getAreaKm2());
+    			if(f.getProperties().getAreaKm2()!=null)
+    				box.areaKm2.addAndGet(f.getProperties().getAreaKm2());
     		}
     		res.add(
     				new Category(e.getKey(),
