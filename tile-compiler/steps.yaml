@@ -304,6 +304,31 @@
       generateSubLabels: false
       forceMinzoom: 1
 
+- name: region-area
+  steps: 
+    - step: CLIP_POLYGONS
+      dependsOn:
+        in: region-labels.BORDER_VARIANTS__REGIONS
+        mask: land_without_water
+- name: nation-area
+  steps: 
+    - step: CLIP_POLYGONS
+      dependsOn:
+        in: nation-labels.BORDER_VARIANTS__NATIONS
+        mask: land_without_water
+- name: subregion-area
+  steps: 
+    - step: CLIP_POLYGONS
+      dependsOn:
+        in: subregion-labels.BORDER_VARIANTS__SUBREGIONS
+        mask: land_without_water
+- name: province-area
+  steps: 
+    - step: CLIP_POLYGONS
+      dependsOn:
+        in: province-labels.BORDER_VARIANTS__PROVINCES
+        mask: land_without_water
+
 ########################## merge all geometry together
 - name: borders
   steps:
@@ -375,10 +400,10 @@
         waters: water-labels.RESOLVE_LABELS
         buildings: buildings
         generic: generic-labels.RESOLVE_LABELS
-        regions: region-labels.BORDER_VARIANTS__REGIONS
-        nations: nation-labels.BORDER_VARIANTS__NATIONS
-        subregions: subregion-labels.BORDER_VARIANTS__SUBREGIONS
-        provinces: province-labels.BORDER_VARIANTS__PROVINCES
+        regions: region-area
+        nations: nation-area
+        subregions: subregion-area
+        provinces: province-area
         rivers: river-labels.RESOLVE_LABELS
         roads: road-labels.RESOLVE_LABELS
         locations: locations.RESOLVE_LABELS
