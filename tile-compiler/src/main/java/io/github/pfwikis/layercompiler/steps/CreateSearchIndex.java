@@ -36,8 +36,8 @@ public class CreateSearchIndex extends LCStep {
 	}
 	
 	record Category(String category, List<Result> entries) {}
-	record Result(String label, double[] bbox, Double areaKm2) {}
-	record BoxEntry(BBox box, AtomicDouble areaKm2) {}
+	record Result(String label, double[] bbox, Double areaM2) {}
+	record BoxEntry(BBox box, AtomicDouble areaM2) {}
 	
     @Override
     public LCContent process() throws Exception {
@@ -52,7 +52,7 @@ public class CreateSearchIndex extends LCStep {
     			withArea = e.getValue().toFeatureCollection();
     		} else {
     			withArea = Tools.qgis(this, "native:fieldcalculator", e.getValue(),
-					"--FIELD_NAME=areaKm2",
+					"--FIELD_NAME=areaM2",
 					"--FIELD_TYPE=0", //double
 					"--FORMULA=$area"
     			).toFeatureCollectionAndFinish();
@@ -75,13 +75,13 @@ public class CreateSearchIndex extends LCStep {
     				box.box.setMaxLng(Math.max(box.box.getMaxLng(), p.lng()));
     				box.box.setMinLng(Math.min(box.box.getMinLng(), p.lng()));
     			});
-    			if(f.getProperties().getAreaKm2()!=null)
-    				box.areaKm2.addAndGet(f.getProperties().getAreaKm2());
+    			if(f.getProperties().getAreaM2()!=null)
+    				box.areaM2.addAndGet(f.getProperties().getAreaM2());
     		}
     		res.add(
     				new Category(e.getKey(),
     				map.entrySet().stream()
-    				.map(b->new Result(b.getKey(), toArray(b.getValue().box), b.getValue().areaKm2.get()>0?b.getValue().areaKm2.get():null))
+    				.map(b->new Result(b.getKey(), toArray(b.getValue().box), b.getValue().areaM2.get()>0?b.getValue().areaM2.get():null))
 					.sorted(Comparator.comparing(Result::label))
 					.toList())
     		);

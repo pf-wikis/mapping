@@ -37,7 +37,7 @@ public class Properties extends AnyJson {
 	private Integer borderType;
 	private BigDecimal gc_errorx;
 	private BigDecimal gc_errory;
-	private Double areaKm2;
+	private Double areaM2;
 	
 	public String simpleLabel() {
 		if(label!=null)
