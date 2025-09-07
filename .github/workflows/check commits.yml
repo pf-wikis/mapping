@@ -10,6 +10,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    - name: Test tile compiler
+      run: |
+        cd tile-compiler
+        mvn test
+        cd ..
     - name: Check that no images are in the repo
       run: |
         rm -rf frontend

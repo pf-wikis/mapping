@@ -1,5 +1,6 @@
 package io.github.pfwikis.layercompiler.steps;
 
+import java.io.File;
 import java.io.IOException;
 
 import io.github.pfwikis.fractaldetailer.AddDetails;
@@ -10,8 +11,15 @@ public class AddFractalDetail extends LCStep {
 
     @Override
     public LCContent process() throws IOException {
-        double maxDistance = ctx.getOptions().isProdDetail()?.10:.25;
-        return LCContent.from(AddDetails.addDetails(maxDistance, getInput().toFeatureCollection()));
+        double maxDistance = ctx.getOptions().isProdDetail()?.02:.2;
+        
+        //LCContent.MAPPER.writeValue(new File("debug/"+this.getName()+"_in.json"), getInput().toFeatureCollection());
+        
+        var result = LCContent.from(AddDetails.addDetails(maxDistance, getInput().toFeatureCollection()));
+        
+        //LCContent.MAPPER.writeValue(new File("debug/"+this.getName()+"_out.json"), result.toFeatureCollection());
+        
+        return result;
     }
 
 }

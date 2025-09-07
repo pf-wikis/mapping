@@ -32,11 +32,18 @@ public class AddDetails {
         )).collect(Collectors.toSet());
         log.info("    found " + innerEdges.size() + " inner edges");
 
+        int initialSize = 0;
+        int newSize = 0;
+        
         for (var loop : loops) {
             var result = FractalLines.interpolate(loop, innerEdges, maxDistance);
+            initialSize += loop.size();
+            newSize += result.size();
             loop.clear();
             loop.addAll(result);
         }
+        
+        log.info("    detailed to {}%", (int)(100d*newSize/initialSize));
         
         return col;
     }
