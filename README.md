@@ -19,7 +19,7 @@ The `kart` command-line tool works very similarly to git, but uses a custom inde
 To check out the mapping-data repository in geopackage format:
 
 1. Install [Kart](https://kartproject.org), a git-compatible distributed version control tool for geospatial data.
-2. Use kart to clone [pf-wikis/mapping-data](https://github.com/pf-wikis/mapping-data) into a directory called `mapping-data` next to the directory containing this repo: `kart clone git@github.com:pf-wikis/mapping-data`
+2. Use kart to clone [pf-wikis/mapping-data](https://github.com/pf-wikis/mapping-data) into a directory called `mapping-data` next to the directory containing this repo: `kart clone https://github.com/pf-wikis/mapping-data.git mapping-data`
 3. Open the QGIS project file located at `sources/qgis.qgs` in this repository. If the `mapping-data` repository is in the same parent path as the `mapping` repository, the project should automatically find and load the GeoPackage data file and GeoJSON location files containing the project's layers.
 
 ## How to contribute
