@@ -464,7 +464,7 @@ input:checked+.golarion-slider:before {
   max-width: 400px;
   z-index: 200;
   animation: slideUp 0.3s ease-out;
-n  @media (max-width: 480px) {
+  @media (max-width: 480px) {
     // Small mobile - stack panels vertically
     left: 5px !important;
     right: 5px !important;
