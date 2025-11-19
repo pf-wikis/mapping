@@ -25,7 +25,7 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  z-index: 1000;
+  z-index: 300;
   width: 360px;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
@@ -33,6 +33,14 @@
     left: 50%;
     transform: translateX(-50%);
     width: 90vw;
+    @media (max-width: 480px) {
+      width: 95vw;
+      max-width: 95vw;
+    }
+
+    @media (max-height: 500px) {
+      top: 5px;
+    }
     top: 10px;
   }
 }
@@ -454,8 +462,29 @@ input:checked+.golarion-slider:before {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-width: 340px;
   max-width: 400px;
-  z-index: 900;
+  z-index: 200;
   animation: slideUp 0.3s ease-out;
+n  @media (max-width: 480px) {
+    // Small mobile - stack panels vertically
+    left: 5px !important;
+    right: 5px !important;
+    bottom: 5px !important;
+    min-width: auto !important;
+    max-width: none !important;
+    max-height: 40vh;
+    overflow-y: auto;
+  }
+
+  @media (max-height: 600px) {
+    // Short screens - reduce panel height
+    max-height: 35vh;
+    overflow-y: auto;
+  }
+
+  @media (min-width: 1200px) {
+    // Large screens - allow more width
+    max-width: 450px;
+  }
 
   @media (max-width: 768px) {
     left: 10px;
@@ -958,6 +987,14 @@ input:checked+.golarion-slider:before {
   padding: 24px;
   max-width: 400px;
   width: 90vw;
+    @media (max-width: 480px) {
+      width: 95vw;
+      max-width: 95vw;
+    }
+
+    @media (max-height: 500px) {
+      top: 5px;
+    }
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   animation: slideIn 0.3s ease-out;
 }

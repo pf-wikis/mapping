@@ -15,6 +15,49 @@ interface SavedRoute {
   endPoint: Position;
   travelMethod: string;
   totalDistance: number;
+  /**
+   * Simple collision detection for panel positioning
+   */
+  private getSafePanelPosition(preferredX: number, preferredY: number, panelWidth: number = 400, panelHeight: number = 300): {x: number, y: number} {
+    const screenRect = {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+    
+    // Check for collision with search control
+    const searchControl = document.querySelector(".golarion-search-control");
+    let safeX = preferredX;
+    let safeY = preferredY;
+    
+    if (searchControl) {
+      const searchRect = searchControl.getBoundingClientRect();
+      
+      // Check if panel would overlap with search control
+      if (preferredX < searchRect.right + 20 && 
+          preferredX + panelWidth > searchRect.left - 20 &&
+          screenRect.height - preferredY - panelHeight < searchRect.bottom + 20 &&
+          screenRect.height - preferredY > searchRect.top - 20) {
+        
+        // Try alternative positions
+        if (screenRect.width - panelWidth - 20 > 20) {
+          // Position on right side
+          safeX = screenRect.width - panelWidth - 20;
+        } else if (preferredY + panelHeight + 100 < screenRect.height) {
+          // Position higher up
+          safeY = preferredY + 200;
+        } else {
+          // Position lower down with offset
+          safeY = 20;
+        }
+      }
+    }
+    
+    // Ensure panel stays within screen bounds
+    safeX = Math.max(20, Math.min(safeX, screenRect.width - panelWidth - 20));
+    safeY = Math.max(20, Math.min(safeY, screenRect.height - panelHeight - 20));
+    
+    return { x: safeX, y: safeY };
+  }
 }
 
 /**
@@ -22,6 +65,49 @@ interface SavedRoute {
  */
 interface RouteStorage {
   routes: SavedRoute[];
+  /**
+   * Simple collision detection for panel positioning
+   */
+  private getSafePanelPosition(preferredX: number, preferredY: number, panelWidth: number = 400, panelHeight: number = 300): {x: number, y: number} {
+    const screenRect = {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+    
+    // Check for collision with search control
+    const searchControl = document.querySelector(".golarion-search-control");
+    let safeX = preferredX;
+    let safeY = preferredY;
+    
+    if (searchControl) {
+      const searchRect = searchControl.getBoundingClientRect();
+      
+      // Check if panel would overlap with search control
+      if (preferredX < searchRect.right + 20 && 
+          preferredX + panelWidth > searchRect.left - 20 &&
+          screenRect.height - preferredY - panelHeight < searchRect.bottom + 20 &&
+          screenRect.height - preferredY > searchRect.top - 20) {
+        
+        // Try alternative positions
+        if (screenRect.width - panelWidth - 20 > 20) {
+          // Position on right side
+          safeX = screenRect.width - panelWidth - 20;
+        } else if (preferredY + panelHeight + 100 < screenRect.height) {
+          // Position higher up
+          safeY = preferredY + 200;
+        } else {
+          // Position lower down with offset
+          safeY = 20;
+        }
+      }
+    }
+    
+    // Ensure panel stays within screen bounds
+    safeX = Math.max(20, Math.min(safeX, screenRect.width - panelWidth - 20));
+    safeY = Math.max(20, Math.min(safeY, screenRect.height - panelHeight - 20));
+    
+    return { x: safeX, y: safeY };
+  }
 }
 
 /**
@@ -1132,6 +1218,11 @@ export class RouteRenderer {
       panel.appendChild(optionsSection);
     }
 
+    // Apply collision detection for positioning
+    const safePosition = this.getSafePanelPosition(20, 80);
+    panel.style.position = "absolute";
+    panel.style.left = `${safePosition.x}px`;
+    panel.style.bottom = `${safePosition.y}px`;
     return panel;
   }
 
@@ -1365,16 +1456,18 @@ export class RouteRenderer {
 
     const panel = document.createElement('div');
     panel.id = 'saved-routes-panel';
+    // Apply collision detection for positioning
+    const safePosition = this.getSafePanelPosition(window.innerWidth - 420, 80);
     panel.style.cssText = `
       position: absolute;
-      bottom: 80px;
-      right: 10px;
+      left: ${safePosition.x}px;
+      bottom: ${safePosition.y}px;
       background: white;
       border: 2px solid #ccc;
       border-radius: 8px;
       padding: 15px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      z-index: 1000;
+      z-index: 200;
       max-width: 400px;
       max-height: 500px;
       overflow-y: auto;
@@ -1694,5 +1787,48 @@ export class RouteRenderer {
       nameInput.focus();
       nameInput.select();
     }, 10);
+  }
+  /**
+   * Simple collision detection for panel positioning
+   */
+  private getSafePanelPosition(preferredX: number, preferredY: number, panelWidth: number = 400, panelHeight: number = 300): {x: number, y: number} {
+    const screenRect = {
+      width: window.innerWidth,
+      height: window.innerHeight
+    };
+    
+    // Check for collision with search control
+    const searchControl = document.querySelector(".golarion-search-control");
+    let safeX = preferredX;
+    let safeY = preferredY;
+    
+    if (searchControl) {
+      const searchRect = searchControl.getBoundingClientRect();
+      
+      // Check if panel would overlap with search control
+      if (preferredX < searchRect.right + 20 && 
+          preferredX + panelWidth > searchRect.left - 20 &&
+          screenRect.height - preferredY - panelHeight < searchRect.bottom + 20 &&
+          screenRect.height - preferredY > searchRect.top - 20) {
+        
+        // Try alternative positions
+        if (screenRect.width - panelWidth - 20 > 20) {
+          // Position on right side
+          safeX = screenRect.width - panelWidth - 20;
+        } else if (preferredY + panelHeight + 100 < screenRect.height) {
+          // Position higher up
+          safeY = preferredY + 200;
+        } else {
+          // Position lower down with offset
+          safeY = 20;
+        }
+      }
+    }
+    
+    // Ensure panel stays within screen bounds
+    safeX = Math.max(20, Math.min(safeX, screenRect.width - panelWidth - 20));
+    safeY = Math.max(20, Math.min(safeY, screenRect.height - panelHeight - 20));
+    
+    return { x: safeX, y: safeY };
   }
 }
