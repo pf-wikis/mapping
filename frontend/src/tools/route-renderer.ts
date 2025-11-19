@@ -1,4 +1,4 @@
-import { Map as MapLibreMap, LngLatBoundsLike, Marker } from 'maplibre-gl';
+import { Map as MapLibreMap, LngLatBoundsLike, Marker, GeoJSONSource } from 'maplibre-gl';
 import { RouteResult, TravelTime, TRAVEL_METHODS, Pathfinder } from './pathfinder';
 import { Position } from 'geojson';
 
@@ -362,8 +362,8 @@ export class RouteRenderer {
       }
     });
 
-      // Initialize segment selection functionality
-      this.initializeSegmentSelection();
+    // Initialize segment selection functionality
+    this.initializeSegmentSelection();
   }
 
   /**
@@ -460,7 +460,7 @@ export class RouteRenderer {
       // Check if any coordinate in the segment matches the clicked coordinate
       for (const coord of segmentCoords) {
         if (Math.abs(coord[0] - clickedCoords[0]) < tolerance &&
-            Math.abs(coord[1] - clickedCoords[1]) < tolerance) {
+          Math.abs(coord[1] - clickedCoords[1]) < tolerance) {
           return i;
         }
       }
@@ -687,7 +687,7 @@ export class RouteRenderer {
       }
     }));
 
-    const source = this.map.getSource(this.routeSourceId);
+    const source = this.map.getSource(this.routeSourceId) as GeoJSONSource;
     if (source && source.type === 'geojson') {
       source.setData({
         type: 'FeatureCollection',
@@ -779,11 +779,18 @@ export class RouteRenderer {
     const el = document.createElement('div');
     el.className = 'route-boat-icon';
     el.style.cssText = `
-      font-size: 24px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
       line-height: 1;
       text-shadow: 0 0 3px white, 0 0 5px white;
+      user-select: none;
     `;
     el.textContent = '⛵';
+    el.title = 'Sea route';
     return el;
   }
 
@@ -915,242 +922,215 @@ export class RouteRenderer {
    */
   showRouteInfo(route: RouteResult, travelTimes: TravelTime[]): HTMLElement {
     const panel = document.createElement('div');
-    panel.className = 'route-info-panel';
-    panel.style.cssText = `
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-      min-width: 320px;
-      max-width: 450px;
-      max-height: 80vh;
-      overflow-y: auto;
-      z-index: 1000;
-    `;
+    panel.className = 'golarion-route-panel';
 
-    // Add custom scrollbar styling
-    const style = document.createElement('style');
-    style.textContent = `
-      .route-info-panel::-webkit-scrollbar {
-        width: 8px;
-      }
-      .route-info-panel::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 4px;
-      }
-      .route-info-panel::-webkit-scrollbar-thumb {
-        background: #888;
-        border-radius: 4px;
-      }
-      .route-info-panel::-webkit-scrollbar-thumb:hover {
-        background: #555;
-      }
-    `;
-    if (!document.getElementById('route-panel-styles')) {
-      style.id = 'route-panel-styles';
-      document.head.appendChild(style);
-    }
+    // Header
+    const header = document.createElement('div');
+    header.className = 'golarion-route-header';
 
     const title = document.createElement('h3');
-    title.textContent = 'Route Information';
-    title.style.cssText = 'margin: 0 0 12px 0; font-size: 16px; color: #202124; font-weight: 600;';
-
-    const totalDist = document.createElement('div');
-    totalDist.innerHTML = `📏 <strong>Total Distance:</strong> ${route.totalDistance.toFixed(1)} km (${(route.totalDistance * 0.621371).toFixed(1)} mi)`;
-    totalDist.style.cssText = 'margin: 8px 0; font-size: 14px; color: #5f6368;';
-
-    panel.appendChild(title);
-    panel.appendChild(totalDist);
-
-    // Terrain breakdown - calculate distances for each water type
-    const terrainDistances = {
-      land: 0,
-      river: 0,
-      'shallow-water': 0,
-      'deep-water': 0
-    };
-
-    route.segments.forEach(segment => {
-      if (segment.type in terrainDistances) {
-        terrainDistances[segment.type as keyof typeof terrainDistances] += segment.distance;
-      }
-    });
-
-    const terrainDiv = document.createElement('div');
-    terrainDiv.style.cssText = 'margin: 8px 0; padding: 8px; background: #f8f9fa; border-radius: 4px;';
-
-    if (terrainDistances.land > 0) {
-      const landDiv = document.createElement('div');
-      landDiv.innerHTML = `🏔️ Land: ${terrainDistances.land.toFixed(1)} km`;
-      landDiv.style.cssText = 'font-size: 13px; color: #8B4513; margin: 4px 0; font-weight: 500;';
-      terrainDiv.appendChild(landDiv);
-    }
-
-    if (terrainDistances.river > 0) {
-      const riverDiv = document.createElement('div');
-      riverDiv.innerHTML = `🏞️ River: ${terrainDistances.river.toFixed(1)} km`;
-      riverDiv.style.cssText = 'font-size: 13px; color: #64ADEF; margin: 4px 0;';
-      terrainDiv.appendChild(riverDiv);
-    }
-
-    if (terrainDistances['shallow-water'] > 0) {
-      const shallowDiv = document.createElement('div');
-      shallowDiv.innerHTML = `🌊 Shallow Water: ${terrainDistances['shallow-water'].toFixed(1)} km`;
-      shallowDiv.style.cssText = 'font-size: 13px; color: #4A9EFF; margin: 4px 0;';
-      terrainDiv.appendChild(shallowDiv);
-    }
-
-    if (terrainDistances['deep-water'] > 0) {
-      const deepDiv = document.createElement('div');
-      deepDiv.innerHTML = `🌊 Deep Ocean: ${terrainDistances['deep-water'].toFixed(1)} km`;
-      deepDiv.style.cssText = 'font-size: 13px; color: #2E5C99; margin: 4px 0;';
-      terrainDiv.appendChild(deepDiv);
-    }
-
-    if (terrainDiv.childNodes.length > 0) {
-      panel.appendChild(terrainDiv);
-    }
-
-    // Travel times
-    if (travelTimes.length > 0) {
-      const timesTitle = document.createElement('div');
-      timesTitle.textContent = '⏱️ Travel Time:';
-      timesTitle.style.cssText = 'margin: 12px 0 8px 0; font-size: 14px; font-weight: 600; color: #202124;';
-      panel.appendChild(timesTitle);
-
-      travelTimes.slice(0, 4).forEach(time => {
-        const method = TRAVEL_METHODS[time.method];
-        const timeDiv = document.createElement('div');
-        timeDiv.style.cssText = 'margin: 4px 0; font-size: 13px; color: #5f6368; padding-left: 8px; display: flex; align-items: center; gap: 8px;';
-
-        // Create SVG icon instead of using emoji
-        const icon = this.createTravelIcon(method.icon);
-        icon.alt = method.name;
-        icon.style.cssText = `
-          width: 18px;
-          height: 18px;
-          object-fit: contain;
-          filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
-          flex-shrink: 0;
-        `;
-
-        const textSpan = document.createElement('span');
-        textSpan.innerHTML = `<strong>${method.name}:</strong> ${time.description}`;
-
-        timeDiv.appendChild(icon);
-        timeDiv.appendChild(textSpan);
-        panel.appendChild(timeDiv);
-      });
-    }
-
-    // Segment Details Section (Collapsible)
-    const segmentsSection = document.createElement('div');
-    segmentsSection.style.cssText = 'margin: 16px 0 12px 0;';
-
-    const segmentsHeader = document.createElement('div');
-    segmentsHeader.style.cssText = `
-      font-size: 14px;
-      font-weight: 600;
-      color: #202124;
-      cursor: pointer;
-      padding: 10px 12px;
-      background: #f1f3f4;
-      border-radius: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      user-select: none;
-      transition: background 0.2s;
-    `;
-    segmentsHeader.innerHTML = `<span>📋 Segment Details (${route.segments.length})</span><span id="toggle-arrow">▼</span>`;
-    segmentsHeader.onmouseover = () => {
-      segmentsHeader.style.background = '#e8eaed';
-    };
-    segmentsHeader.onmouseout = () => {
-      segmentsHeader.style.background = '#f1f3f4';
-    };
-
-    const segmentsContent = document.createElement('div');
-    segmentsContent.id = 'segments-content';
-    segmentsContent.style.cssText = 'margin-top: 12px;';
-
-    // Toggle functionality
-    let isExpanded = true;
-    segmentsHeader.onclick = () => {
-      isExpanded = !isExpanded;
-      segmentsContent.style.display = isExpanded ? 'block' : 'none';
-      const arrow = document.getElementById('toggle-arrow');
-      if (arrow) arrow.textContent = isExpanded ? '▼' : '▶';
-    };
-
-    // Add individual segment cards
-    const selectedMethod = travelTimes.length > 0 ? travelTimes[0].method : 'mixed';
-    const method = TRAVEL_METHODS[selectedMethod];
-
-    route.segments.forEach((segment, index) => {
-      const segmentCard = document.createElement('div');
-      segmentCard.style.cssText = `
-        margin: 8px 0;
-        padding: 12px;
-        background: white;
-        border-left: 4px solid ${this.getTerrainColor(segment.type)};
-        border-radius: 6px;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      `;
-
-      const segmentTitle = document.createElement('div');
-      segmentTitle.style.cssText = 'font-weight: 600; margin-bottom: 8px; font-size: 13px; color: #202124;';
-      segmentTitle.innerHTML = `Segment ${index + 1}: ${this.getTerrainIcon(segment.type)} ${this.getTerrainLabel(segment.type)}`;
-
-      const segmentDistance = document.createElement('div');
-      segmentDistance.style.cssText = 'font-size: 12px; color: #5f6368; margin: 4px 0;';
-      segmentDistance.innerHTML = `📏 Distance: <strong>${segment.distance.toFixed(1)} km</strong> (${(segment.distance * 0.621371).toFixed(1)} mi)`;
-
-      const segmentTime = document.createElement('div');
-      segmentTime.style.cssText = 'font-size: 12px; color: #5f6368; margin: 4px 0;';
-      const timeInDays = this.calculateSegmentTime(segment, method);
-      const timeStr = timeInDays === Infinity ? 'Impassable' :
-                      timeInDays < 1 ? `${(timeInDays * 24).toFixed(1)} hours` :
-                      `${timeInDays.toFixed(1)} days`;
-      segmentTime.innerHTML = `⏱️ Time: <strong>${timeStr}</strong> (${method.name})`;
-
-      segmentCard.appendChild(segmentTitle);
-      segmentCard.appendChild(segmentDistance);
-      segmentCard.appendChild(segmentTime);
-
-      segmentsContent.appendChild(segmentCard);
-    });
-
-    segmentsSection.appendChild(segmentsHeader);
-    segmentsSection.appendChild(segmentsContent);
-    panel.appendChild(segmentsSection);
+    title.textContent = 'Route Details';
 
     const closeBtn = document.createElement('button');
-    closeBtn.textContent = 'Close';
-    closeBtn.style.cssText = `
-      margin-top: 12px;
-      padding: 8px 16px;
-      background: #1976D2;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 14px;
-      width: 100%;
-    `;
-    closeBtn.onmouseover = () => {
-      closeBtn.style.background = '#1565C0';
-    };
-    closeBtn.onmouseout = () => {
-      closeBtn.style.background = '#1976D2';
-    };
+    closeBtn.className = 'golarion-close-btn';
+    closeBtn.innerHTML = '×';
     closeBtn.onclick = () => panel.remove();
 
-    panel.appendChild(closeBtn);
+    header.appendChild(title);
+    header.appendChild(closeBtn);
+    panel.appendChild(header);
+
+    // Stats Grid
+    const statsGrid = document.createElement('div');
+    statsGrid.className = 'golarion-stats-grid';
+
+    // Distance Card
+    const distCard = document.createElement('div');
+    distCard.className = 'golarion-stat-card';
+    distCard.innerHTML = `
+      <div class="stat-icon">📏</div>
+      <div class="stat-content">
+        <div class="stat-label">Distance</div>
+        <div class="stat-value">${route.totalDistance.toFixed(1)} km</div>
+        <div class="stat-sub">${(route.totalDistance * 0.621371).toFixed(1)} mi</div>
+      </div>
+    `;
+    statsGrid.appendChild(distCard);
+
+    // Time Card (Best Time)
+    if (travelTimes.length > 0) {
+      const bestTime = travelTimes[0];
+      const timeCard = document.createElement('div');
+      timeCard.className = 'golarion-stat-card';
+      timeCard.innerHTML = `
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-content">
+          <div class="stat-label">Est. Time</div>
+          <div class="stat-value">${bestTime.description.split(' ')[0]} ${bestTime.description.split(' ')[1]}</div>
+          <div class="stat-sub">${TRAVEL_METHODS[bestTime.method].name}</div>
+        </div>
+      `;
+      statsGrid.appendChild(timeCard);
+    }
+
+    panel.appendChild(statsGrid);
+
+    // Terrain Profile Bar
+    const profileSection = document.createElement('div');
+    profileSection.className = 'golarion-profile-section';
+
+    const profileTitle = document.createElement('div');
+    profileTitle.className = 'section-title';
+    profileTitle.textContent = 'Terrain Profile';
+
+    const profileBar = document.createElement('div');
+    profileBar.className = 'golarion-terrain-bar';
+
+    route.segments.forEach(segment => {
+      const segmentBar = document.createElement('div');
+      segmentBar.className = `terrain-segment ${segment.type}`;
+      const width = (segment.distance / route.totalDistance) * 100;
+      segmentBar.style.width = `${width}%`;
+      segmentBar.title = `${this.getTerrainLabel(segment.type)}: ${segment.distance.toFixed(1)} km`;
+      profileBar.appendChild(segmentBar);
+    });
+
+    profileSection.appendChild(profileTitle);
+    profileSection.appendChild(profileBar);
+
+    // Legend
+    const legend = document.createElement('div');
+    legend.className = 'golarion-terrain-legend';
+    const terrainTypes = ['land', 'river', 'shallow-water', 'deep-water'];
+    terrainTypes.forEach(type => {
+      const item = document.createElement('div');
+      item.className = 'legend-item';
+      item.innerHTML = `<span class="dot ${type}"></span>${this.getTerrainLabel(type)}`;
+      legend.appendChild(item);
+    });
+    profileSection.appendChild(legend);
+
+    panel.appendChild(profileSection);
+
+    // Route Segments Detail
+    if (route.segments && route.segments.length > 0) {
+      const segmentsSection = document.createElement('div');
+      segmentsSection.className = 'golarion-segments-section';
+
+      const segmentsTitle = document.createElement('div');
+      segmentsTitle.className = 'section-title';
+      segmentsTitle.textContent = `Route Segments (${route.segments.length} total)`;
+      segmentsSection.appendChild(segmentsTitle);
+
+      // Create scrollable container for segments
+      const segmentsList = document.createElement('div');
+      segmentsList.className = 'golarion-segments-list';
+
+      let cumulativeDistance = 0;
+      let cumulativeTime = 0;
+
+      route.segments.forEach((segment, index) => {
+        cumulativeDistance += segment.distance;
+
+        const segmentRow = document.createElement('div');
+        segmentRow.className = 'golarion-segment-row';
+        segmentRow.dataset.segmentIndex = index.toString();
+
+        // Make segment row clickable to highlight on map
+        segmentRow.onclick = () => {
+          this.highlightSegment(index);
+        };
+
+        // Segment number and terrain type
+        const segmentHeader = document.createElement('div');
+        segmentHeader.className = 'segment-header';
+
+        const segmentNumber = document.createElement('span');
+        segmentNumber.className = 'segment-number';
+        segmentNumber.textContent = `${index + 1}.`;
+
+        const terrainLabel = document.createElement('span');
+        terrainLabel.className = `segment-terrain terrain-${segment.type}`;
+        terrainLabel.textContent = this.getTerrainLabel(segment.type);
+
+        segmentHeader.appendChild(segmentNumber);
+        segmentHeader.appendChild(terrainLabel);
+
+        // Segment distance
+        const segmentDistance = document.createElement('div');
+        segmentDistance.className = 'segment-distance';
+        segmentDistance.textContent = `${segment.distance.toFixed(1)} km`;
+
+        // Calculate travel time using the fastest method
+        let segmentTime = 0;
+        if (travelTimes.length > 0) {
+          const fastestMethod = TRAVEL_METHODS[travelTimes[0].method];
+          segmentTime = this.calculateSegmentTime(segment, fastestMethod);
+          cumulativeTime += segmentTime;
+
+          const segmentTimeDiv = document.createElement('div');
+          segmentTimeDiv.className = 'segment-time';
+          const hours = segmentTime * 24;
+          if (hours < 1) {
+            segmentTimeDiv.textContent = `${(hours * 60).toFixed(0)} min`;
+          } else if (hours < 24) {
+            segmentTimeDiv.textContent = `${hours.toFixed(1)} hrs`;
+          } else {
+            segmentTimeDiv.textContent = `${segmentTime.toFixed(1)} days`;
+          }
+          segmentRow.appendChild(segmentTimeDiv);
+        }
+
+        // Cumulative info (tooltip)
+        segmentRow.title = `Cumulative: ${cumulativeDistance.toFixed(1)} km`;
+
+        segmentRow.appendChild(segmentHeader);
+        segmentRow.appendChild(segmentDistance);
+
+        segmentsList.appendChild(segmentRow);
+      });
+
+      segmentsSection.appendChild(segmentsList);
+      panel.appendChild(segmentsSection);
+    }
+
+    // Travel Options
+    if (travelTimes.length > 0) {
+      const optionsSection = document.createElement('div');
+      optionsSection.className = 'golarion-options-section';
+
+      const optionsTitle = document.createElement('div');
+      optionsTitle.className = 'section-title';
+      optionsTitle.textContent = 'Travel Options';
+      optionsSection.appendChild(optionsTitle);
+
+      travelTimes.slice(0, 3).forEach(time => {
+        const method = TRAVEL_METHODS[time.method];
+        const optionRow = document.createElement('div');
+        optionRow.className = 'golarion-option-row';
+
+        const iconDiv = document.createElement('div');
+        iconDiv.className = 'option-icon';
+        const icon = this.createTravelIcon(method.icon);
+        icon.style.width = '100%';
+        icon.style.height = '100%';
+        icon.style.objectFit = 'contain';
+        iconDiv.appendChild(icon);
+
+        const detailsDiv = document.createElement('div');
+        detailsDiv.className = 'option-details';
+        detailsDiv.innerHTML = `
+          <div class="option-name">${method.name}</div>
+          <div class="option-time">${time.description}</div>
+        `;
+
+        optionRow.appendChild(iconDiv);
+        optionRow.appendChild(detailsDiv);
+        optionsSection.appendChild(optionRow);
+      });
+
+      panel.appendChild(optionsSection);
+    }
 
     return panel;
   }
@@ -1428,12 +1408,14 @@ export class RouteRenderer {
     saveCurrentBtn.onmouseover = () => saveCurrentBtn.style.background = '#45a049';
     saveCurrentBtn.onmouseout = () => saveCurrentBtn.style.background = '#4CAF50';
     saveCurrentBtn.onclick = () => {
-      const name = prompt('Enter route name:') || `Route ${new Date().toLocaleDateString()}`;
-      const description = prompt('Enter route description (optional):') || '';
-      if (this.saveRoute(name, description, this.currentTravelMethod)) {
-        this.showSavedRoutesPanel(); // Refresh the panel
-        alert('Route saved successfully!');
-      }
+      this.showSaveRouteDialog((name, description) => {
+        if (this.saveRoute(name, description, this.currentTravelMethod)) {
+          this.showSavedRoutesPanel(); // Refresh the panel
+          this.showToast('Route saved successfully!', 'success');
+        } else {
+          this.showToast('Failed to save route', 'error');
+        }
+      });
     };
 
     // Saved routes list
@@ -1493,7 +1475,7 @@ export class RouteRenderer {
           const routeId = (e.target as HTMLElement).getAttribute('data-route-id');
           if (routeId && this.loadSavedRoute(routeId)) {
             this.showSavedRoutesPanel(); // Refresh panel
-            alert('Route loaded successfully!');
+            this.showToast('Route loaded successfully!', 'success');
           }
         });
       });
@@ -1501,11 +1483,15 @@ export class RouteRenderer {
       routesList.querySelectorAll('.delete-route-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
           const routeId = (e.target as HTMLElement).getAttribute('data-route-id');
-          if (routeId && confirm('Are you sure you want to delete this route?')) {
-            if (this.deleteSavedRoute(routeId)) {
-              this.showSavedRoutesPanel(); // Refresh panel
-              alert('Route deleted successfully!');
-            }
+          if (routeId) {
+            this.showConfirmDialog('Are you sure you want to delete this route?', () => {
+              if (this.deleteSavedRoute(routeId)) {
+                this.showSavedRoutesPanel(); // Refresh panel
+                this.showToast('Route deleted successfully!', 'success');
+              } else {
+                this.showToast('Failed to delete route', 'error');
+              }
+            });
           }
         });
       });
@@ -1554,5 +1540,159 @@ export class RouteRenderer {
     }
 
     return { routes: [] };
+  }
+
+  // ==================== CUSTOM UI DIALOGS ====================
+
+  /**
+   * Show toast notification
+   */
+  private showToast(message: string, type: 'success' | 'error' | 'info' = 'success'): void {
+    const existingToast = document.getElementById('golarion-toast');
+    if (existingToast) {
+      existingToast.remove();
+    }
+
+    const toast = document.createElement('div');
+    toast.id = 'golarion-toast';
+    toast.className = `golarion-toast golarion-toast-${type}`;
+    toast.textContent = message;
+
+    document.body.appendChild(toast);
+
+    // Trigger animation
+    setTimeout(() => toast.classList.add('show'), 10);
+
+    // Auto-dismiss after 3 seconds
+    setTimeout(() => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+
+  /**
+   * Show confirmation dialog
+   */
+  private showConfirmDialog(message: string, onConfirm: () => void, onCancel?: () => void): void {
+    const overlay = document.createElement('div');
+    overlay.className = 'golarion-modal-overlay';
+
+    const dialog = document.createElement('div');
+    dialog.className = 'golarion-confirm-dialog';
+
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'confirm-message';
+    messageDiv.textContent = message;
+
+    const buttonsDiv = document.createElement('div');
+    buttonsDiv.className = 'confirm-buttons';
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'golarion-btn btn-secondary';
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.onclick = () => {
+      overlay.remove();
+      if (onCancel) onCancel();
+    };
+
+    const confirmBtn = document.createElement('button');
+    confirmBtn.className = 'golarion-btn btn-danger';
+    confirmBtn.textContent = 'Delete';
+    confirmBtn.onclick = () => {
+      overlay.remove();
+      onConfirm();
+    };
+
+    buttonsDiv.appendChild(cancelBtn);
+    buttonsDiv.appendChild(confirmBtn);
+
+    dialog.appendChild(messageDiv);
+    dialog.appendChild(buttonsDiv);
+    overlay.appendChild(dialog);
+
+    document.body.appendChild(overlay);
+
+    // Trigger animation
+    setTimeout(() => overlay.classList.add('show'), 10);
+  }
+
+  /**
+   * Show save route dialog
+   */
+  private showSaveRouteDialog(onSave: (name: string, description: string) => void): void {
+    const overlay = document.createElement('div');
+    overlay.className = 'golarion-modal-overlay';
+
+    const dialog = document.createElement('div');
+    dialog.className = 'golarion-save-dialog';
+
+    const title = document.createElement('h3');
+    title.textContent = 'Save Route';
+    title.style.marginTop = '0';
+
+    const nameLabel = document.createElement('label');
+    nameLabel.className = 'form-label';
+    nameLabel.textContent = 'Route Name';
+
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.className = 'form-input';
+    nameInput.placeholder = 'e.g., Absalom to Almas';
+    nameInput.value = `Route ${new Date().toLocaleDateString()}`;
+
+    const descLabel = document.createElement('label');
+    descLabel.className = 'form-label';
+    descLabel.textContent = 'Description (Optional)';
+
+    const descInput = document.createElement('textarea');
+    descInput.className = 'form-textarea';
+    descInput.placeholder = 'Add notes about this route...';
+    descInput.rows = 3;
+
+    const buttonsDiv = document.createElement('div');
+    buttonsDiv.className = 'form-buttons';
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.className = 'golarion-btn btn-secondary';
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.onclick = () => overlay.remove();
+
+    const saveBtn = document.createElement('button');
+    saveBtn.className = 'golarion-btn btn-primary';
+    saveBtn.textContent = 'Save';
+    saveBtn.onclick = () => {
+      const name = nameInput.value.trim() || `Route ${new Date().toLocaleDateString()}`;
+      const description = descInput.value.trim();
+      overlay.remove();
+      onSave(name, description);
+    };
+
+    // Allow Enter key to submit
+    nameInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        saveBtn.click();
+      }
+    });
+
+    buttonsDiv.appendChild(cancelBtn);
+    buttonsDiv.appendChild(saveBtn);
+
+    dialog.appendChild(title);
+    dialog.appendChild(nameLabel);
+    dialog.appendChild(nameInput);
+    dialog.appendChild(descLabel);
+    dialog.appendChild(descInput);
+    dialog.appendChild(buttonsDiv);
+    overlay.appendChild(dialog);
+
+    document.body.appendChild(overlay);
+
+    // Trigger animation and focus input
+    setTimeout(() => {
+      overlay.classList.add('show');
+      nameInput.focus();
+      nameInput.select();
+    }, 10);
   }
 }

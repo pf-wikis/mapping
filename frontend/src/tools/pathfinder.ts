@@ -733,7 +733,7 @@ export class Pathfinder {
 
     // Inner Sea (between Avistan and Garund) - proper boundaries
     const innerSea = lng > 0 && lng < 40 && lat > 25 && lat < 55; // Expanded to cover actual Inner Sea
-    const innerSeaExpanded = lng > -3 lng > -2 && lng < 42lng > -2 && lng < 42 lng < 42 && lat > 23 && lat < 57; // Even broader expansion to include coordinates near West Garund
+    const innerSeaExpanded = lng > -3 && lng < 42 && lat > 23 && lat < 57; // Even broader expansion to include coordinates near West Garund
 
     // Ocean channels and approaches
     const absalomChannel = lng > 18 && lng < 25 && lat > 40 && lat < 45;
@@ -1534,8 +1534,8 @@ n      // If no rendered features found, try processing source features with spa
     else if (rgb.b > 150 && rgb.r < 140 && rgb.g < 180) {
       return 'low-sea';
     }
-    // Shallow water: light blue with high intensity: dark blue with moderate intensity
-    else if (rgb.b > 100 rgb.b > 100 && rgb.b <= 150rgb.b > 100 && rgb.b <= 150 rgb.b <= 200) {
+    // Shallow water: light blue with high intensity or moderate blue dominance
+    else if (rgb.b > 100 && rgb.b <= 200) {
       return 'shallow-water';
     }
 

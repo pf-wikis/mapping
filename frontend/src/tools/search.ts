@@ -25,6 +25,11 @@ export default class SearchControl implements IControl {
   private popup: Popup | null = null;
   private routeInfoPanel: HTMLElement | null = null;
   private lastSearchResult: SearchResult | null = null;
+  private travelPreferences = {
+    method: 'balanced' as 'balanced' | 'land' | 'water',
+    avoidOpenOcean: false,
+    usePorts: false
+  };
 
   constructor(map: GolarionMap) {
     this.map = map;
@@ -66,16 +71,25 @@ export default class SearchControl implements IControl {
     const directionsToggle = document.createElement('button');
     directionsToggle.className = 'golarion-directions-toggle';
     directionsToggle.innerHTML = `
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-        <path d="M8 0l3 3-3 3V4H5v3L2 4l3-3V0h3zm0 16l-3-3 3-3v2h3V9l3 3-3 3v-1H8v1z"/>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18l6-6-6-6"/>
       </svg>
     `;
-    directionsToggle.title = 'Get Directions';
+    directionsToggle.title = 'Toggle Directions Mode';
     directionsToggle.addEventListener('click', () => this.toggleDirectionsMode());
 
     // Single search mode
     const singleSearchDiv = document.createElement('div');
     singleSearchDiv.className = 'golarion-search-single';
+
+    const searchIcon = document.createElement('span');
+    searchIcon.className = 'golarion-search-icon';
+    searchIcon.innerHTML = `
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    `;
 
     this.searchInput = document.createElement('input');
     this.searchInput.type = 'text';
@@ -85,10 +99,6 @@ export default class SearchControl implements IControl {
     this.searchInput.addEventListener('keydown', (e) => this.handleKeyDown(e));
     this.searchInput.addEventListener('focus', () => this.handleFocus());
     this.searchInput.addEventListener('blur', () => this.handleBlur());
-
-    const searchIcon = document.createElement('span');
-    searchIcon.className = 'golarion-search-icon';
-    searchIcon.innerHTML = '🔍';
 
     singleSearchDiv.appendChild(searchIcon);
     singleSearchDiv.appendChild(this.searchInput);
@@ -103,7 +113,7 @@ export default class SearchControl implements IControl {
     pointAWrapper.className = 'golarion-point-wrapper';
 
     const pointALabel = document.createElement('span');
-    pointALabel.className = 'golarion-point-label';
+    pointALabel.className = 'golarion-point-label label-a';
     pointALabel.textContent = 'A';
 
     this.pointAInput = document.createElement('input');
@@ -123,7 +133,7 @@ export default class SearchControl implements IControl {
     pointBWrapper.className = 'golarion-point-wrapper';
 
     const pointBLabel = document.createElement('span');
-    pointBLabel.className = 'golarion-point-label';
+    pointBLabel.className = 'golarion-point-label label-b';
     pointBLabel.textContent = 'B';
 
     this.pointBInput = document.createElement('input');
@@ -141,61 +151,151 @@ export default class SearchControl implements IControl {
     // Swap button
     const swapButton = document.createElement('button');
     swapButton.className = 'golarion-swap-button';
-    swapButton.innerHTML = '⇅';
+    swapButton.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"></line>
+        <polyline points="19 12 12 19 5 12"></polyline>
+      </svg>
+    `;
     swapButton.title = 'Swap start and destination';
     swapButton.addEventListener('click', () => this.swapPoints());
 
-    // Clear route button
+    // Preferences Section
+    const preferencesDiv = document.createElement('div');
+    preferencesDiv.className = 'golarion-preferences';
+
+    const prefTitle = document.createElement('div');
+    prefTitle.className = 'golarion-pref-title';
+    prefTitle.textContent = 'Travel Preferences';
+    preferencesDiv.appendChild(prefTitle);
+
+    const prefControls = document.createElement('div');
+    prefControls.className = 'golarion-pref-controls';
+
+    // Travel Method Preference
+    const methodControl = document.createElement('div');
+    methodControl.className = 'golarion-segment-control';
+
+    const methods = [
+      { id: 'balanced', label: 'Balanced' },
+      { id: 'land', label: 'Prefer Land' },
+      { id: 'water', label: 'Prefer Water' }
+    ];
+
+    methods.forEach(m => {
+      const opt = document.createElement('div');
+      opt.className = `golarion-segment-option ${this.travelPreferences.method === m.id ? 'active' : ''}`;
+      opt.textContent = m.label;
+      opt.onclick = () => {
+        this.travelPreferences.method = m.id as any;
+        methodControl.querySelectorAll('.golarion-segment-option').forEach(el => el.classList.remove('active'));
+        opt.classList.add('active');
+        // Recalculate route if both points are set
+        if (this.pointA && this.pointB) {
+          this.calculateRoute();
+        }
+      };
+      methodControl.appendChild(opt);
+    });
+    prefControls.appendChild(methodControl);
+
+    // Avoid Open Ocean Toggle
+    const oceanRow = document.createElement('div');
+    oceanRow.className = 'golarion-toggle-row';
+    oceanRow.innerHTML = `<span>Avoid Open Ocean</span>`;
+
+    const oceanSwitch = document.createElement('label');
+    oceanSwitch.className = 'golarion-switch';
+    const oceanInput = document.createElement('input');
+    oceanInput.type = 'checkbox';
+    oceanInput.checked = this.travelPreferences.avoidOpenOcean;
+    oceanInput.onchange = (e) => {
+      this.travelPreferences.avoidOpenOcean = (e.target as HTMLInputElement).checked;
+      // Recalculate route if both points are set
+      if (this.pointA && this.pointB) {
+        this.calculateRoute();
+      }
+    };
+    const oceanSlider = document.createElement('span');
+    oceanSlider.className = 'golarion-slider';
+
+    oceanSwitch.appendChild(oceanInput);
+    oceanSwitch.appendChild(oceanSlider);
+    oceanRow.appendChild(oceanSwitch);
+    prefControls.appendChild(oceanRow);
+
+    // Use Ports Toggle
+    const portRow = document.createElement('div');
+    portRow.className = 'golarion-toggle-row';
+    portRow.innerHTML = `<span>Use Ports Only</span>`;
+
+    const portSwitch = document.createElement('label');
+    portSwitch.className = 'golarion-switch';
+    const portInput = document.createElement('input');
+    portInput.type = 'checkbox';
+    portInput.checked = this.travelPreferences.usePorts;
+    portInput.onchange = (e) => {
+      this.travelPreferences.usePorts = (e.target as HTMLInputElement).checked;
+      // Recalculate route if both points are set
+      if (this.pointA && this.pointB) {
+        this.calculateRoute();
+      }
+    };
+    const portSlider = document.createElement('span');
+    portSlider.className = 'golarion-slider';
+
+    portSwitch.appendChild(portInput);
+    portSwitch.appendChild(portSlider);
+    portRow.appendChild(portSwitch);
+    prefControls.appendChild(portRow);
+
+    preferencesDiv.appendChild(prefControls);
+
+    // Action Buttons
+    const actionsDiv = document.createElement('div');
+    actionsDiv.className = 'golarion-actions';
+
     const clearButton = document.createElement('button');
-    clearButton.className = 'golarion-clear-button';
-    clearButton.textContent = 'Clear';
+    clearButton.className = 'golarion-btn btn-secondary';
+    clearButton.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+      </svg>
+      Clear
+    `;
     clearButton.addEventListener('click', () => this.clearRoute());
 
-    // Saved routes button
     const savedRoutesButton = document.createElement('button');
-    savedRoutesButton.className = 'golarion-saved-routes-button';
-    savedRoutesButton.innerHTML = '💾';
-    savedRoutesButton.title = 'Manage Saved Routes';
-    savedRoutesButton.style.cssText = `
-      background: none;
-      border: none;
-      padding: 8px;
-      cursor: pointer;
-      font-size: 14px;
-      border-radius: 3px;
-      transition: background-color 0.2s;
+    savedRoutesButton.className = 'golarion-btn btn-secondary';
+    savedRoutesButton.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+        <polyline points="7 3 7 8 15 8"></polyline>
+      </svg>
+      Saved
     `;
     savedRoutesButton.addEventListener('click', () => this.routeRenderer.showSavedRoutesPanel());
-    savedRoutesButton.addEventListener('mouseover', () => {
-      savedRoutesButton.style.backgroundColor = '#f0f0f0';
-    });
-    savedRoutesButton.addEventListener('mouseout', () => {
-      savedRoutesButton.style.backgroundColor = 'transparent';
-    });
+
+    actionsDiv.appendChild(clearButton);
+    actionsDiv.appendChild(savedRoutesButton);
 
     directionsDiv.appendChild(pointAWrapper);
     directionsDiv.appendChild(swapButton);
     directionsDiv.appendChild(pointBWrapper);
-    directionsDiv.appendChild(clearButton);
-    directionsDiv.appendChild(savedRoutesButton);
+    directionsDiv.appendChild(preferencesDiv);
+    directionsDiv.appendChild(actionsDiv);
 
     // Results container
     this.resultsContainer = document.createElement('div');
     this.resultsContainer.className = 'golarion-search-results';
     this.resultsContainer.style.display = 'none';
 
-    // Category filter
-    const filterBar = document.createElement('div');
-    filterBar.className = 'golarion-filter-bar';
-    filterBar.style.display = 'none'; // Show when search is active
-
     wrapper.appendChild(directionsToggle);
     wrapper.appendChild(singleSearchDiv);
     wrapper.appendChild(directionsDiv);
-    wrapper.appendChild(filterBar);
-    wrapper.appendChild(this.resultsContainer);
 
     this.container!.appendChild(wrapper);
+    this.container!.appendChild(this.resultsContainer);
   }
 
   private toggleDirectionsMode(): void {
@@ -498,7 +598,12 @@ export default class SearchControl implements IControl {
       });
 
       // Calculate route using geodesic pathfinding with terrain detection
-      const route = await this.pathfinder.findRoute(startCoords, endCoords);
+      // Map travel preferences to pathfinder format
+      const pathfinderPreferences = {
+        terrain: (this.travelPreferences.method === 'water' ? 'sea' : this.travelPreferences.method) as 'land' | 'sea' | 'balanced',
+        avoidWildWater: this.travelPreferences.avoidOpenOcean
+      };
+      const route = await this.pathfinder.findRoute(startCoords, endCoords, pathfinderPreferences);
 
       if (!route.success) {
         this.showError(route.message || 'Failed to find route');
