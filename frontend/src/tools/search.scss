@@ -1,0 +1,433 @@
+// Golarion Map Search Control Styles
+
+.golarion-search-control {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  font-family: Arial, sans-serif;
+  min-width: 300px;
+  max-width: 400px;
+
+  @media (max-width: 768px) {
+    min-width: 250px;
+    max-width: 90vw;
+    right: 5px;
+    top: 5px;
+  }
+}
+
+.golarion-search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+// Directions toggle button
+.golarion-directions-toggle {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  z-index: 10;
+  background: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5f6368;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f1f3f4;
+    color: #1a73e8;
+  }
+
+  &:active {
+    background: #e8eaed;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Single search mode
+.golarion-search-single {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+}
+
+.golarion-search-icon {
+  font-size: 18px;
+  color: #5f6368;
+  flex-shrink: 0;
+}
+
+.golarion-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding: 4px;
+  color: #202124;
+  background: transparent;
+
+  &::placeholder {
+    color: #9aa0a6;
+  }
+}
+
+// Directions mode
+.golarion-directions-inputs {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.golarion-point-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f3f4;
+  border-radius: 4px;
+  padding: 8px;
+  position: relative;
+
+  &:focus-within {
+    background: white;
+    box-shadow: 0 0 0 2px #1a73e8;
+  }
+}
+
+.golarion-point-label {
+  width: 24px;
+  height: 24px;
+  background: #1a73e8;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.golarion-point-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+  color: #202124;
+
+  &::placeholder {
+    color: #9aa0a6;
+  }
+}
+
+.golarion-swap-button {
+  align-self: center;
+  background: white;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #5f6368;
+  transition: all 0.2s;
+  margin: 4px 0;
+
+  &:hover {
+    background: #f1f3f4;
+    border-color: #1a73e8;
+    color: #1a73e8;
+  }
+
+  &:active {
+    background: #e8eaed;
+  }
+}
+
+.golarion-clear-button {
+  align-self: center;
+  background: white;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #5f6368;
+  transition: all 0.2s;
+  margin-top: 4px;
+
+  &:hover {
+    background: #f1f3f4;
+    border-color: #d32f2f;
+    color: #d32f2f;
+  }
+
+  &:active {
+    background: #e8eaed;
+  }
+}
+
+// Search results
+.golarion-search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: -8px;
+  padding-top: 8px;
+  z-index: 1000;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.golarion-search-result-item {
+  padding: 12px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #f1f3f4;
+  transition: background 0.15s;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover,
+  &.selected {
+    background: #f1f3f4;
+  }
+
+  &.selected {
+    background: #e8f0fe;
+  }
+}
+
+.golarion-result-title {
+  font-size: 14px;
+  color: #202124;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.golarion-result-category {
+  font-size: 12px;
+  color: #5f6368;
+  text-transform: capitalize;
+}
+
+// Category filter bar
+.golarion-filter-bar {
+  padding: 8px 12px;
+  border-top: 1px solid #e8eaed;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: #f8f9fa;
+}
+
+.golarion-filter-chip {
+  padding: 4px 12px;
+  border-radius: 16px;
+  border: 1px solid #dadce0;
+  background: white;
+  font-size: 12px;
+  color: #5f6368;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f1f3f4;
+  }
+
+  &.active {
+    background: #1a73e8;
+    color: white;
+    border-color: #1a73e8;
+  }
+}
+
+// Popup styling
+.golarion-search-popup {
+  padding: 8px;
+  min-width: 150px;
+
+  h3 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #202124;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 4px 0;
+    font-size: 13px;
+    color: #5f6368;
+  }
+}
+
+// Error message
+.golarion-search-error {
+  padding: 12px;
+  background: #fce4ec;
+  color: #c62828;
+  font-size: 13px;
+  border-radius: 4px;
+  margin: 8px;
+  text-align: center;
+}
+
+// Scrollbar styling for results
+.golarion-search-results::-webkit-scrollbar {
+  width: 8px;
+}
+
+.golarion-search-results::-webkit-scrollbar-track {
+  background: #f1f3f4;
+  border-radius: 0 0 8px 0;
+}
+
+.golarion-search-results::-webkit-scrollbar-thumb {
+  background: #dadce0;
+  border-radius: 4px;
+
+  &:hover {
+    background: #bdc1c6;
+  }
+}
+
+// Loading state
+.golarion-search-loading {
+  padding: 16px;
+  text-align: center;
+  color: #5f6368;
+  font-size: 13px;
+
+  &::after {
+    content: '...';
+    animation: ellipsis 1.5s infinite;
+  }
+}
+
+@keyframes ellipsis {
+  0% {
+    content: '';
+  }
+  33% {
+    content: '.';
+  }
+  66% {
+    content: '..';
+  }
+  100% {
+    content: '...';
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .golarion-search-control {
+    min-width: 200px;
+  }
+
+  .golarion-search-results {
+    max-height: 300px;
+  }
+
+  .golarion-point-wrapper {
+    padding: 6px;
+  }
+
+  .golarion-result-title {
+    font-size: 13px;
+  }
+
+  .golarion-result-category {
+    font-size: 11px;
+  }
+}
+
+// Dark mode support (optional)
+@media (prefers-color-scheme: dark) {
+  .golarion-search-control {
+    background: #292929;
+    color: #e8eaed;
+  }
+
+  .golarion-search-input,
+  .golarion-point-input {
+    color: #e8eaed;
+
+    &::placeholder {
+      color: #9aa0a6;
+    }
+  }
+
+  .golarion-search-results {
+    background: #292929;
+  }
+
+  .golarion-search-result-item {
+    border-bottom-color: #3c4043;
+
+    &:hover {
+      background: #3c4043;
+    }
+
+    &.selected {
+      background: #1a3a52;
+    }
+  }
+
+  .golarion-result-title {
+    color: #e8eaed;
+  }
+
+  .golarion-point-wrapper {
+    background: #3c4043;
+
+    &:focus-within {
+      background: #292929;
+      box-shadow: 0 0 0 2px #8ab4f8;
+    }
+  }
+
+  .golarion-swap-button,
+  .golarion-clear-button {
+    background: #292929;
+    border-color: #5f6368;
+    color: #e8eaed;
+
+    &:hover {
+      background: #3c4043;
+    }
+  }
+
+  .golarion-directions-toggle {
+    background: #292929;
+    color: #e8eaed;
+
+    &:hover {
+      background: #3c4043;
+      color: #8ab4f8;
+    }
+  }
+}

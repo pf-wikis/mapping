@@ -3,15 +3,19 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
 import style from 'virtual:style';
 import MeasureControl from './tools/measure.js';
+import SearchControl from './tools/search.js';
 import './style.scss';
 import { PMTiles, Protocol } from 'pmtiles';
 import { makeLocationsClickable } from "./tools/location-popup.js";
 import { addRightClickMenu } from "./tools/right-click-menu.js";
 import { addSpecialURLOptions } from "./tools/special-url-options.js";
-import { CachedSource } from "./CachedPmTiles.js";
+import { CachedSource } from "./CachedPMTiles.js";
 import NewTab from "./tools/NewTab.js";
 import { CompactAttributionControl } from "./tools/CompactAttributionControl.js";
 import { GolarionMap } from "./tools/GolarionMap.js";
+
+// Expose pathfinder for debugging
+let globalPathfinder: any = null;
 
 //check if running embedded
 var options = new URLSearchParams(window.location.hash.replace("#","?"));
@@ -113,6 +117,8 @@ map.addControl(new ScaleControl({
 map.addControl(new CompactAttributionControl(embedded));
 let measureControl = new MeasureControl(golarionMap);
 map.addControl(measureControl);
+let searchControl = new SearchControl(golarionMap);
+map.addControl(searchControl);
 if(embedded) {
   map.addControl(new NewTab());
   //attribution._toggleAttribution();
