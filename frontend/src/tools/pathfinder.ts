@@ -1260,17 +1260,17 @@ n      // If no rendered features found, try processing source features with spa
             if (feature.properties?.color !== undefined) {
               const unifiedFeature = {
                 ...feature,
-                layer: { id: feature.sourceLayer || \"geometry\", type: \"fill\", \"source-layer\": feature.sourceLayer },
+                layer: { id: feature.sourceLayer || "geometry", type: "fill", "source-layer": feature.sourceLayer },
                 sourceLayer: feature.sourceLayer
               };
               const terrainType = this.getTerrainTypeFromFeature(unifiedFeature);
 
-              if (terrainType === \"river\" || terrainType === \"shallow-water\" || terrainType === \"low-sea\" || terrainType === \"deep-sea\" || terrainType === \"deep-water\") {
+              if (terrainType === "river" || terrainType === "shallow-water" || terrainType === "low-sea" || terrainType === "deep-sea" || terrainType === "deep-water") {
                 console.log(`💧 WATER terrain from source feature: color=${feature.properties.color} → ${terrainType}`);
                 return terrainType;
-              } else if (terrainType === \"land\") {
+              } else if (terrainType === "land") {
                 console.log(`🌍 LAND terrain from source feature: color=${feature.properties.color} → ${terrainType}`);
-                return \"land\";
+                return "land";
               }
             }
           }
