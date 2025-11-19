@@ -1397,7 +1397,7 @@ export class RouteRenderer {
     panel.style.cssText = `
       position: absolute;
       left: ${leftPosition}px;
-      bottom: ${bottomPosition}px`;
+      bottom: ${bottomPosition}px;
       border: 2px solid #ccc;
       border-radius: 8px;
       padding: 15px;
