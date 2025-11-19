@@ -40,7 +40,7 @@ export default class SearchControl implements IControl {
   onAdd(map: Map): HTMLElement {
     // Create main container
     this.container = document.createElement('div');
-    this.container.className = 'maplibregl-ctrl maplibregl-ctrl-group golarion-search-control';
+    this.container.className = 'golarion-search-control';
 
     // Initialize search index
     this.fuzzySearch.load().then(() => {
@@ -151,10 +151,33 @@ export default class SearchControl implements IControl {
     clearButton.textContent = 'Clear';
     clearButton.addEventListener('click', () => this.clearRoute());
 
+    // Saved routes button
+    const savedRoutesButton = document.createElement('button');
+    savedRoutesButton.className = 'golarion-saved-routes-button';
+    savedRoutesButton.innerHTML = '💾';
+    savedRoutesButton.title = 'Manage Saved Routes';
+    savedRoutesButton.style.cssText = `
+      background: none;
+      border: none;
+      padding: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 3px;
+      transition: background-color 0.2s;
+    `;
+    savedRoutesButton.addEventListener('click', () => this.routeRenderer.showSavedRoutesPanel());
+    savedRoutesButton.addEventListener('mouseover', () => {
+      savedRoutesButton.style.backgroundColor = '#f0f0f0';
+    });
+    savedRoutesButton.addEventListener('mouseout', () => {
+      savedRoutesButton.style.backgroundColor = 'transparent';
+    });
+
     directionsDiv.appendChild(pointAWrapper);
     directionsDiv.appendChild(swapButton);
     directionsDiv.appendChild(pointBWrapper);
     directionsDiv.appendChild(clearButton);
+    directionsDiv.appendChild(savedRoutesButton);
 
     // Results container
     this.resultsContainer = document.createElement('div');
@@ -487,6 +510,11 @@ export default class SearchControl implements IControl {
 
       // Calculate travel times for all methods
       const travelTimes = this.pathfinder.calculateAllTravelTimes(route);
+
+      // Set the fastest travel method for route saving
+      if (travelTimes.length > 0) {
+        this.routeRenderer.setTravelMethod(travelTimes[0].method);
+      }
 
       // Show route info panel with travel time breakdown
       this.showRouteInfo(route, travelTimes);

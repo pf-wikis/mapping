@@ -1,6 +1,28 @@
 import { Map as MapLibreMap, LngLatBoundsLike, Marker } from 'maplibre-gl';
-import { RouteResult, TravelTime, TRAVEL_METHODS } from './pathfinder';
+import { RouteResult, TravelTime, TRAVEL_METHODS, Pathfinder } from './pathfinder';
 import { Position } from 'geojson';
+
+/**
+ * Interface for saved route data
+ */
+interface SavedRoute {
+  id: string;
+  name: string;
+  description?: string;
+  createdAt: string;
+  routeData: RouteResult;
+  startPoint: Position;
+  endPoint: Position;
+  travelMethod: string;
+  totalDistance: number;
+}
+
+/**
+ * Interface for route storage management
+ */
+interface RouteStorage {
+  routes: SavedRoute[];
+}
 
 /**
  * RouteRenderer handles visualization of calculated routes on the map
@@ -30,10 +52,32 @@ export class RouteRenderer {
   private boatMarkers: Marker[] = [];
   private anchorMarkers: Marker[] = [];
   private currentRoute: RouteResult | null = null;
+  private currentTravelMethod: string = 'walking';
+  private pathfinder: Pathfinder;
+
+  // Segment selection properties
+  private highlightedSegmentIndex: number | null = null;
+  private segmentClickHandlers: ((e: any) => void)[] = [];
+  private isSelectionModeEnabled: boolean = false;
 
   constructor(map: MapLibreMap) {
     this.map = map;
+    this.pathfinder = new Pathfinder(map);
     this.initializeLayers();
+  }
+
+  /**
+   * Set the current travel method for route saving
+   */
+  public setTravelMethod(method: string): void {
+    this.currentTravelMethod = method;
+  }
+
+  /**
+   * Get the current travel method
+   */
+  public getTravelMethod(): string {
+    return this.currentTravelMethod;
   }
 
   /**
@@ -317,6 +361,285 @@ export class RouteRenderer {
         });
       }
     });
+
+      // Initialize segment selection functionality
+      this.initializeSegmentSelection();
+  }
+
+  /**
+   * Initialize segment selection and highlighting
+   */
+  private initializeSegmentSelection(): void {
+    // Enable segment selection by default
+    this.enableSegmentSelection();
+  }
+
+  /**
+   * Enable segment selection mode
+   */
+  public enableSegmentSelection(): void {
+    if (this.isSelectionModeEnabled) return;
+
+    this.isSelectionModeEnabled = true;
+
+    // Add click handlers for all route layers
+    const routeLayers = [
+      this.landLayerId,
+      this.riverLayerId,
+      this.shallowWaterLayerId,
+      this.lowSeaLayerId,
+      this.deepSeaLayerId,
+      this.waterLayerId,
+      this.deepWaterLayerId
+    ];
+
+    routeLayers.forEach(layerId => {
+      if (this.map.getLayer(layerId)) {
+        const clickHandler = (e: any) => {
+          // Check if the click is on a route feature
+          const features = this.map.queryRenderedFeatures(e.point, {
+            layers: [layerId]
+          });
+
+          if (features.length > 0 && features[0].properties && features[0].properties.terrain) {
+            e.preventDefault(); // Prevent default map behavior
+            this.handleSegmentClick(features[0]);
+          }
+        };
+
+        this.map.on('click', layerId, clickHandler);
+        this.segmentClickHandlers.push(clickHandler);
+      }
+    });
+  }
+
+  /**
+   * Disable segment selection mode
+   */
+  public disableSegmentSelection(): void {
+    if (!this.isSelectionModeEnabled) return;
+
+    this.isSelectionModeEnabled = false;
+
+    // Remove all click handlers
+    this.segmentClickHandlers.forEach(handler => {
+      this.map.off('click', undefined, handler);
+    });
+
+    this.segmentClickHandlers = [];
+    this.clearSegmentHighlight();
+  }
+
+  /**
+   * Handle segment click event
+   */
+  private handleSegmentClick(feature: any): void {
+    if (!this.currentRoute || !this.currentRoute.segments) return;
+
+    // Find which segment was clicked by comparing coordinates
+    const clickedSegmentIndex = this.findSegmentIndex(feature);
+
+    if (clickedSegmentIndex !== -1) {
+      this.highlightSegment(clickedSegmentIndex);
+    }
+  }
+
+  /**
+   * Find segment index by comparing clicked feature coordinates
+   */
+  private findSegmentIndex(clickedFeature: any): number {
+    if (!this.currentRoute || !this.currentRoute.segments) return -1;
+
+    const clickedCoords = clickedFeature.geometry.coordinates;
+    const tolerance = 0.0001; // Coordinate tolerance for matching
+
+    for (let i = 0; i < this.currentRoute.segments.length; i++) {
+      const segment = this.currentRoute.segments[i];
+      const segmentCoords = segment.coordinates;
+
+      // Check if any coordinate in the segment matches the clicked coordinate
+      for (const coord of segmentCoords) {
+        if (Math.abs(coord[0] - clickedCoords[0]) < tolerance &&
+            Math.abs(coord[1] - clickedCoords[1]) < tolerance) {
+          return i;
+        }
+      }
+    }
+
+    return -1;
+  }
+
+  /**
+   * Highlight a specific segment
+   */
+  private highlightSegment(segmentIndex: number): void {
+    // Clear previous highlight
+    this.clearSegmentHighlight();
+
+    this.highlightedSegmentIndex = segmentIndex;
+
+    // Update layer properties to highlight the segment
+    this.updateSegmentHighlight(segmentIndex, true);
+
+    // Show segment details
+    this.showSegmentDetails(segmentIndex);
+  }
+
+  /**
+   * Clear segment highlight
+   */
+  public clearSegmentHighlight(): void {
+    if (this.highlightedSegmentIndex !== null) {
+      this.updateSegmentHighlight(this.highlightedSegmentIndex, false);
+      this.highlightedSegmentIndex = null;
+    }
+  }
+
+  /**
+   * Update segment highlighting state
+   */
+  private updateSegmentHighlight(segmentIndex: number, isHighlighted: boolean): void {
+    if (!this.currentRoute || !this.currentRoute.segments) return;
+
+    const segment = this.currentRoute.segments[segmentIndex];
+    const terrainType = this.getLayerTerrainType(segment.type);
+
+    // Find the corresponding layer IDs
+    const mainLayerId = this.getLayerId(terrainType, false);
+    const outlineLayerId = this.getLayerId(terrainType, true);
+
+    if (this.map.getLayer(mainLayerId)) {
+      // Update paint properties for highlighting
+      if (isHighlighted) {
+        this.map.setPaintProperty(mainLayerId, 'line-width', 8); // Thicker line
+        this.map.setPaintProperty(mainLayerId, 'line-opacity', 1.0); // Full opacity
+      } else {
+        // Reset to original width based on terrain type
+        const originalWidth = this.getOriginalLineWidth(terrainType);
+        this.map.setPaintProperty(mainLayerId, 'line-width', originalWidth);
+        this.map.setPaintProperty(mainLayerId, 'line-opacity', 1.0);
+      }
+    }
+
+    if (this.map.getLayer(outlineLayerId)) {
+      if (isHighlighted) {
+        this.map.setPaintProperty(outlineLayerId, 'line-width', 11); // Thicker outline
+        this.map.setPaintProperty(outlineLayerId, 'line-opacity', 0.9); // Higher opacity
+      } else {
+        // Reset to original outline width
+        const originalOutlineWidth = this.getOriginalOutlineWidth(terrainType);
+        this.map.setPaintProperty(outlineLayerId, 'line-width', originalOutlineWidth);
+        this.map.setPaintProperty(outlineLayerId, 'line-opacity', this.getOriginalOutlineOpacity(terrainType));
+      }
+    }
+  }
+
+  /**
+   * Show segment details in console or UI
+   */
+  private showSegmentDetails(segmentIndex: number): void {
+    if (!this.currentRoute || !this.currentRoute.segments) return;
+
+    const segment = this.currentRoute.segments[segmentIndex];
+    const terrainLabel = this.getTerrainLabel(segment.type);
+    const segmentNumber = segmentIndex + 1;
+    const totalSegments = this.currentRoute.segments.length;
+
+    console.log(`=== SEGMENT ${segmentNumber} of ${totalSegments} ===`);
+    console.log(`🏷️  Terrain: ${terrainLabel}`);
+    console.log(`📏 Distance: ${segment.distance.toFixed(2)} km`);
+    console.log(`📍 Points: ${segment.coordinates.length}`);
+    console.log(`⏱️  Index: ${segmentIndex}`);
+    console.log('=============================');
+  }
+
+  /**
+   * Get terrain type for layer ID mapping
+   */
+  private getLayerTerrainType(terrainType: string): string {
+    const typeMap: Record<string, string> = {
+      'land': 'land',
+      'river': 'river',
+      'shallow-water': 'shallow-water',
+      'low-sea': 'low-sea',
+      'deep-sea': 'deep-sea',
+      'water': 'water',
+      'deep-water': 'deep-water'
+    };
+    return typeMap[terrainType] || terrainType;
+  }
+
+  /**
+   * Get layer ID for terrain type
+   */
+  private getLayerId(terrainType: string, isOutline: boolean): string {
+    const layerMap: Record<string, { main: string; outline: string }> = {
+      'land': { main: this.landLayerId, outline: this.landOutlineLayerId },
+      'river': { main: this.riverLayerId, outline: this.riverOutlineLayerId },
+      'shallow-water': { main: this.shallowWaterLayerId, outline: this.shallowWaterOutlineLayerId },
+      'low-sea': { main: this.lowSeaLayerId, outline: this.lowSeaOutlineLayerId },
+      'deep-sea': { main: this.deepSeaLayerId, outline: this.deepSeaOutlineLayerId },
+      'water': { main: this.waterLayerId, outline: this.waterOutlineLayerId },
+      'deep-water': { main: this.deepWaterLayerId, outline: this.deepWaterOutlineLayerId }
+    };
+
+    const layer = layerMap[terrainType];
+    return layer ? (isOutline ? layer.outline : layer.main) : '';
+  }
+
+  /**
+   * Get original line width for terrain type
+   */
+  private getOriginalLineWidth(terrainType: string): number {
+    const widthMap: Record<string, number> = {
+      'land': 4,
+      'river': 4,
+      'shallow-water': 5,
+      'low-sea': 6,
+      'deep-sea': 7,
+      'water': 6,
+      'deep-water': 5
+    };
+    return widthMap[terrainType] || 4;
+  }
+
+  /**
+   * Get original outline width for terrain type
+   */
+  private getOriginalOutlineWidth(terrainType: string): number {
+    const widthMap: Record<string, number> = {
+      'land': 7,
+      'river': 7,
+      'shallow-water': 8,
+      'low-sea': 9,
+      'deep-sea': 10,
+      'water': 9,
+      'deep-water': 8
+    };
+    return widthMap[terrainType] || 7;
+  }
+
+  /**
+   * Get original outline opacity for terrain type
+   */
+  private getOriginalOutlineOpacity(terrainType: string): number {
+    const opacityMap: Record<string, number> = {
+      'land': 0.4,
+      'river': 0.6,
+      'shallow-water': 0.6,
+      'low-sea': 0.6,
+      'deep-sea': 0.6,
+      'water': 0.6,
+      'deep-water': 0.4
+    };
+    return opacityMap[terrainType] || 0.4;
+  }
+
+  /**
+   * Get currently highlighted segment index
+   */
+  public getHighlightedSegmentIndex(): number | null {
+    return this.highlightedSegmentIndex;
   }
 
   /**
@@ -702,8 +1025,24 @@ export class RouteRenderer {
       travelTimes.slice(0, 4).forEach(time => {
         const method = TRAVEL_METHODS[time.method];
         const timeDiv = document.createElement('div');
-        timeDiv.innerHTML = `${method.icon} <strong>${method.name}:</strong> ${time.description}`;
-        timeDiv.style.cssText = 'margin: 4px 0; font-size: 13px; color: #5f6368; padding-left: 8px;';
+        timeDiv.style.cssText = 'margin: 4px 0; font-size: 13px; color: #5f6368; padding-left: 8px; display: flex; align-items: center; gap: 8px;';
+
+        // Create SVG icon instead of using emoji
+        const icon = this.createTravelIcon(method.icon);
+        icon.alt = method.name;
+        icon.style.cssText = `
+          width: 18px;
+          height: 18px;
+          object-fit: contain;
+          filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
+          flex-shrink: 0;
+        `;
+
+        const textSpan = document.createElement('span');
+        textSpan.innerHTML = `<strong>${method.name}:</strong> ${time.description}`;
+
+        timeDiv.appendChild(icon);
+        timeDiv.appendChild(textSpan);
         panel.appendChild(timeDiv);
       });
     }
@@ -817,6 +1156,24 @@ export class RouteRenderer {
   }
 
   /**
+   * Create travel icon element
+   */
+  private createTravelIcon(iconPath: string, className: string = 'travel-mode-icon'): HTMLElement {
+    const iconEl = document.createElement('img');
+    iconEl.src = iconPath;
+    iconEl.className = className;
+    iconEl.alt = ''; // Will be set by calling code
+    iconEl.style.cssText = `
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+      vertical-align: middle;
+    `;
+    return iconEl;
+  }
+
+  /**
    * Helper methods for segment details
    */
   private getTerrainColor(terrainType: string): string {
@@ -868,5 +1225,334 @@ export class RouteRenderer {
     } else {
       return method.waterSpeed > 0 ? segment.distance / method.waterSpeed : Infinity;
     }
+  }
+
+  // ==================== ROUTE SAVING FUNCTIONALITY ====================
+
+  /**
+   * Save current route to localStorage
+   */
+  public saveRoute(name?: string, description?: string, travelMethod?: string): boolean {
+    if (!this.currentRoute) {
+      console.error('No route to save');
+      return false;
+    }
+
+    try {
+      // Generate a unique ID for the route
+      const routeId = this.generateRouteId();
+
+      // Extract start and end points from the route data
+      let startPoint: Position = [0, 0];
+      let endPoint: Position = [0, 0];
+
+      if (this.currentRoute.path && this.currentRoute.path.length > 0) {
+        // Get coordinates from the first and last points of the path
+        startPoint = this.currentRoute.path[0];
+        endPoint = this.currentRoute.path[this.currentRoute.path.length - 1];
+      }
+
+      const savedRoute: SavedRoute = {
+        id: routeId,
+        name: name || `Route ${new Date().toLocaleDateString()}`,
+        description: description || '',
+        createdAt: new Date().toISOString(),
+        routeData: this.currentRoute,
+        startPoint: startPoint,
+        endPoint: endPoint,
+        travelMethod: travelMethod || 'walking',
+        totalDistance: this.currentRoute.totalDistance || 0
+      };
+
+      // Get existing routes from storage
+      const storage = this.getRouteStorage();
+      storage.routes.push(savedRoute);
+
+      // Save to localStorage
+      localStorage.setItem('pf2e_saved_routes', JSON.stringify(storage));
+
+      console.log(`Route "${savedRoute.name}" saved successfully!`);
+      console.log('Route details:', savedRoute);
+
+      return true;
+    } catch (error) {
+      console.error('Error saving route:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Load all saved routes from localStorage
+   */
+  public loadSavedRoutes(): SavedRoute[] {
+    try {
+      const storage = this.getRouteStorage();
+      return storage.routes;
+    } catch (error) {
+      console.error('Error loading saved routes:', error);
+      return [];
+    }
+  }
+
+  /**
+   * Load and display a specific saved route
+   */
+  public loadSavedRoute(routeId: string): boolean {
+    try {
+      const storage = this.getRouteStorage();
+      const route = storage.routes.find(r => r.id === routeId);
+
+      if (!route) {
+        console.error(`Route with ID ${routeId} not found`);
+        return false;
+      }
+
+      // Display the loaded route
+      this.displayRoute(route.routeData);
+
+      // Calculate travel times for the loaded route
+      const travelTimes = this.pathfinder.calculateAllTravelTimes(route.routeData);
+
+      // Set the travel method from the saved route or fastest available
+      if (travelTimes.length > 0) {
+        // Use the saved travel method if it exists and is available, otherwise use fastest
+        const savedMethod = travelTimes.find(t => t.method === route.travelMethod);
+        this.currentTravelMethod = savedMethod ? route.travelMethod : travelTimes[0].method;
+      }
+
+      // Show route info panel with travel times
+      const routeInfoPanel = this.showRouteInfo(route.routeData, travelTimes);
+
+      // Add the route info panel to the map container
+      const mapContainer = document.getElementById('map-container');
+      if (mapContainer) {
+        // Remove any existing route info panel first
+        const existingPanel = mapContainer.querySelector('.route-info-panel');
+        if (existingPanel) {
+          existingPanel.remove();
+        }
+        mapContainer.appendChild(routeInfoPanel);
+      }
+
+      console.log(`Loaded route: ${route.name}`);
+      console.log('Route details:', route);
+      console.log('Travel times:', travelTimes);
+
+      return true;
+    } catch (error) {
+      console.error('Error loading saved route:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Delete a saved route
+   */
+  public deleteSavedRoute(routeId: string): boolean {
+    try {
+      const storage = this.getRouteStorage();
+      const routeIndex = storage.routes.findIndex(r => r.id === routeId);
+
+      if (routeIndex === -1) {
+        console.error(`Route with ID ${routeId} not found`);
+        return false;
+      }
+
+      const deletedRoute = storage.routes[routeIndex];
+      storage.routes.splice(routeIndex, 1);
+
+      // Save updated storage
+      localStorage.setItem('pf2e_saved_routes', JSON.stringify(storage));
+
+      console.log(`Deleted route: ${deletedRoute.name}`);
+
+      return true;
+    } catch (error) {
+      console.error('Error deleting saved route:', error);
+      return false;
+    }
+  }
+
+  /**
+   * Show saved routes management panel
+   */
+  public showSavedRoutesPanel(): void {
+    // Remove existing panel if present
+    const existingPanel = document.getElementById('saved-routes-panel');
+    if (existingPanel) {
+      existingPanel.remove();
+    }
+
+    const panel = document.createElement('div');
+    panel.id = 'saved-routes-panel';
+    panel.style.cssText = `
+      position: absolute;
+      bottom: 80px;
+      right: 10px;
+      background: white;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 1000;
+      max-width: 400px;
+      max-height: 500px;
+      overflow-y: auto;
+      font-family: Arial, sans-serif;
+    `;
+
+    // Panel header
+    const header = document.createElement('div');
+    header.innerHTML = `
+      <h3 style="margin: 0 0 15px 0; color: #333;">📍 Saved Routes</h3>
+      <p style="margin: 0 0 15px 0; color: #666; font-size: 14px;">
+        Save and load your custom routes locally
+      </p>
+    `;
+
+    // Save current route button
+    const saveCurrentBtn = document.createElement('button');
+    saveCurrentBtn.textContent = '💾 Save Current Route';
+    saveCurrentBtn.style.cssText = `
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+    `;
+    saveCurrentBtn.onmouseover = () => saveCurrentBtn.style.background = '#45a049';
+    saveCurrentBtn.onmouseout = () => saveCurrentBtn.style.background = '#4CAF50';
+    saveCurrentBtn.onclick = () => {
+      const name = prompt('Enter route name:') || `Route ${new Date().toLocaleDateString()}`;
+      const description = prompt('Enter route description (optional):') || '';
+      if (this.saveRoute(name, description, this.currentTravelMethod)) {
+        this.showSavedRoutesPanel(); // Refresh the panel
+        alert('Route saved successfully!');
+      }
+    };
+
+    // Saved routes list
+    const routesList = document.createElement('div');
+    routesList.id = 'saved-routes-list';
+
+    const savedRoutes = this.loadSavedRoutes();
+
+    if (savedRoutes.length === 0) {
+      routesList.innerHTML = '<p style="color: #999; font-style: italic;">No saved routes yet</p>';
+    } else {
+      savedRoutes.forEach(route => {
+        const routeItem = document.createElement('div');
+        routeItem.style.cssText = `
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          padding: 10px;
+          margin-bottom: 10px;
+          background: #f9f9f9;
+        `;
+
+        const createdDate = new Date(route.createdAt).toLocaleDateString();
+        const distance = route.totalDistance.toFixed(1);
+
+        routeItem.innerHTML = `
+          <div style="font-weight: bold; color: #333; margin-bottom: 5px;">${route.name}</div>
+          <div style="font-size: 12px; color: #666; margin-bottom: 8px; display: flex; align-items: center; gap: 4px;">
+            ${route.description ? `${route.description}<br>` : ''}
+            📅 ${createdDate} | 🛣️ ${distance}km
+          </div>
+          <div style="font-size: 12px; color: #666; margin-bottom: 8px; display: flex; align-items: center; gap: 4px;">
+            <img src="${TRAVEL_METHODS[route.travelMethod as keyof typeof TRAVEL_METHODS]?.icon || '/icons/travel-foot.svg'}"
+                 alt="${TRAVEL_METHODS[route.travelMethod as keyof typeof TRAVEL_METHODS]?.name || route.travelMethod}"
+                 style="width: 14px; height: 14px; object-fit: contain;">
+            ${TRAVEL_METHODS[route.travelMethod as keyof typeof TRAVEL_METHODS]?.name || route.travelMethod}
+          </div>
+          <div style="display: flex; gap: 5px;">
+            <button class="load-route-btn" data-route-id="${route.id}"
+                    style="flex: 1; padding: 5px; background: #2196F3; color: white;
+                           border: none; border-radius: 3px; cursor: pointer; font-size: 12px;">
+              📍 Load
+            </button>
+            <button class="delete-route-btn" data-route-id="${route.id}"
+                    style="flex: 1; padding: 5px; background: #f44336; color: white;
+                           border: none; border-radius: 3px; cursor: pointer; font-size: 12px;">
+              🗑️ Delete
+            </button>
+          </div>
+        `;
+
+        routesList.appendChild(routeItem);
+      });
+
+      // Add event listeners for buttons
+      routesList.querySelectorAll('.load-route-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const routeId = (e.target as HTMLElement).getAttribute('data-route-id');
+          if (routeId && this.loadSavedRoute(routeId)) {
+            this.showSavedRoutesPanel(); // Refresh panel
+            alert('Route loaded successfully!');
+          }
+        });
+      });
+
+      routesList.querySelectorAll('.delete-route-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const routeId = (e.target as HTMLElement).getAttribute('data-route-id');
+          if (routeId && confirm('Are you sure you want to delete this route?')) {
+            if (this.deleteSavedRoute(routeId)) {
+              this.showSavedRoutesPanel(); // Refresh panel
+              alert('Route deleted successfully!');
+            }
+          }
+        });
+      });
+    }
+
+    // Close button
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '❌ Close';
+    closeBtn.style.cssText = `
+      width: 100%;
+      padding: 8px;
+      background: #666;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 15px;
+    `;
+    closeBtn.onclick = () => panel.remove();
+
+    // Assemble panel
+    panel.appendChild(header);
+    panel.appendChild(saveCurrentBtn);
+    panel.appendChild(routesList);
+    panel.appendChild(closeBtn);
+
+    // Add to map container
+    this.map.getContainer().appendChild(panel);
+  }
+
+  /**
+   * Private helper methods for route storage
+   */
+  private generateRouteId(): string {
+    return 'route_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+  private getRouteStorage(): RouteStorage {
+    try {
+      const stored = localStorage.getItem('pf2e_saved_routes');
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch (error) {
+      console.warn('Error reading saved routes from storage:', error);
+    }
+
+    return { routes: [] };
   }
 }

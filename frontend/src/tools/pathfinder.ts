@@ -9,34 +9,34 @@ import { Map as MapLibreMap, LngLatBoundsLike } from 'maplibre-gl';
 export const TRAVEL_METHODS = {
   foot: {
     name: 'On Foot',
-    icon: '🚶',
+    icon: '/icons/travel-foot.svg',
     landSpeed: 30,    // 30 km/day walking
     waterSpeed: 0,    // Can't walk on water
     requiresBoat: true
   },
   horse: {
     name: 'Horseback',
-    icon: '🐴',
+    icon: '/icons/travel-horse.svg',
     landSpeed: 60,    // 60 km/day on horse
     waterSpeed: 0,
     requiresBoat: true
   },
   wagon: {
     name: 'Wagon/Cart',
-    icon: '🛒',
+    icon: '/icons/travel-wagon.svg',
     landSpeed: 40,    // 40 km/day with wagon
     waterSpeed: 0,
     requiresBoat: true
   },
   ship: {
     name: 'Ship/Boat',
-    icon: '⛵',
+    icon: '/icons/travel-ship.svg',
     landSpeed: 0,     // Can't sail on land
     waterSpeed: 150   // 150 km/day sailing
   },
   mixed: {
     name: 'Mixed (Walk + Ferry)',
-    icon: '🚶⛵',
+    icon: '/icons/travel-mixed.svg',
     landSpeed: 30,
     waterSpeed: 150   // Ferry for water crossings
   }

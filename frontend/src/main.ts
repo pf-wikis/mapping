@@ -118,7 +118,7 @@ map.addControl(new CompactAttributionControl(embedded));
 let measureControl = new MeasureControl(golarionMap);
 map.addControl(measureControl);
 let searchControl = new SearchControl(golarionMap);
-map.addControl(searchControl);
+map.getContainer().appendChild(searchControl.onAdd(map));
 if(embedded) {
   map.addControl(new NewTab());
   //attribution._toggleAttribution();
