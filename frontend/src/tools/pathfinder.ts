@@ -1,7 +1,7 @@
 import { Position } from 'geojson';
 import turfDistance from '@turf/distance';
 import turfMidpoint from '@turf/midpoint';
-import { Map as MapLibreMap } from 'maplibre-gl';
+import { Map as MapLibreMap, LngLatBoundsLike } from 'maplibre-gl';
 
 /**
  * Travel methods with speeds (km/day)
@@ -45,10 +45,19 @@ export const TRAVEL_METHODS = {
 export type TravelMethod = keyof typeof TRAVEL_METHODS;
 
 /**
- * Path segment (continuous land or water section)
+ * Terrain types for route segments
+ */
+export type TerrainType =
+  | 'land'
+  | 'river'
+  | 'shallow-water'
+  | 'deep-water';
+
+/**
+ * Path segment (continuous terrain section)
  */
 export interface PathSegment {
-  type: 'land' | 'water';
+  type: TerrainType;
   coordinates: Position[];
   distance: number; // km
 }
@@ -82,7 +91,7 @@ export interface TravelTime {
  */
 interface TerrainCache {
   coord: Position;
-  terrainType: 'land' | 'water';
+  terrainType: TerrainType;
   timestamp: number;
 }
 
@@ -200,6 +209,52 @@ export class Pathfinder {
   }
 
   /**
+   * Ensure tiles are loaded for the route area before terrain detection
+   * This fixes the issue where queryRenderedFeatures returns empty results
+   * because tiles haven't been loaded yet
+   */
+  private async ensureRouteTilesLoaded(start: Position, end: Position): Promise<void> {
+    // Calculate bounding box for the route
+    const routeBbox: LngLatBoundsLike = [
+      Math.min(start[0], end[0]),
+      Math.min(start[1], end[1]),
+      Math.max(start[0], end[0]),
+      Math.max(start[1], end[1])
+    ];
+
+    console.log('Route bounding box:', routeBbox);
+
+    // Fit map to route area to trigger tile loading
+    // Using duration: 0 for instant fit without animation
+    // maxZoom: 8 provides good balance for terrain detection
+    this.map.fitBounds(routeBbox, {
+      padding: 200,
+      duration: 0,
+      maxZoom: 8
+    });
+
+    // Wait for map to become idle (stops moving/zooming)
+    await new Promise<void>((resolve) => {
+      if (this.map.isMoving() || this.map.isZooming()) {
+        console.log('Map is moving, waiting for idle state...');
+        this.map.once('idle', () => {
+          console.log('Map is now idle');
+          resolve();
+        });
+      } else {
+        console.log('Map already idle');
+        resolve();
+      }
+    });
+
+    // Additional buffer time to ensure tiles are fully rendered
+    // This is necessary because 'idle' event fires when movement stops,
+    // but tiles may still be rendering
+    console.log('Waiting for tile rendering to complete...');
+    await new Promise(resolve => setTimeout(resolve, 1500));
+  }
+
+  /**
    * Find route from start to end
    */
   async findRoute(start: Position, end: Position): Promise<RouteResult> {
@@ -218,6 +273,11 @@ export class Pathfinder {
 
     console.log('Map is ready - proceeding with route calculation');
 
+    // Pre-load tiles for the route area to ensure terrain detection works
+    console.log('Pre-loading tiles for route area...');
+    await this.ensureRouteTilesLoaded(start, end);
+    console.log('Tiles loaded successfully');
+
     // Create geodesic path
     const path = this.createGeodesicPath(start, end);
     console.log('Generated path with', path.length, 'points');
@@ -225,12 +285,16 @@ export class Pathfinder {
     // Sample terrain along path
     const segments = await this.detectTerrainSegments(path);
 
+    // Merge consecutive water segments into single continuous paths
+    const mergedSegments = this.mergeConsecutiveWaterSegments(segments);
+    console.log(`Merged ${segments.length} segments into ${mergedSegments.length} segments`);
+
     // Calculate distances
     let totalDistance = 0;
     let landDistance = 0;
     let waterDistance = 0;
 
-    for (const segment of segments) {
+    for (const segment of mergedSegments) {
       totalDistance += segment.distance;
       if (segment.type === 'land') {
         landDistance += segment.distance;
@@ -244,15 +308,15 @@ export class Pathfinder {
     console.log(`📍 Total Distance: ${totalDistance.toFixed(2)} km`);
     console.log(`🌍 Land Distance: ${landDistance.toFixed(2)} km (${((landDistance / totalDistance) * 100).toFixed(1)}%)`);
     console.log(`💧 Water Distance: ${waterDistance.toFixed(2)} km (${((waterDistance / totalDistance) * 100).toFixed(1)}%)`);
-    console.log(`📊 Segments: ${segments.length} total`);
-    segments.forEach((seg, idx) => {
+    console.log(`📊 Segments: ${mergedSegments.length} total`);
+    mergedSegments.forEach((seg, idx) => {
       console.log(`  Segment ${idx + 1}: ${seg.type.toUpperCase()} - ${seg.distance.toFixed(2)} km (${seg.coordinates.length} points)`);
     });
     console.log('==================================');
 
     return {
       path,
-      segments,
+      segments: mergedSegments,
       totalDistance,
       landDistance,
       waterDistance,
@@ -352,6 +416,46 @@ export class Pathfinder {
   }
 
   /**
+   * Merge consecutive water segments into single continuous path segments
+   */
+  private mergeConsecutiveWaterSegments(segments: any[]): any[] {
+    const mergedSegments = [];
+    let currentSegment = null;
+
+    for (const segment of segments) {
+      if (segment.type === 'land') {
+        // Always keep land segments separate
+        if (currentSegment) {
+          mergedSegments.push(currentSegment);
+          currentSegment = null;
+        }
+        mergedSegments.push(segment);
+      } else {
+        // Water segments - merge consecutive ones
+        if (currentSegment) {
+          // Merge geometries: combine coordinate arrays
+          currentSegment.coordinates.push(...segment.coordinates);
+          currentSegment.distance += segment.distance;
+        } else {
+          // Start new water segment with unified type
+          currentSegment = {
+            type: 'water',
+            coordinates: [...segment.coordinates],
+            distance: segment.distance
+          };
+        }
+      }
+    }
+
+    // Add final segment if exists
+    if (currentSegment) {
+      mergedSegments.push(currentSegment);
+    }
+
+    return mergedSegments;
+  }
+
+  /**
    * Get cache key for a coordinate
    */
   private getCacheKey(coord: Position): string {
@@ -444,7 +548,7 @@ export class Pathfinder {
   /**
    * Determine terrain type at a specific coordinate using map data
    */
-  private async getTerrainType(coord: Position): Promise<'land' | 'water'> {
+  private async getTerrainType(coord: Position): Promise<TerrainType> {
     const cacheKey = this.getCacheKey(coord);
 
     // Check cache first
@@ -573,9 +677,15 @@ export class Pathfinder {
               terrainType = 'land';
               console.log('Terrain classified as: LAND (comprehensive analysis)');
               break; // Found land, no need to check further
-            } else if (detectedTerrain === 'water') {
-              terrainType = 'water';
-              console.log('Terrain classified as: WATER (comprehensive analysis)');
+            } else if (detectedTerrain === 'river' || detectedTerrain === 'shallow-water' || detectedTerrain === 'low-sea' || detectedTerrain === 'deep-sea' || detectedTerrain === 'deep-water') {
+              // Water type detected - keep the specific water type
+              terrainType = detectedTerrain;
+              console.log(`Terrain classified as: ${detectedTerrain.toUpperCase()} (comprehensive analysis)`);
+              break; // Stop processing once water is found - prevents override by subsequent features
+            } else if (detectedTerrain === 'unknown') {
+              // Unknown terrain - don't override existing classification, continue searching
+              console.log(`Unknown terrain type, continuing search for more definitive features...`);
+              // No break - keep looking for better classification
             } else {
               // For other terrain types (mountain, forest, etc.), treat as land for now
               terrainType = 'land';
@@ -586,10 +696,10 @@ export class Pathfinder {
         }
       }
 
-      // If no geometry features found, default to land (use fallback for accuracy)
+      // If no geometry features found, use coordinate-based fallback detection
       if (!foundGeometryFeature) {
-        console.warn('⚠️ No geometry features found at coordinate - defaulting to land. Consider using fallback detection.');
-        terrainType = 'land'; // Default to land instead of water
+        console.log('No geometry features found at coordinate - using coordinate-based fallback detection');
+        terrainType = this.getTerrainTypeCoordinateFallback(coord);
       }
 
       
@@ -615,52 +725,112 @@ export class Pathfinder {
   /**
    * Fallback terrain detection using coordinate-based approach
    */
-  private getTerrainTypeCoordinateFallback(coord: Position): 'land' | 'water' {
+  private getTerrainTypeCoordinateFallback(coord: Position): TerrainType {
     const [lng, lat] = coord;
 
-    // Inner Sea (between Avistan and Garund) - IMPROVED for Absalom-Escadar route
-    // This is a large sea between the continents, should be much broader
-    const innerSea = lng > 5 && lng < 35 && lat > 35 && lat < 50;
+    // Comprehensive ocean detection - if coordinate is in oceanic areas
+    const isInOcean = this.isInOpenOcean(coord);
 
-    // Expand Inner Sea bounds to cover more water between islands
-    const innerSeaExpanded = lng > 3 && lng < 38 && lat > 33 && lat < 52;
+    // Inner Sea (between Avistan and Garund) - proper boundaries
+    const innerSea = lng > 0 && lng < 40 && lat > 25 && lat < 55; // Expanded to cover actual Inner Sea
+    const innerSeaExpanded = lng > -2 && lng < 42 && lat > 23 && lat < 57; // Even broader expansion
 
-    // Specific water channels between known islands/cities
-    const absalomChannel = lng > 18 && lng < 25 && lat > 40 && lat < 45; // Around Absalom area
-    // Escadar is actually at [-0.9841, 31.9528] which should be LAND (island city)
-    const escadarLandZone = (lng > -2 && lng < 0.5) && (lat > 31.5 && lat < 32.5); // Escadar island area
-    const escadarApproach = (lng > -1.5 && lng < -0.5) && (lat > 31 && lat < 32.5); // Approaches to Escadar island
+    // Ocean channels and approaches
+    const absalomChannel = lng > 18 && lng < 25 && lat > 40 && lat < 45;
+    const escadarApproach = (lng > -1.5 && lng < -0.5) && (lat > 31 && lat < 32.5);
 
-    // Arcadian Ocean (west of Avistan/Garund)
-    const arcadianOcean = lng < -180 || lng > 180;
+    // Other named seas with proper boundaries
+    const steamingSea = lng > 15 && lng < 45 && lat > 20 && lat < 35; // North of Garund
+    const feverSea = lng > -5 && lng < 10 && lat > 38 && lat < 48; // West of Inner Sea
 
-    // Obari Ocean (east of Garund)
-    const obariOcean = lng > 60 && lng < 100 && lat > -20 && lat < 40;
+    // Major oceans with proper boundaries
+    const arcadianOcean = lng < 10 && lat > -50 && lat < 70; // Western ocean
+    const obariOcean = lng > 50 && lat > -40 && lat < 50; // Eastern ocean
+    const embaralOcean = lng > 140 || lng < -140; // Far east (boundary islands)
+    const antarkosOcean = lat < -60; // Far south (polar region)
 
-    // Embaral Ocean (far east)
-    const embaralOcean = lng > 140 || lng < -140;
+    // Determine water type based on location and depth (priority: specific seas first)
+    if (innerSea || innerSeaExpanded || absalomChannel || escadarApproach ||
+        steamingSea || feverSea ||
+        arcadianOcean || obariOcean || embaralOcean || antarkosOcean || isInOpenOcean) {
 
-    // Antarkos Ocean (far south)
-    const antarkosOcean = lat < -60;
+      // Determine water body and type based on specific location priority
+      let waterType: TerrainType;
+      let waterBody: string = '';
 
-    // Steaming Sea (north of Garund)
-    const steamingSea = lng > 15 && lng < 45 && lat > 20 && lat < 35;
+      if (innerSea || innerSeaExpanded) {
+        // Inner Sea between continents - variable depth
+        waterType = lat > 40 ? 'low-sea' : 'shallow-water';
+        waterBody = 'Inner Sea';
+      } else if (absalomChannel) {
+        waterType = 'low-sea';
+        waterBody = 'Absalom Channel';
+      } else if (escadarApproach) {
+        waterType = 'shallow-water';
+        waterBody = 'Escadar Approach';
+      } else if (steamingSea) {
+        waterType = 'deep-sea';
+        waterBody = 'Steaming Sea';
+      } else if (feverSea) {
+        waterType = 'low-sea';
+        waterBody = 'Fever Sea';
+      } else if (arcadianOcean) {
+        waterType = 'deep-sea';
+        waterBody = 'Arcadian Ocean';
+      } else if (obariOcean) {
+        waterType = 'deep-sea';
+        waterBody = 'Obari Ocean';
+      } else if (embaralOcean) {
+        waterType = 'deep-sea';
+        waterBody = 'Embaral Ocean';
+      } else if (antarkosOcean) {
+        waterType = 'deep-sea';
+        waterBody = 'Antarkos Ocean';
+      } else {
+        // General open ocean - fallback to depth-based classification
+        waterType = lat < 35 ? 'deep-sea' : 'low-sea';
+        waterBody = 'Open Ocean';
+      }
 
-    // Fever Sea (west of Inner Sea)
-    const feverSea = lng > -5 && lng < 10 && lat > 38 && lat < 48;
-
-    // If in any major water body, it's water - but exclude known land zones
-    if ((innerSeaExpanded || absalomChannel || escadarApproach ||
-        arcadianOcean || obariOcean || embaralOcean ||
-        antarkosOcean || steamingSea || feverSea) &&
-        !escadarLandZone) { // Don't classify Escadar zone as water
-      console.log(`Coordinate fallback detected water: [${lng.toFixed(4)}, ${lat.toFixed(4)}]`);
-      return 'water';
+      console.log(`Coordinate in ${waterBody} (${waterType}): [${lng.toFixed(4)}, ${lat.toFixed(4)}]`);
+      return waterType;
     }
 
     console.log(`Coordinate fallback detected land: [${lng.toFixed(4)}, ${lat.toFixed(4)}]`);
-    // Default to land
     return 'land';
+  }
+
+  /**
+   * Comprehensive open ocean detection
+   * Determines if a coordinate is likely in open ocean based on geographic patterns
+   */
+  private isInOpenOcean(coord: Position): boolean {
+    const [lng, lat] = coord;
+
+    // Define major continental boundaries and ocean regions
+    // This is a simplified approach - in a real implementation you'd use proper geographic data
+
+    // Western ocean (Arcadian)
+    const westernOcean = lng < -10;
+
+    // Eastern ocean (Obari/Embaral)
+    const easternOcean = lng > 50;
+
+    // Southern ocean (Antarkos)
+    const southernOcean = lat < -50;
+
+    // Northern ocean regions
+    const northernOcean = lat > 60;
+
+    // Ocean gaps between continents (Inner Sea region)
+    const innerSeaRegion = lng > -5 && lng < 40 && lat > 25 && lat < 55;
+
+    // Ocean south of major landmasses
+    const southernInnerSea = lng > -10 && lng < 50 && lat < 25;
+
+    // Check if coordinate is in any ocean region
+    return westernOcean || easternOcean || southernOcean || northernOcean ||
+           innerSeaRegion || southernInnerSea;
   }
 
   /**
@@ -905,8 +1075,8 @@ export class Pathfinder {
       }
     }
 
-    // Default fallback - when all detection methods fail, assume land
-    console.warn(`⚠️ Could not determine terrain type from feature properties. Defaulting to LAND as conservative estimate.`);
+    // Default fallback - when all detection methods fail, return unknown
+    console.warn(`⚠️ Could not determine terrain type from feature properties. Returning 'unknown' to allow other detection methods.`);
     console.log('Feature had:', {
       hasColor: !!featureColor,
       color: featureColor,
@@ -914,7 +1084,7 @@ export class Pathfinder {
       sourceLayer,
       allProperties: Object.keys(allProperties)
     });
-    return 'land';
+    return 'unknown';
   }
 
   /**
@@ -925,9 +1095,15 @@ export class Pathfinder {
 
     const normalized = type.toLowerCase().trim();
 
-    // Water types
-    if (['water', 'ocean', 'sea', 'lake', 'river'].includes(normalized)) {
-      return 'water';
+    // Water types - differentiated
+    if (['river', 'rivers'].includes(normalized)) {
+      return 'river';
+    }
+    if (['shallow', 'shallow-water', 'shallow-waters', 'coastal'].includes(normalized)) {
+      return 'shallow-water';
+    }
+    if (['water', 'waters', 'ocean', 'sea', 'lake', 'deep', 'deep-water'].includes(normalized)) {
+      return 'deep-water';
     }
 
     // Land types
@@ -971,9 +1147,17 @@ export class Pathfinder {
 
     const layer = sourceLayer.toLowerCase();
 
-    if (layer.includes('water') || layer.includes('ocean') || layer.includes('sea')) {
-      return 'water';
+    // Water types - check most specific first
+    if (layer.includes('river')) {
+      return 'river';
     }
+    if (layer.includes('shallow')) {
+      return 'shallow-water';
+    }
+    if (layer.includes('water') || layer.includes('ocean') || layer.includes('sea') || layer.includes('waters')) {
+      return 'deep-water';
+    }
+    // Other terrain types
     if (layer.includes('land') || layer.includes('terrain')) {
       return 'land';
     }
@@ -992,9 +1176,6 @@ export class Pathfinder {
     if (layer.includes('ice') || layer.includes('snow')) {
       return 'ice';
     }
-    if (layer.includes('river')) {
-      return 'river';
-    }
 
     return 'unknown';
   }
@@ -1002,7 +1183,7 @@ export class Pathfinder {
   /**
    * Find terrain at coordinate using reliable rendered features
    */
-  private findTerrainAtCoordinateFromSourceFeatures(features: any[], coordinate: [number, number]): 'land' | 'water' {
+  private findTerrainAtCoordinateFromSourceFeatures(features: any[], coordinate: [number, number]): TerrainType {
     console.log(`=== COMPREHENSIVE TERRAIN DETECTION for [${coordinate[0].toFixed(6)}, ${coordinate[1].toFixed(6)}] ===`);
 
     // Use rendered features query - already spatially filtered and reliable
@@ -1029,13 +1210,22 @@ export class Pathfinder {
       // Look for features with color properties at this exact coordinate
       for (const feature of renderedFeatures) {
         if (feature.properties?.color !== undefined) {
-          const terrainType = this.getTerrainFromColor(feature.properties.color);
+          // Get terrain from comprehensive feature analysis (includes source layer check)
+          const unifiedFeature = {
+            ...feature,
+            layer: feature.layer || { id: feature.sourceLayer, type: 'fill', 'source-layer': feature.sourceLayer },
+            sourceLayer: feature.sourceLayer || feature.layer?.['source-layer']
+          };
+          const terrainType = this.getTerrainTypeFromFeature(unifiedFeature);
 
-          if (terrainType === 'water') {
+          if (terrainType === 'river' || terrainType === 'shallow-water' || terrainType === 'low-sea' || terrainType === 'deep-sea' || terrainType === 'deep-water') {
             console.log(`💧 WATER terrain detected: color=${feature.properties.color} → ${terrainType}`);
-            return 'water';
-          } else if (terrainType !== 'unknown') {
+            return terrainType;
+          } else if (terrainType === 'land') {
             console.log(`🌍 LAND terrain detected: color=${feature.properties.color} → ${terrainType}`);
+            return 'land';
+          } else if (terrainType !== 'unknown') {
+            console.log(`🏔️ OTHER terrain detected: color=${feature.properties.color} → ${terrainType} (treating as land)`);
             return 'land';
           } else {
             console.log(`❓ Unknown terrain: color=${feature.properties.color} → ${terrainType}`);
@@ -1142,15 +1332,17 @@ export class Pathfinder {
     // Convert color to normalized hex string for comparison
     const normalizedColor = this.normalizeColor(color);
 
-    // ACTUAL PF2e color codes from mapping-data repository
+    // ACTUAL PF2e color codes from mapping-data repository and style.ts
     const colorMap: { [key: string]: string } = {
-      '#8AB4F8': 'water',    // Waters, rivers, shallow-waters (RGB: 138, 180, 248)
-      '#F8F1E1': 'land',     // Land, continents (RGB: 248, 241, 225)
-      '#BBE2C6': 'forest',   // Forests (RGB: 187, 226, 198)
-      '#DED8B8': 'mountain', // Mountains (RGB: 222, 212, 184)
-      '#FFF7BE': 'desert',   // Deserts (RGB: 255, 247, 190)
-      '#B7C5BC': 'swamp',    // Swamps (RGB: 183, 197, 188)
-      '#FFFFFF': 'ice',      // Ice (transparent white simplified to white)
+      '#8AB4F8': 'shallow-water', // Light water - rivers, shallow waters (RGB: 138, 180, 248)
+      '#6EA0F5': 'low-sea',      // Medium blue - low sea (RGB: 110, 160, 245)
+      '#094099': 'deep-sea',     // Dark blue - deep ocean (RGB: 9, 64, 153)
+      '#F8F1E1': 'land',        // Land, continents (RGB: 248, 241, 225)
+      '#BBE2C6': 'forest',      // Forests (RGB: 187, 226, 198)
+      '#DED8B8': 'mountain',    // Mountains (RGB: 222, 212, 184)
+      '#FFF7BE': 'desert',      // Deserts (RGB: 255, 247, 190)
+      '#B7C5BC': 'swamp',       // Swamps (RGB: 183, 197, 188)
+      '#FFFFFF': 'ice',         // Ice (transparent white simplified to white)
     };
 
     const terrainType = colorMap[normalizedColor];
@@ -1160,7 +1352,14 @@ export class Pathfinder {
       return terrainType;
     }
 
-    // Unknown color - log for debugging and default to land
+    // Not in color map - try RGB-based water detection with depth analysis
+    if (this.isWaterColor(normalizedColor)) {
+      const waterType = this.determineWaterDepth(normalizedColor);
+      console.log(`✓ Color ${color} → ${normalizedColor} identified as ${waterType} by RGB analysis`);
+      return waterType;
+    }
+
+    // Unknown color - log for debugging
     console.warn(`⚠️ Unknown color: ${color} → ${normalizedColor} (not in color map). Known colors: ${Object.keys(colorMap).join(', ')}`);
     return 'unknown';
   }
@@ -1230,6 +1429,75 @@ export class Pathfinder {
       return hex.padStart(2, '0').toUpperCase();
     };
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+  }
+
+  /**
+   * Convert hex color to RGB values
+   */
+  private hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+    // Remove # if present
+    hex = hex.replace(/^#/, '');
+
+    // Parse hex string
+    if (hex.length === 6) {
+      const r = parseInt(hex.substring(0, 2), 16);
+      const g = parseInt(hex.substring(2, 4), 16);
+      const b = parseInt(hex.substring(4, 6), 16);
+
+      if (!isNaN(r) && !isNaN(g) && !isNaN(b)) {
+        return { r, g, b };
+      }
+    }
+
+    return null;
+  }
+
+  /**
+   * Detect if a color is likely water based on RGB values
+   * Water colors typically have high blue component and are bluish
+   */
+  private isWaterColor(color: string): boolean {
+    const rgb = this.hexToRgb(color);
+    if (!rgb) return false;
+
+    // Water detection criteria:
+    // 1. Blue component must be significant (> 120 to catch deeper waters)
+    // 2. Blue must dominate red significantly (b > r + 20)
+    // 3. Blue should be higher than or similar to green (b >= g - 30)
+    // This catches shades like #8AB4F8, #6EA0F5, #094099, etc.
+    const isBlueish = rgb.b > 120 && rgb.b > rgb.r + 20 && rgb.b >= rgb.g - 30;
+
+    if (isBlueish) {
+      console.log(`✓ Color ${color} detected as water by RGB analysis (r:${rgb.r}, g:${rgb.g}, b:${rgb.b})`);
+    }
+
+    return isBlueish;
+  }
+
+  /**
+   * Determine water depth based on blue intensity
+   * Returns appropriate water type: shallow-water, low-sea, or deep-sea
+   */
+  private determineWaterDepth(color: string): string {
+    const rgb = this.hexToRgb(color);
+    if (!rgb) return 'shallow-water';
+
+    // Classify water depth based on blue intensity
+    // Deep sea: very high blue dominance (>200) and low red/green
+    if (rgb.b > 200 && rgb.r < 120 && rgb.g < 170) {
+      return 'shallow-water';
+    }
+    // Low sea: medium blue dominance (>150)
+    else if (rgb.b > 150 && rgb.r < 140 && rgb.g < 180) {
+      return 'low-sea';
+    }
+    // Deep sea: dark blue with moderate intensity
+    else if (rgb.b > 100 && rgb.b <= 150) {
+      return 'deep-sea';
+    }
+
+    // Default to shallow water for edge cases
+    return 'shallow-water';
   }
 
   /**

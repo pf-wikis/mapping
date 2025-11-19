@@ -10,8 +10,21 @@ export class RouteRenderer {
   private routeSourceId = 'route-source';
   private landLayerId = 'route-land-layer';
   private landOutlineLayerId = 'route-land-outline-layer';
+  // Water type layers
+  private riverLayerId = 'route-river-layer';
+  private riverOutlineLayerId = 'route-river-outline-layer';
+  private shallowWaterLayerId = 'route-shallow-water-layer';
+  private shallowWaterOutlineLayerId = 'route-shallow-water-outline-layer';
+  private lowSeaLayerId = 'route-low-sea-layer';
+  private lowSeaOutlineLayerId = 'route-low-sea-outline-layer';
+  private deepSeaLayerId = 'route-deep-sea-layer';
+  private deepSeaOutlineLayerId = 'route-deep-sea-outline-layer';
+  // Unified water layer (for merged water segments)
   private waterLayerId = 'route-water-layer';
   private waterOutlineLayerId = 'route-water-outline-layer';
+  // Legacy deep-water layer (kept for backward compatibility)
+  private deepWaterLayerId = 'route-deep-water-layer';
+  private deepWaterOutlineLayerId = 'route-deep-water-outline-layer';
   private startMarker: Marker | null = null;
   private endMarker: Marker | null = null;
   private boatMarkers: Marker[] = [];
@@ -76,7 +89,197 @@ export class RouteRenderer {
         });
       }
 
-      // Water route outline
+      // River route outline (light blue, improved visibility)
+      if (!this.map.getLayer(this.riverOutlineLayerId)) {
+        this.map.addLayer({
+          id: this.riverOutlineLayerId,
+          type: 'line',
+          source: this.routeSourceId,
+          filter: ['==', ['get', 'terrain'], 'river'],
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#5BBFEF',
+            'line-width': 7,
+            'line-opacity': 0.6
+          }
+        });
+      }
+
+      // River route main line (light blue, fine dashes)
+      if (!this.map.getLayer(this.riverLayerId)) {
+        this.map.addLayer({
+          id: this.riverLayerId,
+          type: 'line',
+          source: this.routeSourceId,
+          filter: ['==', ['get', 'terrain'], 'river'],
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#64ADEF',
+            'line-width': 4,
+            'line-dasharray': [1, 1]
+          }
+        });
+      }
+
+      // Shallow water route outline (medium blue, increased visibility)
+      if (!this.map.getLayer(this.shallowWaterOutlineLayerId)) {
+        this.map.addLayer({
+          id: this.shallowWaterOutlineLayerId,
+          type: 'line',
+          source: this.routeSourceId,
+          filter: ['==', ['get', 'terrain'], 'shallow-water'],
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#3A8EDF',
+            'line-width': 8,
+            'line-opacity': 0.6
+          }
+        });
+      }
+
+      // Shallow water route main line (medium blue, distinctive dashes)
+      if (!this.map.getLayer(this.shallowWaterLayerId)) {
+        this.map.addLayer({
+          id: this.shallowWaterLayerId,
+          type: 'line',
+          source: this.routeSourceId,
+          filter: ['==', ['get', 'terrain'], 'shallow-water'],
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#4A9EFF',
+            'line-width': 5,
+            'line-dasharray': [3, 2]
+          }
+        });
+      }
+
+      // Deep water route outline (dark blue, increased visibility)
+      if (!this.map.getLayer(this.deepWaterOutlineLayerId)) {
+        this.map.addLayer({
+          id: this.deepWaterOutlineLayerId,
+          type: 'line',
+          source: this.routeSourceId,
+          filter: ['==', ['get', 'terrain'], 'deep-water'],
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#1E5C99',
+            'line-width': 9,
+            'line-opacity': 0.6
+          }
+        });
+      }
+
+      // Deep water route main line (dark blue, long dashes)
+      if (!this.map.getLayer(this.deepWaterLayerId)) {
+        this.map.addLayer({
+          id: this.deepWaterLayerId,
+          type: 'line',
+          source: this.routeSourceId,
+          filter: ['==', ['get', 'terrain'], 'deep-water'],
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#2E5C99',
+            'line-width': 6,
+            'line-dasharray': [5, 3]
+          }
+        });
+      }
+
+      // Low sea route outline (medium-dark blue, more visible)
+      if (!this.map.getLayer(this.lowSeaOutlineLayerId)) {
+        this.map.addLayer({
+          id: this.lowSeaOutlineLayerId,
+          type: 'line',
+          source: this.routeSourceId,
+          filter: ['==', ['get', 'terrain'], 'low-sea'],
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#2A6BB7',
+            'line-width': 9,
+            'line-opacity': 0.6
+          }
+        });
+      }
+
+      // Low sea route main line (medium blue, distinctive dashes)
+      if (!this.map.getLayer(this.lowSeaLayerId)) {
+        this.map.addLayer({
+          id: this.lowSeaLayerId,
+          type: 'line',
+          source: this.routeSourceId,
+          filter: ['==', ['get', 'terrain'], 'low-sea'],
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#3A8BE7',
+            'line-width': 6,
+            'line-dasharray': [4, 2]
+          }
+        });
+      }
+
+      // Deep sea route outline (very dark blue, high contrast)
+      if (!this.map.getLayer(this.deepSeaOutlineLayerId)) {
+        this.map.addLayer({
+          id: this.deepSeaOutlineLayerId,
+          type: 'line',
+          source: this.routeSourceId,
+          filter: ['==', ['get', 'terrain'], 'deep-sea'],
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#1A4A8A',
+            'line-width': 10,
+            'line-opacity': 0.7
+          }
+        });
+      }
+
+      // Deep sea route main line (dark blue, very distinctive dashes)
+      if (!this.map.getLayer(this.deepSeaLayerId)) {
+        this.map.addLayer({
+          id: this.deepSeaLayerId,
+          type: 'line',
+          source: this.routeSourceId,
+          filter: ['==', ['get', 'terrain'], 'deep-sea'],
+          layout: {
+            'line-join': 'round',
+            'line-cap': 'round'
+          },
+          paint: {
+            'line-color': '#2A5A9A',
+            'line-width': 7,
+            'line-dasharray': [6, 2]
+          }
+        });
+      }
+
+      // Unified water route outline (for merged water segments)
       if (!this.map.getLayer(this.waterOutlineLayerId)) {
         this.map.addLayer({
           id: this.waterOutlineLayerId,
@@ -88,14 +291,14 @@ export class RouteRenderer {
             'line-cap': 'round'
           },
           paint: {
-            'line-color': '#1E90FF',
-            'line-width': 8,
-            'line-opacity': 0.4
+            'line-color': '#2A6BB7',
+            'line-width': 9,
+            'line-opacity': 0.6
           }
         });
       }
 
-      // Water route main line (dashed)
+      // Unified water route main line (for merged water segments)
       if (!this.map.getLayer(this.waterLayerId)) {
         this.map.addLayer({
           id: this.waterLayerId,
@@ -107,9 +310,9 @@ export class RouteRenderer {
             'line-cap': 'round'
           },
           paint: {
-            'line-color': '#4169E1',
-            'line-width': 4,
-            'line-dasharray': [2, 2]
+            'line-color': '#3A8BE7',
+            'line-width': 6,
+            'line-dasharray': [4, 2]
           }
         });
       }
@@ -395,14 +598,39 @@ export class RouteRenderer {
       bottom: 20px;
       left: 20px;
       background: white;
-      padding: 16px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-      font-family: Arial, sans-serif;
-      min-width: 280px;
-      max-width: 400px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      min-width: 320px;
+      max-width: 450px;
+      max-height: 80vh;
+      overflow-y: auto;
       z-index: 1000;
     `;
+
+    // Add custom scrollbar styling
+    const style = document.createElement('style');
+    style.textContent = `
+      .route-info-panel::-webkit-scrollbar {
+        width: 8px;
+      }
+      .route-info-panel::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+      }
+      .route-info-panel::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+      }
+      .route-info-panel::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    `;
+    if (!document.getElementById('route-panel-styles')) {
+      style.id = 'route-panel-styles';
+      document.head.appendChild(style);
+    }
 
     const title = document.createElement('h3');
     title.textContent = 'Route Information';
@@ -415,25 +643,52 @@ export class RouteRenderer {
     panel.appendChild(title);
     panel.appendChild(totalDist);
 
-    // Terrain breakdown
-    if (route.landDistance > 0 || route.waterDistance > 0) {
-      const terrainDiv = document.createElement('div');
-      terrainDiv.style.cssText = 'margin: 8px 0; padding: 8px; background: #f8f9fa; border-radius: 4px;';
+    // Terrain breakdown - calculate distances for each water type
+    const terrainDistances = {
+      land: 0,
+      river: 0,
+      'shallow-water': 0,
+      'deep-water': 0
+    };
 
-      if (route.landDistance > 0) {
-        const landDiv = document.createElement('div');
-        landDiv.innerHTML = `🏔️ Land: ${route.landDistance.toFixed(1)} km`;
-        landDiv.style.cssText = 'font-size: 13px; color: #8B4513; margin: 4px 0;';
-        terrainDiv.appendChild(landDiv);
+    route.segments.forEach(segment => {
+      if (segment.type in terrainDistances) {
+        terrainDistances[segment.type as keyof typeof terrainDistances] += segment.distance;
       }
+    });
 
-      if (route.waterDistance > 0) {
-        const waterDiv = document.createElement('div');
-        waterDiv.innerHTML = `🌊 Water: ${route.waterDistance.toFixed(1)} km`;
-        waterDiv.style.cssText = 'font-size: 13px; color: #1E90FF; margin: 4px 0;';
-        terrainDiv.appendChild(waterDiv);
-      }
+    const terrainDiv = document.createElement('div');
+    terrainDiv.style.cssText = 'margin: 8px 0; padding: 8px; background: #f8f9fa; border-radius: 4px;';
 
+    if (terrainDistances.land > 0) {
+      const landDiv = document.createElement('div');
+      landDiv.innerHTML = `🏔️ Land: ${terrainDistances.land.toFixed(1)} km`;
+      landDiv.style.cssText = 'font-size: 13px; color: #8B4513; margin: 4px 0; font-weight: 500;';
+      terrainDiv.appendChild(landDiv);
+    }
+
+    if (terrainDistances.river > 0) {
+      const riverDiv = document.createElement('div');
+      riverDiv.innerHTML = `🏞️ River: ${terrainDistances.river.toFixed(1)} km`;
+      riverDiv.style.cssText = 'font-size: 13px; color: #64ADEF; margin: 4px 0;';
+      terrainDiv.appendChild(riverDiv);
+    }
+
+    if (terrainDistances['shallow-water'] > 0) {
+      const shallowDiv = document.createElement('div');
+      shallowDiv.innerHTML = `🌊 Shallow Water: ${terrainDistances['shallow-water'].toFixed(1)} km`;
+      shallowDiv.style.cssText = 'font-size: 13px; color: #4A9EFF; margin: 4px 0;';
+      terrainDiv.appendChild(shallowDiv);
+    }
+
+    if (terrainDistances['deep-water'] > 0) {
+      const deepDiv = document.createElement('div');
+      deepDiv.innerHTML = `🌊 Deep Ocean: ${terrainDistances['deep-water'].toFixed(1)} km`;
+      deepDiv.style.cssText = 'font-size: 13px; color: #2E5C99; margin: 4px 0;';
+      terrainDiv.appendChild(deepDiv);
+    }
+
+    if (terrainDiv.childNodes.length > 0) {
       panel.appendChild(terrainDiv);
     }
 
@@ -452,6 +707,88 @@ export class RouteRenderer {
         panel.appendChild(timeDiv);
       });
     }
+
+    // Segment Details Section (Collapsible)
+    const segmentsSection = document.createElement('div');
+    segmentsSection.style.cssText = 'margin: 16px 0 12px 0;';
+
+    const segmentsHeader = document.createElement('div');
+    segmentsHeader.style.cssText = `
+      font-size: 14px;
+      font-weight: 600;
+      color: #202124;
+      cursor: pointer;
+      padding: 10px 12px;
+      background: #f1f3f4;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      transition: background 0.2s;
+    `;
+    segmentsHeader.innerHTML = `<span>📋 Segment Details (${route.segments.length})</span><span id="toggle-arrow">▼</span>`;
+    segmentsHeader.onmouseover = () => {
+      segmentsHeader.style.background = '#e8eaed';
+    };
+    segmentsHeader.onmouseout = () => {
+      segmentsHeader.style.background = '#f1f3f4';
+    };
+
+    const segmentsContent = document.createElement('div');
+    segmentsContent.id = 'segments-content';
+    segmentsContent.style.cssText = 'margin-top: 12px;';
+
+    // Toggle functionality
+    let isExpanded = true;
+    segmentsHeader.onclick = () => {
+      isExpanded = !isExpanded;
+      segmentsContent.style.display = isExpanded ? 'block' : 'none';
+      const arrow = document.getElementById('toggle-arrow');
+      if (arrow) arrow.textContent = isExpanded ? '▼' : '▶';
+    };
+
+    // Add individual segment cards
+    const selectedMethod = travelTimes.length > 0 ? travelTimes[0].method : 'mixed';
+    const method = TRAVEL_METHODS[selectedMethod];
+
+    route.segments.forEach((segment, index) => {
+      const segmentCard = document.createElement('div');
+      segmentCard.style.cssText = `
+        margin: 8px 0;
+        padding: 12px;
+        background: white;
+        border-left: 4px solid ${this.getTerrainColor(segment.type)};
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      `;
+
+      const segmentTitle = document.createElement('div');
+      segmentTitle.style.cssText = 'font-weight: 600; margin-bottom: 8px; font-size: 13px; color: #202124;';
+      segmentTitle.innerHTML = `Segment ${index + 1}: ${this.getTerrainIcon(segment.type)} ${this.getTerrainLabel(segment.type)}`;
+
+      const segmentDistance = document.createElement('div');
+      segmentDistance.style.cssText = 'font-size: 12px; color: #5f6368; margin: 4px 0;';
+      segmentDistance.innerHTML = `📏 Distance: <strong>${segment.distance.toFixed(1)} km</strong> (${(segment.distance * 0.621371).toFixed(1)} mi)`;
+
+      const segmentTime = document.createElement('div');
+      segmentTime.style.cssText = 'font-size: 12px; color: #5f6368; margin: 4px 0;';
+      const timeInDays = this.calculateSegmentTime(segment, method);
+      const timeStr = timeInDays === Infinity ? 'Impassable' :
+                      timeInDays < 1 ? `${(timeInDays * 24).toFixed(1)} hours` :
+                      `${timeInDays.toFixed(1)} days`;
+      segmentTime.innerHTML = `⏱️ Time: <strong>${timeStr}</strong> (${method.name})`;
+
+      segmentCard.appendChild(segmentTitle);
+      segmentCard.appendChild(segmentDistance);
+      segmentCard.appendChild(segmentTime);
+
+      segmentsContent.appendChild(segmentCard);
+    });
+
+    segmentsSection.appendChild(segmentsHeader);
+    segmentsSection.appendChild(segmentsContent);
+    panel.appendChild(segmentsSection);
 
     const closeBtn = document.createElement('button');
     closeBtn.textContent = 'Close';
@@ -477,5 +814,59 @@ export class RouteRenderer {
     panel.appendChild(closeBtn);
 
     return panel;
+  }
+
+  /**
+   * Helper methods for segment details
+   */
+  private getTerrainColor(terrainType: string): string {
+    const colors: Record<string, string> = {
+      'land': '#8B4513',        // Brown (Saddle Brown)
+      'river': '#64ADEF',       // Light blue (Dodger Blue)
+      'shallow-water': '#4A9EFF', // Light blue (Royal Blue)
+      'low-sea': '#3A8BE7',     // Medium blue
+      'deep-sea': '#2A5A9A',    // Dark blue
+      'water': '#3A8BE7',       // Medium blue (for unified water segments)
+      // Legacy support for backward compatibility
+      'deep-water': '#2E5C99'   // Dark blue (legacy)
+    };
+    return colors[terrainType] || '#999';
+  }
+
+  private getTerrainIcon(terrainType: string): string {
+    const icons: Record<string, string> = {
+      'land': '🏔️',
+      'river': '🏞️',
+      'shallow-water': '🌊',
+      'low-sea': '🌊',
+      'deep-sea': '🌊',
+      'water': '🌊',           // For unified water segments
+      // Legacy support for backward compatibility
+      'deep-water': '🌊'
+    };
+    return icons[terrainType] || '❓';
+  }
+
+  private getTerrainLabel(terrainType: string): string {
+    const labels: Record<string, string> = {
+      'land': 'Land',
+      // All water types show as simple "Sea" for users
+      'river': 'Sea',
+      'shallow-water': 'Sea',
+      'low-sea': 'Sea',
+      'deep-sea': 'Sea',
+      'water': 'Sea',           // For unified water segments
+      // Legacy support for backward compatibility
+      'deep-water': 'Sea'
+    };
+    return labels[terrainType] || terrainType;
+  }
+
+  private calculateSegmentTime(segment: any, method: any): number {
+    if (segment.type === 'land') {
+      return method.landSpeed > 0 ? segment.distance / method.landSpeed : Infinity;
+    } else {
+      return method.waterSpeed > 0 ? segment.distance / method.waterSpeed : Infinity;
+    }
   }
 }
