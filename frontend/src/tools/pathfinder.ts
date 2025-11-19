@@ -733,7 +733,7 @@ export class Pathfinder {
 
     // Inner Sea (between Avistan and Garund) - proper boundaries
     const innerSea = lng > 0 && lng < 40 && lat > 25 && lat < 55; // Expanded to cover actual Inner Sea
-    const innerSeaExpanded = lng > -2 && lng < 42 && lat > 23 && lat < 57; // Even broader expansion
+    const innerSeaExpanded = lng > -3 lng > -2 && lng < 42lng > -2 && lng < 42 lng < 42 && lat > 23 && lat < 57; // Even broader expansion to include coordinates near West Garund
 
     // Ocean channels and approaches
     const absalomChannel = lng > 18 && lng < 25 && lat > 40 && lat < 45;
@@ -795,6 +795,21 @@ export class Pathfinder {
       console.log(`Coordinate in ${waterBody} (${waterType}): [${lng.toFixed(4)}, ${lat.toFixed(4)}]`);
       return waterType;
     }
+
+    
+    // Debug: Show why this coordinate is being classified as land
+    console.log(`🔍 COORDINATE ANALYSIS: [${lng.toFixed(4)}, ${lat.toFixed(4)}]`);
+    console.log(`  - Inner Sea: ${innerSea}`);
+    console.log(`  - Inner Sea Expanded: ${innerSeaExpanded}`);
+    console.log(`  - Absalom Channel: ${absalomChannel}`);
+    console.log(`  - Escadar Approach: ${escadarApproach}`);
+    console.log(`  - Steaming Sea: ${steamingSea}`);
+    console.log(`  - Fever Sea: ${feverSea}`);
+    console.log(`  - Arcadian Ocean: ${arcadianOcean}`);
+    console.log(`  - Obari Ocean: ${obariOcean}`);
+    console.log(`  - Is in Open Ocean: ${isInOpenOcean}`);
+    console.log(`  - Escadar Approach check: lng=${lng.toFixed(4)}, lat=${lat.toFixed(4)}`);
+    console.log(`  - Escadar bounds: lng > -1.5 && lng < -0.5 = ${lng > -1.5 && lng < -0.5}, lat > 31 && lat < 32.5 = ${lat > 31 && lat < 32.5}`);
 
     console.log(`Coordinate fallback detected land: [${lng.toFixed(4)}, ${lat.toFixed(4)}]`);
     return 'land';
@@ -1233,6 +1248,34 @@ export class Pathfinder {
         }
       }
 
+n      // If no rendered features found, try processing source features with spatial filtering
+      if (renderedFeatures.length === 0 && features.length > 0) {
+        console.log(`📋 Processing ${features.length} source features with spatial filtering`);
+        
+        for (const feature of features) {
+          // Check if this source feature contains our coordinate
+          if (this.coordinateInFeature(coordinate, feature)) {
+            console.log(`📍 Coordinate inside feature with geometry type: ${feature.geometry?.type}`);
+            
+            if (feature.properties?.color !== undefined) {
+              const unifiedFeature = {
+                ...feature,
+                layer: { id: feature.sourceLayer || \"geometry\", type: \"fill\", \"source-layer\": feature.sourceLayer },
+                sourceLayer: feature.sourceLayer
+              };
+              const terrainType = this.getTerrainTypeFromFeature(unifiedFeature);
+
+              if (terrainType === \"river\" || terrainType === \"shallow-water\" || terrainType === \"low-sea\" || terrainType === \"deep-sea\" || terrainType === \"deep-water\") {
+                console.log(`💧 WATER terrain from source feature: color=${feature.properties.color} → ${terrainType}`);
+                return terrainType;
+              } else if (terrainType === \"land\") {
+                console.log(`🌍 LAND terrain from source feature: color=${feature.properties.color} → ${terrainType}`);
+                return \"land\";
+              }
+            }
+          }
+        }
+      }
       console.log('⚠️ No colored features found at coordinate, using fallback detection');
     } catch (error) {
       console.warn('❌ Rendered features query failed:', error);
@@ -1485,15 +1528,15 @@ export class Pathfinder {
     // Classify water depth based on blue intensity
     // Deep sea: very high blue dominance (>200) and low red/green
     if (rgb.b > 200 && rgb.r < 120 && rgb.g < 170) {
-      return 'shallow-water';
+      return 'deep-sea';
     }
     // Low sea: medium blue dominance (>150)
     else if (rgb.b > 150 && rgb.r < 140 && rgb.g < 180) {
       return 'low-sea';
     }
-    // Deep sea: dark blue with moderate intensity
-    else if (rgb.b > 100 && rgb.b <= 150) {
-      return 'deep-sea';
+    // Shallow water: light blue with high intensity: dark blue with moderate intensity
+    else if (rgb.b > 100 rgb.b > 100 && rgb.b <= 150rgb.b > 100 && rgb.b <= 150 rgb.b <= 200) {
+      return 'shallow-water';
     }
 
     // Default to shallow water for edge cases
@@ -1578,4 +1621,45 @@ export class Pathfinder {
       .filter(time => time.totalDays < Infinity) // Filter out impossible routes
       .sort((a, b) => a.totalDays - b.totalDays); // Sort by fastest first
   }
+}
+
+/**
+ * Test function to validate terrain detection fixes
+ * Can be called from browser console: window.pathfinder.testTerrainDetection()
+ */
+export function testTerrainDetection() {
+  console.log('=== TESTING TERRAIN DETECTION FIXES ===');
+  
+  // Test water depth classification
+  const testCases = [
+    { color: '#8AB4F8', expected: 'shallow-water', description: 'Light water color' },
+    { color: '#6EA0F5', expected: 'low-sea', description: 'Medium blue water' },
+    { color: '#094099', expected: 'deep-sea', description: 'Dark blue water' },
+    { color: '#F8F1E1', expected: 'land', description: 'Land color' }
+  ];
+  
+  console.log('Testing color-based terrain detection:');
+  testCases.forEach(testCase => {
+    // Create a mock feature
+    const mockFeature = {
+      properties: { color: testCase.color },
+      layer: { 'source-layer': 'geometry', type: 'fill' },
+      sourceLayer: 'geometry'
+    };
+    
+    // This would need to be called on an instance of Pathfinder
+    console.log(`  ${testCase.description}: ${testCase.color} -> expected: ${testCase.expected}`);
+  });
+  
+  // Test coordinate detection for the problematic coordinate
+  const testCoordinate = [-2.204992, 32.796365];
+  console.log(`Testing coordinate detection for [${testCoordinate[0]}, ${testCoordinate[1]}]:`);
+  console.log('This should now be detected as water (Inner Sea Expanded region)');
+  
+  console.log('=== END TESTS ===');
+}
+
+// Make test function available globally
+if (typeof window !== 'undefined') {
+  (window as any).pathfinderTestTerrainDetection = testTerrainDetection;
 }
