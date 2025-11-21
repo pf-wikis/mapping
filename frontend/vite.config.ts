@@ -55,9 +55,11 @@ const config:UserConfig = {
   },
   server: {
     proxy: {
-      //uncomment to use remote data
-      //'/sprites': 'https://map.pathfinderwiki.com',
-      //'/golarion.pmtiles': 'https://map.pathfinderwiki.com',
+      // Use remote data from production map
+      '/sprites': 'https://map.pathfinderwiki.com',
+      '/golarion.pmtiles': 'https://map.pathfinderwiki.com',
+      '/search.json': 'https://map.pathfinderwiki.com',
+      '/search.json.gz': 'https://map.pathfinderwiki.com',
     }
   }
 }
