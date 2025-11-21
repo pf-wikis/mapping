@@ -451,7 +451,7 @@ input:checked+.golarion-slider:before {
 .golarion-route-panel {
   position: absolute;
   bottom: 20px;
-  left: 20px;
+  right: 20px; // Changed from left to right - bottom-right position
   background: var(--golarion-surface);
   backdrop-filter: blur(var(--golarion-surface-blur));
   -webkit-backdrop-filter: blur(var(--golarion-surface-blur));
@@ -464,6 +464,14 @@ input:checked+.golarion-slider:before {
   max-width: 400px;
   z-index: 200;
   animation: slideUp 0.3s ease-out;
+  transition: box-shadow 0.2s ease;
+
+  // Dragging state
+  &.dragging {
+    box-shadow: var(--golarion-shadow-xl), 0 0 0 1px rgba(59, 130, 246, 0.3);
+    transition: none; // Disable transition while dragging for smooth movement
+  }
+
   @media (max-width: 480px) {
     // Small mobile - stack panels vertically
     left: 5px !important;
@@ -487,8 +495,7 @@ input:checked+.golarion-slider:before {
   }
 
   @media (max-width: 768px) {
-    left: 10px;
-    right: 10px;
+    right: 10px; // Changed from left to right
     min-width: auto;
     max-width: none;
     bottom: 10px;
@@ -497,11 +504,12 @@ input:checked+.golarion-slider:before {
   h3 {
     font-size: 18px;
     color: var(--golarion-text-main);
-    margin: 0 0 16px 0;
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 8px;
     font-weight: 700;
+    flex: 1; // Allow title to take remaining space
   }
 }
 
@@ -523,6 +531,44 @@ input:checked+.golarion-slider:before {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 16px;
+  gap: 8px;
+
+  // Draggable header styling
+  &.draggable-header {
+    cursor: grab;
+    user-select: none;
+    padding: 4px 0;
+    margin: -4px 0 12px 0;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.02);
+      border-radius: 6px;
+      padding: 4px 8px;
+      margin: -4px -8px 12px -8px;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
+
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+
+  .golarion-route-header:hover & {
+    opacity: 0.7;
+  }
+
+  .golarion-route-header:active & {
+    opacity: 1;
+  }
 }
 
 .golarion-close-btn {
@@ -535,6 +581,7 @@ input:checked+.golarion-slider:before {
   padding: 4px 8px;
   border-radius: 4px;
   transition: all 0.2s;
+  flex-shrink: 0;
 
   &:hover {
     background: rgba(0, 0, 0, 0.05);
@@ -675,6 +722,66 @@ input:checked+.golarion-slider:before {
       &.deep-water {
         background: #2A5A9A;
       }
+    }
+  }
+}
+
+// Waypoint Editing Section
+.golarion-waypoint-section {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: var(--golarion-radius);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+
+  .golarion-waypoint-toggle {
+    width: 100%;
+    padding: 10px 16px;
+    background: white;
+    border: 1px solid var(--golarion-border);
+    color: var(--golarion-text-main);
+    border-radius: var(--golarion-radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: #f8fafc;
+      border-color: var(--golarion-primary);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+      border-color: #4CAF50;
+      color: white;
+      box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+
+      &:hover {
+        background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  .golarion-waypoint-help {
+    margin-top: 8px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: var(--golarion-radius-sm);
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+
+    strong {
+      color: var(--golarion-text-main);
+      display: block;
+      margin-bottom: 4px;
     }
   }
 }

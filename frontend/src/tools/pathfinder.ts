@@ -9,36 +9,38 @@ import { Map as MapLibreMap, LngLatBoundsLike } from 'maplibre-gl';
 export const TRAVEL_METHODS = {
   foot: {
     name: 'On Foot',
-    icon: '/icons/travel-foot.svg',
+    icon: '🚶',
     landSpeed: 30,    // 30 km/day walking
-    waterSpeed: 0,    // Can't walk on water
-    requiresBoat: true
+    waterSpeed: 24,   // Assume ferries/rafts available (slower than walking)
+    requiresBoat: false
   },
   horse: {
     name: 'Horseback',
-    icon: '/icons/travel-horse.svg',
+    icon: '🐎',
     landSpeed: 60,    // 60 km/day on horse
-    waterSpeed: 0,
-    requiresBoat: true
+    waterSpeed: 24,   // Assume ferries available
+    requiresBoat: false
   },
   wagon: {
     name: 'Wagon/Cart',
-    icon: '/icons/travel-wagon.svg',
+    icon: '🛒',
     landSpeed: 40,    // 40 km/day with wagon
-    waterSpeed: 0,
-    requiresBoat: true
+    waterSpeed: 20,   // Slower ferries for wagons
+    requiresBoat: false
   },
   ship: {
     name: 'Ship/Boat',
-    icon: '/icons/travel-ship.svg',
+    icon: '⛵',
     landSpeed: 0,     // Can't sail on land
-    waterSpeed: 150   // 150 km/day sailing
+    waterSpeed: 150,  // 150 km/day sailing
+    requiresBoat: false
   },
   mixed: {
     name: 'Mixed (Walk + Ferry)',
-    icon: '/icons/travel-mixed.svg',
+    icon: '🔄',
     landSpeed: 30,
-    waterSpeed: 150   // Ferry for water crossings
+    waterSpeed: 150,   // Ferry for water crossings
+    requiresBoat: false
   }
 } as const;
 
@@ -51,7 +53,10 @@ export type TerrainType =
   | 'land'
   | 'river'
   | 'shallow-water'
-  | 'deep-water';
+  | 'deep-water'
+  | 'low-sea'
+  | 'deep-sea'
+  | 'water';
 
 /**
  * Path segment (continuous terrain section)
@@ -100,9 +105,10 @@ interface TerrainCache {
  */
 export class Pathfinder {
   private map: MapLibreMap;
-  private readonly SAMPLE_INTERVAL = 0.5; // km between samples (much denser for coastal accuracy)
+  private readonly SAMPLE_INTERVAL = 5; // km between samples (increased for performance)
   private readonly CACHE_DURATION = 60000; // Cache terrain data for 1 minute
   private readonly MAX_CACHE_SIZE = 1000; // Maximum cache entries
+  private readonly DEBUG_TERRAIN = false; // Enable for detailed terrain detection debugging
   private terrainCache: Map<string, TerrainCache> = new Map();
 
   constructor(map: MapLibreMap) {
@@ -213,7 +219,33 @@ export class Pathfinder {
    * This fixes the issue where queryRenderedFeatures returns empty results
    * because tiles haven't been loaded yet
    */
+  /**
+   * Ensure tiles are loaded for the route area before terrain detection
+   * This fixes the issue where queryRenderedFeatures returns empty results
+   * because tiles haven't been loaded yet
+   */
   private async ensureRouteTilesLoaded(start: Position, end: Position): Promise<void> {
+    // Helper to check if we can actually query features
+    const areFeaturesQueryable = () => {
+      try {
+        const startPt = this.map.project(start as [number, number]);
+        const endPt = this.map.project(end as [number, number]);
+        const startFeatures = this.map.queryRenderedFeatures([startPt.x, startPt.y]);
+        const endFeatures = this.map.queryRenderedFeatures([endPt.x, endPt.y]);
+        return startFeatures.length > 0 && endFeatures.length > 0;
+      } catch (e) {
+        return false;
+      }
+    };
+
+    // If map is already idle, check if we have features
+    if (!this.map.isMoving() && !this.map.isZooming()) {
+      if (areFeaturesQueryable()) {
+        return; // Ready to go!
+      }
+      console.log('Map is idle but features not queryable yet - waiting...');
+    }
+
     // Calculate bounding box for the route
     const routeBbox: LngLatBoundsLike = [
       Math.min(start[0], end[0]),
@@ -247,11 +279,19 @@ export class Pathfinder {
       }
     });
 
-    // Additional buffer time to ensure tiles are fully rendered
-    // This is necessary because 'idle' event fires when movement stops,
-    // but tiles may still be rendering
-    console.log('Waiting for tile rendering to complete...');
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Failsafe: Verify features are queryable, wait if not
+    let attempts = 0;
+    while (!areFeaturesQueryable() && attempts < 50) {
+      attempts++;
+      if (attempts % 5 === 0) console.log(`Features not queryable yet (attempt ${attempts}/50) - waiting 100ms...`);
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+
+    if (attempts >= 50) {
+      console.warn('Timed out waiting for features to be queryable - proceeding anyway');
+    } else if (attempts > 0) {
+      console.log('Features became queryable!');
+    }
   }
 
   /**
@@ -278,15 +318,29 @@ export class Pathfinder {
     await this.ensureRouteTilesLoaded(start, end);
     console.log('Tiles loaded successfully');
 
-    // Create geodesic path
-    const path = this.createGeodesicPath(start, end);
+    // Check if start/end are water and try to snap to land
+    let routeStart = start;
+    let routeEnd = end;
+    // Snapping logic removed as per user request
+    // let startSnapped = false;
+    // let endSnapped = false;
+
+    // Quick check for start/end terrain (we'll do full detection later, but this helps the heuristic)
+    const initialStartTerrain = await this.getTerrainType(start);
+    const initialEndTerrain = await this.getTerrainType(end);
+
+    // Snapping logic removed
+
+
+    // Create geodesic path between (potentially snapped) points
+    let path = this.createGeodesicPath(routeStart, routeEnd);
     console.log('Generated path with', path.length, 'points');
 
     // Sample terrain along path
-    const segments = await this.detectTerrainSegments(path);
+    let segments = await this.detectTerrainSegments(path);
 
     // Merge consecutive water segments into single continuous paths
-    const mergedSegments = this.mergeConsecutiveWaterSegments(segments);
+    let mergedSegments = this.mergeConsecutiveWaterSegments(segments);
     console.log(`Merged ${segments.length} segments into ${mergedSegments.length} segments`);
 
     // Calculate distances
@@ -302,6 +356,12 @@ export class Pathfinder {
         waterDistance += segment.distance;
       }
     }
+
+    // Land midpoint heuristic removed to ensure direct paths
+
+
+    // Snapping points logic removed
+
 
     // Log comprehensive route summary
     console.log('=== ROUTE CALCULATION COMPLETE ===');
@@ -322,6 +382,36 @@ export class Pathfinder {
       waterDistance,
       success: true
     };
+  }
+
+  /**
+   * Search for a land point near the given position
+   */
+  private async findNearbyLand(center: Position, maxRadiusKm: number): Promise<Position | null> {
+    // Spiral search with increased density
+    const numPoints = 32; // Increased from 16
+    const rings = 5;      // Increased from 3
+    const stepKm = maxRadiusKm / rings;
+
+    for (let r = 1; r <= rings; r++) {
+      const radius = stepKm * r;
+      // Approximate degrees for radius (very rough, assuming equator-ish)
+      const radiusDeg = radius / 111;
+
+      for (let i = 0; i < numPoints; i++) {
+        const angle = (i / numPoints) * 2 * Math.PI;
+        const dx = Math.cos(angle) * radiusDeg;
+        const dy = Math.sin(angle) * radiusDeg;
+
+        const candidate: Position = [center[0] + dx, center[1] + dy];
+        const terrain = await this.getTerrainType(candidate);
+
+        if (terrain === 'land') {
+          return candidate;
+        }
+      }
+    }
+    return null;
   }
 
   /**
@@ -367,9 +457,16 @@ export class Pathfinder {
     const segments: PathSegment[] = [];
     let currentSegment: PathSegment | null = null;
 
+    console.log(`🔍 Detecting terrain for ${path.length} path points...`);
+
     for (let i = 0; i < path.length; i++) {
       const coord = path[i];
       const terrainType = await this.getTerrainType(coord);
+
+      // Debug log every 10th point to avoid spam
+      if (i % 10 === 0 || i === 0 || i === path.length - 1) {
+        console.log(`  Point ${i}/${path.length}: [${coord[0].toFixed(4)}, ${coord[1].toFixed(4)}] → ${terrainType}`);
+      }
 
       if (!currentSegment || currentSegment.type !== terrainType) {
         // Start new segment
@@ -384,6 +481,7 @@ export class Pathfinder {
               currentSegment.distance += segmentDistance;
             }
           }
+          console.log(`  ✓ Completed segment: ${currentSegment.type} (${currentSegment.distance.toFixed(2)} km, ${currentSegment.coordinates.length} points)`);
           segments.push(currentSegment);
         }
 
@@ -409,6 +507,7 @@ export class Pathfinder {
           currentSegment.distance += segmentDistance;
         }
       }
+      console.log(`  ✓ Final segment: ${currentSegment.type} (${currentSegment.distance.toFixed(2)} km, ${currentSegment.coordinates.length} points)`);
       segments.push(currentSegment);
     }
 
@@ -518,7 +617,7 @@ export class Pathfinder {
       const bounds = this.map.getBounds();
       const [lng, lat] = coord;
       return lng >= bounds.getWest() && lng <= bounds.getEast() &&
-             lat >= bounds.getSouth() && lat <= bounds.getNorth();
+        lat >= bounds.getSouth() && lat <= bounds.getNorth();
     } catch (error) {
       console.warn('Error checking bounds:', error);
       return false;
@@ -577,10 +676,12 @@ export class Pathfinder {
         this.testCoordinateProjections(coord);
       }
 
-      console.log(`Querying coordinate [${lng.toFixed(4)}, ${lat.toFixed(4)}]:`, {
-        inBounds: this.isCoordinateWithinBounds(coord),
-        cacheKey
-      });
+      if (this.DEBUG_TERRAIN) {
+        console.log(`Querying coordinate [${lng.toFixed(4)}, ${lat.toFixed(4)}]:`, {
+          inBounds: this.isCoordinateWithinBounds(coord),
+          cacheKey
+        });
+      }
 
       // Query the map at the specific coordinate
       const point = this.map.project([lng, lat]);
@@ -590,12 +691,16 @@ export class Pathfinder {
 
       // If rendered features query fails, try source features query
       if (allFeatures.length === 0) {
-        console.log('Rendered features query empty, trying source features query...');
+        if (this.DEBUG_TERRAIN) {
+          console.log('Rendered features query empty, trying source features query...');
+        }
         try {
           allFeatures = this.map.querySourceFeatures('golarion', {
             sourceLayer: 'geometry'
           });
-          console.log(`Source features query returned ${allFeatures.length} features`);
+          if (this.DEBUG_TERRAIN) {
+            console.log(`Source features query returned ${allFeatures.length} features`);
+          }
         } catch (error) {
           console.warn('Source features query failed:', error);
         }
@@ -603,48 +708,56 @@ export class Pathfinder {
 
       // Try broader source query if specific layer fails
       if (allFeatures.length === 0) {
-        console.log('Specific source layer query empty, trying broader query...');
+        if (this.DEBUG_TERRAIN) {
+          console.log('Specific source layer query empty, trying broader query...');
+        }
         try {
           allFeatures = this.map.querySourceFeatures('golarion');
-          console.log(`Broad source features query returned ${allFeatures.length} features`);
+          if (this.DEBUG_TERRAIN) {
+            console.log(`Broad source features query returned ${allFeatures.length} features`);
+          }
         } catch (error) {
           console.warn('Broad source features query failed:', error);
         }
       }
 
       // Debug logging - check what we're finding
-      console.log(`Querying coordinate [${lng.toFixed(4)}, ${lat.toFixed(4)}]:`, {
-        totalFeatures: allFeatures.length,
-        point: { x: point.x, y: point.y },
-        layers: allFeatures.map(f => ({
-          id: f.layer?.id,
-          type: f.layer?.type,
-          sourceLayer: f.layer?.['source-layer'],
-          hasProperties: !!f.properties,
-          properties: f.properties ? {
-            hasColor: 'color' in f.properties,
-            color: f.properties.color,
-            keys: Object.keys(f.properties)
-          } : null
-        })),
-        detailedFeatures: allFeatures.map(f => ({
-          layerId: f.layer?.id,
-          layerType: f.layer?.type,
-          sourceLayer: f.layer?.['source-layer'],
-          geometryType: f.geometry?.type,
-          properties: f.properties,
-          isLandCandidate: f.layer?.type === 'fill' &&
-                          f.layer?.['source-layer'] === 'geometry' &&
-                          f.properties?.color !== undefined
-        }))
-      });
+      if (this.DEBUG_TERRAIN) {
+        console.log(`Querying coordinate [${lng.toFixed(4)}, ${lat.toFixed(4)}]:`, {
+          totalFeatures: allFeatures.length,
+          point: { x: point.x, y: point.y },
+          layers: allFeatures.map(f => ({
+            id: f.layer?.id,
+            type: f.layer?.type,
+            sourceLayer: f.layer?.['source-layer'],
+            hasProperties: !!f.properties,
+            properties: f.properties ? {
+              hasColor: 'color' in f.properties,
+              color: f.properties.color,
+              keys: Object.keys(f.properties)
+            } : null
+          })),
+          detailedFeatures: allFeatures.map(f => ({
+            layerId: f.layer?.id,
+            layerType: f.layer?.type,
+            sourceLayer: f.layer?.['source-layer'],
+            geometryType: f.geometry?.type,
+            properties: f.properties,
+            isLandCandidate: f.layer?.type === 'fill' &&
+              f.layer?.['source-layer'] === 'geometry' &&
+              f.properties?.color !== undefined
+          }))
+        });
+      }
 
       // Analyze terrain using comprehensive feature analysis
       let terrainType = 'land'; // Default to land (most of the map is land)
       let foundGeometryFeature = false;
       let isSourceFeatures = allFeatures.length > 0 && !allFeatures[0].layer;
 
-      console.log(`Processing ${allFeatures.length} features (${isSourceFeatures ? 'source' : 'rendered'})`);
+      if (this.DEBUG_TERRAIN) {
+        console.log(`Processing ${allFeatures.length} features (${isSourceFeatures ? 'source' : 'rendered'})`);
+      }
 
       // For source features, we need spatial filtering, not just feature collection
       if (isSourceFeatures) {
@@ -656,8 +769,8 @@ export class Pathfinder {
           // Rendered features filtering - check layer properties
           // Note: We're in the rendered features path, so we check feature.layer
           const isGeometryFeature = feature.layer?.type === 'fill' &&
-                           feature.layer?.['source-layer'] === 'geometry' &&
-                           feature.properties?.color !== undefined;
+            feature.layer?.['source-layer'] === 'geometry' &&
+            feature.properties?.color !== undefined;
 
           if (isGeometryFeature) {
             foundGeometryFeature = true;
@@ -675,21 +788,29 @@ export class Pathfinder {
             // Update terrain type (prioritize land over water for mixed areas)
             if (detectedTerrain === 'land') {
               terrainType = 'land';
-              console.log('Terrain classified as: LAND (comprehensive analysis)');
+              if (this.DEBUG_TERRAIN) {
+                console.log('Terrain classified as: LAND (comprehensive analysis)');
+              }
               break; // Found land, no need to check further
             } else if (detectedTerrain === 'river' || detectedTerrain === 'shallow-water' || detectedTerrain === 'low-sea' || detectedTerrain === 'deep-sea' || detectedTerrain === 'deep-water') {
               // Water type detected - keep the specific water type
               terrainType = detectedTerrain;
-              console.log(`Terrain classified as: ${detectedTerrain.toUpperCase()} (comprehensive analysis)`);
+              if (this.DEBUG_TERRAIN) {
+                console.log(`Terrain classified as: ${detectedTerrain.toUpperCase()} (comprehensive analysis)`);
+              }
               break; // Stop processing once water is found - prevents override by subsequent features
             } else if (detectedTerrain === 'unknown') {
               // Unknown terrain - don't override existing classification, continue searching
-              console.log(`Unknown terrain type, continuing search for more definitive features...`);
+              if (this.DEBUG_TERRAIN) {
+                console.log(`Unknown terrain type, continuing search for more definitive features...`);
+              }
               // No break - keep looking for better classification
             } else {
               // For other terrain types (mountain, forest, etc.), treat as land for now
               terrainType = 'land';
-              console.log(`Terrain classified as: ${detectedTerrain} (treating as land for routing)`);
+              if (this.DEBUG_TERRAIN) {
+                console.log(`Terrain classified as: ${detectedTerrain} (treating as land for routing)`);
+              }
               break;
             }
           }
@@ -698,12 +819,16 @@ export class Pathfinder {
 
       // If no geometry features found, use coordinate-based fallback detection
       if (!foundGeometryFeature) {
-        console.log('No geometry features found at coordinate - using coordinate-based fallback detection');
+        if (this.DEBUG_TERRAIN) {
+          console.log('No geometry features found at coordinate - using coordinate-based fallback detection');
+        }
         terrainType = this.getTerrainTypeCoordinateFallback(coord);
       }
 
-      
-      console.log(`Terrain type determined: ${terrainType}`);
+
+      if (this.DEBUG_TERRAIN) {
+        console.log(`Terrain type determined: ${terrainType}`);
+      }
 
       // Cache the result
       this.terrainCache.set(cacheKey, {
@@ -750,19 +875,15 @@ export class Pathfinder {
     const antarkosOcean = lat < -60; // Far south (polar region)
 
     // Determine water type based on location and depth (priority: specific seas first)
-    if (innerSea || innerSeaExpanded || absalomChannel || escadarApproach ||
-        steamingSea || feverSea ||
-        arcadianOcean || obariOcean || embaralOcean || antarkosOcean || isInOpenOcean) {
+    if (absalomChannel || escadarApproach ||
+      steamingSea || feverSea ||
+      arcadianOcean || obariOcean || embaralOcean || antarkosOcean || isInOcean) {
 
       // Determine water body and type based on specific location priority
       let waterType: TerrainType;
       let waterBody: string = '';
 
-      if (innerSea || innerSeaExpanded) {
-        // Inner Sea between continents - variable depth
-        waterType = lat > 40 ? 'low-sea' : 'shallow-water';
-        waterBody = 'Inner Sea';
-      } else if (absalomChannel) {
+      if (absalomChannel) {
         waterType = 'low-sea';
         waterBody = 'Absalom Channel';
       } else if (escadarApproach) {
@@ -796,7 +917,7 @@ export class Pathfinder {
       return waterType;
     }
 
-    
+
     // Debug: Show why this coordinate is being classified as land
     console.log(`🔍 COORDINATE ANALYSIS: [${lng.toFixed(4)}, ${lat.toFixed(4)}]`);
     console.log(`  - Inner Sea: ${innerSea}`);
@@ -807,7 +928,7 @@ export class Pathfinder {
     console.log(`  - Fever Sea: ${feverSea}`);
     console.log(`  - Arcadian Ocean: ${arcadianOcean}`);
     console.log(`  - Obari Ocean: ${obariOcean}`);
-    console.log(`  - Is in Open Ocean: ${isInOpenOcean}`);
+    console.log(`  - Is in Open Ocean: ${isInOcean}`);
     console.log(`  - Escadar Approach check: lng=${lng.toFixed(4)}, lat=${lat.toFixed(4)}`);
     console.log(`  - Escadar bounds: lng > -1.5 && lng < -0.5 = ${lng > -1.5 && lng < -0.5}, lat > 31 && lat < 32.5 = ${lat > 31 && lat < 32.5}`);
 
@@ -844,8 +965,7 @@ export class Pathfinder {
     const southernInnerSea = lng > -10 && lng < 50 && lat < 25;
 
     // Check if coordinate is in any ocean region
-    return westernOcean || easternOcean || southernOcean || northernOcean ||
-           innerSeaRegion || southernInnerSea;
+    return westernOcean || easternOcean || southernOcean || northernOcean;
   }
 
   /**
@@ -885,7 +1005,7 @@ export class Pathfinder {
 
     return {
       isPlausible,
-      actualTerrain: terrain,
+      actualTerrain: terrain === 'land' ? 'land' : 'water',
       reasoning
     };
   }
@@ -1038,20 +1158,24 @@ export class Pathfinder {
     const sourceLayer = feature.sourceLayer || feature.layer?.['source-layer'];
     const layerId = feature.layer?.id;
 
-    console.log('=== COMPREHENSIVE TERRAIN ANALYSIS ===');
-    console.log('All feature properties:', allProperties);
-    console.log('Source layer:', sourceLayer);
-    console.log('Layer ID:', layerId);
-    console.log('Feature color:', featureColor);
+    if (this.DEBUG_TERRAIN) {
+      console.log('=== COMPREHENSIVE TERRAIN ANALYSIS ===');
+      console.log('All feature properties:', allProperties);
+      console.log('Source layer:', sourceLayer);
+      console.log('Layer ID:', layerId);
+      console.log('Feature color:', featureColor);
 
-    // List all property keys to understand available data
-    console.log('Available property keys:', Object.keys(allProperties));
+      // List all property keys to understand available data
+      console.log('Available property keys:', Object.keys(allProperties));
+    }
 
     // Check for explicit terrain type properties
     const possibleTypeFields = ['type', 'class', 'kind', 'terrain', 'category', 'landuse', 'natural'];
     for (const field of possibleTypeFields) {
       if (allProperties[field]) {
-        console.log(`Found terrain type in field "${field}":`, allProperties[field]);
+        if (this.DEBUG_TERRAIN) {
+          console.log(`Found terrain type in field "${field}":`, allProperties[field]);
+        }
       }
     }
 
@@ -1059,7 +1183,9 @@ export class Pathfinder {
     if (allProperties.type) {
       const terrainType = this.normalizeTerrainType(allProperties.type);
       if (terrainType !== 'unknown') {
-        console.log(`Terrain determined from type property: ${terrainType}`);
+        if (this.DEBUG_TERRAIN) {
+          console.log(`Terrain determined from type property: ${terrainType}`);
+        }
         return terrainType;
       }
     }
@@ -1067,7 +1193,9 @@ export class Pathfinder {
     if (allProperties.class) {
       const terrainType = this.normalizeTerrainType(allProperties.class);
       if (terrainType !== 'unknown') {
-        console.log(`Terrain determined from class property: ${terrainType}`);
+        if (this.DEBUG_TERRAIN) {
+          console.log(`Terrain determined from class property: ${terrainType}`);
+        }
         return terrainType;
       }
     }
@@ -1076,7 +1204,9 @@ export class Pathfinder {
     if (sourceLayer) {
       const terrainType = this.getTerrainFromSourceLayer(sourceLayer);
       if (terrainType !== 'unknown') {
-        console.log(`Terrain determined from source layer: ${terrainType}`);
+        if (this.DEBUG_TERRAIN) {
+          console.log(`Terrain determined from source layer: ${terrainType}`);
+        }
         return terrainType;
       }
     }
@@ -1085,7 +1215,9 @@ export class Pathfinder {
     if (featureColor) {
       const terrainType = this.getTerrainFromColor(featureColor);
       if (terrainType !== 'unknown') {
-        console.log(`Terrain determined from color: ${terrainType}`);
+        if (this.DEBUG_TERRAIN) {
+          console.log(`Terrain determined from color: ${terrainType}`);
+        }
         return terrainType;
       }
     }
@@ -1248,15 +1380,15 @@ export class Pathfinder {
         }
       }
 
-n      // If no rendered features found, try processing source features with spatial filtering
+      // If no rendered features found, try processing source features with spatial filtering
       if (renderedFeatures.length === 0 && features.length > 0) {
         console.log(`📋 Processing ${features.length} source features with spatial filtering`);
-        
+
         for (const feature of features) {
           // Check if this source feature contains our coordinate
           if (this.coordinateInFeature(coordinate, feature)) {
             console.log(`📍 Coordinate inside feature with geometry type: ${feature.geometry?.type}`);
-            
+
             if (feature.properties?.color !== undefined) {
               const unifiedFeature = {
                 ...feature,
@@ -1287,8 +1419,8 @@ n      // If no rendered features found, try processing source features with spa
     return fallbackResult;
   }
 
-  
-  
+
+
   /**
    * Quick heuristic to determine if coordinate is in a likely water region
    */
@@ -1360,7 +1492,7 @@ n      // If no rendered features found, try processing source features with spa
   /**
    * Find nearest terrain type when coordinate is not inside any feature
    */
-  private findNearestTerrainType(features: any[], coordinate: [number, number]): 'land' | 'water' {
+  private findNearestTerrainType(features: any[], coordinate: [number, number]): TerrainType {
     // Simple heuristic: find the feature with the smallest bounding box that contains our coordinate
     // For now, we'll use the coordinate-based fallback as a reasonable approximation
     return this.getTerrainTypeCoordinateFallback(coordinate);
@@ -1391,7 +1523,9 @@ n      // If no rendered features found, try processing source features with spa
     const terrainType = colorMap[normalizedColor];
 
     if (terrainType) {
-      console.log(`✓ Color ${color} → ${normalizedColor} mapped to terrain: ${terrainType}`);
+      if (this.DEBUG_TERRAIN) {
+        console.log(`✓ Color ${color} → ${normalizedColor} mapped to terrain: ${terrainType}`);
+      }
       return terrainType;
     }
 
@@ -1629,7 +1763,7 @@ n      // If no rendered features found, try processing source features with spa
  */
 export function testTerrainDetection() {
   console.log('=== TESTING TERRAIN DETECTION FIXES ===');
-  
+
   // Test water depth classification
   const testCases = [
     { color: '#8AB4F8', expected: 'shallow-water', description: 'Light water color' },
@@ -1637,7 +1771,7 @@ export function testTerrainDetection() {
     { color: '#094099', expected: 'deep-sea', description: 'Dark blue water' },
     { color: '#F8F1E1', expected: 'land', description: 'Land color' }
   ];
-  
+
   console.log('Testing color-based terrain detection:');
   testCases.forEach(testCase => {
     // Create a mock feature
@@ -1646,16 +1780,16 @@ export function testTerrainDetection() {
       layer: { 'source-layer': 'geometry', type: 'fill' },
       sourceLayer: 'geometry'
     };
-    
+
     // This would need to be called on an instance of Pathfinder
     console.log(`  ${testCase.description}: ${testCase.color} -> expected: ${testCase.expected}`);
   });
-  
+
   // Test coordinate detection for the problematic coordinate
   const testCoordinate = [-2.204992, 32.796365];
   console.log(`Testing coordinate detection for [${testCoordinate[0]}, ${testCoordinate[1]}]:`);
   console.log('This should now be detected as water (Inner Sea Expanded region)');
-  
+
   console.log('=== END TESTS ===');
 }
 

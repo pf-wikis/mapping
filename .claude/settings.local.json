@@ -17,7 +17,8 @@
       "Bash(mvn --version:*)",
       "Bash(curl:*)",
       "Bash(ls:*)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(npx tsc:*)"
     ],
     "deny": [],
     "ask": []

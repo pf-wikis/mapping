@@ -66,6 +66,36 @@ export class RouteRenderer {
   private segmentClickHandlers: ((e: any) => void)[] = [];
   private isSelectionModeEnabled: boolean = false;
 
+  // Waypoint editing properties
+  private waypoints: Position[] = []; // User-added waypoints between start and end
+  private waypointMarkers: Marker[] = []; // Visual handles for waypoints
+  private isWaypointEditingEnabled: boolean = false;
+  private hoveredWaypointIndex: number | null = null;
+  private draggedWaypointIndex: number | null = null;
+  private isDraggingWaypoint: boolean = false;
+  private isUpdatingWaypoint: boolean = false; // Guard flag to prevent re-entrant update calls
+  private waypointClickHandler: ((e: any) => void) | null = null;
+  private waypointHoverHandler: ((e: any) => void) | null = null;
+  private waypointDragHandlers: {
+    mousedown: (e: any) => void;
+    mousemove: (e: any) => void;
+    mouseup: (e: any) => void;
+  } | null = null;
+
+  // Panel dragging properties
+  private isDraggingPanel: boolean = false;
+  private panelDragOffset: { x: number; y: number } = { x: 0, y: 0 };
+  private currentPanelPosition: { right: number; bottom: number } = { right: 20, bottom: 20 };
+  private currentPanel: HTMLElement | null = null;
+  private panelDragHandlers: {
+    mousedown: (e: MouseEvent) => void;
+    mousemove: (e: MouseEvent) => void;
+    mouseup: (e: MouseEvent) => void;
+  } | null = null;
+
+  // Cache for route segments to avoid recalculating unchanged segments
+  private cachedSegments: { start: Position, end: Position, result: RouteResult }[] = [];
+
   constructor(map: MapLibreMap) {
     this.map = map;
     this.pathfinder = new Pathfinder(map);
@@ -893,6 +923,7 @@ export class RouteRenderer {
     this.clearMarkers();
 
     this.currentRoute = null;
+    this.cachedSegments = [];
   }
 
   /**
@@ -930,9 +961,25 @@ export class RouteRenderer {
     const panel = document.createElement('div');
     panel.className = 'golarion-route-panel';
 
-    // Header
+    // Header (draggable)
     const header = document.createElement('div');
-    header.className = 'golarion-route-header';
+    header.className = 'golarion-route-header draggable-header';
+    header.style.cursor = 'grab';
+    header.title = 'Drag to reposition panel';
+
+    // Drag handle icon
+    const dragHandle = document.createElement('div');
+    dragHandle.className = 'drag-handle';
+    dragHandle.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="opacity: 0.5;">
+        <circle cx="4" cy="4" r="1.5"/>
+        <circle cx="4" cy="8" r="1.5"/>
+        <circle cx="4" cy="12" r="1.5"/>
+        <circle cx="8" cy="4" r="1.5"/>
+        <circle cx="8" cy="8" r="1.5"/>
+        <circle cx="8" cy="12" r="1.5"/>
+      </svg>
+    `;
 
     const title = document.createElement('h3');
     title.textContent = 'Route Details';
@@ -940,8 +987,12 @@ export class RouteRenderer {
     const closeBtn = document.createElement('button');
     closeBtn.className = 'golarion-close-btn';
     closeBtn.innerHTML = '×';
-    closeBtn.onclick = () => panel.remove();
+    closeBtn.onclick = () => {
+      this.disablePanelDragging();
+      panel.remove();
+    };
 
+    header.appendChild(dragHandle);
     header.appendChild(title);
     header.appendChild(closeBtn);
     panel.appendChild(header);
@@ -1017,6 +1068,94 @@ export class RouteRenderer {
     profileSection.appendChild(legend);
 
     panel.appendChild(profileSection);
+
+    // Waypoint Editing Toggle Button
+    const waypointSection = document.createElement('div');
+    waypointSection.className = 'golarion-waypoint-section';
+
+    const waypointButton = document.createElement('button');
+    waypointButton.className = 'golarion-btn golarion-waypoint-toggle';
+    waypointButton.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 6px;">
+        <circle cx="8" cy="8" r="4" fill="currentColor"/>
+      </svg>
+      Edit Waypoints
+    `;
+
+    // Auto-create waypoints button
+    const autoWaypointButton = document.createElement('button');
+    autoWaypointButton.className = 'golarion-btn golarion-auto-waypoint-btn';
+    autoWaypointButton.style.marginLeft = '8px';
+    autoWaypointButton.innerHTML = `
+      <svg width="16" height="16" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 4px;">
+        <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="2" fill="none"/>
+      </svg>
+      Auto 25km
+    `;
+    autoWaypointButton.title = 'Automatically create waypoints every 25km along the route';
+    autoWaypointButton.onclick = async () => {
+      if (!this.isWaypointEditingEnabled) {
+        this.enableWaypointEditing();
+        waypointButton.classList.add('active');
+        waypointButton.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 6px;">
+            <circle cx="8" cy="8" r="4" fill="#4CAF50"/>
+          </svg>
+          Editing Waypoints
+        `;
+        waypointHelp.style.display = 'block';
+      }
+      await this.autoCreateWaypoints(25);
+    };
+
+    const waypointHelp = document.createElement('div');
+    waypointHelp.className = 'golarion-waypoint-help';
+    waypointHelp.style.display = 'none';
+    waypointHelp.innerHTML = `
+      <div style="font-size: 12px; color: #666; margin-top: 8px; line-height: 1.4;">
+        <strong>How to use:</strong><br>
+        • Waypoint handles are now always visible (semi-transparent circles)<br>
+        • Click directly on waypoint handles and drag to reposition<br>
+        • Click on path to manually add more waypoints<br>
+        • Right-click on waypoints to delete them<br>
+        • Use "Auto 25km" to automatically place waypoints every 25km
+      </div>
+    `;
+
+    // Toggle waypoint editing on button click (combined with help text toggle)
+    waypointButton.onclick = () => {
+      if (this.isWaypointEditingEnabled) {
+        this.disableWaypointEditing();
+        waypointButton.classList.remove('active');
+        waypointButton.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 6px;">
+            <circle cx="8" cy="8" r="4" fill="currentColor"/>
+          </svg>
+          Edit Waypoints
+        `;
+        waypointHelp.style.display = 'none';
+      } else {
+        this.enableWaypointEditing();
+        waypointButton.classList.add('active');
+        waypointButton.innerHTML = `
+          <svg width="16" height="16" viewBox="0 0 16 16" style="vertical-align: middle; margin-right: 6px;">
+            <circle cx="8" cy="8" r="4" fill="#4CAF50"/>
+          </svg>
+          Editing Waypoints
+        `;
+        waypointHelp.style.display = 'block';
+      }
+    };
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.style.display = 'flex';
+    buttonContainer.style.alignItems = 'center';
+    buttonContainer.appendChild(waypointButton);
+    buttonContainer.appendChild(autoWaypointButton);
+
+    waypointSection.appendChild(buttonContainer);
+    waypointSection.appendChild(waypointHelp);
+    panel.appendChild(waypointSection);
 
     // Route Segments Detail
     if (route.segments && route.segments.length > 0) {
@@ -1138,39 +1277,36 @@ export class RouteRenderer {
       panel.appendChild(optionsSection);
     }
 
-    // Apply simple positioning with collision avoidance
-    const searchControl = document.querySelector(".golarion-search-control");
-    let leftPosition = 20;
-    let bottomPosition = 80;
-    
-    // Simple collision check with search control
-    if (searchControl) {
-      const searchRect = searchControl.getBoundingClientRect();
-      if (window.innerWidth - 420 < searchRect.right + 20) {
-        leftPosition = searchRect.right + 20;
-      }
-    }
-    
+    // Position panel in bottom-right corner (no collision with search control which is top-left)
     panel.style.position = "absolute";
-    panel.style.left = `${leftPosition}px`;
-    panel.style.bottom = `${bottomPosition}px`;
+    panel.style.right = `${this.currentPanelPosition.right}px`;
+    panel.style.bottom = `${this.currentPanelPosition.bottom}px`;
+    panel.style.left = 'auto'; // Disable left positioning
+
+    // Store reference to panel for dragging
+    this.currentPanel = panel;
+
+    // NOTE: Panel dragging will be enabled after the panel is added to DOM
+    // Call enablePanelDraggingForCurrentPanel() after appending to map container
+
     return panel;
   }
 
   /**
-   * Create travel icon element
+   * Create travel icon element (renders emoji)
    */
-  private createTravelIcon(iconPath: string, className: string = 'travel-mode-icon'): HTMLElement {
-    const iconEl = document.createElement('img');
-    iconEl.src = iconPath;
+  private createTravelIcon(iconChar: string, className: string = 'travel-mode-icon'): HTMLElement {
+    const iconEl = document.createElement('div');
+    iconEl.textContent = iconChar;
     iconEl.className = className;
-    iconEl.alt = ''; // Will be set by calling code
     iconEl.style.cssText = `
-      width: 20px;
-      height: 20px;
-      object-fit: contain;
-      filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+      width: 24px;
+      height: 24px;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: center;
       vertical-align: middle;
+      display: inline-block;
     `;
     return iconEl;
   }
@@ -1390,10 +1526,10 @@ export class RouteRenderer {
     // Apply simple positioning for saved routes panel
     let leftPosition = window.innerWidth - 420;
     let bottomPosition = 80;
-    
+
     // Ensure panel stays within screen bounds
     leftPosition = Math.max(20, Math.min(leftPosition, window.innerWidth - 420));
-    
+
     panel.style.cssText = `
       position: absolute;
       left: ${leftPosition}px;
@@ -1723,6 +1859,1012 @@ export class RouteRenderer {
       nameInput.select();
     }, 10);
   }
+
+  /**
+   * Find the nearest point on the current route path to a given map position
+   * Used for detecting clicks on the path line
+   */
+  private findNearestPointOnPath(lngLat: { lng: number; lat: number }, thresholdPixels: number = 15): {
+    position: Position;
+    insertIndex: number;
+    distance: number;
+  } | null {
+    if (!this.currentRoute || !this.currentRoute.path || this.currentRoute.path.length < 2) {
+      return null;
+    }
+
+    const clickPoint = this.map.project([lngLat.lng, lngLat.lat]);
+    let nearestPoint: Position | null = null;
+    let nearestDistance = Infinity;
+    let nearestIndex = -1;
+
+    // Check each segment of the path
+    for (let i = 0; i < this.currentRoute.path.length - 1; i++) {
+      const start = this.currentRoute.path[i];
+      const end = this.currentRoute.path[i + 1];
+
+      const startPoint = this.map.project(start);
+      const endPoint = this.map.project(end);
+
+      // Find closest point on line segment
+      const segmentLengthSquared = Math.pow(endPoint.x - startPoint.x, 2) + Math.pow(endPoint.y - startPoint.y, 2);
+
+      if (segmentLengthSquared === 0) {
+        // Degenerate segment (start === end)
+        const distance = Math.hypot(clickPoint.x - startPoint.x, clickPoint.y - startPoint.y);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestPoint = start;
+          nearestIndex = i + 1;
+        }
+        continue;
+      }
+
+      // Project click point onto line segment
+      const t = Math.max(0, Math.min(1,
+        ((clickPoint.x - startPoint.x) * (endPoint.x - startPoint.x) +
+          (clickPoint.y - startPoint.y) * (endPoint.y - startPoint.y)) / segmentLengthSquared
+      ));
+
+      const projectedX = startPoint.x + t * (endPoint.x - startPoint.x);
+      const projectedY = startPoint.y + t * (endPoint.y - startPoint.y);
+      const distance = Math.hypot(clickPoint.x - projectedX, clickPoint.y - projectedY);
+
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        // Convert back to lng/lat
+        const projectedLngLat = this.map.unproject([projectedX, projectedY]);
+        nearestPoint = [projectedLngLat.lng, projectedLngLat.lat];
+        nearestIndex = i + 1; // Insert after this segment
+      }
+    }
+
+    if (nearestPoint && nearestDistance <= thresholdPixels) {
+      return {
+        position: nearestPoint,
+        insertIndex: nearestIndex,
+        distance: nearestDistance
+      };
+    }
+
+    return null;
+  }
+
+  /**
+   * Find the nearest existing waypoint to a given map position
+   * Used for detecting hover and clicks on waypoint markers
+   */
+  private findNearestWaypoint(lngLat: { lng: number; lat: number }, thresholdPixels: number = 20): {
+    waypointIndex: number;
+    position: Position;
+    distance: number;
+  } | null {
+    if (this.waypoints.length === 0) {
+      return null;
+    }
+
+    const clickPoint = this.map.project([lngLat.lng, lngLat.lat]);
+    let nearestIndex = -1;
+    let nearestDistance = Infinity;
+
+    for (let i = 0; i < this.waypoints.length; i++) {
+      const waypoint = this.waypoints[i];
+      const waypointPoint = this.map.project(waypoint);
+      const distance = Math.hypot(clickPoint.x - waypointPoint.x, clickPoint.y - waypointPoint.y);
+
+      if (distance < nearestDistance) {
+        nearestDistance = distance;
+        nearestIndex = i;
+      }
+    }
+
+    if (nearestIndex >= 0 && nearestDistance <= thresholdPixels) {
+      return {
+        waypointIndex: nearestIndex,
+        position: this.waypoints[nearestIndex],
+        distance: nearestDistance
+      };
+    }
+
+    return null;
+  }
+
+  /**
+   * Start dragging a waypoint
+   */
+  private startDraggingWaypoint(index: number, event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    console.log(`[WAYPOINT DRAG] Started dragging waypoint ${index} - Release mouse to recalculate route`);
+
+    this.isDraggingWaypoint = true;
+    this.draggedWaypointIndex = index;
+    this.map.getCanvas().style.cursor = 'grabbing';
+    this.map.dragPan.disable(); // Prevent map panning while dragging
+
+    // Update the marker element cursor
+    const markerEl = this.waypointMarkers[index]?.getElement();
+    if (markerEl) {
+      markerEl.classList.add('hovered');
+      markerEl.style.cursor = 'grabbing';
+      markerEl.style.opacity = '1';
+    }
+
+    let moveCount = 0;
+
+    // Add global mousemove and mouseup handlers for dragging
+    const mousemoveHandler = (e: MouseEvent) => {
+      if (this.isDraggingWaypoint && this.draggedWaypointIndex !== null) {
+        moveCount++;
+        const lngLat = this.map.unproject([e.clientX, e.clientY]);
+        const newPosition: Position = [lngLat.lng, lngLat.lat];
+        this.waypoints[this.draggedWaypointIndex] = newPosition;
+
+        // Debug log every 10th move to avoid spam
+        if (moveCount % 10 === 0) {
+          console.log(`[WAYPOINT DRAG] Dragging to [${lngLat.lng.toFixed(4)}, ${lngLat.lat.toFixed(4)}] (move ${moveCount})`);
+        }
+
+        // Update marker position
+        if (this.waypointMarkers[this.draggedWaypointIndex]) {
+          this.waypointMarkers[this.draggedWaypointIndex].setLngLat(newPosition);
+        }
+      }
+    };
+
+    const mouseupHandler = async (e: MouseEvent) => {
+      console.log(`[WAYPOINT DRAG] Mouse released - finalizing waypoint position and recalculating route`);
+
+      // CRITICAL: Remove handlers FIRST to prevent recursive calls during async operation
+      document.removeEventListener('mousemove', mousemoveHandler);
+      document.removeEventListener('mouseup', mouseupHandler);
+      window.removeEventListener('blur', blurHandler);
+      document.removeEventListener('mouseleave', mouseleaveHandler);
+      console.log(`[WAYPOINT DRAG] Handlers cleaned up - starting update`);
+
+      if (this.isDraggingWaypoint && this.draggedWaypointIndex !== null) {
+        const lngLat = this.map.unproject([e.clientX, e.clientY]);
+        const newPosition: Position = [lngLat.lng, lngLat.lat];
+
+        console.log(`[WAYPOINT DRAG] Final position: [${lngLat.lng.toFixed(4)}, ${lngLat.lat.toFixed(4)}]`);
+        console.log(`[WAYPOINT DRAG] Starting route recalculation...`);
+
+        await this.updateWaypoint(this.draggedWaypointIndex, newPosition);
+
+        console.log(`[WAYPOINT DRAG] Route recalculation complete!`);
+
+        // Reset state
+        const markerEl = this.waypointMarkers[this.draggedWaypointIndex]?.getElement();
+        if (markerEl) {
+          markerEl.classList.remove('hovered');
+          markerEl.style.cursor = 'grab';
+        }
+
+        this.isDraggingWaypoint = false;
+        this.draggedWaypointIndex = null;
+        this.map.getCanvas().style.cursor = '';
+        this.map.dragPan.enable(); // Re-enable map panning
+      }
+
+      console.log(`[WAYPOINT DRAG] Drag operation ended`);
+    };
+
+    // Handle window blur (alt-tab) - end drag operation
+    const blurHandler = () => {
+      console.log('[WAYPOINT DRAG] Window lost focus (alt-tab) - ending drag operation');
+      mouseupHandler(new MouseEvent('mouseup'));
+    };
+
+    // Handle mouse leaving the document - end drag operation
+    const mouseleaveHandler = (e: MouseEvent) => {
+      if (e.target === document.documentElement || e.relatedTarget === null) {
+        console.log('[WAYPOINT DRAG] Mouse left window - ending drag operation');
+        mouseupHandler(e);
+      }
+    };
+
+    // Attach temporary global handlers
+    document.addEventListener('mousemove', mousemoveHandler);
+    document.addEventListener('mouseup', mouseupHandler);
+    window.addEventListener('blur', blurHandler, { once: true });
+    document.addEventListener('mouseleave', mouseleaveHandler);
+  }
+
+  /**
+   * Create a visual marker for a waypoint
+   */
+  private createWaypointMarker(position: Position, index: number): Marker {
+    const el = document.createElement('div');
+    el.className = 'waypoint-handle';
+    el.style.width = '16px';
+    el.style.height = '16px';
+    el.style.borderRadius = '50%';
+    el.style.backgroundColor = 'white';
+    el.style.border = '2px solid #4CAF50';
+    el.style.cursor = 'grab';
+    el.style.opacity = '0.6'; // Semi-visible by default for better discoverability
+    el.style.transition = 'opacity 0.2s, transform 0.2s, box-shadow 0.2s';
+    el.style.pointerEvents = 'auto';
+    el.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
+    el.style.zIndex = '1000';
+    el.style.transformOrigin = 'center center'; // Critical: prevents position shift when scaling
+    el.dataset.waypointIndex = index.toString();
+
+    // Add direct event listeners to the marker element to prevent map interference
+    el.addEventListener('mousedown', (e) => {
+      e.stopPropagation(); // Prevent map from receiving the event
+      this.startDraggingWaypoint(index, e);
+    });
+
+    el.addEventListener('mouseenter', () => {
+      el.classList.add('hovered');
+      el.style.opacity = '1';
+      el.style.boxShadow = '0 0 8px rgba(76, 175, 80, 0.8)';
+      el.style.cursor = 'grab';
+    });
+
+    el.addEventListener('mouseleave', () => {
+      if (!this.isDraggingWaypoint || this.draggedWaypointIndex !== index) {
+        el.classList.remove('hovered');
+        el.style.opacity = '0.6';
+        el.style.boxShadow = '0 2px 4px rgba(0,0,0,0.3)';
+      }
+    });
+
+    const marker = new Marker({ element: el, draggable: false })
+      .setLngLat(position)
+      .addTo(this.map);
+
+    return marker;
+  }
+
+  /**
+   * Update all waypoint marker positions and visibility
+   */
+  private updateWaypointMarkers(): void {
+    // Remove old markers
+    this.waypointMarkers.forEach(marker => marker.remove());
+    this.waypointMarkers = [];
+
+    // Create new markers for each waypoint
+    this.waypoints.forEach((waypoint, index) => {
+      const marker = this.createWaypointMarker(waypoint, index);
+      this.waypointMarkers.push(marker);
+    });
+  }
+
+  /**
+   * Add a new waypoint at the given position and recalculate the route
+   * @param position The position to add the waypoint at
+   * @param index Optional index to insert the waypoint at. If not provided, appends to end.
+   */
+  private async addWaypoint(position: Position, index?: number): Promise<void> {
+    if (typeof index === 'number' && index >= 0 && index <= this.waypoints.length) {
+      this.waypoints.splice(index, 0, position);
+    } else {
+      this.waypoints.push(position);
+    }
+    this.updateWaypointMarkers();
+    await this.recalculateRouteWithWaypoints();
+  }
+
+  /**
+   * Remove a waypoint and recalculate the route
+   */
+  private async removeWaypoint(index: number): Promise<void> {
+    if (index < 0 || index >= this.waypoints.length) {
+      return;
+    }
+
+    this.waypoints.splice(index, 1);
+    this.updateWaypointMarkers();
+    await this.recalculateRouteWithWaypoints();
+  }
+
+  /**
+   * Update a waypoint position and recalculate the route
+   */
+  private async updateWaypoint(index: number, newPosition: Position): Promise<void> {
+    // Guard against re-entrant calls to prevent infinite loops
+    if (this.isUpdatingWaypoint) {
+      console.warn(`[WAYPOINT UPDATE] Already updating waypoint - ignoring recursive call to prevent infinite loop`);
+      return;
+    }
+
+    this.isUpdatingWaypoint = true;
+    try {
+      console.log(`[WAYPOINT UPDATE] Updating waypoint ${index} to position [${newPosition[0].toFixed(4)}, ${newPosition[1].toFixed(4)}]`);
+
+      if (index < 0 || index >= this.waypoints.length) {
+        console.warn(`[WAYPOINT UPDATE] Invalid index ${index}, waypoints length: ${this.waypoints.length}`);
+        return;
+      }
+
+      this.waypoints[index] = newPosition;
+      this.updateWaypointMarkers();
+
+      console.log(`[WAYPOINT UPDATE] Calling recalculateRouteWithWaypoints...`);
+      await this.recalculateRouteWithWaypoints();
+      console.log(`[WAYPOINT UPDATE] Complete`);
+    } finally {
+      this.isUpdatingWaypoint = false;
+    }
+  }
+
+  /**
+   * Auto-create waypoints at regular intervals along the route
+   * @param intervalKm Interval in kilometers (default: 25km)
+   */
+  public async autoCreateWaypoints(intervalKm: number = 25): Promise<void> {
+    if (!this.currentRoute || !this.currentRoute.segments) {
+      console.warn('No route available to auto-create waypoints');
+      return;
+    }
+
+    // Clear existing waypoints and cache
+    this.waypoints = [];
+    const newCachedSegments: { start: Position, end: Position, result: RouteResult }[] = [];
+
+    const intervalMeters = intervalKm * 1000;
+    let accumulatedDistance = 0;
+    let nextWaypointDistance = intervalMeters;
+
+    // Current segment being built (between two waypoints)
+    let currentSegmentResult: RouteResult = {
+      path: [],
+      segments: [],
+      totalDistance: 0,
+      landDistance: 0,
+      waterDistance: 0,
+      success: true
+    };
+
+    let currentSegmentStart = this.currentRoute.path[0];
+    let currentTerrainSegment: any = null;
+
+    // Helper to finalize the current route segment and push to cache
+    const finalizeRouteSegment = (endPoint: Position) => {
+      // Add the final point to path
+      currentSegmentResult.path.push(endPoint);
+
+      // Finish current terrain segment if exists
+      if (currentTerrainSegment) {
+        currentTerrainSegment.coordinates.push(endPoint);
+
+        // Recalculate distance for this terrain segment
+        let segDist = 0;
+        for (let k = 0; k < currentTerrainSegment.coordinates.length - 1; k++) {
+          segDist += this.calculateDistance(currentTerrainSegment.coordinates[k], currentTerrainSegment.coordinates[k + 1]);
+        }
+        currentTerrainSegment.distance = segDist / 1000; // to km
+
+        currentSegmentResult.segments.push(currentTerrainSegment);
+
+        if (currentTerrainSegment.type === 'land') {
+          currentSegmentResult.landDistance += currentTerrainSegment.distance;
+        } else {
+          currentSegmentResult.waterDistance += currentTerrainSegment.distance;
+        }
+        currentSegmentResult.totalDistance += currentTerrainSegment.distance;
+      }
+
+      // Push to cache
+      newCachedSegments.push({
+        start: currentSegmentStart,
+        end: endPoint,
+        result: JSON.parse(JSON.stringify(currentSegmentResult)) // Deep copy
+      });
+
+      // Reset for next segment
+      currentSegmentStart = endPoint;
+      currentSegmentResult = {
+        path: [endPoint], // Start with the split point
+        segments: [],
+        totalDistance: 0,
+        landDistance: 0,
+        waterDistance: 0,
+        success: true
+      };
+      currentTerrainSegment = null;
+    };
+
+    // Iterate through all terrain segments of the original route
+    for (const segment of this.currentRoute.segments) {
+      // Start a new terrain segment for the sub-route
+      currentTerrainSegment = {
+        type: segment.type,
+        coordinates: [segment.coordinates[0]],
+        distance: 0
+      };
+
+      // If this is the very first segment of the route, add start point to path
+      if (currentSegmentResult.path.length === 0) {
+        currentSegmentResult.path.push(segment.coordinates[0]);
+      }
+
+      for (let i = 0; i < segment.coordinates.length - 1; i++) {
+        const p1 = segment.coordinates[i];
+        const p2 = segment.coordinates[i + 1];
+        const dist = this.calculateDistance(p1, p2);
+
+        // Check if we cross a waypoint threshold
+        if (accumulatedDistance + dist >= nextWaypointDistance) {
+          let currentP1 = p1;
+          let currentDistToP2 = dist; // Remaining distance to p2
+
+          // Handle potentially multiple waypoints on a single long edge
+          while (accumulatedDistance + currentDistToP2 >= nextWaypointDistance) {
+            const distToSplit = nextWaypointDistance - accumulatedDistance;
+            const ratio = distToSplit / currentDistToP2;
+
+            // Interpolate split point
+            const splitLng = currentP1[0] + (p2[0] - currentP1[0]) * ratio;
+            const splitLat = currentP1[1] + (p2[1] - currentP1[1]) * ratio;
+            const splitPoint: Position = [splitLng, splitLat];
+
+            // Add split point to current structures
+            if (currentTerrainSegment) {
+              currentTerrainSegment.coordinates.push(splitPoint);
+            }
+            currentSegmentResult.path.push(splitPoint);
+
+            // Add waypoint
+            this.waypoints.push(splitPoint);
+
+            // Finalize the current route segment ending at splitPoint
+            // Note: finalizeRouteSegment will add splitPoint to the END of the current segment
+            // But we just added it above. 
+            // Actually, finalizeRouteSegment expects to add the end point.
+            // Let's adjust: remove the push above and let finalize handle it?
+            // No, finalize adds it to the NEW segment start too.
+            // Let's stick to the helper logic:
+            // We need to close the current terrain segment first.
+
+            // Recalculate distance for this terrain segment piece
+            let segDist = 0;
+            if (currentTerrainSegment) {
+              for (let k = 0; k < currentTerrainSegment.coordinates.length - 1; k++) {
+                segDist += this.calculateDistance(currentTerrainSegment.coordinates[k], currentTerrainSegment.coordinates[k + 1]);
+              }
+              currentTerrainSegment.distance = segDist / 1000;
+              currentSegmentResult.segments.push(currentTerrainSegment);
+
+              if (currentTerrainSegment.type === 'land') {
+                currentSegmentResult.landDistance += currentTerrainSegment.distance;
+              } else {
+                currentSegmentResult.waterDistance += currentTerrainSegment.distance;
+              }
+              currentSegmentResult.totalDistance += currentTerrainSegment.distance;
+            }
+
+            // Push to cache
+            newCachedSegments.push({
+              start: currentSegmentStart,
+              end: splitPoint,
+              result: JSON.parse(JSON.stringify(currentSegmentResult))
+            });
+
+            // Reset for next segment
+            currentSegmentStart = splitPoint;
+            currentSegmentResult = {
+              path: [splitPoint],
+              segments: [],
+              totalDistance: 0,
+              landDistance: 0,
+              waterDistance: 0,
+              success: true
+            };
+
+            // Start new terrain segment (same type) starting at splitPoint
+            currentTerrainSegment = {
+              type: segment.type,
+              coordinates: [splitPoint],
+              distance: 0
+            };
+
+            // Update counters
+            accumulatedDistance = nextWaypointDistance;
+            nextWaypointDistance += intervalMeters;
+
+            currentP1 = splitPoint;
+            currentDistToP2 -= distToSplit;
+          }
+
+          // Continue with the rest of the edge
+          accumulatedDistance += currentDistToP2;
+          if (currentTerrainSegment) {
+            currentTerrainSegment.coordinates.push(p2);
+          }
+          currentSegmentResult.path.push(p2);
+
+        } else {
+          accumulatedDistance += dist;
+          if (currentTerrainSegment) {
+            currentTerrainSegment.coordinates.push(p2);
+          }
+          currentSegmentResult.path.push(p2);
+        }
+      }
+
+      // Finished processing this original segment's coordinates
+      // Push the current terrain segment to the result (if it has content and we aren't at the very end of route)
+      // Note: The loop above adds points. We need to finalize the terrain segment.
+      if (currentTerrainSegment && currentTerrainSegment.coordinates.length > 1) {
+        // Calculate distance
+        let segDist = 0;
+        for (let k = 0; k < currentTerrainSegment.coordinates.length - 1; k++) {
+          segDist += this.calculateDistance(currentTerrainSegment.coordinates[k], currentTerrainSegment.coordinates[k + 1]);
+        }
+        currentTerrainSegment.distance = segDist / 1000;
+
+        currentSegmentResult.segments.push(currentTerrainSegment);
+        if (currentTerrainSegment.type === 'land') {
+          currentSegmentResult.landDistance += currentTerrainSegment.distance;
+        } else {
+          currentSegmentResult.waterDistance += currentTerrainSegment.distance;
+        }
+        currentSegmentResult.totalDistance += currentTerrainSegment.distance;
+
+        // Reset for next original segment
+        currentTerrainSegment = null;
+      }
+    }
+
+    // Finalize the last route segment (from last waypoint to end)
+    const endPoint = this.currentRoute.path[this.currentRoute.path.length - 1];
+
+    newCachedSegments.push({
+      start: currentSegmentStart,
+      end: endPoint,
+      result: currentSegmentResult
+    });
+
+    this.cachedSegments = newCachedSegments;
+    console.log(`Auto-created ${this.waypoints.length} waypoints and populated cache with ${this.cachedSegments.length} segments`);
+
+    this.updateWaypointMarkers();
+  }
+
+  /**
+   * Calculate distance between two positions in meters using Haversine formula
+   */
+  private calculateDistance(pos1: Position, pos2: Position): number {
+    const R = 6371000; // Earth's radius in meters
+    const lat1 = pos1[1] * Math.PI / 180;
+    const lat2 = pos2[1] * Math.PI / 180;
+    const deltaLat = (pos2[1] - pos1[1]) * Math.PI / 180;
+    const deltaLng = (pos2[0] - pos1[0]) * Math.PI / 180;
+
+    const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+      Math.cos(lat1) * Math.cos(lat2) *
+      Math.sin(deltaLng / 2) * Math.sin(deltaLng / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  /**
+   * Recalculate the route with current waypoints
+   * Routes will be calculated between: start -> waypoint1 -> waypoint2 -> ... -> end
+   */
+  private async recalculateRouteWithWaypoints(): Promise<void> {
+    console.log(`[ROUTE RECALC] Starting recalculation with ${this.waypoints.length} waypoints`);
+
+    if (!this.currentRoute || !this.startMarker || !this.endMarker) {
+      console.warn(`[ROUTE RECALC] Cannot recalculate - missing required data`);
+      return;
+    }
+
+    const startPos: Position = [this.startMarker.getLngLat().lng, this.startMarker.getLngLat().lat];
+    const endPos: Position = [this.endMarker.getLngLat().lng, this.endMarker.getLngLat().lat];
+
+    // Build list of all points to route through: start, waypoints, end
+    const allPoints: Position[] = [startPos, ...this.waypoints, endPos];
+
+    console.log(`[ROUTE RECALC] Calculating ${allPoints.length - 1} route segments`);
+
+    // Calculate route segments between consecutive points
+    const segments: any[] = [];
+    let totalPath: Position[] = [];
+    let totalDistance = 0;
+    let landDistance = 0;
+    let waterDistance = 0;
+
+    // New cache for this calculation
+    const newCachedSegments: { start: Position, end: Position, result: RouteResult }[] = [];
+
+    for (let i = 0; i < allPoints.length - 1; i++) {
+      const segmentStart = allPoints[i];
+      const segmentEnd = allPoints[i + 1];
+
+      // Check cache first
+      const cached = this.findCachedSegment(segmentStart, segmentEnd);
+
+      let result: RouteResult;
+
+      if (cached) {
+        console.log(`[ROUTE RECALC] Segment ${i + 1}/${allPoints.length - 1}: Using cached result`);
+        result = cached;
+      } else {
+        console.log(`[ROUTE RECALC] Segment ${i + 1}/${allPoints.length - 1}: Calculating new route...`);
+        result = await this.pathfinder.findRoute(segmentStart, segmentEnd);
+      }
+
+      if (result.success) {
+        // Add to new cache
+        newCachedSegments.push({
+          start: segmentStart,
+          end: segmentEnd,
+          result: result
+        });
+
+        // Merge segment data
+        segments.push(...result.segments);
+        if (i > 0) {
+          // Skip first point to avoid duplicates
+          totalPath.push(...result.path.slice(1));
+        } else {
+          totalPath.push(...result.path);
+        }
+        totalDistance += result.totalDistance;
+        landDistance += result.landDistance;
+        waterDistance += result.waterDistance;
+      } else {
+        console.warn(`Failed to calculate route segment from waypoint ${i} to ${i + 1}`);
+      }
+    }
+
+    // Update cache
+    this.cachedSegments = newCachedSegments;
+
+    // Update current route with merged data
+    this.currentRoute = {
+      path: totalPath,
+      segments: segments,
+      totalDistance,
+      landDistance,
+      waterDistance,
+      success: totalPath.length > 0
+    };
+
+    console.log(`[ROUTE RECALC] Route recalculation complete:`, {
+      totalDistance: totalDistance.toFixed(2) + ' km',
+      segments: segments.length,
+      pathPoints: totalPath.length,
+      cachedSegments: this.cachedSegments.length
+    });
+
+    // Re-render the route
+    this.displayRoute(this.currentRoute);
+  }
+
+  /**
+   * Find a cached segment result for the given start and end points
+   */
+  private findCachedSegment(start: Position, end: Position): RouteResult | null {
+    for (const cached of this.cachedSegments) {
+      if (this.arePositionsEqual(start, cached.start) &&
+        this.arePositionsEqual(end, cached.end)) {
+        return cached.result;
+      }
+    }
+    return null;
+  }
+
+  /**
+   * Check if two positions are equal (within a small epsilon)
+   */
+  private arePositionsEqual(p1: Position, p2: Position): boolean {
+    const epsilon = 0.000001; // Very strict equality for cache hits
+    return Math.abs(p1[0] - p2[0]) < epsilon &&
+      Math.abs(p1[1] - p2[1]) < epsilon;
+  }
+
+  /**
+   * Determine the correct waypoint insertion index based on the path index
+   */
+  private getWaypointIndexForPathIndex(pathIndex: number): number {
+    // Strategy 1: Use cachedSegments if available (most accurate)
+    if (this.cachedSegments.length > 0) {
+      let accumulatedLength = 0;
+
+      for (let k = 0; k < this.cachedSegments.length; k++) {
+        const segment = this.cachedSegments[k];
+        const segLen = segment.result.path.length;
+
+        // First segment contributes full length, others contribute length - 1 (shared start)
+        const contribution = (k === 0) ? segLen : segLen - 1;
+
+        // The valid start indices for this segment are [accumulated, accumulated + contribution - 2]
+        const limit = accumulatedLength + contribution - 1;
+
+        if (pathIndex < limit) {
+          return k;
+        }
+
+        accumulatedLength += contribution;
+      }
+
+      return this.waypoints.length;
+    }
+
+    // Strategy 2: Fallback - find waypoints in the path (for loaded routes)
+    if (this.waypoints.length === 0) return 0;
+
+    let lastWaypointPathIndex = 0;
+
+    for (let i = 0; i < this.waypoints.length; i++) {
+      const wp = this.waypoints[i];
+      let foundIndex = -1;
+
+      // Search for waypoint in path
+      for (let j = lastWaypointPathIndex; j < this.currentRoute!.path.length; j++) {
+        if (this.arePositionsEqual(this.currentRoute!.path[j], wp)) {
+          foundIndex = j;
+          break;
+        }
+      }
+
+      if (foundIndex !== -1) {
+        // If pathIndex is before this waypoint, it belongs to segment i
+        if (pathIndex < foundIndex) {
+          return i;
+        }
+        lastWaypointPathIndex = foundIndex;
+      }
+    }
+
+    // If we are here, it's in the last segment
+    return this.waypoints.length;
+  }
+
+  /**
+   * Enable waypoint editing mode
+   * Allows clicking on path to add waypoints and dragging waypoints to reposition
+   */
+  public enableWaypointEditing(): void {
+    if (this.isWaypointEditingEnabled) {
+      return;
+    }
+
+    this.isWaypointEditingEnabled = true;
+
+    // Click handler for adding waypoints
+    const routeLayers = [
+      this.landLayerId,
+      this.riverLayerId,
+      this.shallowWaterLayerId,
+      this.lowSeaLayerId,
+      this.deepSeaLayerId,
+      this.waterLayerId,
+      this.deepWaterLayerId
+    ];
+
+    this.waypointClickHandler = (e: any) => {
+      // Check if we're clicking near an existing waypoint first (increased threshold)
+      const nearestWaypoint = this.findNearestWaypoint(e.lngLat, 60);
+      if (nearestWaypoint) {
+        // Don't add a new waypoint if clicking on existing one
+        return;
+      }
+
+      // Check if click is on the path (increased threshold for better UX)
+      const nearestPath = this.findNearestPointOnPath(e.lngLat, 20);
+      if (nearestPath) {
+        e.preventDefault();
+        // nearestPath.insertIndex is i + 1 (where i is the start of the line segment).
+        // We want the index of the start of the line segment.
+        const pathStartIndex = nearestPath.insertIndex - 1;
+        const insertIndex = this.getWaypointIndexForPathIndex(pathStartIndex);
+        this.addWaypoint(nearestPath.position, insertIndex);
+      }
+    };
+
+    routeLayers.forEach(layerId => {
+      if (this.map.getLayer(layerId)) {
+        this.map.on('click', layerId, this.waypointClickHandler);
+      }
+    });
+
+    // Right-click handler for deleting waypoints (uses increased threshold)
+    this.map.on('contextmenu', (e: any) => {
+      const nearestWaypoint = this.findNearestWaypoint(e.lngLat, 60);
+      if (nearestWaypoint) {
+        e.preventDefault();
+        this.removeWaypoint(nearestWaypoint.waypointIndex);
+      }
+    });
+
+    console.log('Waypoint editing enabled. Click on path to add waypoints, drag handles to reposition, right-click to delete.');
+  }
+
+  /**
+   * Disable waypoint editing mode
+   */
+  public disableWaypointEditing(): void {
+    if (!this.isWaypointEditingEnabled) {
+      return;
+    }
+
+    this.isWaypointEditingEnabled = false;
+
+    // Remove click handler
+    if (this.waypointClickHandler) {
+      const routeLayers = [
+        this.landLayerId,
+        this.riverLayerId,
+        this.shallowWaterLayerId,
+        this.lowSeaLayerId,
+        this.deepSeaLayerId,
+        this.waterLayerId,
+        this.deepWaterLayerId
+      ];
+
+      routeLayers.forEach(layerId => {
+        if (this.map.getLayer(layerId)) {
+          this.map.off('click', layerId, this.waypointClickHandler!);
+        }
+      });
+
+      this.waypointClickHandler = null;
+    }
+
+    // Remove hover handler
+    if (this.waypointHoverHandler) {
+      this.map.off('mousemove', this.waypointHoverHandler);
+      this.waypointHoverHandler = null;
+    }
+
+    // Remove drag handlers
+    if (this.waypointDragHandlers) {
+      this.map.off('mousedown', this.waypointDragHandlers.mousedown);
+      this.map.off('mousemove', this.waypointDragHandlers.mousemove);
+      this.map.off('mouseup', this.waypointDragHandlers.mouseup);
+      this.waypointDragHandlers = null;
+    }
+
+    // Hide all waypoint markers
+    this.waypointMarkers.forEach(marker => {
+      const el = marker.getElement();
+      el.style.opacity = '0';
+    });
+
+    // Reset state
+    this.hoveredWaypointIndex = null;
+    this.draggedWaypointIndex = null;
+    this.isDraggingWaypoint = false;
+    this.map.getCanvas().style.cursor = '';
+    this.map.dragPan.enable();
+
+    console.log('Waypoint editing disabled.');
+  }
+
+  /**
+   * Clear all waypoints and remove markers
+   */
+  public clearWaypoints(): void {
+    this.waypoints = [];
+    this.waypointMarkers.forEach(marker => marker.remove());
+    this.waypointMarkers = [];
+  }
+
+  /**
+   * Enable panel dragging for the current panel (call after panel is added to DOM)
+   * This must be called AFTER the panel has been appended to the map container
+   */
+  public enablePanelDraggingForCurrentPanel(): void {
+    if (this.currentPanel && document.contains(this.currentPanel)) {
+      this.enablePanelDragging(this.currentPanel);
+    } else {
+      console.warn('Cannot enable panel dragging: panel not in DOM or not available');
+    }
+  }
+
+  /**
+   * Enable dragging functionality for route info panel
+   */
+  private enablePanelDragging(panel: HTMLElement): void {
+    // Verify panel is in DOM before attaching event listeners
+    if (!document.contains(panel)) {
+      console.warn('Panel not in DOM, cannot enable dragging');
+      return;
+    }
+
+    const header = panel.querySelector('.golarion-route-header') as HTMLElement;
+    if (!header) {
+      console.warn('Header not found in panel, cannot enable dragging');
+      return;
+    }
+
+    const mousedownHandler = (e: MouseEvent) => {
+      // Only allow dragging from header (not close button)
+      if ((e.target as HTMLElement).closest('.golarion-close-btn')) {
+        return;
+      }
+
+      e.preventDefault();
+      this.isDraggingPanel = true;
+
+      // Calculate offset from mouse to panel's current position
+      const panelRect = panel.getBoundingClientRect();
+      this.panelDragOffset = {
+        x: panelRect.right - e.clientX,
+        y: panelRect.bottom - e.clientY
+      };
+
+      header.style.cursor = 'grabbing';
+      panel.classList.add('dragging');
+    };
+
+    const mousemoveHandler = (e: MouseEvent) => {
+      if (!this.isDraggingPanel) return;
+
+      e.preventDefault();
+
+      // Calculate new position (right/bottom based)
+      const newRight = window.innerWidth - (e.clientX + this.panelDragOffset.x);
+      const newBottom = window.innerHeight - (e.clientY + this.panelDragOffset.y);
+
+      // Constrain to viewport boundaries
+      const panelRect = panel.getBoundingClientRect();
+      const panelWidth = panelRect.width;
+      const panelHeight = panelRect.height;
+
+      const constrainedRight = Math.max(0, Math.min(newRight, window.innerWidth - panelWidth));
+      const constrainedBottom = Math.max(0, Math.min(newBottom, window.innerHeight - panelHeight));
+
+      // Update panel position
+      panel.style.right = `${constrainedRight}px`;
+      panel.style.bottom = `${constrainedBottom}px`;
+
+      // Store current position
+      this.currentPanelPosition = {
+        right: constrainedRight,
+        bottom: constrainedBottom
+      };
+    };
+
+    const mouseupHandler = () => {
+      if (!this.isDraggingPanel) return;
+
+      this.isDraggingPanel = false;
+      header.style.cursor = 'grab';
+      panel.classList.remove('dragging');
+    };
+
+    // Store handlers for cleanup
+    this.panelDragHandlers = {
+      mousedown: mousedownHandler,
+      mousemove: mousemoveHandler,
+      mouseup: mouseupHandler
+    };
+
+    // Attach event listeners
+    header.addEventListener('mousedown', mousedownHandler);
+    document.addEventListener('mousemove', mousemoveHandler);
+    document.addEventListener('mouseup', mouseupHandler);
+  }
+
+  /**
+   * Disable dragging functionality and cleanup
+   */
+  private disablePanelDragging(): void {
+    if (!this.panelDragHandlers || !this.currentPanel) return;
+
+    const header = this.currentPanel.querySelector('.golarion-route-header') as HTMLElement;
+    if (header) {
+      header.removeEventListener('mousedown', this.panelDragHandlers.mousedown);
+    }
+
+    document.removeEventListener('mousemove', this.panelDragHandlers.mousemove);
+    document.removeEventListener('mouseup', this.panelDragHandlers.mouseup);
+
+    this.panelDragHandlers = null;
+    this.isDraggingPanel = false;
+    this.currentPanel = null;
+  }
+
   /**
    * Simple collision detection for panel positioning
    */

@@ -598,12 +598,8 @@ export default class SearchControl implements IControl {
       });
 
       // Calculate route using geodesic pathfinding with terrain detection
-      // Map travel preferences to pathfinder format
-      const pathfinderPreferences = {
-        terrain: (this.travelPreferences.method === 'water' ? 'sea' : this.travelPreferences.method) as 'land' | 'sea' | 'balanced',
-        avoidWildWater: this.travelPreferences.avoidOpenOcean
-      };
-      const route = await this.pathfinder.findRoute(startCoords, endCoords, pathfinderPreferences);
+      // Note: Preferences are not yet implemented in the pathfinder
+      const route = await this.pathfinder.findRoute(startCoords, endCoords);
 
       if (!route.success) {
         this.showError(route.message || 'Failed to find route');
@@ -661,6 +657,8 @@ export default class SearchControl implements IControl {
     const mapContainer = document.getElementById('map-container');
     if (mapContainer) {
       mapContainer.appendChild(this.routeInfoPanel);
+      // Enable panel dragging after it's in the DOM
+      this.routeRenderer.enablePanelDraggingForCurrentPanel();
     }
   }
 
