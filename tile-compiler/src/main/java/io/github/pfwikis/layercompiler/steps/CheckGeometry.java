@@ -25,6 +25,11 @@ public class CheckGeometry extends LCStep {
 		var in = Tools.mapshaper(this, getInput(), "id-field=fid");
 		
 		var errors = new ArrayList<String>();
+
+		//FIXME suddenly need a project file?
+		/*
+
+		
 		test(in, errors, "ERRORS", "native:checkgeometrymissingvertex");
 		test(in, errors, "ERRORS", "native:checkgeometrydegeneratepolygon");
 		test(in, errors, "ERRORS", "native:checkgeometryduplicate");
@@ -38,7 +43,7 @@ public class CheckGeometry extends LCStep {
 		//test(in, errors, "ERRORS", "native:checkgeometrygap", "--GAP_THRESHOLD=0", "--NEIGHBORS=TEMPORARY_OUTPUT", "--OUTPUT=TEMPORARY_OUTPUT");
 		test(in, errors, "ERRORS", "native:checkgeometrylineintersection");
 		test(in, errors, "NULL_OUTPUT", "native:removenullgeometries", "--REMOVE_EMPTY=true");
-				
+		*/	
 		in.finishUsage();
 		
 		if(!errors.isEmpty()) {
