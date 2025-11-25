@@ -13,10 +13,10 @@ jobs:
     - name: Check that no images are in the repo
       run: |
         rm -rf frontend
-        find . -name '*.png'  -print -exec sh -c 'exit 1'
-        find . -name '*.jpg'  -print -exec sh -c 'exit 1'
-        find . -name '*.tif'  -print -exec sh -c 'exit 1'
-        find . -name '*.webp' -print -exec sh -c 'exit 1'
+        find . -name '*.png'  -print -exec sh -c 'exit 1' \;
+        find . -name '*.jpg'  -print -exec sh -c 'exit 1' \;
+        find . -name '*.tif'  -print -exec sh -c 'exit 1' \;
+        find . -name '*.webp' -print -exec sh -c 'exit 1' \;
     - name: Install dvc
       run: sudo snap install dvc --classic
     - name: Setup dvc
