@@ -13,16 +13,14 @@ jobs:
     - name: Check that no images are in the repo
       run: |
         rm -rf frontend
-        ! find . -name '*.png' | grep .
-        ! find . -name '*.jpg' | grep .
-        ! find . -name '*.tif' | grep .
-        ! find . -name '*.webp' | grep .
+        find . -name '*.png'  -print -exec sh -c 'exit 1'
+        find . -name '*.jpg'  -print -exec sh -c 'exit 1'
+        find . -name '*.tif'  -print -exec sh -c 'exit 1'
+        find . -name '*.webp' -print -exec sh -c 'exit 1'
     - name: Install dvc
-      env:
-        WEBDAVPW: ${{ secrets.WEBDAVPW }}
-      run: |
-        sudo snap install dvc --classic
-        dvc remote modify --local webdav password $WEBDAVPW
+      run: sudo snap install dvc --classic
+    - name: Setup dvc
+      run: dvc remote modify --local webdav password "${{ secrets.WEBDAVPW }}"
     - name: Check if dvc pull works
       run: |
         dvc pull
