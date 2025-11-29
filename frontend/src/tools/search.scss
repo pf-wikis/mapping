@@ -1,0 +1,1383 @@
+// Golarion Map Search Control Styles
+// Premium Design System
+
+:root {
+  --golarion-primary: #3b82f6; // Modern Blue
+  --golarion-primary-hover: #2563eb;
+  --golarion-surface: rgba(255, 255, 255, 0.98);
+  --golarion-surface-blur: 16px;
+  --golarion-text-main: #1e293b;
+  --golarion-text-secondary: #64748b;
+  --golarion-border: #e2e8f0;
+  --golarion-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --golarion-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --golarion-radius: 12px;
+  --golarion-radius-sm: 8px;
+
+  // Dark mode variables
+  --golarion-dark-surface: rgba(30, 41, 59, 0.98);
+  --golarion-dark-text-main: #f1f5f9;
+  --golarion-dark-text-secondary: #94a3b8;
+  --golarion-dark-border: #334155;
+}
+
+.golarion-search-control {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 300;
+  width: 360px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  @media (max-width: 768px) {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+
+    @media (max-width: 480px) {
+      width: 95vw;
+      max-width: 95vw;
+    }
+
+    @media (max-height: 500px) {
+      top: 5px;
+    }
+
+    top: 10px;
+  }
+}
+
+.golarion-search-wrapper {
+  background: var(--golarion-surface);
+  backdrop-filter: blur(var(--golarion-surface-blur));
+  -webkit-backdrop-filter: blur(var(--golarion-surface-blur));
+  border-radius: var(--golarion-radius);
+  box-shadow: var(--golarion-shadow-lg);
+  border: 1px solid var(--golarion-border);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &:focus-within {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: var(--golarion-primary);
+  }
+}
+
+// Directions toggle button
+.golarion-directions-toggle {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  z-index: 10;
+  background: transparent;
+  border: none;
+  border-radius: var(--golarion-radius-sm);
+  padding: 8px;
+  cursor: pointer;
+  color: var(--golarion-text-secondary);
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--golarion-primary);
+  }
+
+  &.active {
+    color: var(--golarion-primary);
+    background: rgba(59, 130, 246, 0.1);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Single search mode
+.golarion-search-single {
+  display: flex;
+  align-items: center;
+  padding: 12px 48px 12px 16px; // Extra right padding for toggle button
+  gap: 12px;
+}
+
+.golarion-search-icon {
+  font-size: 18px;
+  color: var(--golarion-text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.golarion-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 4px 0;
+  color: var(--golarion-text-main);
+  background: transparent;
+  font-weight: 500;
+
+  &::placeholder {
+    color: var(--golarion-text-secondary);
+    opacity: 0.7;
+  }
+}
+
+// Directions mode
+.golarion-directions-inputs {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  // Background handled by wrapper to support dark mode
+  border-radius: var(--golarion-radius-sm);
+}
+
+.golarion-point-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border: 1px solid var(--golarion-border);
+  border-radius: var(--golarion-radius-sm);
+  padding: 10px 12px;
+  transition: all 0.2s;
+
+  &:focus-within {
+    border-color: var(--golarion-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+}
+
+.golarion-point-label {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+
+  &.label-a {
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+  }
+
+  &.label-b {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+  }
+}
+
+.golarion-point-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+  color: var(--golarion-text-main);
+  font-weight: 500;
+
+  &::placeholder {
+    color: var(--golarion-text-secondary);
+  }
+}
+
+.golarion-swap-button {
+  align-self: center;
+  background: white;
+  border: 1px solid var(--golarion-border);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--golarion-text-secondary);
+  transition: all 0.2s;
+  margin: 4px 0;
+  z-index: 5;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    border-color: var(--golarion-primary);
+    color: var(--golarion-primary);
+    transform: rotate(180deg);
+  }
+}
+
+// Preferences Section
+.golarion-preferences {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--golarion-border);
+}
+
+.golarion-pref-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--golarion-text-secondary);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.golarion-pref-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.golarion-segment-control {
+  display: flex;
+  background: #f1f5f9;
+  border-radius: var(--golarion-radius-sm);
+  padding: 4px;
+  gap: 2px;
+}
+
+.golarion-segment-option {
+  flex: 1;
+  text-align: center;
+  padding: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--golarion-text-secondary);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s;
+  user-select: none;
+
+  &:hover {
+    color: var(--golarion-text-main);
+  }
+
+  &.active {
+    background: white;
+    color: var(--golarion-primary);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    font-weight: 600;
+  }
+}
+
+.golarion-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--golarion-text-main);
+  font-weight: 500;
+}
+
+// Toggle Switch
+.golarion-switch {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}
+
+.golarion-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: .4s;
+  border-radius: 20px;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+  }
+}
+
+input:checked+.golarion-slider {
+  background-color: var(--golarion-primary);
+}
+
+input:checked+.golarion-slider:before {
+  transform: translateX(16px);
+}
+
+// Action buttons
+.golarion-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.golarion-btn {
+  flex: 1;
+  padding: 8px;
+  border-radius: var(--golarion-radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  &.btn-primary {
+    background: var(--golarion-primary);
+    color: white;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+
+    &:hover {
+      background: var(--golarion-primary-hover);
+      transform: translateY(-1px);
+    }
+  }
+
+  &.btn-secondary {
+    background: white;
+    border: 1px solid var(--golarion-border);
+    color: var(--golarion-text-secondary);
+
+    &:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      color: var(--golarion-text-main);
+    }
+  }
+}
+
+// Search results
+.golarion-search-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--golarion-surface);
+  backdrop-filter: blur(var(--golarion-surface-blur));
+  -webkit-backdrop-filter: blur(var(--golarion-surface-blur));
+  border-radius: var(--golarion-radius);
+  box-shadow: var(--golarion-shadow-lg);
+  border: 1px solid var(--golarion-border);
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 8px;
+  padding: 8px 0;
+  z-index: 1000;
+  animation: slideDown 0.2s ease-out;
+
+  &:empty {
+    display: none;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.golarion-search-result-item {
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &:hover,
+  &.selected {
+    background: rgba(59, 130, 246, 0.1);
+  }
+
+  &.selected {
+    border-left: 3px solid var(--golarion-primary);
+  }
+}
+
+.golarion-result-icon {
+  width: 32px;
+  height: 32px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--golarion-text-secondary);
+}
+
+.golarion-result-content {
+  flex: 1;
+}
+
+.golarion-result-title {
+  font-size: 14px;
+  color: var(--golarion-text-main);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.golarion-result-category {
+  font-size: 12px;
+  color: var(--golarion-text-secondary);
+  text-transform: capitalize;
+}
+
+// Route Info Panel (New Dashboard Style)
+.golarion-route-panel {
+  position: absolute;
+  bottom: 20px;
+  right: 20px; // Changed from left to right - bottom-right position
+  background: var(--golarion-surface);
+  backdrop-filter: blur(var(--golarion-surface-blur));
+  -webkit-backdrop-filter: blur(var(--golarion-surface-blur));
+  padding: 20px;
+  border-radius: var(--golarion-radius);
+  box-shadow: var(--golarion-shadow-lg);
+  border: 1px solid var(--golarion-border);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-width: 340px;
+  max-width: 400px;
+  max-height: calc(100vh - 100px); // Ensure it doesn't exceed screen height
+  overflow-y: auto; // Allow scrolling for long content
+  z-index: 200;
+  animation: slideUp 0.3s ease-out;
+  transition: box-shadow 0.2s ease;
+
+  // Dragging state
+  &.dragging {
+    box-shadow: var(--golarion-shadow-xl), 0 0 0 1px rgba(59, 130, 246, 0.3);
+    transition: none; // Disable transition while dragging for smooth movement
+  }
+
+  @media (max-width: 480px) {
+    // Small mobile - stack panels vertically
+    left: 5px !important;
+    right: 5px !important;
+    bottom: 5px !important;
+    min-width: auto !important;
+    max-width: none !important;
+    max-height: calc(100vh - 80px);
+  }
+
+  @media (max-height: 600px) {
+    // Short screens - reduce panel height more aggressively
+    max-height: calc(100vh - 60px);
+  }
+
+  @media (min-width: 1200px) {
+    // Large screens - allow more width
+    max-width: 450px;
+  }
+
+  @media (max-width: 768px) {
+    right: 10px; // Changed from left to right
+    min-width: auto;
+    max-width: none;
+    bottom: 10px;
+    max-height: calc(100vh - 70px);
+  }
+
+  h3 {
+    font-size: 18px;
+    color: var(--golarion-text-main);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    flex: 1; // Allow title to take remaining space
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Route Panel Header
+.golarion-route-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  gap: 8px;
+
+  // Draggable header styling
+  &.draggable-header {
+    cursor: grab;
+    user-select: none;
+    padding: 4px 0;
+    margin: -4px 0 12px 0;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.02);
+      border-radius: 6px;
+      padding: 4px 8px;
+      margin: -4px -8px 12px -8px;
+    }
+
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
+
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+
+  .golarion-route-header:hover & {
+    opacity: 0.7;
+  }
+
+  .golarion-route-header:active & {
+    opacity: 1;
+  }
+}
+
+.golarion-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--golarion-text-secondary);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--golarion-text-main);
+  }
+}
+
+// Stats Grid
+.golarion-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.golarion-stat-card {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 12px;
+  border-radius: var(--golarion-radius-sm);
+  border: 1px solid var(--golarion-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .stat-icon {
+    font-size: 24px;
+    line-height: 1;
+    opacity: 0.8;
+  }
+
+  .stat-content {
+    flex: 1;
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--golarion-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  .stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--golarion-text-main);
+    line-height: 1.2;
+  }
+
+  .stat-sub {
+    font-size: 12px;
+    color: var(--golarion-text-secondary);
+    margin-top: 2px;
+  }
+}
+
+// Profile Section
+.golarion-profile-section {
+  margin-bottom: 16px;
+
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--golarion-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+}
+
+.golarion-terrain-bar {
+  height: 10px;
+  width: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 8px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.terrain-segment {
+  height: 100%;
+  transition: width 0.5s ease;
+  position: relative;
+
+  &.land {
+    background: #8B4513;
+  }
+
+  &.water {
+    background: #3A8BE7;
+  }
+
+  &.river {
+    background: #64ADEF;
+  }
+
+  &.shallow-water {
+    background: #4A9EFF;
+  }
+
+  &.deep-water {
+    background: #2A5A9A;
+  }
+}
+
+.golarion-terrain-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 11px;
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--golarion-text-secondary);
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      display: inline-block;
+
+      &.land {
+        background: #8B4513;
+      }
+
+      &.river {
+        background: #64ADEF;
+      }
+
+      &.shallow-water {
+        background: #4A9EFF;
+      }
+
+      &.deep-water {
+        background: #2A5A9A;
+      }
+    }
+  }
+}
+
+// Waypoint Editing Section
+.golarion-waypoint-section {
+  margin-bottom: 16px;
+  padding: 12px;
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: var(--golarion-radius);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+
+  .golarion-waypoint-toggle {
+    width: 100%;
+    padding: 10px 16px;
+    background: white;
+    border: 1px solid var(--golarion-border);
+    color: var(--golarion-text-main);
+    border-radius: var(--golarion-radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: #f8fafc;
+      border-color: var(--golarion-primary);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+      border-color: #4CAF50;
+      color: white;
+      box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+
+      &:hover {
+        background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+        transform: translateY(-1px);
+      }
+    }
+  }
+
+  .golarion-waypoint-help {
+    margin-top: 8px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: var(--golarion-radius-sm);
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+
+    strong {
+      color: var(--golarion-text-main);
+      display: block;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+// Travel Options Section
+.golarion-options-section {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  // Smooth scrollbar styling
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--golarion-primary);
+    border-radius: 3px;
+
+    &:hover {
+      background: var(--golarion-primary-hover);
+    }
+  }
+
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--golarion-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+}
+
+.golarion-option-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--golarion-radius-sm);
+  border: 1px solid var(--golarion-border);
+  margin-bottom: 8px;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.5);
+    transform: translateX(2px);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.option-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: var(--golarion-radius-sm);
+  padding: 6px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.option-details {
+  flex: 1;
+  min-width: 0;
+
+  .option-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--golarion-text-main);
+    margin-bottom: 2px;
+  }
+
+  .option-time {
+    font-size: 12px;
+    color: var(--golarion-text-secondary);
+  }
+}
+
+.travel-mode-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+
+  .golarion-search-wrapper,
+  .golarion-search-results,
+  .golarion-route-panel {
+    background: var(--golarion-dark-surface) !important;
+    border-color: var(--golarion-dark-border);
+  }
+
+  .golarion-search-input,
+  .golarion-point-input,
+  .golarion-result-title,
+  .golarion-toggle-row,
+  .golarion-stat-card .stat-value,
+  .golarion-route-panel h3,
+  .option-name {
+    color: var(--golarion-dark-text-main) !important;
+  }
+
+  .golarion-search-icon,
+  .golarion-result-category,
+  .golarion-pref-title,
+  .golarion-segment-option,
+  .golarion-stat-card .stat-label,
+  .golarion-stat-card .stat-sub,
+  .section-title,
+  .option-time,
+  .golarion-close-btn {
+    color: var(--golarion-dark-text-secondary);
+  }
+
+  .golarion-point-wrapper,
+  .golarion-swap-button,
+  .golarion-segment-control,
+  .golarion-stat-card,
+  .golarion-option-row,
+  .option-icon {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: var(--golarion-dark-border);
+  }
+
+  .golarion-point-wrapper:focus-within {
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  .golarion-segment-option.active {
+    background: #334155;
+    color: #60a5fa;
+  }
+
+  .golarion-btn.btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--golarion-dark-border);
+    color: var(--golarion-dark-text-main);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .golarion-result-icon {
+    background: #334155;
+    color: #94a3b8;
+  }
+
+  .golarion-search-result-item:hover,
+  .golarion-search-result-item.selected {
+    background: rgba(59, 130, 246, 0.2);
+  }
+
+  .golarion-option-row:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .golarion-close-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+// Route Segments Section
+.golarion-segments-section {
+  margin-bottom: 16px;
+
+  .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--golarion-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+}
+
+.golarion-segments-list {
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--golarion-radius-sm);
+  border: 1px solid var(--golarion-border);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--golarion-primary);
+    border-radius: 3px;
+
+    &:hover {
+      background: var(--golarion-primary-hover);
+    }
+  }
+}
+
+.golarion-segment-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--golarion-border);
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: rgba(59, 130, 246, 0.1);
+    transform: translateX(2px);
+  }
+
+  .segment-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .segment-number {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--golarion-text-secondary);
+    width: 20px;
+  }
+
+  .segment-terrain {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+
+    &.terrain-land {
+      background: rgba(139, 69, 19, 0.2);
+      color: #8B4513;
+    }
+
+    &.terrain-river {
+      background: rgba(100, 173, 239, 0.2);
+      color: #2E7AB8;
+    }
+
+    &.terrain-shallow-water {
+      background: rgba(74, 158, 255, 0.2);
+      color: #2E7AB8;
+    }
+
+    &.terrain-deep-water,
+    &.terrain-low-sea,
+    &.terrain-deep-sea {
+      background: rgba(42, 90, 154, 0.2);
+      color: #1A4A7A;
+    }
+
+    &.terrain-water {
+      background: rgba(58, 139, 231, 0.2);
+      color: #2E7AB8;
+    }
+  }
+
+  .segment-distance {
+    font-size: 12px;
+    color: var(--golarion-text-main);
+    font-weight: 600;
+    margin: 0 8px;
+  }
+
+  .segment-time {
+    font-size: 11px;
+    color: var(--golarion-text-secondary);
+    background: rgba(0, 0, 0, 0.05);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+}
+
+// Modal Overlay and Dialogs
+.golarion-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+.golarion-confirm-dialog,
+.golarion-save-dialog {
+  background: var(--golarion-surface);
+  border-radius: var(--golarion-radius);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--golarion-border);
+  padding: 24px;
+  max-width: 400px;
+  width: 90vw;
+
+  @media (max-width: 480px) {
+    width: 95vw;
+    max-width: 95vw;
+  }
+
+  @media (max-height: 500px) {
+    top: 5px;
+  }
+
+  font-family: 'Inter',
+  -apple-system,
+  BlinkMacSystemFont,
+  'Segoe UI',
+  Roboto,
+  sans-serif;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+// Confirm Dialog
+.confirm-message {
+  font-size: 16px;
+  color: var(--golarion-text-main);
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+// Save Dialog Form Elements
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--golarion-text-main);
+  margin-bottom: 6px;
+  margin-top: 12px;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--golarion-border);
+  border-radius: var(--golarion-radius-sm);
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--golarion-text-main);
+  background: white;
+  transition: all 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: var(--golarion-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  &::placeholder {
+    color: var(--golarion-text-secondary);
+    opacity: 0.7;
+  }
+}
+
+.form-textarea {
+  @extend .form-input;
+  resize: vertical;
+  min-height: 60px;
+  font-family: inherit;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+  justify-content: flex-end;
+}
+
+// Danger button variant
+.btn-danger {
+  background: #dc2626;
+  color: white;
+  box-shadow: 0 2px 4px rgba(220, 38, 38, 0.3);
+
+  &:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+  }
+}
+
+// Toast Notifications
+.golarion-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--golarion-surface);
+  color: var(--golarion-text-main);
+  padding: 16px 20px;
+  border-radius: var(--golarion-radius);
+  box-shadow: var(--golarion-shadow-lg);
+  border: 1px solid var(--golarion-border);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 10001;
+  max-width: 300px;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 0.3s ease;
+
+  &.show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  &.golarion-toast-success {
+    border-left: 4px solid #10b981;
+  }
+
+  &.golarion-toast-error {
+    border-left: 4px solid #ef4444;
+  }
+
+  &.golarion-toast-info {
+    border-left: 4px solid var(--golarion-primary);
+  }
+}
+
+// Route Loading Indicator
+.golarion-route-loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--golarion-surface);
+  padding: 30px 40px;
+  border-radius: var(--golarion-radius);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--golarion-border);
+  z-index: 10000;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.9);
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 300px;
+
+  &.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 20px;
+    border: 4px solid rgba(59, 130, 246, 0.2);
+    border-top-color: var(--golarion-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .loading-message {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--golarion-text-main);
+    margin-bottom: 8px;
+  }
+
+  .loading-detail {
+    font-size: 13px;
+    color: var(--golarion-text-secondary);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Dark mode support for new components
+@media (prefers-color-scheme: dark) {
+  .golarion-segments-list {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: var(--golarion-dark-border);
+  }
+
+  .golarion-segment-row {
+    border-bottom-color: var(--golarion-dark-border);
+
+    .segment-distance {
+      color: var(--golarion-dark-text-main);
+    }
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.2);
+    }
+  }
+
+  .golarion-confirm-dialog,
+  .golarion-save-dialog,
+  .golarion-toast {
+    background: var(--golarion-dark-surface);
+    border-color: var(--golarion-dark-border);
+  }
+
+  .confirm-message,
+  .form-label {
+    color: var(--golarion-dark-text-main);
+  }
+
+  .form-input,
+  .form-textarea {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: var(--golarion-dark-border);
+    color: var(--golarion-dark-text-main);
+
+    &:focus {
+      background: rgba(0, 0, 0, 0.3);
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+    }
+
+    &::placeholder {
+      color: var(--golarion-dark-text-secondary);
+    }
+  }
+
+  .golarion-route-loading {
+    background: var(--golarion-dark-surface);
+    border-color: var(--golarion-dark-border);
+
+    .loading-message {
+      color: var(--golarion-dark-text-main);
+    }
+
+    .loading-detail {
+      color: var(--golarion-dark-text-secondary);
+    }
+  }
+}

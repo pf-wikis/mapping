@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(nul)",
+      "Bash(NUL)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run:*)",
+      "Bash(npm start)",
+      "Bash(timeout /t 3)",
+      "Bash(ping:*)",
+      "Bash(timeout /t 5)",
+      "Bash(dir:*)",
+      "Bash(kart --version:*)",
+      "Bash(java:*)",
+      "Bash(mvn --version:*)",
+      "Bash(curl:*)",
+      "Bash(ls:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(npx tsc:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

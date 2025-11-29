@@ -1,0 +1,27 @@
+--- a/frontend/src/tools/pathfinder.ts
++++ b/frontend/src/tools/pathfinder.ts
+@@ -1485,13 +1485,13 @@ export class Pathfinder {
+   private determineWaterDepth(color: string): string {
+     const rgb = this.hexToRgb(color);
+     if (!rgb) return 'shallow-water';
+
+     // Classify water depth based on blue intensity
+     // Deep sea: very high blue dominance (>200) and low red/green
+     if (rgb.b > 200 && rgb.r < 120 && rgb.g < 170) {
+-      return 'shallow-water';
++      return 'deep-sea';
+     }
+     // Low sea: medium blue dominance (>150)
+     else if (rgb.b > 150 && rgb.r < 140 && rgb.g < 180) {
+       return 'low-sea';
+     }
+-    // Deep sea: dark blue with moderate intensity
++    // Shallow water: light blue with high intensity or moderate blue dominance
+     else if (rgb.b > 100 && rgb.b <= 200) {
+       return 'shallow-water';
+     }
+@@ -736,7 +736,7 @@ export class Pathfinder {
+     // Inner Sea (between Avistan and Garund) - proper boundaries
+     const innerSea = lng > 0 && lng < 40 && lat > 25 && lat < 55; // Expanded to cover actual Inner Sea
+-    const innerSeaExpanded = lng > -2 && lng < 42 && lat > 23 && lat < 57; // Even broader expansion
++    const innerSeaExpanded = lng > -3 && lng < 42 && lat > 23 && lat < 57; // Even broader expansion to include coordinates near West Garund
