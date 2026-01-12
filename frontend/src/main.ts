@@ -25,16 +25,17 @@ if(!embedded) {
 var root = `${location.protocol}//${location.host}`;
 
 let pmtilesProt = new Protocol();
-Maplibre.addProtocol("pmtiles", pmtilesProt.tilev4);
 //add custom tile caching
 if(indexedDB) {
   try {
-    pmtilesProt.add(new PMTiles(new CachedSource(root+'golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH)))
+    //if this url does not match the one in style we do not cache
+    pmtilesProt.add(new PMTiles(new CachedSource(root+'/golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH)))
   } catch(e) {
     console.log("Failed to initialize IndexDB cache")
     console.log(e)
   }
 }
+Maplibre.addProtocol("pmtiles", pmtilesProt.tilev4);
 
 /******************************* update style according to option *******************************/
 const normalRoot = 'https://map.pathfinderwiki.com';

@@ -39,10 +39,12 @@ export class CachedSource implements Source {
 
     dbPromise.then(db => {
       //we want to try loading from the cache first, if we are not in a DEV scenario
-      if(useCache)
+      if(useCache) {
         this.getBytes = (offset: number, length: number, signal?: AbortSignal, etag?: string) => this.loadCacheStore(db, offset, length, signal, etag);
-      else
+      }
+      else {
         this.getBytes = (offset: number, length: number, signal?: AbortSignal, etag?: string) => this.loadWebStore(db, offset, length, signal, etag);
+      }
     }).catch(e => {
       //if the db fails we load directly from web
       this.getBytes = this.loadWeb;
