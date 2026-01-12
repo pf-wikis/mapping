@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2025-09-01T01:45:14" version="3.44.1-Solothurn">
+<qgis projectname="" saveDateTime="2025-09-25T06:42:58" version="3.44.2-Solothurn">
   <homePath path="."></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -34,16 +34,11 @@
     <customproperties>
       <Option></Option>
     </customproperties>
-    <layer-tree-layer checked="Qt::Checked" expanded="1" id="Notes_d60512d1_e376_4526_87c9_b70cb6ffbce1" legend_exp="" legend_split_behavior="0" name="Notes" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=Notes">
-      <customproperties>
-        <Option></Option>
-      </customproperties>
-    </layer-tree-layer>
     <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="images_a05422ba_d9b0_4dbe_9ef4_08468f8204c2" name="images">
       <customproperties>
         <Option></Option>
       </customproperties>
-      <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="" name="avistan">
+      <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="avistan">
         <customproperties>
           <Option></Option>
         </customproperties>
@@ -51,7 +46,7 @@
           <customproperties>
             <Option></Option>
           </customproperties>
-          <layer-tree-layer checked="Qt::Checked" expanded="0" id="PariolIsland_modified_340fb99e_8e1a_4a70_8258_8689f03062aa" legend_exp="" legend_split_behavior="0" name="Pariol Island" patch_size="-1,-1" providerKey="gdal" source="./images/avistan/absalom/The Blakros Matrimony/PariolIsland_modified.png">
+          <layer-tree-layer checked="Qt::Unchecked" expanded="0" id="PariolIsland_modified_340fb99e_8e1a_4a70_8258_8689f03062aa" legend_exp="" legend_split_behavior="0" name="Pariol Island" patch_size="-1,-1" providerKey="gdal" source="./images/avistan/absalom/The Blakros Matrimony/PariolIsland_modified.png">
             <customproperties>
               <Option></Option>
             </customproperties>
@@ -101,7 +96,7 @@
           <customproperties>
             <Option></Option>
           </customproperties>
-          <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="" name="isle of terror">
+          <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="isle of terror">
             <customproperties>
               <Option></Option>
             </customproperties>
@@ -116,7 +111,7 @@
           <customproperties>
             <Option></Option>
           </customproperties>
-          <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="" name="deepmar">
+          <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="deepmar">
             <customproperties>
               <Option></Option>
             </customproperties>
@@ -186,7 +181,7 @@
           <customproperties>
             <Option></Option>
           </customproperties>
-          <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="varisia">
+          <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="" name="varisia">
             <customproperties>
               <Option></Option>
             </customproperties>
@@ -222,7 +217,7 @@
             </layer-tree-layer>
           </layer-tree-group>
         </layer-tree-group>
-        <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="" name="shining kingdoms">
+        <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="shining kingdoms">
           <customproperties>
             <Option></Option>
           </customproperties>
@@ -242,6 +237,11 @@
             </layer-tree-layer>
           </layer-tree-group>
         </layer-tree-group>
+        <layer-tree-layer checked="Qt::Checked" expanded="0" id="avistan_modified_3ab3ac11_843a_4303_b495_f5c97e91ba8b" legend_exp="" legend_split_behavior="0" name="avistan_modified" patch_size="-1,-1" providerKey="gdal" source="./images/avistan/World Guide/avistan_modified.tif">
+          <customproperties>
+            <Option></Option>
+          </customproperties>
+        </layer-tree-layer>
         <layer-tree-layer checked="Qt::Unchecked" expanded="0" id="labeled_modified_f1bee433_0da5_4286_a023_8bc3684796ce" legend_exp="" legend_split_behavior="0" name="Inner Sea Poster Map Folio (only for labels)" patch_size="-1,-1" providerKey="gdal" source="./images/avistan/Inner Sea Poster Map Folio/labeled_modified.tif">
           <customproperties>
             <Option></Option>
@@ -277,15 +277,15 @@
             </customproperties>
           </layer-tree-layer>
         </layer-tree-group>
-        <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="kardaji bay">
+        <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="" name="kardaji bay">
           <customproperties>
             <Option></Option>
           </customproperties>
-          <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="iblydos">
+          <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="" name="iblydos">
             <customproperties>
               <Option></Option>
             </customproperties>
-            <layer-tree-layer checked="Qt::Checked" expanded="0" id="myth_speaker_blog_9705d43e_4c68_4d33_9d14_082a67653f36" legend_exp="" legend_split_behavior="0" name="myth-speaker-blog" patch_size="-1,-1" providerKey="gdal" source="./images/casmaron/kardaji bay/iblydos/myth-speaker-blog.jpg">
+            <layer-tree-layer checked="Qt::Unchecked" expanded="0" id="myth_speaker_blog_9705d43e_4c68_4d33_9d14_082a67653f36" legend_exp="" legend_split_behavior="0" name="myth-speaker-blog" patch_size="-1,-1" providerKey="gdal" source="./images/casmaron/kardaji bay/iblydos/myth-speaker-blog.jpg">
               <customproperties>
                 <Option></Option>
               </customproperties>
@@ -296,7 +296,7 @@
               <Option></Option>
             </customproperties>
           </layer-tree-layer>
-          <layer-tree-layer checked="Qt::Checked" expanded="0" id="titanbane_modified_cb96a67a_9f1f_4740_b753_81347fbc68e8" legend_exp="" legend_split_behavior="0" name="Titanbane" patch_size="-1,-1" providerKey="gdal" source="./images/casmaron/kardaji bay/titanbane_modified.tif">
+          <layer-tree-layer checked="Qt::Unchecked" expanded="0" id="titanbane_modified_cb96a67a_9f1f_4740_b753_81347fbc68e8" legend_exp="" legend_split_behavior="0" name="Titanbane" patch_size="-1,-1" providerKey="gdal" source="./images/casmaron/kardaji bay/titanbane_modified.tif">
             <customproperties>
               <Option></Option>
             </customproperties>
@@ -342,10 +342,15 @@
             </customproperties>
           </layer-tree-layer>
         </layer-tree-group>
-        <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="" name="mwangi expanse">
+        <layer-tree-group checked="Qt::Unchecked" expanded="0" groupLayer="" name="mwangi expanse">
           <customproperties>
             <Option></Option>
           </customproperties>
+          <layer-tree-layer checked="Qt::Checked" expanded="0" id="Ire_of_the_Storm_modified_e5c9a4a7_a4c3_40c0_8ce5_49348084857b" legend_exp="" legend_split_behavior="0" name="Ire of the Storm" patch_size="-1,-1" providerKey="gdal" source="./images/garund/mwangi expanse/Ire of the Storm_modified.tif">
+            <customproperties>
+              <Option></Option>
+            </customproperties>
+          </layer-tree-layer>
           <layer-tree-layer checked="Qt::Unchecked" expanded="0" id="Strength_of_Thousands_modified_922bf51c_a84b_4ec9_89ff_e3f724e2350a" legend_exp="" legend_split_behavior="0" name="Sodden Lands" patch_size="-1,-1" providerKey="gdal" source="./images/garund/mwangi expanse/Strength of Thousands_modified.tif">
             <customproperties>
               <Option></Option>
@@ -423,7 +428,7 @@
           </customproperties>
         </layer-tree-layer>
       </layer-tree-group>
-      <layer-tree-group checked="Qt::Checked" expanded="0" groupLayer="" name="world">
+      <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="world">
         <customproperties>
           <Option></Option>
         </customproperties>
@@ -444,7 +449,12 @@
         </layer-tree-layer>
       </layer-tree-group>
     </layer-tree-group>
-    <layer-tree-group checked="Qt::Checked" expanded="1" groupLayer="" name="Details">
+    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="Notes_d60512d1_e376_4526_87c9_b70cb6ffbce1" legend_exp="" legend_split_behavior="0" name="Notes" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=Notes">
+      <customproperties>
+        <Option></Option>
+      </customproperties>
+    </layer-tree-layer>
+    <layer-tree-group checked="Qt::Unchecked" expanded="1" groupLayer="" name="Details">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -469,7 +479,7 @@
         </customproperties>
       </layer-tree-layer>
     </layer-tree-group>
-    <layer-tree-layer checked="Qt::Checked" expanded="0" id="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" legend_exp="" legend_split_behavior="0" name="labels" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=labels">
+    <layer-tree-layer checked="Qt::Unchecked" expanded="0" id="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" legend_exp="" legend_split_behavior="0" name="labels" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=labels">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -498,37 +508,37 @@
         <Option></Option>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="specials_c128e960_556c_4ede_a0c3_f1da18d388a2" legend_exp="" legend_split_behavior="0" name="specials" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=specials">
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="specials_c128e960_556c_4ede_a0c3_f1da18d388a2" legend_exp="" legend_split_behavior="0" name="specials" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=specials">
       <customproperties>
         <Option></Option>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" legend_exp="" legend_split_behavior="0" name="forests" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=forests">
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" legend_exp="" legend_split_behavior="0" name="forests" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=forests">
       <customproperties>
         <Option></Option>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7" legend_exp="" legend_split_behavior="0" name="ice" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=ice">
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7" legend_exp="" legend_split_behavior="0" name="ice" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=ice">
       <customproperties>
         <Option></Option>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="mountains_da232536_72ca_402a_b0c2_4d749d051c5f" legend_exp="" legend_split_behavior="0" name="mountains" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=mountains">
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="mountains_da232536_72ca_402a_b0c2_4d749d051c5f" legend_exp="" legend_split_behavior="0" name="mountains" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=mountains">
       <customproperties>
         <Option></Option>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="hills_ce4f9894_b2c5_4ad4_a1c6_511fdead97eb" legend_exp="" legend_split_behavior="0" name="hills" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=hills">
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="hills_ce4f9894_b2c5_4ad4_a1c6_511fdead97eb" legend_exp="" legend_split_behavior="0" name="hills" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=hills">
       <customproperties>
         <Option></Option>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" legend_exp="" legend_split_behavior="0" name="swamps" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=swamps">
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" legend_exp="" legend_split_behavior="0" name="swamps" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=swamps">
       <customproperties>
         <Option></Option>
       </customproperties>
     </layer-tree-layer>
-    <layer-tree-layer checked="Qt::Unchecked" expanded="1" id="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" legend_exp="" legend_split_behavior="0" name="deserts" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=deserts">
+    <layer-tree-layer checked="Qt::Checked" expanded="1" id="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" legend_exp="" legend_split_behavior="0" name="deserts" patch_size="-1,-1" providerKey="ogr" source="../../mapping-data/mapping-data.gpkg|layername=deserts">
       <customproperties>
         <Option></Option>
       </customproperties>
@@ -608,6 +618,8 @@
       <item>labeled_modified_f1bee433_0da5_4286_a023_8bc3684796ce</item>
       <item>titanbane_modified_cb96a67a_9f1f_4740_b753_81347fbc68e8</item>
       <item>titanbane_labels_modified_ca6d8aba_88d9_4385_b512_e7e4aa81d5d4</item>
+      <item>Ire_of_the_Storm_modified_e5c9a4a7_a4c3_40c0_8ce5_49348084857b</item>
+      <item>avistan_modified_3ab3ac11_843a_4303_b495_f5c97e91ba8b</item>
     </custom-order>
   </layer-tree-group>
   <snapping-settings enabled="1" intersection-snapping="0" maxScale="0" minScale="0" mode="2" scaleDependencyMode="1" self-snapping="0" tolerance="15" type="1" unit="1">
@@ -617,14 +629,14 @@
       <layer-setting enabled="0" id="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+    <layer-setting enabled="0" id="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="hills_ce4f9894_b2c5_4ad4_a1c6_511fdead97eb" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="land_48aa2040_f185_4ba4_a64a_5b3a275264c1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="mountains_da232536_72ca_402a_b0c2_4d749d051c5f" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-    <layer-setting enabled="0" id="rivers_37f0454d_322e_45b4_8a2a_e95e0f10c44e" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="rivers_37f0454d_322e_45b4_8a2a_e95e0f10c44e" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="roads_7e038ab7_ac9b_4762_96b1_2ac7d9a2c175" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="specials_c128e960_556c_4ede_a0c3_f1da18d388a2" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
@@ -641,10 +653,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>43.92023353255106599</xmin>
-      <ymin>-29.1125712402855612</ymin>
-      <xmax>54.68991216355041729</xmax>
-      <ymax>-17.10274781421288992</ymax>
+      <xmin>-48.95199540596864551</xmin>
+      <ymin>35.43806089639136303</ymin>
+      <xmax>4.42354811141936466</xmax>
+      <ymax>50.46929319264771152</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -665,17 +677,12 @@
   </mapcanvas>
   <projectModels></projectModels>
   <legend updateDrawingOrder="true">
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="Notes" open="true" showFeatureCount="0">
-      <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="Notes_d60512d1_e376_4526_87c9_b70cb6ffbce1" visible="1"></legendlayerfile>
-      </filegroup>
-    </legendlayer>
     <legendgroup checked="Qt::Checked" name="images" open="true">
-      <legendgroup checked="Qt::Checked" name="avistan" open="false">
+      <legendgroup checked="Qt::Checked" name="avistan" open="true">
         <legendgroup checked="Qt::Checked" name="absalom" open="false">
-          <legendlayer checked="Qt::Checked" drawingOrder="-1" name="Pariol Island" open="false" showFeatureCount="0">
+          <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="Pariol Island" open="false" showFeatureCount="0">
             <filegroup hidden="false" open="false">
-              <legendlayerfile isInOverview="0" layerid="PariolIsland_modified_340fb99e_8e1a_4a70_8258_8689f03062aa" visible="1"></legendlayerfile>
+              <legendlayerfile isInOverview="0" layerid="PariolIsland_modified_340fb99e_8e1a_4a70_8258_8689f03062aa" visible="0"></legendlayerfile>
             </filegroup>
           </legendlayer>
           <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="swardlands" open="false" showFeatureCount="0">
@@ -711,7 +718,7 @@
           </legendgroup>
         </legendgroup>
         <legendgroup checked="Qt::Checked" name="eye of dread" open="false">
-          <legendgroup checked="Qt::Checked" name="isle of terror" open="false">
+          <legendgroup checked="Qt::Checked" name="isle of terror" open="true">
             <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="City of Golden Death" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
                 <legendlayerfile isInOverview="0" layerid="isle_of_terror_modified_e2a29386_6b96_4c09_bb15_3c17fa3afad1" visible="0"></legendlayerfile>
@@ -720,7 +727,7 @@
           </legendgroup>
         </legendgroup>
         <legendgroup checked="Qt::Checked" name="old cheliax" open="false">
-          <legendgroup checked="Qt::Checked" name="deepmar" open="false">
+          <legendgroup checked="Qt::Checked" name="deepmar" open="true">
             <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="deepmar labeled" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
                 <legendlayerfile isInOverview="0" layerid="deepmar_labeled_georeferenced_a9cbb9f4_95ae_4aad_963c_f9add132a81b" visible="0"></legendlayerfile>
@@ -781,7 +788,7 @@
           </legendgroup>
         </legendgroup>
         <legendgroup checked="Qt::Checked" name="saga lands" open="false">
-          <legendgroup checked="Qt::Checked" name="varisia" open="true">
+          <legendgroup checked="Qt::Checked" name="varisia" open="false">
             <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="Magnimar" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
                 <legendlayerfile isInOverview="0" layerid="Magnimar_06a84d30_c056_4790_9590_264962ac17fe" visible="0"></legendlayerfile>
@@ -814,7 +821,7 @@
             </legendlayer>
           </legendgroup>
         </legendgroup>
-        <legendgroup checked="Qt::Checked" name="shining kingdoms" open="false">
+        <legendgroup checked="Qt::Checked" name="shining kingdoms" open="true">
           <legendgroup checked="Qt::Checked" name="taldor" open="true">
             <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="Pactbreaker_labeled" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
@@ -828,6 +835,11 @@
             </legendlayer>
           </legendgroup>
         </legendgroup>
+        <legendlayer checked="Qt::Checked" drawingOrder="-1" name="avistan_modified" open="false" showFeatureCount="0">
+          <filegroup hidden="false" open="false">
+            <legendlayerfile isInOverview="0" layerid="avistan_modified_3ab3ac11_843a_4303_b495_f5c97e91ba8b" visible="1"></legendlayerfile>
+          </filegroup>
+        </legendlayer>
         <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="Inner Sea Poster Map Folio (only for labels)" open="false" showFeatureCount="0">
           <filegroup hidden="false" open="false">
             <legendlayerfile isInOverview="0" layerid="labeled_modified_f1bee433_0da5_4286_a023_8bc3684796ce" visible="0"></legendlayerfile>
@@ -854,11 +866,11 @@
             </filegroup>
           </legendlayer>
         </legendgroup>
-        <legendgroup checked="Qt::Checked" name="kardaji bay" open="true">
-          <legendgroup checked="Qt::Checked" name="iblydos" open="true">
-            <legendlayer checked="Qt::Checked" drawingOrder="-1" name="myth-speaker-blog" open="false" showFeatureCount="0">
+        <legendgroup checked="Qt::Checked" name="kardaji bay" open="false">
+          <legendgroup checked="Qt::Checked" name="iblydos" open="false">
+            <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="myth-speaker-blog" open="false" showFeatureCount="0">
               <filegroup hidden="false" open="false">
-                <legendlayerfile isInOverview="0" layerid="myth_speaker_blog_9705d43e_4c68_4d33_9d14_082a67653f36" visible="1"></legendlayerfile>
+                <legendlayerfile isInOverview="0" layerid="myth_speaker_blog_9705d43e_4c68_4d33_9d14_082a67653f36" visible="0"></legendlayerfile>
               </filegroup>
             </legendlayer>
           </legendgroup>
@@ -867,9 +879,9 @@
               <legendlayerfile isInOverview="0" layerid="titanbane_labels_modified_ca6d8aba_88d9_4385_b512_e7e4aa81d5d4" visible="0"></legendlayerfile>
             </filegroup>
           </legendlayer>
-          <legendlayer checked="Qt::Checked" drawingOrder="-1" name="Titanbane" open="false" showFeatureCount="0">
+          <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="Titanbane" open="false" showFeatureCount="0">
             <filegroup hidden="false" open="false">
-              <legendlayerfile isInOverview="0" layerid="titanbane_modified_cb96a67a_9f1f_4740_b753_81347fbc68e8" visible="1"></legendlayerfile>
+              <legendlayerfile isInOverview="0" layerid="titanbane_modified_cb96a67a_9f1f_4740_b753_81347fbc68e8" visible="0"></legendlayerfile>
             </filegroup>
           </legendlayer>
         </legendgroup>
@@ -904,7 +916,12 @@
             </filegroup>
           </legendlayer>
         </legendgroup>
-        <legendgroup checked="Qt::Checked" name="mwangi expanse" open="false">
+        <legendgroup checked="Qt::Unchecked" name="mwangi expanse" open="false">
+          <legendlayer checked="Qt::Checked" drawingOrder="-1" name="Ire of the Storm" open="false" showFeatureCount="0">
+            <filegroup hidden="false" open="false">
+              <legendlayerfile isInOverview="0" layerid="Ire_of_the_Storm_modified_e5c9a4a7_a4c3_40c0_8ce5_49348084857b" visible="0"></legendlayerfile>
+            </filegroup>
+          </legendlayer>
           <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="Sodden Lands" open="false" showFeatureCount="0">
             <filegroup hidden="false" open="false">
               <legendlayerfile isInOverview="0" layerid="Strength_of_Thousands_modified_922bf51c_a84b_4ec9_89ff_e3f724e2350a" visible="0"></legendlayerfile>
@@ -967,7 +984,7 @@
           </filegroup>
         </legendlayer>
       </legendgroup>
-      <legendgroup checked="Qt::Checked" name="world" open="false">
+      <legendgroup checked="Qt::Checked" name="world" open="true">
         <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="Golarion Rivers" open="false" showFeatureCount="0">
           <filegroup hidden="false" open="false">
             <legendlayerfile isInOverview="0" layerid="GolarionRivers_modified_303b27ab_78fe_40e4_b83b_0d6cdd04685f" visible="0"></legendlayerfile>
@@ -985,31 +1002,36 @@
         </legendlayer>
       </legendgroup>
     </legendgroup>
-    <legendgroup checked="Qt::Checked" name="Details" open="true">
+    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="Notes" open="true" showFeatureCount="0">
+      <filegroup hidden="false" open="true">
+        <legendlayerfile isInOverview="0" layerid="Notes_d60512d1_e376_4526_87c9_b70cb6ffbce1" visible="0"></legendlayerfile>
+      </filegroup>
+    </legendlayer>
+    <legendgroup checked="Qt::Unchecked" name="Details" open="true">
       <legendlayer checked="Qt::Checked" drawingOrder="-1" name="locations" open="true" showFeatureCount="0">
         <filegroup hidden="false" open="true">
-          <legendlayerfile isInOverview="0" layerid="cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8" visible="1"></legendlayerfile>
+          <legendlayerfile isInOverview="0" layerid="cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8" visible="0"></legendlayerfile>
         </filegroup>
       </legendlayer>
       <legendlayer checked="Qt::Checked" drawingOrder="-1" name="cities" open="true" showFeatureCount="0">
         <filegroup hidden="false" open="true">
-          <legendlayerfile isInOverview="0" layerid="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" visible="1"></legendlayerfile>
+          <legendlayerfile isInOverview="0" layerid="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" visible="0"></legendlayerfile>
         </filegroup>
       </legendlayer>
       <legendlayer checked="Qt::Checked" drawingOrder="-1" name="districts" open="true" showFeatureCount="0">
         <filegroup hidden="false" open="true">
-          <legendlayerfile isInOverview="0" layerid="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" visible="1"></legendlayerfile>
+          <legendlayerfile isInOverview="0" layerid="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" visible="0"></legendlayerfile>
         </filegroup>
       </legendlayer>
       <legendlayer checked="Qt::Checked" drawingOrder="-1" name="buildings" open="true" showFeatureCount="0">
         <filegroup hidden="false" open="true">
-          <legendlayerfile isInOverview="0" layerid="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" visible="1"></legendlayerfile>
+          <legendlayerfile isInOverview="0" layerid="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" visible="0"></legendlayerfile>
         </filegroup>
       </legendlayer>
     </legendgroup>
-    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="labels" open="false" showFeatureCount="0">
+    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="labels" open="false" showFeatureCount="0">
       <filegroup hidden="false" open="false">
-        <legendlayerfile isInOverview="0" layerid="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" visible="1"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" visible="0"></legendlayerfile>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="borders" open="true" showFeatureCount="0">
@@ -1032,39 +1054,39 @@
         <legendlayerfile isInOverview="0" layerid="waters_ffcf32fb_950c_400d_8017_4af9540e8da3" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="specials" open="true" showFeatureCount="0">
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="specials" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="specials_c128e960_556c_4ede_a0c3_f1da18d388a2" visible="0"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="specials_c128e960_556c_4ede_a0c3_f1da18d388a2" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="forests" open="true" showFeatureCount="0">
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="forests" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" visible="0"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="ice" open="true" showFeatureCount="0">
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="ice" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7" visible="0"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="mountains" open="true" showFeatureCount="0">
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="mountains" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="mountains_da232536_72ca_402a_b0c2_4d749d051c5f" visible="0"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="mountains_da232536_72ca_402a_b0c2_4d749d051c5f" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="hills" open="true" showFeatureCount="0">
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="hills" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="hills_ce4f9894_b2c5_4ad4_a1c6_511fdead97eb" visible="0"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="hills_ce4f9894_b2c5_4ad4_a1c6_511fdead97eb" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="swamps" open="true" showFeatureCount="0">
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="swamps" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" visible="0"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
-    <legendlayer checked="Qt::Unchecked" drawingOrder="-1" name="deserts" open="true" showFeatureCount="0">
+    <legendlayer checked="Qt::Checked" drawingOrder="-1" name="deserts" open="true" showFeatureCount="0">
       <filegroup hidden="false" open="true">
-        <legendlayerfile isInOverview="0" layerid="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" visible="0"></legendlayerfile>
+        <legendlayerfile isInOverview="0" layerid="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" visible="1"></legendlayerfile>
       </filegroup>
     </legendlayer>
     <legendlayer checked="Qt::Checked" drawingOrder="-1" name="land" open="true" showFeatureCount="0">
@@ -1077,10 +1099,10 @@
   <mapcanvas annotationsVisible="1" name="georefCanvas">
     <units>unknown</units>
     <extent>
-      <xmin>0</xmin>
-      <ymin>-3273</ymin>
-      <xmax>2516</xmax>
-      <ymax>0</ymax>
+      <xmin>350.09509486608430961</xmin>
+      <ymin>-2671.65787667412496376</ymin>
+      <xmax>2614.09509486608430961</xmax>
+      <ymax>-573.90787667412519113</ymax>
     </extent>
     <rotation>0</rotation>
     <rendermaptile>0</rendermaptile>
@@ -1267,7 +1289,7 @@
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="125,139,143,255,rgb:0.4901961,0.5450981,0.5607843,1"></Option>
+                <Option name="line_color" type="QString" value="125,139,143,255,rgb:0.4901961,0.545098,0.5607843,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -1307,7 +1329,7 @@
             <layer class="SimpleFill" enabled="1" id="{e18f9008-9310-4aea-a6b0-bfada8463903}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="125,139,143,255,rgb:0.4901961,0.5450981,0.5607843,1"></Option>
+                <Option name="color" type="QString" value="125,139,143,255,rgb:0.4901961,0.545098,0.5607843,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -1711,7 +1733,7 @@
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="190,178,151,255,rgb:0.7450981,0.6980392,0.5921569,1"></Option>
+                <Option name="line_color" type="QString" value="190,178,151,255,rgb:0.745098,0.6980392,0.5921569,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -1751,7 +1773,7 @@
             <layer class="SimpleFill" enabled="1" id="{5cf75039-70bf-497c-b96b-400be6bd66e1}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="190,178,151,255,rgb:0.7450981,0.6980392,0.5921569,1"></Option>
+                <Option name="color" type="QString" value="190,178,151,255,rgb:0.745098,0.6980392,0.5921569,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -1815,6 +1837,224 @@
           </greenContrastEnhancement>
           <blueContrastEnhancement>
             <minValue>23</minValue>
+            <maxValue>255</maxValue>
+            <algorithm>NoEnhancement</algorithm>
+          </blueContrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0" gamma="1"></brightnesscontrast>
+        <huesaturation colorizeBlue="128" colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeStrength="100" grayscaleMode="0" invertColors="0" saturation="0"></huesaturation>
+        <rasterresampler maxOversampling="2"></rasterresampler>
+        <resamplingStage>resamplingFilter</resamplingStage>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" hasScaleBasedVisibilityFlag="0" legendPlaceholderImage="" maxScale="0" minScale="1e+08" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="raster">
+      <extent>
+        <xmin>-23.1447159020233606</xmin>
+        <ymin>11.88810766561189425</ymin>
+        <xmax>-21.71020996093935906</xmax>
+        <ymax>12.66445875706344637</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-23.1447159020233606</xmin>
+        <ymin>11.88810766561189425</ymin>
+        <xmax>-21.71020996093935906</xmax>
+        <ymax>12.66445875706344637</ymax>
+      </wgs84extent>
+      <id>Ire_of_the_Storm_modified_e5c9a4a7_a4c3_40c0_8ce5_49348084857b</id>
+      <datasource>./images/garund/mwangi expanse/Ire of the Storm_modified.tif</datasource>
+      <layername>Ire of the Storm</layername>
+      <srs>
+        <spatialrefsys nativeFormat="Wkt">
+          <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>EPSG:7030</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type>dataset</type>
+        <title></title>
+        <abstract></abstract>
+        <links></links>
+        <dates></dates>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys nativeFormat="Wkt">
+            <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+            <srsid>3452</srsid>
+            <srid>4326</srid>
+            <authid>EPSG:4326</authid>
+            <description>WGS 84</description>
+            <projectionacronym>longlat</projectionacronym>
+            <ellipsoidacronym>EPSG:7030</ellipsoidacronym>
+            <geographicflag>true</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent></extent>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="0"></noDataList>
+        <noDataList bandNo="2" useSrcNoData="0"></noDataList>
+        <noDataList bandNo="3" useSrcNoData="0"></noDataList>
+        <noDataList bandNo="4" useSrcNoData="0"></noDataList>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"></map-layer-style>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+        <Private>0</Private>
+      </flags>
+      <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
+        <fixedRange>
+          <start></start>
+          <end></end>
+        </fixedRange>
+      </temporal>
+      <elevation band="1" enabled="0" mode="RepresentsElevationSurface" symbology="Line" zoffset="0" zscale="1">
+        <data-defined-properties>
+          <Option type="Map">
+            <Option name="name" type="QString" value=""></Option>
+            <Option name="properties"></Option>
+            <Option name="type" type="QString" value="collection"></Option>
+          </Option>
+        </data-defined-properties>
+        <profileLineSymbol>
+          <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option name="name" type="QString" value=""></Option>
+                <Option name="properties"></Option>
+                <Option name="type" type="QString" value="collection"></Option>
+              </Option>
+            </data_defined_properties>
+            <layer class="SimpleLine" enabled="1" id="{3b3c07a2-221f-45ff-b539-2061235468ff}" locked="0" pass="0">
+              <Option type="Map">
+                <Option name="align_dash_pattern" type="QString" value="0"></Option>
+                <Option name="capstyle" type="QString" value="square"></Option>
+                <Option name="customdash" type="QString" value="5;2"></Option>
+                <Option name="customdash_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="customdash_unit" type="QString" value="MM"></Option>
+                <Option name="dash_pattern_offset" type="QString" value="0"></Option>
+                <Option name="dash_pattern_offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
+                <Option name="draw_inside_polygon" type="QString" value="0"></Option>
+                <Option name="joinstyle" type="QString" value="bevel"></Option>
+                <Option name="line_color" type="QString" value="190,207,80,255,rgb:0.745098,0.8117647,0.3137255,1"></Option>
+                <Option name="line_style" type="QString" value="solid"></Option>
+                <Option name="line_width" type="QString" value="0.6"></Option>
+                <Option name="line_width_unit" type="QString" value="MM"></Option>
+                <Option name="offset" type="QString" value="0"></Option>
+                <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="offset_unit" type="QString" value="MM"></Option>
+                <Option name="ring_filter" type="QString" value="0"></Option>
+                <Option name="trim_distance_end" type="QString" value="0"></Option>
+                <Option name="trim_distance_end_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="trim_distance_end_unit" type="QString" value="MM"></Option>
+                <Option name="trim_distance_start" type="QString" value="0"></Option>
+                <Option name="trim_distance_start_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="trim_distance_start_unit" type="QString" value="MM"></Option>
+                <Option name="tweak_dash_pattern_on_corners" type="QString" value="0"></Option>
+                <Option name="use_custom_dash" type="QString" value="0"></Option>
+                <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""></Option>
+                  <Option name="properties"></Option>
+                  <Option name="type" type="QString" value="collection"></Option>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </profileLineSymbol>
+        <profileFillSymbol>
+          <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="fill">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option name="name" type="QString" value=""></Option>
+                <Option name="properties"></Option>
+                <Option name="type" type="QString" value="collection"></Option>
+              </Option>
+            </data_defined_properties>
+            <layer class="SimpleFill" enabled="1" id="{f79d391f-7ab0-469e-9a9d-c5accb429f96}" locked="0" pass="0">
+              <Option type="Map">
+                <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="color" type="QString" value="190,207,80,255,rgb:0.745098,0.8117647,0.3137255,1"></Option>
+                <Option name="joinstyle" type="QString" value="bevel"></Option>
+                <Option name="offset" type="QString" value="0,0"></Option>
+                <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="offset_unit" type="QString" value="MM"></Option>
+                <Option name="outline_color" type="QString" value="35,35,35,255,rgb:0.1372549,0.1372549,0.1372549,1"></Option>
+                <Option name="outline_style" type="QString" value="no"></Option>
+                <Option name="outline_width" type="QString" value="0.26"></Option>
+                <Option name="outline_width_unit" type="QString" value="MM"></Option>
+                <Option name="style" type="QString" value="solid"></Option>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""></Option>
+                  <Option name="properties"></Option>
+                  <Option name="type" type="QString" value="collection"></Option>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </profileFillSymbol>
+      </elevation>
+      <customproperties>
+        <Option type="Map">
+          <Option name="identify/format" type="QString" value="Value"></Option>
+        </Option>
+      </customproperties>
+      <mapTip enabled="1"></mapTip>
+      <pipe-data-defined-properties>
+        <Option type="Map">
+          <Option name="name" type="QString" value=""></Option>
+          <Option name="properties"></Option>
+          <Option name="type" type="QString" value="collection"></Option>
+        </Option>
+      </pipe-data-defined-properties>
+      <pipe>
+        <provider>
+          <resampling enabled="false" maxOversampling="2" zoomedInResamplingMethod="nearestNeighbour" zoomedOutResamplingMethod="nearestNeighbour"></resampling>
+        </provider>
+        <rasterrenderer alphaBand="4" blueBand="3" greenBand="2" nodataColor="" opacity="1" redBand="1" type="multibandcolor">
+          <rasterTransparency></rasterTransparency>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <redContrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>255</maxValue>
+            <algorithm>NoEnhancement</algorithm>
+          </redContrastEnhancement>
+          <greenContrastEnhancement>
+            <minValue>0</minValue>
+            <maxValue>255</maxValue>
+            <algorithm>NoEnhancement</algorithm>
+          </greenContrastEnhancement>
+          <blueContrastEnhancement>
+            <minValue>0</minValue>
             <maxValue>255</maxValue>
             <algorithm>NoEnhancement</algorithm>
           </blueContrastEnhancement>
@@ -2046,14 +2286,14 @@
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="1" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="Polygon">
       <extent>
         <xmin>-30.89772605896000002</xmin>
-        <ymin>36.85883712768549714</ymin>
-        <xmax>-30.35748291015629974</xmax>
+        <ymin>16.87166595458980112</ymin>
+        <xmax>-2.06190109252929998</xmax>
         <ymax>37.46129226684570313</ymax>
       </extent>
       <wgs84extent>
         <xmin>-30.89772605896000002</xmin>
-        <ymin>36.85883712768549714</ymin>
-        <xmax>-30.35748291015629974</xmax>
+        <ymin>16.87166595458980112</ymin>
+        <xmax>-2.06190109252929998</xmax>
         <ymax>37.46129226684570313</ymax>
       </wgs84extent>
       <id>Notes_d60512d1_e376_4526_87c9_b70cb6ffbce1</id>
@@ -2210,7 +2450,7 @@
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="117,81,63,255,rgb:0.4593728,0.3165331,0.2464942,1"></Option>
+                <Option name="outline_color" type="QString" value="117,81,63,255,rgb:0.4593729,0.3165332,0.2464942,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -2246,7 +2486,7 @@
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="117,81,63,255,rgb:0.4593728,0.3165331,0.2464942,1"></Option>
+                <Option name="outline_color" type="QString" value="117,81,63,255,rgb:0.4593729,0.3165332,0.2464942,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -2366,7 +2606,7 @@
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="note" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="400" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="36,36,36,255,hsv:0,0,0.14077973365783691,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="note" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="36,36,36,255,hsv:0,0,0.14077973601892119,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families></families>
             <text-buffer bufferBlendMode="0" bufferColor="227,200,0,255,rgb:0.8901961,0.7843137,0,1" bufferDraw="1" bufferJoinStyle="64" bufferNoFill="1" bufferOpacity="1" bufferSize="4" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferSizeUnits="Pixel"></text-buffer>
             <text-mask maskEnabled="0" maskJoinStyle="128" maskOpacity="1" maskSize="1.5" maskSize2="1.5" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskSizeUnits="MM" maskType="0" maskedSymbolLayers=""></text-mask>
@@ -2383,7 +2623,7 @@
                   <Option type="Map">
                     <Option name="angle" type="QString" value="0"></Option>
                     <Option name="cap_style" type="QString" value="square"></Option>
-                    <Option name="color" type="QString" value="190,178,151,255,rgb:0.7450981,0.6980392,0.5921569,1"></Option>
+                    <Option name="color" type="QString" value="190,178,151,255,rgb:0.745098,0.6980392,0.5921569,1"></Option>
                     <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
                     <Option name="joinstyle" type="QString" value="bevel"></Option>
                     <Option name="name" type="QString" value="circle"></Option>
@@ -3361,7 +3601,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="255,158,23,255,rgb:1,0.6196079,0.0901961,1"></Option>
+                <Option name="line_color" type="QString" value="255,158,23,255,rgb:1,0.6196078,0.0901961,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -3401,7 +3641,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{9c579e7f-95d5-4c27-b587-6e0303730764}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="255,158,23,255,rgb:1,0.6196079,0.0901961,1"></Option>
+                <Option name="color" type="QString" value="255,158,23,255,rgb:1,0.6196078,0.0901961,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -3595,7 +3835,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="133,182,111,255,rgb:0.5215687,0.7137255,0.4352941,1"></Option>
+                <Option name="line_color" type="QString" value="133,182,111,255,rgb:0.5215686,0.7137255,0.4352941,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -3635,7 +3875,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{4cceebbf-8808-47af-b726-4d93c54fd338}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="133,182,111,255,rgb:0.5215687,0.7137255,0.4352941,1"></Option>
+                <Option name="color" type="QString" value="133,182,111,255,rgb:0.5215686,0.7137255,0.4352941,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -3816,7 +4056,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="255,158,23,255,rgb:1,0.6196079,0.0901961,1"></Option>
+                <Option name="line_color" type="QString" value="255,158,23,255,rgb:1,0.6196078,0.0901961,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -3856,7 +4096,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{29b74836-03b9-4492-b167-744fb7b7bab2}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="255,158,23,255,rgb:1,0.6196079,0.0901961,1"></Option>
+                <Option name="color" type="QString" value="255,158,23,255,rgb:1,0.6196078,0.0901961,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -4051,7 +4291,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.282353,1"></Option>
+                <Option name="line_color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.2823529,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -4091,7 +4331,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{4a9c9408-8af9-4a50-975c-bd94cd814f66}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.282353,1"></Option>
+                <Option name="color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.2823529,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -4604,6 +4844,224 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" hasScaleBasedVisibilityFlag="0" legendPlaceholderImage="" maxScale="0" minScale="1e+08" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="raster">
       <extent>
+        <xmin>-49.76610092012054309</xmin>
+        <ymin>20.80383032636347451</ymin>
+        <xmax>15.67659414322260858</xmax>
+        <ymax>58.44095167731785523</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>-49.76610092012054309</xmin>
+        <ymin>20.80383032636347451</ymin>
+        <xmax>15.67659414322260858</xmax>
+        <ymax>58.44095167731785523</ymax>
+      </wgs84extent>
+      <id>avistan_modified_3ab3ac11_843a_4303_b495_f5c97e91ba8b</id>
+      <datasource>./images/avistan/World Guide/avistan_modified.tif</datasource>
+      <layername>avistan_modified</layername>
+      <srs>
+        <spatialrefsys nativeFormat="Wkt">
+          <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
+          <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+          <srsid>3452</srsid>
+          <srid>4326</srid>
+          <authid>EPSG:4326</authid>
+          <description>WGS 84</description>
+          <projectionacronym>longlat</projectionacronym>
+          <ellipsoidacronym>EPSG:7030</ellipsoidacronym>
+          <geographicflag>true</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type>dataset</type>
+        <title></title>
+        <abstract></abstract>
+        <links></links>
+        <dates></dates>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys nativeFormat="Wkt">
+            <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
+            <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
+            <srsid>3452</srsid>
+            <srid>4326</srid>
+            <authid>EPSG:4326</authid>
+            <description>WGS 84</description>
+            <projectionacronym>longlat</projectionacronym>
+            <ellipsoidacronym>EPSG:7030</ellipsoidacronym>
+            <geographicflag>true</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent></extent>
+      </resourceMetadata>
+      <provider>gdal</provider>
+      <noData>
+        <noDataList bandNo="1" useSrcNoData="0"></noDataList>
+        <noDataList bandNo="2" useSrcNoData="0"></noDataList>
+        <noDataList bandNo="3" useSrcNoData="0"></noDataList>
+        <noDataList bandNo="4" useSrcNoData="0"></noDataList>
+      </noData>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"></map-layer-style>
+      </map-layer-style-manager>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+        <Private>0</Private>
+      </flags>
+      <temporal bandNumber="1" enabled="0" fetchMode="0" mode="0">
+        <fixedRange>
+          <start></start>
+          <end></end>
+        </fixedRange>
+      </temporal>
+      <elevation band="1" enabled="0" mode="RepresentsElevationSurface" symbology="Line" zoffset="0" zscale="1">
+        <data-defined-properties>
+          <Option type="Map">
+            <Option name="name" type="QString" value=""></Option>
+            <Option name="properties"></Option>
+            <Option name="type" type="QString" value="collection"></Option>
+          </Option>
+        </data-defined-properties>
+        <profileLineSymbol>
+          <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option name="name" type="QString" value=""></Option>
+                <Option name="properties"></Option>
+                <Option name="type" type="QString" value="collection"></Option>
+              </Option>
+            </data_defined_properties>
+            <layer class="SimpleLine" enabled="1" id="{5f4b6e35-91a4-482e-8016-7eb7dddd706e}" locked="0" pass="0">
+              <Option type="Map">
+                <Option name="align_dash_pattern" type="QString" value="0"></Option>
+                <Option name="capstyle" type="QString" value="square"></Option>
+                <Option name="customdash" type="QString" value="5;2"></Option>
+                <Option name="customdash_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="customdash_unit" type="QString" value="MM"></Option>
+                <Option name="dash_pattern_offset" type="QString" value="0"></Option>
+                <Option name="dash_pattern_offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
+                <Option name="draw_inside_polygon" type="QString" value="0"></Option>
+                <Option name="joinstyle" type="QString" value="bevel"></Option>
+                <Option name="line_color" type="QString" value="125,139,143,255,rgb:0.4901961,0.545098,0.5607843,1"></Option>
+                <Option name="line_style" type="QString" value="solid"></Option>
+                <Option name="line_width" type="QString" value="0.6"></Option>
+                <Option name="line_width_unit" type="QString" value="MM"></Option>
+                <Option name="offset" type="QString" value="0"></Option>
+                <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="offset_unit" type="QString" value="MM"></Option>
+                <Option name="ring_filter" type="QString" value="0"></Option>
+                <Option name="trim_distance_end" type="QString" value="0"></Option>
+                <Option name="trim_distance_end_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="trim_distance_end_unit" type="QString" value="MM"></Option>
+                <Option name="trim_distance_start" type="QString" value="0"></Option>
+                <Option name="trim_distance_start_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="trim_distance_start_unit" type="QString" value="MM"></Option>
+                <Option name="tweak_dash_pattern_on_corners" type="QString" value="0"></Option>
+                <Option name="use_custom_dash" type="QString" value="0"></Option>
+                <Option name="width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""></Option>
+                  <Option name="properties"></Option>
+                  <Option name="type" type="QString" value="collection"></Option>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </profileLineSymbol>
+        <profileFillSymbol>
+          <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="fill">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option name="name" type="QString" value=""></Option>
+                <Option name="properties"></Option>
+                <Option name="type" type="QString" value="collection"></Option>
+              </Option>
+            </data_defined_properties>
+            <layer class="SimpleFill" enabled="1" id="{260f8447-9bf7-4a31-abac-26cf60e9ef84}" locked="0" pass="0">
+              <Option type="Map">
+                <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="color" type="QString" value="125,139,143,255,rgb:0.4901961,0.545098,0.5607843,1"></Option>
+                <Option name="joinstyle" type="QString" value="bevel"></Option>
+                <Option name="offset" type="QString" value="0,0"></Option>
+                <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
+                <Option name="offset_unit" type="QString" value="MM"></Option>
+                <Option name="outline_color" type="QString" value="35,35,35,255,rgb:0.1372549,0.1372549,0.1372549,1"></Option>
+                <Option name="outline_style" type="QString" value="no"></Option>
+                <Option name="outline_width" type="QString" value="0.26"></Option>
+                <Option name="outline_width_unit" type="QString" value="MM"></Option>
+                <Option name="style" type="QString" value="solid"></Option>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option name="name" type="QString" value=""></Option>
+                  <Option name="properties"></Option>
+                  <Option name="type" type="QString" value="collection"></Option>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </profileFillSymbol>
+      </elevation>
+      <customproperties>
+        <Option type="Map">
+          <Option name="identify/format" type="QString" value="Value"></Option>
+        </Option>
+      </customproperties>
+      <mapTip enabled="1"></mapTip>
+      <pipe-data-defined-properties>
+        <Option type="Map">
+          <Option name="name" type="QString" value=""></Option>
+          <Option name="properties"></Option>
+          <Option name="type" type="QString" value="collection"></Option>
+        </Option>
+      </pipe-data-defined-properties>
+      <pipe>
+        <provider>
+          <resampling enabled="false" maxOversampling="2" zoomedInResamplingMethod="nearestNeighbour" zoomedOutResamplingMethod="nearestNeighbour"></resampling>
+        </provider>
+        <rasterrenderer alphaBand="4" blueBand="3" greenBand="2" nodataColor="" opacity="1" redBand="1" type="multibandcolor">
+          <rasterTransparency></rasterTransparency>
+          <minMaxOrigin>
+            <limits>MinMax</limits>
+            <extent>WholeRaster</extent>
+            <statAccuracy>Estimated</statAccuracy>
+            <cumulativeCutLower>0.02</cumulativeCutLower>
+            <cumulativeCutUpper>0.98</cumulativeCutUpper>
+            <stdDevFactor>2</stdDevFactor>
+          </minMaxOrigin>
+          <redContrastEnhancement>
+            <minValue>57</minValue>
+            <maxValue>254</maxValue>
+            <algorithm>NoEnhancement</algorithm>
+          </redContrastEnhancement>
+          <greenContrastEnhancement>
+            <minValue>52</minValue>
+            <maxValue>250</maxValue>
+            <algorithm>NoEnhancement</algorithm>
+          </greenContrastEnhancement>
+          <blueContrastEnhancement>
+            <minValue>30</minValue>
+            <maxValue>255</maxValue>
+            <algorithm>NoEnhancement</algorithm>
+          </blueContrastEnhancement>
+        </rasterrenderer>
+        <brightnesscontrast brightness="0" contrast="0" gamma="1"></brightnesscontrast>
+        <huesaturation colorizeBlue="128" colorizeGreen="128" colorizeOn="0" colorizeRed="255" colorizeStrength="100" grayscaleMode="0" invertColors="0" saturation="0"></huesaturation>
+        <rasterresampler maxOversampling="2"></rasterresampler>
+        <resamplingStage>resamplingFilter</resamplingStage>
+      </pipe>
+      <blendMode>0</blendMode>
+    </maplayer>
+    <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" hasScaleBasedVisibilityFlag="0" legendPlaceholderImage="" maxScale="0" minScale="1e+08" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="raster">
+      <extent>
         <xmin>179.24677097261533731</xmin>
         <ymin>-27.75012483299014932</ymin>
         <xmax>179.30917480804694719</xmax>
@@ -4926,7 +5384,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="190,207,80,255,rgb:0.7450981,0.8117647,0.3137255,1"></Option>
+                <Option name="line_color" type="QString" value="190,207,80,255,rgb:0.745098,0.8117647,0.3137255,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -4966,7 +5424,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{9559bb60-77ee-4bff-a1f3-51c0b2b14b71}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="190,207,80,255,rgb:0.7450981,0.8117647,0.3137255,1"></Option>
+                <Option name="color" type="QString" value="190,207,80,255,rgb:0.745098,0.8117647,0.3137255,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -5205,7 +5663,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.682353,0.4666667,0.4980392,1"></Option>
+                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.6823529,0.4666667,0.4980392,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -5241,7 +5699,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.682353,0.4666667,0.4980392,1"></Option>
+                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.6823529,0.4666667,0.4980392,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -5319,7 +5777,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="35,35,35,255,rgb:0.1372549,0.1372549,0.1372549,1"></Option>
+                <Option name="outline_color" type="QString" value="255,0,255,94,rgb:1,0,1,0.3671473"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.26"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -5383,7 +5841,7 @@ def my_form_open(dialog, layer, feature):
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="concat(&quot;region&quot;, '\n',&quot;subregion&quot;, '\n', &quot;nation&quot;, '\n', &quot;province&quot;)" fontFamily="Noto Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="400" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="1" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="concat(&quot;region&quot;, '\n',&quot;subregion&quot;, '\n', &quot;nation&quot;, '\n', &quot;province&quot;)" fontFamily="Noto Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="1" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families></families>
             <text-buffer bufferBlendMode="0" bufferColor="250,250,250,255,rgb:0.9803922,0.9803922,0.9803922,1" bufferDraw="1" bufferJoinStyle="128" bufferNoFill="1" bufferOpacity="1" bufferSize="1" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferSizeUnits="MM"></text-buffer>
             <text-mask maskEnabled="0" maskJoinStyle="128" maskOpacity="1" maskSize="1.5" maskSize2="1.5" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskSizeUnits="MM" maskType="0" maskedSymbolLayers=""></text-mask>
@@ -5520,7 +5978,7 @@ def my_form_open(dialog, layer, feature):
       <layerOpacity>1</layerOpacity>
       <LinearlyInterpolatedDiagramRenderer attributeLegend="1" classificationAttributeExpression="" diagramType="Histogram" lowerHeight="0" lowerValue="0" lowerWidth="0" upperHeight="5" upperValue="0" upperWidth="5">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramMode="Horizontal" stackedDiagramSpacing="0" stackedDiagramSpacingUnit="MM" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" width="15">
-          <fontProperties bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
+          <fontProperties bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
           <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
@@ -5709,31 +6167,31 @@ def my_form_open(dialog, layer, feature):
       <editorlayout>tablayout</editorlayout>
       <attributeEditorForm>
         <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
-          <labelFont bold="0" description="Segoe UI,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+          <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
         </labelStyle>
         <attributeEditorField horizontalStretch="0" index="0" name="fid" showLabel="1" verticalStretch="0">
           <labelStyle labelColor="0,0,0,255,rgb:0,0,0,1" overrideLabelColor="0" overrideLabelFont="0">
-            <labelFont bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
           </labelStyle>
         </attributeEditorField>
         <attributeEditorField horizontalStretch="0" index="1" name="region" showLabel="1" verticalStretch="0">
           <labelStyle labelColor="0,0,0,255,rgb:0,0,0,1" overrideLabelColor="0" overrideLabelFont="0">
-            <labelFont bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
           </labelStyle>
         </attributeEditorField>
         <attributeEditorField horizontalStretch="0" index="4" name="subregion" showLabel="1" verticalStretch="0">
           <labelStyle labelColor="0,0,0,255,rgb:0,0,0,1" overrideLabelColor="0" overrideLabelFont="0">
-            <labelFont bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
           </labelStyle>
         </attributeEditorField>
         <attributeEditorField horizontalStretch="0" index="2" name="nation" showLabel="1" verticalStretch="0">
           <labelStyle labelColor="0,0,0,255,rgb:0,0,0,1" overrideLabelColor="0" overrideLabelFont="0">
-            <labelFont bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
           </labelStyle>
         </attributeEditorField>
         <attributeEditorField horizontalStretch="0" index="3" name="province" showLabel="1" verticalStretch="0">
           <labelStyle labelColor="0,0,0,255,rgb:0,0,0,1" overrideLabelColor="0" overrideLabelFont="0">
-            <labelFont bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
           </labelStyle>
         </attributeEditorField>
       </attributeEditorForm>
@@ -5888,7 +6346,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="190,207,80,255,rgb:0.7450981,0.8117647,0.3137255,1"></Option>
+                <Option name="line_color" type="QString" value="190,207,80,255,rgb:0.745098,0.8117647,0.3137255,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -5928,12 +6386,12 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{3b237528-94dc-4ded-aa40-d01059292e91}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="190,207,80,255,rgb:0.7450981,0.8117647,0.3137255,1"></Option>
+                <Option name="color" type="QString" value="190,207,80,255,rgb:0.745098,0.8117647,0.3137255,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="136,148,57,255,rgb:0.5333334,0.5803922,0.2235294,1"></Option>
+                <Option name="outline_color" type="QString" value="136,148,57,255,rgb:0.5333333,0.5803922,0.2235294,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -5962,14 +6420,14 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="angle" type="QString" value="0"></Option>
                 <Option name="cap_style" type="QString" value="square"></Option>
-                <Option name="color" type="QString" value="190,207,80,255,rgb:0.7450981,0.8117647,0.3137255,1"></Option>
+                <Option name="color" type="QString" value="190,207,80,255,rgb:0.745098,0.8117647,0.3137255,1"></Option>
                 <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="name" type="QString" value="diamond"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="136,148,57,255,rgb:0.5333334,0.5803922,0.2235294,1"></Option>
+                <Option name="outline_color" type="QString" value="136,148,57,255,rgb:0.5333333,0.5803922,0.2235294,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -6008,7 +6466,7 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="angle" type="QString" value="0"></Option>
                 <Option name="cap_style" type="QString" value="square"></Option>
-                <Option name="color" type="QString" value="225,206,88,255,hsv:0.14338888227939606,0.61025404930114746,0.88235294818878174,1"></Option>
+                <Option name="color" type="QString" value="225,206,88,255,hsv:0.1433888888888889,0.61025406271458005,0.88235294117647056,1"></Option>
                 <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="name" type="QString" value="circle"></Option>
@@ -6433,7 +6891,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="164,130,39,255,rgb:0.6431373,0.509804,0.1529412,1"></Option>
+                <Option name="outline_color" type="QString" value="164,130,39,255,rgb:0.6431373,0.5098039,0.1529412,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -6469,7 +6927,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="164,130,39,255,rgb:0.6431373,0.509804,0.1529412,1"></Option>
+                <Option name="outline_color" type="QString" value="164,130,39,255,rgb:0.6431373,0.5098039,0.1529412,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -6857,7 +7315,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.282353,1"></Option>
+                <Option name="line_color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.2823529,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -6897,7 +7355,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{f8fc18ac-4155-40f7-9fab-f0cacddd3279}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.282353,1"></Option>
+                <Option name="color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.2823529,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -7293,7 +7751,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="190,178,151,255,rgb:0.7450981,0.6980392,0.5921569,1"></Option>
+                <Option name="line_color" type="QString" value="190,178,151,255,rgb:0.745098,0.6980392,0.5921569,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -7333,7 +7791,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{591f9db5-7517-4073-9f3b-6ed8a5b8d5aa}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="190,178,151,255,rgb:0.7450981,0.6980392,0.5921569,1"></Option>
+                <Option name="color" type="QString" value="190,178,151,255,rgb:0.745098,0.6980392,0.5921569,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -7511,7 +7969,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="190,178,151,255,rgb:0.7450981,0.6980392,0.5921569,1"></Option>
+                <Option name="line_color" type="QString" value="190,178,151,255,rgb:0.745098,0.6980392,0.5921569,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -7551,7 +8009,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{2dfc188c-e5f1-4592-b15a-b4406da4df90}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="190,178,151,255,rgb:0.7450981,0.6980392,0.5921569,1"></Option>
+                <Option name="color" type="QString" value="190,178,151,255,rgb:0.745098,0.6980392,0.5921569,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -7947,7 +8405,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="125,139,143,255,rgb:0.4901961,0.5450981,0.5607843,1"></Option>
+                <Option name="line_color" type="QString" value="125,139,143,255,rgb:0.4901961,0.545098,0.5607843,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -7987,7 +8445,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{a10f809e-2611-4232-ba73-5c684dd9e075}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="125,139,143,255,rgb:0.4901961,0.5450981,0.5607843,1"></Option>
+                <Option name="color" type="QString" value="125,139,143,255,rgb:0.4901961,0.545098,0.5607843,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -8444,7 +8902,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="104,59,32,255,rgb:0.4078431,0.2313726,0.1254902,1"></Option>
+                <Option name="outline_color" type="QString" value="104,59,32,255,rgb:0.4078431,0.2313725,0.1254902,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -8480,7 +8938,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="104,59,32,255,rgb:0.4078431,0.2313726,0.1254902,1"></Option>
+                <Option name="outline_color" type="QString" value="104,59,32,255,rgb:0.4078431,0.2313725,0.1254902,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -8515,7 +8973,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{f222cb12-83a2-44ad-a033-19f0d93731ca}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="255,247,190,255,rgb:1,0.9686275,0.7450981,1"></Option>
+                <Option name="color" type="QString" value="255,247,190,255,rgb:1,0.9686275,0.745098,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -8917,16 +9375,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-30.75685727093020105</xmin>
-        <ymin>17.81950903643609863</ymin>
-        <xmax>-0.17495428837490201</xmax>
-        <ymax>51.24486873476440252</ymax>
+        <xmin>-30.75686073303220169</xmin>
+        <ymin>17.81950759887689983</ymin>
+        <xmax>-0.17495426535606401</xmax>
+        <ymax>51.24486923217769885</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-30.75685727093020105</xmin>
-        <ymin>17.81950903643609863</ymin>
-        <xmax>-0.17495428837490201</xmax>
-        <ymax>51.24486873476440252</ymax>
+        <xmin>-30.75686073303220169</xmin>
+        <ymin>17.81950759887689983</ymin>
+        <xmax>-0.17495426535606401</xmax>
+        <ymax>51.24486923217769885</ymax>
       </wgs84extent>
       <id>districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=districts</datasource>
@@ -9082,7 +9540,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.682353,0.4666667,0.4980392,1"></Option>
+                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.6823529,0.4666667,0.4980392,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -9118,7 +9576,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.682353,0.4666667,0.4980392,1"></Option>
+                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.6823529,0.4666667,0.4980392,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -9354,21 +9812,21 @@ def my_form_open(dialog, layer, feature):
       <editorlayout>generatedlayout</editorlayout>
       <attributeEditorForm>
         <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
-          <labelFont bold="0" description="Segoe UI,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+          <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
         </labelStyle>
         <attributeEditorField horizontalStretch="0" index="0" name="fid" showLabel="1" verticalStretch="0">
           <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
-            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
           </labelStyle>
         </attributeEditorField>
         <attributeEditorField horizontalStretch="0" index="1" name="labels" showLabel="1" verticalStretch="0">
           <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
-            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
           </labelStyle>
         </attributeEditorField>
         <attributeEditorField horizontalStretch="0" index="2" name="city" showLabel="1" verticalStretch="0">
           <labelStyle labelColor="" overrideLabelColor="0" overrideLabelFont="0">
-            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></labelFont>
+            <labelFont bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></labelFont>
           </labelStyle>
         </attributeEditorField>
       </attributeEditorForm>
@@ -9532,7 +9990,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="183,72,75,255,rgb:0.7176471,0.282353,0.2941177,1"></Option>
+                <Option name="line_color" type="QString" value="183,72,75,255,rgb:0.7176471,0.2823529,0.2941176,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -9572,7 +10030,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{54ba87cd-069e-4755-866f-a3722073137d}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.282353,0.2941177,1"></Option>
+                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.2823529,0.2941176,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -9606,7 +10064,7 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="angle" type="QString" value="0"></Option>
                 <Option name="cap_style" type="QString" value="square"></Option>
-                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.282353,0.2941177,1"></Option>
+                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.2823529,0.2941176,1"></Option>
                 <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="name" type="QString" value="diamond"></Option>
@@ -9717,7 +10175,7 @@ def my_form_open(dialog, layer, feature):
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="400" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families>
               <family name="Open Sans"></family>
               <family name="Liberation Sans"></family>
@@ -9821,7 +10279,7 @@ def my_form_open(dialog, layer, feature):
       <layerOpacity>1</layerOpacity>
       <LinearlyInterpolatedDiagramRenderer attributeLegend="1" classificationAttributeExpression="" diagramType="Histogram" lowerHeight="0" lowerValue="0" lowerWidth="0" upperHeight="5" upperValue="0" upperWidth="5">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramMode="Horizontal" stackedDiagramSpacing="0" stackedDiagramSpacingUnit="MM" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" width="15">
-          <fontProperties bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
+          <fontProperties bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
           <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
@@ -9994,14 +10452,14 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-121.24825286865200269</xmin>
-        <ymin>-81.35930633544920454</ymin>
+        <xmin>-121.24825286865234375</xmin>
+        <ymin>-81.35930633544921875</ymin>
         <xmax>206.643310546875</xmax>
         <ymax>88.66408538818359375</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-121.24825286865200269</xmin>
-        <ymin>-81.35930633544920454</ymin>
+        <xmin>-121.24825286865234375</xmin>
+        <ymin>-81.35930633544921875</ymin>
         <xmax>206.643310546875</xmax>
         <ymax>88.66408538818359375</ymax>
       </wgs84extent>
@@ -10114,7 +10572,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="133,182,111,255,rgb:0.5215687,0.7137255,0.4352941,1"></Option>
+                <Option name="line_color" type="QString" value="133,182,111,255,rgb:0.5215686,0.7137255,0.4352941,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -10154,12 +10612,12 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{55fb56d8-ff4d-4d3e-a5cd-6bf7f19ad553}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="133,182,111,255,rgb:0.5215687,0.7137255,0.4352941,1"></Option>
+                <Option name="color" type="QString" value="133,182,111,255,rgb:0.5215686,0.7137255,0.4352941,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="95,130,79,255,rgb:0.372549,0.509804,0.3098039,1"></Option>
+                <Option name="outline_color" type="QString" value="95,130,79,255,rgb:0.372549,0.5098039,0.3098039,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -10188,14 +10646,14 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="angle" type="QString" value="0"></Option>
                 <Option name="cap_style" type="QString" value="square"></Option>
-                <Option name="color" type="QString" value="133,182,111,255,rgb:0.5215687,0.7137255,0.4352941,1"></Option>
+                <Option name="color" type="QString" value="133,182,111,255,rgb:0.5215686,0.7137255,0.4352941,1"></Option>
                 <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="name" type="QString" value="diamond"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="95,130,79,255,rgb:0.372549,0.509804,0.3098039,1"></Option>
+                <Option name="outline_color" type="QString" value="95,130,79,255,rgb:0.372549,0.5098039,0.3098039,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -10730,7 +11188,7 @@ def my_form_open(dialog, layer, feature):
       <layerOpacity>1</layerOpacity>
       <LinearlyInterpolatedDiagramRenderer attributeLegend="1" classificationAttributeExpression="" diagramType="Histogram" lowerHeight="0" lowerValue="0" lowerWidth="0" upperHeight="5" upperValue="0" upperWidth="5">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramMode="Horizontal" stackedDiagramSpacing="0" stackedDiagramSpacingUnit="MM" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" width="15">
-          <fontProperties bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
+          <fontProperties bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
           <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
@@ -11004,7 +11462,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="255,158,23,255,rgb:1,0.6196079,0.0901961,1"></Option>
+                <Option name="line_color" type="QString" value="255,158,23,255,rgb:1,0.6196078,0.0901961,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -11044,7 +11502,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{fb93cfb1-e5e9-4536-a8f2-8de4f00fe4c0}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="255,158,23,255,rgb:1,0.6196079,0.0901961,1"></Option>
+                <Option name="color" type="QString" value="255,158,23,255,rgb:1,0.6196078,0.0901961,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -11118,10 +11576,10 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" legendPlaceholderImage="" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" type="group">
       <extent>
-        <xmin>-0.55420797100654995</xmin>
-        <ymin>-24.94328538914422211</ymin>
-        <xmax>53.39304432757534613</xmax>
-        <ymax>31.81573415102062086</ymax>
+        <xmin>-49.76610092012054309</xmin>
+        <ymin>20.80383032636347451</ymin>
+        <xmax>15.67659414322260858</xmax>
+        <ymax>58.44095167731785523</ymax>
       </extent>
       <id>images_a05422ba_d9b0_4dbe_9ef4_08468f8204c2</id>
       <datasource></datasource>
@@ -11166,11 +11624,9 @@ def my_form_open(dialog, layer, feature):
         <extent></extent>
       </resourceMetadata>
       <childLayers>
-        <child layerid="titanbane_modified_cb96a67a_9f1f_4740_b753_81347fbc68e8"></child>
-        <child layerid="myth_speaker_blog_9705d43e_4c68_4d33_9d14_082a67653f36"></child>
-        <child layerid="PariolIsland_modified_340fb99e_8e1a_4a70_8258_8689f03062aa"></child>
+        <child layerid="avistan_modified_3ab3ac11_843a_4303_b495_f5c97e91ba8b"></child>
       </childLayers>
-      <layerOpacity>0.449</layerOpacity>
+      <layerOpacity>0.5</layerOpacity>
       <blendMode>0</blendMode>
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" hasScaleBasedVisibilityFlag="0" legendPlaceholderImage="" maxScale="0" minScale="1e+08" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" styleCategories="AllStyleCategories" type="raster">
@@ -11715,7 +12171,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="183,72,75,255,rgb:0.7176471,0.282353,0.2941177,1"></Option>
+                <Option name="line_color" type="QString" value="183,72,75,255,rgb:0.7176471,0.2823529,0.2941176,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -11755,7 +12211,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{18f4dc2d-ed3c-4654-9774-5e4e08e85190}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.282353,0.2941177,1"></Option>
+                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.2823529,0.2941176,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -11933,7 +12389,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="255,158,23,255,rgb:1,0.6196079,0.0901961,1"></Option>
+                <Option name="line_color" type="QString" value="255,158,23,255,rgb:1,0.6196078,0.0901961,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -11973,7 +12429,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{4a262acf-2416-4ce0-837e-7f9c765c6af8}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="255,158,23,255,rgb:1,0.6196079,0.0901961,1"></Option>
+                <Option name="color" type="QString" value="255,158,23,255,rgb:1,0.6196078,0.0901961,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -12700,7 +13156,7 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="angle" type="QString" value="45"></Option>
                 <Option name="clip_mode" type="QString" value="during_render"></Option>
-                <Option name="color" type="QString" value="79,106,169,255,hsv:0.61666667461395264,0.53333336114883423,0.66274511814117432,1"></Option>
+                <Option name="color" type="QString" value="79,106,169,255,hsv:0.6166666666666667,0.53333333333333333,0.66274509803921566,1"></Option>
                 <Option name="coordinate_reference" type="QString" value="feature"></Option>
                 <Option name="distance" type="QString" value="2"></Option>
                 <Option name="distance_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -12741,7 +13197,7 @@ def my_form_open(dialog, layer, feature):
                     <Option name="dash_pattern_offset_unit" type="QString" value="Pixel"></Option>
                     <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                     <Option name="joinstyle" type="QString" value="bevel"></Option>
-                    <Option name="line_color" type="QString" value="79,106,169,255,hsv:0.61666667461395264,0.53333336114883423,0.66274511814117432,1"></Option>
+                    <Option name="line_color" type="QString" value="79,106,169,255,hsv:0.6166666666666667,0.53333333333333333,0.66274509803921566,1"></Option>
                     <Option name="line_style" type="QString" value="solid"></Option>
                     <Option name="line_width" type="QString" value="1"></Option>
                     <Option name="line_width_unit" type="QString" value="Pixel"></Option>
@@ -12781,7 +13237,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="79,106,169,255,hsv:0.61666667461395264,0.53333336114883423,0.66274511814117432,1"></Option>
+                <Option name="line_color" type="QString" value="79,106,169,255,hsv:0.6166666666666667,0.53333333333333333,0.66274509803921566,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="1"></Option>
                 <Option name="line_width_unit" type="QString" value="Pixel"></Option>
@@ -13172,7 +13628,7 @@ def my_form_open(dialog, layer, feature):
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="labels" fontFamily="Noto Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="15" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="400" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="255,255,255,255,rgb:1,1,1,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="labels" fontFamily="Noto Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="15" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="255,255,255,255,rgb:1,1,1,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families></families>
             <text-buffer bufferBlendMode="0" bufferColor="32,32,32,255,rgb:0.1254902,0.1254902,0.1254902,1" bufferDraw="1" bufferJoinStyle="128" bufferNoFill="1" bufferOpacity="1" bufferSize="0.80000000000000004" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferSizeUnits="MM"></text-buffer>
             <text-mask maskEnabled="0" maskJoinStyle="128" maskOpacity="1" maskSize="1.5" maskSize2="1.5" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskSizeUnits="MM" maskType="0" maskedSymbolLayers=""></text-mask>
@@ -13309,7 +13765,7 @@ def my_form_open(dialog, layer, feature):
       <layerOpacity>1</layerOpacity>
       <LinearlyInterpolatedDiagramRenderer attributeLegend="1" classificationAttributeExpression="" diagramType="Histogram" lowerHeight="0" lowerValue="0" lowerWidth="0" upperHeight="5" upperValue="0" upperWidth="5">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramMode="Horizontal" stackedDiagramSpacing="0" stackedDiagramSpacingUnit="MM" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" width="15">
-          <fontProperties bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
+          <fontProperties bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
           <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
@@ -13507,13 +13963,13 @@ def my_form_open(dialog, layer, feature):
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="1" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
         <xmin>-138</xmin>
-        <ymin>-81.35930633544921875</ymin>
+        <ymin>-81.35930633544920454</ymin>
         <xmax>222</xmax>
         <ymax>90</ymax>
       </extent>
       <wgs84extent>
         <xmin>-138</xmin>
-        <ymin>-81.35930633544921875</ymin>
+        <ymin>-81.35930633544920454</ymin>
         <xmax>222</xmax>
         <ymax>90</ymax>
       </wgs84extent>
@@ -13626,7 +14082,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="line_color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -13666,7 +14122,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{71d8a3c4-a36b-4123-8663-dc1cfad314b1}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -13700,7 +14156,7 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="angle" type="QString" value="0"></Option>
                 <Option name="cap_style" type="QString" value="square"></Option>
-                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="name" type="QString" value="diamond"></Option>
@@ -13811,7 +14267,7 @@ def my_form_open(dialog, layer, feature):
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName=" if(left(&quot;labels&quot;,1)='[',array_to_string(from_json(&quot;labels&quot;),delimiter:='\n'),&quot;labels&quot;)" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="400" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="1" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="0.96999999999999997" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName=" if(left(&quot;labels&quot;,1)='[',array_to_string(from_json(&quot;labels&quot;),delimiter:='\n'),&quot;labels&quot;)" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="1" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="0.96999999999999997" textOrientation="horizontal" useSubstitutions="0">
             <families></families>
             <text-buffer bufferBlendMode="0" bufferColor="250,250,250,255,rgb:0.9803922,0.9803922,0.9803922,1" bufferDraw="0" bufferJoinStyle="128" bufferNoFill="1" bufferOpacity="1" bufferSize="1" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferSizeUnits="MM"></text-buffer>
             <text-mask maskEnabled="0" maskJoinStyle="128" maskOpacity="1" maskSize="1.5" maskSize2="1.5" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskSizeUnits="MM" maskType="0" maskedSymbolLayers=""></text-mask>
@@ -13828,7 +14284,7 @@ def my_form_open(dialog, layer, feature):
                   <Option type="Map">
                     <Option name="angle" type="QString" value="0"></Option>
                     <Option name="cap_style" type="QString" value="square"></Option>
-                    <Option name="color" type="QString" value="125,139,143,255,rgb:0.4901961,0.5450981,0.5607843,1"></Option>
+                    <Option name="color" type="QString" value="125,139,143,255,rgb:0.4901961,0.545098,0.5607843,1"></Option>
                     <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
                     <Option name="joinstyle" type="QString" value="bevel"></Option>
                     <Option name="name" type="QString" value="circle"></Option>
@@ -13960,7 +14416,7 @@ def my_form_open(dialog, layer, feature):
       <layerOpacity>1</layerOpacity>
       <LinearlyInterpolatedDiagramRenderer attributeLegend="1" classificationAttributeExpression="" diagramType="Histogram" lowerHeight="0" lowerValue="0" lowerWidth="0" upperHeight="5" upperValue="0" upperWidth="5">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramMode="Horizontal" stackedDiagramSpacing="0" stackedDiagramSpacingUnit="MM" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" width="15">
-          <fontProperties bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
+          <fontProperties bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
           <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
@@ -14254,7 +14710,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="183,72,75,255,rgb:0.7176471,0.282353,0.2941177,1"></Option>
+                <Option name="line_color" type="QString" value="183,72,75,255,rgb:0.7176471,0.2823529,0.2941176,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -14294,7 +14750,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{23255007-1b3e-4635-b897-a379c91d9417}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.282353,0.2941177,1"></Option>
+                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.2823529,0.2941176,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -14368,14 +14824,14 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-120.60863494872999979</xmin>
-        <ymin>-80.26619720458980112</ymin>
+        <xmin>-120.60863494873046875</xmin>
+        <ymin>-80.26619720458984375</ymin>
         <xmax>206.643310546875</xmax>
         <ymax>87.366943359375</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-120.60863494872999979</xmin>
-        <ymin>-80.26619720458980112</ymin>
+        <xmin>-120.60863494873046875</xmin>
+        <ymin>-80.26619720458984375</ymin>
         <xmax>206.643310546875</xmax>
         <ymax>87.366943359375</ymax>
       </wgs84extent>
@@ -14533,7 +14989,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="152,129,43,255,rgb:0.5960785,0.5058824,0.1686275,1"></Option>
+                <Option name="outline_color" type="QString" value="152,129,43,255,rgb:0.5960784,0.5058824,0.1686275,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -14569,7 +15025,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="152,129,43,255,rgb:0.5960785,0.5058824,0.1686275,1"></Option>
+                <Option name="outline_color" type="QString" value="152,129,43,255,rgb:0.5960784,0.5058824,0.1686275,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -14604,7 +15060,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{cc5131f6-5ec6-41dc-98b0-7008cbc35116}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="222,212,184,255,rgb:0.8705882,0.8313726,0.7215686,1"></Option>
+                <Option name="color" type="QString" value="222,212,184,255,rgb:0.8705882,0.8313725,0.7215686,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -14673,7 +15129,7 @@ def my_form_open(dialog, layer, feature):
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="400" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families>
               <family name="Open Sans"></family>
               <family name="Liberation Sans"></family>
@@ -15000,7 +15456,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="190,178,151,255,rgb:0.7450981,0.6980392,0.5921569,1"></Option>
+                <Option name="line_color" type="QString" value="190,178,151,255,rgb:0.745098,0.6980392,0.5921569,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -15040,7 +15496,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{8ddde3d4-d361-4f79-b2fd-4118ac0ae755}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="190,178,151,255,rgb:0.7450981,0.6980392,0.5921569,1"></Option>
+                <Option name="color" type="QString" value="190,178,151,255,rgb:0.745098,0.6980392,0.5921569,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -15459,7 +15915,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="line_color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -15499,7 +15955,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{d3a40da0-760e-43d2-afc0-348cb489ece8}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -15677,7 +16133,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.282353,1"></Option>
+                <Option name="line_color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.2823529,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -15717,7 +16173,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{42cb215c-e024-48b8-8efe-fca54c514466}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.282353,1"></Option>
+                <Option name="color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.2823529,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -16668,7 +17124,7 @@ def my_form_open(dialog, layer, feature):
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="if( (2^@zoom_level) * &quot;width&quot; > 1000000, &quot;labels&quot;, NULL)" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="400" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="1" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="86,80,199,255,hsv:0.6754721999168396,0.60000002384185791,0.78194856643676758,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="if( (2^@zoom_level) * &quot;width&quot; > 1000000, &quot;labels&quot;, NULL)" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="1" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="86,80,199,255,hsv:0.67547222222222225,0.59999999999999998,0.78194857709620813,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families></families>
             <text-buffer bufferBlendMode="0" bufferColor="250,250,250,255,rgb:0.9803922,0.9803922,0.9803922,1" bufferDraw="0" bufferJoinStyle="128" bufferNoFill="1" bufferOpacity="1" bufferSize="1" bufferSizeMapUnitScale="3x:0,0,0,0,0,0" bufferSizeUnits="MM"></text-buffer>
             <text-mask maskEnabled="0" maskJoinStyle="128" maskOpacity="1" maskSize="1.5" maskSize2="1.5" maskSizeMapUnitScale="3x:0,0,0,0,0,0" maskSizeUnits="MM" maskType="0" maskedSymbolLayers=""></text-mask>
@@ -16805,7 +17261,7 @@ def my_form_open(dialog, layer, feature):
       <layerOpacity>1</layerOpacity>
       <LinearlyInterpolatedDiagramRenderer attributeLegend="1" classificationAttributeExpression="" diagramType="Histogram" lowerHeight="0" lowerValue="0" lowerWidth="0" upperHeight="5" upperValue="0" upperWidth="5">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramMode="Horizontal" stackedDiagramSpacing="0" stackedDiagramSpacingUnit="MM" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" width="15">
-          <fontProperties bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
+          <fontProperties bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
           <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
@@ -17003,16 +17459,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Line" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiLineString">
       <extent>
-        <xmin>-28.35947854146019864</xmin>
-        <ymin>13.62046545917229956</ymin>
-        <xmax>12.58587412594440025</xmax>
-        <ymax>53.15581976957920318</ymax>
+        <xmin>-28.35948181152339842</xmin>
+        <ymin>13.62046527862550072</ymin>
+        <xmax>12.58587455749509942</xmax>
+        <ymax>53.15582656860350141</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-28.35947854146019864</xmin>
-        <ymin>13.62046545917229956</ymin>
-        <xmax>12.58587412594440025</xmax>
-        <ymax>53.15581976957920318</ymax>
+        <xmin>-28.35948181152339842</xmin>
+        <ymin>13.62046527862550072</ymin>
+        <xmax>12.58587455749509942</xmax>
+        <ymax>53.15582656860350141</ymax>
       </wgs84extent>
       <id>roads_7e038ab7_ac9b_4762_96b1_2ac7d9a2c175</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=roads</datasource>
@@ -17444,7 +17900,7 @@ def my_form_open(dialog, layer, feature):
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="400" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families>
               <family name="Open Sans"></family>
               <family name="Liberation Sans"></family>
@@ -17548,7 +18004,7 @@ def my_form_open(dialog, layer, feature):
       <layerOpacity>1</layerOpacity>
       <LinearlyInterpolatedDiagramRenderer attributeLegend="1" classificationAttributeExpression="" diagramType="Histogram" lowerHeight="0" lowerValue="0" lowerWidth="0" upperHeight="5" upperValue="0" upperWidth="5">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramMode="Horizontal" stackedDiagramSpacing="0" stackedDiagramSpacingUnit="MM" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" width="15">
-          <fontProperties bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
+          <fontProperties bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
           <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
@@ -18722,7 +19178,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="line_color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -18762,7 +19218,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{e446fe9c-cb38-425b-8a21-cd54067b9bc3}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -18796,7 +19252,7 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="angle" type="QString" value="0"></Option>
                 <Option name="cap_style" type="QString" value="square"></Option>
-                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="name" type="QString" value="diamond"></Option>
@@ -18913,7 +19369,7 @@ def my_form_open(dialog, layer, feature):
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="fid" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="400" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="fid" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families>
               <family name="Open Sans"></family>
               <family name="Liberation Sans"></family>
@@ -19018,7 +19474,7 @@ def my_form_open(dialog, layer, feature):
       <layerOpacity>1</layerOpacity>
       <LinearlyInterpolatedDiagramRenderer attributeLegend="1" classificationAttributeExpression="" diagramType="Histogram" lowerHeight="0" lowerValue="0" lowerWidth="0" upperHeight="5" upperValue="0" upperWidth="5">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramMode="Horizontal" stackedDiagramSpacing="0" stackedDiagramSpacingUnit="MM" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" width="15">
-          <fontProperties bold="0" description="MS Shell Dlg 2,7.875,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
+          <fontProperties bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
           <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
@@ -19528,7 +19984,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="line_color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -19568,7 +20024,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{5392f0b7-86ac-4232-8d9a-d780ce68da10}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -19860,16 +20316,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-28.60832591944040004</xmin>
-        <ymin>-15.85654450813560068</ymin>
-        <xmax>199.37869486909301031</xmax>
-        <ymax>57.25691727428409905</ymax>
+        <xmin>-28.60832595825189983</xmin>
+        <ymin>-15.85654640197749998</ymin>
+        <xmax>199.3787231445309942</xmax>
+        <ymax>57.25692367553710227</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-28.60832591944040004</xmin>
-        <ymin>-15.85654450813560068</ymin>
-        <xmax>199.37869486909301031</xmax>
-        <ymax>57.25691727428409905</ymax>
+        <xmin>-28.60832595825189983</xmin>
+        <ymin>-15.85654640197749998</ymin>
+        <xmax>199.3787231445309942</xmax>
+        <ymax>57.25692367553710227</ymax>
       </wgs84extent>
       <id>swamps_92ae1780_aeca_4355_866a_cc4af5f68520</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=swamps</datasource>
@@ -20025,7 +20481,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.682353,0.4666667,0.4980392,1"></Option>
+                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.6823529,0.4666667,0.4980392,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -20061,7 +20517,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.682353,0.4666667,0.4980392,1"></Option>
+                <Option name="outline_color" type="QString" value="174,119,127,255,rgb:0.6823529,0.4666667,0.4980392,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -20385,7 +20841,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="line_color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -20425,7 +20881,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{70b51800-11b7-4415-ba5c-e2e7a21cfea5}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960785,0.4901961,0.7176471,1"></Option>
+                <Option name="color" type="QString" value="152,125,183,255,rgb:0.5960784,0.4901961,0.7176471,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -20603,7 +21059,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="190,207,80,255,rgb:0.7450981,0.8117647,0.3137255,1"></Option>
+                <Option name="line_color" type="QString" value="190,207,80,255,rgb:0.745098,0.8117647,0.3137255,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -20643,7 +21099,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{c18f0410-c09d-4f0d-8c66-6f16844cf0ad}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="190,207,80,255,rgb:0.7450981,0.8117647,0.3137255,1"></Option>
+                <Option name="color" type="QString" value="190,207,80,255,rgb:0.745098,0.8117647,0.3137255,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -21038,7 +21494,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="133,182,111,255,rgb:0.5215687,0.7137255,0.4352941,1"></Option>
+                <Option name="line_color" type="QString" value="133,182,111,255,rgb:0.5215686,0.7137255,0.4352941,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -21078,7 +21534,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{a10416cd-76ab-43a6-96d2-c3afa1740f12}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="133,182,111,255,rgb:0.5215687,0.7137255,0.4352941,1"></Option>
+                <Option name="color" type="QString" value="133,182,111,255,rgb:0.5215686,0.7137255,0.4352941,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -21473,7 +21929,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.282353,1"></Option>
+                <Option name="line_color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.2823529,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -21513,7 +21969,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{838632c1-1453-4bd4-b0ea-cff1ebd48384}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.282353,1"></Option>
+                <Option name="color" type="QString" value="231,113,72,255,rgb:0.9058824,0.4431373,0.2823529,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -21926,7 +22382,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="114,155,111,255,rgb:0.4470588,0.6078432,0.4352941,1"></Option>
+                <Option name="line_color" type="QString" value="114,155,111,255,rgb:0.4470588,0.6078431,0.4352941,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -21966,7 +22422,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{a8530066-77a5-44b3-bba9-de3323ad94fc}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="114,155,111,255,rgb:0.4470588,0.6078432,0.4352941,1"></Option>
+                <Option name="color" type="QString" value="114,155,111,255,rgb:0.4470588,0.6078431,0.4352941,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -22008,7 +22464,7 @@ def my_form_open(dialog, layer, feature):
         <provider>
           <resampling enabled="false" maxOversampling="2" zoomedInResamplingMethod="nearestNeighbour" zoomedOutResamplingMethod="nearestNeighbour"></resampling>
         </provider>
-        <rasterrenderer alphaBand="4" blueBand="3" greenBand="2" nodataColor="255,15,19,0,hsv:0.99722224473953247,0.94117647409439087,1,0" opacity="1" redBand="1" type="multibandcolor">
+        <rasterrenderer alphaBand="4" blueBand="3" greenBand="2" nodataColor="255,15,19,0,hsv:0.99722222222222223,0.94117647058823528,1,0" opacity="1" redBand="1" type="multibandcolor">
           <rasterTransparency></rasterTransparency>
           <minMaxOrigin>
             <limits>MinMax</limits>
@@ -22163,7 +22619,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="dash_pattern_offset_unit" type="QString" value="MM"></Option>
                 <Option name="draw_inside_polygon" type="QString" value="0"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
-                <Option name="line_color" type="QString" value="183,72,75,255,rgb:0.7176471,0.282353,0.2941177,1"></Option>
+                <Option name="line_color" type="QString" value="183,72,75,255,rgb:0.7176471,0.2823529,0.2941176,1"></Option>
                 <Option name="line_style" type="QString" value="solid"></Option>
                 <Option name="line_width" type="QString" value="0.6"></Option>
                 <Option name="line_width_unit" type="QString" value="MM"></Option>
@@ -22203,7 +22659,7 @@ def my_form_open(dialog, layer, feature):
             <layer class="SimpleFill" enabled="1" id="{ea5bf479-5533-4832-8adb-c9e699bb4f1b}" locked="0" pass="0">
               <Option type="Map">
                 <Option name="border_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
-                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.282353,0.2941177,1"></Option>
+                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.2823529,0.2941176,1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -22237,7 +22693,7 @@ def my_form_open(dialog, layer, feature):
               <Option type="Map">
                 <Option name="angle" type="QString" value="0"></Option>
                 <Option name="cap_style" type="QString" value="square"></Option>
-                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.282353,0.2941177,1"></Option>
+                <Option name="color" type="QString" value="183,72,75,255,rgb:0.7176471,0.2823529,0.2941176,1"></Option>
                 <Option name="horizontal_anchor_point" type="QString" value="1"></Option>
                 <Option name="joinstyle" type="QString" value="bevel"></Option>
                 <Option name="name" type="QString" value="diamond"></Option>
@@ -22361,7 +22817,7 @@ def my_form_open(dialog, layer, feature):
       <layerOpacity>1</layerOpacity>
       <SingleCategoryDiagramRenderer attributeLegend="1" diagramType="Histogram">
         <DiagramCategory backgroundAlpha="255" backgroundColor="#ffffff" barWidth="5" diagramOrientation="Up" direction="0" enabled="0" height="15" labelPlacementMethod="XHeight" lineSizeScale="3x:0,0,0,0,0,0" lineSizeType="MM" maxScaleDenominator="1e+08" minScaleDenominator="0" minimumSize="0" opacity="1" penAlpha="255" penColor="#000000" penWidth="0" rotationOffset="270" scaleBasedVisibility="0" scaleDependency="Area" showAxis="1" sizeScale="3x:0,0,0,0,0,0" sizeType="MM" spacing="5" spacingUnit="MM" spacingUnitScale="3x:0,0,0,0,0,0" stackedDiagramMode="Horizontal" stackedDiagramSpacing="0" stackedDiagramSpacingUnit="MM" stackedDiagramSpacingUnitScale="3x:0,0,0,0,0,0" width="15">
-          <fontProperties bold="0" description="MS Shell Dlg 2,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
+          <fontProperties bold="0" description="MS Shell Dlg 2,8,-1,5,50,0,0,0,0,0" italic="0" strikethrough="0" style="" underline="0"></fontProperties>
           <attribute color="#000000" colorOpacity="1" field="" label=""></attribute>
           <axisSymbol>
             <symbol alpha="1" clip_to_extent="1" force_rhr="0" frame_rate="10" is_animated="0" name="" type="line">
@@ -22544,15 +23000,15 @@ def my_form_open(dialog, layer, feature):
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
         <xmin>-107.548583984375</xmin>
-        <ymin>-52.89849853515625</ymin>
-        <xmax>191.892364501953125</xmax>
-        <ymax>80.28023529052734375</ymax>
+        <ymin>-52.89849853515629974</ymin>
+        <xmax>191.89236450195301131</xmax>
+        <ymax>80.28023529052730112</ymax>
       </extent>
       <wgs84extent>
         <xmin>-107.548583984375</xmin>
-        <ymin>-52.89849853515625</ymin>
-        <xmax>191.892364501953125</xmax>
-        <ymax>80.28023529052734375</ymax>
+        <ymin>-52.89849853515629974</ymin>
+        <xmax>191.89236450195301131</xmax>
+        <ymax>80.28023529052730112</ymax>
       </wgs84extent>
       <id>waters_ffcf32fb_950c_400d_8017_4af9540e8da3</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=waters</datasource>
@@ -22708,7 +23164,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="161,64,98,255,rgb:0.6313726,0.2509804,0.3843137,1"></Option>
+                <Option name="outline_color" type="QString" value="161,64,98,255,rgb:0.6313725,0.2509804,0.3843137,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_unit" type="QString" value="MM"></Option>
@@ -22744,7 +23200,7 @@ def my_form_open(dialog, layer, feature):
                 <Option name="offset" type="QString" value="0,0"></Option>
                 <Option name="offset_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
                 <Option name="offset_unit" type="QString" value="MM"></Option>
-                <Option name="outline_color" type="QString" value="161,64,98,255,rgb:0.6313726,0.2509804,0.3843137,1"></Option>
+                <Option name="outline_color" type="QString" value="161,64,98,255,rgb:0.6313725,0.2509804,0.3843137,1"></Option>
                 <Option name="outline_style" type="QString" value="solid"></Option>
                 <Option name="outline_width" type="QString" value="0.2"></Option>
                 <Option name="outline_width_map_unit_scale" type="QString" value="3x:0,0,0,0,0,0"></Option>
@@ -22848,7 +23304,7 @@ def my_form_open(dialog, layer, feature):
       </selection>
       <labeling type="simple">
         <settings calloutType="simple">
-          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="400" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
+          <text-style allowHtml="0" blendMode="0" capitalization="0" fieldName="Name" fontFamily="Open Sans" fontItalic="0" fontKerning="1" fontLetterSpacing="0" fontSize="10" fontSizeMapUnitScale="3x:0,0,0,0,0,0" fontSizeUnit="Point" fontStrikeout="0" fontUnderline="0" fontWeight="50" fontWordSpacing="0" forcedBold="0" forcedItalic="0" isExpression="0" legendString="Aa" multilineHeight="1" multilineHeightUnit="Percentage" namedStyle="Regular" previewBkgrdColor="255,255,255,255,rgb:1,1,1,1" stretchFactor="100" tabStopDistance="80" tabStopDistanceMapUnitScale="3x:0,0,0,0,0,0" tabStopDistanceUnit="Point" textColor="50,50,50,255,rgb:0.1960784,0.1960784,0.1960784,1" textOpacity="1" textOrientation="horizontal" useSubstitutions="0">
             <families>
               <family name="Open Sans"></family>
               <family name="Liberation Sans"></family>
@@ -23121,6 +23577,8 @@ def my_form_open(dialog, layer, feature):
     <layer id="labeled_modified_f1bee433_0da5_4286_a023_8bc3684796ce"></layer>
     <layer id="titanbane_modified_cb96a67a_9f1f_4740_b753_81347fbc68e8"></layer>
     <layer id="titanbane_labels_modified_ca6d8aba_88d9_4385_b512_e7e4aa81d5d4"></layer>
+    <layer id="Ire_of_the_Storm_modified_e5c9a4a7_a4c3_40c0_8ce5_49348084857b"></layer>
+    <layer id="avistan_modified_3ab3ac11_843a_4303_b495_f5c97e91ba8b"></layer>
   </layerorder>
   <labelEngineSettings></labelEngineSettings>
   <properties>
@@ -23133,11 +23591,11 @@ def my_form_open(dialog, layer, feature):
         <value>deserts_9150d2d1_48b2_4d7d_a371_5619c41aef06</value>
         <value>swamps_7de1642c_924d_48e3_b1cd_1a0cc345f514</value>
       </AvoidIntersectionsList>
-      <AvoidIntersectionsMode type="int">0</AvoidIntersectionsMode>
-      <TopologicalEditing type="int">1</TopologicalEditing>
+      <AvoidIntersectionsMode type="int">1</AvoidIntersectionsMode>
+      <TopologicalEditing type="int">0</TopologicalEditing>
     </Digitizing>
     <FreehandRasterGeoreferencer>
-      <browseRasterDir type="QString">E:/workspace-paizo/mapping/sources/images/avistan/saga lands/varisia/Shattered Star</browseRasterDir>
+      <browseRasterDir type="QString">E:/workspace-paizo/mapping/sources/images/garund/mwangi expanse</browseRasterDir>
     </FreehandRasterGeoreferencer>
     <Gui>
       <CanvasColorBluePart type="int">245</CanvasColorBluePart>
@@ -23405,7 +23863,7 @@ def my_form_open(dialog, layer, feature):
   <Sensors></Sensors>
   <ProjectViewSettings UseProjectScales="0" rotation="0">
     <Scales></Scales>
-    <DefaultViewExtent xmax="59.55258522790622777" xmin="39.05756046819525551" ymax="-17.10274781421288992" ymin="-29.1125712402855612">
+    <DefaultViewExtent xmax="4.42354811141936466" xmin="-48.95199540596864551" ymax="65.12314697988115597" ymin="20.78420710915791503">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
         <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -23470,7 +23928,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="land_48aa2040_f185_4ba4_a64a_5b3a275264c1" destinationLayerName="land" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-paizo/mapping-data/mapping-data.gpkg|layername=land">
+  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="">
     <timeStampFields></timeStampFields>
   </ProjectGpsSettings>
 </qgis>

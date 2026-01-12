@@ -1,10 +1,13 @@
 <PAMDataset>
+  <Metadata domain="IMAGE_STRUCTURE">
+    <MDI key="COMPRESSION_REVERSIBILITY">LOSSY</MDI>
+  </Metadata>
   <PAMRasterBand band="1">
     <Metadata>
       <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
-      <MDI key="STATISTICS_MINIMUM">61</MDI>
       <MDI key="STATISTICS_MAXIMUM">253</MDI>
       <MDI key="STATISTICS_MEAN">173.94704861111</MDI>
+      <MDI key="STATISTICS_MINIMUM">61</MDI>
       <MDI key="STATISTICS_STDDEV">37.605137203163</MDI>
       <MDI key="STATISTICS_VALID_PERCENT">56.49</MDI>
     </Metadata>
@@ -12,9 +15,9 @@
   <PAMRasterBand band="2">
     <Metadata>
       <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
-      <MDI key="STATISTICS_MINIMUM">46</MDI>
       <MDI key="STATISTICS_MAXIMUM">250</MDI>
       <MDI key="STATISTICS_MEAN">183.02231302126</MDI>
+      <MDI key="STATISTICS_MINIMUM">46</MDI>
       <MDI key="STATISTICS_STDDEV">31.524536446194</MDI>
       <MDI key="STATISTICS_VALID_PERCENT">56.49</MDI>
     </Metadata>
@@ -22,11 +25,21 @@
   <PAMRasterBand band="3">
     <Metadata>
       <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
-      <MDI key="STATISTICS_MINIMUM">29</MDI>
       <MDI key="STATISTICS_MAXIMUM">255</MDI>
       <MDI key="STATISTICS_MEAN">162.24970994754</MDI>
+      <MDI key="STATISTICS_MINIMUM">29</MDI>
       <MDI key="STATISTICS_STDDEV">47.805787444155</MDI>
       <MDI key="STATISTICS_VALID_PERCENT">56.49</MDI>
+    </Metadata>
+  </PAMRasterBand>
+  <PAMRasterBand band="4">
+    <Metadata>
+      <MDI key="STATISTICS_APPROXIMATE">YES</MDI>
+      <MDI key="STATISTICS_MINIMUM">0</MDI>
+      <MDI key="STATISTICS_MAXIMUM">255</MDI>
+      <MDI key="STATISTICS_MEAN">144.00390639842</MDI>
+      <MDI key="STATISTICS_STDDEV">126.40696915735</MDI>
+      <MDI key="STATISTICS_VALID_PERCENT">100</MDI>
     </Metadata>
   </PAMRasterBand>
 </PAMDataset>
