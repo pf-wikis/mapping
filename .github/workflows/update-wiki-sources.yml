@@ -30,7 +30,7 @@ jobs:
           java-version: '21'
           cache: 'maven'
       - name: Download changes
-        with:
+        env:
           ANTI_PROTECTION_SECRET: ${{ secrets.ANTI_PROTECTION_SECRET }}
         run: |
           cd wiki-downloader
