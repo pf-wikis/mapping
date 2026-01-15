@@ -3,8 +3,12 @@ package io.github.pfwikis;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.lang3.StringUtils;
@@ -38,8 +42,13 @@ public class Helper {
         return name;
     }
 
-    public static <T> T read(String url, JavaType type) throws MalformedURLException, IOException {
-        var tree = Jackson.get().readTree(new URL(url));
+    public static <T> T read(String url, String antiProtectionSecret, JavaType type) throws IOException, URISyntaxException, InterruptedException {
+    	HttpClient httpClient = HttpClient.newHttpClient();
+    	HttpRequest request = HttpRequest.newBuilder()
+    		.header("User-Agent", antiProtectionSecret)
+    		.uri(new URI(url)).build();
+    	var resp = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
+        var tree = Jackson.get().readTree(resp.body());
         stripHTML(tree);
         return Jackson.get().treeToValue(tree, type);
     }

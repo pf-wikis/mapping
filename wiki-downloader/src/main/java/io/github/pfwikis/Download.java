@@ -2,7 +2,6 @@ package io.github.pfwikis;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -12,10 +11,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.pfwikis.model.Location;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Geometry;
+import io.github.pfwikis.model.Location;
 import io.github.pfwikis.model.Properties;
 import io.github.pfwikis.model.Response;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +22,13 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class Download {
 	public static void main(String... args) throws Exception {
+		String secret = null;
+		if(args != null && args.length>=1)
+			secret = args[0];
+
 		new Download(
 				false,
+				secret,
 				Helper.buildQuery("https://pathfinderwiki.com/w/api.php",
 			            "action","ask",
 			            "format","json",
@@ -42,6 +46,7 @@ public class Download {
 		).download();
 		new Download(
 				true,
+				secret,
 				Helper.buildQuery("https://pathfinderwiki.com/w/api.php",
 			            "action","ask",
 			            "format","json",
@@ -63,9 +68,10 @@ public class Download {
 	}
 
 	private final boolean cityCalculations;
+	private final String antiProtectionSecret;
 	private final String query;
 
-	public void download() throws MalformedURLException, IOException {
+	public void download() throws Exception {
 		var file = new File("../sources/"+(cityCalculations?"cities":"locations")+".geojson");
 		var oldFeatures = Jackson.get().readValue(file, FeatureCollection.class);
 		
@@ -76,6 +82,7 @@ public class Download {
 			
 			Response<Location> array = Helper.read(
 					query + URLEncoder.encode("|offset=" + offset, StandardCharsets.UTF_8),
+					antiProtectionSecret,
 					jType
 			);
 			locations.addAll(array.getQuery().getResults());

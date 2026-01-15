@@ -30,10 +30,12 @@ jobs:
           java-version: '21'
           cache: 'maven'
       - name: Download changes
+        with:
+          ANTI_PROTECTION_SECRET: ${{ secrets.ANTI_PROTECTION_SECRET }}
         run: |
           cd wiki-downloader
           mvn -B compile
-          mvn -B exec:java -Dexec.mainClass="io.github.pfwikis.Download"
+          mvn -B exec:java -Dexec.mainClass="io.github.pfwikis.Download" -Dexec.args="$ANTI_PROTECTION_SECRET"
       - name: Push changes
         id: push
         uses: EndBug/add-and-commit@v9
