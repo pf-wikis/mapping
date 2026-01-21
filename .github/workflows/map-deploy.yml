@@ -38,5 +38,4 @@ jobs:
             docker stop pf-map-compiler || true
             docker build -t pf-wikis/mapping -f build/Dockerfile .
             docker run --name pf-map-compiler --rm -v /wikis/volumes/map:/w/output pf-wikis/mapping
-            docker restart page_cache
             docker container prune -f
