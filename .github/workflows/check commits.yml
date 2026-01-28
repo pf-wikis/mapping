@@ -23,6 +23,7 @@ jobs:
       run: |
         dvc remote modify --local webdav password "${{ secrets.WEBDAVPW }}"
         dvc remote modify --local webdav custom_auth_header "anti-protection: ${{ secrets.ANTI_PROTECTION_SECRET }}"
+        dvc config -l
     - name: Check if dvc pull works
       run: |
         dvc pull
