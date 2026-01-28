@@ -2,13 +2,15 @@ FROM qgis/qgis:3.44
 
 RUN <<EOF
   apt-get update
-  apt-get install -y mmv openjdk-21-jdk maven jq bc gcc g++ make libsqlite3-dev zlib1g-dev curl
+  apt-get install -y mmv openjdk-21-jdk maven jq bc gcc g++ make libsqlite3-dev zlib1g-dev curl unzip npm
   rm -rf /var/lib/apt/lists/*
 EOF
 RUN <<EOF
-  curl -o- https://fnm.vercel.app/install | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+  # in lieu of restarting the shell
+  \. "$HOME/.nvm/nvm.sh"
   # Download and install Node.js:
-  fnm install 24
+  nvm install 24
 EOF
 RUN <<EOF
   git clone https://github.com/felt/tippecanoe.git
