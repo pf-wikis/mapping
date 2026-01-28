@@ -16,7 +16,7 @@ RUN curl -L https://github.com/koordinates/kart/releases/download/v0.16.1/kart_0
 	&& dpkg -i kart.deb \
 	&& rm -f kart.deb
 
-ENV QT_QPA_PLATFORM offscreen
+ENV QT_QPA_PLATFORM=offscreen
 
 USER 1000:1000
 
