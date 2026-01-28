@@ -1,17 +1,22 @@
 FROM qgis/qgis:3.44
-
 RUN <<EOF
   apt-get update
-  apt-get install -y mmv openjdk-21-jdk maven jq bc gcc g++ make libsqlite3-dev zlib1g-dev curl unzip npm
+  apt-get install -y mmv openjdk-21-jdk maven jq bc gcc g++ make libsqlite3-dev zlib1g-dev curl
   rm -rf /var/lib/apt/lists/*
 EOF
+ENV NVM_DIR=/usr/local/nvm
+ENV NODE_VERSION=v24.13.0
 RUN <<EOF
+	mkdir -p $NVM_DIR
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-  # in lieu of restarting the shell
-  \. "$HOME/.nvm/nvm.sh"
-  # Download and install Node.js:
-  nvm install 24
+  ls -lha $NVM_DIR
+  \. "$NVM_DIR/nvm.sh"
+  nvm install $NODE_VERSION
+  nvm use --delete-prefix $NODE_VERSION
 EOF
+ENV NODE_PATH=$NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
+ENV PATH=$NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
+
 RUN <<EOF
   git clone https://github.com/felt/tippecanoe.git
   cd tippecanoe
