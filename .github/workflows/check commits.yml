@@ -20,7 +20,9 @@ jobs:
     - name: Install dvc
       run: sudo snap install dvc --classic
     - name: Setup dvc
-      run: dvc remote modify --local webdav password "${{ secrets.WEBDAVPW }}"
+      run: |
+        dvc remote modify --local webdav password "${{ secrets.WEBDAVPW }}"
+        dvc remote modify --local webdav custom_auth_header "anti-protection: ${{ secrets.ANTI_PROTECTION_SECRET }}"
     - name: Check if dvc pull works
       run: |
         dvc pull
