@@ -1,5 +1,5 @@
 import { PluginOption, UserConfig } from 'vite';
-import { compression } from 'vite-plugin-compression2'
+import { compression, defineAlgorithm } from 'vite-plugin-compression2'
 import style from './src/style.ts';
 import generateFile from 'vite-plugin-generate-file';
 
@@ -33,11 +33,13 @@ const config:UserConfig = {
       data: style
     }]),
     compression({
-      include: /\.(js|mjs|json|css|html|pbf)$/i,
+      include: /\..*$/i,
       threshold: 0,
-      compressionOptions: {
-        level: 9
-      }
+      algorithms: [
+        defineAlgorithm('gzip', { level: 9 }),
+        defineAlgorithm('brotliCompress'),
+        defineAlgorithm('zstandard'),
+      ]
     })
   ],
   build: {
