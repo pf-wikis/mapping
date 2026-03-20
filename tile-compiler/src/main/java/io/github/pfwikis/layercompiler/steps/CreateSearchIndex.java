@@ -92,14 +92,15 @@ public class CreateSearchIndex extends LCStep {
     	LCContent.MAPPER.writeValue(new File(this.getCtx().getOptions().targetDirectory(), "search.json"), res);
     	var t = this.getCtx().getOptions().targetDirectory();
     	try(
-    			var raw = new FileOutputStream(new File(t, "search.json"));
-    			var gz = new GZIPOutputStream(new FileOutputStream(new File(t, "search.json.gz")));
-    			var out = new TeeOutputStream(raw, gz)
-    	) {
-    		LCContent.MAPPER.writeValue(out, res);
-    	}
+    			try (var raw = new FileOutputStream(new File(t, "search.json"))) {
+    				    			var gz = new GZIPOutputStream(new FileOutputStream(new File(t, "search.json.gz")));
+    				    			var out = new TeeOutputStream(raw, gz)
+    				    	) {
+    				    		LCContent.MAPPER.writeValue(out, res);
+    				    	}
     	
-    	return LCContent.empty();
+    				    	return LCContent.empty();
+    			}
     }
 
 	private double[] toArray(BBox box) {
