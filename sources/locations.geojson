@@ -813,7 +813,7 @@
     "properties" : {
       "labels" : "Bank of Absalom",
       "link" : "https://pathfinderwiki.com/wiki/Bank_of_Absalom",
-      "modificationDate" : 1774174059.000000000,
+      "modificationDate" : 1774108402.000000000,
       "type" : "bank",
       "articleLength" : 0
     },
@@ -1372,19 +1372,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Blackfingers Temple",
-      "link" : "https://pathfinderwiki.com/wiki/Blackfingers_Temple",
-      "modificationDate" : 1774172638.000000000,
-      "type" : "temple",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -0.237496, 30.89223 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Blackraven Hall",
       "link" : "https://pathfinderwiki.com/wiki/Blackraven_Hall",
       "modificationDate" : 1714352584.000000000,
@@ -1505,6 +1492,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -22.02755, 13.69334 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Bloody Doll",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "shipwreck",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -21.87993, 13.75224 ]
     }
   }, {
     "type" : "Feature",
@@ -2389,6 +2389,20 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Cayden's Arm",
+      "link" : "https://pathfinderwiki.com/wiki/Cayden's_Arm",
+      "modificationDate" : 1711735648.000000000,
+      "type" : "peninsula",
+      "articleLength" : 500,
+      "text" : "<p><b>Cayden's Arm</b> is a hilly cape on <a href=\"https://pathfinderwiki.com/wiki/Taldas_Isle\">Taldas Isle</a> in the <a href=\"https://pathfinderwiki.com/wiki/Shackles\">Shackles</a> near the town of <a href=\"https://pathfinderwiki.com/wiki/Little_Oppara\">Little Oppara</a>. It once was a destination for the citizens of the nearby settlement, who came there to have fancy dress parties and picnics. That changed when the cape was claimed by a <a href=\"https://pathfinderwiki.com/wiki/Minotaur\">minotaur</a> during one of these extravagant holidays. The creature was eventually beaten back to its lair by the <a href=\"https://pathfinderwiki.com/wiki/Pirate_lord\">pirate lord</a> <a href=\"https://pathfinderwiki.com/wiki/Petrina_Maxeme\">Petrina Maxeme</a>, but it is feared that the minotaur might soon reappear to once again claim the territory.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -28.03283, 17.09609 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Cayden's Hall",
       "link" : "https://pathfinderwiki.com/wiki/Cayden's_Hall",
       "modificationDate" : 1774173171.000000000,
@@ -3074,48 +3088,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -8.098879, 49.91932 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Corveilles",
-      "link" : "https://pathfinderwiki.com/wiki/Corveilles",
-      "modificationDate" : 1720482077.000000000,
-      "type" : "city-ruins",
-      "articleLength" : 200,
-      "text" : "<p><b>Corveilles</b>, sometimes spelled <b>Corveiles</b>, was a large city in the <a href=\"https://pathfinderwiki.com/wiki/Thassilon\">Thassilonian</a> kingdom of <a href=\"https://pathfinderwiki.com/wiki/Cyrusian\">Cyrusian</a>. As of <a href=\"https://pathfinderwiki.com/wiki/4707_AR\">4707 AR</a>, its location had not been rediscovered.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -30.7703, 49.9991 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Counting House",
-      "link" : "https://pathfinderwiki.com/wiki/Counting_House",
-      "modificationDate" : 1725302091.000000000,
-      "type" : "civic-building",
-      "articleLength" : 700,
-      "text" : "<p>The squat building of the <b>Counting House</b> served as the first moneylender in <a href=\"https://pathfinderwiki.com/wiki/Kintargo\">Kintargo</a> and is located in the prosperous district known as <a href=\"https://pathfinderwiki.com/wiki/The_Greens\">The Greens</a>. As of <a href=\"https://pathfinderwiki.com/wiki/4724_AR\">4724 AR</a>, it now serves as a meeting hall for <a href=\"https://pathfinderwiki.com/wiki/Silver_Council\">Silver Council</a> meetings with members of Kintargo's aristocracy.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -23.07638, 39.06683 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Courtesan and Unicorn",
-      "link" : "https://pathfinderwiki.com/wiki/Courtesan_and_Unicorn",
-      "modificationDate" : 1719013058.000000000,
-      "type" : "brothel",
-      "articleLength" : 400,
-      "text" : "<p>The <b>Courtesan and Unicorn</b> is a combination <a href=\"https://pathfinderwiki.com/wiki/Harrow\">harrow</a> parlor and brothel run by <a href=\"https://pathfinderwiki.com/wiki/Vanyavi_Czanji\">Vanyavi Czanji</a> in the <a href=\"https://pathfinderwiki.com/wiki/Lowcleft\">Lowcleft</a> district of <a href=\"https://pathfinderwiki.com/wiki/Magnimar\">Magnimar</a>. The harrow readings are often performed by non-<a href=\"https://pathfinderwiki.com/wiki/Varisian\">Varisians</a> dressed up as a caricature of true members of this ethnicity. <a href=\"https://pathfinderwiki.com/wiki/Shoanti\">Shoanti</a> guards fanatically loyal to Czanji monitor the premises. Their pay consists of credit with the prostitutes.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -28.0205, 43.92545 ]
     }
   }, {
     "type" : "Feature",
@@ -4615,6 +4587,34 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Everrest",
+      "link" : "https://pathfinderwiki.com/wiki/Everrest",
+      "modificationDate" : 1745879062.000000000,
+      "type" : "ruins",
+      "articleLength" : 400,
+      "text" : "<p><b>Everrest</b> is the ruins of a <a href=\"https://pathfinderwiki.com/wiki/Chelaxian\">Chelaxian</a> manor house built in the <a href=\"https://pathfinderwiki.com/wiki/Nesmian_Plains\">Nesmian Plains</a> of <a href=\"https://pathfinderwiki.com/wiki/Nirmathas\">Nirmathas</a> by <a href=\"https://pathfinderwiki.com/wiki/House_Arvanxi\">House Arvanxi</a> before Cheliax lost its claim to <a href=\"https://pathfinderwiki.com/wiki/Molthune\">Molthune</a> and Nirmathas. Abandoned by House Arvanxi since the <a href=\"https://pathfinderwiki.com/wiki/Chelaxian_Civil_War\">Chelaxian Civil War</a>, the current occupants of the ruins are exiles of the Thornscar <a href=\"https://pathfinderwiki.com/wiki/Orc\">orc</a> tribe, led by Krov Thirdmother, a fanatical follower of <a href=\"https://pathfinderwiki.com/wiki/Lamashtu\">Lamashtu</a>.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -14.68235, 41.22668 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Eyes of the Bronze Man",
+      "link" : "https://pathfinderwiki.com/wiki/Eyes_of_the_Bronze_Man",
+      "modificationDate" : 1727669671.000000000,
+      "type" : "monument",
+      "articleLength" : 500,
+      "text" : "<p>The <b>Eyes of the Bronze Man</b> are part of the <b>Face of the Bronze Man</b>, a bronze-plated monument to <a href=\"https://pathfinderwiki.com/wiki/Pharaoh\">Pharaoh</a> <a href=\"https://pathfinderwiki.com/wiki/Djederet_I\">Djederet I</a> <i>(died <a href=\"https://pathfinderwiki.com/wiki/-1653_AR\">-1653 AR</a>)</i> that is shaped in his likeness. It is located in southern <a href=\"https://pathfinderwiki.com/wiki/Osirion\">Osirion's</a> <a href=\"https://pathfinderwiki.com/wiki/Brazen_Peaks\">Brazen Peaks</a>. Each of the eyes is an entrance to a played-out mine, one of tin and the other of copper, which legend tells were important to the development of bronzeworking in <a href=\"https://pathfinderwiki.com/wiki/Human\">humanity's</a> distant past.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -3.69645, 24.41247 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Eyes of the Bronze Man",
       "link" : "https://pathfinderwiki.com/wiki/Eyes_of_the_Bronze_Man",
       "modificationDate" : 1727669671.000000000,
@@ -4639,6 +4639,34 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -28.01846, 43.93318 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Eyes of the Hawk",
+      "link" : "https://pathfinderwiki.com/wiki/Eyes_of_the_Hawk_(monument)",
+      "modificationDate" : 1719009672.000000000,
+      "type" : "monument",
+      "articleLength" : 400,
+      "text" : "<p><b>Eyes of the Hawk</b> is a monument in the <a href=\"https://pathfinderwiki.com/wiki/Dockway\">Dockway</a> district of <a href=\"https://pathfinderwiki.com/wiki/Magnimar\">Magnimar</a>. It depicts the <a href=\"https://pathfinderwiki.com/wiki/Eyes_of_the_Hawk\">Eyes of the Hawk</a> adventuring party and its twin <a href=\"https://pathfinderwiki.com/wiki/Wizard\">wizards</a> <a href=\"https://pathfinderwiki.com/wiki/Cailyn_Vanderale\">Cailyn</a> and <a href=\"https://pathfinderwiki.com/wiki/Romre_Vanderale\">Romre Vanderale</a> defeating the <a href=\"https://pathfinderwiki.com/wiki/Spider\">spider-like</a> <a href=\"https://pathfinderwiki.com/wiki/Shriezyx\">shriezyx</a> in <a href=\"https://pathfinderwiki.com/wiki/4623_AR\">4623 AR</a>. Local lore suggests mediating here grants a mystical advantage when injuring <a href=\"https://pathfinderwiki.com/wiki/Aberration\">aberrant</a> creatures.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -28.01846, 43.93318 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "F & M's Exotic Meats",
+      "link" : "https://pathfinderwiki.com/wiki/F_&_M's_Exotic_Meats",
+      "modificationDate" : 1723999102.000000000,
+      "type" : "shop",
+      "articleLength" : 800,
+      "text" : "<p><b>F &amp; M's Exotic Meats</b>, located in the <a href=\"https://pathfinderwiki.com/wiki/Low_Eastwind\">Low Eastwind</a> district, is a unique butcher's shop in the <a href=\"https://pathfinderwiki.com/wiki/Pirate\">pirate</a> capital of <a href=\"https://pathfinderwiki.com/wiki/Port_Peril\">Port Peril</a>.</p>\n<p>F &amp; M's Exotic Meats is run by the odd pairing of <a href=\"https://pathfinderwiki.com/wiki/Mizrah\">Mizrah</a>, an <a href=\"https://pathfinderwiki.com/wiki/Aiuvarin\">aiuvarin</a> <a href=\"https://pathfinderwiki.com/wiki/Cleric\">cleric</a> of the <a href=\"https://pathfinderwiki.com/wiki/Goddess\">goddess</a> of invention <a href=\"https://pathfinderwiki.com/wiki/Brigh\">Brigh</a>, and <a href=\"https://pathfinderwiki.com/wiki/Festerscale\">Festerscale</a>, a <a href=\"https://pathfinderwiki.com/wiki/Kobold\">kobold</a>. With their unique <a href=\"https://pathfinderwiki.com/wiki/Magic\">magical</a> storerooms that keep the meat cool, they can provide fresh meat to the people of Port Peril despite the tropical heat. They provide meat for a range of customers, from expensive prime beef and outrageous exotic meats to basic sausages.</p>\n<p>Fewer people know that F &amp; M's Exotic Meats also disposes of unwanted corpses, typically by surreptitiously incorporating them into one of their other clients' meals.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -25.84526, 17.83999 ]
     }
   }, {
     "type" : "Feature",
@@ -5331,34 +5359,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Fort Scourbone",
-      "link" : "https://pathfinderwiki.com/wiki/Fort_Scourbone",
-      "modificationDate" : 1728448137.000000000,
-      "type" : "castle",
-      "articleLength" : 200,
-      "text" : "<p><b>Fort Scourbone</b> is a location in northwestern <a href=\"https://pathfinderwiki.com/wiki/Geb\">Geb</a> about which little is known. It is located on the western edge of the <a href=\"https://pathfinderwiki.com/wiki/Shattered_Range\">Shattered Range</a> near the <a href=\"https://pathfinderwiki.com/wiki/Mana_Wastes\">Mana Wastes</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -8.121232, 17.83559 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Fort Serenko",
-      "link" : "https://pathfinderwiki.com/wiki/Fort_Serenko",
-      "modificationDate" : 1758568828.000000000,
-      "type" : "castle",
-      "articleLength" : 500,
-      "text" : "<p><b>Fort Serenko</b> is an abandoned <a href=\"https://pathfinderwiki.com/wiki/Wood\">wooden</a> fortification formerly used to defend the southern border of <a href=\"https://pathfinderwiki.com/wiki/Rostland\">Rostland</a> in <a href=\"https://pathfinderwiki.com/wiki/Brevoy\">Brevoy</a>. It is located along the <a href=\"https://pathfinderwiki.com/wiki/Shrike_River\">Shrike River</a>, upriver from the <a href=\"https://pathfinderwiki.com/wiki/Crooked_Falls\">Crooked Falls</a>.</p>\n<p>This fortification has stood for years, but with the growing tensions between <a href=\"https://pathfinderwiki.com/wiki/Rostland\">Rostland</a> and <a href=\"https://pathfinderwiki.com/wiki/Issia\">Issia</a>, the soldiers and scouts stationed here have been recalled to <a href=\"https://pathfinderwiki.com/wiki/Restov\">Restov</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 10.62521, 47.87235 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Fort Stonejaw",
       "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
       "modificationDate" : 1773837687.000000000,
@@ -5368,34 +5368,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ 2.490517, 24.30857 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Fort Trevalay",
-      "link" : "https://pathfinderwiki.com/wiki/Fort_Trevalay",
-      "modificationDate" : 1724207306.000000000,
-      "type" : "castle",
-      "articleLength" : 1000,
-      "text" : "<p><b>Fort Trevalay</b> is the only fortress that the <a href=\"https://pathfinderwiki.com/wiki/Chernasardo_Rangers\">Chernasardo Rangers</a> built entirely themselves. It is located in the <a href=\"https://pathfinderwiki.com/wiki/Fangwood\">Southern Fangwood</a> and is constructed atop a massive stone column in the center of a spacious and deep gorge formed by the Sixjaws River. Fort Trevalay was built in <a href=\"https://pathfinderwiki.com/wiki/4687_AR\">4687 AR</a> of the same light gray stone that it stands upon and is accessible only via rope bridges. It was designed from the start to fully meet the rebels' needs. It features a training hall, war room, and forge as well as many other necessary accommodations. It is the most defensible of the Chernasardo Rangers' forts. The buildings within the fort are 10 feet high, except for the main tower which rises to a height of 45 feet. The stone curtain wall around the fort is 12 feet high and rises from the edge of the stone pillar upon which the fort is built.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -14.22416, 42.90886 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Fort Ursoss",
-      "link" : "https://pathfinderwiki.com/wiki/Fort_Ursoss",
-      "modificationDate" : 1766746126.000000000,
-      "type" : "castle",
-      "articleLength" : 500,
-      "text" : "<p><b>Fort Ursoss</b> is an abandoned fort on the south bank of the <a href=\"https://pathfinderwiki.com/wiki/Marideth_River\">Marideth River</a> in the interior of the <a href=\"https://pathfinderwiki.com/wiki/Fangwood\">Fangwood</a>. The swampy terrain makes travel on foot difficult and serves as a defensive feature. The fort dates back to the <a href=\"https://pathfinderwiki.com/wiki/Shining_Crusade\">Shining Crusade</a> era and was restored by <a href=\"https://pathfinderwiki.com/wiki/Cheliax\">Cheliax</a> after its independence. <a href=\"https://pathfinderwiki.com/wiki/Nirmathi\">Nirmathi</a> soldiers burned the fort to prevent it from falling into <a href=\"https://pathfinderwiki.com/wiki/Molthune\">Molthune's</a> hands, though the stone basement still stands.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -13.13917, 42.58964 ]
     }
   }, {
     "type" : "Feature",
@@ -5793,6 +5765,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Ghol-Gan Ruin",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "ruin",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -22.85118, 12.4277 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Ghorvaul's Crossing",
       "link" : "https://pathfinderwiki.com/wiki/Ghorvaul's_Crossing",
       "modificationDate" : 1711589675.000000000,
@@ -6082,19 +6067,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Gorumarrux",
-      "link" : "https://pathfinderwiki.com/wiki/Gorumarrux",
-      "modificationDate" : 1774171622.000000000,
-      "type" : "arena",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -0.239584, 30.88961 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Gozarin Necropolis",
       "link" : "https://pathfinderwiki.com/wiki/Gozarin_Necropolis",
       "modificationDate" : 1746916624.000000000,
@@ -6149,6 +6121,33 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Grand Dance Hall of Kortos",
+      "link" : "https://pathfinderwiki.com/wiki/Grand_Dance_Hall_of_Kortos",
+      "modificationDate" : 1773996892.000000000,
+      "type" : "theater",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.233044, 30.88105 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Grand Exchange",
+      "link" : "https://pathfinderwiki.com/wiki/Grand_Exchange",
+      "modificationDate" : 1727910453.000000000,
+      "type" : "bank",
+      "articleLength" : 600,
+      "text" : "<p>The <b>Grand Exchange</b> is the largest money exchange in the <a href=\"https://pathfinderwiki.com/wiki/Andoran\">Andoren</a> capital of <a href=\"https://pathfinderwiki.com/wiki/Almas\">Almas</a>. Located in the <a href=\"https://pathfinderwiki.com/wiki/East_Hill\">East Hill neighborhood</a> of the mercantile <a href=\"https://pathfinderwiki.com/wiki/Portside_(Almas_district)\">Portside district</a>, it stands close to <a href=\"https://pathfinderwiki.com/wiki/Godsgate\">Godsgate</a>, and is home to agents and currency exchanges from nearly every nation of the <a href=\"https://pathfinderwiki.com/wiki/Inner_Sea_region\">Inner Sea region</a>. These factors deal not only in their own currency, but also in information, alliances, and veiled threats. Many <a href=\"https://pathfinderwiki.com/wiki/Adventurer\">adventurers</a> come to the Grand Exchange looking for sponsorship to explore <a href=\"https://pathfinderwiki.com/wiki/Golarion\">Golarion's</a> hidden corners.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -3.042135, 33.75945 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Grand Exchange",
       "link" : "https://pathfinderwiki.com/wiki/Grand_Exchange",
       "modificationDate" : 1727910453.000000000,
@@ -6177,6 +6176,20 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Grand Grounds of the Splendid Statuary",
+      "link" : "https://pathfinderwiki.com/wiki/Grand_Grounds_of_the_Splendid_Statuary",
+      "modificationDate" : 1711741693.000000000,
+      "type" : "shop",
+      "articleLength" : 500,
+      "text" : "<p>The <b>Grand Grounds of the Splendid Statuary</b> is a market and showcase of statuary near Rhuzam, <a href=\"https://pathfinderwiki.com/wiki/Druma\">Druma</a>, that is owned and operated by the <a href=\"https://pathfinderwiki.com/wiki/Dwarf\">dwarven</a> <a href=\"https://pathfinderwiki.com/wiki/Prophets_of_Kalistrade\">Prophet</a> Jurgan Khrest. Khrest has long employed the finest sculptors from across the <a href=\"https://pathfinderwiki.com/wiki/Inner_Sea_region\">Inner Sea region</a> to craft the mundane and <a href=\"https://pathfinderwiki.com/wiki/Magic\">magical</a> works he displays on the grounds, though his expenses have begun to overtake his profits and he has begun resorting to using his sold statues to scry secrets from his fellow prophets.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -4.273510, 40.31127 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Grand Holt",
       "link" : "https://pathfinderwiki.com/wiki/Grand_Holt",
       "modificationDate" : 1766749462.000000000,
@@ -6187,6 +6200,34 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -0.1927994, 30.87220 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Grand Holt",
+      "link" : "https://pathfinderwiki.com/wiki/Grand_Holt",
+      "modificationDate" : 1766749462.000000000,
+      "type" : "plant",
+      "articleLength" : 1000,
+      "text" : "<p>The <b>Grand Holt</b> is a massive, multi-trunked fig <a href=\"https://pathfinderwiki.com/wiki/Tree\">tree</a> located in the <a href=\"https://pathfinderwiki.com/wiki/Green_Ridge\">Green Ridge</a> neighborhood of <a href=\"https://pathfinderwiki.com/wiki/Absalom\">Absalom's</a> <a href=\"https://pathfinderwiki.com/wiki/Eastgate\">Eastgate</a> district. It is the oldest and largest tree on the <a href=\"https://pathfinderwiki.com/wiki/Isle_of_Kortos\">Isle of Kortos</a>, maybe even older than Absalom.</p>\n<p>The tree is tended by a fanatical <a href=\"https://pathfinderwiki.com/wiki/Druid\">druidic</a> sect known as the <a href=\"https://pathfinderwiki.com/wiki/Circle_of_Stones\">Circle of Stones</a>, who also care for <a href=\"https://pathfinderwiki.com/wiki/Iolanthe\">Iolanthe</a>, the <a href=\"https://pathfinderwiki.com/wiki/Immortal\">immortal</a> <a href=\"https://pathfinderwiki.com/wiki/Hamadryad\">dryad queen</a> who lives within it. The Grand Holt has expanded greatly over the millennia of its life, and entire blocks of buildings have been demolished to facilitate its growth. Blights, such as those caused by the Welt and the <a href=\"https://pathfinderwiki.com/wiki/Tyrant%27s_Grasp\">Tyrant's Grasp</a>, have not been able to deter the tree's growth, and in fact seem to cause it to grow stronger. The tree provides a refuge for nature-loving <a href=\"https://pathfinderwiki.com/wiki/Adventurer\">adventurers</a>, who are hired by the Circle of Stones to further Iolanthe's cause within the city and beyond.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.1927994, 30.87220 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Grand Temple of the Peacock Spirit",
+      "link" : "https://pathfinderwiki.com/wiki/Grand_Temple_of_the_Peacock_Spirit",
+      "modificationDate" : 1720481881.000000000,
+      "type" : "temple",
+      "articleLength" : 1100,
+      "text" : "<p></p>\n<p>The <b>Grand Temple of the Peacock Spirit</b>, headquarters of the cult of the <a href=\"https://pathfinderwiki.com/wiki/Peacock_Spirit\">Peacock Spirit</a>, is located on an island in a lake within a hidden valley near the source of the first tributary of the <a href=\"https://pathfinderwiki.com/wiki/Chavali_River\">Chavali River</a>, deep in the <a href=\"https://pathfinderwiki.com/wiki/Kodar_Mountains\">Kodar Mountains</a>.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -23.5181, 50.2884 ]
     }
   }, {
     "type" : "Feature",
@@ -7571,6 +7612,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Inheritor's Forge",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "holy-site",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.4084168, 31.36250 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Inverted Tower",
       "link" : "https://pathfinderwiki.com/wiki/Inverted_Tower",
       "modificationDate" : 1768640654.000000000,
@@ -7627,33 +7681,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Iron Rose",
-      "link" : "https://pathfinderwiki.com/wiki/Iron_Rose",
-      "modificationDate" : 1772830238.000000000,
-      "type" : "castle",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -8.5707, 39.6998 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Iron and Hoof Gate",
-      "link" : "https://pathfinderwiki.com/wiki/Iron_and_Hoof_Gate",
-      "modificationDate" : 1727910605.000000000,
-      "type" : "gate",
-      "articleLength" : 300,
-      "text" : "<p>The <b>Iron and Hoof Gate</b> is the southwestern fortified entrance to the <a href=\"https://pathfinderwiki.com/wiki/Andoren\">Andoren</a> capital of <a href=\"https://pathfinderwiki.com/wiki/Almas\">Almas</a>. It leads directly into the industrial and working class <a href=\"https://pathfinderwiki.com/wiki/Tamuth_District\">Tamuth District</a>, and is wide enough to accommodate both draft animals and large wagons.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -3.078435, 33.75770 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Irrica Estate",
       "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
       "modificationDate" : 1773837687.000000000,
@@ -7663,60 +7690,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -8.643877, 38.29726 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Isle of Arenway",
-      "link" : "https://pathfinderwiki.com/wiki/Isle_of_Arenway",
-      "modificationDate" : 1772038785.000000000,
-      "type" : "island",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 1.269201, 37.26544 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Isle of the Dreamers",
-      "link" : "https://pathfinderwiki.com/wiki/Isle_of_the_Dreamers",
-      "modificationDate" : 1725841627.000000000,
-      "type" : "island",
-      "articleLength" : 400,
-      "text" : "<p>The <b>Isle of the Dreamers</b> is located in the eastern part of <a href=\"https://pathfinderwiki.com/wiki/Lake_Tapipallati\">Lake Tapipallati</a>, off the west-central coast of <a href=\"https://pathfinderwiki.com/wiki/Xopatl\">Xopatl</a>. On this island the veil between the <a href=\"https://pathfinderwiki.com/wiki/Universe\">Universe</a> and the <a href=\"https://pathfinderwiki.com/wiki/Dreamlands\">Dreamlands</a> is particularly thin, allowing easy access to people and for <a href=\"https://pathfinderwiki.com/wiki/Plane\">planar</a> energy to seep through and transform local wildlife into <a href=\"https://pathfinderwiki.com/wiki/Alebrije\">alebrijes</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -102.8275, 14.99028 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Iudeimus Tenement",
-      "link" : "https://pathfinderwiki.com/wiki/Iudeimus_Tenement",
-      "modificationDate" : 1722302374.000000000,
-      "type" : "residence",
-      "articleLength" : 600,
-      "text" : "<p>The <b>Iudeimus Tenement</b> is one of the numerous high-stacked tenement buildings that still litter <a href=\"https://pathfinderwiki.com/wiki/Old_Kintargo\">Old Kintargo</a> and house many of <a href=\"https://pathfinderwiki.com/wiki/Kintargo\">Kintargo's</a> poorer working-class residents. Its residents are nearly equally split between short- and long-term stays.</p>\n<p>Like many such tenement buildings, it is run by a thoroughly disreputable manager, the hateful old crone <a href=\"https://pathfinderwiki.com/wiki/Nurla_Botve\">Nurla Botve</a>. The building is one of the taller ones in Old Kintargo and well built, with a bottom floor made of stone and top two floors made of <a href=\"https://pathfinderwiki.com/wiki/Wood\">wood</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -23.08539, 39.05634 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Ivy Playhouse",
-      "link" : "https://pathfinderwiki.com/wiki/Ivy_Playhouse",
-      "modificationDate" : 1774116747.000000000,
-      "type" : "theater",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -0.263739, 30.90571 ]
     }
   }, {
     "type" : "Feature",
@@ -9510,89 +9483,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Mount Dowama",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Dowama",
-      "modificationDate" : 1719297117.000000000,
-      "type" : "mountain",
-      "articleLength" : 1000,
-      "text" : "<p>The great <b>Mount Dowama</b> towers above the <a href=\"https://pathfinderwiki.com/wiki/Screaming_Jungle\">Screaming Jungle</a> in the <a href=\"https://pathfinderwiki.com/wiki/Mwangi_Expanse\">Mwangi Expanse</a>. Its snowcapped summit is visible through every break in the tree cover and the jungle's natives revere it as a <a href=\"https://pathfinderwiki.com/wiki/Holy\">holy</a> place. Foreigners, meanwhile, often see the mountain as a challenge to be climbed and reach the summit. These clashing viewpoints have led to cold diplomatic relations and other interactions between the two groups.</p>\n<p>It is located on the south-eastern side of the jungle and access to it is extremely difficult. Legends suggest that the ruins of the <a href=\"https://pathfinderwiki.com/wiki/Shory_Empire\">Shory Empire</a> city of <a href=\"https://pathfinderwiki.com/wiki/Ulduvai\">Ulduvai</a> are hidden somewhere within an isolated vale.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -10.64374, 13.42061 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Ebaios",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Ebaios",
-      "modificationDate" : 1756506163.000000000,
-      "type" : "volcano",
-      "articleLength" : 1000,
-      "text" : "<p><b>Mount Ebaios</b> is the largest <a href=\"https://pathfinderwiki.com/wiki/Volcano\">volcano</a> in <a href=\"https://pathfinderwiki.com/wiki/Iblydos\">Iblydos</a> located on the north of the island of Nenakari. The volcano's name is used as an aphorism for a cure that comes with horrible side effects. It gets this reputation from the lava that has oozed out of it for the past thousand years that is said to come from the Iblydan underworld or some other <a href=\"https://pathfinderwiki.com/wiki/Evil\">evil</a> realm. This lava burns and traps any creature that comes near it as if in amber, only for that creature to re-awaken some time later as an <a href=\"https://pathfinderwiki.com/wiki/Undead\">undead</a> creature that breathes out noxious fumes.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 22.92458, 14.55866 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Ganog",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Ganog",
-      "modificationDate" : 1772074519.000000000,
-      "type" : "mountain",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -0.3971098, 31.42224 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Gustus",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Gustus",
-      "modificationDate" : 1727999590.000000000,
-      "type" : "mountain",
-      "articleLength" : 500,
-      "text" : "<p><b>Mount Gustus</b> is a mountain in the <a href=\"https://pathfinderwiki.com/wiki/Five_Kings_Mountains\">Five Kings Mountains</a> located northeast of the <a href=\"https://pathfinderwiki.com/wiki/Darkmoon_Vale\">Darkmoon Vale</a> near <a href=\"https://pathfinderwiki.com/wiki/Kykar\">Kykar</a>. It is one of the tallest peaks in the area at an elevation of 14,806 feet, and the fearsome <a href=\"https://pathfinderwiki.com/wiki/Red_dragon\">red dragon</a> <a href=\"https://pathfinderwiki.com/wiki/Daralathyxl\">Daralathyxl</a> lairs in the nearby foothills.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -3.123115, 37.96428 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Kaltafarr",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Kaltafarr",
-      "modificationDate" : 1719328863.000000000,
-      "type" : "volcano",
-      "articleLength" : 400,
-      "text" : "<p><b>Mount Kaltafarr</b> is the tallest peak in <a href=\"https://pathfinderwiki.com/wiki/Taldor\">Taldor</a>. This dormant <a href=\"https://pathfinderwiki.com/wiki/Volcano\">volcano</a> is located in the <a href=\"https://pathfinderwiki.com/wiki/Southern_Range\">Southern Range</a> of the <a href=\"https://pathfinderwiki.com/wiki/World%27s_Edge_Mountains\">World's Edge Mountains</a>, east of the southern border town of <a href=\"https://pathfinderwiki.com/wiki/Zimar\">Zimar</a>. The ancient <a href=\"https://pathfinderwiki.com/wiki/White_dragon\">white dragon</a> known as the <a href=\"https://pathfinderwiki.com/wiki/Great_White_Wyrm\">Great White Wyrm</a> is said to dwell on Mount Kaltafarr, even though he has not been spotted in over a century.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 9.374813, 31.70380 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Kazunan",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Kazunan",
-      "modificationDate" : 1728665584.000000000,
-      "type" : "volcano",
-      "articleLength" : 300,
-      "text" : "<p><b>Mount Kazunan</b> is a <a href=\"https://pathfinderwiki.com/wiki/Volcano\">volcano</a> in central <a href=\"https://pathfinderwiki.com/wiki/Minkai\">Minkai</a> along the <a href=\"https://pathfinderwiki.com/wiki/Kyojin_Mountains\">Kyojin Mountains</a> west of the <a href=\"https://pathfinderwiki.com/wiki/Ningyo_Gulf\">Ningyo Gulf</a>. It is one of the <a href=\"https://pathfinderwiki.com/wiki/Three_Fires\">Three Fires</a>, along with <a href=\"https://pathfinderwiki.com/wiki/Mount_Kumijinja\">Mount Kumijinja</a> in the <a href=\"https://pathfinderwiki.com/wiki/Kamifushi_Mountains\">Kamifushi Mountains</a> and <a href=\"https://pathfinderwiki.com/wiki/Mount_Yogan\">Mount Yogan</a> in the southern Kyojin Mountains.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 194.3384, 38.48795 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Mount Keeba",
       "link" : "https://pathfinderwiki.com/wiki/Mount_Keeba",
       "modificationDate" : 1755776990.000000000,
@@ -10226,6 +10116,20 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Norboro Ashes",
+      "link" : "https://pathfinderwiki.com/wiki/Norboro_Ashes",
+      "modificationDate" : 1707351990.000000000,
+      "type" : "city-ruins",
+      "articleLength" : 400,
+      "text" : "<p><b>Norboro</b> was the second town built on the cursed island of <a href=\"https://pathfinderwiki.com/wiki/Whyrlis_Rock\">Whyrlis Rock</a>, in the <a href=\"https://pathfinderwiki.com/wiki/Shackles\">Shackles</a>. It was founded only 6 months after its sister town of <a href=\"https://pathfinderwiki.com/wiki/Heskott_Bay\">Heskott Bay</a>. At about the same time that the residents of Heskott Bay vanished into thin air, the town of Norboro turned to ash. The location is now known as the <b>Norboro Ashes</b>.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -26.22863, 19.02633 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Nordein Glacier",
       "link" : "https://pathfinderwiki.com/wiki/Nordein_Glacier",
       "modificationDate" : 1711645861.000000000,
@@ -10236,6 +10140,34 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ 5.854891, 42.44784 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Nordein Glacier",
+      "link" : "https://pathfinderwiki.com/wiki/Nordein_Glacier",
+      "modificationDate" : 1711645861.000000000,
+      "type" : "glacier",
+      "articleLength" : 300,
+      "text" : "<p>The <b>Nordein Glacier</b> is located in the central <a href=\"https://pathfinderwiki.com/wiki/Fog_Peaks\">Fog Peaks</a> of southern <a href=\"https://pathfinderwiki.com/wiki/Galt\">Galt</a>. The mountain on which the glacier sits contains a hidden valley that is slowly being swallowed by the ice. Legends claim that an evil spirit called the Jarl of the North Wind lives near the glacier.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 5.854891, 42.44784 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Nystra",
+      "link" : "https://pathfinderwiki.com/wiki/Nystra",
+      "modificationDate" : 1720346662.000000000,
+      "type" : "city-ruins",
+      "articleLength" : 500,
+      "text" : "<p><b>Nystra</b> is a ghost-town in the far-eastern reaches of the <a href=\"https://pathfinderwiki.com/wiki/River_Kingdoms\">River Kingdoms</a>. Once a thriving community centered around the cultivation and production of the fine <a href=\"https://pathfinderwiki.com/wiki/Silk\">silk</a> produced by the insectoid <a href=\"https://pathfinderwiki.com/wiki/Silk_gargoyle\">silk gargoyles</a>, or <a href=\"https://pathfinderwiki.com/wiki/Silkgoyle\">silkgoyles</a>, its inhabitants were totally wiped out in a revenge plot by the <a href=\"https://pathfinderwiki.com/wiki/Taldan_(human_ethnicity)\">Taldan</a> <a href=\"https://pathfinderwiki.com/wiki/Druid\">druid</a> Tharl Grimull in <a href=\"https://pathfinderwiki.com/wiki/4664_AR\">4664 AR</a>.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 6.224585, 45.73944 ]
     }
   }, {
     "type" : "Feature",
@@ -10268,6 +10200,20 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Oagon",
+      "link" : "https://pathfinderwiki.com/wiki/Oagon",
+      "modificationDate" : 1741420450.000000000,
+      "type" : "city-ruins",
+      "articleLength" : 1200,
+      "text" : "<p><b>Oagon</b> was a city in the now-lost kingdom of <a href=\"https://pathfinderwiki.com/wiki/Lirgen\">Lirgen</a>. Its location at the mouth of the <a href=\"https://pathfinderwiki.com/wiki/Black_Flow\">Black Flow</a> river (in what is now known as the <a href=\"https://pathfinderwiki.com/wiki/Sodden_Lands\">Sodden Lands</a>) ensured it was completely covered by floodwater on the advent of the <a href=\"https://pathfinderwiki.com/wiki/Eye_of_Abendego\">Eye of Abendego</a> in <a href=\"https://pathfinderwiki.com/wiki/4606_AR\">4606 AR</a>.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -20.79662, 23.54334 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Oakrib Inn",
       "link" : "https://pathfinderwiki.com/wiki/Oakrib_Inn",
       "modificationDate" : 1722271428.000000000,
@@ -10278,6 +10224,33 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -23.90104, 36.80525 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Oakrib Inn",
+      "link" : "https://pathfinderwiki.com/wiki/Oakrib_Inn",
+      "modificationDate" : 1722271428.000000000,
+      "type" : "tavern",
+      "articleLength" : 500,
+      "text" : "<p><b>Oakrib Inn</b> is the site where the <a href=\"https://pathfinderwiki.com/wiki/Silver_Ravens\">Silver Ravens</a> negotiated the details of <a href=\"https://pathfinderwiki.com/wiki/Ravounel\">Ravounel's</a> secession from <a href=\"https://pathfinderwiki.com/wiki/Cheliax\">Cheliax</a>. This large inn near the head of the <a href=\"https://pathfinderwiki.com/wiki/Yolubilis_River\">Yolubilis River</a> was once a popular stopping point for those traveling through the <a href=\"https://pathfinderwiki.com/wiki/Menador_Gap\">Menador Gap</a>. Since the destruction of <a href=\"https://pathfinderwiki.com/wiki/Menador_Keep\">Menador Keep</a> and the closure of the Gap, the inn's owner Olradi Ormovor has reinvented it as a luxury tourist destination and historical heritage site, complete with dramatic reenactments of the tense negotiations.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -23.90104, 36.80525 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Oaktop Silver Mine",
+      "link" : "https://pathfinderwiki.com/wiki/Oaktop_Silver_Mine",
+      "modificationDate" : 1772141843.000000000,
+      "type" : "mine",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 9.250894, 47.59647 ]
     }
   }, {
     "type" : "Feature",
@@ -11630,20 +11603,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Redroof Market",
-      "link" : "https://pathfinderwiki.com/wiki/Redroof_Market",
-      "modificationDate" : 1722302538.000000000,
-      "type" : "market",
-      "articleLength" : 400,
-      "text" : "<p><b>Redroof Market</b> satisfies the mercantile needs of the lower-class <a href=\"https://pathfinderwiki.com/wiki/Redroof\">Redroof</a> district of <a href=\"https://pathfinderwiki.com/wiki/Kintargo\">Kintargo</a>. While Redroof Market contains all the essentials—butchers, greengrocers, <i>etc</i>.—it is most renowned for its array of clothing merchants who sell everything from <a href=\"https://pathfinderwiki.com/wiki/Cheliax\">Chelaxian</a> wares to more exotic foreign styles. It is also renowned for offering a range of leather goods and for its cobblers.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -23.07620, 39.05934 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Redwake",
       "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
       "modificationDate" : 1773837687.000000000,
@@ -11653,61 +11612,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -22.04468, 13.68101 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Reiver's Right",
-      "link" : "https://pathfinderwiki.com/wiki/Reiver's_Right",
-      "modificationDate" : 1728409075.000000000,
-      "type" : "ruins",
-      "articleLength" : 300,
-      "text" : "<p><b>Reiver's Right</b> is a former <a href=\"https://pathfinderwiki.com/wiki/Lumber\">logging</a> camp that has been long abandoned. The former loggers here became victims of a <a href=\"https://pathfinderwiki.com/wiki/Forest_blight\">forest blight</a> and were transformed into <a href=\"https://pathfinderwiki.com/wiki/Tree\">trees</a>, and the blight still remains here.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -5.490946, 39.76398 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Reliant Book Company",
-      "link" : "https://pathfinderwiki.com/wiki/Reliant_Book_Company",
-      "modificationDate" : 1770918443.000000000,
-      "type" : "shop",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -7.434427, 38.72930 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Renchurch",
-      "link" : "https://pathfinderwiki.com/wiki/Renchurch",
-      "modificationDate" : 1711644343.000000000,
-      "type" : "monastery",
-      "articleLength" : 400,
-      "text" : "<p>The haunted fortress-monastery of <b>Renchurch</b> in the damned <a href=\"https://pathfinderwiki.com/wiki/Ustalav\">Ustalavic</a> province of <a href=\"https://pathfinderwiki.com/wiki/Virlych\">Virlych</a> is one of the headquarters of the undead-obsessed <a href=\"https://pathfinderwiki.com/wiki/Whispering_Way\">Whispering Way</a>. It is overseen by the <a href=\"https://pathfinderwiki.com/wiki/Gray_Friar\">Gray Friar</a>, a powerful <a href=\"https://pathfinderwiki.com/wiki/Huecuva\">huecuva</a> <a href=\"https://pathfinderwiki.com/wiki/Cleric\">cleric</a> of <a href=\"https://pathfinderwiki.com/wiki/Urgathoa\">Urgathoa</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -12.34059, 47.87584 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Resa",
-      "link" : "https://pathfinderwiki.com/wiki/Resa",
-      "modificationDate" : 1728325833.000000000,
-      "type" : "city-ruins",
-      "articleLength" : 500,
-      "text" : "<p>Once a fertile village in central <a href=\"https://pathfinderwiki.com/wiki/Thuvia\">Thuvia</a>, <b>Resa</b> is now little more than a flat stretch of desert with a few scattered signs of civilization.</p>\n<p>During the decline of <a href=\"https://pathfinderwiki.com/wiki/Osirion\">Osirion's</a> first age, an <a href=\"https://pathfinderwiki.com/wiki/Usij\">Usij</a> <a href=\"https://pathfinderwiki.com/wiki/Necromancer\">necromancer</a> named Aryana Tahari took sanctuary beneath the village and used its inhabitants as test subjects in experiments to create a new <a href=\"https://pathfinderwiki.com/wiki/Plague\">plague</a>. These experiments eventually lead to the downfall of the village and its citizens.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -11.90629, 27.53851 ]
     }
   }, {
     "type" : "Feature",
@@ -11725,16 +11629,15 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Revousa Ditches",
-      "link" : "https://pathfinderwiki.com/wiki/Revousa_Ditches",
-      "modificationDate" : 1722271373.000000000,
-      "type" : "water",
-      "articleLength" : 400,
-      "text" : "<p>The <a href=\"https://pathfinderwiki.com/wiki/Katharevousa_River\">Katharevousa River</a> meets the <a href=\"https://pathfinderwiki.com/wiki/Yolubilis_River\">Yolubilis River</a> in the <b>Revousa Ditches</b>, deep rents in the ground that are prone to flooding. The site is so well traveled by riverboats that temporary shops set up on anchored, floating platforms at all times except during the rainy season. The Ditches are believed to be home to a <a href=\"https://pathfinderwiki.com/wiki/Rusalka\">rusalka</a>.</p>"
+      "labels" : "Restless Bear Inn",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "inn",
+      "articleLength" : 0
     },
     "geometry" : {
       "type" : "Point",
-      "coordinates" : [ -22.75383, 38.03236 ]
+      "coordinates" : [ -6.302073, 47.42053 ]
     }
   }, {
     "type" : "Feature",
@@ -12592,19 +12495,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Seventh Church of Iomedae",
-      "link" : "https://pathfinderwiki.com/wiki/Seventh_Church_of_Iomedae",
-      "modificationDate" : 1774173894.000000000,
-      "type" : "temple",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -0.240272, 30.89314 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Severed Spiral",
       "link" : "https://pathfinderwiki.com/wiki/Severed_Spiral",
       "modificationDate" : 1741310149.000000000,
@@ -13210,6 +13100,20 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Sleeping Dove",
+      "link" : "https://pathfinderwiki.com/wiki/Sleeping_Dove",
+      "modificationDate" : 1713565538.000000000,
+      "type" : "temple",
+      "articleLength" : 1000,
+      "text" : "<p>The <b>Sleeping Dove</b> is a shrine dedicated to <a href=\"https://pathfinderwiki.com/wiki/Sarenrae\">Sarenrae</a> located in the western reaches of central <a href=\"https://pathfinderwiki.com/wiki/Katapesh\">Katapesh</a>, less than 100 miles east of <a href=\"https://pathfinderwiki.com/wiki/Solku\">Solku</a>.</p>\n<p>The history of Sleeping Dove is not a happy one: over 100 years ago, a group of pilgrims dedicated to Sarenrae were on a pilgrimage to Solku when they were ambushed by monstrous bandits—some say <a href=\"https://pathfinderwiki.com/wiki/Kholo\">kholo</a>, while others say <a href=\"https://pathfinderwiki.com/wiki/Jackalwere\">jackalweres</a>—and were slaughtered. A week later the bodies were found by passing travellers, who saw their tattered white gowns blowing in the wind and thought they looked like <a href=\"https://pathfinderwiki.com/wiki/Dove\">doves</a>.</p>\n<p>Several <a href=\"https://pathfinderwiki.com/wiki/Paladin\">paladins</a> from Solku came out to the site and built a shrine to Sarenrae here to remember their fallen brethren. Ever since the shrine of Sleeping Dove has been sacred ground. Many a traveller stops to rest by the shrine as it seems to repel <a href=\"https://pathfinderwiki.com/wiki/Evil\">evil</a> creatures and has even granted mysterious, and sometimes prophetic, dreams to <a href=\"https://pathfinderwiki.com/wiki/Good\">good</a> and devout creatures.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -4.213946, 22.83778 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Slither Cove",
       "link" : "https://pathfinderwiki.com/wiki/Slither_Cove",
       "modificationDate" : 1741420419.000000000,
@@ -13220,6 +13124,34 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -3.045009, 22.77560 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Slither Cove",
+      "link" : "https://pathfinderwiki.com/wiki/Slither_Cove",
+      "modificationDate" : 1741420419.000000000,
+      "type" : "city-ruins",
+      "articleLength" : 1200,
+      "text" : "<p>Once a reasonably prosperous village, <b>Slither Cove</b> is now nothing but a sinking ruin being rapidly consumed by the surrounding swamp. Slither Cove's current name comes from the wide variety of <a href=\"https://pathfinderwiki.com/wiki/Snake\">snakes</a>, <a href=\"https://pathfinderwiki.com/wiki/Lizard\">lizards</a>, and other <a href=\"https://pathfinderwiki.com/wiki/Reptile\">reptiles</a> that now inhabit it.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -3.045009, 22.77560 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Snare-filled glade",
+      "link" : "https://pathfinderwiki.com/wiki/Snare-filled_glade",
+      "modificationDate" : 1760905640.000000000,
+      "type" : "glade",
+      "articleLength" : 500,
+      "text" : "<p></p>\n<p>The northernmost <a href=\"https://pathfinderwiki.com/wiki/Narlmarches\">Narlmarches</a> contain a <b>snare-filled glade</b>, <a href=\"https://pathfinderwiki.com/wiki/Trap\">trapped</a> by a notorious trapper by the name of Breeg Orlivanch. While most trappers keep a close eye on their traps and feel a responsibility to warn others of their presence, Breeg finds cruel enjoyment in hiding his traps from <a href=\"https://pathfinderwiki.com/wiki/Animal\">animals</a> and <a href=\"https://pathfinderwiki.com/wiki/Human\">humans</a> alike. Although the trapper is already dead, his specially crafted spike snares continue to litter the glade.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 8.435752, 48.42287 ]
     }
   }, {
     "type" : "Feature",
@@ -13252,6 +13184,34 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Sokar's Boil",
+      "link" : "https://pathfinderwiki.com/wiki/Sokar's_Boil",
+      "modificationDate" : 1717956532.000000000,
+      "type" : "volcano",
+      "articleLength" : 1200,
+      "text" : "<p><b>Sokar's Boil</b> is one of <a href=\"https://pathfinderwiki.com/wiki/Osirion\">Osirion's</a> two <a href=\"https://pathfinderwiki.com/wiki/Volcano\">volcanoes</a>—the other is the nearby <a href=\"https://pathfinderwiki.com/wiki/Asuulek%27s_Mouth\">Asuulek's Mouth</a>. Both are located in the country's southwestern region known as the <a href=\"https://pathfinderwiki.com/wiki/Footprints_of_Rovagug\">Footprints of Rovagug</a>. Sokar's Boil (or just the <b>Boil</b> as it is sometimes called) is currently dormant. The last eruption took place some three thousand years ago and was extremely violent.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -5.79689, 25.45326 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Solitary Pool",
+      "link" : "https://pathfinderwiki.com/wiki/Solitary_Pool",
+      "modificationDate" : 1727759297.000000000,
+      "type" : "oasis",
+      "articleLength" : 200,
+      "text" : "<p>The <b>Solitary Pool</b> is a small oasis and caravanserai in the <a href=\"https://pathfinderwiki.com/wiki/Meraz_Desert\">Meraz Desert</a> of <a href=\"https://pathfinderwiki.com/wiki/Qadira\">Qadira</a>. It is operated by Razinia, who appears to visitors disguised as a <a href=\"https://pathfinderwiki.com/wiki/Jann\">jann</a> but is secretly a <a href=\"https://pathfinderwiki.com/wiki/Ghul\">ghul</a>.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 8.752748, 24.30901 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Solitary Pool",
       "link" : "https://pathfinderwiki.com/wiki/Solitary_Pool",
       "modificationDate" : 1727759297.000000000,
@@ -13276,6 +13236,34 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -7.439676, 47.09190 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Sombrefell Hall",
+      "link" : "https://pathfinderwiki.com/wiki/Sombrefell_Hall",
+      "modificationDate" : 1728085962.000000000,
+      "type" : "manor-house",
+      "articleLength" : 400,
+      "text" : "<p>The massive manor known as <b>Sombrefell Hall</b> is located about 25 miles northeast of <a href=\"https://pathfinderwiki.com/wiki/Rozenport\">Rozenport</a> in <a href=\"https://pathfinderwiki.com/wiki/Ustalav\">Ustalav</a>. It is situated at the end of a fairly well demarcated road abutting the <a href=\"https://pathfinderwiki.com/wiki/Lantern_Lake\">Lantern Lake</a>. The manor has belonged to the Oscilar family for generations. It is built in the gothic Ustalavic fashion and its grand entrance consists of mahogany double doors.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -7.439676, 47.09190 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Songbird Hall",
+      "link" : "https://pathfinderwiki.com/wiki/Songbird_Hall",
+      "modificationDate" : 1725645980.000000000,
+      "type" : "temple",
+      "articleLength" : 1300,
+      "text" : "<p><b>Songbird Hall</b> is the temple to <a href=\"https://pathfinderwiki.com/wiki/Shelyn\">Shelyn</a> in the city of <a href=\"https://pathfinderwiki.com/wiki/Kintargo\">Kintargo</a>, <a href=\"https://pathfinderwiki.com/wiki/Ravounel\">Ravounel</a>, and is both the city's third-largest temple and its most trafficked. Its high priest as of <a href=\"https://pathfinderwiki.com/wiki/4724_AR\">4724 AR</a> was <a href=\"https://pathfinderwiki.com/wiki/Zachrin_Vhast\">Zachrin Vhast</a>.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -23.08275, 39.05872 ]
     }
   }, {
     "type" : "Feature",
@@ -13933,118 +13921,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Sun Dagger",
-      "link" : "https://pathfinderwiki.com/wiki/Sun_Dagger",
-      "modificationDate" : 1711640837.000000000,
-      "type" : "ruins",
-      "articleLength" : 200,
-      "text" : "<p><b>Sun Dagger</b> is a ruined <a href=\"https://pathfinderwiki.com/wiki/Sun\">solar</a> <a href=\"https://pathfinderwiki.com/wiki/Observatory\">observatory</a> in the eastern <a href=\"https://pathfinderwiki.com/wiki/Fierani_Forest\">Fierani Forest</a> of <a href=\"https://pathfinderwiki.com/wiki/Kyonin\">Kyonin</a> that was abandoned by the <a href=\"https://pathfinderwiki.com/wiki/Elves\">elves</a> when they abandoned <a href=\"https://pathfinderwiki.com/wiki/Golarion\">Golarion</a> just before <a href=\"https://pathfinderwiki.com/wiki/Earthfall\">Earthfall</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -1.196668, 42.16385 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Sunbleached Tower",
-      "link" : "https://pathfinderwiki.com/wiki/Sunbleached_Tower",
-      "modificationDate" : 1725582930.000000000,
-      "type" : "tower",
-      "articleLength" : 400,
-      "text" : "<p></p>\n<p>The <b>Sunbleached Tower</b> is a bizarre location north of the <a href=\"https://pathfinderwiki.com/wiki/Qadira\">Qadiran</a> city of <a href=\"https://pathfinderwiki.com/wiki/Dimayen\">Dimayen</a>. It is a massive edifice over 300 feet tall made of interlocking <a href=\"https://pathfinderwiki.com/wiki/Human\">human</a> bones that seems to attract <a href=\"https://pathfinderwiki.com/wiki/Daemon\">daemons</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 8.879717, 25.09398 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Sunhill Monastery",
-      "link" : "https://pathfinderwiki.com/wiki/Sunhill_Monastery",
-      "modificationDate" : 1711640774.000000000,
-      "type" : "monastery",
-      "articleLength" : 300,
-      "text" : "<p><b>Sunhill Monastery</b> is located on a plateau just west of the <a href=\"https://pathfinderwiki.com/wiki/Zho_Mountains\">Zho Mountains</a> of <a href=\"https://pathfinderwiki.com/wiki/Qadira\">Qadira</a>. The complex contains chapels to both the <a href=\"https://pathfinderwiki.com/wiki/Empyreal_lord\">empyreal lord</a> <a href=\"https://pathfinderwiki.com/wiki/Ragathiel\">Ragathiel</a> and the <a href=\"https://pathfinderwiki.com/wiki/Deity\">goddess</a> <a href=\"https://pathfinderwiki.com/wiki/Sarenrae\">Sarenrae</a>. It is the headquarters of the Eleli who are overseen by a <a href=\"https://pathfinderwiki.com/wiki/Peri\">peri</a> named Nuryah.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 8.133323, 30.31566 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Sunken City",
-      "link" : "https://pathfinderwiki.com/wiki/Sunken_City",
-      "modificationDate" : 1711640751.000000000,
-      "type" : "city-ruins",
-      "articleLength" : 300,
-      "text" : "<p><b>Sunken City</b> is a <a href=\"https://pathfinderwiki.com/wiki/Thassilon\">Thassilonian</a> ruin under the waves in the <a href=\"https://pathfinderwiki.com/wiki/Howling_Straits\">Howling Straits</a> in the northern reaches of <a href=\"https://pathfinderwiki.com/wiki/Broken_Bay_(sea)\">Broken Bay</a>. Known as <b>Udeomel</b> to historians, the sunken city would have been a northerly settlement of <a href=\"https://pathfinderwiki.com/wiki/Cyrusian\">Cyrusian</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -43.57093, 54.83865 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Sunken Queen",
-      "link" : "https://pathfinderwiki.com/wiki/Sunken_Queen",
-      "modificationDate" : 1707782388.000000000,
-      "type" : "pyramid",
-      "articleLength" : 900,
-      "text" : "<p>The <b>Sunken Queen</b>, once known as the <b>Shining Queen</b>, is a partially submerged <a href=\"https://pathfinderwiki.com/wiki/Thassilon\">Thassilonian</a> pyramid built over 10,000 years ago by the <a href=\"https://pathfinderwiki.com/wiki/Runelord\">Runelord</a> <a href=\"https://pathfinderwiki.com/wiki/Sorshen\">Sorshen</a> in what was then the nation of <a href=\"https://pathfinderwiki.com/wiki/Eurythnia\">Eurythnia</a>. It is located in southern <a href=\"https://pathfinderwiki.com/wiki/Varisia\">Varisia</a> in an enormous swampland known as the <a href=\"https://pathfinderwiki.com/wiki/Mushfens\">Mushfens</a>, approximately 160 miles west of the city of <a href=\"https://pathfinderwiki.com/wiki/Korvosa\">Korvosa</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -22.30989, 43.70967 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Sunless Pond",
-      "link" : "https://pathfinderwiki.com/wiki/Sunless_Pond",
-      "modificationDate" : 1711640713.000000000,
-      "type" : "spring",
-      "articleLength" : 700,
-      "text" : "<p>After <a href=\"https://pathfinderwiki.com/wiki/Earthfall\">Earthfall</a>, the <a href=\"https://pathfinderwiki.com/wiki/Nidal\">Nidalese people</a> faced crop challenges due to the lack of <a href=\"https://pathfinderwiki.com/wiki/Sun\">sunlight</a>. <a href=\"https://pathfinderwiki.com/wiki/Zon-Kuthon\">Zon-Kuthon</a> provided a solution: the <b>Sunless Pond</b> in the <a href=\"https://pathfinderwiki.com/wiki/Uskwood\">Uskwood</a>. This supernatural spring feeds a pond whose dark water has <a href=\"https://pathfinderwiki.com/wiki/Plant\">plant</a> growth-enhancing properties. <a href=\"https://pathfinderwiki.com/wiki/Shades_of_the_Uskwood\">Shades of the Uskwood</a> <a href=\"https://pathfinderwiki.com/wiki/Druid\">druids</a> distribute its water annually to peasants, collecting taxes for the water while assessing the <a href=\"https://pathfinderwiki.com/wiki/Arcane_magic\">arcane</a> potential of local children. Despite the weak sun's return, farmers still rely on the pond's water to bolster crops for survival, attending gatherings for the precious resource despite the unpleasantness involved.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -17.38201, 39.41464 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Sunset Imports",
-      "link" : "https://pathfinderwiki.com/wiki/Sunset_Imports",
-      "modificationDate" : 1725928511.000000000,
-      "type" : "shop",
-      "articleLength" : 1800,
-      "text" : "<p><b>Sunset Imports</b> is a harborfront import house in <a href=\"https://pathfinderwiki.com/wiki/Kintargo\">Kintargo</a> that was among the city's wealthiest companies until losing its contracts with <a href=\"https://pathfinderwiki.com/wiki/House_Thrune\">House Thrune</a> in <a href=\"https://pathfinderwiki.com/wiki/4715_AR\">4715 AR</a>. Its fortunes have improved as of <a href=\"https://pathfinderwiki.com/wiki/4724_AR\">4724 AR</a> due to its role in fostering trade with the distant <a href=\"https://pathfinderwiki.com/wiki/Continent\">continent</a> of <a href=\"https://pathfinderwiki.com/wiki/Arcadia\">Arcadia</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -23.08367, 39.06497 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Sunstone Cliffs",
-      "link" : "https://pathfinderwiki.com/wiki/Sunstone_Cliffs",
-      "modificationDate" : 1742137743.000000000,
-      "type" : "cliff",
-      "articleLength" : 1000,
-      "text" : "<p>The <b>Sunstone Cliffs</b> lie in the very north-eastern corner of the <a href=\"https://pathfinderwiki.com/wiki/Thanelands\">Thanelands</a> in the <a href=\"https://pathfinderwiki.com/wiki/Lands_of_the_Linnorm_Kings\">Lands of the Linnorm Kings</a> in the foothills of the <a href=\"https://pathfinderwiki.com/wiki/Stormspear_Mountains\">Stormspear Mountains</a> range. The cliffs are famous for the <a href=\"https://pathfinderwiki.com/wiki/Gemstone\">gemstones</a> found there called Thrain sunstones, unique gems that glow with a warm yellow light and whose flaws allow knowledgeable users to determine which way is north. Named for the prospector who discovered them, Thrain sunstones vary from smaller, inferior gems with the brightness of a candle to those that glow like a lantern and any <a href=\"https://pathfinderwiki.com/wiki/Jewellery\">jewellery</a> made from sunstones will fetch huge prices across the <a href=\"https://pathfinderwiki.com/wiki/Inner_Sea_region\">Inner Sea region</a>.</p>\n<p>Unfortunately, the Sunstone Cliffs are a very dangerous region since they serve as the hunting ground for large groups of <a href=\"https://pathfinderwiki.com/wiki/Troll\">trolls</a> and even <a href=\"https://pathfinderwiki.com/wiki/Rock_troll\">rock trolls</a> making it particularly dangerous at night. Those who come here to prospect for Thrain sunstones have to harvest them with great stealth and in very quick runs lest they end up as troll food.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -31.92919, 56.54791 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Sureshire Ranch",
       "link" : "https://pathfinderwiki.com/wiki/Sureshire_Ranch",
       "modificationDate" : 1717603984.000000000,
@@ -14450,19 +14326,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -25.00991, 17.78783 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Temple of the Shining Star",
-      "link" : "https://pathfinderwiki.com/wiki/Temple_of_the_Shining_Star",
-      "modificationDate" : 1774174594.000000000,
-      "type" : "temple",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -0.240305, 30.89533 ]
     }
   }, {
     "type" : "Feature",
@@ -15209,7 +15072,7 @@
     "properties" : {
       "labels" : "Tower of Twin Truths",
       "link" : "https://pathfinderwiki.com/wiki/Tower_of_Twin_Truths",
-      "modificationDate" : 1774169945.000000000,
+      "modificationDate" : 1771053952.000000000,
       "type" : "temple",
       "articleLength" : 0
     },
@@ -16069,6 +15932,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Volar's Lash",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "shipwreck",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -21.89831, 13.62000 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Volfast's Tower",
       "link" : "https://pathfinderwiki.com/wiki/Volfast's_Tower",
       "modificationDate" : 1707490153.000000000,
@@ -16528,6 +16404,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -27.46138, 44.57059 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Windwar",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "shipwreck",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -21.88498, 13.69713 ]
     }
   }, {
     "type" : "Feature",
