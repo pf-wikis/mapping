@@ -936,6 +936,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Battle of Screaming Tree",
+      "link" : "https://pathfinderwiki.com/wiki/Battle_of_Screaming_Tree",
+      "modificationDate" : 1727829142.000000000,
+      "type" : "battlefield",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -13.92797, 49.42499 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Battle of the Burning Child",
       "link" : "https://pathfinderwiki.com/wiki/Battle_of_the_Burning_Child",
       "modificationDate" : 1716135363.000000000,
@@ -2167,6 +2180,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Catacombs",
+      "link" : "https://pathfinderwiki.com/wiki/Catacombs_(Absalom)",
+      "modificationDate" : 1774180127.000000000,
+      "type" : "catacombs",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.2362627, 30.89594 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Cathedral of Abadar",
       "link" : "https://pathfinderwiki.com/wiki/Cathedral_of_Abadar_(Magnimar)",
       "modificationDate" : 1719008859.000000000,
@@ -3222,6 +3248,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Crimson Coin",
+      "link" : "https://pathfinderwiki.com/wiki/Crimson_Coin",
+      "modificationDate" : 1774179239.000000000,
+      "type" : "temple",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.263642, 30.88436 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Crimson Wood Furs",
       "link" : "https://pathfinderwiki.com/wiki/Crimson_Wood_Furs",
       "modificationDate" : 1771175504.000000000,
@@ -3478,6 +3517,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -0.4054312, 31.35547 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Darkgate",
+      "link" : "https://pathfinderwiki.com/wiki/Darkgate",
+      "modificationDate" : 1774177411.000000000,
+      "type" : "hole",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.203614, 30.84649 ]
     }
   }, {
     "type" : "Feature",
@@ -3775,20 +3827,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Desolation Blade Mounts",
-      "link" : "https://pathfinderwiki.com/wiki/Desolation_Blade_Mounts",
-      "modificationDate" : 1711650384.000000000,
-      "type" : "monument",
-      "articleLength" : 300,
-      "text" : "<p>The <b>Desolation Blade Mounts</b> are a set of mysterious mounds of hardened clay. No one knows who made them, but visitors often return with stone markers marked with a symbol of a pale hand and blackened blade on them.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -6.206545, 38.98658 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Deverin Villa",
       "link" : "https://pathfinderwiki.com/wiki/Deverin_Villa",
       "modificationDate" : 1719008932.000000000,
@@ -3799,34 +3837,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -28.01726, 43.92758 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Deverin Villa",
-      "link" : "https://pathfinderwiki.com/wiki/Deverin_Villa",
-      "modificationDate" : 1719008932.000000000,
-      "type" : "manor-house",
-      "articleLength" : 500,
-      "text" : "<p><b>Deverin Villa</b> is the main residence of <a href=\"https://pathfinderwiki.com/wiki/House_Deverin\">House Deverin</a>, an aristocratic family in the <a href=\"https://pathfinderwiki.com/wiki/Varisia\">Varisian</a> city of <a href=\"https://pathfinderwiki.com/wiki/Magnimar\">Magnimar</a>. Located in the <a href=\"https://pathfinderwiki.com/wiki/Naos\">Naos district</a>, Deverin Villa is currently occupied by <a href=\"https://pathfinderwiki.com/wiki/Hobart_Deverin\">Hobart Deverin</a>, the head of the family. A walled compound with a central main building and several secondary structures, Deverin Villa is sandwiched between <a href=\"https://pathfinderwiki.com/wiki/Kaijitsu_Manor\">Kaijitsu Manor</a> and the <a href=\"https://pathfinderwiki.com/wiki/House_of_Welcome\">House of Welcome</a>, Magnimar's most exclusive brothel.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -28.01726, 43.92758 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Devi",
-      "link" : "https://pathfinderwiki.com/wiki/Devi",
-      "modificationDate" : 1707489882.000000000,
-      "type" : "statue",
-      "articleLength" : 400,
-      "text" : "<p><b>The Devi</b> is a 200-foot-tall statue located on an island in the <a href=\"https://pathfinderwiki.com/wiki/Kalyan_River\">Kalyan River</a>, near where it becomes <a href=\"https://pathfinderwiki.com/wiki/Sona_Lake\">Sona Lake</a>, in the <a href=\"https://pathfinderwiki.com/wiki/Vudra\">Vudran</a> region of <a href=\"https://pathfinderwiki.com/wiki/Golden_Basin\">Golden Basin</a>.</p>\n<p>The Devi depicts the legendary <a href=\"https://pathfinderwiki.com/wiki/Psychic\">psychic</a> <a href=\"https://pathfinderwiki.com/wiki/Vanitapati\">Vanitapati</a>, who defeated the <a href=\"https://pathfinderwiki.com/wiki/Spawn_of_Rovagug\">Spawn of Rovagug</a> known as <a href=\"https://pathfinderwiki.com/wiki/Kothogaz\">Kothogaz</a>, the Dance of Disharmony, at this site. The Devi is both a site of pilgrimage and potent <a href=\"https://pathfinderwiki.com/wiki/Psychic_magic\">psychic</a> nexus.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 62.90573, -25.63819 ]
     }
   }, {
     "type" : "Feature",
@@ -4594,6 +4604,45 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -6.108990, 35.43903 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Everforge",
+      "link" : "https://pathfinderwiki.com/wiki/Everforge",
+      "modificationDate" : 1765214345.000000000,
+      "type" : "graveyard",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 6.912852, 36.91334 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Evergreen Park",
+      "link" : "https://pathfinderwiki.com/wiki/Evergreen_Park",
+      "modificationDate" : 1773996837.000000000,
+      "type" : "park",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.19191, 30.88463 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Everrest",
+      "link" : "https://pathfinderwiki.com/wiki/Everrest",
+      "modificationDate" : 1745879062.000000000,
+      "type" : "ruins",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -14.68235, 41.22668 ]
     }
   }, {
     "type" : "Feature",
@@ -6485,6 +6534,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Gutless Griffon",
+      "link" : "https://pathfinderwiki.com/wiki/Gutless_Griffon",
+      "modificationDate" : 1774195888.000000000,
+      "type" : "tavern",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.267508, 30.90973 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Guughwa's Waterfall",
       "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
       "modificationDate" : 1773837687.000000000,
@@ -8302,20 +8364,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Langitheath",
-      "link" : "https://pathfinderwiki.com/wiki/Langitheath",
-      "modificationDate" : 1746925442.000000000,
-      "type" : "manor-house",
-      "articleLength" : 700,
-      "text" : "<p><b>Langitheath</b> was once a well-to-do manorial estate in the central <a href=\"https://pathfinderwiki.com/wiki/Ustalav\">Ustalavic</a> province of <a href=\"https://pathfinderwiki.com/wiki/Ardeal\">Ardeal</a>. It and the surrounding 900 acres of farmland were sold by the Loslimor family around <i>ca.</i> <a href=\"https://pathfinderwiki.com/wiki/4681_AR\">4681 AR</a>, after which the estate passed through a number of different owners before finally being abandoned. Despite the fact that no one is believed to have worked the land for decades, a new crop of flax still grows every year, forming strange spiral shapes around the old manor house. Those who have come close to the estate have reported seeing small figures capering through the fields, or report meeting unnatural children with eyes as cold and blue as the flax flowers of Langitheath.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -8.402145, 48.44804 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Latchmin's Folly",
       "link" : "https://pathfinderwiki.com/wiki/Latchmin's_Folly",
       "modificationDate" : 1723998823.000000000,
@@ -8326,34 +8374,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -25.84626, 17.84057 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Latchmin's Folly",
-      "link" : "https://pathfinderwiki.com/wiki/Latchmin's_Folly",
-      "modificationDate" : 1723998823.000000000,
-      "type" : "castle",
-      "articleLength" : 700,
-      "text" : "<p><b>Latchmin's Folly</b> is a squat sea fort constructed on a rise in the <a href=\"https://pathfinderwiki.com/wiki/High_Eastwind\">High Eastwind</a> district of <a href=\"https://pathfinderwiki.com/wiki/Port_Peril\">Port Peril</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -25.84626, 17.84057 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Left-Handed Lobster",
-      "link" : "https://pathfinderwiki.com/wiki/Left-Handed_Lobster",
-      "modificationDate" : 1719013397.000000000,
-      "type" : "tavern",
-      "articleLength" : 200,
-      "text" : "<p>The <b>Left-Handed Lobster</b> is a bar open only to the fishermen members of <a href=\"https://pathfinderwiki.com/wiki/Magnimar\">Magnimar's</a> <a href=\"https://pathfinderwiki.com/wiki/Outcast_Fishery\">Outcast Fishery</a>. It is located within the Fishery's complex in the <a href=\"https://pathfinderwiki.com/wiki/Beacon%27s_Point\">Beacon's Point</a> district.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -28.02671, 43.93206 ]
     }
   }, {
     "type" : "Feature",
@@ -9026,6 +9046,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -27.71534, 24.77102 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Miluvabrecht",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "castle",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -2.953251, 41.47550 ]
     }
   }, {
     "type" : "Feature",
@@ -10696,6 +10729,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Palace of Thirteen Spires",
+      "link" : "https://pathfinderwiki.com/wiki/Palace_of_Thirteen_Spires",
+      "modificationDate" : 1774194888.000000000,
+      "type" : "palace",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.237097, 30.90881 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Palace of Virtue",
       "link" : "https://pathfinderwiki.com/wiki/Palace_of_Virtue",
       "modificationDate" : 1711645502.000000000,
@@ -11606,20 +11652,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Red Rune Canyon",
-      "link" : "https://pathfinderwiki.com/wiki/Red_Rune_Canyon",
-      "modificationDate" : 1727215989.000000000,
-      "type" : "canyon",
-      "articleLength" : 1300,
-      "text" : "<p><b>Red Rune Canyon</b>, located in the eastern <a href=\"https://pathfinderwiki.com/wiki/Tusk_Mountains\">Tusk Mountains</a> of the <a href=\"https://pathfinderwiki.com/wiki/Realm_of_the_Mammoth_Lords\">Realm of the Mammoth Lords</a>, is an interconnected maze of canyons tainted by the relentless expansion of the <a href=\"https://pathfinderwiki.com/wiki/Worldwound\">Worldwound</a>. Festering black boils and sores weep red bloodlike mud from its walls. The canyons change form under the <a href=\"https://pathfinderwiki.com/wiki/Demon\">demonic</a> influence, with blasphemous runes etched into Golarion's surface. The <a href=\"https://pathfinderwiki.com/wiki/Evil\">evil</a> of Red Rune Canyon drives any living creature who enters it mad.</p>\n<p><a href=\"https://pathfinderwiki.com/wiki/Larisa\">Larisa</a>, a <a href=\"https://pathfinderwiki.com/wiki/Cambion\">cambion</a> <a href=\"https://pathfinderwiki.com/wiki/Sorcerer\">sorcerer</a>, arrived to Red Rune Canyon in <a href=\"https://pathfinderwiki.com/wiki/4713_AR\">4713 AR</a>. Using blasphemous sacrifices at each new <a href=\"https://pathfinderwiki.com/wiki/Moon\">moon</a>, she gained control of the glyphs inscribed by the canyon. Each sacrifice calls forth a new symbol and siphons power from the distant Worldwound. When she bends the canyon into her grand final rune, she will get rid of her <a href=\"https://pathfinderwiki.com/wiki/Mortal\">mortal</a> blood and metamorphose into a full <a href=\"https://pathfinderwiki.com/wiki/Demon\">demon</a>.</p>\n<p>The reshaping of the Red Rune Canyon has weakened the barriers between Golarion and the <a href=\"https://pathfinderwiki.com/wiki/Outer_Rifts\">Outer Rifts</a>. At each of Larisa's <a href=\"https://pathfinderwiki.com/wiki/Ritual\">rituals</a>, a new gate is forced open for a few seconds, oozing demons out into the Tusk Mountains.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -11.07935, 56.19554 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Redlake Fort",
       "link" : "https://pathfinderwiki.com/wiki/Redlake_Fort",
       "modificationDate" : 1768662341.000000000,
@@ -11630,33 +11662,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -15.14459, 47.37330 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Redlake Fort",
-      "link" : "https://pathfinderwiki.com/wiki/Redlake_Fort",
-      "modificationDate" : 1768662341.000000000,
-      "type" : "castle",
-      "articleLength" : 800,
-      "text" : "<p><b>Redlake Fort</b> was part of the <a href=\"https://pathfinderwiki.com/wiki/Harchist%27s_Blockade\">Harchist's Blockade</a>, defending the borders of <a href=\"https://pathfinderwiki.com/wiki/Lastwall\">Lastwall</a> from its position in the <a href=\"https://pathfinderwiki.com/wiki/Mindspin_Mountains\">Mindspin Mountains</a>. The fort is built on a moat of the <a href=\"https://pathfinderwiki.com/wiki/River_Esk\">River Esk</a>, whose algae give the water a reddish color, hence its name. Like other forts of the blockade, it fell to an <a href=\"https://pathfinderwiki.com/wiki/Orc\">orc</a> siege in <a href=\"https://pathfinderwiki.com/wiki/4482_AR\">4482 AR</a>. In their desperation and hunger, its defenders were fed the flesh of their comrades by the fort's castellan to resist the attack, though it was in vain and these defeated guardians haunt the fort. In the following centuries, different forces have seized the fort, from orcs to <a href=\"https://pathfinderwiki.com/wiki/Hill_giant\">hill giants</a> and even <a href=\"https://pathfinderwiki.com/wiki/Ogre\">ogres</a>, with no one remaining for long due to the unsettling haunts that plague its inhabitants.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -15.14459, 47.37330 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Redroof Market",
-      "link" : "https://pathfinderwiki.com/wiki/Redroof_Market",
-      "modificationDate" : 1722302538.000000000,
-      "type" : "market",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -23.07620, 39.05934 ]
     }
   }, {
     "type" : "Feature",
@@ -12398,6 +12403,32 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Sea King Shipyards",
+      "link" : "https://pathfinderwiki.com/wiki/Sea_King_Shipyards",
+      "modificationDate" : 1766749127.000000000,
+      "type" : "shipyard",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.2472197, 30.85914 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Sea Wrack Chapel",
+      "link" : "https://pathfinderwiki.com/wiki/Sea_Wrack_Chapel",
+      "modificationDate" : 1723999328.000000000,
+      "type" : "temple",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -25.84359, 17.83647 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Sech Nevali",
       "link" : "https://pathfinderwiki.com/wiki/Sech_Nevali",
       "modificationDate" : 1746019941.000000000,
@@ -12616,6 +12647,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Sezansarr",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "ruins",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -19.7442, 47.5924 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Shadefields",
       "link" : "https://pathfinderwiki.com/wiki/Shadefields",
       "modificationDate" : 1727828325.000000000,
@@ -12821,6 +12865,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -1.592686, 41.56229 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Shinju-no-Ie",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "residence",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 184.3121, 43.94517 ]
     }
   }, {
     "type" : "Feature",
