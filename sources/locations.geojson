@@ -1501,6 +1501,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Blackwarn's Gallows",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "cliff",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -28.88357, 17.68995 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Bleachbone Cave",
       "link" : "https://pathfinderwiki.com/wiki/Bleachbone_Cave",
       "modificationDate" : 1717450728.000000000,
@@ -6311,6 +6324,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Ghenett Manor",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "manor-house",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -2.254642, 22.58824 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Ghol-Gan Ruin",
       "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
       "modificationDate" : 1773837687.000000000,
@@ -7320,6 +7346,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -21.47830, 26.41070 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Hanging Tower",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "tower",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -8.704980, 55.18601 ]
     }
   }, {
     "type" : "Feature",
@@ -10702,19 +10741,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Mount Spire",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Spire",
-      "modificationDate" : 1722271854.000000000,
-      "type" : "mountain",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -23.84575, 36.74575 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Mount Tsukiyo",
       "link" : "https://pathfinderwiki.com/wiki/Mount_Tsukiyo",
       "modificationDate" : 1715392319.000000000,
@@ -10724,32 +10750,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ 157.8463, 58.7333 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Tsukiyo",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Tsukiyo",
-      "modificationDate" : 1715392319.000000000,
-      "type" : "mountain",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 157.8463, 58.7333 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Veshka",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Veshka",
-      "modificationDate" : 1746720234.000000000,
-      "type" : "mountain",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 6.651711, 51.50688 ]
     }
   }, {
     "type" : "Feature",
@@ -11026,19 +11026,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -7.243594, 20.83486 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Nether Citadel",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
-      "modificationDate" : 1773837687.000000000,
-      "type" : "ruins",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -1.163251, 31.41907 ]
     }
   }, {
     "type" : "Feature",
@@ -12769,6 +12756,45 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -20.02397, 45.79206 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Records Hall",
+      "link" : "https://pathfinderwiki.com/wiki/Records_Hall",
+      "modificationDate" : 1727116893.000000000,
+      "type" : "library",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -23.07917, 39.06854 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Red Kestrel Imports",
+      "link" : "https://pathfinderwiki.com/wiki/Red_Kestrel_Imports",
+      "modificationDate" : 1719014968.000000000,
+      "type" : "shop",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -28.03865, 43.92955 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Red Mountain",
+      "link" : "https://pathfinderwiki.com/wiki/Red_Mountain",
+      "modificationDate" : 1742195368.000000000,
+      "type" : "mountain",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -21.91736, 13.65165 ]
     }
   }, {
     "type" : "Feature",
@@ -14741,19 +14767,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Stachys Pump House",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
-      "modificationDate" : 1773837687.000000000,
-      "type" : "ruins",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 2.395832, 35.09613 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Star Keep",
       "link" : "https://pathfinderwiki.com/wiki/Star_Keep",
       "modificationDate" : 1745470198.000000000,
@@ -16269,19 +16282,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Thrunefang camp",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
-      "modificationDate" : 1773837687.000000000,
-      "type" : "camp",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -22.03227, 13.62044 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Thrylheim",
       "link" : "https://pathfinderwiki.com/wiki/Thrylheim",
       "modificationDate" : 1746925445.000000000,
@@ -16438,32 +16438,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Tolsen Peak",
-      "link" : "https://pathfinderwiki.com/wiki/Tolsen_Peak",
-      "modificationDate" : 1711640239.000000000,
-      "type" : "mountain",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -24.23807, 34.68818 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Tomb of Emperors",
-      "link" : "https://pathfinderwiki.com/wiki/Tomb_of_Emperors",
-      "modificationDate" : 1727715313.000000000,
-      "type" : "graveyard",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -17.50180, 25.97597 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Tomb of Emperors",
       "link" : "https://pathfinderwiki.com/wiki/Tomb_of_Emperors",
       "modificationDate" : 1727715313.000000000,
@@ -16486,32 +16460,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -2.50989, 25.80548 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Tomb of Statues",
-      "link" : "https://pathfinderwiki.com/wiki/Tomb_of_Statues",
-      "modificationDate" : 1717956342.000000000,
-      "type" : "graveyard",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -2.50989, 25.80548 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Tomb of the Bound Sphinx",
-      "link" : "https://pathfinderwiki.com/wiki/Tomb_of_the_Bound_Sphinx",
-      "modificationDate" : 1717956720.000000000,
-      "type" : "pyramid",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -7.00115, 25.22012 ]
     }
   }, {
     "type" : "Feature",
@@ -17178,6 +17126,58 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -19.77458, 31.91976 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Vangeline Pass",
+      "link" : "https://pathfinderwiki.com/wiki/Vangeline_Pass",
+      "modificationDate" : 1711639312.000000000,
+      "type" : "mountain-pass",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -9.344912, 17.03365 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Vargas Swamp",
+      "link" : "https://pathfinderwiki.com/wiki/Vargas_Swamp",
+      "modificationDate" : 1751323887.000000000,
+      "type" : "swamp",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -2.781705, 22.89138 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Varisian Council",
+      "link" : "https://pathfinderwiki.com/wiki/Varisian_Council",
+      "modificationDate" : 1719014759.000000000,
+      "type" : "civic-building",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -28.03328, 43.92654 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Vashnarstill Estate",
+      "link" : "https://pathfinderwiki.com/wiki/Vashnarstill_Estate",
+      "modificationDate" : 1722301777.000000000,
+      "type" : "manor-house",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -23.07913, 39.06721 ]
     }
   }, {
     "type" : "Feature",
