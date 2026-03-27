@@ -848,6 +848,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Bail House",
+      "link" : "https://pathfinderwiki.com/wiki/Bail_House",
+      "modificationDate" : 1774602158.000000000,
+      "type" : "prison",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.236657, 30.87251 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Bailer's Retreat",
       "link" : "https://pathfinderwiki.com/wiki/Bailer's_Retreat",
       "modificationDate" : 1774297559.000000000,
@@ -3306,19 +3319,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Cocytus",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
-      "modificationDate" : 1773837687.000000000,
-      "type" : "mine",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -24.75134, 40.37928 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Cold Marrow",
       "link" : "https://pathfinderwiki.com/wiki/Cold_Marrow",
       "modificationDate" : 1773651308.000000000,
@@ -3767,6 +3767,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -30.69461, 43.85032 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Crystal Palace",
+      "link" : "https://pathfinderwiki.com/wiki/Crystal_Palace_(Mudhaven)",
+      "modificationDate" : 1774606031.000000000,
+      "type" : "other",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.249465, 30.87219 ]
     }
   }, {
     "type" : "Feature",
@@ -7209,7 +7222,7 @@
     "properties" : {
       "labels" : "Guiding Hand",
       "link" : "https://pathfinderwiki.com/wiki/Guiding_Hand",
-      "modificationDate" : 1774366787.000000000,
+      "modificationDate" : 1774605346.000000000,
       "type" : "restaurant",
       "articleLength" : 0
     },
@@ -8250,7 +8263,7 @@
     "properties" : {
       "labels" : "Humbolt's Outfitters",
       "link" : "https://pathfinderwiki.com/wiki/Humbolt's_Outfitters",
-      "modificationDate" : 1774538933.000000000,
+      "modificationDate" : 1774597286.000000000,
       "type" : "other",
       "articleLength" : 0
     },
@@ -12647,6 +12660,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Qassabah Heb Amar",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "castle",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -20.95589, 29.63476 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Qatada Nessudidia",
       "link" : "https://pathfinderwiki.com/wiki/Qatada_Nessudidia",
       "modificationDate" : 1740893210.000000000,
@@ -12747,32 +12773,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -25.61720, 33.14188 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Rachikan",
-      "link" : "https://pathfinderwiki.com/wiki/Rachikan",
-      "modificationDate" : 1746925441.000000000,
-      "type" : "city-ruins",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -25.61720, 33.14188 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Radish patch",
-      "link" : "https://pathfinderwiki.com/wiki/Radish_patch_(Stolen_Lands)",
-      "modificationDate" : 1760908959.000000000,
-      "type" : "patch",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 8.990087, 48.13438 ]
     }
   }, {
     "type" : "Feature",
@@ -13465,6 +13465,32 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -9.871946, 48.61224 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Saintsgrove",
+      "link" : "https://pathfinderwiki.com/wiki/Saintsgrove",
+      "modificationDate" : 1711641199.000000000,
+      "type" : "plant",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -7.8508, 53.9722 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Sallix Salt Works",
+      "link" : "https://pathfinderwiki.com/wiki/Sallix_Salt_Works",
+      "modificationDate" : 1722297595.000000000,
+      "type" : "factory",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -23.09040, 39.05974 ]
     }
   }, {
     "type" : "Feature",
@@ -14530,19 +14556,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -23.08344, 39.06481 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Silver Trough",
-      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
-      "modificationDate" : 1773837687.000000000,
-      "type" : "spaceship-ruins",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 0.8403269, 51.55164 ]
     }
   }, {
     "type" : "Feature",
@@ -15882,6 +15895,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -18.74565, 43.38114 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Temple of Asmodeus",
+      "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
+      "modificationDate" : 1773837687.000000000,
+      "type" : "temple",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 3.407161, 41.38826 ]
     }
   }, {
     "type" : "Feature",
@@ -17883,19 +17909,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Water Gardens of Xerbystes",
-      "link" : "https://pathfinderwiki.com/wiki/Water_Gardens_of_Xerbystes",
-      "modificationDate" : 1717957326.000000000,
-      "type" : "plant",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -1.26642, 27.35255 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Wavereaper",
       "link" : "https://pathfinderwiki.com/wiki/PathfinderWiki:Map_Locations_Without_Articles",
       "modificationDate" : 1773837687.000000000,
@@ -17905,19 +17918,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -21.91583, 13.60841 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Wedding rock",
-      "link" : "https://pathfinderwiki.com/wiki/Wedding_rock",
-      "modificationDate" : 1743639975.000000000,
-      "type" : "temple",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -25.37734, 35.10605 ]
     }
   }, {
     "type" : "Feature",
@@ -18622,6 +18622,32 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -28.02778, 43.93387 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Xefon-Ra",
+      "link" : "https://pathfinderwiki.com/wiki/Xefon-Ra",
+      "modificationDate" : 1717957164.000000000,
+      "type" : "mountain",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -5.32085, 27.77034 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Xerysis Manor",
+      "link" : "https://pathfinderwiki.com/wiki/Xerysis_Manor",
+      "modificationDate" : 1722302050.000000000,
+      "type" : "manor-house",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -23.07959, 39.06917 ]
     }
   }, {
     "type" : "Feature",
