@@ -5952,6 +5952,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Fort Scourbone",
+      "link" : "https://pathfinderwiki.com/wiki/Fort_Scourbone",
+      "modificationDate" : 1728448137.000000000,
+      "type" : "castle",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -8.121232, 17.83559 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Fort Serenko",
       "link" : "https://pathfinderwiki.com/wiki/Fort_Serenko",
       "modificationDate" : 1758568828.000000000,
@@ -6065,6 +6078,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -27.25629, 44.02859 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Free Union Headquarters",
+      "link" : "https://pathfinderwiki.com/wiki/Free_Union_Headquarters",
+      "modificationDate" : 1774690147.000000000,
+      "type" : "other",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.242722, 30.87497 ]
     }
   }, {
     "type" : "Feature",
@@ -6199,6 +6225,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -20.02269, 45.78832 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Gallery of Innovation",
+      "link" : "https://pathfinderwiki.com/wiki/Gallery_of_Innovation",
+      "modificationDate" : 1774705969.000000000,
+      "type" : "temple",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.216706, 30.87134 ]
     }
   }, {
     "type" : "Feature",
@@ -6678,45 +6717,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -18.12669, 40.00499 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Gold Market",
-      "link" : "https://pathfinderwiki.com/wiki/Gold_Market",
-      "modificationDate" : 1774298359.000000000,
-      "type" : "market",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -18.74826, 43.36889 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Gold mine",
-      "link" : "https://pathfinderwiki.com/wiki/Gold_mine_(Stolen_Lands)",
-      "modificationDate" : 1760908249.000000000,
-      "type" : "mine",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 8.938193, 47.90648 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Golden Aerie",
-      "link" : "https://pathfinderwiki.com/wiki/Golden_Aerie",
-      "modificationDate" : 1727910006.000000000,
-      "type" : "tower",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -3.050897, 33.76433 ]
     }
   }, {
     "type" : "Feature",
@@ -9967,6 +9967,32 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Matador's Lodge",
+      "link" : "https://pathfinderwiki.com/wiki/Matador's_Lodge",
+      "modificationDate" : 1719010808.000000000,
+      "type" : "tavern",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -28.01813, 43.92772 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Mavradia",
+      "link" : "https://pathfinderwiki.com/wiki/Mavradia",
+      "modificationDate" : 1707351923.000000000,
+      "type" : "city-ruins",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 23.80485, 51.07189 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Mavradia",
       "link" : "https://pathfinderwiki.com/wiki/Mavradia",
       "modificationDate" : 1707351923.000000000,
@@ -9989,6 +10015,32 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ 12.65542, 48.27467 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Maw of Karth",
+      "link" : "https://pathfinderwiki.com/wiki/Maw_of_Karth",
+      "modificationDate" : 1729628635.000000000,
+      "type" : "monument",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 12.65542, 48.27467 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Mbaiki",
+      "link" : "https://pathfinderwiki.com/wiki/Mbaiki",
+      "modificationDate" : 1746925435.000000000,
+      "type" : "city-ruins",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -23.39093, 14.79213 ]
     }
   }, {
     "type" : "Feature",
@@ -10644,59 +10696,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ 5.326926, 35.82958 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Branthlend",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Branthlend",
-      "modificationDate" : 1772141832.000000000,
-      "type" : "mountain",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 4.37897, 49.00929 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Carissa",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Carissa",
-      "modificationDate" : 1719297051.000000000,
-      "type" : "mountain",
-      "articleLength" : 300,
-      "text" : "<p><b>Mount Carissa</b> is the seventh-tallest peak of the <a href=\"https://pathfinderwiki.com/wiki/Five_Kings_Range\">Five Kings Range</a> at 15,126 feet. It is one of four mountains surrounding the city of <a href=\"https://pathfinderwiki.com/wiki/Taggoret_(city)\">Taggoret</a>, alongside <a href=\"https://pathfinderwiki.com/wiki/Mount_Onik\">Mount Onik</a> to its east, <a href=\"https://pathfinderwiki.com/wiki/Mount_Langley\">Mount Langley</a> to its north, and <a href=\"https://pathfinderwiki.com/wiki/Mount_Soryu\">Mount Soryu</a> to its west.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -5.073159, 37.31607 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Dowama",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Dowama",
-      "modificationDate" : 1719297117.000000000,
-      "type" : "mountain",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -10.64374, 13.42061 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Mount Ebaios",
-      "link" : "https://pathfinderwiki.com/wiki/Mount_Ebaios",
-      "modificationDate" : 1756506163.000000000,
-      "type" : "volcano",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 22.92458, 14.55866 ]
     }
   }, {
     "type" : "Feature",
