@@ -887,19 +887,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Band of the Palm Headquarters",
-      "link" : "https://pathfinderwiki.com/wiki/Band_of_the_Palm_Headquarters",
-      "modificationDate" : 1774682734.000000000,
-      "type" : "other",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -0.229649, 30.87067 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Bank of Abadar",
       "link" : "https://pathfinderwiki.com/wiki/Bank_of_Abadar_(Kaer_Maga)",
       "modificationDate" : 1774289232.000000000,
@@ -1549,6 +1536,19 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -28.88357, 17.68995 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Bleachbone Cave",
+      "link" : "https://pathfinderwiki.com/wiki/Bleachbone_Cave",
+      "modificationDate" : 1717450728.000000000,
+      "type" : "cave",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -3.93506, 44.3681 ]
     }
   }, {
     "type" : "Feature",
@@ -2343,6 +2343,20 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Castle Kronquist",
+      "link" : "https://pathfinderwiki.com/wiki/Castle_Kronquist",
+      "modificationDate" : 1746925440.000000000,
+      "type" : "castle",
+      "articleLength" : 4600,
+      "text" : "<p><b>Castle Kronquist</b> is a haunted <a href=\"https://pathfinderwiki.com/wiki/Ustalav\">Ustalavic</a> fortress that is home to one of the <a href=\"https://pathfinderwiki.com/wiki/Whispering_Tyrant\">Whispering Tyrant's</a> most dreaded <a href=\"https://pathfinderwiki.com/wiki/Vampire\">vampire</a> minions, the <a href=\"https://pathfinderwiki.com/wiki/Vampire\">vampire</a> lord <a href=\"https://pathfinderwiki.com/wiki/Malyas\">Malyas</a>. The castle is located amid the fog-wisped woods of northern <a href=\"https://pathfinderwiki.com/wiki/Odranto\">Odranto</a>. Its infamous fanged gates have remained closed since the fall of the Whispering Tyrant, centuries ago. Tangled vines climb its walls and overgrown thickets and brambles cover the surroundings, but the castle has not deteriorated such as an ancient site should have. Each month on the night of the <a href=\"https://pathfinderwiki.com/wiki/Moon_(Golarion)\">new moon</a>, its great iron-horned clock tower rings. Rumors persist that something lurks within, and the rumors are supported by sightings of swiftly moving shadows and strange lights flickering from the castle's lonely towers.</p>"
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -8.431127, 50.46900 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Castle Penatha",
       "link" : "https://pathfinderwiki.com/wiki/Castle_Penatha",
       "modificationDate" : 1746925444.000000000,
@@ -3016,20 +3030,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -20.54975, 31.99853 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Citadel Vaull",
-      "link" : "https://pathfinderwiki.com/wiki/Citadel_Vaull",
-      "modificationDate" : 1722297113.000000000,
-      "type" : "castle",
-      "articleLength" : 800,
-      "text" : "<p><b>Citadel Vaull</b>, located in the <a href=\"https://pathfinderwiki.com/wiki/Castle_District\">Castle District</a> of the city of <a href=\"https://pathfinderwiki.com/wiki/Kintargo\">Kintargo</a> in <a href=\"https://pathfinderwiki.com/wiki/Ravounel\">Ravounel</a>, housed the otherwise nomadic <a href=\"https://pathfinderwiki.com/wiki/Hellknight\">Hellknight</a> <a href=\"https://pathfinderwiki.com/wiki/Order_of_the_Torrent\">Order of the Torrent</a> until <a href=\"https://pathfinderwiki.com/wiki/4715_AR\">4715 AR</a>, when <a href=\"https://pathfinderwiki.com/wiki/Barzillai_Thrune\">new Lord-Mayor Barzillai Thrune</a> stripped the order of its charter and had the <a href=\"https://pathfinderwiki.com/wiki/Order_of_the_Rack\">Order of the Rack</a> loot the citadel of its contents.</p>\n<p>After Barzillai Thrune was removed from power and Kintargo and Ravounel won their independence from Cheliax in <a href=\"https://pathfinderwiki.com/wiki/4716_AR\">4716 AR</a>, Citadel Vaull was returned to the Order of the Torrent, who began renovating its facade to be more approachable. However, work has been slowed by the Order's simultaneous work caring for <a href=\"https://pathfinderwiki.com/wiki/Castle_Kintargo\">Castle Kintargo</a>.</p>"
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -23.08665, 39.06262 ]
     }
   }, {
     "type" : "Feature",
@@ -7381,6 +7381,19 @@
   }, {
     "type" : "Feature",
     "properties" : {
+      "labels" : "Hall of Commerce",
+      "link" : "https://pathfinderwiki.com/wiki/Hall_of_Commerce",
+      "modificationDate" : 1773996815.000000000,
+      "type" : "bank",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.242462, 30.87131 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
       "labels" : "Hall of Holies",
       "link" : "https://pathfinderwiki.com/wiki/Hall_of_Holies",
       "modificationDate" : 1774173525.000000000,
@@ -8153,19 +8166,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -10.93625, 55.05018 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "House of Ruin",
-      "link" : "https://pathfinderwiki.com/wiki/House_of_Ruin",
-      "modificationDate" : 1773834336.000000000,
-      "type" : "temple",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -4.628176, 21.02943 ]
     }
   }, {
     "type" : "Feature",
@@ -12738,19 +12738,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Queen's Processional",
-      "link" : "https://pathfinderwiki.com/wiki/Queen's_Processional",
-      "modificationDate" : 1711644655.000000000,
-      "type" : "monument",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -28.70410, 17.75228 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "Quldari's Vault",
       "link" : "https://pathfinderwiki.com/wiki/Quldari's_Vault",
       "modificationDate" : 1711644632.000000000,
@@ -12760,32 +12747,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -100.925, 15.7003 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Quldari's Vault",
-      "link" : "https://pathfinderwiki.com/wiki/Quldari's_Vault",
-      "modificationDate" : 1711644632.000000000,
-      "type" : "vault",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -100.925, 15.7003 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Qumarin",
-      "link" : "https://pathfinderwiki.com/wiki/Qumarin",
-      "modificationDate" : 1711644607.000000000,
-      "type" : "city-ruins",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ 11.04415, 22.93925 ]
     }
   }, {
     "type" : "Feature",
@@ -13464,6 +13425,45 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ 1.836055, 52.17280 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Sable Sands",
+      "link" : "https://pathfinderwiki.com/wiki/Sable_Sands",
+      "modificationDate" : 1711644089.000000000,
+      "type" : "graveyard",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -1.777803, 21.09621 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Saddlebark Ranch",
+      "link" : "https://pathfinderwiki.com/wiki/Saddlebark_Ranch",
+      "modificationDate" : 1772081804.000000000,
+      "type" : "shop",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -0.7167074, 31.32961 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Saffron House",
+      "link" : "https://pathfinderwiki.com/wiki/Saffron_House",
+      "modificationDate" : 1746925438.000000000,
+      "type" : "manor-house",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -9.871946, 48.61224 ]
     }
   }, {
     "type" : "Feature",
@@ -17868,19 +17868,6 @@
   }, {
     "type" : "Feature",
     "properties" : {
-      "labels" : "Wandering Spheres",
-      "link" : "https://pathfinderwiki.com/wiki/Wandering_Spheres",
-      "modificationDate" : 1742231771.000000000,
-      "type" : "ruins",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -1.831415, 42.41370 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
       "labels" : "War Cage",
       "link" : "https://pathfinderwiki.com/wiki/War_Cage",
       "modificationDate" : 1722301109.000000000,
@@ -17890,32 +17877,6 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -23.08278, 39.06561 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "War Cage",
-      "link" : "https://pathfinderwiki.com/wiki/War_Cage",
-      "modificationDate" : 1722301109.000000000,
-      "type" : "shop",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -23.08278, 39.06561 ]
-    }
-  }, {
-    "type" : "Feature",
-    "properties" : {
-      "labels" : "Washers' Row",
-      "link" : "https://pathfinderwiki.com/wiki/Washers'_Row",
-      "modificationDate" : 1719013719.000000000,
-      "type" : "shop",
-      "articleLength" : 0
-    },
-    "geometry" : {
-      "type" : "Point",
-      "coordinates" : [ -28.03161, 43.92931 ]
     }
   }, {
     "type" : "Feature",
@@ -18620,6 +18581,45 @@
     "geometry" : {
       "type" : "Point",
       "coordinates" : [ -22.04191, 13.77542 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Wreck of the Paradise",
+      "link" : "https://pathfinderwiki.com/wiki/Wreck_of_the_Paradise",
+      "modificationDate" : 1771788497.000000000,
+      "type" : "ruins",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -23.2812, 45.9278 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Wyo's Rest",
+      "link" : "https://pathfinderwiki.com/wiki/Wyo's_Rest",
+      "modificationDate" : 1719770072.000000000,
+      "type" : "island",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ 7.261090, 23.52720 ]
+    }
+  }, {
+    "type" : "Feature",
+    "properties" : {
+      "labels" : "Wyrmwatch",
+      "link" : "https://pathfinderwiki.com/wiki/Wyrmwatch",
+      "modificationDate" : 1719013249.000000000,
+      "type" : "tower",
+      "articleLength" : 0
+    },
+    "geometry" : {
+      "type" : "Point",
+      "coordinates" : [ -28.02778, 43.93387 ]
     }
   }, {
     "type" : "Feature",
