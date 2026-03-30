@@ -45,7 +45,7 @@ public class Helper {
     public static <T> T read(String url, String antiProtectionSecret, JavaType type) throws IOException, URISyntaxException, InterruptedException {
     	HttpClient httpClient = HttpClient.newHttpClient();
     	HttpRequest request = HttpRequest.newBuilder()
-    		.header("User-Agent", antiProtectionSecret)
+    		.header("anti-protection", antiProtectionSecret)
     		.uri(new URI(url)).build();
     	var resp = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
         var tree = Jackson.get().readTree(resp.body());
