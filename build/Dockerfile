@@ -48,6 +48,6 @@ RUN chmod 777 /w/compile.sh
 
 COPY --link --chown=1000:1000 sources /w/sources
 
-
+ENV TIPPECANOE_MAX_THREADS=1
 
 ENTRYPOINT ["/w/compile.sh"]
