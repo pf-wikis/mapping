@@ -1,10 +1,8 @@
 package io.github.pfwikis;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -90,51 +88,62 @@ public class Helper {
 		".banner"
 	};
     public record ArticleText(int totalArticleLength, String excerpt) {}
-	public static ArticleText downloadText(String pageName) throws IOException {
-		var resp = Jackson.get().readTree(URI.create(
-			buildQuery("https://pathfinderwiki.com/w/api.php",
-				"format", "json",
-				"utf8", "1",
-				"formatversion", "2",
-				"action", "parse",
-				"disablelimitreport", "true",
-				"disableeditsection", "true",
-				"disabletoc", "true",
-				"page", pageName
-		)).toURL());
-		var parsed = resp.at("/parse/text").asText();
-		if(StringUtils.isBlank(parsed)) {
-			return null;
-		}
-		
-		var doc = Jsoup.parseBodyFragment(parsed, "https://pathfinderwiki.com");
-		var output = doc.select(".mw-parser-output").first();
-		doc.body().children().remove();
-		output.children().forEach(doc.body()::appendChild);
-		
-		for(var select:REMOVED_SELECTORS) {
-			doc.select(select).remove();
-		}
-		//make URLs absolute
-		doc.getElementsByAttribute("href").forEach(e->e.attr("href", e.absUrl("href")));
-		//remove red links
-		doc.getElementsByTag("a").forEach(a->{
-			if(a.classNames().contains("new")) {
-				a.childNodes().forEach(c->a.before(c));
-				a.remove();
+	public static ArticleText downloadText(String pageName, String antiProtectionSecret) throws IOException {
+		HttpClient httpClient = HttpClient.newHttpClient();
+    	HttpRequest request = HttpRequest.newBuilder()
+    		.header("anti-protection", antiProtectionSecret)
+    		.uri(URI.create(
+    				buildQuery("https://pathfinderwiki.com/w/api.php",
+    						"format", "json",
+    						"utf8", "1",
+    						"formatversion", "2",
+    						"action", "parse",
+    						"disablelimitreport", "true",
+    						"disableeditsection", "true",
+    						"disabletoc", "true",
+    						"page", pageName
+    				))).build();
+		try {
+			var rawResp = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
+			if(rawResp.statusCode()>=400)
+	    		throw new IOException("Returned status "+rawResp.statusCode());
+	    	var resp = Jackson.get().readTree(rawResp.body());
+			var parsed = resp.at("/parse/text").asText();
+			if(StringUtils.isBlank(parsed)) {
+				return null;
 			}
-		});
-		//remove titles from links
-		doc.getElementsByTag("a").removeAttr("title");
-		doc.getAllElements().removeAttr("class");
-		
-		var raw = doc.body().html();
-		
-		int totalArticleLength = doc.body().text().length();
-		
-		//cut off sections
-		raw = raw.replaceAll("(?s)<h\\d.*", "");
-		doc = Jsoup.parseBodyFragment(raw);
-		return new ArticleText(totalArticleLength, doc.body().html());
+			
+			var doc = Jsoup.parseBodyFragment(parsed, "https://pathfinderwiki.com");
+			var output = doc.select(".mw-parser-output").first();
+			doc.body().children().remove();
+			output.children().forEach(doc.body()::appendChild);
+			
+			for(var select:REMOVED_SELECTORS) {
+				doc.select(select).remove();
+			}
+			//make URLs absolute
+			doc.getElementsByAttribute("href").forEach(e->e.attr("href", e.absUrl("href")));
+			//remove red links
+			doc.getElementsByTag("a").forEach(a->{
+				if(a.classNames().contains("new")) {
+					a.childNodes().forEach(c->a.before(c));
+					a.remove();
+				}
+			});
+			//remove titles from links
+			doc.getElementsByTag("a").removeAttr("title");
+			doc.getAllElements().removeAttr("class");
+			
+			var raw = doc.body().html();
+			
+			int totalArticleLength = doc.body().text().length();
+			
+			//cut off sections
+			raw = raw.replaceAll("(?s)<h\\d.*", "");
+			doc = Jsoup.parseBodyFragment(raw);
+			return new ArticleText(totalArticleLength, doc.body().html());
+		} catch (IOException | InterruptedException e) {
+			throw new RuntimeException("Failed to request "+pageName, e);
+		}
 	}
 }

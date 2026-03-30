@@ -141,7 +141,7 @@ public class Download {
     	}
     	
     	System.out.println("\t\tDownloading text");
-    	var txt = Helper.downloadText(city.getPageName());
+    	var txt = Helper.downloadText(city.getPageName(), antiProtectionSecret);
 		feature.getProperties().setText(txt.excerpt());
 		feature.getProperties().setArticleLength((int)Math.ceil(txt.totalArticleLength()/100.0)*100);
 	}
