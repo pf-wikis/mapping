@@ -213,6 +213,13 @@
       layer: buildings
     - step: COLOR_BUILDINGS
 
+- name: building-labels
+  steps:
+    - step: RESOLVE_LABELS
+      dependsOn:
+        in: buildings.READ_FILE
+    - step: GENERATE_LABEL_CENTERS
+
 - name: waters
   steps:
     - step: READ_FILE
@@ -374,6 +381,7 @@
         swamps: swamp-labels
         waters: water-labels
         districts: district-labels
+        buildings: building-labels
 
 - name: line-labels
   steps:
@@ -407,6 +415,7 @@
         rivers: river-labels.RESOLVE_LABELS
         roads: road-labels.RESOLVE_LABELS
         locations: locations.RESOLVE_LABELS
+        buildings: building-labels.RESOLVE_LABELS
 
 - name: tiles
   steps:
