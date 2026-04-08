@@ -46,19 +46,25 @@
         in: deserts.READ_FILE
     - step: GENERATE_LABEL_CENTERS
 
-- name: districts
+- name: district-borders
   steps:
     - step: READ_FILE
       layer: districts
-    - step: DISTRICT_GAP
+    - step: BORDER_VARIANTS__DISTRICT_BORDERS
+    - step: CLIP
+      dependsOn:
+        mask: land_without_water
+    - step: SUBTRACT
+      dependsOn:
+        subtrahend: buildings.READ_FILE
     - step: ADD_ZOOM
-      minZoom: 4
+      minZoom: 7
 
 - name: city-polygons
   steps:
     - step: CITY_POLYGONS
       dependsOn:
-        in: districts.READ_FILE
+        in: district-borders.READ_FILE
     - step: RESOLVE_LABELS
 
 - name: district-labels
@@ -66,7 +72,7 @@
     - step: ADD_ZOOM
       minZoom: 9
       dependsOn:
-        in: districts.READ_FILE
+        in: district-borders.READ_FILE
     - step: RESOLVE_LABELS
     - step: GENERATE_LABEL_CENTERS
 
@@ -313,25 +319,25 @@
 
 - name: region-area
   steps: 
-    - step: CLIP_POLYGONS
+    - step: CLIP
       dependsOn:
         in: region-labels.BORDER_VARIANTS__REGIONS
         mask: land_without_water
 - name: nation-area
   steps: 
-    - step: CLIP_POLYGONS
+    - step: CLIP
       dependsOn:
         in: nation-labels.BORDER_VARIANTS__NATIONS
         mask: land_without_water
 - name: subregion-area
   steps: 
-    - step: CLIP_POLYGONS
+    - step: CLIP
       dependsOn:
         in: subregion-labels.BORDER_VARIANTS__SUBREGIONS
         mask: land_without_water
 - name: province-area
   steps: 
-    - step: CLIP_POLYGONS
+    - step: CLIP
       dependsOn:
         in: province-labels.BORDER_VARIANTS__PROVINCES
         mask: land_without_water
@@ -345,6 +351,7 @@
         province: province-borders
         subregion: subregion-borders
         region: region-borders
+        district: district-borders
     - step: SMOOTH_LINES
 
 - name: geometry
@@ -358,7 +365,6 @@
         mountains: mountains
         swamps: swamps
         ice: ice
-        districts: districts
         forests: forests
         specials: specials
         waters: waters

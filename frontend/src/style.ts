@@ -1,9 +1,5 @@
 import { DataDrivenPropertyValueSpecification, ExpressionSpecification, LayerSpecification } from "maplibre-gl";
 
-let limit = {
-  districts:    11
-};
-
 let colors = {
   water:           'rgb(138, 180, 248)',
   waterDeep:       'rgb(110, 160, 245)',
@@ -132,6 +128,23 @@ let layers:LayerSpecification[] = [
         6, 1,
       ],
       'line-dasharray': [5, 10]
+    },
+    layout: {
+      'line-cap': 'round'
+    }
+  }),
+  createLayer('district-borders', {
+    'source-layer': 'borders',
+    type: 'line',
+    filter: ['==', ['get', 'borderType'], 5],
+    minzoom: 8,
+    paint: {
+      'line-color': colors.nationBorders,
+      'line-opacity': ["interpolate", ["exponential", 2], ["zoom"],
+        8, 0,
+        10, 1,
+      ],
+      'line-dasharray': [2, 4]
     },
     layout: {
       'line-cap': 'round'

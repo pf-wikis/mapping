@@ -12,11 +12,12 @@ import { CachedSource } from "./CachedPmTiles.js";
 import NewTab from "./tools/NewTab.js";
 import { CompactAttributionControl } from "./tools/CompactAttributionControl.js";
 import { GolarionMap } from "./tools/GolarionMap.js";
+import SearchControl from "./tools/SearchControl.js";
 
 //check if running embedded
 var options = new URLSearchParams(window.location.hash.replace("#","?"));
 const embedded = (options.get('embedded') === 'true');
-const mapContainer = document.getElementById("map-container");
+const mapContainer = document.getElementById("map-container")!;
 
 if(!embedded) {
   mapContainer.classList.remove("embedded");
@@ -102,6 +103,7 @@ map.on('error', function(err) {
 });
 if(!embedded) {
   map.addControl(new NavigationControl({showCompass: false}));
+  map.addControl(new SearchControl(golarionMap));
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',

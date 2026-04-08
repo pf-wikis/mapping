@@ -29,6 +29,16 @@ public class BorderVariants {
             );
         }
     }
+    
+    public static class DistrictBorders extends LCStep {
+        @Override
+        public LCContent process() throws Exception {
+            return Tools.mapshaper(this, getInput(),
+                "-lines",
+                "-dissolve"
+            );
+        }
+    }
 
     public static class Nations extends LCStep {
         @Override

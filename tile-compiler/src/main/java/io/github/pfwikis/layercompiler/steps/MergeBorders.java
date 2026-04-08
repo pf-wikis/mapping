@@ -34,6 +34,7 @@ public class MergeBorders extends LCStep {
 				case "subregion" -> 2;
 				case "nation" -> 3;
 				case "province" -> 4;
+				case "district" -> 5;
 				default -> throw new IllegalStateException();
     		};
     		for(var f:fc.getFeatures()) {

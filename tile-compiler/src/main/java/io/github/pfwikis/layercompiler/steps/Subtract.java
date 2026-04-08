@@ -15,8 +15,11 @@ public class Subtract extends LCStep {
     @Override
     public LCContent process() throws Exception {
         return Tools.mapshaper(this, getInput(),
-            "-dissolve2",
-            keepField!=null?keepField:Collections.emptyList(),
+        	"-if", "this.type=='polygon'",
+            	"-dissolve2", keepField!=null?keepField:Collections.emptyList(),
+            "-else",
+            	"-dissolve", keepField!=null?keepField:Collections.emptyList(),
+            "-endif",
             "-explode",
             "-erase", getInput("subtrahend")
         );
