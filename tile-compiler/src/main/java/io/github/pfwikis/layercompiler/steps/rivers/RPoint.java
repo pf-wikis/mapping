@@ -22,6 +22,7 @@ public class RPoint implements Comparable<RPoint> {
     private boolean segmentEnd = false;
     private boolean spring = false;
     private boolean interpolated = false;
+    private boolean shouldBeSmoothed = true;
     private final List<RPoint> neighbors = new ArrayList<>();
 
     @Override

@@ -38,6 +38,7 @@ public class Properties extends AnyJson {
 	private BigDecimal gc_errorx;
 	private BigDecimal gc_errory;
 	private Double areaM2;
+	private Boolean noSmooth;
 	
 	public String simpleLabel() {
 		if(label!=null)

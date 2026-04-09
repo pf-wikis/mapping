@@ -20,6 +20,9 @@ public class SmoothLines extends LCStep {
     public LCContent process() throws IOException {
     	var fc = getInput().toFeatureCollection();
     	for(var f:fc.getFeatures()) {
+    		if(Boolean.TRUE.equals(f.getProperties().getNoSmooth())) {
+    			continue;
+    		}
     		if(f.getGeometry() instanceof LineString line) {
     			f.setGeometry(new LineString(interpolate(line.getCoordinates())));
     		}

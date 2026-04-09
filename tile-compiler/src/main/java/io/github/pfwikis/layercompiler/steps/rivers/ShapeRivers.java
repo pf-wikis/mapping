@@ -41,7 +41,7 @@ public class ShapeRivers extends LCStep {
 		log.info("Processing " + rivers.size() + " river points");
 		drawShapes(rivers, result);
 
-		var cleaned = Tools.mapshaper(this, LCContent.from(result), "--filter-fields", "-clean", "sliver-control=0", "-dissolve2", "-explode");
+		var cleaned = Tools.mapshaper(this, LCContent.from(result), "--filter-fields", "-clean", "sliver-control=0", "gap-fill-area=0", "-dissolve2", "-explode");
 		/*log.info(
 			"Shaped rivers\nfrom {}\nto\n{}",
 			getInput().toTmpFile(),
@@ -55,9 +55,10 @@ public class ShapeRivers extends LCStep {
 		var featureCol = in.toFeatureCollection();
 		for (var feature : featureCol.getFeatures()) {
 			double defaultWidth = Objects.requireNonNullElse(feature.getProperties().getWidth(), 2000).doubleValue();
+			boolean shouldBeSmoothed = !Boolean.TRUE.equals(feature.getProperties().getNoSmooth());
 			if(feature.getGeometry() instanceof ILineString lines) {
 				lines.toLines().forEach(ls->
-					collectRivers(defaultWidth, ls, rivers)
+					collectRivers(defaultWidth, ls, rivers, shouldBeSmoothed)
 				);
 			} else {
 				throw new IllegalStateException("Unhandled type " + feature.getClass().getSimpleName());
@@ -66,7 +67,7 @@ public class ShapeRivers extends LCStep {
 		return rivers.values();
 	}
 
-	private void collectRivers(double defaultWidth, List<LngLat> points, HashMap<Vector2D, RPoint> rivers) {
+	private void collectRivers(double defaultWidth, List<LngLat> points, HashMap<Vector2D, RPoint> rivers, boolean shouldBeSmoothed) {
 		for (int i = 0; i < points.size() - 1; i++) {
 			var a = RPoint.v(points.get(i));
 			var b = RPoint.v(points.get(i + 1));
@@ -76,6 +77,8 @@ public class ShapeRivers extends LCStep {
 			pB.getNeighbors().add(pA);
 			pA.setWidth(Math.max(metersToDeg(defaultWidth, points.get(i).lat()), pA.getWidth()));
 			pB.setWidth(Math.max(metersToDeg(defaultWidth, points.get(i + 1).lat()), pB.getWidth()));
+			pA.setShouldBeSmoothed(pA.isShouldBeSmoothed()&&shouldBeSmoothed);
+			pB.setShouldBeSmoothed(pB.isShouldBeSmoothed()&&shouldBeSmoothed);
 
 			if (i == 0)
 				pA.setSegmentEnd(true);
@@ -150,11 +153,11 @@ public class ShapeRivers extends LCStep {
 
 		// set width to zero at a spring
 		// set midpoint to max 50km or 3/4ths from spring
-		if (first.isSpring()) {
+		if (first.isSpring() && first.isShouldBeSmoothed()) {
 			interpY[0] = first.getWidth()/10;
 			interpX[1] = geoLength * 3 / 4;
 		}
-		if (last.isSpring()) {
+		if (last.isSpring() && first.isShouldBeSmoothed()) {
 			interpY[2] = last.getWidth()/10;
 			interpX[1] = geoLength * 1 / 4;
 		}
