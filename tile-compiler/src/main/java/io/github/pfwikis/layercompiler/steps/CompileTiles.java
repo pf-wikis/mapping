@@ -45,6 +45,7 @@ public class CompileTiles extends LCStep {
             // V does not work yet
             //"--generate-variable-depth-tile-pyramid", //does not add levels if the detail is already maxed
             //see https://github.com/maplibre/maplibre-gl-js/issues/5618
+            "--no-tile-size-limit",
             "-n", "golarion",
             "-o", tmpPMTiles,
             "--force",

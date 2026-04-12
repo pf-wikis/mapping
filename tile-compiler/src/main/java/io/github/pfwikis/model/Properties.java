@@ -39,6 +39,12 @@ public class Properties extends AnyJson {
 	private BigDecimal gc_errory;
 	private Double areaM2;
 	private Boolean noSmooth;
+	private Pattern pattern;
+	
+	public static enum Pattern {
+		pebbles,
+		NONE;
+	}
 	
 	public String simpleLabel() {
 		if(label!=null)

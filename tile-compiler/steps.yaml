@@ -192,12 +192,13 @@
   steps:
     - step: READ_FILE
       layer: specials
+    - step: RESOLVE_PATTERNS
 
 - name: special-labels
   steps:
     - step: RESOLVE_LABELS
       dependsOn:
-        in: specials
+        in: specials.READ_FILE
     - step: GENERATE_LABEL_CENTERS
 
 - name: swamps

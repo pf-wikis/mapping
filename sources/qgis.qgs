@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2026-04-07T10:05:30" version="3.44.2-Solothurn">
+<qgis projectname="" saveDateTime="2026-04-12T02:23:53" version="3.44.2-Solothurn">
   <homePath path="."></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -679,19 +679,19 @@
       <item>Khari_e9b93c82_9897_448f_bb5b_7f65711dca7f</item>
     </custom-order>
   </layer-tree-group>
-  <snapping-settings enabled="1" intersection-snapping="0" maxScale="0" minScale="0" mode="2" scaleDependencyMode="1" self-snapping="0" tolerance="15" type="1" unit="1">
+  <snapping-settings enabled="1" intersection-snapping="0" maxScale="0" minScale="0" mode="3" scaleDependencyMode="1" self-snapping="0" tolerance="15" type="1" unit="1">
     <individual-layer-settings>
       <layer-setting enabled="0" id="Notes_d60512d1_e376_4526_87c9_b70cb6ffbce1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="borders_80959533_4778_401e_b8cd_8ba655123abe" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+    <layer-setting enabled="0" id="cities_b2839d80_d946_48d1_8c42_83b3b917d8d5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="hills_ce4f9894_b2c5_4ad4_a1c6_511fdead97eb" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-    <layer-setting enabled="0" id="ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="land_48aa2040_f185_4ba4_a64a_5b3a275264c1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="1" id="land_48aa2040_f185_4ba4_a64a_5b3a275264c1" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="mountains_da232536_72ca_402a_b0c2_4d749d051c5f" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="rivers_37f0454d_322e_45b4_8a2a_e95e0f10c44e" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="roads_7e038ab7_ac9b_4762_96b1_2ac7d9a2c175" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
@@ -710,10 +710,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>-28.03923079725012357</xmin>
-      <ymin>43.92106611511150049</ymin>
-      <xmax>-28.01667714765988748</xmax>
-      <ymax>43.93776446157022519</ymax>
+      <xmin>-25.58198262555646707</xmin>
+      <ymin>30.27002359853021218</ymin>
+      <xmax>-25.57290200017746074</xmax>
+      <ymax>30.27316631877660669</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -10766,16 +10766,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-30.75686073303222656</xmin>
-        <ymin>17.81950759887695313</ymin>
-        <xmax>-0.17495426535606384</xmax>
-        <ymax>51.24486923217773438</ymax>
+        <xmin>-30.75686073303220169</xmin>
+        <ymin>17.81950759887689983</ymin>
+        <xmax>-0.17495426535606401</xmax>
+        <ymax>51.24486923217769885</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-30.75686073303222656</xmin>
-        <ymin>17.81950759887695313</ymin>
-        <xmax>-0.17495426535606384</xmax>
-        <ymax>51.24486923217773438</ymax>
+        <xmin>-30.75686073303220169</xmin>
+        <ymin>17.81950759887689983</ymin>
+        <xmax>-0.17495426535606401</xmax>
+        <ymax>51.24486923217769885</ymax>
       </wgs84extent>
       <id>districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=districts</datasource>
@@ -20665,16 +20665,16 @@ def my_form_open(dialog, layer, feature):
     </maplayer>
     <maplayer autoRefreshMode="Disabled" autoRefreshTime="0" geometry="Polygon" hasScaleBasedVisibilityFlag="0" labelsEnabled="0" legendPlaceholderImage="" maxScale="0" minScale="100000000" readOnly="0" refreshOnNotifyEnabled="0" refreshOnNotifyMessage="" simplifyAlgorithm="0" simplifyDrawingHints="1" simplifyDrawingTol="1" simplifyLocal="1" simplifyMaxScale="1" styleCategories="AllStyleCategories" symbologyReferenceScale="-1" type="vector" wkbType="MultiPolygon">
       <extent>
-        <xmin>-28.49575042724610086</xmin>
-        <ymin>7.41568422317504972</ymin>
-        <xmax>182.28909301757801131</xmax>
-        <ymax>54.74378204345700283</ymax>
+        <xmin>-28.49575042724609375</xmin>
+        <ymin>7.41568422317504883</ymin>
+        <xmax>182.289093017578125</xmax>
+        <ymax>54.74378204345703125</ymax>
       </extent>
       <wgs84extent>
-        <xmin>-28.49575042724610086</xmin>
-        <ymin>7.41568422317504972</ymin>
-        <xmax>182.28909301757801131</xmax>
-        <ymax>54.74378204345700283</ymax>
+        <xmin>-28.49575042724609375</xmin>
+        <ymin>7.41568422317504883</ymin>
+        <xmax>182.289093017578125</xmax>
+        <ymax>54.74378204345703125</ymax>
       </wgs84extent>
       <id>specials_c128e960_556c_4ede_a0c3_f1da18d388a2</id>
       <datasource>../../mapping-data/mapping-data.gpkg|layername=specials</datasource>
@@ -21070,10 +21070,11 @@ def my_form_open(dialog, layer, feature):
           <Option name="dualview/previewExpressions" type="List">
             <Option type="QString" value="&quot;labels&quot;"></Option>
             <Option type="QString" value="&quot;fid&quot;"></Option>
+            <Option type="QString" value="&quot;labels&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -21149,7 +21150,7 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -21183,26 +21184,40 @@ def my_form_open(dialog, layer, feature):
             </config>
           </editWidget>
         </field>
+        <field configurationFlags="NoFlag" name="pattern">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option name="IsMultiline" type="bool" value="false"></Option>
+                <Option name="UseHtml" type="bool" value="false"></Option>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
       </fieldConfiguration>
       <aliases>
         <alias field="fid" index="0" name=""></alias>
         <alias field="labels" index="1" name=""></alias>
         <alias field="color" index="2" name=""></alias>
+        <alias field="pattern" index="3" name=""></alias>
       </aliases>
       <defaults>
         <default applyOnUpdate="0" expression="" field="fid"></default>
         <default applyOnUpdate="0" expression="" field="labels"></default>
         <default applyOnUpdate="0" expression="" field="color"></default>
+        <default applyOnUpdate="0" expression="" field="pattern"></default>
       </defaults>
       <constraints>
         <constraint constraints="3" exp_strength="0" field="fid" notnull_strength="2" unique_strength="2"></constraint>
         <constraint constraints="0" exp_strength="0" field="labels" notnull_strength="0" unique_strength="0"></constraint>
         <constraint constraints="1" exp_strength="0" field="color" notnull_strength="1" unique_strength="0"></constraint>
+        <constraint constraints="0" exp_strength="0" field="pattern" notnull_strength="0" unique_strength="0"></constraint>
       </constraints>
       <constraintExpressions>
         <constraint desc="" exp="" field="fid"></constraint>
         <constraint desc="" exp="" field="labels"></constraint>
         <constraint desc="" exp="" field="color"></constraint>
+        <constraint desc="" exp="" field="pattern"></constraint>
       </constraintExpressions>
       <expressionfields></expressionfields>
       <attributeactions>
@@ -21213,6 +21228,7 @@ def my_form_open(dialog, layer, feature):
           <column hidden="0" name="fid" type="field" width="-1"></column>
           <column hidden="0" name="color" type="field" width="-1"></column>
           <column hidden="0" name="labels" type="field" width="-1"></column>
+          <column hidden="0" name="pattern" type="field" width="-1"></column>
           <column hidden="1" type="actions" width="-1"></column>
         </columns>
       </attributetableconfig>
@@ -21242,25 +21258,28 @@ def my_form_open(dialog, layer, feature):
     geom = feature.geometry()
     control = dialog.findChild(QWidget, "MyLineEdit")
 </editforminitcode>
-      <featformsuppress>0</featformsuppress>
+      <featformsuppress>1</featformsuppress>
       <editorlayout>generatedlayout</editorlayout>
       <editable>
         <field editable="1" name="Name"></field>
         <field editable="1" name="color"></field>
         <field editable="1" name="fid"></field>
         <field editable="1" name="labels"></field>
+        <field editable="1" name="pattern"></field>
       </editable>
       <labelOnTop>
         <field labelOnTop="0" name="Name"></field>
         <field labelOnTop="0" name="color"></field>
         <field labelOnTop="0" name="fid"></field>
         <field labelOnTop="0" name="labels"></field>
+        <field labelOnTop="0" name="pattern"></field>
       </labelOnTop>
       <reuseLastValue>
         <field name="Name" reuseLastValue="0"></field>
-        <field name="color" reuseLastValue="0"></field>
+        <field name="color" reuseLastValue="1"></field>
         <field name="fid" reuseLastValue="0"></field>
         <field name="labels" reuseLastValue="0"></field>
+        <field name="pattern" reuseLastValue="1"></field>
       </reuseLastValue>
       <dataDefinedFieldProperties></dataDefinedFieldProperties>
       <widgets></widgets>
@@ -25216,14 +25235,9 @@ def my_form_open(dialog, layer, feature):
   <properties>
     <Digitizing>
       <AvoidIntersectionsList type="QStringList">
-        <value>forests_1f0825fc_d22c_4420_a486_71a5f5fa2fe0</value>
-        <value>mountains_b5410a56_b448_490e_99a1_2b153d259f76</value>
-        <value>waters_1c8ac1d0_b31b_4f02_8f82_efe0f2650a0a</value>
-        <value>hills_72250f28_6ae0_4717_ba78_88be49eec237</value>
-        <value>deserts_9150d2d1_48b2_4d7d_a371_5619c41aef06</value>
-        <value>swamps_7de1642c_924d_48e3_b1cd_1a0cc345f514</value>
+        <value>land_48aa2040_f185_4ba4_a64a_5b3a275264c1</value>
       </AvoidIntersectionsList>
-      <AvoidIntersectionsMode type="int">1</AvoidIntersectionsMode>
+      <AvoidIntersectionsMode type="int">2</AvoidIntersectionsMode>
       <TopologicalEditing type="int">1</TopologicalEditing>
     </Digitizing>
     <FreehandRasterGeoreferencer>
@@ -25646,7 +25660,7 @@ def my_form_open(dialog, layer, feature):
   <Sensors></Sensors>
   <ProjectViewSettings UseProjectScales="0" rotation="0">
     <Scales></Scales>
-    <DefaultViewExtent xmax="-28.01667714765988748" xmin="-28.03923079725012357" ymax="43.93878292047299539" ymin="43.9200476562087303">
+    <DefaultViewExtent xmax="-25.57290200017746074" xmin="-25.58198262555646707" ymax="30.27536658584571327" ymin="30.2678233314611056">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
         <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -25711,7 +25725,7 @@ def my_form_open(dialog, layer, feature):
       </spatialrefsys>
     </CoordinateCustomCrs>
   </ProjectDisplaySettings>
-  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" destinationLayerName="districts" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-paizo/mapping-data/mapping-data.gpkg|layername=districts">
+  <ProjectGpsSettings autoAddTrackVertices="0" autoCommitFeatures="0" destinationFollowsActiveLayer="1" destinationLayer="specials_c128e960_556c_4ede_a0c3_f1da18d388a2" destinationLayerName="specials" destinationLayerProvider="ogr" destinationLayerSource="E:/workspace-paizo/mapping-data/mapping-data.gpkg|layername=specials">
     <timeStampFields></timeStampFields>
   </ProjectGpsSettings>
 </qgis>
