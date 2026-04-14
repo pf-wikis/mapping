@@ -46,9 +46,8 @@ public class ResolvePatterns extends LCStep {
 			"-dots", "number", "copy-fields=color"/*,
 			"-symbols", "type=polygon", "geographic", "radius=.01", "sides=8"*/
 		);
-		inf.finishUsage();
 		
-		var out = Tools.qgis(this, "native:rectanglesovalsdiamonds", dots,
+		var pebbles = Tools.qgis(this, "native:rectanglesovalsdiamonds", dots,
 			"--SHAPE=2", //ovals
 			"--WIDTH=0.0001",
 			"--HEIGHT=expression:randf(0.0001,0.0002)",
@@ -56,6 +55,13 @@ public class ResolvePatterns extends LCStep {
 			"--SEGMENTS=12"
 		);
 		dots.finishUsage();
+		var out = Tools.mapshaper(this, pebbles,
+            "-clip", inf
+        );
+		
+		inf.finishUsage();
+		pebbles.finishUsage();
+		
 		return out.toFeatureCollectionAndFinish().getFeatures();
 	}
 
