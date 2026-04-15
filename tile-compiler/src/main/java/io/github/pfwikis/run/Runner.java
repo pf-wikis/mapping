@@ -93,10 +93,10 @@ public class Runner {
 
     private static final ConcurrentMap<String, AtomicInteger> TMP_COUNTER = new ConcurrentHashMap<>(); 
 
-    public static File tmpGeojson(LCStep step) {
+    public static File tmpGeojson(LCStep step, OutFile outFile) {
     	String prefix = step!=null?(step.getId()+"_"):"";
     	int uniqueCounter = TMP_COUNTER.computeIfAbsent(prefix, key->new AtomicInteger(1)).getAndIncrement();
-        var f = new File(TMP_DIR, prefix+"%02d.geojson".formatted(uniqueCounter));
+        var f = new File(TMP_DIR, prefix+"%02d.%s".formatted(uniqueCounter, outFile.ext));
         f.deleteOnExit();
         return f;
     }
@@ -106,9 +106,12 @@ public class Runner {
             this("", content);
         }
     }
-    public static record OutGeojson(String commandPrefix){
-        public OutGeojson() {
-            this("");
+    public static record OutFile(String commandPrefix, String ext){
+    	public OutFile(String commandPrefix) {
+            this(commandPrefix, "geojson");
+        }
+        public OutFile() {
+            this("", "geojson");
         }
     }
 
@@ -143,9 +146,9 @@ public class Runner {
                 else if(part instanceof TmpGeojson json) {
                     parts.add(json.commandPrefix()+toolVariant.translateFile(json.content().toTmpFile(step)));
                 }
-                else if(part instanceof OutGeojson json) {
-                    resultFile = tmpGeojson(step);
-                    parts.add(json.commandPrefix()+toolVariant.translateFile(resultFile.toPath()));
+                else if(part instanceof OutFile outFile) {
+                    resultFile = tmpGeojson(step, outFile);
+                    parts.add(outFile.commandPrefix()+toolVariant.translateFile(resultFile.toPath()));
                 }
                 else if(part instanceof List<?> l) {
                 	addCommandParts(l.toArray());

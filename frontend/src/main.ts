@@ -66,6 +66,9 @@ export const map = new Map({
   attributionControl: false,
   pitchWithRotate: false,
   style: style,
+  canvasContextAttributes: {
+    preserveDrawingBuffer: true
+  }
 });
 export const golarionMap = new GolarionMap();
 golarionMap.map = map;
@@ -131,3 +134,4 @@ addSpecialURLOptions(map);
 //map.showTileBoundaries = true;
 //map.showCollisionBoxes = true;
 (window as any).map = map;
+(window as any).MAP_VERSION = import.meta.env.VITE_DATA_HASH;

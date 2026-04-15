@@ -441,7 +441,7 @@
 - name: debug-tiles
   steps:
     - step: COMPILE_TILES
-      filename: debug.pmtiles
+      filename: debug
       dependsOn:
         city-polygons: city-polygons
 

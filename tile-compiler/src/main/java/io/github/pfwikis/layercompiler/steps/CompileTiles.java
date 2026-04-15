@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
+import com.google.common.collect.Lists;
+
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.model.FeatureCollection;
@@ -20,7 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Getter @Setter
 public class CompileTiles extends LCStep {
 	
-	private String filename = "golarion.pmtiles";
+	private String filename = "golarion";
+	private String extension = "pmtiles";
 	
     @Override
     public LCContent process() throws Exception {
@@ -33,13 +36,8 @@ public class CompileTiles extends LCStep {
     		.map(e->List.of("-L", new Runner.TmpGeojson(e.getKey()+":", LCContent.from(e.getValue()))))
     		.toList();
 
-        var ttmp = new File(Runner.TMP_DIR, "tippecanoe-tmp").getAbsoluteFile().getCanonicalFile();
-        ttmp.mkdirs();
-        var tmpPMTiles = new File(ttmp, filename);
-
-        Tools.tippecanoe(
-        	null,
-            "-z"+ctx.getOptions().getMaxZoom(),
+        var out = Tools.tippecanoe(this, extension,
+    		"-z"+ctx.getOptions().getMaxZoom(),
             "--full-detail="+Math.max(14,32-ctx.getOptions().getMaxZoom()), //increase detail level on max-zoom
             // |
             // V does not work yet
@@ -47,20 +45,18 @@ public class CompileTiles extends LCStep {
             //see https://github.com/maplibre/maplibre-gl-js/issues/5618
             "--no-tile-size-limit",
             "-n", "golarion",
-            "-o", tmpPMTiles,
             "--force",
             "--detect-shared-borders",
             "--preserve-input-order",
             "-B", "0",
             "--coalesce-densest-as-needed",
-            "-t", ttmp,
             layers
         );
-        var finalOutput = new File(ctx.getOptions().targetDirectory(), filename);
+        
+        var finalOutput = new File(ctx.getOptions().targetDirectory(), filename+"."+extension);
         FileUtils.deleteQuietly(finalOutput);
-        FileUtils.moveFile(tmpPMTiles, finalOutput);
-        FileUtils.deleteDirectory(ttmp);
-    	
+        FileUtils.writeByteArrayToFile(finalOutput, out.toBytes());
+        out.finishUsage();
     	
         return LCContent.empty();
     }

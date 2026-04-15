@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Runner;
+import io.github.pfwikis.run.Runner.OutFile;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -93,7 +94,7 @@ public abstract class LCContent {
 	@SneakyThrows
 	public Path toTmpFile(LCStep step) {
 		checkValidUsage();
-		var tmpFile = Runner.tmpGeojson(step);
+		var tmpFile = Runner.tmpGeojson(step, new OutFile());
 		temporaryFilesToDelete.add(tmpFile.toPath());
         tmpFile.deleteOnExit();
         FileUtils.writeByteArrayToFile(tmpFile, toBytes());

@@ -10,6 +10,7 @@ import org.slf4j.event.Level;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.run.Runner.OutFile;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +28,7 @@ public class StdHelper implements Closeable {
 	public StdHelper(String prefix, LCStep step) {
 		this.prefix = prefix;
 		this.step = step;
-		this.file = Runner.tmpGeojson(step);
+		this.file = Runner.tmpGeojson(step, new OutFile());
 		this.content = LCContent.from(file, true);
 	}
 
