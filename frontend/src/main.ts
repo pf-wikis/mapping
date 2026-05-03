@@ -1,4 +1,4 @@
-import Maplibre, { AttributionControl, Map, NavigationControl, ScaleControl, StyleSpecification } from "maplibre-gl";
+import Maplibre, { AttributionControl, GlobeControl, Map, NavigationControl, ScaleControl, StyleSpecification } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 import style from 'virtual:style';
@@ -64,7 +64,7 @@ export const map = new Map({
   container: 'map-container',
   hash: 'location',
   attributionControl: false,
-  pitchWithRotate: false,
+  pitchWithRotate: embedded?false:true,
   style: style,
   canvasContextAttributes: {
     preserveDrawingBuffer: true
@@ -105,7 +105,8 @@ map.on('error', function(err) {
   console.log(err.error.message);
 });
 if(!embedded) {
-  map.addControl(new NavigationControl({showCompass: false}));
+  map.addControl(new GlobeControl());
+  map.addControl(new NavigationControl({showCompass: true}));
   map.addControl(new SearchControl(golarionMap));
 }
 map.addControl(new ScaleControl({
