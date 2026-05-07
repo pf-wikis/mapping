@@ -130,6 +130,20 @@ makeLocationsClickable(golarionMap);
 addRightClickMenu(embedded, map, measureControl);
 addSpecialURLOptions(map);
 
+//change label orientation if bearing != 0
+function changeStyleWithBearing() {
+  const value = map.getBearing() === 0 ? 'map' : 'viewport';
+  map.setLayoutProperty('symbol_labels', 'text-rotate', value === 'map' ? ['get', 'angle'] : 0, {validate: false});
+  map.setLayoutProperty('symbol_labels', 'text-rotation-alignment', value, {validate: false});
+  map.setLayoutProperty('symbol_region-labels', 'text-rotation-alignment', value, {validate: false});
+  map.setLayoutProperty('symbol_subregion-labels', 'text-rotation-alignment', value, {validate: false});
+  map.setLayoutProperty('symbol_nation-labels', 'text-rotation-alignment', value, {validate: false});
+  map.setLayoutProperty('symbol_province-labels', 'text-rotation-alignment', value, {validate: false});
+  map.setLayoutProperty('location-labels', 'text-rotation-alignment', value, {validate: false});
+}
+map.on('rotateend', changeStyleWithBearing);
+map.on('load', changeStyleWithBearing);
+
 
 //////////debugging options
 //map.showTileBoundaries = true;
