@@ -19,11 +19,11 @@ public class MergeLabels extends LCStep {
 	private boolean invert = false;
 	
     @Override
-    public LCContent process() throws Exception {
+    public LCContent process(Inputs in) throws Exception {
     	var result = new FeatureCollection();
     	result.setFeatures(new ArrayList<>());
-    	log.info("Label layer order: {}", getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining("->")));
-    	for(var e:this.getInputs().entrySet()) {
+    	log.info("Label layer order: {}", in.getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining("->")));
+    	for(var e:in.getInputs().entrySet()) {
     		var defaultColor = MergeGeometry.colorFor(e.getKey());
 
     		for(var f : e.getValue().toFeatureCollection().getFeatures()) {

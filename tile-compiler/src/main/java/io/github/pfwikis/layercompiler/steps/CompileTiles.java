@@ -6,31 +6,28 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
-import com.google.common.collect.Lists;
-
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.LCStepMergingTime;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Runner;
 import io.github.pfwikis.run.Tools;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter @Setter
-public class CompileTiles extends LCStep {
+public class CompileTiles extends LCStepMergingTime {
 	
 	private String filename = "golarion";
 	private String extension = "pmtiles";
 	
     @Override
-    public LCContent process() throws Exception {
+    public LCContent process(Inputs in) throws Exception {
     	log.info("Compiling Tiles");
     	
     	
-    	var layers = getInputs().entrySet()
+    	var layers = in.getInputs().entrySet()
     		.stream()
     		.map(e->Pair.of(e.getKey(), createTippecanoeProperties(e.getValue())))
     		.map(e->List.of("-L", new Runner.TmpGeojson(e.getKey()+":", LCContent.from(e.getValue()))))
@@ -56,7 +53,6 @@ public class CompileTiles extends LCStep {
         var finalOutput = new File(ctx.getOptions().targetDirectory(), filename+"."+extension);
         FileUtils.deleteQuietly(finalOutput);
         FileUtils.writeByteArrayToFile(finalOutput, out.toBytes());
-        out.finishUsage();
     	
         return LCContent.empty();
     }

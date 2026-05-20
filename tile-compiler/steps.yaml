@@ -254,6 +254,7 @@
   steps:
     - step: READ_FILE
       layer: borders
+    - step: TIME_SLICES
 
 - name: nation-borders
   steps:

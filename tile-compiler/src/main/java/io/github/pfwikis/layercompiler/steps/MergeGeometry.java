@@ -15,10 +15,10 @@ import lombok.extern.slf4j.Slf4j;
 public class MergeGeometry extends LCStep {
 
     @Override
-    public LCContent process() throws Exception {
+    public LCContent process(Inputs in) throws Exception {
     	var agg = new FeatureCollection();
-    	log.info("Geometry layer order: {}", getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining("->")));
-    	for(var e:this.getInputs().entrySet()) {
+    	log.info("Geometry layer order: {}", in.getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining("->")));
+    	for(var e:in.getInputs().entrySet()) {
     		var defaultColor = Optional.ofNullable(colorFor(e.getKey()))
 				.map(ColorUtil::toHex);
     		
@@ -33,7 +33,6 @@ public class MergeGeometry extends LCStep {
 			);
     		
     		var features = dissolved.toFeatureCollection();
-    		dissolved.finishUsage();
     		for(var f : features.getFeatures()) {
     			agg.getFeatures().add(f);
     		}
@@ -45,9 +44,8 @@ public class MergeGeometry extends LCStep {
 			"-filter", "Boolean(colorStack)",
 			"-filter", "!this.isNull"
 		);
-    	aggC.finishUsage();
     	agg = null;
-    	var mosaic = mosaicC.toFeatureCollectionAndFinish();
+    	var mosaic = mosaicC.toFeatureCollection();
     	for(var f:mosaic.getFeatures()) {
     		Color c = new Color(110, 160, 245);
     		for(var rawNext:f.getProperties().getColorStack()) {

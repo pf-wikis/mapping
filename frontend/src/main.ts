@@ -1,4 +1,4 @@
-import Maplibre, { AttributionControl, GlobeControl, Map, NavigationControl, ScaleControl, StyleSpecification } from "maplibre-gl";
+import Maplibre, { AttributionControl, FilterSpecification, GlobeControl, Map, NavigationControl, ScaleControl, StyleSpecification } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 import style from 'virtual:style';
@@ -13,13 +13,13 @@ import NewTab from "./tools/NewTab.js";
 import { CompactAttributionControl } from "./tools/CompactAttributionControl.js";
 import { GolarionMap } from "./tools/GolarionMap.js";
 import SearchControl from "./tools/SearchControl.js";
+import TimeSliderControl from "./tools/TimeSliderControl.js";
+import options from "./URLOptions.js";
 
 //check if running embedded
-var options = new URLSearchParams(window.location.hash.replace("#","?"));
-const embedded = (options.get('embedded') === 'true');
 const mapContainer = document.getElementById("map-container")!;
 
-if(!embedded) {
+if(!options.embedded) {
   mapContainer.classList.remove("embedded");
 }
 
@@ -42,18 +42,18 @@ Maplibre.addProtocol("pmtiles", pmtilesProt.tilev4);
 const normalRoot = 'https://map.pathfinderwiki.com';
 if(root!=normalRoot) {
   style.sprite = (style.sprite as string).replace(normalRoot, root);
-  style.glyphs = style.glyphs.replace(normalRoot, root);
+  style.glyphs = style.glyphs?.replace(normalRoot, root);
   (style.sources.golarion as any).url = (style.sources.golarion as any).url.replace(normalRoot, root);
 }
 (style.sources.golarion as any).url += '?v='+import.meta.env.VITE_DATA_HASH;
 
-if(options.get('hideLabels') === 'true') {
+if(options.hideLabels) {
   style.layers = style.layers.filter(l=>!l.id.includes('label'));
 }
-if(options.get('hideLocations') === 'true') {
+if(options.hideLocations) {
   style.layers = style.layers.filter(l=>!l.id.includes('location'));
 }
-if(options.get('hideBorders') === 'true') {
+if(options.hideBorders) {
   style.layers = style.layers.filter(l=>!l.id.includes('border'));
 }
 
@@ -64,7 +64,7 @@ export const map = new Map({
   container: 'map-container',
   hash: 'location',
   attributionControl: false,
-  pitchWithRotate: embedded?false:true,
+  pitchWithRotate: options.embedded?false:true,
   style: style,
   canvasContextAttributes: {
     preserveDrawingBuffer: true
@@ -74,13 +74,7 @@ export const golarionMap = new GolarionMap();
 golarionMap.map = map;
 //project to globe
 let projection:Maplibre.PropertyValueSpecification<Maplibre.ProjectionDefinitionSpecification>;
-if(options.get('projection') === 'globe') {
-  projection = 'globe';
-}
-else if(options.get('projection') === 'mercator') {
-  projection = 'mercator';
-}
-else {
+if(options.projection === 'auto') {
   projection = [
     "interpolate",
     ["linear"],
@@ -91,11 +85,21 @@ else {
     "mercator"
   ];
 }
+else {
+  projection = options.projection;
+}
 map.on('style.load', () => {
   map.setProjection({
     type: projection
   });
 });
+
+//set up time slider
+map.on('load', ()=>{
+
+  //map.setGlobalStateProperty(YEAR, 4715);
+});
+
 
 //diable rotation
 map.dragRotate.disable();
@@ -104,45 +108,39 @@ map.touchZoomRotate.disableRotation();
 map.on('error', function(err) {
   console.log(err.error.message);
 });
-if(!embedded) {
+if(!options.embedded) {
   map.addControl(new GlobeControl());
   map.addControl(new NavigationControl({showCompass: true}));
   map.addControl(new SearchControl(golarionMap));
+  map.addControl(new TimeSliderControl(golarionMap), 'top-left');
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',
-  maxWidth: embedded?50:100,
+  maxWidth: options.embedded?50:100,
 }));
 map.addControl(new ScaleControl({
   unit: 'metric',
-  maxWidth: embedded?50:100,
+  maxWidth: options.embedded?50:100,
 }));
-map.addControl(new CompactAttributionControl(embedded));
+map.addControl(new CompactAttributionControl(options.embedded));
 let measureControl = new MeasureControl(golarionMap);
 map.addControl(measureControl);
-if(embedded) {
+if(options.embedded) {
   map.addControl(new NewTab());
   //attribution._toggleAttribution();
   //map.once('load', e=>attribution._toggleAttribution());
 }
 
 makeLocationsClickable(golarionMap);
-addRightClickMenu(embedded, map, measureControl);
+addRightClickMenu(options.embedded, map, measureControl);
 addSpecialURLOptions(map);
 
 //change label orientation if bearing != 0
 function changeStyleWithBearing() {
-  const value = map.getBearing() === 0 ? 'map' : 'viewport';
-  map.setLayoutProperty('symbol_labels', 'text-rotate', value === 'map' ? ['get', 'angle'] : 0, {validate: false});
-  map.setLayoutProperty('symbol_labels', 'text-rotation-alignment', value, {validate: false});
-  map.setLayoutProperty('symbol_region-labels', 'text-rotation-alignment', value, {validate: false});
-  map.setLayoutProperty('symbol_subregion-labels', 'text-rotation-alignment', value, {validate: false});
-  map.setLayoutProperty('symbol_nation-labels', 'text-rotation-alignment', value, {validate: false});
-  map.setLayoutProperty('symbol_province-labels', 'text-rotation-alignment', value, {validate: false});
-  map.setLayoutProperty('location-labels', 'text-rotation-alignment', value, {validate: false});
+  map.setGlobalStateProperty('rotated', map.getBearing() !== 0);
 }
 map.on('rotateend', changeStyleWithBearing);
-map.on('load', changeStyleWithBearing);
+map.on('style.load', changeStyleWithBearing);
 
 
 //////////debugging options

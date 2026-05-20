@@ -10,8 +10,8 @@ import io.github.pfwikis.util.ColorUtil;
 public class ColorBuildings extends LCStep {
 
     @Override
-    public LCContent process() throws IOException {
-    	var fc = getInput().toFeatureCollection();
+    public LCContent process(Inputs in) throws IOException {
+    	var fc = in.getInput().toFeatureCollection();
     	fc.getFeatures().forEach(f-> {
     		f.getProperties().setColor(ColorUtil.toHex(switch(f.getProperties().getType()) {
 				case "fortification" -> new Color(105, 105, 105);

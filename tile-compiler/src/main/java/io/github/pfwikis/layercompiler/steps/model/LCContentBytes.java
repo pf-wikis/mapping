@@ -11,13 +11,11 @@ public class LCContentBytes extends LCContent {
 
 	@Override
 	public InputStream toInputStream() {
-		checkValidUsage();
 		return new ByteArrayInputStream(bytes);
 	}
 
 	@Override
 	public byte[] toBytes() {
-		checkValidUsage();
 		return bytes;
 	}
 	

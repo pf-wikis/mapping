@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public abstract class LCStep extends LCStepAbstract {
+public abstract class LCStepSlicing extends LCStepAbstract {
 
 	@Override
 	protected TimeSlicedContent executeInternal() throws Exception {
@@ -16,11 +16,16 @@ public abstract class LCStep extends LCStepAbstract {
     	
     	for(var variant:variants) {
     		var result = process(variant);
-            result.setName(getName()+"."+getStep()+"."+variant.getTime());
-            results.add(TimeSlice.from(variant.getTime(), result));
+    		for(var slice:result.getSlices()) {
+    			var time = slice.getTime().intersection(variant.getTime());
+    			var resultCopy = LCContent.from(slice.getContent().toBytes());
+    			resultCopy.setName(getName()+"."+getStep()+"."+time);
+                results.add(TimeSlice.from(time, resultCopy));
+    		}
+    		
     	}
     	return new TimeSlicedContent(results);
 	}
-
-	protected abstract LCContent process(Inputs in) throws Exception;
+	
+	protected abstract TimeSlicedContent process(Inputs in) throws Exception;
 }

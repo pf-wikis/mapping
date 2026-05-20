@@ -18,8 +18,8 @@ public class AddCityZoom extends LCStep {
 	);
 	
     @Override
-    public LCContent process() throws IOException {
-    	var in = getInput().toFeatureCollection();
+    public LCContent process(Inputs ins) throws IOException {
+    	var in = ins.getInput().toFeatureCollection();
     	in.getFeatures().forEach(f-> {
     		f.getProperties().setFilterMinzoom(switch(f.getProperties().getSize()) {
     			case 0 -> 1;

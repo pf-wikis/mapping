@@ -20,18 +20,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.apache.commons.io.FileUtils;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Runner {
-    /*package*/ static LCContent run(LCStep step, String command, Object... args) throws IOException {
+    /*package*/ static LCContent run(LCStepAbstract step, String command, Object... args) throws IOException {
         return internalRun(step, command, args);
     }
     
-    private static LCContent internalRun(LCStep step, String command, Object... args) throws IOException {
+    private static LCContent internalRun(LCStepAbstract step, String command, Object... args) throws IOException {
     	try(
     			var stdOut = new StdHelper("std", step);
             	var stdErr = new StdHelper("err", step);) {
@@ -93,7 +93,7 @@ public class Runner {
 
     private static final ConcurrentMap<String, AtomicInteger> TMP_COUNTER = new ConcurrentHashMap<>(); 
 
-    public static File tmpGeojson(LCStep step, OutFile outFile) {
+    public static File tmpGeojson(LCStepAbstract step, OutFile outFile) {
     	String prefix = step!=null?(step.getId()+"_"):"";
     	int uniqueCounter = TMP_COUNTER.computeIfAbsent(prefix, key->new AtomicInteger(1)).getAndIncrement();
         var f = new File(TMP_DIR, prefix+"%02d.%s".formatted(uniqueCounter, outFile.ext));
@@ -120,11 +120,11 @@ public class Runner {
     private static class Command implements Closeable {
 
         private final List<String> parts = new ArrayList<>();
-        private final LCStep step;
+        private final LCStepAbstract step;
         private File resultFile;
         private ToolVariant toolVariant;
 
-        public static Command of(LCStep step, String command, Object... commandParts) throws IOException {
+        public static Command of(LCStepAbstract step, String command, Object... commandParts) throws IOException {
             var result = new Command(step);
             result.toolVariant = ToolVariant.getFor(command);
             result.addCommandParts(new String[] {command});

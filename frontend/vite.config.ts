@@ -26,6 +26,10 @@ const compileStyle:PluginOption = {
 
 const config:UserConfig = {
   base: '',
+  /*
+  define: {
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString())
+  },*/
   plugins: [
     compileStyle,
     generateFile([{

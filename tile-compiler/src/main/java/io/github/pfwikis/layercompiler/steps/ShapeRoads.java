@@ -9,7 +9,7 @@ import lombok.Setter;
 public class ShapeRoads extends LCStep {
 	
     @Override
-    public LCContent process() throws Exception {
+    public LCContent process(Inputs in) throws Exception {
     	String formula = """
     		"width"
     		*(
@@ -19,7 +19,7 @@ public class ShapeRoads extends LCStep {
 		""".trim().replaceAll("\\s+", ""); 
     			
     	
-        return Tools.qgis(this, "native:buffer", getInput(),
+        return Tools.qgis(this, "native:buffer", in.getInput(),
             "--DISTANCE=expression:"+formula,
             "--DISSOLVE=true",
             "--SEPARATE_DISJOINT=true"

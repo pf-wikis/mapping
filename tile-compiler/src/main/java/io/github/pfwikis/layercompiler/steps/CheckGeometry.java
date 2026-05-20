@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCContentEmpty;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Tools;
 import lombok.Setter;
@@ -19,10 +18,10 @@ public class CheckGeometry extends LCStep {
 	private String layer;
 
 	@Override
-	public LCContent process() throws Exception {
-		if(layer == null) return LCContentEmpty.INSTANCE; //cities and locations
+	public LCContent process(Inputs ins) throws Exception {
+		if(layer == null) return LCContent.empty(); //cities and locations
 		
-		var in = Tools.mapshaper(this, getInput(), "id-field=fid");
+		var in = Tools.mapshaper(this, ins.getInput(), "id-field=fid");
 		
 		var errors = new ArrayList<String>();
 
@@ -44,8 +43,6 @@ public class CheckGeometry extends LCStep {
 		test(in, errors, "ERRORS", "native:checkgeometrylineintersection");
 		test(in, errors, "NULL_OUTPUT", "native:removenullgeometries", "--REMOVE_EMPTY=true");
 		*/	
-		in.finishUsage();
-		
 		if(!errors.isEmpty()) {
 			var sb = new StringBuilder();
 			sb.append("Failed geometry check for layer '").append(layer).append("':\n");
@@ -55,7 +52,7 @@ public class CheckGeometry extends LCStep {
 			throw new IllegalArgumentException(sb.toString());
 		}
 		
-		return LCContentEmpty.INSTANCE;
+		return LCContent.empty();
 	}
 	
 	private void test(LCContent in, List<String> errors, String outputName, String cmd, String... args) throws IOException {	
@@ -68,7 +65,7 @@ public class CheckGeometry extends LCStep {
 			"--TOLERANCE=8",
 			"--UNIQUE_ID=fid"
 		);
-		var res = result.toFeatureCollectionAndFinish();
+		var res = result.toFeatureCollection();
 		var localErrors = new ArrayList<String>();
 		if(res.getFeatures().size()==0) return;
 		for(var fail:res.getFeatures()) {

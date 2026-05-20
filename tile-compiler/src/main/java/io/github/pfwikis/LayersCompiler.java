@@ -9,19 +9,23 @@ import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.dexecutor.core.DefaultDexecutor;
 import com.github.dexecutor.core.DexecutorConfig;
 import com.github.dexecutor.core.ExecutionConfig;
+import com.github.dexecutor.core.task.Task;
 import com.google.common.collect.HashMultiset;
 
 import io.github.pfwikis.layercompiler.description.LCDescription;
 import io.github.pfwikis.layercompiler.steps.CheckGeometry;
 import io.github.pfwikis.layercompiler.steps.ReadFile;
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
-import io.github.pfwikis.layercompiler.steps.model.LCStep.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract;
+import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.TimeSlicedContent;
+import io.github.pfwikis.run.Runner;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,13 +40,13 @@ public class LayersCompiler {
     public void compile() throws Exception {
         var lsDescriptions = new ObjectMapper(new YAMLFactory()).readValue(stepsFile, LCDescription[].class);
 
-        Map<String, LCStep> steps = new HashMap<>();
+        Map<String, LCStepAbstract> steps = new HashMap<>();
         var pool = Executors.newFixedThreadPool(parallelism);
         log.info("Running with pool size {}", parallelism);
 
         try {
-            var config = new DexecutorConfig<String, LCContent>(pool, id-> {
-                return Objects.requireNonNull(steps.get(id), "Could not resolve step "+id);
+            var config = new DexecutorConfig<String, TimeSlicedContent>(pool, id-> {
+                return (Task<String, TimeSlicedContent>) Objects.requireNonNull(steps.get(id), "Could not resolve step "+id);
             });
             var executor = new DefaultDexecutor<>(config);
 
@@ -56,10 +60,11 @@ public class LayersCompiler {
         } finally {
             pool.shutdown();
             pool.awaitTermination(1, TimeUnit.DAYS);
+            FileUtils.deleteQuietly(Runner.TMP_DIR);
         }
     }
 
-    private void createSteps(LCDescription[] lsDescriptions, Map<String, LCStep> steps, DefaultDexecutor<String, LCContent> executor) {
+    private void createSteps(LCDescription[] lsDescriptions, Map<String, LCStepAbstract> steps, DefaultDexecutor<String, TimeSlicedContent> executor) {
     	var requiredCount = HashMultiset.<String>create();
     	var ctx = new Ctx(
             tileCompiler.getOptions(),

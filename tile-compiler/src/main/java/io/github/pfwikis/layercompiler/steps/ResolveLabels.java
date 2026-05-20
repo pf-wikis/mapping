@@ -15,6 +15,7 @@ import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Label;
 import io.github.pfwikis.model.Properties;
+import io.github.pfwikis.util.Jackson;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -27,8 +28,8 @@ public class ResolveLabels extends LCStep {
 	private String from;
 	
     @Override
-    public LCContent process() throws IOException {
-    	var fc = getInput().toFeatureCollection();
+    public LCContent process(Inputs in) throws IOException {
+    	var fc = in.getInput().toFeatureCollection();
     	var res = new FeatureCollection();
     	fc.getFeatures().forEach(f-> {
     		var labels = getLabelField(f.getProperties());
@@ -62,7 +63,7 @@ public class ResolveLabels extends LCStep {
 				return Collections.singletonList(new Label(labels.textValue().trim(), null));
 			}
 			if(labels.isObject()) {
-				return List.of(LCContent.MAPPER.treeToValue(labels, Label.class));
+				return List.of(Jackson.JSON.treeToValue(labels, Label.class));
 			}
 			if(labels.isArray()) {
 				return StreamSupport.stream(labels.spliterator(), false)

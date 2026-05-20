@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+@EqualsAndHashCode(callSuper = true)
 public class Properties extends AnyJson {
 	private Long fid;
 	private Label label;
@@ -40,6 +42,8 @@ public class Properties extends AnyJson {
 	private Double areaM2;
 	private Boolean noSmooth;
 	private Pattern pattern;
+	private Integer timeStart;
+	private Integer timeEnd;
 	
 	public static enum Pattern {
 		pebbles,

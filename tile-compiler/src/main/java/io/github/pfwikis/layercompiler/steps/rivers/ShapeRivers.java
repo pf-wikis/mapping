@@ -32,11 +32,11 @@ public class ShapeRivers extends LCStep {
 	
 
 	@Override
-	public LCContent process() throws IOException {
+	public LCContent process(Inputs in) throws IOException {
 		var result = new FeatureCollection();
 
-		var rivers = collectRivers(getInput());
-		markSprings(ctx, getInput(), rivers);
+		var rivers = collectRivers(in.getInput());
+		markSprings(ctx, in, in.getInput(), rivers);
 		interpolateWidth(rivers);
 		log.info("Processing " + rivers.size() + " river points");
 		drawShapes(rivers, result);
@@ -91,9 +91,9 @@ public class ShapeRivers extends LCStep {
 		return meters * ((1. + 0.00001120378 * (Math.cos(2 * lat / 180 * Math.PI) - 1)) / Math.cos(lat / 180 * Math.PI) / 111319.491 / 2d);
 	}
 
-	private void markSprings(Ctx ctx, LCContent riversIn, Collection<RPoint> rivers) throws IOException {
+	private void markSprings(Ctx ctx, Inputs in, LCContent riversIn, Collection<RPoint> rivers) throws IOException {
 		var landPoints = PointsOnLandSelector
-				.collectLandPoints(this, ctx, riversIn, getInput("land_without_water"))
+				.collectLandPoints(this, ctx, riversIn, in.getInput("land_without_water"))
 				.stream()
 				.map(RPoint::v)
 				.collect(Collectors.toSet());

@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public abstract class LCStep extends LCStepAbstract {
+public abstract class LCStepLatestOnly extends LCStep {
 
 	@Override
 	protected TimeSlicedContent executeInternal() throws Exception {
@@ -15,6 +15,8 @@ public abstract class LCStep extends LCStepAbstract {
     	var results = new ArrayList<TimeSlice>();
     	
     	for(var variant:variants) {
+    		if(variant.getTime().hasUpperBound())
+    			continue;
     		var result = process(variant);
             result.setName(getName()+"."+getStep()+"."+variant.getTime());
             results.add(TimeSlice.from(variant.getTime(), result));

@@ -1,4 +1,4 @@
-import { DataDrivenPropertyValueSpecification, ExpressionSpecification, LayerSpecification } from "maplibre-gl";
+import { DataDrivenPropertyValueSpecification, ExpressionSpecification, FillLayerSpecification, FilterSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification } from "maplibre-gl";
 
 let colors = {
   water:           'rgb(138, 180, 248)',
@@ -41,16 +41,33 @@ function interpolateTextWithCamera(factor:number):ExpressionSpecification {
   ]
 }
 
-function createLayer(name:string, base:Partial<LayerSpecification>):LayerSpecification {
-  return Object.assign({
+type DynamicLayerSpec = FillLayerSpecification | LineLayerSpecification | SymbolLayerSpecification;
+function createLayer(name:string, base:Partial<DynamicLayerSpec>):DynamicLayerSpec {
+  let merged = Object.assign({
     id: base.type+'_'+name,
     source: 'golarion',
     'source-layer': name,
-    filter: ['all',
-      ['any', ['!', ['has', 'filterMinzoom']], ['>=', ["zoom"], props.filterMinzoom]],
-      ['any', ['!', ['has', 'filterMaxzoom']], ['<=', ["zoom"], props.filterMaxzoom]]
-    ],
-  }, base) as LayerSpecification;
+  }, base) as DynamicLayerSpec;
+
+  const baseFilters:ExpressionSpecification[] = [
+    ['any', ['!', ['has', 'filterMinzoom']], ['>=', ["zoom"], props.filterMinzoom]],
+    ['any', ['!', ['has', 'filterMaxzoom']], ['<=', ["zoom"], props.filterMaxzoom]],
+    ['any', ['!', ['has', 'timeStart']], ['>=', ['global-state', 'year'], ['get', 'timeStart']]],
+    ['any', ['!', ['has', 'timeEnd']],   ['<',  ['global-state', 'year'], ['get', 'timeEnd']]]
+  ];
+  if(merged.filter && merged.filter instanceof Array) {
+    if(merged.filter[0] === 'all') {
+      merged.filter = [...merged.filter, ...baseFilters] as FilterSpecification;
+    }
+    else {
+      merged.filter = ['all', merged.filter, ...baseFilters] as FilterSpecification;
+    }
+  }
+  else {
+    merged.filter = ['all', ...baseFilters];
+  }
+
+  return merged;
 }
 
 let layers:LayerSpecification[] = [
@@ -207,8 +224,8 @@ let layers:LayerSpecification[] = [
     type: 'symbol',
     layout: {
       'text-field': ['get', 'label'],
-      'text-rotate': ['get', 'angle'],
-      'text-rotation-alignment': 'map',
+      'text-rotate': ['case', ['global-state', 'rotated'], 0, ['get', 'angle']],
+      'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 16,
     },
@@ -221,17 +238,14 @@ let layers:LayerSpecification[] = [
   createLayer('locations', {
     id: 'location-labels',
     type: 'symbol',
-    filter: ['all',
-      ['>', ["zoom"], ["+", props.filterMinzoom, 3]],
-      ['any', ['!', ['has', 'filterMaxzoom']], ['<=', ["zoom"], props.filterMaxzoom]]
-    ],
+    filter: ['>', ["zoom"], ["+", props.filterMinzoom, 3]],
     layout: {
       'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 14,
       'text-variable-anchor': ["left", "right"],
       'text-radial-offset': .5,
-      'text-rotation-alignment': 'map',
+      'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
     },
     paint: {
       'text-color': colors.white,
@@ -250,7 +264,7 @@ let layers:LayerSpecification[] = [
         5, 5,
         7, 20,
       ],
-      'text-rotation-alignment': 'map',
+      'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
@@ -278,7 +292,7 @@ let layers:LayerSpecification[] = [
         4, 10,
         5, 25,
       ],
-      'text-rotation-alignment': 'map',
+      'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
@@ -302,7 +316,7 @@ let layers:LayerSpecification[] = [
         4, 10,
         5, 25,
       ],
-      'text-rotation-alignment': 'map',
+      'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
@@ -323,7 +337,7 @@ let layers:LayerSpecification[] = [
       'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 20,
-      'text-rotation-alignment': 'map',
+      'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
       'text-variable-anchor': ['center','top','bottom'],
       'symbol-z-order': 'source',
     },
@@ -342,6 +356,14 @@ export default {
       type: 'vector',
       attribution: '<a href="https://paizo.com/licenses/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
       url: 'pmtiles://https://map.pathfinderwiki.com/golarion.pmtiles'
+    }
+  },
+  state: {
+    year: {
+      default: new Date().getFullYear()+2700,
+    },
+    rotated: {
+      default: false
     }
   },
   sprite: 'https://map.pathfinderwiki.com/sprites/sprites',

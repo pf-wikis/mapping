@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.nio.file.Path;
 
+import io.github.pfwikis.util.Jackson;
 import lombok.SneakyThrows;
 
 public class LCContentPath extends LCContent {
@@ -19,20 +20,18 @@ public class LCContentPath extends LCContent {
 
 	@Override @SneakyThrows
 	public InputStream toInputStream() {
-		checkValidUsage();
 		return new BufferedInputStream(new FileInputStream(path.toFile()));
 	}
 	
 	@Override @SneakyThrows
 	public <T> T toParsed(Class<T> cl) {
-		checkValidUsage();
 		try(var in=toInputStream()) {
-			return MAPPER.readerFor(cl).readValue(path.toFile());
+			return Jackson.JSON.readerFor(cl).readValue(path.toFile());
 		}
 	}
 	
 	@Override
-	public Path toTmpFile(LCStep step) {
+	public Path toTmpFile(LCStepAbstract step) {
 		return path;
 	}
 }

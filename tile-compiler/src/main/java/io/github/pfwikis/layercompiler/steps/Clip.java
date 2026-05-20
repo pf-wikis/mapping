@@ -6,10 +6,10 @@ import io.github.pfwikis.run.Tools;
 
 public class Clip extends LCStep {
 
-    @Override
-    public LCContent process() throws Exception {
-        return Tools.mapshaper(this, getInput(),
-            "-clip", getInput("mask")
+	@Override
+	public LCContent process(Inputs in) throws Exception {
+		return Tools.mapshaper(this, in.getInput(),
+            "-clip", in.getInput("mask")
         );
-    }
+	}
 }

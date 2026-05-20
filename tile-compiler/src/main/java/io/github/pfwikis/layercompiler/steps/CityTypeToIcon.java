@@ -8,8 +8,8 @@ import io.github.pfwikis.layercompiler.steps.model.LCStep;
 public class CityTypeToIcon extends LCStep {
 
     @Override
-    public LCContent process() throws IOException {
-    	var fc = getInput().toFeatureCollection();
+    public LCContent process(Inputs in) throws IOException {
+    	var fc = in.getInput().toFeatureCollection();
     	fc.getFeatures().forEach(f-> {
     		f.getProperties().setIcon(switch(f.getProperties().getSize()) {
     			case 1 -> "city-large";

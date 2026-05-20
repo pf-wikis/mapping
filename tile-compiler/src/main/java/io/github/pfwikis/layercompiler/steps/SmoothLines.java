@@ -17,8 +17,8 @@ import io.github.pfwikis.util.Projection;
 public class SmoothLines extends LCStep {
 
     @Override
-    public LCContent process() throws IOException {
-    	var fc = getInput().toFeatureCollection();
+    public LCContent process(Inputs in) throws IOException {
+    	var fc = in.getInput().toFeatureCollection();
     	for(var f:fc.getFeatures()) {
     		if(Boolean.TRUE.equals(f.getProperties().getNoSmooth())) {
     			continue;

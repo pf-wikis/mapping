@@ -20,8 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 public class LocationGroup extends LCStep {
 
 	@Override
-	public LCContent process() throws IOException {
-		var col = this.getInput().toFeatureCollection();
+	public LCContent process(Inputs in) throws IOException {
+		var col = in.getInput().toFeatureCollection();
 
 		var entries = collectEntries(col);
 		double groupingDistance = 1;

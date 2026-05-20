@@ -1,7 +1,6 @@
 package io.github.pfwikis.util;
 
 import java.awt.Color;
-import java.util.function.DoubleFunction;
 import java.util.function.DoubleUnaryOperator;
 
 import org.hsluv.HsluvColorConverter;

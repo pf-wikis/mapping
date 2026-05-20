@@ -17,14 +17,14 @@ import lombok.extern.slf4j.Slf4j;
 public class LocationTypeToIcon extends LCStep {
 
     @Override
-    public LCContent process() throws IOException {
+    public LCContent process(Inputs in) throws IOException {
     	var icons = Arrays.stream(new File("sprites").list())
     		.filter(n->n.startsWith("location-") && n.endsWith(".svg"))
     		.map(n->n.substring(9, n.length()-4))
     		.collect(Collectors.toSet());
     	
     	var counts = HashMultiset.<String>create();
-    	var fc = getInput().toFeatureCollection();
+    	var fc = in.getInput().toFeatureCollection();
     	fc.getFeatures().forEach(f-> {
     		counts.add(f.getProperties().getType());
     		if(icons.contains(f.getProperties().getType())) {

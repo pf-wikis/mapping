@@ -5,6 +5,7 @@ import java.io.InputStream;
 
 import com.fasterxml.jackson.databind.util.TokenBuffer;
 
+import io.github.pfwikis.util.Jackson;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 
@@ -16,8 +17,7 @@ public class LCContentOM<T> extends LCContent {
 	@Override
 	@SneakyThrows
 	public byte[] toBytes() {
-		checkValidUsage();
-		var res = MAPPER.writeValueAsBytes(val);
+		var res = Jackson.JSON.writeValueAsBytes(val);
 		return res;
 	}
 
@@ -29,10 +29,9 @@ public class LCContentOM<T> extends LCContent {
 	@Override
 	@SneakyThrows
 	public <R> R toParsed(Class<R> cl) {
-		checkValidUsage();
-		TokenBuffer tb = new TokenBuffer(MAPPER.getFactory().getCodec(), false);
-		MAPPER.writeValue(tb, val);
-		var res = MAPPER.readValue(tb.asParser(), cl);
+		TokenBuffer tb = new TokenBuffer(Jackson.JSON.getFactory().getCodec(), false);
+		Jackson.JSON.writeValue(tb, val);
+		var res = Jackson.JSON.readValue(tb.asParser(), cl);
 		return res;
 	}
 	

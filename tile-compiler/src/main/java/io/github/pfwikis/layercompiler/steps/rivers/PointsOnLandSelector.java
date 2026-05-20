@@ -6,7 +6,7 @@ import java.util.Set;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
-import io.github.pfwikis.layercompiler.steps.model.LCStep.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract.Ctx;
 import io.github.pfwikis.model.Geometry;
 import io.github.pfwikis.model.Geometry.LineString;
 import io.github.pfwikis.model.Geometry.Polygon;
@@ -22,11 +22,9 @@ public class PointsOnLandSelector {
             	input,
                 "-clip", land,
                 "-explode"
-            );
-		var featureCol = clipped.toFeatureCollection();
-		clipped.finishUsage();
+            ).toFeatureCollection();
 		var result = new HashSet<LngLat>();
-		for (var feature : featureCol.getFeatures()) {
+		for (var feature : clipped.getFeatures()) {
 			collect(feature.getGeometry(), result);
         }
 		return result;

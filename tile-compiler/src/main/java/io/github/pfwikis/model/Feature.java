@@ -1,11 +1,13 @@
 package io.github.pfwikis.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@EqualsAndHashCode(callSuper = true)
 public class Feature extends AnyJson {
 
 	private Geometry geometry;

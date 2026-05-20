@@ -10,14 +10,12 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Runner;
 import io.github.pfwikis.run.Runner.OutFile;
+import io.github.pfwikis.util.Jackson;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -25,58 +23,33 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public abstract class LCContent {
 	
-	public static final ObjectMapper MAPPER = new ObjectMapper()
-		.enable(JsonParser.Feature.INCLUDE_SOURCE_IN_LOCATION)
-		.setDefaultPropertyInclusion(Include.NON_NULL);
-
-	@Setter
-	private int numberOfValidUses = 1;
-	private int numberOfUses;
 	@Setter
 	protected String name;
 	protected List<Path> temporaryFilesToDelete = new ArrayList<>();
 	
-	public synchronized void finishUsage() {
-		numberOfUses++;
-		if(numberOfUses >= numberOfValidUses) {
-			temporaryFilesToDelete.forEach(f->FileUtils.deleteQuietly(f.toFile()));
-			cleanup();
-		}
-	}
-	
-	protected synchronized void checkValidUsage() {
-		if(numberOfUses >= numberOfValidUses) {
-			throw new IllegalStateException("Content "+name+" was used "+(numberOfUses+1)+" times even though it is only allowed to be used "+numberOfValidUses);
-		}
-	}
-
 	protected void cleanup() {}
-
+	
 	public abstract InputStream toInputStream();
 
 	@SneakyThrows
 	public byte[] toBytes() {
-		checkValidUsage();
 		try(var in=toInputStream()) {
 			return IOUtils.toByteArray(toInputStream());
 		}
 	}
 
 	public String toRawString() {
-		checkValidUsage();
 		return new String(toBytes(), StandardCharsets.UTF_8);
 	}
 
 	public JsonNode toJSONNode() {
-		checkValidUsage();
 		return toParsed(JsonNode.class);
 	}
 	
 	@SneakyThrows
 	public <T> T toParsed(Class<T> cl) {
-		checkValidUsage();
 		try(var in=toInputStream()) {
-			return MAPPER.readerFor(cl).readValue(toInputStream());
+			return Jackson.JSON.readerFor(cl).readValue(toInputStream());
 		}
 	}
 
@@ -85,15 +58,8 @@ public abstract class LCContent {
 		return toParsed(FeatureCollection.class);
 	}
 	
-	public FeatureCollection toFeatureCollectionAndFinish() {
-		var res = toFeatureCollection();
-		this.finishUsage();
-		return res;
-	}
-	
 	@SneakyThrows
-	public Path toTmpFile(LCStep step) {
-		checkValidUsage();
+	public Path toTmpFile(LCStepAbstract step) {
 		var tmpFile = Runner.tmpGeojson(step, new OutFile());
 		temporaryFilesToDelete.add(tmpFile.toPath());
         tmpFile.deleteOnExit();
@@ -103,12 +69,7 @@ public abstract class LCContent {
 	
 	
 	
-	
-	
-	
-	
 	/********    factory methods          ***/
-
 	public static LCContent from(Path path, boolean temporary) {
 		return new LCContentPath(path, temporary);
 	}

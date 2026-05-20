@@ -15,8 +15,8 @@ import io.github.pfwikis.run.Tools;
 public class ResolvePatterns extends LCStep {
 
     @Override
-    public LCContent process() throws IOException {
-    	var byPattern = getInput().toFeatureCollection()
+    public LCContent process(Inputs in) throws IOException {
+    	var byPattern = in.getInput().toFeatureCollection()
     		.getFeatures()
     		.stream()
     		.collect(Collectors.groupingBy(
@@ -54,15 +54,11 @@ public class ResolvePatterns extends LCStep {
 			"--ROTATION=expression:rand(1,360)",
 			"--SEGMENTS=12"
 		);
-		dots.finishUsage();
 		var out = Tools.mapshaper(this, pebbles,
             "-clip", inf
         );
 		
-		inf.finishUsage();
-		pebbles.finishUsage();
-		
-		return out.toFeatureCollectionAndFinish().getFeatures();
+		return out.toFeatureCollection().getFeatures();
 	}
 
 }

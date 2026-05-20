@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CompileSprites extends LCStep {
 	
     @Override
-    public LCContent process() throws Exception {
+    public LCContent process(Inputs in) throws Exception {
     	log.info("Compiling Sprites");
     	var spriteDir = new File(ctx.getOptions().targetDirectory(), "sprites");
     	spriteDir.mkdirs();

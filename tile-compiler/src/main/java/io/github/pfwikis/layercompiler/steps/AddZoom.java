@@ -13,8 +13,8 @@ public class AddZoom extends LCStep {
     private final Integer maxZoom;
 
     @Override
-    public LCContent process() throws IOException {
-    	var fc = getInput().toFeatureCollection();
+    public LCContent process(Inputs in) throws IOException {
+    	var fc = in.getInput().toFeatureCollection();
     	fc.getFeatures().forEach(f-> {
     		if(minZoom != null) {
     			f.getProperties().setFilterMinzoom(minZoom);

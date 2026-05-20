@@ -1,6 +1,5 @@
 package io.github.pfwikis.layercompiler.steps;
 
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -25,6 +24,7 @@ import io.github.pfwikis.model.Geometry.Point;
 import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.model.Properties;
 import io.github.pfwikis.run.Tools;
+import io.github.pfwikis.util.Jackson;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,12 +48,12 @@ public class GenerateLabelCenters extends LCStep {
 	private boolean dissolve = true;
 	private boolean generateSubLabels = true;
 	private Integer forceMinzoom = null;
-	
+    
     @Override
-    public LCContent process() throws IOException {
-        log.info("  Generating label points from polygon centers");
+	public LCContent process(Inputs in) throws Exception {
+    	log.info("  Generating label points from polygon centers");
 
-        var polygonsRes = prepareGeometry();
+        var polygonsRes = prepareGeometry(in);
         var polygons = polygonsRes.toFeatureCollection();
         
         var fieldsToCopy = new ArrayList<>(FIELDS_TO_COPY);
@@ -77,13 +77,11 @@ public class GenerateLabelCenters extends LCStep {
         	}
         }
         
-        polygonsRes.finishUsage();
-
         return LCContent.from(cleanProperties(merged, fieldsToCopy));
-    }
+	}
 
-    private LCContent prepareGeometry() throws IOException {
-    	var dissolved = Tools.mapshaper(this, getInput(),
+    private LCContent prepareGeometry(Inputs in) throws IOException {
+    	var dissolved = Tools.mapshaper(this, in.getInput(),
     		"-filter", "Boolean(label)",
     		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color"):List.of()
     	);
@@ -95,7 +93,6 @@ public class GenerateLabelCenters extends LCStep {
     		"--FIELD_PRECISION=7",
     		"--FORMULA=$area/1000000"
 		);
-        dissolved.finishUsage();
         
         var withFields = Tools.mapshaper(this, withArea,
     		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm"):List.of(),
@@ -105,7 +102,6 @@ public class GenerateLabelCenters extends LCStep {
             "-require", "crypto",
             "-each", "uuid=crypto.randomUUID()"
     	);
-        withArea.finishUsage();
         return withFields;
 	}
 
@@ -151,7 +147,7 @@ public class GenerateLabelCenters extends LCStep {
     	var orientedRectangles = Tools.qgis(this, "qgis:minimumboundinggeometry", withUuid,
     		"--TYPE=1",
     		"--FIELD=uuid"
-		).toFeatureCollectionAndFinish();
+		).toFeatureCollection();
 
         var angles = orientedRectangles
     		.getFeatures().stream()
@@ -191,10 +187,10 @@ public class GenerateLabelCenters extends LCStep {
         	.stream()
         	.map(f -> {
         		try {
-	        		var json = LCContent.MAPPER.writeValueAsString(f);
+	        		var json = Jackson.JSON.writeValueAsString(f);
 	        		
 	        		var hull = ConcaveHullOfPolygons.concaveHullByLengthRatio(new GeoJsonReader().read(json), 0.15);
-	        		var geom = LCContent.MAPPER.readValue(GEO_WRITER.write(hull), Geometry.class);
+	        		var geom = Jackson.JSON.readValue(GEO_WRITER.write(hull), Geometry.class);
 	        		var res = new Feature();
 	        		res.setProperties(f.getProperties());
 	        		res.setTippecanoe(f.getTippecanoe());
@@ -208,8 +204,7 @@ public class GenerateLabelCenters extends LCStep {
         	.forEach(hulled.getFeatures()::add);
         var buffered = LCContent.from(hulled);
 		
-        var inner = Tools.mapshaper(this, buffered, "-points", "inner").toFeatureCollectionAndFinish();
-        buffered.finishUsage();
+        var inner = Tools.mapshaper(this, buffered, "-points", "inner").toFeatureCollection();
         return inner
     		.getFeatures()
     		.stream()
@@ -235,7 +230,7 @@ public class GenerateLabelCenters extends LCStep {
 				"evenness=1",
 				"copy-fields=dots,label,filterMinzoom,filterMaxzoom,areaSqkm"+(fieldsToCopy.isEmpty()?"":(","+fieldsToCopy.stream().map(Field::name).collect(Collectors.joining(",")))),
 				"multipart"
-		).toFeatureCollectionAndFinish();
+		).toFeatureCollection();
     	log.info("Added {} label points at zoom shift {}", features.getFeatures().size(), step);
     	result.getFeatures().addAll(features.getFeatures());
     	return !features.getFeatures().isEmpty();

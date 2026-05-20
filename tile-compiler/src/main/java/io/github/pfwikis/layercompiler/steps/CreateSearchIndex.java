@@ -16,15 +16,16 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.common.util.concurrent.AtomicDouble;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.LCStepLatestOnly;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Tools;
+import io.github.pfwikis.util.Jackson;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CreateSearchIndex extends LCStep {
+public class CreateSearchIndex extends LCStepLatestOnly {
 
 	@Data
 	@AllArgsConstructor
@@ -40,12 +41,12 @@ public class CreateSearchIndex extends LCStep {
 	record BoxEntry(BBox box, AtomicDouble areaM2) {}
 	
     @Override
-    public LCContent process() throws Exception {
-    	log.info("Creating a searchIndex over "+getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining(", ")));
+    public LCContent process(Inputs in) throws Exception {
+    	log.info("Creating a searchIndex over "+in.getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining(", ")));
     	
     	var res = new ArrayList<Category>();
     	
-    	for(var e:this.getInputs().entrySet()) {
+    	for(var e:in.getInputs().entrySet()) {
     		var map = new HashMap<String, BoxEntry>();
     		FeatureCollection withArea;
     		if(e.getKey().equals("cities") || e.getKey().equals("locations")) {
@@ -55,7 +56,7 @@ public class CreateSearchIndex extends LCStep {
 					"--FIELD_NAME=areaM2",
 					"--FIELD_TYPE=0", //double
 					"--FORMULA=$area"
-    			).toFeatureCollectionAndFinish();
+    			).toFeatureCollection();
     		}
     				
     		for(var f : withArea.getFeatures()) {
@@ -89,14 +90,14 @@ public class CreateSearchIndex extends LCStep {
     	
     	Collections.sort(res, Comparator.comparing(Category::category));
     	
-    	LCContent.MAPPER.writeValue(new File(this.getCtx().getOptions().targetDirectory(), "search.json"), res);
+    	Jackson.JSON.writeValue(new File(this.getCtx().getOptions().targetDirectory(), "search.json"), res);
     	var t = this.getCtx().getOptions().targetDirectory();
     	try(
     			var raw = new FileOutputStream(new File(t, "search.json"));
     			var gz = new GZIPOutputStream(new FileOutputStream(new File(t, "search.json.gz")));
     			var out = new TeeOutputStream(raw, gz)
     	) {
-    		LCContent.MAPPER.writeValue(out, res);
+    		Jackson.JSON.writeValue(out, res);
     	}
     	
     	return LCContent.empty();

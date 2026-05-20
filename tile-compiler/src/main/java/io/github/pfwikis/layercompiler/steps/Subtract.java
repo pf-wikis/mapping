@@ -13,15 +13,15 @@ public class Subtract extends LCStep {
 	private String keepField = null;
 
     @Override
-    public LCContent process() throws Exception {
-        return Tools.mapshaper(this, getInput(),
+    public LCContent process(Inputs in) throws Exception {
+        return Tools.mapshaper(this, in.getInput(),
         	"-if", "this.type=='polygon'",
             	"-dissolve2", keepField!=null?keepField:Collections.emptyList(),
             "-else",
             	"-dissolve", keepField!=null?keepField:Collections.emptyList(),
             "-endif",
             "-explode",
-            "-erase", getInput("subtrahend")
+            "-erase", in.getInput("subtrahend")
         );
     }
 

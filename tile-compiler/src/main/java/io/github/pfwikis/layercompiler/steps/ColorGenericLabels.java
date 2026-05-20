@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ColorGenericLabels extends LCStep {
 
     @Override
-    public LCContent process() throws IOException {
-    	var fc = getInput().toFeatureCollection();
+    public LCContent process(Inputs in) throws IOException {
+    	var fc = in.getInput().toFeatureCollection();
     	fc.getFeatures().forEach(f-> {
     		var t = f.getProperties().getType();
     		f.getProperties().setColor(switch(t) {

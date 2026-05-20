@@ -5,8 +5,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 
-import org.apache.commons.io.FileUtils;
-
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.run.Tools;
@@ -30,7 +28,7 @@ public class ReadFile extends LCStep {
 
 
 	@Override
-    public LCContent process() throws IOException {
+    public LCContent process(Inputs in) throws IOException {
 		if(file != null) {
 			var finalFile = Path.of("../sources").resolve(file.toPath()).toFile().getCanonicalFile();
 			return LCContent.from(finalFile, false);

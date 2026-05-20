@@ -5,6 +5,8 @@ declare module 'virtual:style' {
     export default value;
 }
 
+declare const __BUILD_DATE__: string
+
 interface ImportMetaEnv {
     readonly VITE_DATA_HASH: string
 }

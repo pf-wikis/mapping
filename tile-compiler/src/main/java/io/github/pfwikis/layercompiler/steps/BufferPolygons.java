@@ -9,8 +9,8 @@ import io.github.pfwikis.run.Tools;
 public class BufferPolygons extends LCStep {
 
     @Override
-    public LCContent process() throws IOException {
-        var buffered = Tools.qgis(this, "native:buffer", getInput(),
+    public LCContent process(Inputs in) throws IOException {
+        var buffered = Tools.qgis(this, "native:buffer", in.getInput(),
             "--DISTANCE=0.5",
             "--SEGMENTS=20",
             "--END_CAP_STYLE=0", "--JOIN_STYLE=0", "--MITER_LIMIT=2",
@@ -23,9 +23,6 @@ public class BufferPolygons extends LCStep {
         );
         //var negative = Tools.mapshaper0("-rectangle", "bbox=-138,-90,222,90", "-erase", smooth);
         
-        buffered.finishUsage();
-        reduced.finishUsage();
-       
         return smooth;
     }
 

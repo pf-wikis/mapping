@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -22,7 +22,8 @@ import com.google.common.base.CaseFormat;
 import io.github.classgraph.ClassGraph;
 import io.github.pfwikis.layercompiler.steps.*;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
-import io.github.pfwikis.layercompiler.steps.model.LCStep.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract;
+import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract.Ctx;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -70,7 +71,7 @@ public abstract class StepDescription {
         private String layer;
 
         @Override
-        protected LCStep create() {
+        protected LCStepAbstract create() {
             return new ReadFile(file, layer);
         }
     }
@@ -91,7 +92,7 @@ public abstract class StepDescription {
     public static class Simple extends StepDescription {
 
     	private static final ObjectMapper OM = new ObjectMapper();
-        private static Map<String, Class<? extends LCStep>> MAP = new HashMap<>();
+        private static Map<String, Class<? extends LCStepAbstract>> MAP = new HashMap<>();
 
         static {
             var caseConv=CaseFormat.UPPER_CAMEL.converterTo(CaseFormat.UPPER_UNDERSCORE);
@@ -100,10 +101,10 @@ public abstract class StepDescription {
                 .acceptPackages("io.github.pfwikis")
                 .scan()) {
 
-                scan.getSubclasses(LCStep.class).forEach(ci-> {
+                scan.getSubclasses(LCStepAbstract.class).forEach(ci-> {
                     var type = ci.loadClass();
-                    String name = StringUtils.removeStart(ci.getName(), ci.getPackageName()+".").replace("$", "_");
-                    MAP.put(caseConv.convert(name), (Class<? extends LCStep>) type);
+                    String name = Strings.CS.removeStart(ci.getName(), ci.getPackageName()+".").replace("$", "_");
+                    MAP.put(caseConv.convert(name), (Class<? extends LCStepAbstract>) type);
                 });
             }
         }
@@ -115,7 +116,7 @@ public abstract class StepDescription {
         }
 
         @Override
-        protected LCStep create() {
+        protected LCStepAbstract create() {
             try {
             	var type = MAP.get(this.getStep());
             	if(type == null) {
@@ -133,11 +134,11 @@ public abstract class StepDescription {
     }
 
 
-    public LCStep create(Ctx ctx) {
+    public LCStepAbstract create(Ctx ctx) {
         var result = create();
         result.init(ctx);
         return result;
     }
 
-    protected abstract LCStep create();
+    protected abstract LCStepAbstract create();
 }

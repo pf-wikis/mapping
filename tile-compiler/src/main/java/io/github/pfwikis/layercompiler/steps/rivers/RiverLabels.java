@@ -7,8 +7,8 @@ import io.github.pfwikis.run.Tools;
 public class RiverLabels extends LCStep {
 
     @Override
-    public LCContent process() throws Exception {
-        return Tools.mapshaper(this, getInput(),
+    public LCContent process(Inputs in) throws Exception {
+        return Tools.mapshaper(this, in.getInput(),
             "-clean",
             "-dissolve", "label",
             "-filter", "Boolean(label)",

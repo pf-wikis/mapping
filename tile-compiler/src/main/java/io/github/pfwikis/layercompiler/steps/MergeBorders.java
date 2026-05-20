@@ -1,34 +1,27 @@
 package io.github.pfwikis.layercompiler.steps;
 
-import java.awt.Color;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStep;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
-import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.model.Geometry.ILineString;
 import io.github.pfwikis.model.Geometry.LineString;
-import io.github.pfwikis.model.Geometry.MultiLineString;
+import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.run.Tools;
-import io.github.pfwikis.util.ColorUtil;
-import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MergeBorders extends LCStep {
 
     @Override
-    public LCContent process() throws Exception {
+    public LCContent process(Inputs in) throws Exception {
     	var segments = new HashMap<Segment, Integer>();  	
     	//split lines into component segments
-    	for(var input:this.getInputs().entrySet()) {
-    		var fc = input.getValue().toFeatureCollectionAndFinish();
+    	for(var input:in.getInputs().entrySet()) {
+    		var fc = input.getValue().toFeatureCollection();
     		int type = switch(input.getKey()) {
 				case "region" -> 1;
 				case "subregion" -> 2;
@@ -68,7 +61,6 @@ public class MergeBorders extends LCStep {
     		lc,
 			"-dissolve", "borderType"
     	);
-    	lc.finishUsage();
     	return res;
     	//merge borders
     	//merge overlapping lines while remembering their types

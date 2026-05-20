@@ -5,11 +5,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Strings;
 import org.slf4j.event.Level;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract;
 import io.github.pfwikis.run.Runner.OutFile;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -18,14 +18,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StdHelper implements Closeable {
 
-	private final LCStep step;
+	private final LCStepAbstract step;
 	private final File file;
 	private final LCContent content;
 	private String alreadyPrinted = "";
 	private String alreadyPrintedButPotential = "";
 	private String prefix;
 
-	public StdHelper(String prefix, LCStep step) {
+	public StdHelper(String prefix, LCStepAbstract step) {
 		this.prefix = prefix;
 		this.step = step;
 		this.file = Runner.tmpGeojson(step, new OutFile());
@@ -50,8 +50,8 @@ public class StdHelper implements Closeable {
 			}
 			
 			var toPrint = ct+potential;
-			toPrint = StringUtils.removeStart(toPrint, alreadyPrinted);
-			toPrint = StringUtils.removeStart(toPrint, alreadyPrintedButPotential);
+			toPrint = Strings.CS.removeStart(toPrint, alreadyPrinted);
+			toPrint = Strings.CS.removeStart(toPrint, alreadyPrintedButPotential);
 			
 			if(!toPrint.isBlank()) {
 				log(Level.INFO, toPrint);
@@ -78,7 +78,5 @@ public class StdHelper implements Closeable {
 
 	@Override
 	public void close() throws IOException {
-		content.finishUsage();
 	}
-
 }

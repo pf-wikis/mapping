@@ -12,9 +12,4 @@ public class LCContentEmpty extends LCContent {
 	public InputStream toInputStream() {
 		throw new IllegalStateException("Called a transformation on empty content "+name);
 	}
-	
-	@Override
-	protected synchronized void checkValidUsage() {
-		throw new IllegalStateException("Called a transformation on empty content "+name);
-	}
 }
