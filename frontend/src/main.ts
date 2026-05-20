@@ -111,8 +111,8 @@ map.on('error', function(err) {
 if(!options.embedded) {
   map.addControl(new GlobeControl());
   map.addControl(new NavigationControl({showCompass: true}));
-  map.addControl(new SearchControl(golarionMap));
   map.addControl(new TimeSliderControl(golarionMap), 'top-left');
+  map.addControl(new SearchControl(golarionMap), 'top-left');
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',

@@ -13,18 +13,18 @@ export default class TimeSliderControl implements IControl {
 
     // Create main container
     this.container = document.createElement('div');
-    this.container.className = 'time-slider-container';
+    this.container.className = 'time-slider-container maplibregl-ctrl maplibregl-ctrl-group';
   }
   
   onAdd(map: Map): HTMLElement {
     this.container.innerHTML = `
-    <input type="range" id="time-slider" name="time-slider" min="4700" max="${style.state?.year?.default}" value="${options.year??style.state?.year?.default}" />
+    <input type="range" id="time-slider" name="time-slider" min="4710" max="${style.state?.year?.default}" value="${options.year??style.state?.year?.default}" />
     <label for="time-slider"></label>
     `;
     const slider:HTMLInputElement = this.container.querySelector('#time-slider')!;
     const label:HTMLLabelElement = this.container.querySelector('label')!;
 
-    let updateMap = throttle((year:number) => map.setGlobalStateProperty('year', year), 200);
+    let updateMap = throttle((year:number) => map.setGlobalStateProperty('year', year), 100);
 
     function updateYear() {
         const value = slider.value;

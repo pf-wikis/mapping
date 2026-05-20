@@ -20,7 +20,7 @@ export default class SearchControl implements IControl {
 
     // Create main container
     this.container = document.createElement('div');
-    this.container.className = 'golarion-search-control';
+    this.container.className = 'golarion-search-control maplibregl-ctrl maplibregl-ctrl-group';
   }
 
   onAdd(map: Map): HTMLElement {
