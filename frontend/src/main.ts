@@ -108,10 +108,16 @@ map.touchZoomRotate.disableRotation();
 map.on('error', function(err) {
   console.log(err.error.message);
 });
+let timeSlider = new TimeSliderControl(golarionMap);
+if(options.year) {
+  map.once('style.load', ()=>{
+    timeSlider.updateMap(options.year);
+  });
+}
 if(!options.embedded) {
   map.addControl(new GlobeControl());
   map.addControl(new NavigationControl({showCompass: true}));
-  map.addControl(new TimeSliderControl(golarionMap), 'top-left');
+  map.addControl(timeSlider, 'top-left');
   map.addControl(new SearchControl(golarionMap), 'top-left');
 }
 map.addControl(new ScaleControl({

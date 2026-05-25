@@ -15,6 +15,8 @@ export default class TimeSliderControl implements IControl {
     this.container = document.createElement('div');
     this.container.className = 'time-slider-container maplibregl-ctrl maplibregl-ctrl-group';
   }
+
+  updateMap = throttle((year:number) => this.map.map.setGlobalStateProperty('year', year), 100);
   
   onAdd(map: Map): HTMLElement {
     this.container.innerHTML = `
@@ -24,18 +26,13 @@ export default class TimeSliderControl implements IControl {
     const slider:HTMLInputElement = this.container.querySelector('#time-slider')!;
     const label:HTMLLabelElement = this.container.querySelector('label')!;
 
-    let updateMap = throttle((year:number) => map.setGlobalStateProperty('year', year), 100);
-
-    function updateYear() {
+    const updateYear = () => {
         const value = slider.value;
-        console.log(value);
-        updateMap(parseInt(value));
+        this.updateMap(parseInt(value));
         label.textContent = `Year ${value} AR`;
     }
     slider.addEventListener('input', updateYear);
-    map.on('style.load' , () => {
-        updateYear();
-    });
+    map.once('style.load', updateYear);
     return this.container;
   }
 
