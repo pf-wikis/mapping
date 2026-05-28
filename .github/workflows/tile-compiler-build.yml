@@ -3,7 +3,7 @@ name: Tile Compiler Build
 on:
   workflow_call:
   push:
-    branch: 'main'
+    branches: [main]
     paths:
       - 'tile-compiler/**'
   workflow_dispatch:
