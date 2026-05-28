@@ -1,4 +1,5 @@
 import { DataDrivenPropertyValueSpecification, ExpressionSpecification, FillLayerSpecification, FilterSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification } from "maplibre-gl";
+import timeMeta from "./utils/timeMeta";
 
 let colors = {
   water:           'rgb(138, 180, 248)',
@@ -52,8 +53,8 @@ function createLayer(name:string, base:Partial<DynamicLayerSpec>):DynamicLayerSp
   const baseFilters:ExpressionSpecification[] = [
     ['any', ['!', ['has', 'filterMinzoom']], ['>=', ["zoom"], props.filterMinzoom]],
     ['any', ['!', ['has', 'filterMaxzoom']], ['<=', ["zoom"], props.filterMaxzoom]],
-    ['any', ['!', ['has', 'timeStart']], ['>=', ['global-state', 'year'], ['get', 'timeStart']]],
-    ['any', ['!', ['has', 'timeEnd']],   ['<',  ['global-state', 'year'], ['get', 'timeEnd']]]
+    ['any', ['!', ['has', 'timeIndexStart']], ['>=', ['global-state', 'timeIndex'], ['get', 'timeIndexStart']]],
+    ['any', ['!', ['has', 'timeIndexEnd']],   ['<=',  ['global-state', 'timeIndex'], ['get', 'timeIndexEnd']]]
   ];
   if(merged.filter && merged.filter instanceof Array) {
     if(merged.filter[0] === 'all') {
@@ -333,7 +334,7 @@ let layers:LayerSpecification[] = [
     minzoom: 1,
     maxzoom: 3,
     type: 'symbol',
-    filter: ['>=', ['global-state', 'year'], 4710],
+    filter: ['>=', ['global-state', 'timeIndex'], 4710],
     layout: {
       'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
@@ -360,8 +361,8 @@ export default {
     }
   },
   state: {
-    year: {
-      default: new Date().getFullYear()+2700,
+    timeIndex: {
+      default: timeMeta.max,
     },
     rotated: {
       default: false

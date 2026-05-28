@@ -1,7 +1,6 @@
 import { PluginOption, UserConfig } from 'vite';
 import { compression, defineAlgorithm } from 'vite-plugin-compression2'
 import style from './src/style.ts';
-import generateFile from 'vite-plugin-generate-file';
 
 /*
 const comp = async function() {
@@ -32,10 +31,6 @@ const config:UserConfig = {
   },*/
   plugins: [
     compileStyle,
-    generateFile([{
-      output: './style.json',
-      data: style
-    }]),
     compression({
       include: /\..*$/i,
       threshold: 0,

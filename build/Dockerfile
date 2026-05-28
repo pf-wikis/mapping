@@ -1,7 +1,7 @@
 FROM qgis/qgis:3.44
 RUN <<EOF
   apt-get update
-  apt-get install -y mmv openjdk-21-jdk maven jq bc gcc g++ make libsqlite3-dev zlib1g-dev curl
+  apt-get install -y mmv openjdk-25-jdk maven jq bc gcc g++ make libsqlite3-dev zlib1g-dev curl
   rm -rf /var/lib/apt/lists/*
 EOF
 ENV NVM_DIR=/usr/local/nvm

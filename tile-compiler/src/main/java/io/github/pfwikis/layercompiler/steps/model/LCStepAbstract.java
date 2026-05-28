@@ -15,7 +15,9 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Getter @Setter
 public abstract class LCStepAbstract extends Task<String, TimeSlicedContent> {
 
@@ -28,16 +30,23 @@ public abstract class LCStepAbstract extends Task<String, TimeSlicedContent> {
 
     protected abstract TimeSlicedContent executeInternal() throws Exception;
     
+    
+    public static void setThreadName(String name, String step, String variant) {
+    	if(variant != null)
+    		Thread.currentThread().setName(name+"."+step+"."+variant);
+    	else
+    		Thread.currentThread().setName(name+"."+step);
+    }
     @Override
     public TimeSlicedContent execute() {
     	var oldName = Thread.currentThread().getName();
         try {
-        	Thread.currentThread().setName(name+"."+step);
-        	
+        	setThreadName(name, step, null);
         	var results = executeInternal();
             return results;
         } catch (Throwable t) {
-            throw new RuntimeException("Error in "+name+"."+step, t);
+        	log.error("Failed execution", t);
+            throw new RuntimeException(t.getMessage());
         } finally {
         	Thread.currentThread().setName(oldName);
         }

@@ -69,10 +69,10 @@ public class StdHelper implements Closeable {
 
 	private void log(Level level, String msg) {
 		log.atLevel(level).log(
-			"{}|{}:\n\t{}",
+			"{}|{}:\n{}",
 			step==null?"no step":step.getName(),
 			prefix,
-			msg.replace("\n", "\n\t")
+			msg
 		);
 	}
 

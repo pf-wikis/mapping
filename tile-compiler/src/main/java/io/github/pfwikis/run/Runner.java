@@ -14,8 +14,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 
@@ -27,11 +29,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Runner {
+	
+	private static Semaphore limiter = new Semaphore(4, true);
+	public static void setMaximumParallelism(int limit) {
+		limiter = new Semaphore(limit, true);
+	}
+	
     /*package*/ static LCContent run(LCStepAbstract step, String command, Object... args) throws IOException {
-        return internalRun(step, command, args);
-    }
-    
-    private static LCContent internalRun(LCStepAbstract step, String command, Object... args) throws IOException {
+    	limiter.acquireUninterruptibly();
     	try(
     			var stdOut = new StdHelper("std", step);
             	var stdErr = new StdHelper("err", step);) {
@@ -55,7 +60,7 @@ public class Runner {
 	        	stdErr.intermediatePrint();
 	
 	        	if(exitValue != 0) {
-	                throw new IOException("Exited command "+cmd.getParts()+" with non-zero code: "+exitValue);
+	                throw new IOException("Exited tool with non-zero code "+exitValue+": "+cmd.getParts().stream().collect(Collectors.joining(" ")));
 	            }
 	            LCContent result = LCContent.empty();
 	
@@ -71,6 +76,9 @@ public class Runner {
         		stdErr.intermediatePrint();
         		throw new IOException(e);
 	        }
+    	}
+    	finally {
+    		limiter.release();
     	}
     }
 

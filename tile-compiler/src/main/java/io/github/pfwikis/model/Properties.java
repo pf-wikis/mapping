@@ -4,7 +4,11 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.google.common.collect.Range;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -42,8 +46,19 @@ public class Properties extends AnyJson {
 	private Double areaM2;
 	private Boolean noSmooth;
 	private Pattern pattern;
-	private Integer timeStart;
-	private Integer timeEnd;
+	private Range<Integer> time=Range.all();
+	private Integer timeIndexStart;
+	private Integer timeIndexEnd;
+	
+	public void setTimeStart(Integer timeStart) {
+		if(timeStart != null)
+			time = time.intersection(Range.atLeast(timeStart));
+	}
+	
+	public void setTimeEnd(Integer timeEnd) {
+		if(timeEnd != null)
+			time = time.intersection(Range.lessThan(timeEnd));
+	}
 	
 	public static enum Pattern {
 		pebbles,

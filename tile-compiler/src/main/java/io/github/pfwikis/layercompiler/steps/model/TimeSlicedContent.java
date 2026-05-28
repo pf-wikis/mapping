@@ -27,15 +27,11 @@ public class TimeSlicedContent {
     	private LCContent content;
 
 		public boolean shouldContain(Feature f) {
-			Range<Integer> fRange = TimeSlice.fromRange(
-				f.getProperties().getTimeStart(),
-				f.getProperties().getTimeEnd()
-			).getTime();
-			
+			Range<Integer> fRange = f.getProperties().getTime();
 			return time.isConnected(fRange) && !time.intersection(fRange).isEmpty();
 		}
 
-		public static TimeSlice fromRange(Integer start, Integer end) {
+		public static Range<Integer> createRange(Integer start, Integer end) {
 			Range<Integer> range;
 			if(start==null) {
 				if(end==null)
@@ -52,7 +48,11 @@ public class TimeSlicedContent {
 						end
 					);
 			}
-			return new TimeSlice(range);
+			return range;
+		}
+		
+		public static TimeSlice fromRange(Integer start, Integer end) {
+			return new TimeSlice(createRange(start, end));
 		}
 
 		public static TimeSlice from(TimeSlice slice) {

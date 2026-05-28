@@ -15,6 +15,7 @@ import { GolarionMap } from "./tools/GolarionMap.js";
 import SearchControl from "./tools/SearchControl.js";
 import TimeSliderControl from "./tools/TimeSliderControl.js";
 import options from "./URLOptions.js";
+import timeMeta from "./utils/timeMeta.js";
 
 //check if running embedded
 const mapContainer = document.getElementById("map-container")!;
@@ -94,13 +95,6 @@ map.on('style.load', () => {
   });
 });
 
-//set up time slider
-map.on('load', ()=>{
-
-  //map.setGlobalStateProperty(YEAR, 4715);
-});
-
-
 //diable rotation
 map.dragRotate.disable();
 map.touchZoomRotate.disableRotation();
@@ -108,12 +102,8 @@ map.touchZoomRotate.disableRotation();
 map.on('error', function(err) {
   console.log(err.error.message);
 });
-let timeSlider = new TimeSliderControl(golarionMap);
-if(options.year) {
-  map.once('style.load', ()=>{
-    timeSlider.updateMap(options.year);
-  });
-}
+let timeSlider = new TimeSliderControl(golarionMap, options.year?timeMeta.fromYear(options.year):0);
+
 if(!options.embedded) {
   map.addControl(new GlobeControl());
   map.addControl(new NavigationControl({showCompass: true}));

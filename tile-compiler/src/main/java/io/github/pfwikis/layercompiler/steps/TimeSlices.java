@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 
+import com.google.common.collect.Range;
+
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStepSlicing;
 import io.github.pfwikis.layercompiler.steps.model.TimeSlicedContent;
@@ -19,19 +21,18 @@ public class TimeSlices extends LCStepSlicing {
     @Override
     public TimeSlicedContent process(Inputs in) throws IOException {
     	var fc = in.getInput().toFeatureCollection();
-    	var slices = findSliceRanges(fc);
+    	var barriers = extractBarriers(fc);
+    	var slices = barriersToSlices(barriers);
     	
     	for(var slice:slices) {
     		var rfc = new FeatureCollection();
     		slice.setContent(LCContent.from(rfc));
-    		rfc.getProperties().setTimeStart(slice.getTime().hasLowerBound()?slice.getTime().lowerEndpoint():null);
-    		rfc.getProperties().setTimeEnd(slice.getTime().hasUpperBound()?slice.getTime().upperEndpoint():null);
+    		rfc.getProperties().setTime(slice.getTime());
     		
     		for(var f:fc.getFeatures()) {
     			if(slice.shouldContain(f)) {
     				Feature c = f.copy();
-    				c.getProperties().setTimeStart(null);
-    				c.getProperties().setTimeEnd(null);
+    				c.getProperties().setTime(slice.getTime());
     				rfc.getFeatures().add(c);
     			}
     		}
@@ -40,17 +41,21 @@ public class TimeSlices extends LCStepSlicing {
         return new TimeSlicedContent(slices);
     }
     
-	private List<TimeSlice> findSliceRanges(FeatureCollection fc) {
+	public static TreeSet<Integer> extractBarriers(FeatureCollection fc) {
 		var barriers = new TreeSet<Integer>();
     	fc.getFeatures().forEach(f-> {
-    		if(f.getProperties().getTimeStart() != null) {
-    			barriers.add(f.getProperties().getTimeStart());
+    		if(f.getProperties().getTime().hasLowerBound()) {
+    			barriers.add(f.getProperties().getTime().lowerEndpoint());
             }
-    		if(f.getProperties().getTimeEnd() != null) {
-    			barriers.add(f.getProperties().getTimeEnd());
+    		if(f.getProperties().getTime().hasUpperBound()) {
+    			barriers.add(f.getProperties().getTime().upperEndpoint());
             }
     	});
-    	var arr = barriers.toArray(Integer[]::new);
+    	return barriers;
+	}
+
+	public static List<TimeSlice> barriersToSlices(TreeSet<Integer> barriers) {
+		var arr = barriers.toArray(Integer[]::new);
     	var result = new ArrayList<TimeSlice>();
 
     	if(arr.length==0) return List.of(TimeSlice.fromRange(null, null));

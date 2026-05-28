@@ -2,6 +2,7 @@ package io.github.pfwikis;
 
 import java.io.File;
 
+import io.github.pfwikis.run.Runner;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,9 +20,7 @@ public class TileCompiler {
         //create target folders
         options.targetDirectory().mkdirs();
 
-        new LayersCompiler(
-    		this,
-    		Math.min(4, Runtime.getRuntime().availableProcessors())
-		).compile();
+        Runner.setMaximumParallelism(Math.min(8, Runtime.getRuntime().availableProcessors()));
+        new LayersCompiler(this).compile();
     }
 }

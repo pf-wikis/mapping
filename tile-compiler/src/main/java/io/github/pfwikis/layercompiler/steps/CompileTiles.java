@@ -30,6 +30,7 @@ public class CompileTiles extends LCStepMergingTime {
     	var layers = in.getInputs().entrySet()
     		.stream()
     		.map(e->Pair.of(e.getKey(), createTippecanoeProperties(e.getValue())))
+    		.peek(e->cleanProperties(e.getValue()))
     		.map(e->List.of("-L", new Runner.TmpGeojson(e.getKey()+":", LCContent.from(e.getValue()))))
     		.toList();
 
@@ -58,7 +59,14 @@ public class CompileTiles extends LCStepMergingTime {
     }
     
     
-    private FeatureCollection createTippecanoeProperties(LCContent in) {
+    private void cleanProperties(FeatureCollection fc) {
+    	for(var f:fc.getFeatures()) {
+    		f.getProperties().setTime(null);
+    	}
+	}
+
+
+	private FeatureCollection createTippecanoeProperties(LCContent in) {
     	int maxzoom = ctx.getOptions().getMaxZoom();
     	var fc = in.toFeatureCollection();
     	//set tippecanoe based on filterMin/Maxzoom

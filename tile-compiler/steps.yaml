@@ -355,6 +355,21 @@
         region: region-borders
         district: district-borders
     - step: SMOOTH_LINES
+    - step: TIME_META_APPLY
+      dependsOn:
+        meta: time-meta
+
+- name: time-meta
+  steps:
+    - step: TIME_META_COLLECT
+      dependsOn:
+        borders: borders.SMOOTH_LINES
+
+- name: time-meta-out
+  steps:
+    - step: TIME_META_OUT
+      dependsOn:
+        meta: time-meta
 
 - name: geometry
   steps:

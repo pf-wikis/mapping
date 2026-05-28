@@ -1,42 +1,49 @@
-import { IControl, Map } from 'maplibre-gl';
+import { IControl, Map as MLMap } from 'maplibre-gl';
 import { GolarionMap } from "./GolarionMap";
 import style from 'virtual:style';
 import throttle from '../utils/throttle';
 import options from '../URLOptions.js';
+import timeMeta from '../utils/timeMeta';
 
 export default class TimeSliderControl implements IControl {
   private map: GolarionMap;
   private container: HTMLElement;
+  private initialTimeIndex: number;
 
-  constructor(map: GolarionMap) {
+  constructor(map: GolarionMap, initialTimeIndex: number) {
     this.map = map;
+    this.initialTimeIndex = initialTimeIndex;
 
     // Create main container
     this.container = document.createElement('div');
     this.container.className = 'time-slider-container maplibregl-ctrl maplibregl-ctrl-group';
+    if(options.embedded) {
+      map.map.once('style.load', ()=>this.updateMapUnthrottled(initialTimeIndex));
+    }
   }
 
-  updateMap = throttle((year:number) => this.map.map.setGlobalStateProperty('year', year), 100);
+  updateMapUnthrottled = (timeIndex:number) => this.map.map.setGlobalStateProperty('timeIndex', timeIndex);
+  updateMap = throttle(this.updateMapUnthrottled, 100);
   
-  onAdd(map: Map): HTMLElement {
+  onAdd(map: MLMap): HTMLElement {
     this.container.innerHTML = `
-    <input type="range" id="time-slider" name="time-slider" min="4710" max="${style.state?.year?.default}" value="${options.year??style.state?.year?.default}" />
+    <input type="range" id="time-slider" name="time-slider" min="${timeMeta.min}" max="${timeMeta.max}" value="${this.initialTimeIndex}" />
     <label for="time-slider"></label>
     `;
     const slider:HTMLInputElement = this.container.querySelector('#time-slider')!;
     const label:HTMLLabelElement = this.container.querySelector('label')!;
 
     const updateYear = () => {
-        const value = slider.value;
-        this.updateMap(parseInt(value));
-        label.textContent = `Year ${value} AR`;
+        const value = parseInt(slider.value);
+        this.updateMap(value);
+        label.innerHTML = timeMeta.byId.get(value)?.label || `Unlabeled entry ${value}`;
     }
     slider.addEventListener('input', updateYear);
     map.once('style.load', updateYear);
     return this.container;
   }
 
-  onRemove(map: Map): void {
+  onRemove(map: MLMap): void {
     if (this.container && this.container.parentNode) {
       this.container.parentNode.removeChild(this.container);
     }

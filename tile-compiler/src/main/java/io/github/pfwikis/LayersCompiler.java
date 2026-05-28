@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 
@@ -16,6 +17,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import com.github.dexecutor.core.DefaultDexecutor;
 import com.github.dexecutor.core.DexecutorConfig;
 import com.github.dexecutor.core.ExecutionConfig;
+import com.github.dexecutor.core.graph.LevelOrderTraversar;
+import com.github.dexecutor.core.graph.StringTraversarAction;
 import com.github.dexecutor.core.task.Task;
 import com.google.common.collect.HashMultiset;
 
@@ -35,14 +38,12 @@ public class LayersCompiler {
 
     private final TileCompiler tileCompiler;
     private final File stepsFile = new File("steps.yaml");
-    private final int parallelism;
 
     public void compile() throws Exception {
         var lsDescriptions = new ObjectMapper(new YAMLFactory()).readValue(stepsFile, LCDescription[].class);
 
         Map<String, LCStepAbstract> steps = new HashMap<>();
-        var pool = Executors.newFixedThreadPool(parallelism);
-        log.info("Running with pool size {}", parallelism);
+        var pool = Executors.newVirtualThreadPerTaskExecutor();
 
         try {
             var config = new DexecutorConfig<String, TimeSlicedContent>(pool, id-> {
@@ -52,9 +53,18 @@ public class LayersCompiler {
 
             createSteps(lsDescriptions, steps, executor);
 
-            var results = executor.execute(ExecutionConfig.TERMINATING);
+            var sb = new StringBuilder();
+    		executor.print(new LevelOrderTraversar<>(), new StringTraversarAction<>(sb));
+    		log.info("Execution plan:\n{}", sb.toString());
+    
+            var results = executor.execute(ExecutionConfig.NON_TERMINATING);
             if(!results.getErrored().isEmpty()) {
-                log.error("Failed at least some executions");
+                log.error("Failed executions:\n{}",
+            		results.getErrored()
+            		.stream()
+            		.map(er->er.getId()+": "+er.getMessage())
+            		.collect(Collectors.joining("\n"))
+            	);
                 System.exit(-1);
             }
         } finally {

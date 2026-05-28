@@ -7,7 +7,7 @@
 
   <appender name="STDOUT" class="ConsoleAppender">
     <encoder class="PatternLayoutEncoder">
-      <pattern>%.-1level %d{HH:mm:ss} %-30.-30(%thread %logger{0}) %replace(%msg){'
+      <pattern>%.-1level %d{HH:mm:ss} %-50(%thread %logger{0}) %replace(%msg){'
 ', '
 	'}\n</pattern><!--these linebreaks and tabstops are important!-->
     </encoder>
