@@ -2,6 +2,7 @@
 set -e
 
 echo "I am '$(whoami)'"
+qgis_process -v
 
 echo "Downloading newest mapping data."
 kart clone https://github.com/pf-wikis/mapping-data.git /w/data
