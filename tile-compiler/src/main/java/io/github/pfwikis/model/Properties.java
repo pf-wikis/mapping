@@ -46,6 +46,7 @@ public class Properties extends AnyJson {
 	private Double areaM2;
 	private Boolean noSmooth;
 	private Pattern pattern;
+	@JsonUnwrapped(prefix = "time.")
 	private Range<Integer> time=Range.all();
 	private Integer timeIndexStart;
 	private Integer timeIndexEnd;

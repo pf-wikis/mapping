@@ -3,6 +3,7 @@ package io.github.pfwikis.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.google.common.collect.Range;
 
 import io.github.pfwikis.layercompiler.steps.TimeMetaCollect.TimeMeta;
@@ -21,6 +22,7 @@ public class FeatureCollection extends AnyJson {
     @Setter
     @EqualsAndHashCode
     public static class FCProperties {
+    	@JsonUnwrapped(prefix = "time.")
     	private Range<Integer> time=Range.all();
     	private TimeMeta timeMeta;
     }
