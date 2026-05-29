@@ -20,7 +20,7 @@ public class TileCompiler {
         //create target folders
         options.targetDirectory().mkdirs();
 
-        Runner.setMaximumParallelism(Math.min(8, Runtime.getRuntime().availableProcessors()));
+        Runner.setMaximumParallelism(Math.min(4, Runtime.getRuntime().availableProcessors()));
         new LayersCompiler(this).compile();
     }
 }
