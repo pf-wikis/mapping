@@ -1,7 +1,7 @@
 FROM qgis/qgis:3.44
 RUN <<EOF
   apt-get update
-  apt-get install -y mmv openjdk-25-jdk maven jq bc gcc g++ make libsqlite3-dev zlib1g-dev curl
+  apt-get install -y mmv openjdk-25-jdk maven jq bc gcc g++ make libsqlite3-dev zlib1g-dev curl nano
   rm -rf /var/lib/apt/lists/*
 EOF
 ENV NVM_DIR=/usr/local/nvm
@@ -26,7 +26,7 @@ RUN <<EOF
   rm -rf tippecanoe
 EOF
 
-RUN npm install -g mapshaper @indoorequal/spritezero-cli
+RUN npm install -g mapshaper@v0.7.9 @indoorequal/spritezero-cli
 
 RUN <<EOF
   curl -L https://github.com/koordinates/kart/releases/download/v0.16.1/kart_0.16.1_amd64.deb -o kart.deb 

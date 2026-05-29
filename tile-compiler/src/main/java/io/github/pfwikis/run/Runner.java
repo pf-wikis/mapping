@@ -30,7 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Runner {
 	
-	private static Semaphore limiter = new Semaphore(4, true);
+	private static Semaphore limiter = new Semaphore(8, true);
 	public static void setMaximumParallelism(int limit) {
 		limiter = new Semaphore(limit, true);
 	}
@@ -85,7 +85,7 @@ public class Runner {
     public static final File TMP_DIR;
     static {
     	try {
-    	String dirname = "pathfinder-mapping-"+(Instant.now().toEpochMilli()/1000);
+    		String dirname = "pathfinder-mapping-"+(Instant.now().toEpochMilli()/1000000);
 	    	File dir = null;
 	    	try {
 	    		dir = Files.createDirectory(Path.of("//wsl$/Ubuntu/tmp/"+dirname)).toFile();
