@@ -29,7 +29,7 @@ public class StdHelper implements Closeable {
 		this.prefix = prefix;
 		this.step = step;
 		this.file = Runner.tmpGeojson(step, new OutFile());
-		this.content = LCContent.from(file, true);
+		this.content = LCContent.from(file);
 	}
 
 	public void intermediatePrint() {

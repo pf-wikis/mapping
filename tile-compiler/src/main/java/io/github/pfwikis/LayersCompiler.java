@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import tools.jackson.dataformat.yaml.YAMLMapper;
+
 import com.github.dexecutor.core.DefaultDexecutor;
 import com.github.dexecutor.core.DexecutorConfig;
 import com.github.dexecutor.core.ExecutionConfig;
@@ -40,7 +40,7 @@ public class LayersCompiler {
     private final File stepsFile = new File("steps.yaml");
 
     public void compile() throws Exception {
-        var lsDescriptions = new ObjectMapper(new YAMLFactory()).readValue(stepsFile, LCDescription[].class);
+        var lsDescriptions = new YAMLMapper().readValue(stepsFile, LCDescription[].class);
 
         Map<String, LCStepAbstract> steps = new HashMap<>();
         var pool = Executors.newVirtualThreadPerTaskExecutor();

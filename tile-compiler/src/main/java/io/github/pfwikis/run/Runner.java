@@ -65,7 +65,7 @@ public class Runner {
 	            LCContent result = LCContent.empty();
 	
 	            if(cmd.getResultFile() != null) {
-	                result = LCContent.from(cmd.getResultFile(), true);
+	                result = LCContent.from(cmd.getResultFile());
 	            }
 	            return result;
 	        } catch(Exception e) {

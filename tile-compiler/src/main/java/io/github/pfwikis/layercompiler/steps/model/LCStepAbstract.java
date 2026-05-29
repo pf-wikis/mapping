@@ -11,6 +11,7 @@ import com.google.common.collect.Range;
 import com.google.common.collect.TreeRangeMap;
 
 import io.github.pfwikis.CLIOptions;
+import io.github.pfwikis.util.time.TimeRange;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -46,7 +47,7 @@ public abstract class LCStepAbstract extends Task<String, TimeSlicedContent> {
             return results;
         } catch (Throwable t) {
         	log.error("Failed execution", t);
-            throw new RuntimeException(t.getMessage());
+            throw new RuntimeException("Failed execution with: "+t.getMessage());
         } finally {
         	Thread.currentThread().setName(oldName);
         }
@@ -54,7 +55,7 @@ public abstract class LCStepAbstract extends Task<String, TimeSlicedContent> {
     
 	protected List<Inputs> createVariants() {
 		if(inputMapping.isEmpty())
-			return List.of(new Inputs(Range.all(), new LinkedHashMap<>()));
+			return List.of(new Inputs(TimeRange.always(), new LinkedHashMap<>()));
 		return inputMapping.entrySet().stream()
 			.map(in->createVariants(in.getKey(), getResult(in.getValue()).getResult()))
 			.reduce(this::mergeVariants).get();
@@ -64,13 +65,13 @@ public abstract class LCStepAbstract extends Task<String, TimeSlicedContent> {
     	var result = new ArrayList<Inputs>();
     	var map=TreeRangeMap.<Integer, Inputs>create();
     	for(var i:a) {
-    		if(!map.subRangeMap(i.time).asMapOfRanges().isEmpty())
+    		if(!map.subRangeMap(i.time.toGuavaRange()).asMapOfRanges().isEmpty())
     			throw new IllegalStateException("This would create and error. We do not support overlapping ranges here.");
-    		map.put(i.time, i);
+    		map.put(i.time.toGuavaRange(), i);
     	}
     	for(var right:b) {
-    		for(var left:map.subRangeMap(right.time).asMapOfRanges().entrySet()) {
-    			var variant = new Inputs(left.getKey(), new LinkedHashMap<>(left.getValue().inputs));
+    		for(var left:map.subRangeMap(right.time.toGuavaRange()).asMapOfRanges().entrySet()) {
+    			var variant = new Inputs(TimeRange.from(left.getKey()), new LinkedHashMap<>(left.getValue().inputs));
     			variant.inputs.putAll(right.inputs);
     			result.add(variant);
     		}
@@ -92,7 +93,7 @@ public abstract class LCStepAbstract extends Task<String, TimeSlicedContent> {
     @Getter
     @RequiredArgsConstructor
     public static class Inputs {
-    	private final Range<Integer> time;
+    	private final TimeRange time;
     	private final SequencedMap<String, LCContent> inputs;
     	
     	public LCContent getInput() {

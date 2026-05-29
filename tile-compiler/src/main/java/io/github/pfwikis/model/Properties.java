@@ -4,16 +4,14 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.google.common.collect.Range;
 
+import io.github.pfwikis.util.time.TimeRange;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import tools.jackson.databind.JsonNode;
 
 @Setter
 @Getter
@@ -46,20 +44,13 @@ public class Properties extends AnyJson {
 	private Double areaM2;
 	private Boolean noSmooth;
 	private Pattern pattern;
-	@JsonUnwrapped(prefix = "time.")
-	private Range<Integer> time=Range.all();
+	/*used during processing*/
+	@JsonUnwrapped
+	private TimeRange time=TimeRange.always();
+	/*only used for output*/
 	private Integer timeIndexStart;
+	/*only used for output*/
 	private Integer timeIndexEnd;
-	
-	public void setTimeStart(Integer timeStart) {
-		if(timeStart != null)
-			time = time.intersection(Range.atLeast(timeStart));
-	}
-	
-	public void setTimeEnd(Integer timeEnd) {
-		if(timeEnd != null)
-			time = time.intersection(Range.lessThan(timeEnd));
-	}
 	
 	public static enum Pattern {
 		pebbles,

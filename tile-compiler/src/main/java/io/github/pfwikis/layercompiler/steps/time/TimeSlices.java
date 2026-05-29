@@ -1,11 +1,9 @@
-package io.github.pfwikis.layercompiler.steps;
+package io.github.pfwikis.layercompiler.steps.time;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
-
-import com.google.common.collect.Range;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStepSlicing;
@@ -13,6 +11,7 @@ import io.github.pfwikis.layercompiler.steps.model.TimeSlicedContent;
 import io.github.pfwikis.layercompiler.steps.model.TimeSlicedContent.TimeSlice;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
+import io.github.pfwikis.util.time.TimeRange;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -40,16 +39,11 @@ public class TimeSlices extends LCStepSlicing {
     	
         return new TimeSlicedContent(slices);
     }
-    
+
 	public static TreeSet<Integer> extractBarriers(FeatureCollection fc) {
 		var barriers = new TreeSet<Integer>();
     	fc.getFeatures().forEach(f-> {
-    		if(f.getProperties().getTime().hasLowerBound()) {
-    			barriers.add(f.getProperties().getTime().lowerEndpoint());
-            }
-    		if(f.getProperties().getTime().hasUpperBound()) {
-    			barriers.add(f.getProperties().getTime().upperEndpoint());
-            }
+    		f.getProperties().getTime().forEachBarrier(barriers::add);
     	});
     	return barriers;
 	}
@@ -58,13 +52,13 @@ public class TimeSlices extends LCStepSlicing {
 		var arr = barriers.toArray(Integer[]::new);
     	var result = new ArrayList<TimeSlice>();
 
-    	if(arr.length==0) return List.of(TimeSlice.fromRange(null, null));
+    	if(arr.length==0) return List.of(TimeSlice.from(TimeRange.always()));
     	
-    	result.add(TimeSlice.fromRange(null, arr[0]));
+    	result.add(TimeSlice.from(new TimeRange(null, arr[0])));
     	for(int i=0;i<arr.length-1;i++) {
-    		result.add(TimeSlice.fromRange(arr[i], arr[i+1]));
+    		result.add(TimeSlice.from(new TimeRange(arr[i], arr[i+1])));
     	}
-    	result.add(TimeSlice.fromRange(arr[arr.length-1], null));
+    	result.add(TimeSlice.from(new TimeRange(arr[arr.length-1], null)));
     	return result;
 	}
 }

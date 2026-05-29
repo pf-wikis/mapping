@@ -3,11 +3,10 @@ package io.github.pfwikis.layercompiler.steps;
 import java.io.File;
 import java.io.IOException;
 
-import com.google.common.collect.Range;
-
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStepMergingTime;
 import io.github.pfwikis.util.Jackson;
+import io.github.pfwikis.util.time.TimeRange;
 
 public class TimeMetaOut extends LCStepMergingTime {
 
@@ -19,8 +18,8 @@ public class TimeMetaOut extends LCStepMergingTime {
     		.map(e->new Res(
     			e.getId(),
     			toLabel(e.getTime()),
-    			e.getTime().hasLowerBound()?e.getTime().lowerEndpoint():Integer.MIN_VALUE,
-    			e.getTime().hasUpperBound()?e.getTime().upperEndpoint():Integer.MAX_VALUE
+    			e.getTime().hasLowerBound()?e.getTime().getTimeStart():Integer.MIN_VALUE,
+    			e.getTime().hasUpperBound()?e.getTime().getTimeEnd():Integer.MAX_VALUE
     		))
     		.toList();
     	
@@ -31,16 +30,19 @@ public class TimeMetaOut extends LCStepMergingTime {
     	return LCContent.empty();
     }
     
-    private String toLabel(Range<Integer> time) {
+    private String toLabel(TimeRange time) {
+    	if(!time.hasLowerBound() && !time.hasUpperBound()) {
+    		throw new IllegalStateException();
+    	}
 		if(!time.hasLowerBound())
 			return "before <a href=\"https://pathfinderwiki.com/wiki/%1$d_AR\">%1$d AR</a>"
-					.formatted(time.upperEndpoint());
+					.formatted(time.getTimeEnd());
 		if(!time.hasUpperBound())
 			return "since <a href=\"https://pathfinderwiki.com/wiki/%1$d_AR\">%1$d AR</a>"
-					.formatted(time.lowerEndpoint());
+					.formatted(time.getTimeStart());
 		
-		int start = time.lowerEndpoint();
-		int end = time.upperEndpoint()-1;
+		int start = time.getTimeStart();
+		int end = time.getTimeEnd()-1;
 		if(start == end)
 			return "<a href=\"https://pathfinderwiki.com/wiki/%1$d_AR\">%1$d AR</a>"
 					.formatted(start);

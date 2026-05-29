@@ -4,8 +4,9 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
+
+import tools.jackson.core.JacksonException;
+import tools.jackson.databind.JsonNode;
 
 import io.github.pfwikis.util.Jackson;
 import lombok.AllArgsConstructor;
@@ -29,7 +30,7 @@ public class Label {
 	public static Label fromJson(JsonNode n) {
 		try {
 			return Jackson.JSON.treeToValue(n, Label.class);
-		} catch (JsonProcessingException | IllegalArgumentException e) {
+		} catch (JacksonException | IllegalArgumentException e) {
 			throw new IllegalStateException();
 		}
 	}

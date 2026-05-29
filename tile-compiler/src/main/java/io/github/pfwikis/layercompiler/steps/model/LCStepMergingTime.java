@@ -13,6 +13,7 @@ import io.github.pfwikis.layercompiler.steps.model.TimeSlicedContent.TimeSlice;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.FeatureCollection.FCProperties;
+import io.github.pfwikis.util.time.TimeRange;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -29,8 +30,8 @@ public abstract class LCStepMergingTime extends LCStepAbstract {
 			merged.put(key, merge(variants, key));
     	}
 		
-    	var res = process(new Inputs(Range.all(), merged));
-    	return new TimeSlicedContent(List.of(TimeSlice.from(Range.all(), res)));
+    	var res = process(new Inputs(TimeRange.always(), merged));
+    	return new TimeSlicedContent(List.of(TimeSlice.from(TimeRange.always(), res)));
 	}
 
 	private LCContent merge(List<Inputs> variants, String key) {
@@ -43,12 +44,12 @@ public abstract class LCStepMergingTime extends LCStepAbstract {
 		//because the same LCContent could be in multiple slices we resolve this first
 		var contentsToTime = new IdentityHashMap<LCContent, TreeRangeSet<Integer>>(variants.size());
 		variants.forEach(slice->contentsToTime.computeIfAbsent(slice.getInput(key), _->TreeRangeSet.create())
-				.add(slice.getTime()));
+				.add(slice.getTime().toGuavaRange()));
 		
 		for(var contentAndTime:contentsToTime.entrySet()) {
 			var fc = contentAndTime.getKey().toFeatureCollection();
 			var props = fc.getProperties();
-			props.setTime(Range.all());
+			props.setTime(TimeRange.always());
 			if(mergedProps==null)
 				mergedProps = props;
 			else if(!mergedProps.equals(props))
@@ -57,7 +58,7 @@ public abstract class LCStepMergingTime extends LCStepAbstract {
 			for(var f:fc.getFeatures()) {
 				total++;
 				geometry.computeIfAbsent(f, _->TreeRangeSet.create())
-					.addAll(contentAndTime.getValue().subRangeSet(f.getProperties().getTime()));
+					.addAll(contentAndTime.getValue().subRangeSet(f.getProperties().getTime().toGuavaRange()));
 			}
 		}
 		result.setProperties(mergedProps);
@@ -66,7 +67,7 @@ public abstract class LCStepMergingTime extends LCStepAbstract {
 		for(var geom:geometry.entrySet()) {
 			for(var time:geom.getValue().asRanges()) {
 				Feature f = geom.getKey().copy();
-				f.getProperties().setTime(time);
+				f.getProperties().setTime(TimeRange.from(time));
 				result.getFeatures().add(f);
 			}
 		}

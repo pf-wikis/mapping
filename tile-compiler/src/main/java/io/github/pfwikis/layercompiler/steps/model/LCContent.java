@@ -10,7 +10,7 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Runner;
@@ -25,7 +25,6 @@ public abstract class LCContent {
 	
 	@Setter
 	protected String name;
-	protected List<Path> temporaryFilesToDelete = new ArrayList<>();
 	
 	protected void cleanup() {}
 	
@@ -61,8 +60,6 @@ public abstract class LCContent {
 	@SneakyThrows
 	public Path toTmpFile(LCStepAbstract step) {
 		var tmpFile = Runner.tmpGeojson(step, new OutFile());
-		temporaryFilesToDelete.add(tmpFile.toPath());
-        tmpFile.deleteOnExit();
         FileUtils.writeByteArrayToFile(tmpFile, toBytes());
         return tmpFile.toPath();
 	}
@@ -70,12 +67,12 @@ public abstract class LCContent {
 	
 	
 	/********    factory methods          ***/
-	public static LCContent from(Path path, boolean temporary) {
-		return new LCContentPath(path, temporary);
+	public static LCContent from(Path path) {
+		return new LCContentPath(path);
 	}
 
-	public static LCContent from(File file, boolean temporary) {
-		return from(file.toPath(), temporary);
+	public static LCContent from(File file) {
+		return from(file.toPath());
 	}
 
 	public static LCContent empty() {

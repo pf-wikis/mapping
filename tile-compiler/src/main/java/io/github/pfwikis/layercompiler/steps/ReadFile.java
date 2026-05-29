@@ -31,7 +31,7 @@ public class ReadFile extends LCStep {
     public LCContent process(Inputs in) throws IOException {
 		if(file != null) {
 			var finalFile = Path.of("../sources").resolve(file.toPath()).toFile().getCanonicalFile();
-			return LCContent.from(finalFile, false);
+			return LCContent.from(finalFile);
 		}
 		else {
             return Tools.ogr2ogr(this, ctx.getMappingDataFile().toPath(), "-preserve_fid", "-dim", "XY", "-mapFieldType", "DateTime=String", layer);

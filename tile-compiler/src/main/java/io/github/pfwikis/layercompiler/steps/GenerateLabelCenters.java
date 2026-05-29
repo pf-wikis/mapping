@@ -91,7 +91,7 @@ public class GenerateLabelCenters extends LCStep {
     		"--FIELD_NAME=areaSqkm",
     		"--FIELD_TYPE=0", //float
     		"--FIELD_PRECISION=7",
-    		"--FORMULA=$area/1000000"
+    		"--FORMULA=try($area/1000000,0)"
 		);
         
         var withFields = Tools.mapshaper(this, withArea,

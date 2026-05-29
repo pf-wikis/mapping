@@ -1,13 +1,14 @@
-package io.github.pfwikis.layercompiler.steps;
+package io.github.pfwikis.layercompiler.steps.time;
 
 import java.util.List;
 import java.util.TreeSet;
 
-import com.google.common.collect.Range;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStepMergingTime;
 import io.github.pfwikis.model.FeatureCollection;
+import io.github.pfwikis.util.time.TimeRange;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -34,6 +35,10 @@ public class TimeMetaCollect extends LCStepMergingTime {
     		slices.get(i).id = 1+i-slices.size();
     	}
     	
+    	if(slices.size()<=1) {
+    		throw new IllegalStateException("The time metadata should have more than one entry");
+    	}
+    	
     	var fc = new FeatureCollection();
     	fc.getProperties().setTimeMeta(new TimeMeta(slices));
     	return LCContent.from(fc);
@@ -46,17 +51,17 @@ public class TimeMetaCollect extends LCStepMergingTime {
     public static class TimeMeta {
     	private List<TimeMetaEntry> entries;
 
-    	public int getIndexForStart(Range<Integer> time) {
+    	public int getIndexForStart(TimeRange time) {
 			for(var entry:entries) {
-				if(time.isConnected(entry.time) && !time.intersection(entry.time).isEmpty())
+				if(time.intersects(entry.time))
 					return entry.id;
 			}
 			throw new IllegalStateException();
 		}
     	
-    	public int getIndexForEnd(Range<Integer> time) {
+    	public int getIndexForEnd(TimeRange time) {
     		for(var entry:entries.reversed()) {
-				if(time.isConnected(entry.time) && !time.intersection(entry.time).isEmpty())
+				if(time.intersects(entry.time))
 					return entry.id;
 			}
 			throw new IllegalStateException();
@@ -67,10 +72,11 @@ public class TimeMetaCollect extends LCStepMergingTime {
     @Getter @Setter
     @EqualsAndHashCode
     public static class TimeMetaEntry {
-    	private Range<Integer> time;
+    	@JsonUnwrapped
+    	private TimeRange time;
     	private int id;
     	
-		public static TimeMetaEntry from(Range<Integer> time) {
+		public static TimeMetaEntry from(TimeRange time) {
 			var res = new TimeMetaEntry();
 			res.time = time;
 			return res;

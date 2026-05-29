@@ -12,10 +12,8 @@ public class LCContentPath extends LCContent {
 	
 	private final Path path;
 	
-	public LCContentPath(Path path, boolean temporaryFile) {
+	public LCContentPath(Path path) {
 		this.path = path;
-		if(temporaryFile)
-			this.temporaryFilesToDelete.add(path);
 	}
 
 	@Override @SneakyThrows

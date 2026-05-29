@@ -2,9 +2,8 @@ package io.github.pfwikis.layercompiler.steps.model;
 
 import java.util.List;
 
-import com.google.common.collect.Range;
-
 import io.github.pfwikis.model.Feature;
+import io.github.pfwikis.util.time.TimeRange;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,44 +21,24 @@ public class TimeSlicedContent {
 	@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 	@AllArgsConstructor(access = AccessLevel.PRIVATE)
     public static class TimeSlice {
-    	private final Range<Integer> time;
+    	private final TimeRange time;
     	@Setter
     	private LCContent content;
 
 		public boolean shouldContain(Feature f) {
-			Range<Integer> fRange = f.getProperties().getTime();
-			return time.isConnected(fRange) && !time.intersection(fRange).isEmpty();
-		}
-
-		public static Range<Integer> createRange(Integer start, Integer end) {
-			Range<Integer> range;
-			if(start==null) {
-				if(end==null)
-					range = Range.all();
-				else
-					range = Range.lessThan(end);
-			}
-			else {
-				if(end==null)
-					range = Range.atLeast(start);
-				else
-					range = Range.closedOpen(
-						start,
-						end
-					);
-			}
-			return range;
+			TimeRange fRange = f.getProperties().getTime();
+			return time.intersects(fRange);
 		}
 		
-		public static TimeSlice fromRange(Integer start, Integer end) {
-			return new TimeSlice(createRange(start, end));
+		public static TimeSlice from(TimeRange time) {
+			return new TimeSlice(time);
 		}
 
 		public static TimeSlice from(TimeSlice slice) {
 			return new TimeSlice(slice.time);
 		}
 
-		public static TimeSlice from(Range<Integer> time, LCContent content) {
+		public static TimeSlice from(TimeRange time, LCContent content) {
 			return new TimeSlice(time, content);
 		}
     }

@@ -3,7 +3,7 @@ package io.github.pfwikis.layercompiler.steps.model;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import com.fasterxml.jackson.databind.util.TokenBuffer;
+import tools.jackson.databind.util.TokenBuffer;
 
 import io.github.pfwikis.util.Jackson;
 import lombok.AllArgsConstructor;
@@ -29,7 +29,7 @@ public class LCContentOM<T> extends LCContent {
 	@Override
 	@SneakyThrows
 	public <R> R toParsed(Class<R> cl) {
-		TokenBuffer tb = new TokenBuffer(Jackson.JSON.getFactory().getCodec(), false);
+		TokenBuffer tb = new TokenBuffer(Jackson.JSON._serializationContext(), false);
 		Jackson.JSON.writeValue(tb, val);
 		var res = Jackson.JSON.readValue(tb.asParser(), cl);
 		return res;
