@@ -143,6 +143,9 @@
       dependsOn:
         summand: cities
     - step: RESOLVE_LABELS
+    - step: TIME_META_APPLY
+      dependsOn:
+        meta: time-meta
     - step: LOCATION_GROUP
 
 - name: mountains
@@ -271,6 +274,9 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 3
+    - step: TIME_META_APPLY
+      dependsOn:
+        meta: time-meta
 
 - name: province-borders
   steps:
@@ -287,6 +293,9 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 4
+    - step: TIME_META_APPLY
+      dependsOn:
+        meta: time-meta
 
 - name: subregion-borders
   steps:
@@ -303,6 +312,9 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 2
+    - step: TIME_META_APPLY
+      dependsOn:
+        meta: time-meta
 
 - name: region-borders
   steps:
@@ -318,6 +330,9 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 1
+    - step: TIME_META_APPLY
+      dependsOn:
+        meta: time-meta
 
 - name: region-area
   steps: 
@@ -363,7 +378,15 @@
   steps:
     - step: TIME_META_COLLECT
       dependsOn:
-        borders: borders.SMOOTH_LINES
+        borders: borders.MERGE_BORDERS
+        labels: labels.MERGE_LABELS
+        geometry: geometry.MERGE_GEOMETRY
+        line-labels: line-labels.MERGE_LABELS
+        province-labels: province-labels.GENERATE_LABEL_CENTERS
+        nation-labels: nation-labels.GENERATE_LABEL_CENTERS
+        subregion-labels: subregion-labels.GENERATE_LABEL_CENTERS
+        region-labels: region-labels.GENERATE_LABEL_CENTERS
+        locations: locations.RESOLVE_LABELS
 
 - name: time-meta-out
   steps:
@@ -387,6 +410,9 @@
         waters: waters
         roads: roads
         buildings: buildings
+    - step: TIME_META_APPLY
+      dependsOn:
+        meta: time-meta
 
 - name: labels
   steps:
@@ -405,6 +431,9 @@
         waters: water-labels
         districts: district-labels
         buildings: building-labels
+    - step: TIME_META_APPLY
+      dependsOn:
+        meta: time-meta
 
 - name: line-labels
   steps:
@@ -413,6 +442,9 @@
       dependsOn:
         rivers: river-labels
         roads: road-labels
+    - step: TIME_META_APPLY
+      dependsOn:
+        meta: time-meta
 
 - name: search-index
   steps:
