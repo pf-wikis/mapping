@@ -15,6 +15,7 @@ import org.jsoup.Jsoup;
 import tools.jackson.databind.JavaType;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.StringNode;
 
 public class Helper {
 
@@ -54,12 +55,11 @@ public class Helper {
     }
 
     private static void stripHTML(JsonNode n) {
-        n.elements().forEachRemaining(c->stripHTML(c));
+        n.values().forEach(c->stripHTML(c));
         if(n instanceof ObjectNode obj) {
-            n.fieldNames().forEachRemaining(f-> {
-                var v = n.get(f);
-                if(v.isTextual()) {
-                    obj.put(f, stripHTML(v.textValue()));
+            n.properties().forEach(prop-> {
+                if(prop.getValue().isTextual()) {
+                	prop.setValue(new StringNode(stripHTML(prop.getValue().textValue())));
                 }
             });
         }

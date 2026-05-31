@@ -2,6 +2,7 @@ package io.github.pfwikis.model;
 
 import java.time.Instant;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import io.github.pfwikis.Helper;

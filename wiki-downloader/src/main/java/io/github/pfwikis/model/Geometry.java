@@ -5,6 +5,7 @@ import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import lombok.Data;
@@ -20,6 +21,7 @@ public class Geometry {
     private String type = "Point";
     private List<BigDecimal> coordinates;
 
+    @JsonIgnore
 	public Geometry(BigDecimal lon, BigDecimal lat) {
 		//wrap around for better viewing in qgis
     	if(lon.compareTo(BigDecimal.valueOf(-138))<0)

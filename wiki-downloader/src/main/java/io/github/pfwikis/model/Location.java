@@ -31,7 +31,7 @@ public class Location {
     @JsonCreator
     public static Location fromJson(ObjectNode n) {
         var c = new Location();
-        String name = n.fieldNames().next();
+        String name = n.propertyNames().iterator().next();
         var fields = (ObjectNode) n.get(name).get("printouts");
         c.setName(name.substring(name.indexOf('#')+1));
         c.setPageName(name.substring(0,name.indexOf('#')));

@@ -1,15 +1,17 @@
 package io.github.pfwikis;
 
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import tools.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import tools.jackson.databind.cfg.DateTimeFeature;
+import tools.jackson.databind.json.JsonMapper;
 
 public class Jackson {
 
-    public static ObjectMapper get() {
-        return new ObjectMapper()
-        		.setSerializationInclusion(Include.NON_NULL)
-        		.registerModule(new JavaTimeModule());
+    public static JsonMapper get() {
+        return JsonMapper.builder()
+    		.changeDefaultPropertyInclusion(incl -> incl.withValueInclusion(JsonInclude.Include.NON_NULL))
+    		.changeDefaultPropertyInclusion(incl -> incl.withContentInclusion(JsonInclude.Include.NON_NULL))
+    		.enable(DateTimeFeature.WRITE_DATES_AS_TIMESTAMPS)
+    		.build();
     }
 }
