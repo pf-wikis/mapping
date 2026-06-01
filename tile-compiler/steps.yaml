@@ -321,12 +321,18 @@
     - step: BORDER_VARIANTS__REGION_BORDERS
       dependsOn:
         in: borders-raw
+    - step: TIME_META_LIMIT
+      time:
+        timeStart: 4711
 
 - name: region-labels
   steps:
     - step: BORDER_VARIANTS__REGIONS
       dependsOn:
         in: borders-raw
+    - step: TIME_META_LIMIT
+      time:
+        timeStart: 4711
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 1
@@ -450,6 +456,7 @@
   steps:
     - step: CREATE_SEARCH_INDEX
       dependsOn:
+		time-meta: time-meta
         continents: continent-labels.RESOLVE_LABELS
         land: land-labels.RESOLVE_LABELS
         deserts: desert-labels.RESOLVE_LABELS

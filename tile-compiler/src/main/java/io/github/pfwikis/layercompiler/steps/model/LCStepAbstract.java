@@ -4,13 +4,20 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.SequencedMap;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import com.github.dexecutor.core.task.Task;
-import com.google.common.collect.Range;
+import com.google.common.collect.RangeMap;
+import com.google.common.collect.RangeSet;
 import com.google.common.collect.TreeRangeMap;
+import com.google.common.collect.TreeRangeSet;
 
 import io.github.pfwikis.CLIOptions;
+import io.github.pfwikis.layercompiler.steps.model.TimeSlicedContent.TimeSlice;
+import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.util.time.TimeRange;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -55,52 +62,77 @@ public abstract class LCStepAbstract extends Task<String, TimeSlicedContent> {
     
 	protected List<Inputs> createVariants() {
 		if(inputMapping.isEmpty())
-			return List.of(new Inputs(TimeRange.always(), new LinkedHashMap<>()));
-		return inputMapping.entrySet().stream()
-			.map(in->createVariants(in.getKey(), getResult(in.getValue()).getResult()))
-			.reduce(this::mergeVariants).get();
+			return List.of(new Inputs(TimeRange.always()));
+		
+		var allInputs = inputMapping.entrySet().stream().map(e->Pair.of(e.getKey(), getResult(e.getValue()).getResult())).toList();
+		var allCoveredTime = TreeRangeSet.<Integer>create();
+		allInputs.forEach((e)->e.getValue().getSlices().forEach(s->allCoveredTime.add(s.getTime().toGuavaRange())));
+		
+		return new ArrayList<>(allInputs.stream()
+			.map(in->createVariants(allCoveredTime, in.getKey(), in.getValue()))
+			.reduce(this::mergeVariants).get()
+			.asMapOfRanges()
+			.values());
 	}
     
-    private List<Inputs> mergeVariants(List<Inputs> a, List<Inputs> b) {
-    	var result = new ArrayList<Inputs>();
-    	var map=TreeRangeMap.<Integer, Inputs>create();
-    	for(var i:a) {
-    		if(!map.subRangeMap(i.time.toGuavaRange()).asMapOfRanges().isEmpty())
-    			throw new IllegalStateException("This would create and error. We do not support overlapping ranges here.");
-    		map.put(i.time.toGuavaRange(), i);
-    	}
-    	for(var right:b) {
-    		for(var left:map.subRangeMap(right.time.toGuavaRange()).asMapOfRanges().entrySet()) {
-    			var variant = new Inputs(TimeRange.from(left.getKey()), new LinkedHashMap<>(left.getValue().inputs));
-    			variant.inputs.putAll(right.inputs);
-    			result.add(variant);
+    private RangeMap<Integer, Inputs> mergeVariants(RangeMap<Integer, Inputs> a, RangeMap<Integer, Inputs> b) {
+    	var result = TreeRangeMap.<Integer, Inputs>create();
+    	for(var right:b.asMapOfRanges().entrySet()) {
+    		for(var leftMatch:a.subRangeMap(right.getKey()).asMapOfRanges().entrySet()) {
+    			var variant = new Inputs(TimeRange.from(leftMatch.getKey()));
+    			variant.inputs.putAll(leftMatch.getValue().inputs);
+    			variant.inputs.putAll(right.getValue().inputs);
+    			result.put(leftMatch.getKey(), variant);
     		}
     	}
     	return result;
     }
     
-    private List<Inputs> createVariants(String key, TimeSlicedContent slices) {
-    	var result = new ArrayList<Inputs>(slices.getSlices().size());
-		for(var slice:slices.getSlices()) {
-			var content = new LinkedHashMap<String, LCContent>();
-			content.put(key, slice.getContent());
-			var variant = new Inputs(slice.getTime(), content);
-			result.add(variant);
-		}
-		return result;
+    private RangeMap<Integer, Inputs> createVariants(RangeSet<Integer> allCoveredTime, String key, TimeSlicedContent slices) {
+    	var result=TreeRangeMap.<Integer, Inputs>create();
+    	for(var slice:slices.getSlices()) {
+    		if(!result.subRangeMap(slice.getTime().toGuavaRange()).asMapOfRanges().isEmpty())
+    			throw new IllegalStateException("This would create and error. We do not support overlapping ranges here.");
+    		result.put(slice.getTime().toGuavaRange(), Inputs.from(key, slice));
+    	}
+    	
+    	var missing = TreeRangeSet.create(allCoveredTime);
+    	missing.removeAll(result.asMapOfRanges().keySet());
+    	for(var time:missing.asRanges()) {
+    		result.put(time, Inputs.from(key, TimeRange.from(time), LCContent.from(new FeatureCollection())));
+    	}
+    	return result;
     }
     
     @Getter
     @RequiredArgsConstructor
     public static class Inputs {
     	private final TimeRange time;
-    	private final SequencedMap<String, LCContent> inputs;
+    	private final SequencedMap<String, LCContent> inputs = new LinkedHashMap<>();
+    	
+    	public static Inputs from(String key, TimeSlice slice) {
+			var res = new Inputs(slice.getTime());
+			res.inputs.put(key, slice.getContent());
+			return res;
+		}
+    	
+    	public static Inputs from(String key, TimeRange time, LCContent content) {
+			var res = new Inputs(time);
+			res.inputs.put(key, content);
+			return res;
+		}
+    	
+    	public static Inputs from(TimeRange time, Map<String, LCContent> inputs) {
+    		var res = new Inputs(time);
+			res.inputs.putAll(inputs);
+			return res;
+		}
     	
     	public LCContent getInput() {
             return getInput("in");
         }
     	
-    	public LCContent getInput(String key) {
+		public LCContent getInput(String key) {
             return inputs.get(key);
         }
     	

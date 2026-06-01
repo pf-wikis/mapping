@@ -6,7 +6,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.Range;
 import com.google.common.collect.TreeRangeSet;
 
 import io.github.pfwikis.layercompiler.steps.model.TimeSlicedContent.TimeSlice;
@@ -30,7 +29,7 @@ public abstract class LCStepMergingTime extends LCStepAbstract {
 			merged.put(key, merge(variants, key));
     	}
 		
-    	var res = process(new Inputs(TimeRange.always(), merged));
+    	var res = process(Inputs.from(TimeRange.always(), merged));
     	return new TimeSlicedContent(List.of(TimeSlice.from(TimeRange.always(), res)));
 	}
 

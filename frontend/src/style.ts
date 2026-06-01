@@ -334,7 +334,6 @@ let layers:LayerSpecification[] = [
     minzoom: 1,
     maxzoom: 3,
     type: 'symbol',
-    filter: ['>=', ['global-state', 'timeIndex'], 4710],
     layout: {
       'text-field': ['get', 'label'],
       'text-font': ['NotoSans-Medium'],
