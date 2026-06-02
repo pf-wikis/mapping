@@ -54,7 +54,7 @@ function createLayer(name:string, base:Partial<DynamicLayerSpec>):DynamicLayerSp
     ['any', ['!', ['has', 'filterMinzoom']], ['>=', ["zoom"], props.filterMinzoom]],
     ['any', ['!', ['has', 'filterMaxzoom']], ['<=', ["zoom"], props.filterMaxzoom]],
     ['any', ['!', ['has', 'timeIndexStart']], ['>=', ['global-state', 'timeIndex'], ['get', 'timeIndexStart']]],
-    ['any', ['!', ['has', 'timeIndexEnd']],   ['<=',  ['global-state', 'timeIndex'], ['get', 'timeIndexEnd']]]
+    ['any', ['!', ['has', 'timeIndexEnd']],   ['<',  ['global-state', 'timeIndex'], ['get', 'timeIndexEnd']]]
   ];
   if(merged.filter && merged.filter instanceof Array) {
     if(merged.filter[0] === 'all') {

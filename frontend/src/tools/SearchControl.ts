@@ -1,10 +1,9 @@
 import { IControl, Map, Popup, LngLatBoundsLike } from 'maplibre-gl';
-import { FuzzySearch, SearchHistory, SearchResult } from '../utils/fuzzy-search';
+import { FuzzySearch, SearchResult } from '../utils/fuzzy-search';
 import { GolarionMap } from './GolarionMap';
 
 export default class SearchControl implements IControl {
   private map: GolarionMap;
-  private searchHistory: SearchHistory;
   private container: HTMLElement;
   private searchInput: HTMLInputElement | null = null;
   private resultsContainer: HTMLElement | null = null;
@@ -16,7 +15,6 @@ export default class SearchControl implements IControl {
 
   constructor(map: GolarionMap) {
     this.map = map;
-    this.searchHistory = new SearchHistory();
 
     // Create main container
     this.container = document.createElement('div');
@@ -44,7 +42,6 @@ export default class SearchControl implements IControl {
     this.searchInput.placeholder = 'Search…';
     this.searchInput.addEventListener('input', () => this.handleSearch());
     this.searchInput.addEventListener('keydown', (e) => this.handleKeyDown(e));
-    this.searchInput.addEventListener('focus', () => this.handleFocus());
     this.searchInput.addEventListener('blur', () => this.handleBlur());
 
     // Results container
@@ -67,20 +64,14 @@ export default class SearchControl implements IControl {
   private handleSearch(point?: 'A' | 'B'): void {
     let query = this.searchInput!.value;
 
-    if (query.trim().length < 2) {
-      // Show recent searches
-      const recentSearches = this.searchHistory.get(5);
-      this.currentResults = recentSearches;
-      this.displayResults();
-      return;
-    }
-
     // Perform search
     FuzzySearch.get().then((fuzzySearch) => {
       const results = fuzzySearch.search(query, {
         categories: this.categoryFilter ? [this.categoryFilter] : undefined,
-        limit: 10
+        limit: 10,
+        timeIndex: this.map.map.getGlobalState().timeIndex
       });
+      console.log(results);
 
       this.currentResults = results;
       this.selectedIndex = -1;
@@ -92,13 +83,6 @@ export default class SearchControl implements IControl {
     
   }
 
-  private handleFocus(): void {
-    const recentSearches = this.searchHistory.get(5);
-    if (recentSearches.length > 0) {
-        this.currentResults = recentSearches;
-        this.displayResults();
-    }
-  }
 
 
   private handleKeyDown(event: KeyboardEvent): void {
@@ -179,10 +163,6 @@ export default class SearchControl implements IControl {
   }
 
   private selectResult(result: SearchResult): void {
-    // Add to history
-    this.searchHistory.add(result);
-
-
     // Single search mode - navigate to location
     this.lastSearchResult = result; // Save for potential directions mode
     this.navigateToResult(result);

@@ -62,10 +62,20 @@ public class TimeMetaCollect extends LCStepMergingTime {
     	public int getIndexForEnd(TimeRange time) {
     		for(var entry:entries.reversed()) {
 				if(time.intersects(entry.time))
-					return entry.id;
+					return entry.id+1;
 			}
 			throw new IllegalStateException();
     	}
+
+		public TimeRange indexToYears(Integer index) {
+			if(index == null) return TimeRange.always();
+			
+			for(var entry:entries) {
+				if(entry.id == index)
+					return entry.time;
+			}
+			return entries.getLast().time;
+		}
     	
     }
     

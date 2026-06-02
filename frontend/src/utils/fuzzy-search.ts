@@ -10,12 +10,24 @@ export interface SearchCategory {
 
 export interface SearchEntry {
   label: string;
+  timed: TimedSearchEntry[];
+}
+
+export interface TimedSearchEntry {
+  timeYear: TimeRange;
+  timeIndex: TimeRange;
   bbox: [number, number]|[number, number, number, number]; // [minLng, minLat, maxLng, maxLat] or [lng, lat]
   areaM2?: number;
 }
 
-export interface SearchResult extends SearchEntry {
+export interface TimeRange {
+  timeStart?: number;
+  timeEnd?: number;
+}
+
+export interface SearchResult extends TimedSearchEntry {
   category: string;
+  label: string;
   score?: number;
 }
 
@@ -52,11 +64,12 @@ export class FuzzySearch {
       let searchIndex = await response.json() as SearchCategory[];
 
       // Flatten entries and add category information
-      let flattenedEntries = searchIndex.flatMap(cat =>
-        cat.entries.map(entry => ({
-          ...entry,
+      let flattenedEntries:SearchResult[] = searchIndex.flatMap(cat =>
+        cat.entries.flatMap(entry => entry.timed.map(timed =>({
+          ...timed,
+          label: entry.label,
           category: cat.category
-        }))
+        })))
       );
 
       // Initialize Fuse.js for fuzzy matching
@@ -96,6 +109,7 @@ export class FuzzySearch {
   search(
     query: string,
     options: {
+      timeIndex?: number;
       categories?: string[];
       limit?: number;
     } = {}
@@ -111,6 +125,13 @@ export class FuzzySearch {
     if (options.categories && options.categories.length > 0) {
       results = results.filter(result =>
         options.categories!.includes(result.item.category)
+      );
+    }
+    if (options.timeIndex !== undefined) {
+      results = results.filter(result =>
+        (result.item.timeIndex.timeStart === undefined || result.item.timeIndex.timeStart <= options.timeIndex!)
+        &&
+        (result.item.timeIndex.timeEnd === undefined || result.item.timeIndex.timeEnd > options.timeIndex!)
       );
     }
 
@@ -145,88 +166,5 @@ export class FuzzySearch {
    */
   getEntryCount(): number {
     return this.flattenedEntries.length;
-  }
-}
-
-/**
- * Search history management
- */
-export class SearchHistory {
-  private static readonly STORAGE_KEY = 'golarion-search-history';
-  private static readonly MAX_HISTORY = 20;
-  private history: SearchResult[] = [];
-
-  constructor() {
-    this.load();
-  }
-
-  /**
-   * Load search history from localStorage
-   */
-  private load(): void {
-    try {
-      const stored = localStorage.getItem(SearchHistory.STORAGE_KEY);
-      if (stored) {
-        this.history = JSON.parse(stored);
-      }
-    } catch (error) {
-      console.warn('Failed to load search history:', error);
-      this.history = [];
-    }
-  }
-
-  /**
-   * Save search history to localStorage
-   */
-  private save(): void {
-    try {
-      localStorage.setItem(
-        SearchHistory.STORAGE_KEY,
-        JSON.stringify(this.history)
-      );
-    } catch (error) {
-      console.warn('Failed to save search history:', error);
-    }
-  }
-
-  /**
-   * Add a search result to history
-   */
-  add(result: SearchResult): void {
-    // Remove duplicate if exists
-    this.history = this.history.filter(item => item.label !== result.label || item.category !== result.category);
-
-    // Add to beginning
-    this.history.unshift(result);
-
-    // Limit size
-    if (this.history.length > SearchHistory.MAX_HISTORY) {
-      this.history = this.history.slice(0, SearchHistory.MAX_HISTORY);
-    }
-
-    this.save();
-  }
-
-  /**
-   * Get search history
-   */
-  get(limit?: number): SearchResult[] {
-    return limit ? this.history.slice(0, limit) : this.history;
-  }
-
-  /**
-   * Clear search history
-   */
-  clear(): void {
-    this.history = [];
-    this.save();
-  }
-
-  /**
-   * Remove a specific item from history
-   */
-  remove(label: string): void {
-    this.history = this.history.filter(item => item.label !== label);
-    this.save();
   }
 }

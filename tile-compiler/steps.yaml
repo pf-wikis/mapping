@@ -456,7 +456,7 @@
   steps:
     - step: CREATE_SEARCH_INDEX
       dependsOn:
-		time-meta: time-meta
+        time-meta: time-meta
         continents: continent-labels.RESOLVE_LABELS
         land: land-labels.RESOLVE_LABELS
         deserts: desert-labels.RESOLVE_LABELS
