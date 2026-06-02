@@ -128,11 +128,11 @@ public class CreateSearchIndex extends LCStepMergingTime {
 							e.getValue()
 						);
 					})
+					.sorted(Comparator.comparing(tr->tr.timeIndex.getTimeStart()))
 					.toList()
 			));
 		}
 		results.sort(Comparator.comparing(Result::label));
-		results.forEach(r->r.timed.sort(Comparator.comparing(tr->tr.timeIndex.getTimeStart())));
 		return results;
 	}
 
