@@ -21,12 +21,13 @@ public class CheckGeometry extends LCStep {
 	public LCContent process(Inputs ins) throws Exception {
 		if(layer == null) return LCContent.empty(); //cities and locations
 		
+		/*
 		var in = Tools.mapshaper(this, ins.getInput(), "id-field=fid");
 		
 		var errors = new ArrayList<String>();
 
 		//FIXME suddenly need a project file?
-		/*
+		
 
 		
 		test(in, errors, "ERRORS", "native:checkgeometrymissingvertex");
@@ -42,7 +43,7 @@ public class CheckGeometry extends LCStep {
 		//test(in, errors, "ERRORS", "native:checkgeometrygap", "--GAP_THRESHOLD=0", "--NEIGHBORS=TEMPORARY_OUTPUT", "--OUTPUT=TEMPORARY_OUTPUT");
 		test(in, errors, "ERRORS", "native:checkgeometrylineintersection");
 		test(in, errors, "NULL_OUTPUT", "native:removenullgeometries", "--REMOVE_EMPTY=true");
-		*/	
+			
 		if(!errors.isEmpty()) {
 			var sb = new StringBuilder();
 			sb.append("Failed geometry check for layer '").append(layer).append("':\n");
@@ -51,7 +52,7 @@ public class CheckGeometry extends LCStep {
 			}
 			throw new IllegalArgumentException(sb.toString());
 		}
-		
+		*/
 		return LCContent.empty();
 	}
 	

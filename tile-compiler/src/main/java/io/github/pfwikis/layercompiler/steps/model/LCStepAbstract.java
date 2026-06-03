@@ -1,7 +1,11 @@
 package io.github.pfwikis.layercompiler.steps.model;
 
+import java.io.Closeable;
 import java.io.File;
+import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +14,7 @@ import java.util.SequencedMap;
 import org.apache.commons.lang3.tuple.Pair;
 
 import com.github.dexecutor.core.task.Task;
+import com.google.common.base.Stopwatch;
 import com.google.common.collect.RangeMap;
 import com.google.common.collect.RangeSet;
 import com.google.common.collect.TreeRangeMap;
@@ -34,6 +39,7 @@ public abstract class LCStepAbstract extends Task<String, TimeSlicedContent> {
     private String step;
     private int numberOfDependents;
     private SequencedMap<String, String> inputMapping = new LinkedHashMap<>();
+    private Map<String, Duration> subTimings = new HashMap<>();
 
 
     protected abstract TimeSlicedContent executeInternal() throws Exception;
@@ -102,6 +108,19 @@ public abstract class LCStepAbstract extends Task<String, TimeSlicedContent> {
     		result.put(time, Inputs.from(key, TimeRange.from(time), LCContent.from(new FeatureCollection())));
     	}
     	return result;
+    }
+    
+    public record Timing(String key, Stopwatch watch, LCStepAbstract step) implements Closeable {
+		@Override
+		public void close() {
+			var time = watch.stop().elapsed();
+			synchronized(step.subTimings) {
+				step.subTimings.merge(key, time, Duration::plus);
+			}
+		}
+    }
+    protected Timing measureSubtime(String key) {
+    	return new Timing(key, Stopwatch.createStarted(), this);
     }
     
     @Getter

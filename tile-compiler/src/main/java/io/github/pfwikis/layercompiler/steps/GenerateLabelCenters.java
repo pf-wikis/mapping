@@ -81,28 +81,30 @@ public class GenerateLabelCenters extends LCStep {
 	}
 
     private LCContent prepareGeometry(Inputs in) throws IOException {
-    	var dissolved = Tools.mapshaper(this, in.getInput(),
-    		"-filter", "Boolean(label)",
-    		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color"):List.of()
-    	);
-        
-    	//mapshaper sometimes gives weird results here
-        var withArea = Tools.qgis(this, "native:fieldcalculator", dissolved,
-    		"--FIELD_NAME=areaSqkm",
-    		"--FIELD_TYPE=0", //float
-    		"--FIELD_PRECISION=7",
-    		"--FORMULA=try($area/1000000,0)"
-		);
-        
-        var withFields = Tools.mapshaper(this, withArea,
-    		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm"):List.of(),
-    		"-sort", "areaSqkm", "descending", //to make bigger feature more important
-			"-each", "filterMinzoom="+filterMinzoom(),
-            "-each", "filterMaxzoom=filterMinzoom+"+labelRange,
-            "-require", "crypto",
-            "-each", "uuid=crypto.randomUUID()"
-    	);
-        return withFields;
+    	try(var _=this.measureSubtime("prepareGeometry")) {
+	    	var dissolved = Tools.mapshaper(this, in.getInput(),
+	    		"-filter", "Boolean(label)",
+	    		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color"):List.of()
+	    	);
+	        
+	    	//mapshaper sometimes gives weird results here
+	        var withArea = Tools.qgis(this, "native:fieldcalculator", dissolved,
+	    		"--FIELD_NAME=areaSqkm",
+	    		"--FIELD_TYPE=0", //float
+	    		"--FIELD_PRECISION=7",
+	    		"--FORMULA=try($area/1000000,0)"
+			);
+	        
+	        var withFields = Tools.mapshaper(this, withArea,
+	    		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm"):List.of(),
+	    		"-sort", "areaSqkm", "descending", //to make bigger feature more important
+				"-each", "filterMinzoom="+filterMinzoom(),
+	            "-each", "filterMaxzoom=filterMinzoom+"+labelRange,
+	            "-require", "crypto",
+	            "-each", "uuid=crypto.randomUUID()"
+	    	);
+	        return withFields;
+    	}
 	}
 
 	private FeatureCollection cleanProperties(FeatureCollection fc, List<Field<?>> fieldsToCopy) {
@@ -126,51 +128,55 @@ public class GenerateLabelCenters extends LCStep {
 			Map<UUID, LngLat> innerPoints,
 			Map<UUID, BigDecimal> angles) {
 
-    	var res = new FeatureCollection();
-    	for(var f : withUuid.getFeatures()) {
-			Properties props = f.getProperties().copy();
-			if(!innerPoints.containsKey(props.getUuid()))
-				throw new IllegalStateException(f+" has no inner point");
-			var newF = new Feature();
-    		newF.setProperties(props);
-    		props.setLabel(newF.getProperties().getLabel());
-    		props.setAngle(angles.get(props.getUuid()));
-    		var p = new Point();
-    		p.setCoordinates(innerPoints.get(props.getUuid()));
-    		newF.setGeometry(p);
-    		res.getFeatures().add(newF);
-    	}
-    	return res;
+		try(var _=this.measureSubtime("mergeInfos")) {
+	    	var res = new FeatureCollection();
+	    	for(var f : withUuid.getFeatures()) {
+				Properties props = f.getProperties().copy();
+				if(!innerPoints.containsKey(props.getUuid()))
+					throw new IllegalStateException(f+" has no inner point");
+				var newF = new Feature();
+	    		newF.setProperties(props);
+	    		props.setLabel(newF.getProperties().getLabel());
+	    		props.setAngle(angles.get(props.getUuid()));
+	    		var p = new Point();
+	    		p.setCoordinates(innerPoints.get(props.getUuid()));
+	    		newF.setGeometry(p);
+	    		res.getFeatures().add(newF);
+	    	}
+	    	return res;
+		}
 	}
 
 	private Map<UUID, BigDecimal> calcAngles(LCContent withUuid) throws IOException {
-    	var orientedRectangles = Tools.qgis(this, "qgis:minimumboundinggeometry", withUuid,
-    		"--TYPE=1",
-    		"--FIELD=uuid"
-		).toFeatureCollection();
-
-        var angles = orientedRectangles
-    		.getFeatures().stream()
-    		.collect(Collectors.<Feature, UUID, BigDecimal>toMap(
-    			f->f.getProperties().getUuid(),
-    			f-> {
-    				var width = f.getProperties().getWidth().doubleValue();
-    				var height = f.getProperties().getHeight().doubleValue();
-    				//do not rotate if the actual rectangle is more of a square
-    				if(height/width<1.75d)
-    					return BigDecimal.ZERO;
-    				
-    				var angle = f.getProperties().getAngle()
-						.subtract(BigDecimal.valueOf(90))
-						.setScale(0, RoundingMode.HALF_UP)
-						.intValueExact();
-    				if(angle < 10 && angle > -10)
-    					return BigDecimal.ZERO;
-    				else
-    					return BigDecimal.valueOf(angle);
-    			}
-			));
-        return angles;
+		try(var _=this.measureSubtime("calcAngles")) {
+	    	var orientedRectangles = Tools.qgis(this, "qgis:minimumboundinggeometry", withUuid,
+	    		"--TYPE=1",
+	    		"--FIELD=uuid"
+			).toFeatureCollection();
+	
+	        var angles = orientedRectangles
+	    		.getFeatures().stream()
+	    		.collect(Collectors.<Feature, UUID, BigDecimal>toMap(
+	    			f->f.getProperties().getUuid(),
+	    			f-> {
+	    				var width = f.getProperties().getWidth().doubleValue();
+	    				var height = f.getProperties().getHeight().doubleValue();
+	    				//do not rotate if the actual rectangle is more of a square
+	    				if(height/width<1.75d)
+	    					return BigDecimal.ZERO;
+	    				
+	    				var angle = f.getProperties().getAngle()
+							.subtract(BigDecimal.valueOf(90))
+							.setScale(0, RoundingMode.HALF_UP)
+							.intValueExact();
+	    				if(angle < 10 && angle > -10)
+	    					return BigDecimal.ZERO;
+	    				else
+	    					return BigDecimal.valueOf(angle);
+	    			}
+				));
+	        return angles;
+		}
 	}
 	
 	private static final GeoJsonWriter GEO_WRITER;
@@ -181,59 +187,63 @@ public class GenerateLabelCenters extends LCStep {
 	}
 	
 	private Map<UUID, LngLat> calcInnerPoint(LCContent in) throws IOException {
-		var fc = in.toFeatureCollection();
-        var hulled = new FeatureCollection();
-        fc.getFeatures()
-        	.stream()
-        	.map(f -> {
-        		try {
-	        		var json = Jackson.JSON.writeValueAsString(f);
-	        		
-	        		var hull = ConcaveHullOfPolygons.concaveHullByLengthRatio(new GeoJsonReader().read(json), 0.15);
-	        		var geom = Jackson.JSON.readValue(GEO_WRITER.write(hull), Geometry.class);
-	        		var res = new Feature();
-	        		res.setProperties(f.getProperties());
-	        		res.setTippecanoe(f.getTippecanoe());
-	        		res.setGeometry(geom);
-	        		return res;
-        		} catch(Exception e) {
-        			log.warn("Can't generate concave hull for {}:{}", this.getName(), f, e.getMessage());
-        			return f;
-        		}
-        	})
-        	.forEach(hulled.getFeatures()::add);
-        var buffered = LCContent.from(hulled);
-		
-        var inner = Tools.mapshaper(this, buffered, "-points", "inner").toFeatureCollection();
-        return inner
-    		.getFeatures()
-    		.stream()
-    		.filter(f->f.getGeometry()!=null)
-    		.collect(Collectors.<Feature,UUID,LngLat>toMap(
-				f->f.getProperties().getUuid(),
-				f->((Point)f.getGeometry()).getCoordinates()
-			));
+		try(var _=this.measureSubtime("calcInnerPoint")) {
+			var fc = in.toFeatureCollection();
+	        var hulled = new FeatureCollection();
+	        fc.getFeatures()
+	        	.stream()
+	        	.map(f -> {
+	        		try {
+		        		var json = Jackson.JSON.writeValueAsString(f);
+		        		
+		        		var hull = ConcaveHullOfPolygons.concaveHullByLengthRatio(new GeoJsonReader().read(json), 0.15);
+		        		var geom = Jackson.JSON.readValue(GEO_WRITER.write(hull), Geometry.class);
+		        		var res = new Feature();
+		        		res.setProperties(f.getProperties());
+		        		res.setTippecanoe(f.getTippecanoe());
+		        		res.setGeometry(geom);
+		        		return res;
+	        		} catch(Exception e) {
+	        			log.warn("Can't generate concave hull for {}:{}", this.getName(), f, e.getMessage());
+	        			return f;
+	        		}
+	        	})
+	        	.forEach(hulled.getFeatures()::add);
+	        var buffered = LCContent.from(hulled);
+			
+	        var inner = Tools.mapshaper(this, buffered, "-points", "inner").toFeatureCollection();
+	        return inner
+	    		.getFeatures()
+	    		.stream()
+	    		.filter(f->f.getGeometry()!=null)
+	    		.collect(Collectors.<Feature,UUID,LngLat>toMap(
+					f->f.getProperties().getUuid(),
+					f->((Point)f.getGeometry()).getCoordinates()
+				));
+		}
 	}
 
 	private boolean addLowerZoomLabels(FeatureCollection result, LCContent polygons, List<Field<?>> fieldsToCopy, int step) throws IOException {
-    	int extraZoom = (labelRange+1)*step;
-    	var features = Tools.mapshaper(
-			this, 
-			polygons,			
-			"-filter", "filterMinzoom+"+extraZoom+"<="+(ctx.getOptions().getMaxZoom()+labelRange),
-			"-each", "dots=4**("+step+")",
-			"-each", "filterMinzoom=filterMinzoom+"+extraZoom,
-			"-each", "filterMaxzoom=filterMaxzoom+"+extraZoom,
-			"-each", "name=name+' +"+step+"'",
-			"-dots",
-				"dots",
-				"evenness=1",
-				"copy-fields=dots,label,filterMinzoom,filterMaxzoom,areaSqkm"+(fieldsToCopy.isEmpty()?"":(","+fieldsToCopy.stream().map(Field::name).collect(Collectors.joining(",")))),
-				"multipart"
-		).toFeatureCollection();
-    	log.info("Added {} label points at zoom shift {}", features.getFeatures().size(), step);
-    	result.getFeatures().addAll(features.getFeatures());
-    	return !features.getFeatures().isEmpty();
+		try(var _=this.measureSubtime("addLowerZoomLabels")) {
+	    	int extraZoom = (labelRange+1)*step;
+	    	var features = Tools.mapshaper(
+				this, 
+				polygons,			
+				"-filter", "filterMinzoom+"+extraZoom+"<="+(ctx.getOptions().getMaxZoom()+labelRange),
+				"-each", "dots=4**("+step+")",
+				"-each", "filterMinzoom=filterMinzoom+"+extraZoom,
+				"-each", "filterMaxzoom=filterMaxzoom+"+extraZoom,
+				"-each", "name=name+' +"+step+"'",
+				"-dots",
+					"dots",
+					"evenness=1",
+					"copy-fields=dots,label,filterMinzoom,filterMaxzoom,areaSqkm"+(fieldsToCopy.isEmpty()?"":(","+fieldsToCopy.stream().map(Field::name).collect(Collectors.joining(",")))),
+					"multipart"
+			).toFeatureCollection();
+	    	log.info("Added {} label points at zoom shift {}", features.getFeatures().size(), step);
+	    	result.getFeatures().addAll(features.getFeatures());
+	    	return !features.getFeatures().isEmpty();
+		}
 	}
 	
 

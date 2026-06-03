@@ -2,12 +2,14 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
 import io.github.pfwikis.layercompiler.steps.model.LCContent;
 import io.github.pfwikis.layercompiler.steps.model.LCStepMergingTime;
+import io.github.pfwikis.layercompiler.steps.time.TimeMetaCollect.TimeMeta;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Runner;
 import io.github.pfwikis.run.Tools;
@@ -26,10 +28,13 @@ public class CompileTiles extends LCStepMergingTime {
     public LCContent process(Inputs in) throws Exception {
     	log.info("Compiling Tiles");
     	
+    	var meta = in.getInput("time-meta").toFeatureCollection().getProperties().getTimeMeta();
+    	Objects.requireNonNull(meta);
     	
     	var layers = in.getInputs().entrySet()
     		.stream()
-    		.map(e->Pair.of(e.getKey(), createTippecanoeProperties(e.getValue())))
+    		.filter(l->!l.getKey().equals("time-meta"))
+    		.map(e->Pair.of(e.getKey(), applyTimeMeta(meta, createTippecanoeProperties(e.getValue()))))
     		.peek(e->cleanProperties(e.getValue()))
     		.map(e->List.of("-L", new Runner.TmpGeojson(e.getKey()+":", LCContent.from(e.getValue()))))
     		.toList();
@@ -59,7 +64,19 @@ public class CompileTiles extends LCStepMergingTime {
     }
     
     
-    private void cleanProperties(FeatureCollection fc) {
+    private FeatureCollection applyTimeMeta(TimeMeta meta, FeatureCollection fc) {
+    	fc.getFeatures().forEach(f-> {
+    		var time = f.getProperties().getTime();
+    		f.getProperties().setTimeIndexStart(meta.getIndexForStart(time));
+    		f.getProperties().setTimeIndexEnd(meta.getIndexForEnd(time));
+    		f.getProperties().setTime(null);
+    	});
+    	fc.getProperties().setTime(null);
+    	return fc;
+	}
+
+
+	private void cleanProperties(FeatureCollection fc) {
     	for(var f:fc.getFeatures()) {
     		f.getProperties().setTime(null);
     	}

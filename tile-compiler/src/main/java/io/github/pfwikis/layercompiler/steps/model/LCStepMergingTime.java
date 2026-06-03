@@ -56,8 +56,10 @@ public abstract class LCStepMergingTime extends LCStepAbstract {
 			
 			for(var f:fc.getFeatures()) {
 				total++;
+				var time=f.getProperties().getTime();
+				f.getProperties().setTime(null);
 				geometry.computeIfAbsent(f, _->TreeRangeSet.create())
-					.addAll(contentAndTime.getValue().subRangeSet(f.getProperties().getTime().toGuavaRange()));
+					.addAll(contentAndTime.getValue().subRangeSet(time.toGuavaRange()));
 			}
 		}
 		result.setProperties(mergedProps);

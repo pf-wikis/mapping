@@ -36,7 +36,10 @@ export default class TimeSliderControl implements IControl {
     const updateYear = () => {
         const value = parseInt(slider.value);
         this.updateMap(value);
-        label.innerHTML = timeMeta.byId.get(value)?.label || `Unlabeled entry ${value}`;
+        let time = timeMeta.byId(value);
+        options.year = time.start ?? (time.end?time.end-1:undefined);
+        options.writeToHash();
+        label.innerHTML = time.label || `Unlabeled entry ${value}`;
     }
     slider.addEventListener('input', updateYear);
     map.once('style.load', updateYear);

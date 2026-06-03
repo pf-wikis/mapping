@@ -23,6 +23,11 @@ export default class NewTab implements IControl {
     onRemove(map: Map): void {}
 
     _openInTab() {
-        window.open(window.location.href.replace('&embedded=true', ''), '_blank').focus();
+        window.open(
+            window.location.href
+                .replace('&embedded=true', '')
+                .replaceAll(/&highlight=[^&]*/, ''),
+            '_blank'
+        ).focus();
     }
 }

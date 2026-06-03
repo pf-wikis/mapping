@@ -10,6 +10,7 @@ import tools.jackson.databind.JsonNode;
 
 import io.github.pfwikis.util.Jackson;
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class Label {
 	private String label;
 	private String id;

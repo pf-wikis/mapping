@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Objects;
+import java.util.Vector;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 
@@ -51,12 +52,20 @@ public class CreateSearchIndex extends LCStepMergingTime {
     	var meta = in.getInput("time-meta").toFeatureCollection().getProperties().getTimeMeta();
     	log.info("Creating a searchIndex over "+in.getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining(", ")));
     	
-    	var res = new ArrayList<Category>();
+    	var res = new Vector<Category>();
     	
-    	for(var e:in.getInputs().entrySet()) {
-    		if(e.getKey().equals("time-meta")) continue;
-    		res.add(new Category(e.getKey(), processLayer(meta, e.getKey(), e.getValue())));
-    	}
+    	in.getInputs().entrySet()
+    		.stream()
+    		.filter(e->!e.getKey().equals("time-meta"))
+    		.parallel()
+    		.map(e-> {
+    			try {
+    				return new Category(e.getKey(), processLayer(meta, e.getKey(), e.getValue()));
+    			} catch(Exception ex) {
+    				throw new RuntimeException(ex);
+    			}
+    		})
+    		.forEach(res::add);
     	Collections.sort(res, Comparator.comparing(Category::category));
     	
     	Jackson.JSON.writeValue(new File(this.getCtx().getOptions().targetDirectory(), "search.json"), res);

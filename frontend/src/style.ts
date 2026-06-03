@@ -196,6 +196,16 @@ let layers:LayerSpecification[] = [
       ],
     }
   }),
+  createLayer('highlights', {
+    type: 'fill',
+    layout: {
+      visibility: 'none'
+    },
+    paint: {
+      'fill-color': 'rgb(0, 0, 0)',
+      'fill-opacity': 0.4,
+    }
+  }),
   createLayer('locations', {
     id: 'location-icons',
     type: 'symbol',

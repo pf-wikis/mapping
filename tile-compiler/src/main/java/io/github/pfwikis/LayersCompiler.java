@@ -1,9 +1,12 @@
 package io.github.pfwikis;
 
 import java.io.File;
+import java.time.Duration;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.Executors;
@@ -19,6 +22,7 @@ import com.github.dexecutor.core.DexecutorConfig;
 import com.github.dexecutor.core.ExecutionConfig;
 import com.github.dexecutor.core.graph.LevelOrderTraversar;
 import com.github.dexecutor.core.graph.StringTraversarAction;
+import com.github.dexecutor.core.task.ExecutionResults;
 import com.github.dexecutor.core.task.Task;
 import com.google.common.collect.HashMultiset;
 
@@ -67,6 +71,8 @@ public class LayersCompiler {
             	);
                 System.exit(-1);
             }
+            printTimings(results, steps);
+            
         } finally {
             pool.shutdown();
             pool.awaitTermination(1, TimeUnit.DAYS);
@@ -74,7 +80,43 @@ public class LayersCompiler {
         }
     }
 
-    private void createSteps(LCDescription[] lsDescriptions, Map<String, LCStepAbstract> steps, DefaultDexecutor<String, TimeSlicedContent> executor) {
+    private static class Timings {
+    	private Duration time=Duration.ZERO;
+    	private Map<String, Duration> subtimes = new HashMap<>();
+    }
+    private void printTimings(ExecutionResults<String, TimeSlicedContent> results, Map<String, LCStepAbstract> steps) {
+    	var map = new HashMap<String, Timings>();
+    	for(var result:results.getSuccess()) {
+    		var step = steps.get(result.getId());
+    		var timings = map.computeIfAbsent(step.getStep(), _->new Timings());
+    		timings.time = timings.time.plus(Duration.between(result.getStartTime(), result.getEndTime()));
+        	for(var sub:step.getSubTimings().entrySet()) {
+        		timings.subtimes.merge(sub.getKey(), sub.getValue(), Duration::plus);
+        	}
+        }
+    	
+    	
+    	var timings = new StringBuilder();
+    	
+        for(var result:map.entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).toList()) {
+        	timings.append("\n").append(result.getKey())
+        		.append("\t")
+        		.append(result.getValue().time.toSeconds())
+        		.append("s");
+        	
+        	for(var sub:result.getValue().subtimes.entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).toList()) {
+        		timings
+        			.append("\n\t")
+        			.append(sub.getKey())
+        			.append("\t")
+        			.append(sub.getValue().toSeconds())
+        			.append("s");
+        	}
+        }
+        log.info("Runtimes:{}", timings);
+	}
+
+	private void createSteps(LCDescription[] lsDescriptions, Map<String, LCStepAbstract> steps, DefaultDexecutor<String, TimeSlicedContent> executor) {
     	var requiredCount = HashMultiset.<String>create();
     	var ctx = new Ctx(
             tileCompiler.getOptions(),

@@ -1,4 +1,9 @@
-let options = window.location.hash?new URLSearchParams(window.location.hash.substring(1)):new URLSearchParams();
+let options = parseOptions();
+
+function parseOptions(): URLSearchParams {
+    return window.location.hash?new URLSearchParams(window.location.hash.substring(1)):new URLSearchParams();
+}
+
 let projectionOptions = ['auto', 'globe', 'mercator'];
 
 let projection = options.get('projection')??'auto';
@@ -17,10 +22,9 @@ export default {
     year: year?Number.parseInt(year):undefined,
 
     writeToHash: function() {
-        this.flyTo?options.set('flyTo', this.flyTo):options.delete('flyTo');
-        this.bbox?options.set('bbox', this.bbox):options.delete('bbox');
         this.zoom?options.set('zoom', this.zoom.toString()):options.delete('zoom');
         this.year?options.set('year', this.year.toString()):options.delete('year');
-        window.location.hash = '#'+options.toString();
+        options.set('location', parseOptions().get('location')??'');
+        window.location.hash = '#'+options.toString().replaceAll('%2F', '/');
     }
 };

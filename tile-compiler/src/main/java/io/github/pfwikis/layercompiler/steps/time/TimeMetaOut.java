@@ -18,8 +18,8 @@ public class TimeMetaOut extends LCStepMergingTime {
     		.map(e->new Res(
     			e.getId(),
     			toLabel(e.getTime()),
-    			e.getTime().hasLowerBound()?e.getTime().getTimeStart():Integer.MIN_VALUE,
-    			e.getTime().hasUpperBound()?e.getTime().getTimeEnd():Integer.MAX_VALUE
+    			e.getTime().hasLowerBound()?e.getTime().getTimeStart():null,
+    			e.getTime().hasUpperBound()?e.getTime().getTimeEnd():null
     		))
     		.toList();
     	
@@ -54,7 +54,7 @@ public class TimeMetaOut extends LCStepMergingTime {
 	private static record Res(
     	int id,
     	String label,
-    	int start,
-    	int end
+    	Integer start,
+    	Integer end
     ) {}
 }
