@@ -2,7 +2,12 @@ import { CenterZoomBearing, Map } from "maplibre-gl";
 import options from "../URLOptions.js";
 
 export function addSpecialURLOptions(map: Map) {
-    map.on('load', function () {
+    map.once('style.load', function () {
+        if(options.highlight) {
+          map.setGlobalStateProperty('highlighted', options.highlight);
+        }
+    });
+    map.once('load', function () {
         if(options.flyTo) {
             //test with http://localhost:5173/#location=7.14/41.918/-9.832&flyTo=7.81/31.433/-0.639
             console.log('Fly to');

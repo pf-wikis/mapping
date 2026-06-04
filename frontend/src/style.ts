@@ -198,8 +198,9 @@ let layers:LayerSpecification[] = [
   }),
   createLayer('highlights', {
     type: 'fill',
+    filter: ['==', ['get', 'label'], ['global-state', 'highlighted']],
     layout: {
-      visibility: 'none'
+      visibility: ['case', ['==', null, ['global-state', 'highlighted']], 'none', 'visible']
     },
     paint: {
       'fill-color': 'rgb(0, 0, 0)',
@@ -375,6 +376,9 @@ export default {
     },
     rotated: {
       default: false
+    },
+    highlighted: {
+      default: null
     }
   },
   sprite: 'https://map.pathfinderwiki.com/sprites/sprites',

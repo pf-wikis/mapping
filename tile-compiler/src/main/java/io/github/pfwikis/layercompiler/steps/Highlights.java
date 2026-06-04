@@ -28,9 +28,16 @@ public class Highlights extends LCStep {
             "--JOIN_STYLE=0",
             "--MITER_LIMIT=2"
         );
-        var reduced = Tools.mapshaper(this, buffered, "-dissolve", "label", "-simplify", "percentage=0.6", "keep-shapes");
+        var reduced = Tools.mapshaper2(this, buffered, buffered,
+        	"combine-files",
+        	"-dissolve", "label",
+        	"-simplify", "target=1", "visvalingam", "percentage=0.1", "keep-shapes",
+        	"-simplify", "target=2", "visvalingam", "percentage=0.8", "keep-shapes",
+        	"-merge-layers",
+        	"-dissolve", "label"
+        );
         var smooth = Tools.qgis(this, "native:smoothgeometry", reduced,
-            "--ITERATIONS=3",
+            "--ITERATIONS=2",
             "--OFFSET=0.3",
             "--MAX_ANGLE=180"
         );

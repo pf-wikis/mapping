@@ -15,6 +15,7 @@ export default {
     hideLabels: options.get('hideLabels') === 'true',
     hideLocations: options.get('hideLocations') === 'true',
     hideBorders: options.get('hideBorders') === 'true',
+    highlight: options.get('highlight')??null,
     projection: (projectionOptions.includes(projection) ? projection : 'auto') as 'auto' | 'globe' | 'mercator',
     flyTo: options.get('flyTo')??undefined,
     bbox: options.get('bbox')??undefined,
@@ -24,6 +25,7 @@ export default {
     writeToHash: function() {
         this.zoom?options.set('zoom', this.zoom.toString()):options.delete('zoom');
         this.year?options.set('year', this.year.toString()):options.delete('year');
+        this.highlight?options.set('highlight', this.highlight):options.delete('highlight');
         options.set('location', parseOptions().get('location')??'');
         window.location.hash = '#'+options.toString().replaceAll('%2F', '/');
     }
