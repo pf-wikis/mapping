@@ -2,124 +2,135 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.io.IOException;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.run.Tools;
 
 public class BorderVariants {
 
-    public static class Provinces extends LCStep {
+	@Time.Requirement(Time.Requirement.Value.ANY)
+    public static class Provinces extends StepExecutor {
 		@Override
-		public LCContent process(Inputs in) throws IOException {
-			return Tools.mapshaper(this, in.getInput(),
-	                "-filter", "Boolean(province)",
-	                "-filter-fields", "province",
-	                "-rename-fields", "label=province"
-	            );
+		public Content process(Inputs in) throws IOException {
+			return Content.derivedFrom(in, Tools.mapshaper(this, in.getInput(),
+                "-filter", "Boolean(province)",
+                "-filter-fields", "province"+in.getTimeState().mapshaperTimeFields(),
+                "-rename-fields", "label=province"
+            ));
 		}
     }
 
-    public static class ProvinceBorders extends LCStep {
+	@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+    public static class ProvinceBorders extends StepExecutor {
 		@Override
-		public LCContent process(Inputs in) throws Exception {
-			return Tools.mapshaper(this, in.getInput(),
+		public Content process(Inputs in) throws Exception {
+			return Content.timeless(Tools.mapshaper(this, in.getInput(),
 	                "-filter", "Boolean(province)",
 	                "-split", "nation",
 	                "-innerlines",
 	                "-merge-layers",
 	                "-clip", in.getInput("land_without_water")
-	            );
+	            ));
 		}
     }
     
-    public static class DistrictBorders extends LCStep {
+	@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+    public static class DistrictBorders extends StepExecutor {
 		@Override
-		public LCContent process(Inputs in) throws Exception {
-			return Tools.mapshaper(this, in.getInput(),
+		public Content process(Inputs in) throws Exception {
+			return Content.timeless(Tools.mapshaper(this, in.getInput(),
 	                "-lines",
 	                "-dissolve"
-	            );
+	            ));
 		}
     }
 
-    public static class Nations extends LCStep {
+	@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+    public static class Nations extends StepExecutor {
 		@Override
-		public LCContent process(Inputs in) throws Exception {
-			return Tools.mapshaper(this, in.getInput(),
+		public Content process(Inputs in) throws Exception {
+			return Content.timeless(Tools.mapshaper(this, in.getInput(),
                 "-filter", "Boolean(nation)",
                 "-each", "inSubregion=Boolean(subregion)",
                 "-rename-fields", "label=nation",
-                "-dissolve2", "label", "copy-fields=inSubregion"
-            );
+                "-dissolve", "label", "copy-fields=inSubregion"
+            ));
 		}
     }
 
-    public static class NationBorders extends LCStep {
+	@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+    public static class NationBorders extends StepExecutor {
 		@Override
-		public LCContent process(Inputs in) throws Exception {
-			return Tools.mapshaper(this, in.getInput(),
+		public Content process(Inputs in) throws Exception {
+			return Content.timeless(Tools.mapshaper(this, in.getInput(),
         		"-each", "key=nation||subregion", //because subregions without nations are probably empires
         		"-filter", "Boolean(key)", //filter out gap fillers
-        		"-dissolve2", "key",
+        		"-dissolve", "key",
         		"-lines",
         		"-split", "TYPE", //splits into inner and outer
         		"-clip", in.getInput("land_without_water"), "target=outer",
         		"-merge-layers", "target=inner,outer",
         		"-filter-fields",
         		"-explode"
-        	);
+        	));
 		}
     }
 
-    public static class Subregions extends LCStep {
+	@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+    public static class Subregions extends StepExecutor {
 		@Override
-		public LCContent process(Inputs in) throws Exception {
-			return Tools.mapshaper(this, in.getInput(),
+		public Content process(Inputs in) throws Exception {
+			return Content.timeless(Tools.mapshaper(this, in.getInput(),
                 "-filter", "Boolean(subregion)",
                 "-rename-fields", "label=subregion",
-                "-dissolve2", "label"
-            );
+                "-dissolve", "label"
+            ));
 		}
     }
 
-    public static class SubregionBorders extends LCStep {
+	@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+    public static class SubregionBorders extends StepExecutor {
 		@Override
-		public LCContent process(Inputs in) throws Exception {
+		public Content process(Inputs in) throws Exception {
 			//subregion borders are like nation border but with subregion overwriting the nations
-        	return Tools.mapshaper(this, in.getInput(),
+        	return Content.timeless(Tools.mapshaper(this, in.getInput(),
         		"-each", "key=subregion||nation",
         		"-filter", "Boolean(key)", //filter out gap fillers
-        		"-dissolve2", "key",
+        		"-dissolve", "key",
         		"-lines",
         		"-split", "TYPE", //splits into inner and outer
         		"-clip", in.getInput("land_without_water"), "target=outer",
         		"-merge-layers", "target=inner,outer",
         		"-filter-fields",
         		"-explode"
-        	);
+        	));
 		}
     }
 
-    public static class Regions extends LCStep {
+	@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+    public static class Regions extends StepExecutor {
 		@Override
-		public LCContent process(Inputs in) throws Exception {
+		public Content process(Inputs in) throws Exception {
 			var regions = Tools.mapshaper(this, in.getInput(),
                 "-filter", "Boolean(region)",
                 "-rename-fields", "label=region",
-                "-dissolve2", "label"
+                "-dissolve", "label"
             );
-            return regions;
+            return Content.timeless(regions);
 		}
     }
 
-    public static class RegionBorders extends LCStep {
+	@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+    public static class RegionBorders extends StepExecutor {
 		@Override
-		public LCContent process(Inputs in) throws Exception {
-			return Tools.mapshaper(this, in.getInput(),
+		public Content process(Inputs in) throws Exception {
+			return Content.timeless(Tools.mapshaper(this, in.getInput(),
                 "-filter", "Boolean(region)",
-                "-dissolve2", "region",
+                "-dissolve", "region",
                 "-innerlines"
-            );
+            ));
 		}
     }
 }

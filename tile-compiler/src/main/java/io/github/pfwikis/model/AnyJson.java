@@ -5,13 +5,13 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.util.TokenBuffer;
 
 import io.github.pfwikis.util.Jackson;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.SneakyThrows;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.util.TokenBuffer;
 
 @EqualsAndHashCode
 public class AnyJson {

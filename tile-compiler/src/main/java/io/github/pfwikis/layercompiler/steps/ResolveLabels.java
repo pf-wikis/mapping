@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
-import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.node.NullNode;
-
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Label;
@@ -19,16 +19,18 @@ import io.github.pfwikis.util.Jackson;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.NullNode;
 
 @Slf4j
-@Getter
-@Setter
-public class ResolveLabels extends LCStep {
+@Getter @Setter
+@Time.Requirement(Time.Requirement.Value.ANY)
+public class ResolveLabels extends StepExecutor {
 
 	private String from;
 	
     @Override
-    public LCContent process(Inputs in) throws IOException {
+    public Content process(Inputs in) throws IOException {
     	var fc = in.getInput().toFeatureCollection();
     	var res = new FeatureCollection();
     	fc.getFeatures().forEach(f-> {
@@ -47,7 +49,7 @@ public class ResolveLabels extends LCStep {
 	    		}
     		}
     	});
-    	return LCContent.from(res);
+    	return Content.derivedFrom(in, GeoData.from(res));
     }
 
 	private JsonNode getLabelField(Properties properties) {

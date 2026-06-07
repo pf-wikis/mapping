@@ -9,15 +9,19 @@ import java.util.stream.Collectors;
 import com.google.common.collect.HashMultiset;
 import com.google.common.collect.Multiset.Entry;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class LocationTypeToIcon extends LCStep {
+@Time.Requirement(Time.Requirement.Value.ANY)
+public class LocationTypeToIcon extends StepExecutor {
 
     @Override
-    public LCContent process(Inputs in) throws IOException {
+    public Content process(Inputs in) throws IOException {
     	var icons = Arrays.stream(new File("sprites").list())
     		.filter(n->n.startsWith("location-") && n.endsWith(".svg"))
     		.map(n->n.substring(9, n.length()-4))
@@ -45,6 +49,6 @@ public class LocationTypeToIcon extends LCStep {
 	    		.collect(Collectors.joining("\n"))
 		);
     	
-    	return LCContent.from(fc);
+    	return Content.derivedFrom(in, GeoData.from(fc));
     }
 }

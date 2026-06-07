@@ -3,10 +3,14 @@ package io.github.pfwikis.layercompiler.steps;
 import java.io.IOException;
 import java.util.Set;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 
-public class AddCityZoom extends LCStep {
+@Time.Requirement(Time.Requirement.Value.ANY)
+public class AddCityZoom extends StepExecutor {
 
 	private static final Set<String> DISTRICT_CITIES = Set.of(
 		"Absalom",
@@ -18,7 +22,7 @@ public class AddCityZoom extends LCStep {
 	);
 	
     @Override
-    public LCContent process(Inputs ins) throws IOException {
+    public Content process(Inputs ins) throws IOException {
     	var in = ins.getInput().toFeatureCollection();
     	in.getFeatures().forEach(f-> {
     		f.getProperties().setFilterMinzoom(switch(f.getProperties().getSize()) {
@@ -32,7 +36,7 @@ public class AddCityZoom extends LCStep {
     			f.getProperties().setFilterMaxzoom(11);
     		}
     	});
-        return LCContent.from(in);
+        return Content.derivedFrom(ins, GeoData.from(in));
     }
 
 }

@@ -5,8 +5,11 @@ import java.util.TreeSet;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStepMergingTime;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.util.time.TimeRange;
 import lombok.AllArgsConstructor;
@@ -18,18 +21,19 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter @Setter
-public class TimeMetaCollect extends LCStepMergingTime {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_MERGED)
+public class TimeMetaCollect extends StepExecutor {
 	
     @Override
-    public LCContent process(Inputs in) throws Exception {
+    public Content process(Inputs in) throws Exception {
     	var barriers = new TreeSet<Integer>();
     	for(var layer : in.getInputs().values()) {
-    		barriers.addAll(TimeSlices.extractBarriers(layer.toFeatureCollection()));
+    		barriers.addAll(TimeSlicer.extractBarriers(layer.toFeatureCollection()));
     	}
     	
-    	var slices = TimeSlices.barriersToSlices(barriers)
+    	var slices = TimeSlicer.barriersToSlices(barriers)
     			.stream()
-    			.map(ts->TimeMetaEntry.from(ts.getTime()))
+    			.map(ts->TimeMetaEntry.from(ts))
     			.toList();
     	for(int i=0;i<slices.size();i++) {
     		slices.get(i).id = 1+i-slices.size();
@@ -41,7 +45,7 @@ public class TimeMetaCollect extends LCStepMergingTime {
     	
     	var fc = new FeatureCollection();
     	fc.getProperties().setTimeMeta(new TimeMeta(slices));
-    	return LCContent.from(fc);
+    	return Content.timeless(GeoData.from(fc));
     }
     
     @Getter @Setter

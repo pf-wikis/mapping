@@ -5,8 +5,11 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.util.ColorUtil;
 import lombok.Setter;
@@ -14,12 +17,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Setter
 @Slf4j
-public class MergeLabels extends LCStep {
+@Time.Requirement(Time.Requirement.Value.ANY)
+public class MergeLabels extends StepExecutor {
 
 	private boolean invert = false;
 	
     @Override
-    public LCContent process(Inputs in) throws Exception {
+    public Content process(Inputs in) throws Exception {
     	var result = new FeatureCollection();
     	result.setFeatures(new ArrayList<>());
     	log.info("Label layer order: {}", in.getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining("->")));
@@ -44,7 +48,7 @@ public class MergeLabels extends LCStep {
 				}
     		}
     	}
-    	return LCContent.from(result);
+    	return Content.derivedFrom(in, GeoData.from(result));
     }
 }
 

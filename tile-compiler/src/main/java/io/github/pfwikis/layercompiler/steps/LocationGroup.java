@@ -7,8 +7,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.description.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.Feature.Tippecanoe;
 import io.github.pfwikis.model.FeatureCollection;
@@ -17,16 +21,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class LocationGroup extends LCStep {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+public class LocationGroup extends StepExecutor {
 
 	@Override
-	public LCContent process(Inputs in) throws IOException {
+	public Content process(Inputs in) throws IOException {
 		var col = in.getInput().toFeatureCollection();
 
 		var entries = collectEntries(col);
 		double groupingDistance = 1;
 		List<Group> allGroups = new ArrayList<>();
-		for(int zoom=0;zoom<=ctx.getOptions().getMaxZoom();zoom++,groupingDistance/=2) {
+		for(int zoom=0;zoom<=Ctx.INSTANCE.getOptions().getMaxZoom();zoom++,groupingDistance/=2) {
 			List<Group> zoomGroups = new ArrayList<>();
 			for(var e:entries) {
 				addEntry(zoomGroups, e, groupingDistance, zoom);
@@ -51,7 +56,7 @@ public class LocationGroup extends LCStep {
 		var result = new FeatureCollection();
 		result.setFeatures(new ArrayList<>());
 		for(var g:allGroups) {
-			if(g.minZoom > ctx.getOptions().getMaxZoom()) continue;
+			if(g.minZoom > Ctx.INSTANCE.getOptions().getMaxZoom()) continue;
 			var minMin = g.entries.stream().filter(e->e.feature.getProperties().getFilterMinzoom()!=null).mapToInt(e->e.feature.getProperties().getFilterMinzoom()).min();
 			var realMin = Math.max(minMin.orElse(g.minZoom), g.minZoom);
 			if(realMin > g.maxZoom) continue;
@@ -59,7 +64,7 @@ public class LocationGroup extends LCStep {
 			Feature f = g.best.feature.copy();
 			f.setTippecanoe(new Tippecanoe());
 			f.getTippecanoe().setMinzoom(realMin);
-			if(g.maxZoom<ctx.getOptions().getMaxZoom()) 
+			if(g.maxZoom<Ctx.INSTANCE.getOptions().getMaxZoom()) 
 				f.getTippecanoe().setMaxzoom(g.maxZoom);
 			result.getFeatures().add(f);
 			if(g.entries.size() > 1) {
@@ -67,7 +72,7 @@ public class LocationGroup extends LCStep {
 			}
 			f.getProperties().setArticleLength(null);
 		}
-		return LCContent.from(result);
+		return Content.timeless(GeoData.from(result));
 	}
 
 	private String createGroupText(Group g) {

@@ -3,14 +3,18 @@ package io.github.pfwikis.layercompiler.steps;
 import java.awt.Color;
 import java.io.IOException;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.util.ColorUtil;
 
-public class ColorBuildings extends LCStep {
+@Time.Requirement(Time.Requirement.Value.ANY)
+public class ColorBuildings extends StepExecutor {
 
     @Override
-    public LCContent process(Inputs in) throws IOException {
+    public Content process(Inputs in) throws IOException {
     	var fc = in.getInput().toFeatureCollection();
     	fc.getFeatures().forEach(f-> {
     		f.getProperties().setColor(ColorUtil.toHex(switch(f.getProperties().getType()) {
@@ -19,6 +23,6 @@ public class ColorBuildings extends LCStep {
 				case null, default -> new Color(119, 136, 153);
     		}));
     	});
-    	return LCContent.from(fc);
+    	return Content.derivedFrom(in, GeoData.from(fc));
     }
 }

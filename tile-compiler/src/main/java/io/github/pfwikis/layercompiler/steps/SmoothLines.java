@@ -5,8 +5,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Geometry.LineString;
 import io.github.pfwikis.model.Geometry.MultiLineString;
 import io.github.pfwikis.model.LngLat;
@@ -14,10 +17,11 @@ import io.github.pfwikis.run.Tools;
 import io.github.pfwikis.util.CatmullRomSpline;
 import io.github.pfwikis.util.Projection;
 
-public class SmoothLines extends LCStep {
+@Time.Requirement(Time.Requirement.Value.ANY)
+public class SmoothLines extends StepExecutor {
 
     @Override
-    public LCContent process(Inputs in) throws IOException {
+    public Content process(Inputs in) throws IOException {
     	var fc = in.getInput().toFeatureCollection();
     	for(var f:fc.getFeatures()) {
     		if(Boolean.TRUE.equals(f.getProperties().getNoSmooth())) {
@@ -33,7 +37,7 @@ public class SmoothLines extends LCStep {
     	
     	//this explosion also guarantees that any in-memory work uses exactly the same
     	//data as any mapshaper work
-    	return Tools.mapshaper(this, LCContent.from(fc), "-explode");
+    	return Content.derivedFrom(in, Tools.mapshaper(this, GeoData.from(fc), "-explode"));
     }
 
     private static List<LngLat> interpolate(List<LngLat> coordinates) {

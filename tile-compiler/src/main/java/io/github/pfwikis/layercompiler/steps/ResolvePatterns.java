@@ -5,17 +5,21 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Properties.Pattern;
 import io.github.pfwikis.run.Tools;
 
-public class ResolvePatterns extends LCStep {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+public class ResolvePatterns extends StepExecutor {
 
     @Override
-    public LCContent process(Inputs in) throws IOException {
+    public Content process(Inputs in) throws IOException {
     	var byPattern = in.getInput().toFeatureCollection()
     		.getFeatures()
     		.stream()
@@ -33,13 +37,13 @@ public class ResolvePatterns extends LCStep {
     		res.getFeatures().addAll(result);
     	}
     	
-        return LCContent.from(res);
+        return Content.timeless(GeoData.from(res));
     }
 
 	private List<Feature> makePebbles(List<Feature> features) throws IOException {
 		var in = new FeatureCollection();
 		in.setFeatures(features);
-		var inf = LCContent.from(in);
+		var inf = GeoData.from(in);
 		
 		var dots = Tools.mapshaper(this, inf,
 			"-each", "this.properties.number=this.area/250",

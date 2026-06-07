@@ -19,8 +19,12 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.google.common.collect.TreeRangeMap;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStepMergingTime;
+import io.github.pfwikis.layercompiler.description.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.layercompiler.steps.time.TimeMetaCollect.TimeMeta;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.LngLat;
@@ -32,7 +36,8 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CreateSearchIndex extends LCStepMergingTime {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_MERGED)
+public class CreateSearchIndex extends StepExecutor {
 
 	record Category(String category, List<Result> entries) {}
 	record Result(String label, List<TimedResult> timed) {}
@@ -48,7 +53,7 @@ public class CreateSearchIndex extends LCStepMergingTime {
 	}
 	
     @Override
-    public LCContent process(Inputs in) throws Exception {
+    public Content process(Inputs in) throws Exception {
     	var meta = in.getInput("time-meta").toFeatureCollection().getProperties().getTimeMeta();
     	log.info("Creating a searchIndex over "+in.getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining(", ")));
     	
@@ -68,8 +73,8 @@ public class CreateSearchIndex extends LCStepMergingTime {
     		.forEach(res::add);
     	Collections.sort(res, Comparator.comparing(Category::category));
     	
-    	Jackson.JSON.writeValue(new File(this.getCtx().getOptions().targetDirectory(), "search.json"), res);
-    	var t = this.getCtx().getOptions().targetDirectory();
+    	Jackson.JSON.writeValue(new File(Ctx.INSTANCE.getOptions().targetDirectory(), "search.json"), res);
+    	var t = Ctx.INSTANCE.getOptions().targetDirectory();
     	try(
     			var raw = new FileOutputStream(new File(t, "search.json"));
     			var gz = new GZIPOutputStream(new FileOutputStream(new File(t, "search.json.gz")));
@@ -78,10 +83,10 @@ public class CreateSearchIndex extends LCStepMergingTime {
     		Jackson.JSON.writeValue(out, res);
     	}
     	
-    	return LCContent.empty();
+    	return Content.empty();
     }
 
-	private ArrayList<Result> processLayer(TimeMeta meta, String layerName, LCContent content) throws IOException {
+	private ArrayList<Result> processLayer(TimeMeta meta, String layerName, GeoData content) throws IOException {
 		FeatureCollection withArea;
 		if(layerName.equals("cities") || layerName.equals("locations")) {
 			withArea = content.toFeatureCollection();

@@ -4,18 +4,22 @@ import java.awt.Color;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Tools;
 import io.github.pfwikis.util.ColorUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MergeGeometry extends LCStep {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+public class MergeGeometry extends StepExecutor {
 
     @Override
-    public LCContent process(Inputs in) throws Exception {
+    public Content process(Inputs in) throws Exception {
     	var agg = new FeatureCollection();
     	log.info("Geometry layer order: {}", in.getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining("->")));
     	for(var e:in.getInputs().entrySet()) {
@@ -28,7 +32,7 @@ public class MergeGeometry extends LCStep {
     		
     		var dissolved = Tools.mapshaper(this, e.getValue(),
     			"-each", defLambda,
-				"-dissolve2", "color",
+				"-dissolve", "color",
 				"-explode"
 			);
     		
@@ -37,7 +41,7 @@ public class MergeGeometry extends LCStep {
     			agg.getFeatures().add(f);
     		}
     	}
-    	var aggC = LCContent.from(agg);
+    	var aggC = GeoData.from(agg);
     	//return LCContent.from(result);
     	var mosaicC = Tools.mapshaper(this, aggC,
 			"-mosaic", "calc='colorStack=collect(color)'",
@@ -65,11 +69,11 @@ public class MergeGeometry extends LCStep {
     		f.getProperties().setColor(ColorUtil.toHex(c));
     	}
 
-    	var coloredC = LCContent.from(mosaic);
-    	return Tools.mapshaper(this, coloredC,
+    	var coloredC = GeoData.from(mosaic);
+    	return Content.timeless(Tools.mapshaper(this, coloredC,
 			"-dissolve2", "color",
 			"-explode"
-		);
+		));
     }
 
 	public static Color colorFor(String layer) {

@@ -3,24 +3,28 @@ package io.github.pfwikis.layercompiler.steps;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Geometry.MultiPolygon;
 import io.github.pfwikis.model.Geometry.Polygon;
 import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.run.Tools;
 
-public class Highlights extends LCStep {
+@Time.Requirement(Time.Requirement.Value.ANY)
+public class Highlights extends StepExecutor {
 
 	@Override
-	public LCContent process(Inputs in) throws Exception {
+	public Content process(Inputs in) throws Exception {
 		var fc = new FeatureCollection();
 		for(var val:in.getInputs().values()) {
 			fc.getFeatures().addAll(val.toFeatureCollection().getFeatures());
 		}
 		
-		var dissolved = Tools.mapshaper(this, LCContent.from(fc), "-dissolve", "label");
+		var dissolved = Tools.mapshaper(this, GeoData.from(fc), "-dissolve", "label"+in.getTimeState().mapshaperTimeFields());
 		var buffered = Tools.qgis(this, "native:buffer", dissolved,
             "--DISTANCE=expression:sqrt($area)/25",
             "--SEGMENTS=20",
@@ -30,7 +34,7 @@ public class Highlights extends LCStep {
         );
         var reduced = Tools.mapshaper2(this, buffered, buffered,
         	"combine-files",
-        	"-dissolve", "label",
+        	"-dissolve", "label"+in.getTimeState().mapshaperTimeFields(),
         	"-simplify", "target=1", "visvalingam", "percentage=0.1", "keep-shapes",
         	"-simplify", "target=2", "visvalingam", "percentage=0.8", "keep-shapes",
         	"-merge-layers",
@@ -58,7 +62,7 @@ public class Highlights extends LCStep {
 				throw new IllegalStateException("Unknown layer type "+f.getGeometry().getClass().getSimpleName());
 		});
 		
-		return LCContent.from(fc);
+		return Content.derivedFrom(in, GeoData.from(fc));
 	}
 
 	private List<List<LngLat>> invert(List<List<LngLat>> coordinates) {

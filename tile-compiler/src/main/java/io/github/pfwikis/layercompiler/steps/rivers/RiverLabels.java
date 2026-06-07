@@ -1,19 +1,24 @@
 package io.github.pfwikis.layercompiler.steps.rivers;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.content.TimelessContent;
 import io.github.pfwikis.run.Tools;
 
-public class RiverLabels extends LCStep {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+public class RiverLabels extends StepExecutor {
 
     @Override
-    public LCContent process(Inputs in) throws Exception {
-        return Tools.mapshaper(this, in.getInput(),
+    public TimelessContent process(Inputs in) throws Exception {
+        var res = Tools.mapshaper(this, in.getInput(),
             "-clean",
             "-dissolve", "label",
             "-filter", "Boolean(label)",
             "-each", "filterMinzoom=5"
         );
+        return Content.timeless(res);
     }
 
 }

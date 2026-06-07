@@ -3,15 +3,19 @@ package io.github.pfwikis.layercompiler.steps.time;
 import java.io.File;
 import java.io.IOException;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStepMergingTime;
+import io.github.pfwikis.layercompiler.description.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.util.Jackson;
 import io.github.pfwikis.util.time.TimeRange;
 
-public class TimeMetaOut extends LCStepMergingTime {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_MERGED)
+public class TimeMetaOut extends StepExecutor {
 
     @Override
-    public LCContent process(Inputs in) throws IOException {
+    public Content process(Inputs in) throws IOException {
     	var meta = in.getInput("meta").toFeatureCollection().getProperties().getTimeMeta();
     	var res = meta.getEntries()
     		.stream()
@@ -23,11 +27,11 @@ public class TimeMetaOut extends LCStepMergingTime {
     		))
     		.toList();
     	
-    	var f = new File(ctx.getOptions().targetDirectory(), "../gen/time-meta.json");
+    	var f = new File(Ctx.INSTANCE.getOptions().targetDirectory(), "../gen/time-meta.json");
     	f.getParentFile().mkdirs();
     	Jackson.JSON.writeValue(f, res);
     	
-    	return LCContent.empty();
+    	return Content.empty();
     }
     
     private String toLabel(TimeRange time) {

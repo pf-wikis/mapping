@@ -5,12 +5,18 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.description.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.run.Tools;
+import io.github.pfwikis.util.time.TimeRange;
 import lombok.Getter;
 
-public class ReadFile extends LCStep {
+@Time.Requirement(Time.Requirement.Value.ANY)
+public class ReadFile extends StepExecutor {
 
     private final File file;
     @Getter
@@ -28,14 +34,21 @@ public class ReadFile extends LCStep {
 
 
 	@Override
-    public LCContent process(Inputs in) throws IOException {
+    public Content process(Inputs in) throws IOException {
+		GeoData res;
 		if(file != null) {
 			var finalFile = Path.of("../sources").resolve(file.toPath()).toFile().getCanonicalFile();
-			return LCContent.from(finalFile);
+			res = GeoData.from(finalFile);
 		}
 		else {
-            return Tools.ogr2ogr(this, ctx.getMappingDataFile().toPath(), "-preserve_fid", "-dim", "XY", "-mapFieldType", "DateTime=String", layer);
+            res = Tools.ogr2ogr(this, Ctx.INSTANCE.getOptions().getMappingDataFile().toPath(), "-preserve_fid", "-dim", "XY", "-mapFieldType", "DateTime=String", layer);
         }
+		
+		boolean hasTime = res.toFeatureCollection().getFeatures()
+			.stream()
+			.anyMatch(f->f.getProperties().getTime() != null && !f.getProperties().getTime().equals(TimeRange.always()));
+		
+		return hasTime?Content.merged(res):Content.timeless(res);
     }
 
 }

@@ -5,21 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.run.Tools;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class CheckGeometry extends LCStep {
+public class CheckGeometry extends StepExecutor {
 	
 	@Setter
 	private String layer;
 
 	@Override
-	public LCContent process(Inputs ins) throws Exception {
-		if(layer == null) return LCContent.empty(); //cities and locations
+	public Content process(Inputs ins) throws Exception {
+		if(layer == null) return Content.empty(); //cities and locations
 		
 		/*
 		var in = Tools.mapshaper(this, ins.getInput(), "id-field=fid");
@@ -53,10 +55,10 @@ public class CheckGeometry extends LCStep {
 			throw new IllegalArgumentException(sb.toString());
 		}
 		*/
-		return LCContent.empty();
+		return Content.empty();
 	}
 	
-	private void test(LCContent in, List<String> errors, String outputName, String cmd, String... args) throws IOException {	
+	private void test(GeoData in, List<String> errors, String outputName, String cmd, String... args) throws IOException {	
 		var result = Tools.qgis(
 			this,
 			cmd,

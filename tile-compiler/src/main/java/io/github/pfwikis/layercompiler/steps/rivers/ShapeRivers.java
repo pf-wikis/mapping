@@ -15,8 +15,12 @@ import org.locationtech.jts.math.Vector2D;
 
 import com.beust.jcommander.internal.Lists;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.content.TimelessContent;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Geometry;
@@ -28,29 +32,30 @@ import lombok.extern.slf4j.Slf4j;
 
 @Setter
 @Slf4j
-public class ShapeRivers extends LCStep {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+public class ShapeRivers extends StepExecutor {
 	
 
 	@Override
-	public LCContent process(Inputs in) throws IOException {
+	public TimelessContent process(Inputs in) throws IOException {
 		var result = new FeatureCollection();
 
 		var rivers = collectRivers(in.getInput());
-		markSprings(ctx, in, in.getInput(), rivers);
+		markSprings(in, in.getInput(), rivers);
 		interpolateWidth(rivers);
 		log.info("Processing " + rivers.size() + " river points");
 		drawShapes(rivers, result);
 
-		var cleaned = Tools.mapshaper(this, LCContent.from(result), "--filter-fields", "-clean", "sliver-control=0", "gap-fill-area=0", "-dissolve2", "-explode");
+		var cleaned = Tools.mapshaper(this, GeoData.from(result), "--filter-fields", "-clean", "sliver-control=0", "gap-fill-area=0", "-dissolve2", "-explode");
 		/*log.info(
 			"Shaped rivers\nfrom {}\nto\n{}",
 			getInput().toTmpFile(),
 			cleaned.toTmpFile()
 		);*/
-		return cleaned;
+		return Content.timeless(cleaned);
 	}
 
-	private Collection<RPoint> collectRivers(LCContent in) throws IOException {
+	private Collection<RPoint> collectRivers(GeoData in) throws IOException {
 		var rivers = new HashMap<Vector2D, RPoint>();
 		var featureCol = in.toFeatureCollection();
 		for (var feature : featureCol.getFeatures()) {
@@ -91,9 +96,9 @@ public class ShapeRivers extends LCStep {
 		return meters * ((1. + 0.00001120378 * (Math.cos(2 * lat / 180 * Math.PI) - 1)) / Math.cos(lat / 180 * Math.PI) / 111319.491 / 2d);
 	}
 
-	private void markSprings(Ctx ctx, Inputs in, LCContent riversIn, Collection<RPoint> rivers) throws IOException {
+	private void markSprings(Inputs in, GeoData riversIn, Collection<RPoint> rivers) throws IOException {
 		var landPoints = PointsOnLandSelector
-				.collectLandPoints(this, ctx, riversIn, in.getInput("land_without_water"))
+				.collectLandPoints(this, riversIn, in.getInput("land_without_water"))
 				.stream()
 				.map(RPoint::v)
 				.collect(Collectors.toSet());

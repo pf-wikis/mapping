@@ -2,25 +2,36 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import com.google.common.collect.TreeRangeMap;
+import com.google.common.collect.TreeRangeSet;
+
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Geometry.ILineString;
 import io.github.pfwikis.model.Geometry.LineString;
 import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.run.Tools;
+import io.github.pfwikis.util.time.TimeRange;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class MergeBorders extends LCStep {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_MERGED)
+public class MergeBorders extends StepExecutor {
 
     @Override
-    public LCContent process(Inputs in) throws Exception {
-    	var segments = new HashMap<Segment, Integer>();  	
+    public Content process(Inputs in) throws Exception {
+    	var segments = new HashMap<Segment, TreeRangeMap<Integer, Integer>>();  	
     	//split lines into component segments
     	for(var input:in.getInputs().entrySet()) {
+    		if(input.getValue().isEmpty()) continue;
     		var fc = input.getValue().toFeatureCollection();
     		int type = switch(input.getKey()) {
 				case "region" -> 1;
@@ -41,7 +52,8 @@ public class MergeBorders extends LCStep {
 	    						a=b;
 	    						b=c;
 	    					}
-	    					segments.merge(new Segment(a,b), type, Integer::min);
+	    					segments.computeIfAbsent(new Segment(a,b), _->TreeRangeMap.create())
+	    						.merge(f.getProperties().getTime().toGuavaRange(), type, Math::min);
 	    				}
     				}
     			}
@@ -49,19 +61,36 @@ public class MergeBorders extends LCStep {
     	}
     	
     	var fc = new FeatureCollection();
-    	for(var seg : segments.entrySet()) {
-    		var f = new Feature();
-    		fc.getFeatures().add(f);
-    		f.setGeometry(new LineString(List.of(seg.getKey().a, seg.getKey().b)));
-    		f.getProperties().setBorderType(seg.getValue());
+    	for(var segEntry : segments.entrySet()) {
+    		var seg = segEntry.getKey();
+    		var perValue = segEntry.getValue().asMapOfRanges()
+    			.entrySet()
+    			.stream()
+    			.collect(Collectors.groupingBy(e->e.getValue()));
+    		
+    		for(var entry:perValue.entrySet()) {
+    			int type = entry.getKey();
+    			//this is done because the ranges might not be all merged here
+    			var times = TreeRangeSet.create(entry.getValue().stream().map(Entry::getKey).toList());
+    			
+    			for(var time:times.asRanges()) {
+    	    		var f = new Feature();
+    	    		fc.getFeatures().add(f);
+    	    		f.setGeometry(new LineString(List.of(seg.a, seg.b)));
+    	    		f.getProperties().setBorderType(type);
+    	    		f.getProperties().setTime(TimeRange.from(time));
+        		}
+    		}
+    			
+    		
     	}
-    	var lc = LCContent.from(fc);
+    	var lc = GeoData.from(fc);
     	
     	var res= Tools.mapshaper(this,
     		lc,
-			"-dissolve", "borderType"
+			"-dissolve", "borderType,timeStart,timeEnd"
     	);
-    	return res;
+    	return Content.merged(res);
     	//merge borders
     	//merge overlapping lines while remembering their types
     	//merge min and max zoom

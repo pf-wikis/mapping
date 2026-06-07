@@ -2,14 +2,17 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.io.IOException;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.run.Tools;
 
-public class BufferPolygons extends LCStep {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+public class BufferPolygons extends StepExecutor {
 
     @Override
-    public LCContent process(Inputs in) throws IOException {
+    public Content process(Inputs in) throws IOException {
         var buffered = Tools.qgis(this, "native:buffer", in.getInput(),
             "--DISTANCE=0.5",
             "--SEGMENTS=20",
@@ -23,7 +26,7 @@ public class BufferPolygons extends LCStep {
         );
         //var negative = Tools.mapshaper0("-rectangle", "bbox=-138,-90,222,90", "-erase", smooth);
         
-        return smooth;
+        return Content.timeless(smooth);
     }
 
 }

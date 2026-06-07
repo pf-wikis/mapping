@@ -2,16 +2,20 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.io.IOException;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.util.ColorUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ColorGenericLabels extends LCStep {
+@Time.Requirement(Time.Requirement.Value.ANY)
+public class ColorGenericLabels extends StepExecutor {
 
     @Override
-    public LCContent process(Inputs in) throws IOException {
+    public Content process(Inputs in) throws IOException {
     	var fc = in.getInput().toFeatureCollection();
     	fc.getFeatures().forEach(f-> {
     		var t = f.getProperties().getType();
@@ -27,6 +31,6 @@ public class ColorGenericLabels extends LCStep {
 				}
 			});
     	});
-    	return LCContent.from(fc);
+    	return Content.derivedFrom(in, GeoData.from(fc));
     }
 }

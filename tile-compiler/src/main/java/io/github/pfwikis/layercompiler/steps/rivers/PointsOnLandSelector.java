@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
-import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Geometry;
 import io.github.pfwikis.model.Geometry.LineString;
 import io.github.pfwikis.model.Geometry.Polygon;
@@ -15,7 +14,7 @@ import io.github.pfwikis.run.Tools;
 
 public class PointsOnLandSelector {
 
-	public static Set<LngLat> collectLandPoints(LCStep step, Ctx ctx, LCContent input, LCContent land) throws IOException {
+	public static Set<LngLat> collectLandPoints(StepExecutor step, GeoData input, GeoData land) throws IOException {
 		var clipped = Tools
             .mapshaper(
             	step,

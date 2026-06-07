@@ -7,16 +7,16 @@ import java.util.UUID;
 
 import org.apache.commons.io.FileUtils;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 
 public class Tools {
 
-	public static LCContent qgis(LCStepAbstract step, String qgisCommand, LCContent in, Object... args) throws IOException {
+	public static GeoData qgis(StepExecutor step, String qgisCommand, GeoData in, Object... args) throws IOException {
     	return qgis(step, qgisCommand, "OUTPUT", in, args);
     }
 
-	public static LCContent qgis(LCStepAbstract step, String qgisCommand, String outputName, LCContent in, Object... args) throws IOException {
+	public static GeoData qgis(StepExecutor step, String qgisCommand, String outputName, GeoData in, Object... args) throws IOException {
         return Runner.run(
         	step,
             "qgis_process",
@@ -31,7 +31,7 @@ public class Tools {
         );
     }
 
-    public static LCContent mapshaper(LCStepAbstract step, LCContent in, Object... args) throws IOException {
+    public static GeoData mapshaper(StepExecutor step, GeoData in, Object... args) throws IOException {
         return Runner.run(
         	step,
             "mapshaper", "-i", new Runner.TmpGeojson(in),
@@ -41,7 +41,7 @@ public class Tools {
         );
     }
     
-    public static LCContent mapshaper0(LCStepAbstract step, Object... args) throws IOException {
+    public static GeoData mapshaper0(StepExecutor step, Object... args) throws IOException {
     	return Runner.run(
     		step,
             "mapshaper",
@@ -51,7 +51,7 @@ public class Tools {
         );
     }
 
-    public static LCContent mapshaper2(LCStepAbstract step, LCContent in1, LCContent in2, Object... args) throws IOException {
+    public static GeoData mapshaper2(StepExecutor step, GeoData in1, GeoData in2, Object... args) throws IOException {
         return Runner.run(
         	step,
             "mapshaper", "-i", new Runner.TmpGeojson(in1), new Runner.TmpGeojson(in2),
@@ -61,15 +61,15 @@ public class Tools {
         );
     }
 
-    public static LCContent ogr2ogr(LCStepAbstract step, Object... args) throws IOException {
+    public static GeoData ogr2ogr(StepExecutor step, Object... args) throws IOException {
         return Runner.run(step, "ogr2ogr", new Runner.OutFile(), args);
     }
 
-    public static void spriteZero(LCStepAbstract step, Object... args) throws IOException {
+    public static void spriteZero(StepExecutor step, Object... args) throws IOException {
 		Runner.run(step, "spritezero", args);
 	}
     
-    public static LCContent tippecanoe(LCStepAbstract step, String resultFormat, Object... args) throws IOException {
+    public static GeoData tippecanoe(StepExecutor step, String resultFormat, Object... args) throws IOException {
     	var tmpDir = new File(Runner.TMP_DIR, "tippecanoe-tmp/"+UUID.randomUUID()).getAbsoluteFile().getCanonicalFile();
     	tmpDir.mkdirs();
     	try {

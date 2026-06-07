@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.io.FileUtils;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +35,7 @@ public class Runner {
 		limiter = new Semaphore(limit, true);
 	}
 	
-    /*package*/ static LCContent run(LCStepAbstract step, String command, Object... args) throws IOException {
+    /*package*/ static GeoData run(StepExecutor step, String command, Object... args) throws IOException {
     	limiter.acquireUninterruptibly();
     	try(
     			var stdOut = new StdHelper("std", step);
@@ -60,12 +60,12 @@ public class Runner {
 	        	stdErr.intermediatePrint();
 	
 	        	if(exitValue != 0) {
-	                throw new IOException("Exited tool with non-zero code "+exitValue+": "+cmd.getParts().stream().collect(Collectors.joining(" ")));
+	                throw new IOException("Exited tool with non-zero code "+exitValue+" for "+Thread.currentThread().getName()+": "+cmd.getParts().stream().collect(Collectors.joining(" ")));
 	            }
-	            LCContent result = LCContent.empty();
+	            GeoData result = GeoData.empty();
 	
 	            if(cmd.getResultFile() != null) {
-	                result = LCContent.from(cmd.getResultFile());
+	                result = GeoData.from(cmd.getResultFile());
 	            }
 	            return result;
 	        } catch(Exception e) {
@@ -101,16 +101,16 @@ public class Runner {
 
     private static final ConcurrentMap<String, AtomicInteger> TMP_COUNTER = new ConcurrentHashMap<>(); 
 
-    public static File tmpGeojson(LCStepAbstract step, OutFile outFile) {
+    public static File tmpGeojson(StepExecutor step, OutFile outFile) {
     	String prefix = step!=null?(step.getId()+"_"):"";
-    	int uniqueCounter = TMP_COUNTER.computeIfAbsent(prefix, key->new AtomicInteger(1)).getAndIncrement();
+    	int uniqueCounter = TMP_COUNTER.computeIfAbsent(prefix, _->new AtomicInteger(1)).getAndIncrement();
         var f = new File(TMP_DIR, prefix+"%02d.%s".formatted(uniqueCounter, outFile.ext));
         f.deleteOnExit();
         return f;
     }
 
-    public static record TmpGeojson(String commandPrefix, LCContent content){
-        public TmpGeojson(LCContent content) {
+    public static record TmpGeojson(String commandPrefix, GeoData content){
+        public TmpGeojson(GeoData content) {
             this("", content);
         }
     }
@@ -128,11 +128,11 @@ public class Runner {
     private static class Command implements Closeable {
 
         private final List<String> parts = new ArrayList<>();
-        private final LCStepAbstract step;
+        private final StepExecutor step;
         private File resultFile;
         private ToolVariant toolVariant;
 
-        public static Command of(LCStepAbstract step, String command, Object... commandParts) throws IOException {
+        public static Command of(StepExecutor step, String command, Object... commandParts) throws IOException {
             var result = new Command(step);
             result.toolVariant = ToolVariant.getFor(command);
             result.addCommandParts(new String[] {command});
@@ -148,7 +148,7 @@ public class Runner {
             	if(part instanceof String v) {
                 	parts.add(v.replace("\n", ""));
                 }
-            	else if(part instanceof LCContent content) {
+            	else if(part instanceof GeoData content) {
                 	parts.add(toolVariant.translateFile(content.toTmpFile(step)));
                 }
                 else if(part instanceof TmpGeojson json) {

@@ -15,8 +15,12 @@ import org.locationtech.jts.algorithm.hull.ConcaveHullOfPolygons;
 import org.locationtech.jts.io.geojson.GeoJsonReader;
 import org.locationtech.jts.io.geojson.GeoJsonWriter;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.description.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Geometry;
@@ -30,7 +34,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Setter
-public class GenerateLabelCenters extends LCStep {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+public class GenerateLabelCenters extends StepExecutor {
 	
 	private static record Field<T>(String name, Function<Properties, T> getter, BiConsumer<Properties, T> setter) {
 		void copy(Properties from, Properties to) {
@@ -50,7 +55,8 @@ public class GenerateLabelCenters extends LCStep {
 	private Integer forceMinzoom = null;
     
     @Override
-	public LCContent process(Inputs in) throws Exception {
+	public Content process(Inputs in) throws Exception {
+    	if(in.getInput().isEmpty()) return Content.empty();
     	log.info("  Generating label points from polygon centers");
 
         var polygonsRes = prepareGeometry(in);
@@ -66,7 +72,7 @@ public class GenerateLabelCenters extends LCStep {
         var withInfo = mergeInfos(polygons, innerPoints, angles);
         
         if(!generateSubLabels) {
-        	return LCContent.from(cleanProperties(withInfo, fieldsToCopy));
+        	return Content.timeless(GeoData.from(cleanProperties(withInfo, fieldsToCopy)));
         }
 
         FeatureCollection merged = withInfo.copy();
@@ -77,10 +83,10 @@ public class GenerateLabelCenters extends LCStep {
         	}
         }
         
-        return LCContent.from(cleanProperties(merged, fieldsToCopy));
+        return Content.timeless(GeoData.from(cleanProperties(merged, fieldsToCopy)));
 	}
 
-    private LCContent prepareGeometry(Inputs in) throws IOException {
+    private GeoData prepareGeometry(Inputs in) throws IOException {
     	try(var _=this.measureSubtime("prepareGeometry")) {
 	    	var dissolved = Tools.mapshaper(this, in.getInput(),
 	    		"-filter", "Boolean(label)",
@@ -147,7 +153,7 @@ public class GenerateLabelCenters extends LCStep {
 		}
 	}
 
-	private Map<UUID, BigDecimal> calcAngles(LCContent withUuid) throws IOException {
+	private Map<UUID, BigDecimal> calcAngles(GeoData withUuid) throws IOException {
 		try(var _=this.measureSubtime("calcAngles")) {
 	    	var orientedRectangles = Tools.qgis(this, "qgis:minimumboundinggeometry", withUuid,
 	    		"--TYPE=1",
@@ -186,7 +192,7 @@ public class GenerateLabelCenters extends LCStep {
 		GEO_WRITER.setEncodeCRS(false);
 	}
 	
-	private Map<UUID, LngLat> calcInnerPoint(LCContent in) throws IOException {
+	private Map<UUID, LngLat> calcInnerPoint(GeoData in) throws IOException {
 		try(var _=this.measureSubtime("calcInnerPoint")) {
 			var fc = in.toFeatureCollection();
 	        var hulled = new FeatureCollection();
@@ -204,12 +210,12 @@ public class GenerateLabelCenters extends LCStep {
 		        		res.setGeometry(geom);
 		        		return res;
 	        		} catch(Exception e) {
-	        			log.warn("Can't generate concave hull for {}:{}", this.getName(), f, e.getMessage());
+	        			log.warn("Can't generate concave hull for {}:{}", description.getId(), f, e.getMessage());
 	        			return f;
 	        		}
 	        	})
 	        	.forEach(hulled.getFeatures()::add);
-	        var buffered = LCContent.from(hulled);
+	        var buffered = GeoData.from(hulled);
 			
 	        var inner = Tools.mapshaper(this, buffered, "-points", "inner").toFeatureCollection();
 	        return inner
@@ -223,13 +229,13 @@ public class GenerateLabelCenters extends LCStep {
 		}
 	}
 
-	private boolean addLowerZoomLabels(FeatureCollection result, LCContent polygons, List<Field<?>> fieldsToCopy, int step) throws IOException {
+	private boolean addLowerZoomLabels(FeatureCollection result, GeoData polygons, List<Field<?>> fieldsToCopy, int step) throws IOException {
 		try(var _=this.measureSubtime("addLowerZoomLabels")) {
 	    	int extraZoom = (labelRange+1)*step;
 	    	var features = Tools.mapshaper(
 				this, 
 				polygons,			
-				"-filter", "filterMinzoom+"+extraZoom+"<="+(ctx.getOptions().getMaxZoom()+labelRange),
+				"-filter", "filterMinzoom+"+extraZoom+"<="+(Ctx.INSTANCE.getOptions().getMaxZoom()+labelRange),
 				"-each", "dots=4**("+step+")",
 				"-each", "filterMinzoom=filterMinzoom+"+extraZoom,
 				"-each", "filterMaxzoom=filterMaxzoom+"+extraZoom,

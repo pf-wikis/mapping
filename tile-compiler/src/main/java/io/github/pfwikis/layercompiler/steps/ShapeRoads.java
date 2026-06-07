@@ -1,15 +1,18 @@
 package io.github.pfwikis.layercompiler.steps;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStep;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.run.Tools;
 import lombok.Setter;
 
 @Setter
-public class ShapeRoads extends LCStep {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+public class ShapeRoads extends StepExecutor {
 	
     @Override
-    public LCContent process(Inputs in) throws Exception {
+    public Content process(Inputs in) throws Exception {
     	String formula = """
     		"width"
     		*(
@@ -19,11 +22,11 @@ public class ShapeRoads extends LCStep {
 		""".trim().replaceAll("\\s+", ""); 
     			
     	
-        return Tools.qgis(this, "native:buffer", in.getInput(),
+        return Content.timeless(Tools.qgis(this, "native:buffer", in.getInput(),
             "--DISTANCE=expression:"+formula,
             "--DISSOLVE=true",
             "--SEPARATE_DISJOINT=true"
-        );
+        ));
     }
 
 }

@@ -1,39 +1,51 @@
-package io.github.pfwikis.layercompiler.steps.model;
+package io.github.pfwikis.layercompiler.steps.model.content;
 
 import java.util.HashMap;
 import java.util.IdentityHashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.TreeRangeSet;
 
-import io.github.pfwikis.layercompiler.steps.model.TimeSlicedContent.TimeSlice;
+import io.github.pfwikis.layercompiler.steps.model.Time.ContentState;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.FeatureCollection.FCProperties;
 import io.github.pfwikis.util.time.TimeRange;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-@Getter @Setter
-public abstract class LCStepMergingTime extends LCStepAbstract {
+@Getter @Slf4j
+@RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+public class TimeSlicedContent extends Content {
+	private final List<TimeSlice> slices;
+	@Getter(lazy = true) @Accessors(fluent = true)
+	private final MergedContent asMerged = merge();
+	
+	@Getter
+	@ToString(of = "time")
+	@RequiredArgsConstructor
+    public static class TimeSlice {
+    	private final TimeRange time;
+    	private final GeoData data;
+    }
 
 	@Override
-	protected TimeSlicedContent executeInternal() throws Exception {
-		var variants = createVariants();
-    	var merged = new LinkedHashMap<String, LCContent>();
-    	for(var key:getInputMapping().keySet()) {
-			merged.put(key, merge(variants, key));
-    	}
-		
-    	var res = process(Inputs.from(TimeRange.always(), merged));
-    	return new TimeSlicedContent(List.of(TimeSlice.from(TimeRange.always(), res)));
+	public ContentState getTimeState() {
+		return ContentState.SLICED;
+	}
+	
+	@Override
+	public TimeSlicedContent asSliced() {
+		return this;
 	}
 
-	private LCContent merge(List<Inputs> variants, String key) {
+	private MergedContent merge() {
 		Map<Feature, TreeRangeSet<Integer>> geometry = new HashMap<>();
 		var result = new FeatureCollection();
 		FCProperties mergedProps = null;
@@ -41,14 +53,14 @@ public abstract class LCStepMergingTime extends LCStepAbstract {
 		int total = 0;
 		
 		//because the same LCContent could be in multiple slices we resolve this first
-		var contentsToTime = new IdentityHashMap<LCContent, TreeRangeSet<Integer>>(variants.size());
-		variants.forEach(slice->contentsToTime.computeIfAbsent(slice.getInput(key), _->TreeRangeSet.create())
+		var contentsToTime = new IdentityHashMap<GeoData, TreeRangeSet<Integer>>(slices.size());
+		slices.forEach(slice->contentsToTime.computeIfAbsent(slice.getData(), _->TreeRangeSet.create())
 				.add(slice.getTime().toGuavaRange()));
 		
 		for(var contentAndTime:contentsToTime.entrySet()) {
+			if(contentAndTime.getKey().isEmpty()) continue;
 			var fc = contentAndTime.getKey().toFeatureCollection();
 			var props = fc.getProperties();
-			props.setTime(TimeRange.always());
 			if(mergedProps==null)
 				mergedProps = props;
 			else if(!mergedProps.equals(props))
@@ -63,7 +75,7 @@ public abstract class LCStepMergingTime extends LCStepAbstract {
 			}
 		}
 		result.setProperties(mergedProps);
-		log.info("Merged {} time sliced geometry into {} for key {}", total, geometry.size(), key);
+		log.info("Merged {} time sliced geometry into {}", total, geometry.size());
 		
 		for(var geom:geometry.entrySet()) {
 			for(var time:geom.getValue().asRanges()) {
@@ -73,8 +85,13 @@ public abstract class LCStepMergingTime extends LCStepAbstract {
 			}
 		}
 		
-		return LCContent.from(result);
+		return Content.merged(GeoData.from(result));
 	}
 
-	protected abstract LCContent process(Inputs in) throws Exception;
+	public Content asTimelessIfPossible() {
+		if(slices.size() == 1 && slices.getFirst().getTime().equals(TimeRange.always())) {
+			return new TimelessContent(slices.getFirst().getData());
+		}
+		return this;
+	}
 }

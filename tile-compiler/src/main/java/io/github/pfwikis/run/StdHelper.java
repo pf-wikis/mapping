@@ -8,8 +8,8 @@ import java.io.IOException;
 import org.apache.commons.lang3.Strings;
 import org.slf4j.event.Level;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStepAbstract;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.run.Runner.OutFile;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -18,18 +18,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class StdHelper implements Closeable {
 
-	private final LCStepAbstract step;
+	private final StepExecutor step;
 	private final File file;
-	private final LCContent content;
+	private final GeoData content;
 	private String alreadyPrinted = "";
 	private String alreadyPrintedButPotential = "";
 	private String prefix;
 
-	public StdHelper(String prefix, LCStepAbstract step) {
+	public StdHelper(String prefix, StepExecutor step) {
 		this.prefix = prefix;
 		this.step = step;
 		this.file = Runner.tmpGeojson(step, new OutFile());
-		this.content = LCContent.from(file);
+		this.content = GeoData.from(file);
 	}
 
 	public void intermediatePrint() {
@@ -70,7 +70,7 @@ public class StdHelper implements Closeable {
 	private void log(Level level, String msg) {
 		log.atLevel(level).log(
 			"{}|{}:\n{}",
-			step==null?"no step":step.getName(),
+			step==null?"no step":step.getDescription().getId(),
 			prefix,
 			msg
 		);

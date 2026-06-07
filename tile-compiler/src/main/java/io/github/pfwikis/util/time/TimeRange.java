@@ -18,8 +18,10 @@ public class TimeRange {
 	private final Integer timeStart;
 	private final Integer timeEnd;
 	
+	private static final TimeRange ALWAYS = new TimeRange(null, null);
+	
 	public static TimeRange always() {
-		return new TimeRange(null, null);
+		return ALWAYS;
 	}
 	
 	public static TimeRange from(Range<Integer> time) {

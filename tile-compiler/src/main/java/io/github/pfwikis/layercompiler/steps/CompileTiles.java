@@ -7,8 +7,12 @@ import java.util.Objects;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 
-import io.github.pfwikis.layercompiler.steps.model.LCContent;
-import io.github.pfwikis.layercompiler.steps.model.LCStepMergingTime;
+import io.github.pfwikis.layercompiler.description.Ctx;
+import io.github.pfwikis.layercompiler.steps.model.Inputs;
+import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
+import io.github.pfwikis.layercompiler.steps.model.Time;
+import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.layercompiler.steps.time.TimeMetaCollect.TimeMeta;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Runner;
@@ -19,13 +23,14 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter @Setter
-public class CompileTiles extends LCStepMergingTime {
+@Time.Requirement(Time.Requirement.Value.REQUIRES_MERGED)
+public class CompileTiles extends StepExecutor {
 	
 	private String filename = "golarion";
 	private String extension = "pmtiles";
 	
     @Override
-    public LCContent process(Inputs in) throws Exception {
+    public Content process(Inputs in) throws Exception {
     	log.info("Compiling Tiles");
     	
     	var meta = in.getInput("time-meta").toFeatureCollection().getProperties().getTimeMeta();
@@ -36,12 +41,12 @@ public class CompileTiles extends LCStepMergingTime {
     		.filter(l->!l.getKey().equals("time-meta"))
     		.map(e->Pair.of(e.getKey(), applyTimeMeta(meta, createTippecanoeProperties(e.getValue()))))
     		.peek(e->cleanProperties(e.getValue()))
-    		.map(e->List.of("-L", new Runner.TmpGeojson(e.getKey()+":", LCContent.from(e.getValue()))))
+    		.map(e->List.of("-L", new Runner.TmpGeojson(e.getKey()+":", GeoData.from(e.getValue()))))
     		.toList();
 
         var out = Tools.tippecanoe(this, extension,
-    		"-z"+ctx.getOptions().getMaxZoom(),
-            "--full-detail="+Math.max(14,32-ctx.getOptions().getMaxZoom()), //increase detail level on max-zoom
+    		"-z"+Ctx.INSTANCE.getOptions().getMaxZoom(),
+            "--full-detail="+Math.max(14,32-Ctx.INSTANCE.getOptions().getMaxZoom()), //increase detail level on max-zoom
             // |
             // V does not work yet
             //"--generate-variable-depth-tile-pyramid", //does not add levels if the detail is already maxed
@@ -56,11 +61,11 @@ public class CompileTiles extends LCStepMergingTime {
             layers
         );
         
-        var finalOutput = new File(ctx.getOptions().targetDirectory(), filename+"."+extension);
+        var finalOutput = new File(Ctx.INSTANCE.getOptions().targetDirectory(), filename+"."+extension);
         FileUtils.deleteQuietly(finalOutput);
         FileUtils.writeByteArrayToFile(finalOutput, out.toBytes());
     	
-        return LCContent.empty();
+        return Content.empty();
     }
     
     
@@ -71,7 +76,6 @@ public class CompileTiles extends LCStepMergingTime {
     		f.getProperties().setTimeIndexEnd(meta.getIndexForEnd(time));
     		f.getProperties().setTime(null);
     	});
-    	fc.getProperties().setTime(null);
     	return fc;
 	}
 
@@ -83,8 +87,8 @@ public class CompileTiles extends LCStepMergingTime {
 	}
 
 
-	private FeatureCollection createTippecanoeProperties(LCContent in) {
-    	int maxzoom = ctx.getOptions().getMaxZoom();
+	private FeatureCollection createTippecanoeProperties(GeoData in) {
+    	int maxzoom = Ctx.INSTANCE.getOptions().getMaxZoom();
     	var fc = in.toFeatureCollection();
     	//set tippecanoe based on filterMin/Maxzoom
     	for(var f:fc.getFeatures()) {
