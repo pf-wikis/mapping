@@ -79,7 +79,6 @@ public enum ToolVariant {
 			case "mapshaper" -> getMapshaper();
 			case "geojson-polygon-labels" -> getGeojsonPolygonLabels();
 			case "qgis_process" -> getQgisProcess();
-			case "tippecanoe" -> getTippecanoe();
 			case "spritezero" -> getSpritezero();
 			default -> throw new IllegalStateException("Unhandled tool "+command);
 		};
@@ -93,8 +92,6 @@ public enum ToolVariant {
 	private static final ToolVariant geojsonPolygonLabels = test("geojson-polygon-labels", "--help");
 	@Getter(lazy = true)
 	private static final ToolVariant qgisProcess = test("qgis_process", "-v");
-	@Getter(lazy = true)
-	private static final ToolVariant tippecanoe = test("tippecanoe", "-v");
 	@Getter(lazy = true)
 	private static final ToolVariant spritezero = testOutput("Example", "spritezero", "help");
 	

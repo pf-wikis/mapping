@@ -62,10 +62,9 @@ public class LocationGroup extends StepExecutor {
 			if(realMin > g.maxZoom) continue;
 			
 			Feature f = g.best.feature.copy();
-			f.setTippecanoe(new Tippecanoe());
-			f.getTippecanoe().setMinzoom(realMin);
+			f.getProperties().setTileMinzoom(realMin);
 			if(g.maxZoom<Ctx.INSTANCE.getOptions().getMaxZoom()) 
-				f.getTippecanoe().setMaxzoom(g.maxZoom);
+				f.getProperties().setTileMaxzoom(g.maxZoom);
 			result.getFeatures().add(f);
 			if(g.entries.size() > 1) {
 				f.getProperties().setText(createGroupText(g));

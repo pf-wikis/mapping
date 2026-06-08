@@ -206,7 +206,6 @@ public class GenerateLabelCenters extends StepExecutor {
 		        		var geom = Jackson.JSON.readValue(GEO_WRITER.write(hull), Geometry.class);
 		        		var res = new Feature();
 		        		res.setProperties(f.getProperties());
-		        		res.setTippecanoe(f.getTippecanoe());
 		        		res.setGeometry(geom);
 		        		return res;
 	        		} catch(Exception e) {

@@ -13,18 +13,11 @@ public class Feature extends AnyJson {
 	private Geometry geometry;
 	private String type = "Feature";
     private Properties properties = new Properties();
-    private Tippecanoe tippecanoe = new Tippecanoe();
     
     public void setProperties(Properties properties) {
     	//ensures this is never null
     	if(properties != null)
     		this.properties = properties;
-	}
-    
-    public void setTippecanoe(Tippecanoe tippecanoe) {
-    	//ensures this is never null
-    	if(tippecanoe != null)
-    		this.tippecanoe = tippecanoe;
 	}
     
     @Data

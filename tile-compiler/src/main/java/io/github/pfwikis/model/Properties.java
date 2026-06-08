@@ -11,12 +11,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.FieldNameConstants;
 import tools.jackson.databind.JsonNode;
 
 @Setter
 @Getter
 @ToString
 @EqualsAndHashCode(callSuper = true)
+@FieldNameConstants
 public class Properties extends AnyJson {
 	private Long fid;
 	private Label label;
@@ -26,12 +28,15 @@ public class Properties extends AnyJson {
 	private String icon;
 	private Integer filterMinzoom;
 	private Integer filterMaxzoom;
+	private Integer tileMinzoom;
+	private Integer tileMaxzoom;
 	private Integer articleLength;
 	private Integer size;
 	private Boolean capital;
 	private String type;
 	private String color;
 	private List<String> colorStack;
+	private List<UUID> uuids;
 	private String halo;
 	private UUID uuid;
 	private BigDecimal angle;

@@ -1,7 +1,12 @@
 package io.github.pfwikis.layercompiler.steps;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import io.github.pfwikis.layercompiler.steps.model.Inputs;
@@ -9,6 +14,7 @@ import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
 import io.github.pfwikis.layercompiler.steps.model.Time;
 import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
+import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Tools;
 import io.github.pfwikis.util.ColorUtil;
@@ -36,26 +42,31 @@ public class MergeGeometry extends StepExecutor {
 				"-explode"
 			);
     		
-    		var features = dissolved.toFeatureCollection();
-    		for(var f : features.getFeatures()) {
+    		for(var f : dissolved.toFeatureCollection().getFeatures()) {
+    			f.getProperties().setUuid(UUID.randomUUID());
     			agg.getFeatures().add(f);
     		}
     	}
-    	var aggC = GeoData.from(agg);
-    	//return LCContent.from(result);
-    	var mosaicC = Tools.mapshaper(this, aggC,
-			"-mosaic", "calc='colorStack=collect(color)'",
+    	var mosaicC = Tools.mapshaper(this, GeoData.from(agg),
+			"-mosaic", "calc='colorStack=collect(color)"
+						+",uuids=collect(uuid)'",
 			"-filter", "Boolean(colorStack)",
 			"-filter", "!this.isNull"
 		);
-    	agg = null;
     	var mosaic = mosaicC.toFeatureCollection();
+    	Map<UUID, List<Feature>> resolved = new HashMap<>();
     	for(var f:mosaic.getFeatures()) {
     		Color c = new Color(110, 160, 245);
-    		for(var rawNext:f.getProperties().getColorStack()) {
-    			var next = ColorUtil.fromHex(rawNext);
+    		UUID resolvedTransparent = null;
+    		var colorStack = f.getProperties().getColorStack();
+    		var uuidStack = f.getProperties().getUuids();
+    		
+    		for(int i=0;i<colorStack.size();i++) {
+    			var uuid = uuidStack.get(i);
+    			var next = ColorUtil.fromHex(colorStack.get(i));
     			if(next.getAlpha()==255) {
     				c=next;
+    				resolvedTransparent = null;
     			}
     			else {
     				c = new Color(
@@ -63,17 +74,32 @@ public class MergeGeometry extends StepExecutor {
 						(next.getGreen()*next.getAlpha()+c.getGreen()*(255-next.getAlpha()))/255,
 						(next.getBlue() *next.getAlpha()+c.getBlue() *(255-next.getAlpha()))/255
 					);
+    				resolvedTransparent = uuid;
     			}
     		}
-    		f.getProperties().setColorStack(null);
-    		f.getProperties().setColor(ColorUtil.toHex(c));
+    		
+    		if(resolvedTransparent != null) {
+    			Feature mf = new Feature();
+    			mf.getProperties().setColor(ColorUtil.toHex(c));
+    			
+    			mf.setGeometry(f.getGeometry());
+    			resolved.computeIfAbsent(resolvedTransparent, _->new ArrayList<>())
+    				.add(mf);
+    		}
     	}
-
-    	var coloredC = GeoData.from(mosaic);
-    	return Content.timeless(Tools.mapshaper(this, coloredC,
-			"-dissolve2", "color",
-			"-explode"
-		));
+    	
+    	FeatureCollection merged = new FeatureCollection();
+    	for(var f:agg.getFeatures()) {
+    		var res = resolved.get(f.getProperties().getUuid());
+    		if(res != null) {
+    			merged.getFeatures().addAll(res);
+    		}
+    		else {
+    			merged.getFeatures().add(f);
+    			f.getProperties().setUuid(null);
+    		}
+    	}
+    	return Content.timeless(GeoData.from(merged));
     }
 
 	public static Color colorFor(String layer) {

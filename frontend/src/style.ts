@@ -1,4 +1,4 @@
-import { DataDrivenPropertyValueSpecification, ExpressionSpecification, FillLayerSpecification, FilterSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification } from "maplibre-gl";
+import { DataDrivenPropertyValueSpecification, ExpressionSpecification, FillLayerSpecification, FilterSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, StyleSpecification } from "maplibre-gl";
 import timeMeta from "./utils/timeMeta";
 
 let colors = {
@@ -367,7 +367,8 @@ export default {
     golarion: {
       type: 'vector',
       attribution: '<a href="https://paizo.com/licenses/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
-      url: 'pmtiles://https://map.pathfinderwiki.com/golarion.pmtiles'
+      url: 'pmtiles://https://map.pathfinderwiki.com/golarion.pmtiles',
+      encoding: 'mlt'
     }
   },
   state: {
@@ -391,4 +392,4 @@ export default {
   sky: {
     'atmosphere-blend': 0.5
   }
-};
+} as StyleSpecification;

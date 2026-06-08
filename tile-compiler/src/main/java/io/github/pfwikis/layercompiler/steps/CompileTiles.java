@@ -1,11 +1,16 @@
 package io.github.pfwikis.layercompiler.steps;
 
 import java.io.File;
-import java.util.List;
 import java.util.Objects;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
+
+import com.onthegomap.planetiler.FeatureCollector;
+import com.onthegomap.planetiler.Planetiler;
+import com.onthegomap.planetiler.Profile;
+import com.onthegomap.planetiler.config.Arguments;
+import com.onthegomap.planetiler.geo.GeometryPipeline;
+import com.onthegomap.planetiler.reader.SourceFeature;
 
 import io.github.pfwikis.layercompiler.description.Ctx;
 import io.github.pfwikis.layercompiler.steps.model.Inputs;
@@ -15,8 +20,7 @@ import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.layercompiler.steps.time.TimeMetaCollect.TimeMeta;
 import io.github.pfwikis.model.FeatureCollection;
-import io.github.pfwikis.run.Runner;
-import io.github.pfwikis.run.Tools;
+import io.github.pfwikis.model.Properties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -35,36 +39,61 @@ public class CompileTiles extends StepExecutor {
     	
     	var meta = in.getInput("time-meta").toFeatureCollection().getProperties().getTimeMeta();
     	Objects.requireNonNull(meta);
-    	
-    	var layers = in.getInputs().entrySet()
-    		.stream()
-    		.filter(l->!l.getKey().equals("time-meta"))
-    		.map(e->Pair.of(e.getKey(), applyTimeMeta(meta, createTippecanoeProperties(e.getValue()))))
-    		.peek(e->cleanProperties(e.getValue()))
-    		.map(e->List.of("-L", new Runner.TmpGeojson(e.getKey()+":", GeoData.from(e.getValue()))))
-    		.toList();
 
-        var out = Tools.tippecanoe(this, extension,
-    		"-z"+Ctx.INSTANCE.getOptions().getMaxZoom(),
-            "--full-detail="+Math.max(14,32-Ctx.INSTANCE.getOptions().getMaxZoom()), //increase detail level on max-zoom
-            // |
-            // V does not work yet
-            //"--generate-variable-depth-tile-pyramid", //does not add levels if the detail is already maxed
-            //see https://github.com/maplibre/maplibre-gl-js/issues/5618
-            "--no-tile-size-limit",
-            "-n", "golarion",
-            "--force",
-            "--detect-shared-borders",
-            "--preserve-input-order",
-            "-B", "0",
-            "--coalesce-densest-as-needed",
-            layers
-        );
-        
-        var finalOutput = new File(Ctx.INSTANCE.getOptions().targetDirectory(), filename+"."+extension);
-        FileUtils.deleteQuietly(finalOutput);
-        FileUtils.writeByteArrayToFile(finalOutput, out.toBytes());
-    	
+    	int maxZoom = Ctx.INSTANCE.getOptions().getMaxZoom();
+    	var planetiler = Planetiler.create(Arguments.of(
+    		"tile-format", "mlt",
+    		"maxzoom", Integer.toString(maxZoom),
+    		"render_maxzoom", Integer.toString(maxZoom),
+    		//not yet supported
+    		//"mlt_advanced", "true",
+    		//"mlt_tessellate_polygons", "true",
+    		"mlt_shared_dict", "true",
+    		"exclude_ids", "true",
+    		"force", "true",
+    		//increase detail at max zoom for best overzooming
+    		"min_feature_size_at_max_zoom", "0",
+    		"simplify_tolerance_at_max_zoom", "0"
+    	));
+    	in.getInputs().entrySet()
+			.stream()
+			.filter(l->!l.getKey().equals("time-meta"))
+			.map(e->Pair.of(e.getKey(), applyTimeMeta(meta, e.getValue().toFeatureCollection())))
+			.peek(e->cleanProperties(e.getValue()))
+			.forEach(e->planetiler.addGeoJsonSource(e.getKey(), GeoData.from(e.getValue()).toTmpFile(this)));
+    	planetiler.setOutput(new File(Ctx.INSTANCE.getOptions().targetDirectory(), filename+"."+extension).toPath());
+    	planetiler.setProfile(new Profile() {
+
+			@Override
+			public void processFeature(SourceFeature f, FeatureCollector features) {
+				//sourceFeature.latLonGeometry()
+				var out = features.anyGeometry(f.getSource())
+					.putAttrs(f.tags());
+				//filter by zoom level
+				out.setZoomRange(
+					max(
+						getInt(f, Properties.Fields.tileMinzoom),
+						clamp(0, getInt(f, Properties.Fields.filterMinzoom), maxZoom),
+						0
+					),
+					min(
+						getInt(f, Properties.Fields.filterMaxzoom),
+						getInt(f, Properties.Fields.tileMaxzoom),
+						maxZoom
+					)
+				);
+				
+				//disable simplifaction completely at maxzoom
+				out.transformScaledGeometryByZoom(zoom-> {
+					if(maxZoom == zoom) {
+						return GeometryPipeline.NOOP;
+					}
+					return null;
+				});
+			}
+    	});
+    	planetiler.run();
+
         return Content.empty();
     }
     
@@ -85,32 +114,15 @@ public class CompileTiles extends StepExecutor {
     		f.getProperties().setTime(null);
     	}
 	}
+	
+	private Integer getInt(SourceFeature f, String field) {
+		var val = f.getTag(field);
+		if(val == null) return null;
+		if(val instanceof Number n) return n.intValue();
+		return Integer.parseInt(val.toString());
+	}
 
-
-	private FeatureCollection createTippecanoeProperties(GeoData in) {
-    	int maxzoom = Ctx.INSTANCE.getOptions().getMaxZoom();
-    	var fc = in.toFeatureCollection();
-    	//set tippecanoe based on filterMin/Maxzoom
-    	for(var f:fc.getFeatures()) {
-			f.getTippecanoe().setMinzoom(
-				max(
-					f.getTippecanoe().getMinzoom(),
-					clamp(0, f.getProperties().getFilterMinzoom(), maxzoom)
-				)
-			);
-		
-			f.getTippecanoe().setMaxzoom(
-				min(
-					f.getProperties().getFilterMaxzoom(),
-					f.getTippecanoe().getMaxzoom()
-				)
-			);
-    	}
-
-        return fc;
-    }
-
-    private static Integer max(Integer... values) {
+    private static int max(Integer... values) {
     	Integer max = null;
 		for(var v:values) {
 			if(v != null && (max == null || max < v))
@@ -119,7 +131,7 @@ public class CompileTiles extends StepExecutor {
 		return max;
 	}
     
-    private static Integer min(Integer... values) {
+    private static int min(Integer... values) {
 		Integer min = null;
 		for(var v:values) {
 			if(v != null && (min == null || min > v))

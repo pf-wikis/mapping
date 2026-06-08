@@ -67,7 +67,7 @@ public abstract class StepExecutor extends Task<String, Content> {
         	return results;
         } catch (Throwable t) {
         	log.error("Failed execution", t);
-            throw new RuntimeException("Failed execution with: "+t.getMessage());
+            throw new RuntimeException("Failed execution with: "+t.getMessage(), t);
         } finally {
         	Thread.currentThread().setName(oldName);
         }

@@ -68,14 +68,4 @@ public class Tools {
     public static void spriteZero(StepExecutor step, Object... args) throws IOException {
 		Runner.run(step, "spritezero", args);
 	}
-    
-    public static GeoData tippecanoe(StepExecutor step, String resultFormat, Object... args) throws IOException {
-    	var tmpDir = new File(Runner.TMP_DIR, "tippecanoe-tmp/"+UUID.randomUUID()).getAbsoluteFile().getCanonicalFile();
-    	tmpDir.mkdirs();
-    	try {
-    		return Runner.run(step, "tippecanoe", args, "-o", new Runner.OutFile("", resultFormat), "-t", tmpDir);
-    	} finally {
-    		FileUtils.deleteQuietly(tmpDir);
-    	}
-	}
 }

@@ -17,16 +17,7 @@ EOF
 ENV NODE_PATH=$NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
 ENV PATH=$NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
 
-RUN <<EOF
-  git clone https://github.com/felt/tippecanoe.git
-  cd tippecanoe
-  make -j
-  make install
-  cd ..
-  rm -rf tippecanoe
-EOF
-
-RUN npm install -g mapshaper@v0.7.9 @indoorequal/spritezero-cli
+RUN npm install -g mapshaper @indoorequal/spritezero-cli
 
 RUN <<EOF
   curl -L https://github.com/koordinates/kart/releases/download/v0.16.1/kart_0.16.1_amd64.deb -o kart.deb 
@@ -47,7 +38,5 @@ COPY --link --chown=1000:1000 build/compile.sh /w/compile.sh
 RUN chmod 777 /w/compile.sh
 
 COPY --link --chown=1000:1000 sources /w/sources
-
-ENV TIPPECANOE_MAX_THREADS=1
 
 ENTRYPOINT ["/w/compile.sh"]
