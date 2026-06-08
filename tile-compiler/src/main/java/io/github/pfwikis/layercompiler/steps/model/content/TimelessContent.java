@@ -3,10 +3,12 @@ package io.github.pfwikis.layercompiler.steps.model.content;
 import io.github.pfwikis.layercompiler.steps.model.Time.ContentState;
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+@Getter
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-public class TimelessContent extends Content {
+public class TimelessContent implements MergedOrTimelessContent {
 
 	private final GeoData data;
 	
@@ -16,8 +18,8 @@ public class TimelessContent extends Content {
 	}
 
 	@Override
-	public MergedContent asMerged() {
-		return new MergedContent(data);
+	public TimelessContent asMergedOrTimeless() {
+		return this;
 	}
 
 	@Override

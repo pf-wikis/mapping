@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-public class MergedContent extends Content {
+public class MergedContent implements MergedOrTimelessContent {
 
 	private final GeoData data;
 	@Getter(lazy = true) @Accessors(fluent = true)
@@ -28,7 +28,7 @@ public class MergedContent extends Content {
 	}
 
 	@Override
-	public MergedContent asMerged() {
+	public MergedOrTimelessContent asMergedOrTimeless() {
 		return this;
 	}
 	

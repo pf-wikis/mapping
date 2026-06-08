@@ -22,10 +22,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Getter @Slf4j
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-public class TimeSlicedContent extends Content {
+public class TimeSlicedContent implements Content {
 	private final List<TimeSlice> slices;
 	@Getter(lazy = true) @Accessors(fluent = true)
-	private final MergedContent asMerged = merge();
+	private final MergedContent asMergedOrTimeless = merge();
 	
 	@Getter
 	@ToString(of = "time")

@@ -8,14 +8,14 @@ import io.github.pfwikis.layercompiler.steps.model.content.TimeSlicedContent.Tim
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.util.time.TimeRange;
 
-public abstract class Content {
+public interface Content {
 
-	public abstract Time.ContentState getTimeState();
+	public Time.ContentState getTimeState();
 
 	
-	public abstract MergedContent asMerged();
+	public MergedOrTimelessContent asMergedOrTimeless();
 	
-	public abstract TimeSlicedContent asSliced();
+	public TimeSlicedContent asSliced();
 	
 	/* ------------------- creator methods ----------------------------*/
 	public static Content derivedFrom(Inputs in, GeoData data) {
@@ -41,7 +41,7 @@ public abstract class Content {
 		return new TimelessContent(data);
 	}
 
-	private static final Content EMPTY = timeless(GeoData.empty());
+	public static final Content EMPTY = timeless(GeoData.empty());
 	public static Content empty() {
 		return EMPTY;
 	}

@@ -22,6 +22,7 @@ import com.google.common.collect.TreeRangeMap;
 import com.google.common.collect.TreeRangeSet;
 
 import io.github.pfwikis.layercompiler.description.StepDescription;
+import io.github.pfwikis.layercompiler.steps.model.Time.ContentState;
 import io.github.pfwikis.layercompiler.steps.model.Time.DataState;
 import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.layercompiler.steps.model.content.TimeSlicedContent;
@@ -117,10 +118,13 @@ public abstract class StepExecutor extends Task<String, Content> {
 
 	private Content executeWithMergedContents() throws Exception {
 		Map<String, GeoData> inputs = new LinkedHashMap<>();
-		for(var e:getAllInputs(Content::asMerged)) {
+		var state = DataState.TIMELESS;
+		for(var e:getAllInputs(Content::asMergedOrTimeless)) {
+			if(e.getValue().getTimeState() == ContentState.MERGED)
+				state = DataState.MERGED;
 			inputs.put(e.getKey(), e.getValue().getData());
 		}
-		var in = Inputs.from(DataState.MERGED, TimeRange.always(), inputs);
+		var in = Inputs.from(state, TimeRange.always(), inputs);
 		return process(in);
 	}
 

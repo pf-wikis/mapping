@@ -34,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Setter
-@Time.Requirement(Time.Requirement.Value.REQUIRES_SLICED)
+@Time.Requirement(Time.Requirement.Value.REQUIRES_MERGED)
 public class GenerateLabelCenters extends StepExecutor {
 	
 	private static record Field<T>(String name, Function<Properties, T> getter, BiConsumer<Properties, T> setter) {
@@ -90,7 +90,7 @@ public class GenerateLabelCenters extends StepExecutor {
     	try(var _=this.measureSubtime("prepareGeometry")) {
 	    	var dissolved = Tools.mapshaper(this, in.getInput(),
 	    		"-filter", "Boolean(label)",
-	    		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color"):List.of()
+	    		dissolve?List.of("-dissolve", "label"+in.getTimeState().mapshaperTimeFields(), "allow-overlaps", "copy-fields=inSubregion,color"):List.of()
 	    	);
 	        
 	    	//mapshaper sometimes gives weird results here
@@ -102,7 +102,7 @@ public class GenerateLabelCenters extends StepExecutor {
 			);
 	        
 	        var withFields = Tools.mapshaper(this, withArea,
-	    		dissolve?List.of("-dissolve2", "label", "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm"):List.of(),
+	    		dissolve?List.of("-dissolve", "label"+in.getTimeState().mapshaperTimeFields(), "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm"):List.of(),
 	    		"-sort", "areaSqkm", "descending", //to make bigger feature more important
 				"-each", "filterMinzoom="+filterMinzoom(),
 	            "-each", "filterMaxzoom=filterMinzoom+"+labelRange,
@@ -168,7 +168,7 @@ public class GenerateLabelCenters extends StepExecutor {
 	    				var width = f.getProperties().getWidth().doubleValue();
 	    				var height = f.getProperties().getHeight().doubleValue();
 	    				//do not rotate if the actual rectangle is more of a square
-	    				if(height/width<1.75d)
+	    				if(height/width<1.5d)
 	    					return BigDecimal.ZERO;
 	    				
 	    				var angle = f.getProperties().getAngle()
