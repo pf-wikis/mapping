@@ -45,8 +45,8 @@ public class CompileTiles extends StepExecutor {
     		"tile-format", "mlt",
     		"maxzoom", Integer.toString(maxZoom),
     		"render_maxzoom", Integer.toString(maxZoom),
-    		//not yet supported
-    		//"mlt_advanced", "true",
+    		"mlt_advanced", "true",
+    		//does not work without outlines
     		//"mlt_tessellate_polygons", "true",
     		"mlt_shared_dict", "true",
     		"exclude_ids", "true",
