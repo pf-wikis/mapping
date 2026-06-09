@@ -1,4 +1,4 @@
-<qgis projectname="" saveDateTime="2026-05-25T02:06:04" version="3.44.2-Solothurn">
+<qgis projectname="" saveDateTime="2026-06-01T18:05:54" version="3.44.2-Solothurn">
   <homePath path="."></homePath>
   <title></title>
   <transaction mode="Disabled"></transaction>
@@ -698,7 +698,7 @@
       <layer-setting enabled="0" id="cities_e60f27e5_6160_4b72_9b75_0fbdd81bd3c8" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="deserts_644ce1f6_9e06_4b66_ba44_bb030b005719" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="districts_447b31a0_b9aa_47c0_b4c4_ac6845a29f84" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-      <layer-setting enabled="0" id="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+    <layer-setting enabled="0" id="forests_f4e45ab9_eb1a_4e1f_96b3_2ab154735cc5" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="hills_ce4f9894_b2c5_4ad4_a1c6_511fdead97eb" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="ice_3e4665bb_45e3_4058_a790_3f1518fcb9b7" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="labels_3632a4a9_95a7_478d_bff4_4bc4473fdd9f" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
@@ -708,7 +708,7 @@
       <layer-setting enabled="0" id="roads_7e038ab7_ac9b_4762_96b1_2ac7d9a2c175" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="specials_c128e960_556c_4ede_a0c3_f1da18d388a2" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="swamps_92ae1780_aeca_4355_866a_cc4af5f68520" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
-    <layer-setting enabled="0" id="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
+      <layer-setting enabled="0" id="walls_661cd3b2_91f4_41a7_9243_a9ccd8ad1670" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       <layer-setting enabled="0" id="waters_ffcf32fb_950c_400d_8017_4af9540e8da3" maxScale="0" minScale="0" tolerance="12" type="1" units="1"></layer-setting>
       </individual-layer-settings>
   </snapping-settings>
@@ -721,10 +721,10 @@
   <mapcanvas annotationsVisible="1" name="theMapCanvas">
     <units>degrees</units>
     <extent>
-      <xmin>-35.2549567263885848</xmin>
-      <ymin>43.40476245657842469</ymin>
-      <xmax>-8.73296149138873545</xmax>
-      <ymax>59.61721456709997824</ymax>
+      <xmin>-17.63551653684796605</xmin>
+      <ymin>27.61687516990119207</ymin>
+      <xmax>8.88647869815188329</xmax>
+      <ymax>43.82932728042274562</ymax>
     </extent>
     <rotation>0</rotation>
     <destinationsrs>
@@ -6991,7 +6991,7 @@ def my_form_open(dialog, layer, feature):
         <Searchable>1</Searchable>
         <Private>0</Private>
       </flags>
-      <temporal accumulate="0" durationField="fid" durationUnit="min" enabled="1" endExpression="to_datetime(to_string(coalesce(&quot;timeEnd&quot;,4740))+'-01-01 00:00:00')" endField="" fixedDuration="0" limitMode="0" mode="4" startExpression="to_datetime(to_string(coalesce(&quot;timeStart&quot;,4710))+'-01-01 00:00:00')" startField="">
+      <temporal accumulate="0" durationField="fid" durationUnit="min" enabled="1" endExpression="to_datetime(to_string(coalesce(&quot;timeEnd&quot;,4740))+'-01-01 00:00:00')" endField="" fixedDuration="0" limitMode="0" mode="4" startExpression="to_datetime(to_string(coalesce(&quot;timeStart&quot;,4600))+'-01-01 00:00:00')" startField="">
         <fixedRange>
           <start></start>
           <end></end>
@@ -7377,8 +7377,8 @@ def my_form_open(dialog, layer, feature):
             <Option type="QString" value="&quot;fid&quot;"></Option>
           </Option>
           <Option name="embeddedWidgets/count" type="int" value="0"></Option>
-          <Option name="variableNames" type="invalid"></Option>
-          <Option name="variableValues" type="invalid"></Option>
+          <Option name="variableNames"></Option>
+          <Option name="variableValues"></Option>
         </Option>
       </customproperties>
       <blendMode>0</blendMode>
@@ -7454,7 +7454,7 @@ def my_form_open(dialog, layer, feature):
           <Option name="QgsGeometryGapCheck" type="Map">
             <Option name="allowedGapsBuffer" type="double" value="0"></Option>
             <Option name="allowedGapsEnabled" type="bool" value="false"></Option>
-            <Option name="allowedGapsLayer" type="invalid"></Option>
+            <Option name="allowedGapsLayer" type="QString" value=""></Option>
           </Option>
         </checkConfiguration>
       </geometryOptions>
@@ -25734,7 +25734,7 @@ def my_form_open(dialog, layer, feature):
     <TemporalControllerWidget>
       <EndDateTime type="QString">4740-01-01T00:00:00.000Z</EndDateTime>
       <NavigationMode type="int">1</NavigationMode>
-      <StartDateTime type="QString">4710-01-01T00:00:00.000Z</StartDateTime>
+      <StartDateTime type="QString">4600-01-01T00:00:00.000Z</StartDateTime>
     </TemporalControllerWidget>
     <Topol>
       <layer1_0 type="QString">land_48aa2040_f185_4ba4_a64a_5b3a275264c1</layer1_0>
@@ -25952,7 +25952,7 @@ def my_form_open(dialog, layer, feature):
   <Sensors></Sensors>
   <ProjectViewSettings UseProjectScales="0" rotation="0">
     <Scales></Scales>
-    <DefaultViewExtent xmax="-7.95369912036146864" xmin="-36.03421909741584983" ymax="59.61721456709997824" ymin="43.40476245657842469">
+    <DefaultViewExtent xmax="9.6657410691791501" xmin="-18.41477890787523108" ymax="43.82932728042274562" ymin="27.61687516990119207">
       <spatialrefsys nativeFormat="Wkt">
         <wkt>GEOGCRS["WGS 84",ENSEMBLE["World Geodetic System 1984 ensemble",MEMBER["World Geodetic System 1984 (Transit)"],MEMBER["World Geodetic System 1984 (G730)"],MEMBER["World Geodetic System 1984 (G873)"],MEMBER["World Geodetic System 1984 (G1150)"],MEMBER["World Geodetic System 1984 (G1674)"],MEMBER["World Geodetic System 1984 (G1762)"],MEMBER["World Geodetic System 1984 (G2139)"],MEMBER["World Geodetic System 1984 (G2296)"],ELLIPSOID["WGS 84",6378137,298.257223563,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[2.0]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],CS[ellipsoidal,2],AXIS["geodetic latitude (Lat)",north,ORDER[1],ANGLEUNIT["degree",0.0174532925199433]],AXIS["geodetic longitude (Lon)",east,ORDER[2],ANGLEUNIT["degree",0.0174532925199433]],USAGE[SCOPE["Horizontal component of 3D system."],AREA["World."],BBOX[-90,-180,90,180]],ID["EPSG",4326]]</wkt>
         <proj4>+proj=longlat +datum=WGS84 +no_defs</proj4>
@@ -25971,7 +25971,7 @@ def my_form_open(dialog, layer, feature):
   </ProjectStyleSettings>
   <ProjectTimeSettings cumulativeTemporalRange="0" frameRate="1" timeStep="1" timeStepUnit="mon" totalMovieFrames="100">
     <TemporalRange>
-      <start>4709-12-31T23:00:00Z</start>
+      <start>4668-12-31T23:00:00Z</start>
       <end>4739-12-31T23:00:00Z</end>
     </TemporalRange>
   </ProjectTimeSettings>
