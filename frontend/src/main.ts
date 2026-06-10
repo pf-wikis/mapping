@@ -67,6 +67,7 @@ export const map = new Map({
   attributionControl: false,
   pitchWithRotate: options.embedded?false:true,
   style: style,
+  pixelRatio: Math.max(window.devicePixelRatio || 1, 2),
   canvasContextAttributes: {
     preserveDrawingBuffer: true
   }
