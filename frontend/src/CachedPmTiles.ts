@@ -66,7 +66,7 @@ export class CachedSource implements Source {
         }
         else {
           console.log(e);
-          this.loadWeb(offset, length, signal, etag);
+          return this.loadWeb(offset, length, signal, etag);
         }
       })
       .then(f=>{

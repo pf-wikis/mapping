@@ -2,7 +2,7 @@ import { AttributionControl, Map } from "maplibre-gl";
 
 export class CompactAttributionControl extends AttributionControl {
 
-    private oldUpdateCompact: () => void;
+    private oldUpdateCompact!: () => void;
 
     constructor(embedded:boolean) {
         super({compact: true});

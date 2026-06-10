@@ -28,10 +28,12 @@ export function makeLocationsClickable(gmap: GolarionMap) {
   const popup = new Popup();
   function clickOnWikilink(e:MapLayerMouseEvent) {
     if(gmap.mode !== 'view') return;
+    if(!e.features || e.features.length === 0) return;
 
-    let geom = e.features[0].geometry as Point|MultiPoint;
+    let feature = e.features[0];
+    let geom = feature.geometry as Point|MultiPoint;
     let coordinates:[number, number];
-    let props = e.features[0].properties;
+    let props = feature.properties;
   
     //if this feature has multiple geometry use the closest one
     if(geom.type === 'MultiPoint') {
