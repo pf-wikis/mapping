@@ -7,18 +7,18 @@ qgis_process -v
 echo "Downloading newest mapping data."
 kart clone https://github.com/pf-wikis/mapping-data.git /w/data
 
+echo "Compiling tiles"
+cd /w/tile-compiler
+mvn -B compile package
+java -jar target/tile-compiler.jar compileTiles -maxZoom 12 -prodDetail -mappingDataFile ../data/data.gpkg
+cd /w
+
 echo "Building frontend"
 datahash=`expr $(date +%s) / 60`
 cd /w/frontend
 printf "VITE_DATA_HASH=$datahash" > ./.env.local
 npm ci
 npm run build
-
-echo "Compiling tiles"
-cd /w/tile-compiler
-mvn -B compile package
-java -jar target/tile-compiler.jar compileTiles -maxZoom 12 -prodDetail -mappingDataFile ../data/data.gpkg
-cd /w
 
 # copy results to output
 echo "Copying results"
