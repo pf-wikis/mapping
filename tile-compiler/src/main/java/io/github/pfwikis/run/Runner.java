@@ -3,15 +3,16 @@ package io.github.pfwikis.run;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
-import java.lang.ProcessBuilder.Redirect;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.Semaphore;
@@ -19,7 +20,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.ExecuteException;
+import org.apache.commons.exec.ExecuteResultHandler;
+import org.apache.commons.exec.PumpStreamHandler;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
@@ -33,49 +40,66 @@ public class Runner {
 	private static Semaphore limiter = new Semaphore(8, true);
 	public static void setMaximumParallelism(int limit) {
 		limiter = new Semaphore(limit, true);
+		
 	}
 	
     /*package*/ static GeoData run(StepExecutor step, String command, Object... args) throws IOException {
     	limiter.acquireUninterruptibly();
-    	try(
+    	try(	var cmd = Command.of(step, command, args);
     			var stdOut = new StdHelper("std", step);
-            	var stdErr = new StdHelper("err", step);) {
-	        try(var cmd = Command.of(step, command, args);) {
-	        	var proc = new ProcessBuilder()
-	        		.command(cmd.getParts())
-	        		.redirectError(stdOut.getFile())
-	        		.redirectInput(Redirect.INHERIT)
-	        		.redirectOutput(stdErr.getFile())
-		    		.start();
-	        	
-	        	while(!proc.waitFor(1, TimeUnit.SECONDS)) {
-	        		stdOut.intermediatePrint();
-	        		stdErr.intermediatePrint();
-	        	}
-	        	
-	        	int exitValue = proc.waitFor();
-	        	
-	        	//print any remaining content
-	        	stdOut.intermediatePrint();
-	        	stdErr.intermediatePrint();
-	
-	        	if(exitValue != 0) {
-	                throw new IOException("Exited tool with non-zero code "+exitValue+" for "+Thread.currentThread().getName()+": "+cmd.getParts().stream().collect(Collectors.joining(" ")));
-	            }
-	            GeoData result = GeoData.empty();
-	
-	            if(cmd.getResultFile() != null) {
-	                result = GeoData.from(cmd.getResultFile());
-	            }
-	            return result;
-	        } catch(Exception e) {
-	        	if(e instanceof IOException ioe && e.getMessage().startsWith("Exited command ")) {
-	        		throw ioe;
-	        	}
+    			var stdErr = new StdHelper("err", step)) {
+    		
+    		var pump = new PumpStreamHandler(stdOut.getStream(), stdErr.getStream(), null);
+    		pump.setStopTimeout(Duration.ofSeconds(10));
+        	var executor = DefaultExecutor.builder()
+        		.setExecuteStreamHandler(pump)
+        		.get();
+        	
+        	var result = new CompletableFuture<Integer>();
+        	executor.execute(cmd.toCommandLine(), new ExecuteResultHandler() {
+				@Override
+				public void onProcessFailed(ExecuteException e) {
+					result.completeExceptionally(e);
+				}
+				
+				@Override
+				public void onProcessComplete(int exit) {
+					result.complete(exit);
+				}
+			});
+        	
+        	try {
+        		while(result.copy().completeOnTimeout(null, 10, TimeUnit.SECONDS).get()==null) {
+            		stdOut.intermediatePrint();
+            		stdErr.intermediatePrint();
+            	}
+        		
+        		if(result.get() != 0) {
+        			throw new RuntimeException("Exitcode "+result.get());
+        		}
+        		
         		stdOut.intermediatePrint();
         		stdErr.intermediatePrint();
-        		throw new IOException(e);
-	        }
+        		
+        		GeoData output = GeoData.empty();
+ 	            if(cmd.getResultFile() != null) {
+ 	            	output = GeoData.from(cmd.getResultFile());
+ 	            }
+ 	            return output;
+        	} catch(Exception e) {
+        		var out = stdOut.toString();
+        		var err = stdErr.toString();
+        		var sb = new StringBuilder()
+        				.append("Exited tool failed for ")
+        				.append(Thread.currentThread().getName())
+        				.append(": ")
+        				.append(cmd);
+        		if(StringUtils.isNotBlank(out))
+        			sb.append("\nout: ").append(out);
+        		if(StringUtils.isNotBlank(err))
+        			sb.append("\nerr: ").append(err);
+        		throw new IOException(sb.toString(), e);
+        	}
     	}
     	finally {
     		limiter.release();
@@ -85,7 +109,7 @@ public class Runner {
     public static final File TMP_DIR;
     static {
     	try {
-    		String dirname = "pathfinder-mapping-"+(Instant.now().toEpochMilli()/1000000);
+    		String dirname = "pathfinder-mapping-"+(Instant.now().toEpochMilli()/1000);
 	    	File dir = null;
 	    	try {
 	    		dir = Files.createDirectory(Path.of("//wsl$/Ubuntu/tmp/"+dirname)).toFile();
@@ -142,7 +166,18 @@ public class Runner {
             return result;
         }
 
-        private void addCommandParts(Object[] commandParts) throws IOException {
+        public CommandLine toCommandLine() {
+			var cmd = new CommandLine(parts.getFirst());
+			parts.stream().skip(1).forEach(p->cmd.addArgument(p, false));
+			return cmd;
+		}
+        
+        @Override
+        public String toString() {
+        	return parts.stream().collect(Collectors.joining(" "));
+        }
+
+		private void addCommandParts(Object[] commandParts) throws IOException {
             for(var part : commandParts) {
             	Objects.requireNonNull(part, ()->"null Argument when executing "+Arrays.toString(commandParts));
             	if(part instanceof String v) {

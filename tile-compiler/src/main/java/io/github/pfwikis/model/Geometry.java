@@ -26,6 +26,7 @@ import lombok.NoArgsConstructor;
 public interface Geometry {
 	
 	public Stream<LngLat> streamPoints();
+	public long size();
 
     @Data
     public static class Polygon implements Geometry {
@@ -35,6 +36,11 @@ public interface Geometry {
         public Stream<LngLat> streamPoints() {
         	return coordinates.stream().flatMap(List::stream);
         }
+
+		@Override
+		public long size() {
+			return coordinates.stream().mapToLong(List::size).sum();
+		}
     }
 
     @Data
@@ -45,6 +51,11 @@ public interface Geometry {
         public Stream<LngLat> streamPoints() {
         	return coordinates.stream().flatMap(List::stream).flatMap(List::stream);
         }
+
+		@Override
+		public long size() {
+			return coordinates.stream().flatMap(List::stream).mapToLong(List::size).sum();
+		}
     }
     
     @Data
@@ -55,6 +66,11 @@ public interface Geometry {
         public Stream<LngLat> streamPoints() {
         	return Stream.of(coordinates);
         }
+
+		@Override
+		public long size() {
+			return 1;
+		}
     }
     
     @Data
@@ -65,6 +81,11 @@ public interface Geometry {
         public Stream<LngLat> streamPoints() {
         	return coordinates.stream();
         }
+
+		@Override
+		public long size() {
+			return coordinates.size();
+		}
     }
     
     public static interface ILineString {
@@ -86,6 +107,11 @@ public interface Geometry {
 		public List<List<LngLat>> toLines() {
 			return List.of(coordinates);
 		}
+
+		@Override
+		public long size() {
+			return coordinates.size();
+		}
     }
     
     @Data
@@ -100,6 +126,11 @@ public interface Geometry {
 		@Override
 		public List<List<LngLat>> toLines() {
 			return coordinates;
+		}
+
+		@Override
+		public long size() {
+			return coordinates.stream().mapToLong(List::size).sum();
 		}
     }
 }

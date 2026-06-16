@@ -21,6 +21,7 @@ public class Tools {
         	step,
             "qgis_process",
             qgisCommand.startsWith("native:")?"--no-python":List.of(),
+            //"--json", "--verbose",
             "run", qgisCommand,
             "--distance_units=meters",
             "--area_units=m2",

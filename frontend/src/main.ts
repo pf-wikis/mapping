@@ -45,8 +45,8 @@ if(root!=normalRoot) {
   style.sprite = (style.sprite as string).replace(normalRoot, root);
   style.glyphs = style.glyphs?.replace(normalRoot, root);
   (style.sources.golarion as any).url = (style.sources.golarion as any).url.replace(normalRoot, root);
+  (style.sources.highlights as any).data = (style.sources.highlights as any).data.replace(normalRoot, root);
 }
-(style.sources.golarion as any).url += '?v='+import.meta.env.VITE_DATA_HASH;
 
 if(options.hideLabels) {
   style.layers = style.layers.filter(l=>!l.id.includes('label'));

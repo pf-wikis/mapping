@@ -98,7 +98,7 @@ public class CompileTiles extends StepExecutor {
     }
     
     
-    private FeatureCollection applyTimeMeta(TimeMeta meta, FeatureCollection fc) {
+    public static FeatureCollection applyTimeMeta(TimeMeta meta, FeatureCollection fc) {
     	fc.getFeatures().forEach(f-> {
     		var time = f.getProperties().getTime();
     		f.getProperties().setTimeIndexStart(meta.getIndexForStart(time));

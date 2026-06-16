@@ -1,16 +1,15 @@
 package io.github.pfwikis.run;
 
+import java.io.ByteArrayOutputStream;
 import java.io.Closeable;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import org.apache.commons.lang3.Strings;
 import org.slf4j.event.Level;
 
 import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
-import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
-import io.github.pfwikis.run.Runner.OutFile;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,8 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class StdHelper implements Closeable {
 
 	private final StepExecutor step;
-	private final File file;
-	private final GeoData content;
+	private final ByteArrayOutputStream stream;
 	private String alreadyPrinted = "";
 	private String alreadyPrintedButPotential = "";
 	private String prefix;
@@ -28,16 +26,19 @@ public class StdHelper implements Closeable {
 	public StdHelper(String prefix, StepExecutor step) {
 		this.prefix = prefix;
 		this.step = step;
-		this.file = Runner.tmpGeojson(step, new OutFile());
-		this.content = GeoData.from(file);
+		this.stream = new ByteArrayOutputStream();
 	}
 
+	public String toString() {
+		return stream.toString(StandardCharsets.UTF_8)
+			.stripTrailing()
+			//remove deleted lines
+			.replaceAll("[^\n]*\r", "");
+	}
+	
 	public void intermediatePrint() {
 		try {
-			var ct = content.toRawString().stripTrailing();
-			
-			//remove deleted lines
-			ct = ct.replaceAll("[^\n]*\r", "");
+			var ct = toString();
 			String potential;
 			if(ct.contains("\n")) {
 				int i = ct.lastIndexOf('\n');

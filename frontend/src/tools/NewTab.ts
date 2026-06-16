@@ -26,7 +26,7 @@ export default class NewTab implements IControl {
         const tab = window.open(
             window.location.href
                 .replace('&embedded=true', '')
-                .replaceAll(/&highlight=[^&]*/, ''),
+                .replaceAll(/&highlight=[^&]*/g, ''),
             '_blank'
         );
         tab?.focus();

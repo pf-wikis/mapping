@@ -1,5 +1,8 @@
 import { DataDrivenPropertyValueSpecification, ExpressionSpecification, FillLayerSpecification, FilterSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, StyleSpecification } from "maplibre-gl";
 import timeMeta from "./utils/timeMeta";
+import { defineConfig, loadEnv } from 'vite';
+
+process.env = {...process.env, ...loadEnv('production', process.cwd())};
 
 let colors = {
   water:           'rgb(138, 180, 248)',
@@ -198,14 +201,16 @@ let layers:LayerSpecification[] = [
   }),
   createLayer('highlights', {
     type: 'fill',
+    source: 'highlights',
     filter: ['==', ['get', 'label'], ['global-state', 'highlighted']],
     layout: {
       visibility: ['case', ['==', null, ['global-state', 'highlighted']], 'none', 'visible']
     },
     paint: {
       'fill-color': 'rgb(0, 0, 0)',
-      'fill-opacity': 0.4,
-    }
+      'fill-opacity': 0.5,
+    },
+    'source-layer': undefined
   }),
   createLayer('locations', {
     id: 'location-icons',
@@ -367,8 +372,12 @@ export default {
     golarion: {
       type: 'vector',
       attribution: '<a href="https://paizo.com/licenses/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
-      url: 'pmtiles://https://map.pathfinderwiki.com/golarion.pmtiles',
+      url: 'pmtiles://https://map.pathfinderwiki.com/golarion.pmtiles?v='+process.env.VITE_DATA_HASH,
       encoding: 'mlt'
+    },
+    highlights: {
+      type: 'geojson',
+      data: 'https://map.pathfinderwiki.com/highlights.geojson?v='+process.env.VITE_DATA_HASH
     }
   },
   state: {

@@ -174,9 +174,13 @@ public abstract class StepExecutor extends Task<String, Content> {
 	}
 
 	private <T extends Content> List<Pair<String, T>> getAllInputs(Function<Content, T> transform) {
-		return inputMapping.entrySet().stream()
-				.map(e->Pair.of(e.getKey(), transform.apply(getResult(e.getValue()).getResult())))
-				.toList();
+		var res = new ArrayList<Pair<String, T>>(inputMapping.size());
+		for(var e:inputMapping.entrySet()) {
+			var key = e.getKey();
+			var content = getResult(e.getValue());
+			res.add(Pair.of(key, transform.apply(content.getResult())));
+		}
+		return res;
 	}
 	
 	public record Timing(String key, Stopwatch watch, StepExecutor step) implements Closeable {

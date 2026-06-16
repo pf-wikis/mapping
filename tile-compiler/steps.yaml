@@ -451,13 +451,29 @@
         locations: locations.RESOLVE_LABELS
         buildings: building-labels.RESOLVE_LABELS
 
-# - name: highlights
-#   steps:
-#     - step: HIGHLIGHTS
-#       dependsOn:
-#         nations: nation-area
-#         subregions: subregion-area
-#         provinces: province-area
+- name: highlights
+  steps:
+    - step: HIGHLIGHTS
+      dependsOn:
+        nations: nation-area
+        subregions: subregion-area
+        provinces: province-area
+        continents: continent-labels.RESOLVE_LABELS
+        land: land-labels.RESOLVE_LABELS
+        ice: ice-labels.RESOLVE_LABELS
+        forests: forest-labels.RESOLVE_LABELS
+        specials: special-labels.RESOLVE_LABELS
+        generic: generic-labels.RESOLVE_LABELS
+        hills: hill-labels.RESOLVE_LABELS
+        mountains: mountain-labels.RESOLVE_LABELS
+        deserts: desert-labels.RESOLVE_LABELS
+        swamps: swamp-labels.RESOLVE_LABELS
+        waters: water-labels.RESOLVE_LABELS
+        districts: district-labels.RESOLVE_LABELS
+    - step: GEOJSON_OUT
+      filename: highlights.geojson
+      dependsOn:
+        time-meta: time-meta
 
 - name: tiles
   steps:
@@ -473,7 +489,6 @@
         region-labels: region-labels
         locations: locations
         line-labels: line-labels
-#        highlights: highlights
 
 - name: debug-tiles
   steps:

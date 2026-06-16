@@ -70,8 +70,14 @@ public class TimeSlicedContent implements Content {
 				total++;
 				var time=f.getProperties().getTime();
 				f.getProperties().setTime(null);
+				
+				//sanity check
+				if(!contentAndTime.getValue().equals(contentAndTime.getValue().subRangeSet(time.toGuavaRange())) ) {
+					throw new IllegalStateException("This case should not happen");
+				}
+				
 				geometry.computeIfAbsent(f, _->TreeRangeSet.create())
-					.addAll(contentAndTime.getValue().subRangeSet(time.toGuavaRange()));
+					.addAll(contentAndTime.getValue());
 			}
 		}
 		result.setProperties(mergedProps);

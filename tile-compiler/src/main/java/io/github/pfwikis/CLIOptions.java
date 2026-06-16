@@ -11,17 +11,12 @@ import lombok.Getter;
 public class CLIOptions {
     @Parameter(names = "-maxZoom")
     private int maxZoom=8;
-    @Parameter(names = "-useBuildShortcut")
-    private boolean useBuildShortcut=false;
     @Parameter(names = "-prodDetail")
     private boolean prodDetail = false;
     @Parameter(names = "-mappingDataFile")
     private File mappingDataFile = new File("../../mapping-data/mapping-data.gpkg");
 	
     public File targetDirectory() {
-		return new File(useBuildShortcut
-            ?"../frontend/dist"
-            : "../frontend/public"
-        );
+		return new File("../frontend/public");
 	}
 }

@@ -58,7 +58,7 @@ const config:UserConfig = {
     proxy: {
       // Use remote data from production map
       '/sprites': 'https://map.pathfinderwiki.com',
-      '/golarion.pmtiles': 'https://map.pathfinderwiki.com',
+      //'/golarion.pmtiles': 'https://map.pathfinderwiki.com',
       '/search.json': 'https://map.pathfinderwiki.com',
     }
   }
