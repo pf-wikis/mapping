@@ -19,6 +19,7 @@ cd /w/frontend
 printf "VITE_DATA_HASH=$datahash" > ./.env.local
 npm ci
 npm run build
+cd /w
 
 # copy results to output
 echo "Copying results"
