@@ -45,14 +45,6 @@ public class RPoint implements Comparable<RPoint> {
         return R * c * 1000; // convert to meters
     }
 
-    /*public static Vector2D v(mil.nga.sf.Point p) {
-        return new Vector2D(p.getX()*2/3, p.getY());
-    }
-
-    public static Point p(Vector2D v) {
-        return new Point(new Position(v.getX()*3/2, v.getY()));
-    }*/
-
     public static Vector2D v(LngLat p) {
         return new Vector2D(p.lng(), Projection.geoToMercator(p.lat()));
     }

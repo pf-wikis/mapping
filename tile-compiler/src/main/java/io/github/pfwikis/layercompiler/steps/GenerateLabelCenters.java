@@ -121,6 +121,7 @@ public class GenerateLabelCenters extends StepExecutor {
     		cl.setAngle(f.getProperties().getAngle());
     		cl.setFilterMaxzoom(f.getProperties().getFilterMaxzoom());
     		cl.setFilterMinzoom(f.getProperties().getFilterMinzoom());
+    		cl.setTime(f.getProperties().getTime());
     		for(var field:fieldsToCopy) {
     			field.copy(f.getProperties(), cl);
     		}

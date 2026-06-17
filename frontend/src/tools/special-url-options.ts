@@ -28,15 +28,17 @@ export function addSpecialURLOptions(map: Map) {
         console.log(`bbox with ${bbox}`);
         options.bbox = undefined;
         options.writeToHash();
-        let cam:CenterZoomBearing|undefined;
-        if(bbox.length==4) {
-            cam = map.cameraForBounds(bbox as [number, number, number, number]);
-        }
-        else if(bbox.length==2) {
-            cam = {center:bbox as [number, number], zoom:zoom};
-        }
-        if(!cam)
-            cam = {center:[0,0], zoom:zoom}
-        map.jumpTo(cam);
+        map.once('load', function () {
+            let cam:CenterZoomBearing|undefined;
+            if(bbox.length==4) {
+                cam = map.cameraForBounds(bbox as [number, number, number, number]);
+            }
+            else if(bbox.length==2) {
+                cam = {center:bbox as [number, number], zoom:zoom};
+            }
+            if(!cam)
+                cam = {center:[0,0], zoom:zoom}
+            map.jumpTo(cam);
+        });
     }
 }
