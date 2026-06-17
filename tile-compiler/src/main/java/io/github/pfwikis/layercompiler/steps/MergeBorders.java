@@ -2,11 +2,6 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
-
-import com.google.common.collect.TreeRangeMap;
-import com.google.common.collect.TreeRangeSet;
 
 import io.github.pfwikis.layercompiler.steps.model.Inputs;
 import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
@@ -19,7 +14,8 @@ import io.github.pfwikis.model.Geometry.ILineString;
 import io.github.pfwikis.model.Geometry.LineString;
 import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.run.Tools;
-import io.github.pfwikis.util.time.TimeRange;
+import io.github.pfwikis.util.TimeMap;
+import io.github.pfwikis.util.TimeSet;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -28,7 +24,8 @@ public class MergeBorders extends StepExecutor {
 
     @Override
     public Content process(Inputs in) throws Exception {
-    	var segments = new HashMap<Segment, TreeRangeMap<Integer, Integer>>();  	
+    	var borderSegments = new HashMap<Segment, TimeMap<Integer>>();
+    	var regionSegments = new HashMap<Segment, TimeSet>();
     	//split lines into component segments
     	for(var input:in.getInputs().entrySet()) {
     		if(input.getValue().isEmpty()) continue;
@@ -52,8 +49,13 @@ public class MergeBorders extends StepExecutor {
 	    						a=b;
 	    						b=c;
 	    					}
-	    					segments.computeIfAbsent(new Segment(a,b), _->TreeRangeMap.create())
-	    						.merge(f.getProperties().getTime().toGuavaRange(), type, Math::min);
+	    					var seg = new Segment(a,b);
+	    					if(type > 1)
+		    					borderSegments.computeIfAbsent(seg, _->TimeMap.create())
+		    						.merge(f.getProperties().getTime(), type, Math::min);
+	    					else
+	    						regionSegments.computeIfAbsent(seg, _->TimeSet.create())
+	    							.add(f.getProperties().getTime());
 	    				}
     				}
     			}
@@ -61,34 +63,37 @@ public class MergeBorders extends StepExecutor {
     	}
     	
     	var fc = new FeatureCollection();
-    	for(var segEntry : segments.entrySet()) {
+    	for(var segEntry : borderSegments.entrySet()) {
     		var seg = segEntry.getKey();
-    		var perValue = segEntry.getValue().asMapOfRanges()
-    			.entrySet()
-    			.stream()
-    			.collect(Collectors.groupingBy(e->e.getValue()));
     		
-    		for(var entry:perValue.entrySet()) {
-    			int type = entry.getKey();
-    			//this is done because the ranges might not be all merged here
-    			var times = TreeRangeSet.create(entry.getValue().stream().map(Entry::getKey).toList());
-    			
-    			for(var time:times.asRanges()) {
-    	    		var f = new Feature();
-    	    		fc.getFeatures().add(f);
-    	    		f.setGeometry(new LineString(List.of(seg.a, seg.b)));
-    	    		f.getProperties().setBorderType(type);
-    	    		f.getProperties().setTime(TimeRange.from(time));
-        		}
+    		for(var entry:segEntry.getValue().entries()) {
+    			var type = entry.getValue();
+	    		var f = new Feature();
+	    		fc.getFeatures().add(f);
+	    		f.setGeometry(new LineString(List.of(seg.a, seg.b)));
+	    		f.getProperties().setBorderType(type);
+	    		f.getProperties().setTime(entry.getKey());
     		}
     			
     		
+    	}
+    	for(var segEntry : regionSegments.entrySet()) {
+    		var seg = segEntry.getKey();
+    		for(var time:segEntry.getValue().asRanges()) {
+	    		var f = new Feature();
+	    		fc.getFeatures().add(f);
+	    		f.setGeometry(new LineString(List.of(seg.a, seg.b)));
+	    		f.getProperties().setBorderType(1);
+	    		f.getProperties().setTileMaxzoom(5);
+	    		f.getProperties().setTime(time);
+    		}
     	}
     	var lc = GeoData.from(fc);
     	
     	var res= Tools.mapshaper(this,
     		lc,
-			"-dissolve", "borderType,timeStart,timeEnd"
+			"-dissolve", "borderType,timeStart,timeEnd,tileMaxzoom",
+			"-explode"
     	);
     	return Content.merged(res);
     	//merge borders
@@ -96,7 +101,6 @@ public class MergeBorders extends StepExecutor {
     	//merge min and max zoom
     	//probably an int type is fine
     }
-
 	private record Segment(LngLat a, LngLat b) {}
 
 }

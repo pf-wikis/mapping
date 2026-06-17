@@ -17,7 +17,6 @@ import org.apache.commons.io.output.TeeOutputStream;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.google.common.collect.TreeRangeMap;
 
 import io.github.pfwikis.layercompiler.description.Ctx;
 import io.github.pfwikis.layercompiler.steps.model.Inputs;
@@ -30,6 +29,7 @@ import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.run.Tools;
 import io.github.pfwikis.util.Jackson;
+import io.github.pfwikis.util.TimeMap;
 import io.github.pfwikis.util.time.TimeRange;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -116,14 +116,14 @@ public class CreateSearchIndex extends StepExecutor {
 		var results = new ArrayList<Result>();
 		for(var idEntry:perId.entrySet()) {
 			var id = idEntry.getKey();
-			var timedResults = TreeRangeMap.<Integer, Data>create();
+			var timedResults = TimeMap.<Data>create();
 			
 			for(var e:idEntry.getValue().entrySet()) {
 				var time = e.getKey();
 				var lngInfo = e.getValue().stream().flatMap(f->f.getGeometry().streamPoints()).collect(Collectors.summarizingDouble(LngLat::lng));
 				var latInfo = e.getValue().stream().flatMap(f->f.getGeometry().streamPoints()).collect(Collectors.summarizingDouble(LngLat::lat));
 				var areaM2 = e.getValue().stream().map(f->f.getProperties().getAreaM2()).filter(Objects::nonNull).findAny().orElse(null);
-				timedResults.putCoalescing(time.toGuavaRange(), new Data(
+				timedResults.put(time, new Data(
 					toArray(lngInfo, latInfo),
 					areaM2
 				));
@@ -131,11 +131,10 @@ public class CreateSearchIndex extends StepExecutor {
 			
 			results.add(new Result(
 				id,
-				timedResults.asMapOfRanges()
-					.entrySet()
+				timedResults.entries()
 					.stream()
 					.map(e->{
-						var time = TimeRange.from(e.getKey());
+						var time = e.getKey();
 						return new TimedResult(
 							time,
 							new TimeRange(meta.getIndexForStart(time), meta.getIndexForEnd(time)),

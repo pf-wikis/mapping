@@ -122,16 +122,15 @@ let layers:LayerSpecification[] = [
   createLayer('borders-regions', {
     'source-layer': 'borders',
     type: 'line',
+    maxzoom: 5,
     filter: ['==', ['get', 'borderType'], 1],
     paint: {
-      'line-color': ['interpolate', ["exponential", 2], ['zoom'],
-        4, colors.regionBorders,
-        5, colors.nationBorders,
+      'line-color': colors.regionBorders,
+      'line-width': 2,
+      "line-opacity": ["interpolate", ["exponential", 2], ["zoom"],
+        3.5, 1,
+        4, 0,
       ],
-      'line-width': ['interpolate', ["exponential", 2], ['zoom'],
-        4, 3,
-        5, 2,
-      ]
     },
     layout: {
       'line-cap': 'round'

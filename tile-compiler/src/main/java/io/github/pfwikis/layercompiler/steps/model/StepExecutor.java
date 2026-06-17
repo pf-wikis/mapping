@@ -16,10 +16,6 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import com.github.dexecutor.core.task.Task;
 import com.google.common.base.Stopwatch;
-import com.google.common.collect.RangeMap;
-import com.google.common.collect.RangeSet;
-import com.google.common.collect.TreeRangeMap;
-import com.google.common.collect.TreeRangeSet;
 
 import io.github.pfwikis.layercompiler.description.StepDescription;
 import io.github.pfwikis.layercompiler.steps.model.Time.ContentState;
@@ -29,6 +25,8 @@ import io.github.pfwikis.layercompiler.steps.model.content.TimeSlicedContent;
 import io.github.pfwikis.layercompiler.steps.model.content.TimeSlicedContent.TimeSlice;
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.FeatureCollection;
+import io.github.pfwikis.util.TimeMap;
+import io.github.pfwikis.util.TimeSet;
 import io.github.pfwikis.util.time.TimeRange;
 import lombok.Getter;
 import lombok.Setter;
@@ -134,21 +132,20 @@ public abstract class StepExecutor extends Task<String, Content> {
 			return List.of(Inputs.from(DataState.TIMELESS, TimeRange.always(), Collections.emptyMap()));
 		
 		var allInputs = getAllInputs(Content::asSliced);
-		var allCoveredTime = TreeRangeSet.<Integer>create();
-		allInputs.forEach((e)->e.getValue().getSlices().forEach(s->allCoveredTime.add(s.getTime().toGuavaRange())));
+		var allCoveredTime = TimeSet.create();
+		allInputs.forEach((e)->e.getValue().getSlices().forEach(s->allCoveredTime.add(s.getTime())));
 		
-		return new ArrayList<>(allInputs.stream()
+		return allInputs.stream()
 			.map(in->createSlicedVariants(allCoveredTime, in.getKey(), in.getValue()))
 			.reduce(this::mergeVariants).get()
-			.asMapOfRanges()
-			.values());
+			.values();
 	}
 	
-	private RangeMap<Integer, Inputs> mergeVariants(RangeMap<Integer, Inputs> a, RangeMap<Integer, Inputs> b) {
-		var result = TreeRangeMap.<Integer, Inputs>create();
-		for(var right:b.asMapOfRanges().entrySet()) {
-			for(var leftMatch:a.subRangeMap(right.getKey()).asMapOfRanges().entrySet()) {
-				var variant = Inputs.from(DataState.TIMELESS, TimeRange.from(leftMatch.getKey()));
+	private TimeMap<Inputs> mergeVariants(TimeMap<Inputs> a, TimeMap<Inputs> b) {
+		var result = TimeMap.<Inputs>create();
+		for(var right:b.entries()) {
+			for(var leftMatch:a.subTimeMap(right.getKey()).entries()) {
+				var variant = Inputs.from(DataState.TIMELESS, leftMatch.getKey());
 				variant.getInputs().putAll(leftMatch.getValue().getInputs());
 				variant.getInputs().putAll(right.getValue().getInputs());
 				result.put(leftMatch.getKey(), variant);
@@ -157,18 +154,18 @@ public abstract class StepExecutor extends Task<String, Content> {
 		return result;
 	}
 	
-	private RangeMap<Integer, Inputs> createSlicedVariants(RangeSet<Integer> allCoveredTime, String key, TimeSlicedContent slices) {
-		var result=TreeRangeMap.<Integer, Inputs>create();
+	private TimeMap<Inputs> createSlicedVariants(TimeSet allCoveredTime, String key, TimeSlicedContent slices) {
+		var result=TimeMap.<Inputs>create();
 		for(var slice:slices.getSlices()) {
-			if(!result.subRangeMap(slice.getTime().toGuavaRange()).asMapOfRanges().isEmpty())
+			if(!result.subTimeMap(slice.getTime()).isEmpty())
 				throw new IllegalStateException("This would create and error. We do not support overlapping ranges here.");
-			result.put(slice.getTime().toGuavaRange(), Inputs.from(DataState.TIMELESS, key, slice));
+			result.put(slice.getTime(), Inputs.from(DataState.TIMELESS, key, slice));
 		}
 		
-		var missing = TreeRangeSet.create(allCoveredTime);
-		missing.removeAll(result.asMapOfRanges().keySet());
+		var missing = TimeSet.create(allCoveredTime);
+		missing.removeAll(result.ranges());
 		for(var time:missing.asRanges()) {
-			result.put(time, Inputs.from(DataState.TIMELESS, key, TimeRange.from(time), GeoData.from(new FeatureCollection())));
+			result.put(time, Inputs.from(DataState.TIMELESS, key, time, GeoData.from(new FeatureCollection())));
 		}
 		return result;
 	}

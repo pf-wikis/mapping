@@ -8,10 +8,12 @@ import io.github.pfwikis.layercompiler.steps.model.content.TimeSlicedContent.Tim
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.util.time.TimeRange;
 import lombok.AccessLevel;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
+@EqualsAndHashCode
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Inputs {
 	private final Time.DataState timeState;

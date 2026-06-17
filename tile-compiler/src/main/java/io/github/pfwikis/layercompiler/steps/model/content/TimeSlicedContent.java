@@ -5,13 +5,12 @@ import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.google.common.collect.TreeRangeSet;
-
 import io.github.pfwikis.layercompiler.steps.model.Time.ContentState;
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.FeatureCollection.FCProperties;
+import io.github.pfwikis.util.TimeSet;
 import io.github.pfwikis.util.time.TimeRange;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -46,16 +45,16 @@ public class TimeSlicedContent implements Content {
 	}
 
 	private MergedContent merge() {
-		Map<Feature, TreeRangeSet<Integer>> geometry = new HashMap<>();
+		Map<Feature, TimeSet> geometry = new HashMap<>();
 		var result = new FeatureCollection();
 		FCProperties mergedProps = null;
 		
 		int total = 0;
 		
 		//because the same LCContent could be in multiple slices we resolve this first
-		var contentsToTime = new IdentityHashMap<GeoData, TreeRangeSet<Integer>>(slices.size());
-		slices.forEach(slice->contentsToTime.computeIfAbsent(slice.getData(), _->TreeRangeSet.create())
-				.add(slice.getTime().toGuavaRange()));
+		var contentsToTime = new IdentityHashMap<GeoData, TimeSet>(slices.size());
+		slices.forEach(slice->contentsToTime.computeIfAbsent(slice.getData(), _->TimeSet.create())
+				.add(slice.getTime()));
 		
 		for(var contentAndTime:contentsToTime.entrySet()) {
 			if(contentAndTime.getKey().isEmpty()) continue;
@@ -72,11 +71,11 @@ public class TimeSlicedContent implements Content {
 				f.getProperties().setTime(null);
 				
 				//sanity check
-				if(!contentAndTime.getValue().equals(contentAndTime.getValue().subRangeSet(time.toGuavaRange())) ) {
+				if(!contentAndTime.getValue().equals(contentAndTime.getValue().subTimeSet(time)) ) {
 					throw new IllegalStateException("This case should not happen");
 				}
 				
-				geometry.computeIfAbsent(f, _->TreeRangeSet.create())
+				geometry.computeIfAbsent(f, _->TimeSet.create())
 					.addAll(contentAndTime.getValue());
 			}
 		}
@@ -86,7 +85,7 @@ public class TimeSlicedContent implements Content {
 		for(var geom:geometry.entrySet()) {
 			for(var time:geom.getValue().asRanges()) {
 				Feature f = geom.getKey().copy();
-				f.getProperties().setTime(TimeRange.from(time));
+				f.getProperties().setTime(time);
 				result.getFeatures().add(f);
 			}
 		}
