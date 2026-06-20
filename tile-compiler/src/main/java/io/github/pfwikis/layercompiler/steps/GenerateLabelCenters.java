@@ -104,8 +104,8 @@ public class GenerateLabelCenters extends StepExecutor {
 	        var withFields = Tools.mapshaper(this, withArea,
 	    		dissolve?List.of("-dissolve", "label"+in.getTimeState().mapshaperTimeFields(), "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm"):List.of(),
 	    		"-sort", "areaSqkm", "descending", //to make bigger feature more important
-				"-each", "filterMinzoom="+filterMinzoom(),
-	            "-each", "filterMaxzoom=filterMinzoom+"+labelRange,
+				"-each", "minzoom="+minzoomJS(),
+	            "-each", "maxzoom=minzoom+"+labelRange,
 	            "-require", "crypto",
 	            "-each", "uuid=crypto.randomUUID()"
 	    	);
@@ -119,8 +119,8 @@ public class GenerateLabelCenters extends StepExecutor {
     		cl.setLabel(f.getProperties().getLabel());
     		cl.setColor(f.getProperties().getColor());
     		cl.setAngle(f.getProperties().getAngle());
-    		cl.setFilterMaxzoom(f.getProperties().getFilterMaxzoom());
-    		cl.setFilterMinzoom(f.getProperties().getFilterMinzoom());
+    		cl.setMaxzoom(f.getProperties().getMaxzoom());
+    		cl.setMinzoom(f.getProperties().getMinzoom());
     		cl.setTime(f.getProperties().getTime());
     		for(var field:fieldsToCopy) {
     			field.copy(f.getProperties(), cl);
@@ -235,15 +235,15 @@ public class GenerateLabelCenters extends StepExecutor {
 	    	var features = Tools.mapshaper(
 				this, 
 				polygons,			
-				"-filter", "filterMinzoom+"+extraZoom+"<="+(Ctx.INSTANCE.getOptions().getMaxZoom()+labelRange),
+				"-filter", "minzoom+"+extraZoom+"<="+(Ctx.INSTANCE.getOptions().getMaxZoom()+labelRange),
 				"-each", "dots=4**("+step+")",
-				"-each", "filterMinzoom=filterMinzoom+"+extraZoom,
-				"-each", "filterMaxzoom=filterMaxzoom+"+extraZoom,
+				"-each", "minzoom=minzoom+"+extraZoom,
+				"-each", "maxzoom=maxzoom+"+extraZoom,
 				"-each", "name=name+' +"+step+"'",
 				"-dots",
 					"dots",
 					"evenness=1",
-					"copy-fields=dots,label,filterMinzoom,filterMaxzoom,areaSqkm"+(fieldsToCopy.isEmpty()?"":(","+fieldsToCopy.stream().map(Field::name).collect(Collectors.joining(",")))),
+					"copy-fields=dots,label,minzoom,maxzoom,areaSqkm"+(fieldsToCopy.isEmpty()?"":(","+fieldsToCopy.stream().map(Field::name).collect(Collectors.joining(",")))),
 					"multipart"
 			).toFeatureCollection();
 	    	log.info("Added {} label points at zoom shift {}", features.getFeatures().size(), step);
@@ -253,7 +253,7 @@ public class GenerateLabelCenters extends StepExecutor {
 	}
 	
 
-	private String filterMinzoom() {
+	private String minzoomJS() {
 		if(forceMinzoom != null)
 			return Integer.toString(forceMinzoom);
 

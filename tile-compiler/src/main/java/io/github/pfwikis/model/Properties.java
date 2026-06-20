@@ -7,6 +7,7 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
 import io.github.pfwikis.util.time.TimeRange;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,10 +27,8 @@ public class Properties extends AnyJson {
 	private String link;
 	private String text;
 	private String icon;
-	private Integer filterMinzoom;
-	private Integer filterMaxzoom;
-	private Integer tileMinzoom;
-	private Integer tileMaxzoom;
+	private Integer minzoom;
+	private Integer maxzoom;
 	private Integer articleLength;
 	private Integer size;
 	private Boolean capital;
@@ -56,6 +55,9 @@ public class Properties extends AnyJson {
 	private Integer timeIndexStart;
 	/*only used for output*/
 	private Integer timeIndexEnd;
+	private ExportProperties export;
+	private Integer pregroupMinzoom;
+	
 	
 	public static enum Pattern {
 		pebbles,
@@ -73,5 +75,12 @@ public class Properties extends AnyJson {
 		}
 			
 		return null;
+	}
+	
+	@Data
+	@FieldNameConstants
+	public static class ExportProperties {
+		private int tileMinzoom;
+		private int tileMaxzoom;
 	}
 }

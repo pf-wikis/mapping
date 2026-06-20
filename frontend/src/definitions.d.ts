@@ -1,11 +1,8 @@
-declare module 'pure-context-menu';
+import { StyleSpecification } from 'maplibre-gl';
+
 declare module 'maplibre-gl/dist/maplibre-gl.css';
 declare module '*.scss';
-declare module 'virtual:style' {
-    import { StyleSpecification } from 'maplibre-gl';
-    const value: StyleSpecification;
-    export default value;
-}
+
 
 declare const __BUILD_DATE__: string
 
@@ -16,4 +13,9 @@ interface ImportMetaEnv {
 interface ImportMeta {
     readonly env: ImportMetaEnv
 }
-  
+
+declare module 'virtual:style' {
+    const value: StyleSpecification;
+    export default value;
+}
+

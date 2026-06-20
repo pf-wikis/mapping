@@ -1,13 +1,44 @@
-import { LngLat, Map, MapLayerMouseEvent, Popup } from "maplibre-gl";
+import { LngLat, MapGeoJSONFeature, MapLayerMouseEvent, MapMouseEvent, Popup } from "maplibre-gl";
 import { MultiPoint, Point } from 'geojson';
 import { GolarionMap } from "./GolarionMap";
 import changeCursor from "./ChangeCursor";
 
+function clickableFeature(e:MapMouseEvent & {features?: MapGeoJSONFeature[];}) {
+  for(let f of e.features || []) {
+    if(f.properties?.fid !== undefined)
+      return f;
+  }
+}
+
+const loaded = Array<boolean>(10).fill(false);
+const texts = new Map<number, string>();
+
+async function getTextForFeature(feature:MapGeoJSONFeature) {
+  let id = feature.properties?.fid as number|undefined;
+  if(id === undefined) return undefined;
+  let slice = id%10;
+
+  if(!loaded[slice]) {
+    let response = await fetch(`extra/${slice}.json?v=${import.meta.env.VITE_DATA_HASH}`);
+    if (!response.ok) {
+      throw new Error(`Failed to load location texts: ${response.statusText}`);
+    }
+    let extra = await response.json() as Record<number, string>;
+    for(let [id, text] of Object.entries(extra)) {
+      texts.set(parseInt(id), text);
+    }
+    loaded[slice] = true;
+  }
+  
+  return texts.get(id);
+}
+
 export function makeLocationsClickable(gmap: GolarionMap) {
   let map = gmap.map;
-  function showPointer() {
-    if(gmap.mode === 'view')
-      changeCursor(gmap, 'pointer');
+  function showPointer(e:MapMouseEvent & {features?: MapGeoJSONFeature[];}) {
+    if(gmap.mode !== 'view') return;
+    let f = clickableFeature(e);
+    if(f) changeCursor(gmap, 'pointer');
   }
   
   function hidePointer() {
@@ -15,10 +46,6 @@ export function makeLocationsClickable(gmap: GolarionMap) {
       changeCursor(gmap, '');
   }
   
-  map.on('mouseenter', 'city-icons', showPointer);
-  map.on('mouseenter', 'city-labels', showPointer);
-  map.on('mouseleave', 'city-icons', hidePointer);
-  map.on('mouseleave', 'city-labels', hidePointer);
   map.on('mouseenter', 'location-icons', showPointer);
   map.on('mouseenter', 'location-labels', showPointer);
   map.on('mouseleave', 'location-icons', hidePointer);
@@ -26,11 +53,12 @@ export function makeLocationsClickable(gmap: GolarionMap) {
   
   
   const popup = new Popup();
-  function clickOnWikilink(e:MapLayerMouseEvent) {
+  async function clickOnWikilink(e:MapLayerMouseEvent) {
     if(gmap.mode !== 'view') return;
-    if(!e.features || e.features.length === 0) return;
-
-    let feature = e.features[0];
+    let feature = clickableFeature(e);
+    if(!feature || !feature.properties.fid) return;
+    let text = await getTextForFeature(feature);
+    if(!text) return;
     let geom = feature.geometry as Point|MultiPoint;
     let coordinates:[number, number];
     let props = feature.properties;
@@ -59,7 +87,7 @@ export function makeLocationsClickable(gmap: GolarionMap) {
 
     popup
       .setLngLat(coordinates)
-      .setHTML(`<div class="wiki-popup"><h3><a href="${props.link}" target="_blank">${props.label}</a></h3>${props.text||''}</div>`)
+      .setHTML(`<div class=\"wiki-popup\">${text}</div>`)
       .addTo(map);
   }
   

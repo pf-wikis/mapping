@@ -19,4 +19,8 @@ public class CLIOptions {
     public File targetDirectory() {
 		return new File("../frontend/public");
 	}
+    
+    public File targetGenDirectory() {
+		return new File("../frontend/gen");
+	}
 }

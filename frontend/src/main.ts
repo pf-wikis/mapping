@@ -58,6 +58,8 @@ if(options.hideBorders) {
   style.layers = style.layers.filter(l=>!l.id.includes('border'));
 }
 
+console.log("Effective style", style);
+
 /************************* end of style adjustments ****************************************/
 
 

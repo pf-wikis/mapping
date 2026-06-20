@@ -1,6 +1,7 @@
 package io.github.pfwikis.layercompiler.steps;
 
 import java.io.File;
+import java.util.List;
 import java.util.Objects;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -13,14 +14,14 @@ import com.onthegomap.planetiler.geo.GeometryPipeline;
 import com.onthegomap.planetiler.reader.SourceFeature;
 
 import io.github.pfwikis.layercompiler.description.Ctx;
+import io.github.pfwikis.layercompiler.description.StepDescription;
 import io.github.pfwikis.layercompiler.steps.model.Inputs;
 import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
 import io.github.pfwikis.layercompiler.steps.model.Time;
 import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
-import io.github.pfwikis.layercompiler.steps.time.TimeMetaCollect.TimeMeta;
-import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Properties;
+import io.github.pfwikis.model.Properties.ExportProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -45,12 +46,13 @@ public class CompileTiles extends StepExecutor {
     		"tile-format", "mlt",
     		"maxzoom", Integer.toString(maxZoom),
     		"render_maxzoom", Integer.toString(maxZoom),
-    		"mlt_advanced", "true",
+    		"feature_source_id_multiplier", 1,
+    		//"mlt_advanced", "true",
     		//does not work without outlines
     		//"mlt_tessellate_polygons", "true",
     		"mlt_shared_dict", "true",
-    		"exclude_ids", "true",
     		"force", "true",
+    		"exclude_ids", "true",
     		//increase detail at max zoom for best overzooming
     		"min_feature_size_at_max_zoom", "0",
     		"simplify_tolerance_at_max_zoom", "0"
@@ -58,8 +60,7 @@ public class CompileTiles extends StepExecutor {
     	in.getInputs().entrySet()
 			.stream()
 			.filter(l->!l.getKey().equals("time-meta"))
-			.map(e->Pair.of(e.getKey(), applyTimeMeta(meta, e.getValue().toFeatureCollection())))
-			.peek(e->cleanProperties(e.getValue()))
+			.map(e->Pair.of(e.getKey(), e.getValue().toFeatureCollection()))
 			.forEach(e->planetiler.addGeoJsonSource(e.getKey(), GeoData.from(e.getValue()).toTmpFile(this)));
     	planetiler.setOutput(new File(Ctx.INSTANCE.getOptions().targetDirectory(), filename+"."+extension).toPath());
     	planetiler.setProfile(new Profile() {
@@ -67,21 +68,32 @@ public class CompileTiles extends StepExecutor {
 			@Override
 			public void processFeature(SourceFeature f, FeatureCollector features) {
 				//sourceFeature.latLonGeometry()
-				var out = features.anyGeometry(f.getSource())
-					.putAttrs(f.tags());
+				var out = features.anyGeometry(f.getSource());
+				
 				//filter by zoom level
 				out.setZoomRange(
-					max(
-						getInt(f, Properties.Fields.tileMinzoom),
-						clamp(0, getInt(f, Properties.Fields.filterMinzoom), maxZoom),
-						0
-					),
-					min(
-						getInt(f, Properties.Fields.filterMaxzoom),
-						getInt(f, Properties.Fields.tileMaxzoom),
-						maxZoom
-					)
+					f.getStruct(Properties.Fields.export).get(ExportProperties.Fields.tileMinzoom).orElse(0).asInt(),
+					f.getStruct(Properties.Fields.export).get(ExportProperties.Fields.tileMaxzoom).orElse(maxZoom).asInt()
 				);
+				
+				if(f.id()%100==0 && f.getSource().equals("locations")) {
+    				log.info("ID {} = {}", f.id(), f.getString("label"));
+				}
+				
+				//add properties but with exceptions
+				for(var e:f.tags().entrySet()) {
+					switch(e.getKey()) {
+						case Properties.Fields.label->{
+							if(f.getSource().equals("locations")) {
+								out.setAttrWithMinzoom(e.getKey(), e.getValue(), (int)f.getLong(Properties.Fields.pregroupMinzoom)+5);
+							}
+							else
+								out.setAttr(e.getKey(), e.getValue());
+						}
+						case Properties.Fields.export->{}
+						default->out.setAttr(e.getKey(), e.getValue());
+					}
+				}
 				
 				//disable simplifaction completely at maxzoom
 				out.transformScaledGeometryByZoom(zoom-> {
@@ -97,52 +109,18 @@ public class CompileTiles extends StepExecutor {
         return Content.empty();
     }
     
-    
-    public static FeatureCollection applyTimeMeta(TimeMeta meta, FeatureCollection fc) {
-    	fc.getFeatures().forEach(f-> {
-    		var time = f.getProperties().getTime();
-    		f.getProperties().setTimeIndexStart(meta.getIndexForStart(time));
-    		f.getProperties().setTimeIndexEnd(meta.getIndexForEnd(time));
-    		f.getProperties().setTime(null);
-    	});
-    	return fc;
-	}
-
-
-	private void cleanProperties(FeatureCollection fc) {
-    	for(var f:fc.getFeatures()) {
-    		f.getProperties().setTime(null);
-    	}
-	}
-	
-	private Integer getInt(SourceFeature f, String field) {
-		var val = f.getTag(field);
-		if(val == null) return null;
-		if(val instanceof Number n) return n.intValue();
-		return Integer.parseInt(val.toString());
-	}
-
-    private static int max(Integer... values) {
-    	Integer max = null;
-		for(var v:values) {
-			if(v != null && (max == null || max < v))
-				max = v;
-		}
-		return max;
-	}
-    
-    private static int min(Integer... values) {
-		Integer min = null;
-		for(var v:values) {
-			if(v != null && (min == null || min > v))
-				min = v;
-		}
-		return min;
-	}
-    
-    private static Integer clamp(int min, Integer value, int max) {
-		if(value == null) return null;
-		return Math.clamp(value, min, max);
-	}
-
+    @Override
+    public List<StepExecutor> createAutoSteps() {
+    	var meta = new PropsMeta();
+    	meta.setDescription(new StepDescription(
+    		getDescription().getId()+"_meta",
+    		getDescription().getGroup(),
+    		getDescription().getStep()+"_meta",
+    		meta
+    	));
+    	meta.setId(meta.getDescription().getId());
+    	meta.getInputMapping().putAll(this.getInputMapping());
+    	meta.getInputMapping().put("highlights", "highlights.PREPARE_EXPORT");
+    	return List.of(meta);
+    }
 }

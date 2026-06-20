@@ -25,7 +25,7 @@ public class AddCityZoom extends StepExecutor {
     public Content process(Inputs ins) throws IOException {
     	var in = ins.getInput().toFeatureCollection();
     	in.getFeatures().forEach(f-> {
-    		f.getProperties().setFilterMinzoom(switch(f.getProperties().getSize()) {
+    		f.getProperties().setMinzoom(switch(f.getProperties().getSize()) {
     			case 0 -> 1;
     			case 1 -> 2;
     			case 2 -> 3;
@@ -33,7 +33,7 @@ public class AddCityZoom extends StepExecutor {
     			default -> 3;
     		});
     		if(DISTRICT_CITIES.contains(f.getProperties().simpleLabel())) {
-    			f.getProperties().setFilterMaxzoom(11);
+    			f.getProperties().setMaxzoom(11);
     		}
     	});
         return Content.derivedFrom(ins, GeoData.from(in));

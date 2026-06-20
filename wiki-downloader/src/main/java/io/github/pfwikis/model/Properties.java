@@ -13,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonPropertyOrder({"labels", "link", "modificationDate", "type", "capital", "size", "filterMinzoom", "articleLength", "text"})
+@JsonPropertyOrder({"labels", "link", "modificationDate", "type", "capital", "size", "minzoom", "articleLength", "text"})
 public class Properties {
 
     private String labels;

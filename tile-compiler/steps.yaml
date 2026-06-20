@@ -144,6 +144,10 @@
         summand: cities
     - step: RESOLVE_LABELS
     - step: LOCATION_GROUP
+    - step: LOCATION_SCALE
+    - step: PREPARE_EXPORT
+      dependsOn:
+        time-meta: time-meta
 
 - name: mountains
   steps:
@@ -270,6 +274,12 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 3
+    - step: ADD_ZOOM
+      minZoom: 3
+      maxZoom: 6
+    - step: PREPARE_EXPORT
+      dependsOn:
+        time-meta: time-meta
 
 - name: province-borders
   steps:
@@ -286,6 +296,12 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 4
+    - step: ADD_ZOOM
+      minZoom: 4
+      maxZoom: 7
+    - step: PREPARE_EXPORT
+      dependsOn:
+        time-meta: time-meta
 
 - name: subregion-borders
   steps:
@@ -302,6 +318,12 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 2
+    - step: ADD_ZOOM
+      minZoom: 3
+      maxZoom: 5
+    - step: PREPARE_EXPORT
+      dependsOn:
+        time-meta: time-meta
 
 - name: region-borders
   steps:
@@ -323,6 +345,12 @@
     - step: GENERATE_LABEL_CENTERS
       generateSubLabels: false
       forceMinzoom: 1
+    - step: ADD_ZOOM
+      minZoom: 1
+      maxZoom: 3
+    - step: PREPARE_EXPORT
+      dependsOn:
+        time-meta: time-meta
 
 - name: region-area
   steps: 
@@ -360,6 +388,9 @@
         region: region-borders
         district: district-borders
     - step: SMOOTH_LINES
+    - step: PREPARE_EXPORT
+      dependsOn:
+        time-meta: time-meta
 
 - name: time-meta
   steps:
@@ -397,6 +428,9 @@
         waters: waters
         roads: roads
         buildings: buildings
+    - step: PREPARE_EXPORT
+      dependsOn:
+        time-meta: time-meta
 
 - name: labels
   steps:
@@ -415,6 +449,9 @@
         waters: water-labels
         districts: district-labels
         buildings: building-labels
+    - step: PREPARE_EXPORT
+      dependsOn:
+        time-meta: time-meta
 
 - name: line-labels
   steps:
@@ -423,6 +460,9 @@
       dependsOn:
         rivers: river-labels
         roads: road-labels
+    - step: PREPARE_EXPORT
+      dependsOn:
+        time-meta: time-meta
 
 - name: search-index
   steps:
@@ -470,10 +510,11 @@
         swamps: swamp-labels.RESOLVE_LABELS
         waters: water-labels.RESOLVE_LABELS
         districts: district-labels.RESOLVE_LABELS
-    - step: GEOJSON_OUT
-      filename: highlights.geojson
+    - step: PREPARE_EXPORT
       dependsOn:
         time-meta: time-meta
+    - step: GEOJSON_OUT
+      filename: highlights.geojson
 
 - name: tiles
   steps:

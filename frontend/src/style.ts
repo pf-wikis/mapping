@@ -1,8 +1,12 @@
 import { DataDrivenPropertyValueSpecification, ExpressionSpecification, FillLayerSpecification, FilterSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, StyleSpecification } from "maplibre-gl";
 import timeMeta from "./utils/timeMeta";
 import { defineConfig, loadEnv } from 'vite';
+import {ExistingLayer, Prop, propsMeta, maxZoomWithData} from "../gen/props-meta";
 
 process.env = {...process.env, ...loadEnv('production', process.cwd())};
+
+type CreatableLayerSpec = (FillLayerSpecification | LineLayerSpecification | SymbolLayerSpecification)&{'source-layer': ExistingLayer};
+type LayerSpec = LayerSpecification&{'source-layer'?: ExistingLayer};
 
 let colors = {
   water:           'rgb(138, 180, 248)',
@@ -19,62 +23,61 @@ let colors = {
   black:           'rgb( 10,  10,  10)'
 };
 
-const props = {
-  filterMinzoom: ["get", "filterMinzoom"] as ExpressionSpecification,
-  filterMaxzoom: ["get", "filterMaxzoom"] as ExpressionSpecification
-}
+function createLayer(layerId:ExistingLayer, base:Partial<CreatableLayerSpec>):CreatableLayerSpec {
+  let layer = propsMeta[layerId];
 
-const equatorMeter2Deg = 1/111319.491 * 1.5; //no idea where this second factor comes from -.-
-function interpolateWithCamera(base:ExpressionSpecification):DataDrivenPropertyValueSpecification<number> {
-  return [
-    'interpolate',
-    ['exponential', 2],
-    ['zoom'],
-     0, ['*', base, equatorMeter2Deg],
-    22, ['*', base, equatorMeter2Deg*(2**22)],
-  ] as ExpressionSpecification
-}
-
-function interpolateTextWithCamera(factor:number):ExpressionSpecification {
-  return [
-    'interpolate',
-    ['exponential', 2],
-    ['zoom'],
-    0, factor,
-    22, factor*(2**22),
-  ]
-}
-
-type DynamicLayerSpec = FillLayerSpecification | LineLayerSpecification | SymbolLayerSpecification;
-function createLayer(name:string, base:Partial<DynamicLayerSpec>):DynamicLayerSpec {
   let merged = Object.assign({
-    id: base.type+'_'+name,
+    id: base.type+'_'+layerId,
     source: 'golarion',
-    'source-layer': name,
-  }, base) as DynamicLayerSpec;
+    'source-layer': layerId,
+    minzoom: (
+        'export_tileMinzoom' in layer.props
+        && layer.props.export_tileMinzoom.nullEntries==0
+        && layer.props.export_tileMinzoom.minNumber !== 0
+      )? layer.props.export_tileMinzoom.minNumber : undefined,
+    maxzoom: (
+        'export_tileMaxzoom' in layer.props
+        && layer.props.export_tileMaxzoom.nullEntries==0
+        && layer.props.export_tileMaxzoom.maxNumber !== maxZoomWithData
+      )? layer.props.export_tileMaxzoom.maxNumber : undefined,
+  }, base) as CreatableLayerSpec;
+  
 
-  const baseFilters:ExpressionSpecification[] = [
-    ['any', ['!', ['has', 'filterMinzoom']], ['>=', ["zoom"], props.filterMinzoom]],
-    ['any', ['!', ['has', 'filterMaxzoom']], ['<=', ["zoom"], props.filterMaxzoom]],
-    ['any', ['!', ['has', 'timeIndexStart']], ['>=', ['global-state', 'timeIndex'], ['get', 'timeIndexStart']]],
-    ['any', ['!', ['has', 'timeIndexEnd']],   ['<',  ['global-state', 'timeIndex'], ['get', 'timeIndexEnd']]]
-  ];
-  if(merged.filter && merged.filter instanceof Array) {
-    if(merged.filter[0] === 'all') {
-      merged.filter = [...merged.filter, ...baseFilters] as FilterSpecification;
+  const baseFilters:ExpressionSpecification[] = [];
+  
+
+  //filter for min/max zoom
+  if(Prop.minzoom in layer.props && layer.props.minzoom.nonNullEntries > 0)
+    baseFilters.push(['any', ['!', ['has', Prop.minzoom]], ['>=', ["zoom"], ['get', Prop.minzoom]]]);
+  if(Prop.maxzoom in layer.props && layer.props.maxzoom.nonNullEntries > 0)
+    baseFilters.push(['any', ['!', ['has', Prop.maxzoom]], ['<=', ["zoom"], ['get', Prop.maxzoom]]]);
+
+  //filter for time index
+  if(layer.hasTime) {
+    if('timeIndexStart' in layer.props && layer.props.timeIndexStart.nonNullEntries > 0)
+      baseFilters.push(['any', ['!', ['has', 'timeIndexStart']], ['>=', ['global-state', 'timeIndex'], ['get', Prop.timeIndexStart]]]);
+    if('timeIndexEnd' in layer.props && layer.props.timeIndexEnd.nonNullEntries > 0)
+      baseFilters.push(['any', ['!', ['has', 'timeIndexEnd']],   ['<',  ['global-state', 'timeIndex'], ['get', Prop.timeIndexEnd]]]);
+  }
+
+  if(baseFilters.length > 0) {
+    if(merged.filter && merged.filter instanceof Array) {
+      if(merged.filter[0] === 'all') {
+        merged.filter = [...merged.filter, ...baseFilters] as FilterSpecification;
+      }
+      else {
+        merged.filter = ['all', merged.filter, ...baseFilters] as FilterSpecification;
+      }
     }
     else {
-      merged.filter = ['all', merged.filter, ...baseFilters] as FilterSpecification;
+      merged.filter = ['all', ...baseFilters];
     }
-  }
-  else {
-    merged.filter = ['all', ...baseFilters];
   }
 
   return merged;
 }
 
-let layers:LayerSpecification[] = [
+let layers:LayerSpec[] = [
   {
     id: 'background',
     type: 'background',
@@ -85,14 +88,14 @@ let layers:LayerSpecification[] = [
   createLayer('geometry', {
     type: 'fill',
     paint: {
-      'fill-color': ['get', 'color'],
+      'fill-color': ['get', Prop.color],
       'fill-antialias': false
     }
   }),
-  createLayer('nation-borders', {
-    'source-layer': 'borders',
+  createLayer('borders', {
+    id: 'borders-nations',
     type: 'line',
-    filter: ['==', ['get', 'borderType'], 3],
+    filter: ['==', ['get', Prop.borderType], 3],
     paint: {
       'line-color': colors.nationBorders,
       'line-width': ["interpolate", ["exponential", 2], ["zoom"],
@@ -104,10 +107,10 @@ let layers:LayerSpecification[] = [
       'line-cap': 'round'
     }
   }),
-  createLayer('subregion-borders', {
-    'source-layer': 'borders',
+  createLayer('borders', {
+    id: 'borders-subregions',
     type: 'line',
-    filter: ['==', ['get', 'borderType'], 2],
+    filter: ['==', ['get', Prop.borderType], 2],
     paint: {
       'line-color': colors.nationBorders,
       'line-width': ["interpolate", ["exponential", 2], ["zoom"],
@@ -119,11 +122,11 @@ let layers:LayerSpecification[] = [
       'line-cap': 'round'
     }
   }),
-  createLayer('borders-regions', {
-    'source-layer': 'borders',
+  createLayer('borders', {
+    id: 'borders-regions',
     type: 'line',
     maxzoom: 5,
-    filter: ['==', ['get', 'borderType'], 1],
+    filter: ['==', ['get', Prop.borderType], 1],
     paint: {
       'line-color': colors.regionBorders,
       'line-width': 2,
@@ -136,10 +139,10 @@ let layers:LayerSpecification[] = [
       'line-cap': 'round'
     }
   }),
-  createLayer('province-borders', {
-    'source-layer': 'borders',
+  createLayer('borders', {
+    id: 'borders-provinces',
     type: 'line',
-    filter: ['==', ['get', 'borderType'], 4],
+    filter: ['==', ['get', Prop.borderType], 4],
     minzoom: 4,
     paint: {
       'line-color': colors.nationBorders,
@@ -153,10 +156,10 @@ let layers:LayerSpecification[] = [
       'line-cap': 'round'
     }
   }),
-  createLayer('district-borders', {
-    'source-layer': 'borders',
+  createLayer('borders', {
+    id: 'borders-districts',
     type: 'line',
-    filter: ['==', ['get', 'borderType'], 5],
+    filter: ['==', ['get', Prop.borderType], 5],
     minzoom: 8,
     paint: {
       'line-color': colors.nationBorders,
@@ -175,7 +178,7 @@ let layers:LayerSpecification[] = [
     layout: {
       'symbol-placement': 'line',
       'text-max-angle': 20,
-      'text-field': ['get', 'label'],
+      'text-field': ['get', Prop.label],
       'text-font': ['NotoSans-Medium'],
       'symbol-spacing': 300,
       'text-size': [
@@ -187,8 +190,8 @@ let layers:LayerSpecification[] = [
       ],
     },
     paint: {
-      'text-color': ['get', 'color'],
-      'text-halo-color': ['get', 'halo'],
+      'text-color': ['get', Prop.color],
+      'text-halo-color': ['get', Prop.halo],
       'text-halo-width': [
         'interpolate',
         ['linear'],
@@ -200,38 +203,36 @@ let layers:LayerSpecification[] = [
   }),
   createLayer('highlights', {
     type: 'fill',
-    source: 'highlights',
-    filter: ['==', ['get', 'label'], ['global-state', 'highlighted']],
+    filter: ['==', ['get', Prop.label], ['global-state', 'highlighted']],
     layout: {
       visibility: ['case', ['==', null, ['global-state', 'highlighted']], 'none', 'visible']
     },
     paint: {
       'fill-color': 'rgb(0, 0, 0)',
-      'fill-opacity': 0.5,
-    },
-    'source-layer': undefined
+      'fill-opacity': 0.3,
+    }
   }),
   createLayer('locations', {
     id: 'location-icons',
     type: 'symbol',
     layout: {
-      'icon-image': ['get', 'icon'],
+      'icon-image': ['get', Prop.icon],
       'icon-pitch-alignment': 'map',
       'icon-overlap': 'always',
       'icon-ignore-placement': true,
       'icon-size': ["interpolate", ["exponential", 2], ["zoom"],
-         0,            ["^", 2, ["-", -3, props.filterMinzoom]],
-         1,            ["^", 2, ["-", -2, props.filterMinzoom]],
-         2, ["min", 1, ["^", 2, ["-", -1, props.filterMinzoom]]],
-         3, ["min", 1, ["^", 2, ["-",  0, props.filterMinzoom]]],
-         4, ["min", 1, ["^", 2, ["-",  1, props.filterMinzoom]]],
-         5, ["min", 1, ["^", 2, ["-",  2, props.filterMinzoom]]],
-         6, ["min", 1, ["^", 2, ["-",  3, props.filterMinzoom]]],
-         7, ["min", 1, ["^", 2, ["-",  4, props.filterMinzoom]]],
-         8, ["min", 1, ["^", 2, ["-",  5, props.filterMinzoom]]],
-         9, ["min", 1, ["^", 2, ["-",  6, props.filterMinzoom]]],
-        10, ["min", 1, ["^", 2, ["-",  7, props.filterMinzoom]]],
-      ] as any
+         0,            ["^", 2, ["-", -2, ['get', Prop.pregroupMinzoom]]],
+         1,            ["^", 2, ["-", -1, ['get', Prop.pregroupMinzoom]]],
+         2, ["min", 1, ["^", 2, ["-",  0, ['get', Prop.pregroupMinzoom]]]],
+         3, ["min", 1, ["^", 2, ["-",  1, ['get', Prop.pregroupMinzoom]]]],
+         4, ["min", 1, ["^", 2, ["-",  2, ['get', Prop.pregroupMinzoom]]]],
+         5, ["min", 1, ["^", 2, ["-",  3, ['get', Prop.pregroupMinzoom]]]],
+         6, ["min", 1, ["^", 2, ["-",  4, ['get', Prop.pregroupMinzoom]]]],
+         7, ["min", 1, ["^", 2, ["-",  5, ['get', Prop.pregroupMinzoom]]]],
+         8, ["min", 1, ["^", 2, ["-",  6, ['get', Prop.pregroupMinzoom]]]],
+         9, ["min", 1, ["^", 2, ["-",  7, ['get', Prop.pregroupMinzoom]]]],
+        10, ["min", 1, ["^", 2, ["-",  8, ['get', Prop.pregroupMinzoom]]]],
+      ]
     },
     paint: {
     }
@@ -239,24 +240,25 @@ let layers:LayerSpecification[] = [
   createLayer('labels', {
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'label'],
-      'text-rotate': ['case', ['global-state', 'rotated'], 0, ['get', 'angle']],
+      'text-field': ['get', Prop.label],
+      'text-rotate': ['case', ['global-state', 'rotated'], 0, ['get', Prop.angle]],
       'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
       'text-font': ['NotoSans-Medium'],
       'text-size': 16,
+      "text-overlap": 'always',
     },
     paint: {
-      'text-color': ['get', 'color'],
-      'text-halo-color': ['get', 'halo'],
+      'text-color': ['get', Prop.color],
+      'text-halo-color': ['get', Prop.halo],
       'text-halo-width': 1.5
     }
   }),
   createLayer('locations', {
     id: 'location-labels',
     type: 'symbol',
-    filter: ['>', ["zoom"], ["+", props.filterMinzoom, 3]],
+    filter: ['has', 'label'],
     layout: {
-      'text-field': ['get', 'label'],
+      'text-field': ['get', Prop.label],
       'text-font': ['NotoSans-Medium'],
       'text-size': 14,
       'text-variable-anchor': ["left", "right"],
@@ -270,11 +272,9 @@ let layers:LayerSpecification[] = [
     }
   }),
   createLayer('province-labels', {
-    minzoom: 4,
-    maxzoom: 7,
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'label'],
+      'text-field': ['get', Prop.label],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
         5, 5,
@@ -294,15 +294,13 @@ let layers:LayerSpecification[] = [
     }
   }),
   createLayer('nation-labels', {
-    minzoom: 3,
-    maxzoom: 6,
     type: 'symbol',
     filter: ['any',
-      ['!', ['get', 'inSubregion']],
+      ['!', ['get', Prop.inSubregion]],
       ['>', ['zoom'], 4]
     ],
     layout: {
-      'text-field': ['get', 'label'],
+      'text-field': ['get', Prop.label],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
         4, 10,
@@ -322,11 +320,9 @@ let layers:LayerSpecification[] = [
     }
   }),
   createLayer('subregion-labels', {
-    minzoom: 3,
-    maxzoom: 5,
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'label'],
+      'text-field': ['get', Prop.label],
       'text-font': ['NotoSans-Medium'],
       'text-size': ['interpolate', ['linear'], ['zoom'],
         4, 10,
@@ -346,11 +342,9 @@ let layers:LayerSpecification[] = [
     }
   }),
   createLayer('region-labels', {
-    minzoom: 1,
-    maxzoom: 3,
     type: 'symbol',
     layout: {
-      'text-field': ['get', 'label'],
+      'text-field': ['get', Prop.label],
       'text-font': ['NotoSans-Medium'],
       'text-size': 20,
       'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],

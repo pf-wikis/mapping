@@ -21,10 +21,10 @@ public class AddZoom extends StepExecutor {
     	var fc = in.getInput().toFeatureCollection();
     	fc.getFeatures().forEach(f-> {
     		if(minZoom != null) {
-    			f.getProperties().setFilterMinzoom(minZoom);
+    			f.getProperties().setMinzoom(minZoom);
             }
     		if(maxZoom != null) {
-    			f.getProperties().setFilterMaxzoom(maxZoom);
+    			f.getProperties().setMaxzoom(maxZoom);
             }
     	});
         return Content.derivedFrom(in, GeoData.from(fc));

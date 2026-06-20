@@ -27,7 +27,7 @@ public class TimeMetaOut extends StepExecutor {
     		))
     		.toList();
     	
-    	var f = new File(Ctx.INSTANCE.getOptions().targetDirectory(), "../gen/time-meta.json");
+    	var f = new File(Ctx.INSTANCE.getOptions().targetGenDirectory(), "time-meta.json");
     	f.getParentFile().mkdirs();
     	Jackson.JSON.writeValue(f, res);
     	

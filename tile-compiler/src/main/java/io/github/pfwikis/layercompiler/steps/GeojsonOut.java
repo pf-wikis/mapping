@@ -21,9 +21,7 @@ public class GeojsonOut extends StepExecutor {
 	
     @Override
     public Content process(Inputs in) throws Exception {
-    	var meta = in.getInput("time-meta").toFeatureCollection().getProperties().getTimeMeta();
     	var fc = in.getInput().toFeatureCollection();
-    	fc = CompileTiles.applyTimeMeta(meta, fc);
     	Jackson.JSON.writeValue(
     		new File(Ctx.INSTANCE.getOptions().targetDirectory(), filename),
     		fc

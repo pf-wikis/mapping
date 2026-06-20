@@ -14,7 +14,6 @@ import io.github.pfwikis.layercompiler.steps.model.Time;
 import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.Feature;
-import io.github.pfwikis.model.Feature.Tippecanoe;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Geometry.Point;
 import lombok.RequiredArgsConstructor;
@@ -27,11 +26,12 @@ public class LocationGroup extends StepExecutor {
 	@Override
 	public Content process(Inputs in) throws IOException {
 		var col = in.getInput().toFeatureCollection();
-
+		col.getFeatures().forEach(f->f.getProperties().setPregroupMinzoom(f.getProperties().getMinzoom()));
+		
 		var entries = collectEntries(col);
-		double groupingDistance = 1;
+		double groupingDistance = 2;
 		List<Group> allGroups = new ArrayList<>();
-		for(int zoom=0;zoom<=Ctx.INSTANCE.getOptions().getMaxZoom();zoom++,groupingDistance/=2) {
+		for(int zoom=0;zoom<=Ctx.INSTANCE.getOptions().getMaxZoom()+1;zoom++,groupingDistance/=2) {
 			List<Group> zoomGroups = new ArrayList<>();
 			for(var e:entries) {
 				addEntry(zoomGroups, e, groupingDistance, zoom);
@@ -57,14 +57,13 @@ public class LocationGroup extends StepExecutor {
 		result.setFeatures(new ArrayList<>());
 		for(var g:allGroups) {
 			if(g.minZoom > Ctx.INSTANCE.getOptions().getMaxZoom()) continue;
-			var minMin = g.entries.stream().filter(e->e.feature.getProperties().getFilterMinzoom()!=null).mapToInt(e->e.feature.getProperties().getFilterMinzoom()).min();
+			var minMin = g.entries.stream().filter(e->e.feature.getProperties().getMinzoom()!=null).mapToInt(e->e.feature.getProperties().getMinzoom()).min();
 			var realMin = Math.max(minMin.orElse(g.minZoom), g.minZoom);
 			if(realMin > g.maxZoom) continue;
 			
 			Feature f = g.best.feature.copy();
-			f.getProperties().setTileMinzoom(realMin);
-			if(g.maxZoom<Ctx.INSTANCE.getOptions().getMaxZoom()) 
-				f.getProperties().setTileMaxzoom(g.maxZoom);
+			f.getProperties().setMinzoom(realMin);
+			f.getProperties().setMaxzoom(g.maxZoom<=Ctx.INSTANCE.getOptions().getMaxZoom()?g.maxZoom:null);
 			result.getFeatures().add(f);
 			if(g.entries.size() > 1) {
 				f.getProperties().setText(createGroupText(g));
@@ -150,7 +149,7 @@ public class LocationGroup extends StepExecutor {
 				x,
 				y,
 				feature,
-				feature.getProperties().getFilterMaxzoom()
+				feature.getProperties().getMaxzoom()
 			));
 		}
 		int maximumArticleLength = entries.stream().mapToInt(e->e.feature.getProperties().getArticleLength()).max().getAsInt();

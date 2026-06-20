@@ -84,7 +84,7 @@ public class MergeBorders extends StepExecutor {
 	    		fc.getFeatures().add(f);
 	    		f.setGeometry(new LineString(List.of(seg.a, seg.b)));
 	    		f.getProperties().setBorderType(1);
-	    		f.getProperties().setTileMaxzoom(5);
+	    		f.getProperties().setMaxzoom(5);
 	    		f.getProperties().setTime(time);
     		}
     	}
@@ -92,7 +92,7 @@ public class MergeBorders extends StepExecutor {
     	
     	var res= Tools.mapshaper(this,
     		lc,
-			"-dissolve", "borderType,timeStart,timeEnd,tileMaxzoom",
+			"-dissolve", "borderType,timeStart,timeEnd,maxzoom",
 			"-explode"
     	);
     	return Content.merged(res);

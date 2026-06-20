@@ -1,6 +1,7 @@
 package io.github.pfwikis.layercompiler.description;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class ExecutionPlan {
                 plan.graph.addNode(descr);
         	}
         }
-     
+        
         //create all edges
         for(var lsDescription : lsDescriptions) {
         	for(int i=0;i<lsDescription.getSteps().size();i++) {
@@ -74,6 +75,16 @@ public class ExecutionPlan {
                 	addEdge(plan, plan.getStep(dep), descr, e.getKey());
                 }
             }
+        }
+        
+        for(var step:new ArrayList<>(plan.graph.nodes())) {
+        	for(var created:step.getExecutor().createAutoSteps()) {
+        		plan.id2Step.put(created.getId(), created.getDescription());
+        		plan.graph.addNode(created.getDescription());
+        		for(var e:created.getInputMapping().entrySet()) {
+        			addEdge(plan, plan.graph.nodes().stream().filter(n->n.getId().equals(e.getValue())).findAny().get(), created.getDescription(), e.getKey());
+        		}
+        	}
         }
         
         for(var step:plan.graph.nodes()) {

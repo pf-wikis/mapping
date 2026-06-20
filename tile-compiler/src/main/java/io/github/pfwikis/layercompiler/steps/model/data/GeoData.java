@@ -35,11 +35,9 @@ public abstract class GeoData {
 	
 	@SneakyThrows
 	public Path toTmpFile(StepExecutor step) {
-		try (var _=step.measureSubtime("IO write tmp file")) {
-			var tmpFile = Runner.tmpGeojson(step, new OutFile());
-	        FileUtils.writeByteArrayToFile(tmpFile, toBytes());
-	        return tmpFile.toPath();
-		}
+		var tmpFile = Runner.tmpGeojson(step, new OutFile());
+        FileUtils.writeByteArrayToFile(tmpFile, toBytes());
+        return tmpFile.toPath();
 	}
 	
 	/********    factory methods          ***/

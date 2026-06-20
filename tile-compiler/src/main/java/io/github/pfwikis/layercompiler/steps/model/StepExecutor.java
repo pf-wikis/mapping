@@ -192,6 +192,7 @@ public abstract class StepExecutor extends Task<String, Content> {
     public Timing measureSubtime(String key) {
     	return new Timing(key, Stopwatch.createStarted(), this);
     }
-    
-    
+
+
+	public List<StepExecutor> createAutoSteps() {return Collections.emptyList();}
 }

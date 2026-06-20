@@ -16,7 +16,7 @@ public class RiverLabels extends StepExecutor {
             "-clean",
             "-dissolve", "label",
             "-filter", "Boolean(label)",
-            "-each", "filterMinzoom=5"
+            "-each", "minzoom=5"
         );
         return Content.timeless(res);
     }
