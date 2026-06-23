@@ -38,7 +38,8 @@ export function addRightClickMenu(embedded: boolean, map: Map, measureControl: M
         callback: (e:Event) => {
           options.highlight = null;
           options.writeToHash();
-          map.setGlobalStateProperty('highlighted', null);
+          map.removeLayer('highlights');
+          map.removeSource('highlights');
           generateItems(menu);
         },
       });

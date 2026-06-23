@@ -1,6 +1,6 @@
 import { FetchSource, RangeResponse, Source } from "pmtiles";
 
-const buildId = parseInt(import.meta.env.VITE_DATA_HASH)||0;
+const buildId = BUILD_DATA_HASH;
 const dbId = `map-db-${buildId}`;
 const ranges = 'ranges';
 type Key = IDBValidKey&[number, number]

@@ -24,6 +24,7 @@ import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Properties;
 import io.github.pfwikis.util.Jackson;
 import lombok.Data;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.node.ValueNode;
@@ -32,6 +33,9 @@ import tools.jackson.databind.node.ValueNode;
 @Time.Requirement(Time.Requirement.Value.REQUIRES_MERGED)
 public class PropsMeta extends StepExecutor {
 
+	@Setter
+	private String filenameSuffix;
+	
     @Override
     public Content process(Inputs in) throws IOException {
     	
@@ -58,7 +62,7 @@ public class PropsMeta extends StepExecutor {
     	
     	log.info("Props meta:\n{}", sb);
     	
-    	Files.writeString(new File(Ctx.INSTANCE.getOptions().targetGenDirectory(), "props-meta.ts").toPath(), sb);
+    	Files.writeString(new File(Ctx.INSTANCE.getOptions().targetGenDirectory(), "props-meta-"+filenameSuffix+".ts").toPath(), sb);
     	
     	return Content.empty();
     }

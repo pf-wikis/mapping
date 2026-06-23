@@ -55,7 +55,7 @@ export class FuzzySearch {
    */
   static get: ()=>Promise<FuzzySearch> = FuzzySearch.lazyInit(async () => {
     try {
-      let response = await fetch('./search.json?v=' + import.meta.env.VITE_DATA_HASH);
+      let response = await fetch(`./search.json?v=${BUILD_DATA_HASH}`);
 
       if (!response.ok) {
         throw new Error(`Failed to load search index: ${response.statusText}`);

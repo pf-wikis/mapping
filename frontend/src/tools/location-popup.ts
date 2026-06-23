@@ -19,7 +19,7 @@ async function getTextForFeature(feature:MapGeoJSONFeature) {
   let slice = id%10;
 
   if(!loaded[slice]) {
-    let response = await fetch(`extra/${slice}.json?v=${import.meta.env.VITE_DATA_HASH}`);
+    let response = await fetch(`extra/${slice}.json?v=${BUILD_DATA_HASH}`);
     if (!response.ok) {
       throw new Error(`Failed to load location texts: ${response.statusText}`);
     }

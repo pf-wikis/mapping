@@ -6,9 +6,11 @@
     "moduleResolution": "Bundler",
     "noImplicitAny": true,
     "removeComments": true,
-    "sourceMap": true,
     "isolatedModules": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "types": [
+      "vite/client"
+    ]
   },
   "include": [
     "src/**/*"

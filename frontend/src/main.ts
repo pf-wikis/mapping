@@ -1,9 +1,10 @@
 import Maplibre, { AttributionControl, FilterSpecification, GlobeControl, Map, NavigationControl, ScaleControl, StyleSpecification } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
+import './style.scss';
 
 import style from 'virtual:style';
 import MeasureControl from './tools/measure.js';
-import './style.scss';
+
 import { PMTiles, Protocol } from 'pmtiles';
 import { makeLocationsClickable } from "./tools/location-popup.js";
 import { addRightClickMenu } from "./tools/right-click-menu.js";
@@ -31,7 +32,7 @@ let pmtilesProt = new Protocol();
 if(indexedDB) {
   try {
     //if this url does not match the one in style we do not cache
-    pmtilesProt.add(new PMTiles(new CachedSource(root+'/golarion.pmtiles?v='+import.meta.env.VITE_DATA_HASH)))
+    pmtilesProt.add(new PMTiles(new CachedSource(root+'/golarion.pmtiles?v='+import.meta.env.BUILD_DATA_HASH)))
   } catch(e) {
     console.log("Failed to initialize IndexDB cache")
     console.log(e)
@@ -40,13 +41,6 @@ if(indexedDB) {
 Maplibre.addProtocol("pmtiles", pmtilesProt.tilev4);
 
 /******************************* update style according to option *******************************/
-const normalRoot = 'https://map.pathfinderwiki.com';
-if(root!=normalRoot) {
-  style.sprite = (style.sprite as string).replace(normalRoot, root);
-  style.glyphs = style.glyphs?.replace(normalRoot, root);
-  (style.sources.golarion as any).url = (style.sources.golarion as any).url.replace(normalRoot, root);
-  (style.sources.highlights as any).data = (style.sources.highlights as any).data.replace(normalRoot, root);
-}
 
 if(options.hideLabels) {
   style.layers = style.layers.filter(l=>!l.id.includes('label'));
@@ -145,5 +139,7 @@ map.on('style.load', changeStyleWithBearing);
 //////////debugging options
 //map.showTileBoundaries = true;
 //map.showCollisionBoxes = true;
-(window as any).map = map;
-(window as any).MAP_VERSION = import.meta.env.VITE_DATA_HASH;
+if (import.meta.env.MODE === 'development') {
+  (window as any).map = map;
+  (window as any).MAP_VERSION = BUILD_DATA_HASH;
+}

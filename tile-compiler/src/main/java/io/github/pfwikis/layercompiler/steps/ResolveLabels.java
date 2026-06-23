@@ -36,7 +36,7 @@ public class ResolveLabels extends StepExecutor {
     	fc.getFeatures().forEach(f-> {
     		var labels = getLabelField(f.getProperties());
     		//no label
-    		if(labels.isNull() || (labels.isTextual() && labels.asText().isBlank())) {
+    		if(labels.isNull() || (labels.isString() && labels.stringValue().isBlank())) {
     			var c = f.<Feature>copy();
     			c.getProperties().setLabels(null);
     			res.getFeatures().add(c);
@@ -61,8 +61,8 @@ public class ResolveLabels extends StepExecutor {
 
 	private List<Label> splitLabels(JsonNode labels) {
 		try {
-			if(labels.isTextual()) {
-				return Collections.singletonList(new Label(labels.textValue().trim(), null));
+			if(labels.isString()) {
+				return Collections.singletonList(new Label(labels.stringValue().trim(), null));
 			}
 			if(labels.isObject()) {
 				return List.of(Jackson.JSON.treeToValue(labels, Label.class));

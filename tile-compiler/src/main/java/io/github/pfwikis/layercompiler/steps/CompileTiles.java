@@ -112,6 +112,7 @@ public class CompileTiles extends StepExecutor {
     @Override
     public List<StepExecutor> createAutoSteps() {
     	var meta = new PropsMeta();
+    	meta.setFilenameSuffix(filename);
     	meta.setDescription(new StepDescription(
     		getDescription().getId()+"_meta",
     		getDescription().getGroup(),

@@ -1,10 +1,27 @@
 import { CenterZoomBearing, Map } from "maplibre-gl";
 import options from "../URLOptions.js";
+import { highlightLabels } from "../../gen/highlight_labels.js";
+import { timeIndexEnd, timeIndexStart } from "../utils/BasicStyleFilters.js";
 
 export function addSpecialURLOptions(map: Map) {
     map.once('style.load', function () {
         if(options.highlight) {
-          map.setGlobalStateProperty('highlighted', options.highlight);
+            if(highlightLabels.includes(options.highlight)) {
+                map.addSource('highlights', {
+                    type: 'geojson',
+                    data: `${HOST}/highlights/${options.highlight}.geojson?v=${BUILD_DATA_HASH}`
+                });
+                map.addLayer({
+                    id: 'highlights',
+                    type: 'fill',
+                    source: 'highlights',
+                    filter: ['all', timeIndexStart, timeIndexEnd],
+                    paint: {
+                      'fill-color': 'rgb(0, 0, 0)',
+                      'fill-opacity': 0.3,
+                    }
+                },'location-icons');
+            }
         }
     });
     map.once('load', function () {

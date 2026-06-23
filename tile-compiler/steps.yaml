@@ -513,8 +513,8 @@
     - step: PREPARE_EXPORT
       dependsOn:
         time-meta: time-meta
-    - step: GEOJSON_OUT
-      filename: highlights.geojson
+    - step: GEOJSON_OUT_PER_LABEL
+      dirname: highlights
 
 - name: tiles
   steps:
