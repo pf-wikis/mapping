@@ -23,11 +23,12 @@ import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Properties;
 import io.github.pfwikis.util.Jackson;
-import io.github.pfwikis.util.time.TimeRange;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.node.ValueNode;
 
+@Slf4j
 @Time.Requirement(Time.Requirement.Value.REQUIRES_MERGED)
 public class PropsMeta extends StepExecutor {
 
@@ -54,6 +55,8 @@ public class PropsMeta extends StepExecutor {
     		.append("export const propsMeta = ")
     		.append(Jackson.JSON.writerWithDefaultPrettyPrinter().writeValueAsString(layers))
     		.append(";\n");
+    	
+    	log.info("Props meta:\n{}", sb);
     	
     	Files.writeString(new File(Ctx.INSTANCE.getOptions().targetGenDirectory(), "props-meta.ts").toPath(), sb);
     	

@@ -26,11 +26,11 @@ public class AddCityZoom extends StepExecutor {
     	var in = ins.getInput().toFeatureCollection();
     	in.getFeatures().forEach(f-> {
     		f.getProperties().setMinzoom(switch(f.getProperties().getSize()) {
-    			case 0 -> 1;
-    			case 1 -> 2;
-    			case 2 -> 3;
+    			case 0 -> 2;
+    			case 1 -> 3;
+    			case 2 -> 4;
     			case null,
-    			default -> 3;
+    			default -> 4;
     		});
     		if(DISTRICT_CITIES.contains(f.getProperties().simpleLabel())) {
     			f.getProperties().setMaxzoom(11);

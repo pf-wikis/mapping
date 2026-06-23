@@ -137,7 +137,7 @@
     - step: READ_FILE
       file: locations.geojson
     - step: ADD_ZOOM
-      minZoom: 3
+      minZoom: 4
     - step: LOCATION_TYPE_TO_ICON
     - step: ADD_POINTS
       dependsOn:
