@@ -26,7 +26,7 @@ public class GeojsonOutPerLabel extends StepExecutor {
     	var dir = new File(Ctx.INSTANCE.getOptions().targetDirectory(), dirname);
     	dir.mkdirs();
     	var fc = in.getInput().toFeatureCollection();
-    	var labels = fc.getFeatures().stream().map(f->f.getProperties().getLabel()).distinct().sorted().toList();
+    	var labels = fc.getFeatures().stream().map(f->f.getProperties().getLabel().getLabel()).distinct().sorted().toList();
     	
     	for(var label:labels) {
     		var lfc = new FeatureCollection();

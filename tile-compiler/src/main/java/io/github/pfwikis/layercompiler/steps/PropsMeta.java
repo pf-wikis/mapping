@@ -40,7 +40,7 @@ public class PropsMeta extends StepExecutor {
     public Content process(Inputs in) throws IOException {
     	
     	var layers = in.getInputs().entrySet()
-			.parallelStream()
+    		.stream()
 			.map(e->Pair.of(e.getKey(), collectLayerInfo(e.getKey(), e.getValue().toFeatureCollection())))
 			.sorted(Comparator.comparing(Pair::getKey))
 			.collect(Collectors.toUnmodifiableMap(Pair::getKey, Pair::getValue));
@@ -54,7 +54,7 @@ public class PropsMeta extends StepExecutor {
     		.append(layers.values().stream().flatMap(l->l.props.keySet().stream()).sorted().distinct().map(v->"\n  "+v+"='"+v+"',").collect(Collectors.joining("")))
     		.append("\n};\n")
     		.append("export type ExistingLayer = ")
-    		.append(layers.keySet().stream().map(v->"'"+v+"'").collect(Collectors.joining("|")))
+    		.append(layers.keySet().stream().map(v->"'"+v+"'").sorted().collect(Collectors.joining("|")))
     		.append(";\n")
     		.append("export const propsMeta = ")
     		.append(Jackson.JSON.writerWithDefaultPrettyPrinter().writeValueAsString(layers))
@@ -94,7 +94,6 @@ public class PropsMeta extends StepExecutor {
     @Data
     private static class PropMeta {
 		private final String name;
-		private Set<ValueNode> distinctValues = new HashSet<>();
 		private BigDecimal minNumber;
 		private BigDecimal maxNumber;
 		private int nonNullEntries = 0;
@@ -103,9 +102,6 @@ public class PropsMeta extends StepExecutor {
 		public void integrate(JsonNode value) {
 			if(!value.isNull())
 				nonNullEntries++;
-			if(value.isValueNode() && distinctValues.size()<11) {
-				distinctValues.add((ValueNode)value);
-			}
 			if(value.isNumber()) {
 				var val = new BigDecimal(value.numberValue().toString());
 				if(minNumber == null || minNumber.compareTo(val) > 0)
