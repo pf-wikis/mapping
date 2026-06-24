@@ -68,10 +68,6 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
         //'/golarion.pmtiles': 'https://map.pathfinderwiki.com',
         '/search.json': 'https://map.pathfinderwiki.com',
       }
-    },
-    optimizeDeps: {
-      //this makes the preview of v6 work, but not the complete build?
-      //exclude: ['maplibre-gl']
     }
   };
 })
