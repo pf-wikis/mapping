@@ -70,8 +70,8 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
       }
     },
     optimizeDeps: {
-      //try to remove this at some point
-      exclude: ['maplibre-gl']
+      //this makes the preview of v6 work, but not the complete build?
+      //exclude: ['maplibre-gl']
     }
   };
 })
