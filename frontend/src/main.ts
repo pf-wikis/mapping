@@ -1,4 +1,4 @@
-import Maplibre, { AttributionControl, FilterSpecification, GlobeControl, Map, NavigationControl, ScaleControl, StyleSpecification } from "maplibre-gl";
+import { addProtocol, AttributionControl, FilterSpecification, GlobeControl, Map, NavigationControl, ProjectionDefinitionSpecification, PropertyValueSpecification, ScaleControl, StyleSpecification } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './style.scss';
 
@@ -38,7 +38,7 @@ if(indexedDB) {
     console.log(e)
   }
 }
-Maplibre.addProtocol("pmtiles", pmtilesProt.tilev4);
+addProtocol("pmtiles", pmtilesProt.tilev4);
 
 /******************************* update style according to option *******************************/
 
@@ -71,7 +71,7 @@ export const map = new Map({
 export const golarionMap = new GolarionMap();
 golarionMap.map = map;
 //project to globe
-let projection:Maplibre.PropertyValueSpecification<Maplibre.ProjectionDefinitionSpecification>;
+let projection:PropertyValueSpecification<ProjectionDefinitionSpecification>;
 if(options.projection === 'auto') {
   projection = [
     "interpolate",

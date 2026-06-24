@@ -24,7 +24,7 @@ export function addSpecialURLOptions(map: Map) {
             }
         }
     });
-    map.once('load', function () {
+    map.once('style.load', function () {
         if(options.flyTo) {
             //test with http://localhost:5173/#location=7.14/41.918/-9.832&flyTo=7.81/31.433/-0.639
             console.log('Fly to');
@@ -45,7 +45,7 @@ export function addSpecialURLOptions(map: Map) {
         console.log(`bbox with ${bbox}`);
         options.bbox = undefined;
         options.writeToHash();
-        map.once('load', function () {
+        map.once('style.load', function () {
             let cam:CenterZoomBearing|undefined;
             if(bbox.length==4) {
                 cam = map.cameraForBounds(bbox as [number, number, number, number]);

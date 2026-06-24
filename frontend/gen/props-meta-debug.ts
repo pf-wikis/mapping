@@ -10,9 +10,15 @@ export const enum Prop {
 };
 export type ExistingLayer = 'city-polygons'|'highlights'|'time-meta';
 export const propsMeta = {
-  "time-meta" : {
+  "city-polygons" : {
     "hasTime" : false,
-    "props" : { }
+    "props" : {
+      "city" : {
+        "name" : "city",
+        "nonNullEntries" : 20,
+        "nullEntries" : 0
+      }
+    }
   },
   "highlights" : {
     "hasTime" : true,
@@ -57,14 +63,8 @@ export const propsMeta = {
       }
     }
   },
-  "city-polygons" : {
+  "time-meta" : {
     "hasTime" : false,
-    "props" : {
-      "city" : {
-        "name" : "city",
-        "nonNullEntries" : 20,
-        "nullEntries" : 0
-      }
-    }
+    "props" : { }
   }
 };

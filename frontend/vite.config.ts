@@ -68,6 +68,10 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
         //'/golarion.pmtiles': 'https://map.pathfinderwiki.com',
         '/search.json': 'https://map.pathfinderwiki.com',
       }
+    },
+    optimizeDeps: {
+      //try to remove this at some point
+      exclude: ['maplibre-gl']
     }
   };
 })
