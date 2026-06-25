@@ -41,7 +41,7 @@ public class GeojsonOutPerLabel extends StepExecutor {
     	
     	Files.writeString(
     		Ctx.INSTANCE.getOptions().targetGenDirectory().toPath().resolve("highlight_labels.ts"),
-    		"export const highlightLabels = "+Jackson.JSON.writeValueAsString(labels)
+    		"export const highlightLabels = "+Jackson.JSON.writerWithDefaultPrettyPrinter().writeValueAsString(labels).replace("\", \"", "\",\n\t\"")
     	);
         return Content.empty();
     }

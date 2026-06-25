@@ -76,16 +76,12 @@ public class CompileTiles extends StepExecutor {
 					f.getStruct(Properties.Fields.export).get(ExportProperties.Fields.tileMaxzoom).orElse(maxZoom).asInt()
 				);
 				
-				if(f.id()%100==0 && f.getSource().equals("locations")) {
-    				log.info("ID {} = {}", f.id(), f.getString("label"));
-				}
-				
 				//add properties but with exceptions
 				for(var e:f.tags().entrySet()) {
 					switch(e.getKey()) {
 						case Properties.Fields.label->{
 							if(f.getSource().equals("locations")) {
-								out.setAttrWithMinzoom(e.getKey(), e.getValue(), (int)f.getLong(Properties.Fields.pregroupMinzoom)+5);
+								out.setAttrWithMinzoom(e.getKey(), e.getValue(), Math.min(maxZoom, (int)f.getLong(Properties.Fields.pregroupMinzoom)+5));
 							}
 							else
 								out.setAttr(e.getKey(), e.getValue());

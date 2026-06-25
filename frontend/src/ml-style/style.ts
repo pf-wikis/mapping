@@ -249,7 +249,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     createLayer('locations', {
       id: 'location-labels',
       type: 'symbol',
-      filter: ['has', 'label'],
+      filter: ['all', ['has', 'label'], ['>=', ['zoom'], ['+', ['get', Prop.pregroupMinzoom], 5]]],
       layout: {
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],

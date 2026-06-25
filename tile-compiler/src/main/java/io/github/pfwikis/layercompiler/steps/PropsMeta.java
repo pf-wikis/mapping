@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -39,11 +40,12 @@ public class PropsMeta extends StepExecutor {
     @Override
     public Content process(Inputs in) throws IOException {
     	
-    	var layers = in.getInputs().entrySet()
+    	var layers = new TreeMap<String, LayerMeta>();
+    	in.getInputs().entrySet()
     		.stream()
 			.map(e->Pair.of(e.getKey(), collectLayerInfo(e.getKey(), e.getValue().toFeatureCollection())))
 			.sorted(Comparator.comparing(Pair::getKey))
-			.collect(Collectors.toUnmodifiableMap(Pair::getKey, Pair::getValue));
+			.forEach(e->layers.put(e.getKey(), e.getValue()));
     	
     	var sb = new StringBuilder();
     	sb
