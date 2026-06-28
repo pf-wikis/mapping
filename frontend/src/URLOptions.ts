@@ -23,7 +23,10 @@ export default {
     year: year?Number.parseInt(year):undefined,
 
     writeToHash: function() {
-        this.zoom?options.set('zoom', this.zoom.toString()):options.delete('zoom');
+        options.delete('bbox');
+        options.delete('flyTo');
+        options.delete('zoom');
+        options.delete('projection');
         this.year?options.set('year', this.year.toString()):options.delete('year');
         this.highlight?options.set('highlight', this.highlight):options.delete('highlight');
         options.set('location', parseOptions().get('location')??'');

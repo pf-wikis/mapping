@@ -33,7 +33,7 @@ export default class MeasureControl implements IControl {
     }
 
     onAdd(map: Map): HTMLElement {
-        map.on('load', ()=> {
+        map.once('load', ()=> {
           map.addSource('drawings', {
             type: 'geojson',
             data: {

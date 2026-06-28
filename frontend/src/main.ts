@@ -88,7 +88,7 @@ if(options.projection === 'auto') {
 else {
   projection = options.projection;
 }
-map.on('style.load', () => {
+map.once('style.load', () => {
   map.setProjection({
     type: projection
   });
