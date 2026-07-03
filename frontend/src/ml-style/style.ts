@@ -354,6 +354,8 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
 
   return {
     version: 8,
+    center: [35,-7],
+    zoom: 4.5,
     sources: {
       golarion: {
         type: 'vector',
