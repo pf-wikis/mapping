@@ -1,42 +1,15 @@
-import { ExpressionSpecification, FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, StyleSpecification, ExpressionFilterSpecification } from "maplibre-gl";
-import timeMeta from "../../gen/timeMeta";
-import { defineConfig, loadEnv } from 'vite';
-import {ExistingLayer, Prop, propsMeta, maxZoomWithData} from "../../gen/props-meta-golarion";
+import { FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, StyleSpecification, ExpressionFilterSpecification } from "maplibre-gl";
+import { ExistingLayer, Prop, propsMeta, maxZoomWithData} from "../../gen/props-meta-golarion";
 import { timeIndexEnd, timeIndexStart } from "../utils/BasicStyleFilters";
-import { constants } from "node:quic";
-import { OptionalFields, Widen } from "../utils/type-utils";
-
-const defaultState = {
-  timeIndex: {
-    default: timeMeta.latest.id,
-  },
-  rotated: {
-    default: false
-  },
-  showLabels: {
-    default: true
-  },
-  showLocations: {
-    default: true
-  },
-  showBorders: {
-    default: true
-  },
-} as const;
-export type State = typeof defaultState;
-export type StateProp = keyof State;
-type StateFromDefaults<T extends Record<string, { default: any }>> = {
-  -readonly [K in keyof T]: T[K]["default"];
-};
-export type StateTypes = {
-  [K in keyof typeof defaultState]:
-    (typeof defaultState)[K] extends { default: infer V }
-      ? Widen<V>
-      : never;
-};
-
+import { OptionalFields } from "../utils/type-utils";
+import { state, StateProp } from "./state";
+import { Expression } from "./expression";
 
 export default function(HOST:string, BUILD_DATA_HASH: number) {
+
+  for(let p in state) {
+    state[p as StateProp].enableDebug = true;
+  }
 
   console.log('HOST', HOST);
   console.log('BUILD_DATA_HASH', BUILD_DATA_HASH);
@@ -45,7 +18,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     FillLayerSpecification|LineLayerSpecification|SymbolLayerSpecification,
     'filter'|'source-layer'>&{
     'source-layer': ExistingLayer,
-    filter?: ExpressionFilterSpecification
+    filter?: Expression<boolean>
   };
   type PartialCreateableLayerSpec = OptionalFields<
     CreatableLayerSpec,
@@ -88,7 +61,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     }, base) as CreatableLayerSpec;
     
 
-    const baseFilters:ExpressionFilterSpecification[] = [];
+    const baseFilters:Expression<boolean>[] = [];
     
 
     //filter for min/max zoom
@@ -149,7 +122,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         ],
       },
       layout: {
-        visibility: ['global-state', 'showBorders'],
+        visibility: state.showBorders.get(),
         'line-cap': 'round'
       }
     }),
@@ -165,7 +138,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         ],
       },
       layout: {
-        visibility: ['global-state', 'showBorders'],
+        visibility: state.showBorders.get(),
         'line-cap': 'round'
       }
     }),
@@ -183,7 +156,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         ],
       },
       layout: {
-        visibility: ['global-state', 'showBorders'],
+        visibility: state.showBorders.get(),
         'line-cap': 'round'
       }
     }),
@@ -201,7 +174,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         'line-dasharray': [5, 10]
       },
       layout: {
-        visibility: ['global-state', 'showBorders'],
+        visibility: state.showBorders.get(),
         'line-cap': 'round'
       }
     }),
@@ -219,14 +192,14 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         'line-dasharray': [2, 4]
       },
       layout: {
-        visibility: ['global-state', 'showBorders'],
+        visibility: state.showBorders.get(),
         'line-cap': 'round'
       }
     }),
     createLayer('line-labels', {
       type: 'symbol',
       layout: {
-        visibility: ['global-state', 'showLabels'],
+        visibility: state.showLabels.get(),
         'symbol-placement': 'line',
         'text-max-angle': 20,
         'text-field': ['get', Prop.label],
@@ -256,7 +229,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
       id: 'location-icons',
       type: 'symbol',
       layout: {
-        visibility: ['global-state', 'showLocations'],
+        visibility: state.showLocations.get(),
         'icon-image': ['get', Prop.icon],
         'icon-pitch-alignment': 'map',
         'icon-overlap': 'always',
@@ -281,10 +254,10 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     createLayer('labels', {
       type: 'symbol',
       layout: {
-        visibility: ['global-state', 'showLabels'],
+        visibility: state.showLabels.get(),
         'text-field': ['get', Prop.label],
-        'text-rotate': ['case', ['global-state', 'rotated'], 0, ['get', Prop.angle]],
-        'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
+        'text-rotate': ['case', state.rotated.get(), 0, ['get', Prop.angle]],
+        'text-rotation-alignment': ['case', state.rotated.get(), 'viewport', 'map'],
         'text-font': ['NotoSans-Medium'],
         'text-size': 16,
         "text-overlap": 'always',
@@ -298,15 +271,15 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     createLayer('locations', {
       id: 'location-labels',
       type: 'symbol',
-      filter: ['all', ['has', 'label'], ['>=', ['zoom'], ['+', ['get', Prop.pregroupMinzoom], 5]]],
+      filter: ['all', ['has', Prop.label], ['>=', ['zoom'], ['+', ['get', Prop.pregroupMinzoom], 5]]],
       layout: {
-        visibility: ['global-state', 'showLocations'],
+        visibility: state.showLocations.get(),
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],
         'text-size': 14,
         'text-variable-anchor': ["left", "right"],
         'text-radial-offset': .5,
-        'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
+        'text-rotation-alignment': ['case', state.rotated.get(), 'viewport', 'map'],
       },
       paint: {
         'text-color': colors.white,
@@ -317,14 +290,14 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     createLayer('province-labels', {
       type: 'symbol',
       layout: {
-        visibility: ['global-state', 'showLabels'],
+        visibility: state.showLabels.get(),
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],
         'text-size': ['interpolate', ['linear'], ['zoom'],
           5, 5,
           7, 20,
         ],
-        'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
+        'text-rotation-alignment': ['case', state.rotated.get(), 'viewport', 'map'],
         'text-variable-anchor': ['center','top','bottom'],
         'symbol-z-order': 'source',
       },
@@ -344,14 +317,14 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         ['>', ['zoom'], 4]
       ],
       layout: {
-        visibility: ['global-state', 'showLabels'],
+        visibility: state.showLabels.get(),
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],
         'text-size': ['interpolate', ['linear'], ['zoom'],
           4, 10,
           5, 25,
         ],
-        'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
+        'text-rotation-alignment': ['case', state.rotated.get(), 'viewport', 'map'],
         'text-variable-anchor': ['center','top','bottom'],
         'symbol-z-order': 'source',
       },
@@ -367,14 +340,14 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     createLayer('subregion-labels', {
       type: 'symbol',
       layout: {
-        visibility: ['global-state', 'showLabels'],
+        visibility: state.showLabels.get(),
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],
         'text-size': ['interpolate', ['linear'], ['zoom'],
           4, 10,
           5, 25,
         ],
-        'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
+        'text-rotation-alignment': ['case', state.rotated.get(), 'viewport', 'map'],
         'text-variable-anchor': ['center','top','bottom'],
         'symbol-z-order': 'source',
       },
@@ -390,11 +363,11 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     createLayer('region-labels', {
       type: 'symbol',
       layout: {
-        visibility: ['global-state', 'showLabels'],
+        visibility: state.showLabels.get(),
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],
         'text-size': 20,
-        'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
+        'text-rotation-alignment': ['case', state.rotated.get(), 'viewport', 'map'],
         'text-variable-anchor': ['center','top','bottom'],
         'symbol-z-order': 'source',
       },
@@ -418,7 +391,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         encoding: 'mlt'
       },
     },
-    state: defaultState,
+    state: state,
     sprite: `${HOST}/sprites/sprites`,
     layers: layers,
     glyphs: `${HOST}/fonts/{fontstack}/{range}.pbf`,

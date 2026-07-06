@@ -1,6 +1,7 @@
 import { defineConfig, ResolvedConfig, UserConfig } from 'vite';
 import { compression, defineAlgorithm } from 'vite-plugin-compression2'
 import style from './src/ml-style/style.ts'
+import { validateStyleMin } from '@maplibre/maplibre-gl-style-spec'
 
 const jsonModule = 'virtual:style';
 const resolvedJsonModule = '\0'+jsonModule;
@@ -30,10 +31,14 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
         },
         load(id) {
           if (id === resolvedJsonModule) {
-            return `export default ${JSON.stringify(style(
+            let compiledStyle = style(
               host,
               dataHash
-            ))}`
+            );
+            for(let e of validateStyleMin(compiledStyle)) {
+              console.error(`Style validation error: ${e.message} at line ${e.line}`);
+            }
+            return `export default ${JSON.stringify(compiledStyle)}`
           }
         }
       },

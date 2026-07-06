@@ -17,6 +17,7 @@ import SearchControl from "./tools/SearchControl.js";
 import TimeSliderControl from "./tools/TimeSliderControl.js";
 import { startupOptions } from "./URLOptions.js";
 import { addSpecialURLOptions } from "./tools/special-url-options";
+import { debug } from "./utils/debug";
 
 var root = `${location.protocol}//${location.host}`;
 
@@ -39,7 +40,8 @@ setWorkerUrl(workerUrl);
 if(!startupOptions.embedded) {
   document.getElementById('map-container')!.classList.remove("embedded");
 }
-console.log("Effective style", style);
+if(debug)
+  console.log("Effective style", style);
 
 /************************* end of style adjustments ****************************************/
 
@@ -51,6 +53,7 @@ export const map = new Map({
   pitchWithRotate: startupOptions.embedded?false:true,
   style: style,
   pixelRatio: Math.max(window.devicePixelRatio || 1, 2),
+  validateStyle: debug,
   canvasContextAttributes: {
     preserveDrawingBuffer: true
   }
@@ -96,7 +99,7 @@ addRightClickMenu(golarionMap, measureControl);
 
 //change label orientation if bearing != 0
 function changeStyleWithBearing() {
-  map.setGlobalStateProperty('rotated', map.getBearing() !== 0);
+  golarionMap.setState('rotated', map.getBearing() !== 0);
 }
 map.on('rotateend', changeStyleWithBearing);
 map.on('style.load', changeStyleWithBearing);
@@ -105,7 +108,7 @@ map.on('style.load', changeStyleWithBearing);
 //////////debugging options
 //map.showTileBoundaries = true;
 //map.showCollisionBoxes = true;
-if (import.meta.env.MODE === 'development') {
+if (debug) {
   (window as any).map = map;
   (window as any).MAP_VERSION = BUILD_DATA_HASH;
 }

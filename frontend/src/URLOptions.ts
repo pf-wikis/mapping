@@ -3,7 +3,9 @@ import timeMeta, { TimeSlice } from '../gen/timeMeta';
 import throttle from './utils/throttle';
 import { GolarionMap } from './tools/GolarionMap';
 import { HighlightLabel, highlightLabels } from '../gen/highlight_labels';
+import { defaultState } from './ml-style/state';
 import style from 'virtual:style';
+import { debug } from './utils/debug';
 
 function parseOptions(): URLSearchParams {
     return window.location.hash?new URLSearchParams(window.location.hash.substring(1)):new URLSearchParams();
@@ -23,9 +25,9 @@ export const startupOptions = {
 }
 
 const defaultOptions = {
-    hideLabels: !style.state.showLabels.default,
-    hideLocations: !style.state.showLocations.default,
-    hideBorders: !style.state.showBorders.default,
+    hideLabels: !defaultState.showLabels,
+    hideLocations: !defaultState.showLocations,
+    hideBorders: !defaultState.showBorders,
     highlight: undefined as HighlightLabel|undefined,
     projection: 'auto' as ProjectOption,
     year: timeMeta.latest.start as number,
@@ -56,7 +58,8 @@ class OptionsHolder implements OptionsData {
     }
 
     private _informListener<K extends OptionProp>(listener: OptionsListener<K>, key:K, oldValue: OptionsData[K], newValue: OptionsData[K]) {
-        console.log(`Changed options for ${key}: ${oldValue} -> ${newValue}`);
+        if (debug)
+            console.log(`Changed options for ${key}: ${oldValue} -> ${newValue}`);
         listener(oldValue, newValue);
     }
 
@@ -100,9 +103,9 @@ export function init(map:GolarionMap):Options {
     }
     updateOptions();
 
-    options.onChange('hideLabels', (_,newValue) => map.setState('showLabels', !newValue));
-    options.onChange('hideLocations', (_,newValue) => map.setState('showLocations', !newValue));
-    options.onChange('hideBorders', (_,newValue) => map.setState('showBorders', !newValue));
+    options.onChange('hideLabels', (_,newValue) => map.setState('showLabels', newValue?'none':'visible'));
+    options.onChange('hideLocations', (_,newValue) => map.setState('showLocations', newValue?'none':'visible'));
+    options.onChange('hideBorders', (_,newValue) => map.setState('showBorders', newValue?'none':'visible'));
 
     const originalGetHashString = Hash.prototype.getHashString;
     Hash.prototype.getHashString = function(mapFeedback?: boolean):string {

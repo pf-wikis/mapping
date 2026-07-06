@@ -2,6 +2,7 @@ import { IControl, Popup, LngLatBoundsLike } from 'maplibre-gl';
 import { FuzzySearch, SearchResult } from '../utils/fuzzy-search';
 import { GolarionMap } from './GolarionMap';
 import { Map } from 'maplibre-gl';
+import { debug } from '../utils/debug';
 
 export default class SearchControl implements IControl {
   private map: GolarionMap;
@@ -72,7 +73,8 @@ export default class SearchControl implements IControl {
         limit: 10,
         timeIndex: this.map.map.getGlobalState().timeIndex
       });
-      console.log(results);
+      if(debug)
+        console.log(results);
 
       this.currentResults = results;
       this.selectedIndex = -1;

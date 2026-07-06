@@ -7,16 +7,17 @@
     "@turf/line-segment": "^7.3.5",
     "@turf/midpoint": "^7.3.5",
     "fuse.js": "^7.4.2",
-    "maplibre-gl": "^6.0.0-17",
+    "maplibre-gl": "^6.0.0-20",
     "pmtiles": "^4.4.1",
     "pure-context-menu": "^1.2.8"
   },
   "devDependencies": {
     "@babel/core": "^8.0.1",
-    "@types/node": "^26.0.0",
+    "@maplibre/maplibre-gl-style-spec": "^25.0.1",
+    "@types/node": "^26.1.0",
     "sass": "^1.101.0",
     "typescript": "^6.0.3",
-    "vite": "^8.1.0",
+    "vite": "^8.1.3",
     "vite-plugin-compression2": "^2.4.0"
   },
   "scripts": {

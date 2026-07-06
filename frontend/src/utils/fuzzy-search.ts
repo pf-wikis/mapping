@@ -1,4 +1,5 @@
 import Fuse from 'fuse.js';
+import { debug } from './debug';
 
 /**
  * Search index structure from search.json
@@ -91,8 +92,8 @@ export class FuzzySearch {
         useExtendedSearch: false,
         ignoreLocation: true
       });
-
-      console.log(`Search index loaded: ${flattenedEntries.length} entries`);
+      if(debug)
+        console.log(`Search index loaded: ${flattenedEntries.length} entries`);
       return new FuzzySearch(searchIndex, fuse, flattenedEntries);
     } catch (error) {
       console.error('Failed to load search index:', error);

@@ -7,6 +7,7 @@ import { AddLayerObject } from "maplibre-gl";
 import { LineString, GeoJSON, Feature, Point } from "geojson";
 import { GolarionMap } from "./GolarionMap";
 import changeCursor from "./ChangeCursor";
+import { debug } from "../utils/debug";
 
 type Coord = [number, number];
 
@@ -171,9 +172,9 @@ export default class MeasureControl implements IControl {
       let res = lng;
       while(referenceLng - res > 180) res += 360;
       while(referenceLng - res < -180) res -= 360;
-      /*if(res !== lng) {
+      if(debug && res !== lng) {
         console.log(`Normalized ${lng} to ${res}`);
-      }*/
+      }
       return res;
     }
 
