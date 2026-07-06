@@ -8,6 +8,7 @@ import io.github.pfwikis.layercompiler.steps.model.Inputs;
 import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
 import io.github.pfwikis.layercompiler.steps.model.Time;
 import io.github.pfwikis.layercompiler.steps.model.content.Content;
+import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.util.Jackson;
 import lombok.Getter;
@@ -26,12 +27,12 @@ public class GeojsonOutPerLabel extends StepExecutor {
     	var dir = new File(Ctx.INSTANCE.getOptions().targetDirectory(), dirname);
     	dir.mkdirs();
     	var fc = in.getInput().toFeatureCollection();
-    	var labels = fc.getFeatures().stream().map(f->f.getProperties().getLabel().getLabel()).distinct().sorted().toList();
+    	var labels = fc.getFeatures().stream().map(this::getLabel).distinct().sorted().toList();
     	
     	for(var label:labels) {
     		var lfc = new FeatureCollection();
     		fc.getFeatures().stream()
-    			.filter(f->f.getProperties().getLabel().equals(label))
+    			.filter(f->getLabel(f).equals(label))
     			.forEach(lfc.getFeatures()::add);
 	    	Jackson.JSON.writeValue(
 	    		new File(dir, label+".geojson"),
@@ -41,9 +42,17 @@ public class GeojsonOutPerLabel extends StepExecutor {
     	
     	Files.writeString(
     		Ctx.INSTANCE.getOptions().targetGenDirectory().toPath().resolve("highlight_labels.ts"),
-    		"export const highlightLabels = "+Jackson.JSON.writerWithDefaultPrettyPrinter().writeValueAsString(labels).replace("\", \"", "\",\n\t\"")
+    		"export const highlightLabels = "
+    			+ Jackson.JSON.writerWithDefaultPrettyPrinter().writeValueAsString(labels)
+    				.replace("\", \"", "\",\n\t\"")
+    			+" as const;\n"
+    			+"export type HighlightLabel = (typeof highlightLabels)[number];"
     	);
         return Content.empty();
+    }
+    
+    public String getLabel(Feature f) {
+    	return f.getProperties().getLabel().getLabel();
     }
 
 }

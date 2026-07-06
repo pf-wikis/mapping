@@ -60,7 +60,7 @@ public class PropsMeta extends StepExecutor {
     		.append(";\n")
     		.append("export const propsMeta = ")
     		.append(Jackson.JSON.writerWithDefaultPrettyPrinter().writeValueAsString(layers))
-    		.append(";\n");
+    		.append(" as const;\n");
     	
     	log.info("Props meta:\n{}", sb);
     	

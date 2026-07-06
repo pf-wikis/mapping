@@ -1,15 +1,56 @@
-import { DataDrivenPropertyValueSpecification, ExpressionSpecification, FillLayerSpecification, FilterSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, StyleSpecification } from "maplibre-gl";
-import timeMeta from "../utils/timeMeta";
+import { ExpressionSpecification, FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, StyleSpecification, ExpressionFilterSpecification } from "maplibre-gl";
+import timeMeta from "../../gen/timeMeta";
 import { defineConfig, loadEnv } from 'vite';
 import {ExistingLayer, Prop, propsMeta, maxZoomWithData} from "../../gen/props-meta-golarion";
 import { timeIndexEnd, timeIndexStart } from "../utils/BasicStyleFilters";
+import { constants } from "node:quic";
+import { OptionalFields, Widen } from "../utils/type-utils";
+
+const defaultState = {
+  timeIndex: {
+    default: timeMeta.latest.id,
+  },
+  rotated: {
+    default: false
+  },
+  showLabels: {
+    default: true
+  },
+  showLocations: {
+    default: true
+  },
+  showBorders: {
+    default: true
+  },
+} as const;
+export type State = typeof defaultState;
+export type StateProp = keyof State;
+type StateFromDefaults<T extends Record<string, { default: any }>> = {
+  -readonly [K in keyof T]: T[K]["default"];
+};
+export type StateTypes = {
+  [K in keyof typeof defaultState]:
+    (typeof defaultState)[K] extends { default: infer V }
+      ? Widen<V>
+      : never;
+};
+
 
 export default function(HOST:string, BUILD_DATA_HASH: number) {
 
   console.log('HOST', HOST);
   console.log('BUILD_DATA_HASH', BUILD_DATA_HASH);
 
-  type CreatableLayerSpec = (FillLayerSpecification | LineLayerSpecification | SymbolLayerSpecification)&{'source-layer': ExistingLayer};
+  type CreatableLayerSpec = Omit<
+    FillLayerSpecification|LineLayerSpecification|SymbolLayerSpecification,
+    'filter'|'source-layer'>&{
+    'source-layer': ExistingLayer,
+    filter?: ExpressionFilterSpecification
+  };
+  type PartialCreateableLayerSpec = OptionalFields<
+    CreatableLayerSpec,
+    "id"|"source"|"source-layer"
+  >;
   type LayerSpec = LayerSpecification&{'source-layer'?: ExistingLayer};
 
   let colors = {
@@ -27,7 +68,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     black:           'rgb( 10,  10,  10)'
   };
 
-  function createLayer(layerId:ExistingLayer, base:Partial<CreatableLayerSpec>):CreatableLayerSpec {
+  function createLayer(layerId:ExistingLayer, base:PartialCreateableLayerSpec):LayerSpec {
     let layer = propsMeta[layerId];
 
     let merged = Object.assign({
@@ -47,7 +88,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     }, base) as CreatableLayerSpec;
     
 
-    const baseFilters:ExpressionSpecification[] = [];
+    const baseFilters:ExpressionFilterSpecification[] = [];
     
 
     //filter for min/max zoom
@@ -67,10 +108,10 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     if(baseFilters.length > 0) {
       if(merged.filter && merged.filter instanceof Array) {
         if(merged.filter[0] === 'all') {
-          merged.filter = [...merged.filter, ...baseFilters] as FilterSpecification;
+          merged.filter = [...merged.filter, ...baseFilters];
         }
         else {
-          merged.filter = ['all', merged.filter, ...baseFilters] as FilterSpecification;
+          merged.filter = ['all', merged.filter, ...baseFilters];
         }
       }
       else {
@@ -78,7 +119,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
       }
     }
 
-    return merged;
+    return merged as LayerSpec;
   }
 
   let layers:LayerSpec[] = [
@@ -108,6 +149,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         ],
       },
       layout: {
+        visibility: ['global-state', 'showBorders'],
         'line-cap': 'round'
       }
     }),
@@ -123,6 +165,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         ],
       },
       layout: {
+        visibility: ['global-state', 'showBorders'],
         'line-cap': 'round'
       }
     }),
@@ -140,6 +183,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         ],
       },
       layout: {
+        visibility: ['global-state', 'showBorders'],
         'line-cap': 'round'
       }
     }),
@@ -157,6 +201,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         'line-dasharray': [5, 10]
       },
       layout: {
+        visibility: ['global-state', 'showBorders'],
         'line-cap': 'round'
       }
     }),
@@ -174,12 +219,14 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         'line-dasharray': [2, 4]
       },
       layout: {
+        visibility: ['global-state', 'showBorders'],
         'line-cap': 'round'
       }
     }),
     createLayer('line-labels', {
       type: 'symbol',
       layout: {
+        visibility: ['global-state', 'showLabels'],
         'symbol-placement': 'line',
         'text-max-angle': 20,
         'text-field': ['get', Prop.label],
@@ -209,6 +256,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
       id: 'location-icons',
       type: 'symbol',
       layout: {
+        visibility: ['global-state', 'showLocations'],
         'icon-image': ['get', Prop.icon],
         'icon-pitch-alignment': 'map',
         'icon-overlap': 'always',
@@ -233,6 +281,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     createLayer('labels', {
       type: 'symbol',
       layout: {
+        visibility: ['global-state', 'showLabels'],
         'text-field': ['get', Prop.label],
         'text-rotate': ['case', ['global-state', 'rotated'], 0, ['get', Prop.angle]],
         'text-rotation-alignment': ['case', ['global-state', 'rotated'], 'viewport', 'map'],
@@ -251,6 +300,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
       type: 'symbol',
       filter: ['all', ['has', 'label'], ['>=', ['zoom'], ['+', ['get', Prop.pregroupMinzoom], 5]]],
       layout: {
+        visibility: ['global-state', 'showLocations'],
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],
         'text-size': 14,
@@ -267,6 +317,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     createLayer('province-labels', {
       type: 'symbol',
       layout: {
+        visibility: ['global-state', 'showLabels'],
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],
         'text-size': ['interpolate', ['linear'], ['zoom'],
@@ -293,6 +344,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         ['>', ['zoom'], 4]
       ],
       layout: {
+        visibility: ['global-state', 'showLabels'],
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],
         'text-size': ['interpolate', ['linear'], ['zoom'],
@@ -315,6 +367,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     createLayer('subregion-labels', {
       type: 'symbol',
       layout: {
+        visibility: ['global-state', 'showLabels'],
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],
         'text-size': ['interpolate', ['linear'], ['zoom'],
@@ -337,6 +390,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     createLayer('region-labels', {
       type: 'symbol',
       layout: {
+        visibility: ['global-state', 'showLabels'],
         'text-field': ['get', Prop.label],
         'text-font': ['NotoSans-Medium'],
         'text-size': 20,
@@ -362,14 +416,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         encoding: 'mlt'
       },
     },
-    state: {
-      timeIndex: {
-        default: timeMeta.max,
-      },
-      rotated: {
-        default: false
-      }
-    },
+    state: defaultState,
     sprite: `${HOST}/sprites/sprites`,
     layers: layers,
     glyphs: `${HOST}/fonts/{fontstack}/{range}.pbf`,
@@ -379,6 +426,17 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     },
     sky: {
       'atmosphere-blend': 0.5
+    },
+    projection: {
+      "type": [
+        "interpolate",
+        ["linear"],
+        ["zoom"],
+        4,
+        "vertical-perspective",
+        5,
+        "mercator"
+      ]
     }
-  } as StyleSpecification;
+  } satisfies StyleSpecification;
 }

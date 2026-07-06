@@ -1,8 +1,8 @@
 
-import { IControl, Map } from "maplibre-gl";
+import { IControl } from "maplibre-gl";
 
 export default class NewTab implements IControl {
-    onAdd(map: Map): HTMLElement {
+    onAdd(_:any): HTMLElement {
         let container = document.createElement('div');
         container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
 
@@ -20,7 +20,7 @@ export default class NewTab implements IControl {
 
         return container;
     }
-    onRemove(map: Map): void {}
+    onRemove(_:any): void {}
 
     _openInTab() {
         const tab = window.open(

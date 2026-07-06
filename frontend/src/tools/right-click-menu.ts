@@ -1,9 +1,10 @@
-import { LngLat, Map } from "maplibre-gl";
+import { LngLat } from "maplibre-gl";
 import MeasureControl from "./measure";
 import PureContextMenu from "pure-context-menu";
-import options from "../URLOptions.js";
+import { Options } from "../URLOptions";
+import { GolarionMap } from "./GolarionMap";
 
-export function addRightClickMenu(embedded: boolean, map: Map, measureControl: MeasureControl) {
+export function addRightClickMenu(map: GolarionMap, measureControl: MeasureControl) {
 
   function generateItems(menu: any) {
     let items = [
@@ -32,14 +33,11 @@ export function addRightClickMenu(embedded: boolean, map: Map, measureControl: M
       },
     ];
 
-    if(options.highlight) {
+    if(map.options.highlight) {
       items.push({
         label: "Remove Highlight",
         callback: (e:Event) => {
-          options.highlight = null;
-          options.writeToHash();
-          map.removeLayer('highlights');
-          map.removeSource('highlights');
+          map.options.highlight = undefined;
           generateItems(menu);
         },
       });
@@ -48,11 +46,11 @@ export function addRightClickMenu(embedded: boolean, map: Map, measureControl: M
   }
 
   var latLong:LngLat|null = null;
-  map.on('contextmenu', function(e) {
+  map.map.on('contextmenu', function(e) {
     latLong = e.lngLat;
   });
   
-  const menu = new PureContextMenu(map.getContainer(), [], {
+  const menu = new PureContextMenu(map.map.getContainer(), [], {
     show: (e:Event) => {
       //only show if map itself is clicked
       return (e.target as HTMLElement).classList.contains('maplibregl-canvas');

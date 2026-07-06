@@ -1,6 +1,6 @@
 declare module "virtual:style" {
-    import { StyleSpecification } from 'maplibre-gl';
-
-    const style: StyleSpecification;
+    const style: import('maplibre-gl').StyleSpecification & {
+        state: import('./style').State;
+    };
     export default style;
 }

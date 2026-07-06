@@ -1,52 +1,62 @@
-import { IControl, Map as MLMap } from 'maplibre-gl';
+import { IControl } from 'maplibre-gl';
 import { GolarionMap } from "./GolarionMap";
 import style from 'virtual:style';
+
+import { Options } from '../URLOptions.js';
+import timeMeta, { TimeSlice } from '../../gen/timeMeta';
 import throttle from '../utils/throttle';
-import options from '../URLOptions.js';
-import timeMeta from '../utils/timeMeta';
+
+
 
 export default class TimeSliderControl implements IControl {
   private map: GolarionMap;
   private container: HTMLElement;
-  private initialTimeIndex: number;
 
-  constructor(map: GolarionMap, initialTimeIndex: number) {
+  constructor(map: GolarionMap) {
     this.map = map;
-    this.initialTimeIndex = initialTimeIndex;
+
+    let updateMapUnthrottled = (time:TimeSlice) => map.setStateYear(time);
+    let updateMap = throttle(updateMapUnthrottled, 100);
 
     // Create main container
     this.container = document.createElement('div');
     this.container.className = 'time-slider-container maplibregl-ctrl maplibregl-ctrl-group';
-    if(options.embedded) {
-      map.map.once('style.load', ()=>this.updateMapUnthrottled(initialTimeIndex));
-    }
-  }
 
-  updateMapUnthrottled = (timeIndex:number) => this.map.map.setGlobalStateProperty('timeIndex', timeIndex);
-  updateMap = throttle(this.updateMapUnthrottled, 100);
+    map.options.onChange('year', (_, newYear:number) => {
+      let time = timeMeta.byYear(newYear);
+      updateMap(time);
+    });
+    /*
+    if(map.startupOptions.embedded) {
+      map.map.once('style.load', ()=>updateMapUnthrottled(timeMeta.byId(map.options.year)));
+    }*/
+  }
   
-  onAdd(map: MLMap): HTMLElement {
+  onAdd(_:any): HTMLElement {
     this.container.innerHTML = `
-    <input type="range" id="time-slider" name="time-slider" min="${timeMeta.min}" max="${timeMeta.max}" value="${this.initialTimeIndex}" />
-    <label for="time-slider"></label>
+    <input type="range" id="time-slider" name="time-slider" min="${timeMeta.oldest.id}" max="${timeMeta.latest.id}" value="${this.map.options.year}" />
+    <label for="time-slider">${timeMeta.byYear(this.map.options.year).label}</label>
     `;
     const slider:HTMLInputElement = this.container.querySelector('#time-slider')!;
     const label:HTMLLabelElement = this.container.querySelector('label')!;
-
-    const updateYear = () => {
-        const value = parseInt(slider.value);
-        this.updateMap(value);
-        let time = timeMeta.byId(value);
-        options.year = time.start ?? (time.end?time.end-1:undefined);
-        options.writeToHash();
-        label.innerHTML = time.label || `Unlabeled entry ${value}`;
+    const updateLabel = (time:TimeSlice) => {
+      label.innerHTML = time.label;
     }
-    slider.addEventListener('input', updateYear);
-    map.once('style.load', updateYear);
+
+    this.map.options.onChange('year', (_, newYear:number) => {
+      let time = timeMeta.byYear(newYear);
+      slider.value = time.id.toString();
+      updateLabel(time);
+    });
+
+    slider.addEventListener('input', () => {
+        const value = parseInt(slider.value);
+        this.map.options.year = timeMeta.byId(value).representativeYear;
+    });
     return this.container;
   }
 
-  onRemove(map: MLMap): void {
+  onRemove(_:any): void {
     if (this.container && this.container.parentNode) {
       this.container.parentNode.removeChild(this.container);
     }

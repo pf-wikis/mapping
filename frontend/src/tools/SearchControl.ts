@@ -1,6 +1,7 @@
-import { IControl, Map, Popup, LngLatBoundsLike } from 'maplibre-gl';
+import { IControl, Popup, LngLatBoundsLike } from 'maplibre-gl';
 import { FuzzySearch, SearchResult } from '../utils/fuzzy-search';
 import { GolarionMap } from './GolarionMap';
+import { Map } from 'maplibre-gl';
 
 export default class SearchControl implements IControl {
   private map: GolarionMap;
@@ -21,7 +22,7 @@ export default class SearchControl implements IControl {
     this.container.className = 'golarion-search-control maplibregl-ctrl maplibregl-ctrl-group';
   }
 
-  onAdd(map: Map): HTMLElement {
+  onAdd(_:any): HTMLElement {
     // Create search UI
     this.createSearchUI();
 

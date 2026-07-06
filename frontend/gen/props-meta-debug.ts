@@ -67,4 +67,4 @@ export const propsMeta = {
     "hasTime" : false,
     "props" : { }
   }
-};
+} as const;

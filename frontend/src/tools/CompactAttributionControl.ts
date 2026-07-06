@@ -1,4 +1,4 @@
-import { AttributionControl, Map } from "maplibre-gl";
+import { AttributionControl } from "maplibre-gl";
 
 export class CompactAttributionControl extends AttributionControl {
 

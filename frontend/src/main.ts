@@ -9,22 +9,14 @@ import MeasureControl from './tools/measure.js';
 import { PMTiles, Protocol } from 'pmtiles';
 import { makeLocationsClickable } from "./tools/location-popup.js";
 import { addRightClickMenu } from "./tools/right-click-menu.js";
-import { addSpecialURLOptions } from "./tools/special-url-options.js";
 import { CachedSource } from "./CachedPmTiles.js";
 import NewTab from "./tools/NewTab.js";
 import { CompactAttributionControl } from "./tools/CompactAttributionControl.js";
 import { GolarionMap } from "./tools/GolarionMap.js";
 import SearchControl from "./tools/SearchControl.js";
 import TimeSliderControl from "./tools/TimeSliderControl.js";
-import options from "./URLOptions.js";
-import timeMeta from "./utils/timeMeta.js";
-
-//check if running embedded
-const mapContainer = document.getElementById("map-container")!;
-
-if(!options.embedded) {
-  mapContainer.classList.remove("embedded");
-}
+import { startupOptions } from "./URLOptions.js";
+import { addSpecialURLOptions } from "./tools/special-url-options";
 
 var root = `${location.protocol}//${location.host}`;
 
@@ -44,16 +36,9 @@ setWorkerUrl(workerUrl);
 
 /******************************* update style according to option *******************************/
 
-if(options.hideLabels) {
-  style.layers = style.layers.filter(l=>!l.id.includes('label'));
+if(!startupOptions.embedded) {
+  document.getElementById('map-container')!.classList.remove("embedded");
 }
-if(options.hideLocations) {
-  style.layers = style.layers.filter(l=>!l.id.includes('location'));
-}
-if(options.hideBorders) {
-  style.layers = style.layers.filter(l=>!l.id.includes('border'));
-}
-
 console.log("Effective style", style);
 
 /************************* end of style adjustments ****************************************/
@@ -63,36 +48,14 @@ export const map = new Map({
   container: 'map-container',
   hash: 'location',
   attributionControl: false,
-  pitchWithRotate: options.embedded?false:true,
+  pitchWithRotate: startupOptions.embedded?false:true,
   style: style,
   pixelRatio: Math.max(window.devicePixelRatio || 1, 2),
   canvasContextAttributes: {
     preserveDrawingBuffer: true
   }
 });
-export const golarionMap = new GolarionMap();
-golarionMap.map = map;
-//project to globe
-let projection:PropertyValueSpecification<ProjectionDefinitionSpecification>;
-if(options.projection === 'auto') {
-  projection = [
-    "interpolate",
-    ["linear"],
-    ["zoom"],
-    4,
-    "vertical-perspective",
-    5,
-    "mercator"
-  ];
-}
-else {
-  projection = options.projection;
-}
-map.once('style.load', () => {
-  map.setProjection({
-    type: projection
-  });
-});
+export const golarionMap = new GolarionMap(map);
 
 //diable rotation
 map.dragRotate.disable();
@@ -101,9 +64,11 @@ map.touchZoomRotate.disableRotation();
 map.on('error', function(err) {
   console.log(err.error.message);
 });
-let timeSlider = new TimeSliderControl(golarionMap, options.year?timeMeta.fromYear(options.year):0);
+let timeSlider = new TimeSliderControl(golarionMap);
 
-if(!options.embedded) {
+addSpecialURLOptions(golarionMap);
+
+if(!startupOptions.embedded) {
   map.addControl(new GlobeControl());
   map.addControl(new NavigationControl({showCompass: true}));
   map.addControl(timeSlider, 'top-left');
@@ -111,24 +76,23 @@ if(!options.embedded) {
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',
-  maxWidth: options.embedded?50:100,
+  maxWidth: startupOptions.embedded?50:100,
 }));
 map.addControl(new ScaleControl({
   unit: 'metric',
-  maxWidth: options.embedded?50:100,
+  maxWidth: startupOptions.embedded?50:100,
 }));
-map.addControl(new CompactAttributionControl(options.embedded));
+map.addControl(new CompactAttributionControl(startupOptions.embedded));
 let measureControl = new MeasureControl(golarionMap);
 map.addControl(measureControl);
-if(options.embedded) {
+if(startupOptions.embedded) {
   map.addControl(new NewTab());
   //attribution._toggleAttribution();
   //map.once('load', e=>attribution._toggleAttribution());
 }
 
 makeLocationsClickable(golarionMap);
-addRightClickMenu(options.embedded, map, measureControl);
-addSpecialURLOptions(map);
+addRightClickMenu(golarionMap, measureControl);
 
 //change label orientation if bearing != 0
 function changeStyleWithBearing() {

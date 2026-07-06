@@ -2,7 +2,7 @@
 export default function throttle(f: Function, delay: number) {
     let lastCall = Number.NEGATIVE_INFINITY;
     let wait;
-    let handle:number;
+    let handle:NodeJS.Timeout|undefined;
     return (...args: any[]) => {
         wait = lastCall + delay - Date.now();
         clearTimeout(handle);
