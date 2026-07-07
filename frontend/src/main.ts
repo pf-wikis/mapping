@@ -1,4 +1,4 @@
-import { addProtocol, AttributionControl, FilterSpecification, GlobeControl, Map, NavigationControl, ProjectionDefinitionSpecification, PropertyValueSpecification, ScaleControl, setWorkerUrl, StyleSpecification } from "maplibre-gl";
+import { addProtocol, Map, NavigationControl, ScaleControl, setWorkerUrl } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import './style.scss';
@@ -18,6 +18,7 @@ import TimeSliderControl from "./tools/TimeSliderControl.js";
 import { startupOptions } from "./URLOptions.js";
 import { addSpecialURLOptions } from "./tools/special-url-options";
 import { debug } from "./utils/debug";
+import { ProjectionControl } from "./tools/ProjectionControl";
 
 var root = `${location.protocol}//${location.host}`;
 
@@ -72,7 +73,7 @@ let timeSlider = new TimeSliderControl(golarionMap);
 addSpecialURLOptions(golarionMap);
 
 if(!startupOptions.embedded) {
-  map.addControl(new GlobeControl());
+  map.addControl(new ProjectionControl(golarionMap));
   map.addControl(new NavigationControl({showCompass: true}));
   map.addControl(timeSlider, 'top-left');
   map.addControl(new SearchControl(golarionMap), 'top-left');

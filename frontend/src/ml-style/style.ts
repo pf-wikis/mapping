@@ -4,6 +4,7 @@ import { timeIndexEnd, timeIndexStart } from "../utils/BasicStyleFilters";
 import { OptionalFields } from "../utils/type-utils";
 import { state, StateProp } from "./state";
 import { Expression } from "./expression";
+import { projection } from "./projection";
 
 export default function(HOST:string, BUILD_DATA_HASH: number) {
 
@@ -391,7 +392,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         encoding: 'mlt'
       },
     },
-    state: state,
+    state: Object.fromEntries(Object.keys(state).map(k=>[k, {default: (state as any)[k].default}])),
     sprite: `${HOST}/sprites/sprites`,
     layers: layers,
     glyphs: `${HOST}/fonts/{fontstack}/{range}.pbf`,
@@ -402,16 +403,6 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     sky: {
       'atmosphere-blend': 0.5
     },
-    projection: {
-      "type": [
-        "interpolate",
-        ["linear"],
-        ["zoom"],
-        4,
-        "vertical-perspective",
-        5,
-        "mercator"
-      ]
-    }
+    projection: projection
   } satisfies StyleSpecification;
 }
