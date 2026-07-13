@@ -554,6 +554,7 @@ export const highlightLabels = [ "Abendego Piercing",
 	"Minkai",
 	"Mishyria",
 	"Missa Shelf",
+	"Mist Lake",
 	"Mivon",
 	"Moda",
 	"Molthune",
@@ -1009,5 +1010,4 @@ export const highlightLabels = [ "Abendego Piercing",
 	"Zho Mountains",
 	"Zi Ha",
 	"Zuntisha" ] as const;
-
 export type HighlightLabel = (typeof highlightLabels)[number];

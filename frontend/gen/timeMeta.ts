@@ -1,5 +1,5 @@
 const oldest = {
-  "id" : -15,
+  "id" : -16,
   "label" : "before <a href=\"https://pathfinderwiki.com/wiki/4609_AR\">4609 AR</a>",
   "representativeYear" : 4608,
   "start" : null,
@@ -13,52 +13,58 @@ const latest = {
   "end" : null
 } as const;
 const data = [oldest,...[ {
-  "id" : -14,
+  "id" : -15,
   "label" : "<a href=\"https://pathfinderwiki.com/wiki/4609_AR\">4609 AR</a> - <a href=\"https://pathfinderwiki.com/wiki/4631_AR\">4631 AR</a>",
   "representativeYear" : 4609,
   "start" : 4609,
   "end" : 4632
 }, {
-  "id" : -13,
+  "id" : -14,
   "label" : "<a href=\"https://pathfinderwiki.com/wiki/4632_AR\">4632 AR</a>",
   "representativeYear" : 4632,
   "start" : 4632,
   "end" : 4633
 }, {
-  "id" : -12,
+  "id" : -13,
   "label" : "<a href=\"https://pathfinderwiki.com/wiki/4633_AR\">4633 AR</a> - <a href=\"https://pathfinderwiki.com/wiki/4639_AR\">4639 AR</a>",
   "representativeYear" : 4633,
   "start" : 4633,
   "end" : 4640
 }, {
-  "id" : -11,
+  "id" : -12,
   "label" : "<a href=\"https://pathfinderwiki.com/wiki/4640_AR\">4640 AR</a> - <a href=\"https://pathfinderwiki.com/wiki/4654_AR\">4654 AR</a>",
   "representativeYear" : 4640,
   "start" : 4640,
   "end" : 4655
 }, {
-  "id" : -10,
+  "id" : -11,
   "label" : "<a href=\"https://pathfinderwiki.com/wiki/4655_AR\">4655 AR</a> - <a href=\"https://pathfinderwiki.com/wiki/4660_AR\">4660 AR</a>",
   "representativeYear" : 4655,
   "start" : 4655,
   "end" : 4661
 }, {
-  "id" : -9,
+  "id" : -10,
   "label" : "<a href=\"https://pathfinderwiki.com/wiki/4661_AR\">4661 AR</a> - <a href=\"https://pathfinderwiki.com/wiki/4666_AR\">4666 AR</a>",
   "representativeYear" : 4661,
   "start" : 4661,
   "end" : 4667
 }, {
-  "id" : -8,
+  "id" : -9,
   "label" : "<a href=\"https://pathfinderwiki.com/wiki/4667_AR\">4667 AR</a> - <a href=\"https://pathfinderwiki.com/wiki/4668_AR\">4668 AR</a>",
   "representativeYear" : 4667,
   "start" : 4667,
   "end" : 4669
 }, {
-  "id" : -7,
-  "label" : "<a href=\"https://pathfinderwiki.com/wiki/4669_AR\">4669 AR</a> - <a href=\"https://pathfinderwiki.com/wiki/4710_AR\">4710 AR</a>",
+  "id" : -8,
+  "label" : "<a href=\"https://pathfinderwiki.com/wiki/4669_AR\">4669 AR</a> - <a href=\"https://pathfinderwiki.com/wiki/4709_AR\">4709 AR</a>",
   "representativeYear" : 4669,
   "start" : 4669,
+  "end" : 4710
+}, {
+  "id" : -7,
+  "label" : "<a href=\"https://pathfinderwiki.com/wiki/4710_AR\">4710 AR</a>",
+  "representativeYear" : 4710,
+  "start" : 4710,
   "end" : 4711
 }, {
   "id" : -6,
@@ -100,7 +106,7 @@ const data = [oldest,...[ {
 export type TimeSlice = typeof data[number];
 export default {
 	byId(id:number):TimeSlice {
-		let index = id + 15;
+		let index = id + 16;
 		if(index < 0 || index > data.length)
 			throw new Error(`No time entry found for id ${id}`);
 		return data[index];

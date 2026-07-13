@@ -70,7 +70,11 @@ public class Highlights extends StepExecutor {
 	            "--MITER_LIMIT=2"
 	        );
 			
-			var debuffered = Tools.qgis(this, "native:buffer", buffered,
+			var withoutHoles = Tools.mapshaper(this, buffered,
+				"-drop", "holes"
+			);
+			
+			var debuffered = Tools.qgis(this, "native:buffer", withoutHoles,
 	            "--DISTANCE=expression:-4*\"buffer\"",
 	            "--SEGMENTS=5",
 	            "--END_CAP_STYLE=0",

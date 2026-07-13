@@ -25,40 +25,40 @@ export const propsMeta = {
     "props" : {
       "export" : {
         "name" : "export",
-        "nonNullEntries" : 1063,
+        "nonNullEntries" : 1067,
         "nullEntries" : 0
       },
       "export_tileMaxzoom" : {
         "name" : "export_tileMaxzoom",
         "maxNumber" : 8,
         "minNumber" : 8,
-        "nonNullEntries" : 1063,
+        "nonNullEntries" : 1067,
         "nullEntries" : 0
       },
       "export_tileMinzoom" : {
         "name" : "export_tileMinzoom",
         "maxNumber" : 0,
         "minNumber" : 0,
-        "nonNullEntries" : 1063,
+        "nonNullEntries" : 1067,
         "nullEntries" : 0
       },
       "label" : {
         "name" : "label",
-        "nonNullEntries" : 1063,
+        "nonNullEntries" : 1067,
         "nullEntries" : 0
       },
       "timeIndexEnd" : {
         "name" : "timeIndexEnd",
         "maxNumber" : 1,
-        "minNumber" : -14,
-        "nonNullEntries" : 1063,
+        "minNumber" : -15,
+        "nonNullEntries" : 1067,
         "nullEntries" : 0
       },
       "timeIndexStart" : {
         "name" : "timeIndexStart",
         "maxNumber" : 0,
-        "minNumber" : -15,
-        "nonNullEntries" : 1063,
+        "minNumber" : -16,
+        "nonNullEntries" : 1067,
         "nullEntries" : 0
       }
     }
