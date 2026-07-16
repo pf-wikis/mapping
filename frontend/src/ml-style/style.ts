@@ -1,4 +1,4 @@
-import { FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, StyleSpecification, ExpressionFilterSpecification } from "maplibre-gl";
+import { FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, RasterLayerSpecification, StyleSpecification, ExpressionFilterSpecification } from "maplibre-gl";
 import { ExistingLayer, Prop, propsMeta, maxZoomWithData} from "../../gen/props-meta-golarion";
 import { timeIndexEnd, timeIndexStart } from "../utils/BasicStyleFilters";
 import { OptionalFields } from "../utils/type-utils";
@@ -111,6 +111,26 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         'fill-antialias': false
       }
     }),
+    {
+      id: 'hillshade-mountains',
+      type: 'raster',
+      source: 'hillshadeMountains',
+      paint: {
+        'raster-opacity': 0.35,
+        'raster-fade-duration': 0,
+        'raster-resampling': 'linear'
+      }
+    } as RasterLayerSpecification,
+    {
+      id: 'hillshade-hills',
+      type: 'raster',
+      source: 'hillshadeHills',
+      paint: {
+        'raster-opacity': 0.25,
+        'raster-fade-duration': 0,
+        'raster-resampling': 'linear'
+      }
+    } as RasterLayerSpecification,
     createLayer('borders', {
       id: 'borders-nations',
       type: 'line',
@@ -390,6 +410,26 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         attribution: '<a href="https://paizo.com/licenses/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
         url: `pmtiles://${HOST}/golarion.pmtiles?v=${BUILD_DATA_HASH}`,
         encoding: 'mlt'
+      },
+      hillshadeMountains: {
+        type: 'image',
+        url: `${HOST}/hillshade-mountains.png`,
+        coordinates: [
+          [-70, 42],   // tl
+          [100, 42],  // tr
+          [100, -40], // br
+          [-70, -40]  // bl
+        ]
+      },
+      hillshadeHills: {
+        type: 'image',
+        url: `${HOST}/hillshade-hills.png`,
+        coordinates: [
+          [-70, 42],   // tl
+          [100, 42],  // tr
+          [100, -40], // br
+          [-70, -40]  // bl
+        ]
       },
     },
     state: Object.fromEntries(Object.keys(state).map(k=>[k, {default: (state as any)[k].default}])),

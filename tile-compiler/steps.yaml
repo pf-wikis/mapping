@@ -392,6 +392,39 @@
       dependsOn:
         time-meta: time-meta
 
+- name: hillshade-mountains
+  steps:
+    - step: GENERATE_HILLSHADE
+      dependsOn:
+        polygons: mountains.ADD_FRACTAL_DETAIL
+        locations: locations.READ_FILE
+      layer: mountains
+      maxElevation: 255
+      power: 0.7
+      includeLocations: true
+      gridWidth: 2048
+      gridHeight: 1024
+      boundsMinX: -70
+      boundsMaxX: 100
+      boundsMinY: -40
+      boundsMaxY: 42
+
+- name: hillshade-hills
+  steps:
+    - step: GENERATE_HILLSHADE
+      dependsOn:
+        polygons: hills.ADD_FRACTAL_DETAIL
+      layer: hills
+      maxElevation: 128
+      power: 1.0
+      includeLocations: false
+      gridWidth: 2048
+      gridHeight: 1024
+      boundsMinX: -70
+      boundsMaxX: 100
+      boundsMinY: -40
+      boundsMaxY: 42
+
 - name: time-meta
   steps:
     - step: TIME_META_COLLECT
