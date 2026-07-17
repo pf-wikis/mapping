@@ -62,7 +62,16 @@ public class ResolveLabels extends StepExecutor {
 	private List<Label> splitLabels(JsonNode labels) {
 		try {
 			if(labels.isString()) {
-				return Collections.singletonList(new Label(labels.stringValue().trim(), null));
+				var str = labels.stringValue().trim();
+				var first = str.charAt(0);
+				if(first == '[' || first == '{' || first == '"') {
+					try {
+						return splitLabels(Jackson.JSON.readTree(str));
+					} catch(Exception e) {
+						log.warn("Strange label `{}`", str);
+					}
+				}
+				return Collections.singletonList(new Label(str, null));
 			}
 			if(labels.isObject()) {
 				return List.of(Jackson.JSON.treeToValue(labels, Label.class));

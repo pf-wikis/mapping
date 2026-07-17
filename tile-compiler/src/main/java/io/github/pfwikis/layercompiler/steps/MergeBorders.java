@@ -70,7 +70,7 @@ public class MergeBorders extends StepExecutor {
     			var type = entry.getValue();
 	    		var f = new Feature();
 	    		fc.getFeatures().add(f);
-	    		f.setGeometry(new LineString(List.of(seg.a, seg.b)));
+	    		f.setGeometry(LineString.from(List.of(seg.a, seg.b)));
 	    		f.getProperties().setBorderType(type);
 	    		f.getProperties().setTime(entry.getKey());
     		}
@@ -82,7 +82,7 @@ public class MergeBorders extends StepExecutor {
     		for(var time:segEntry.getValue().asRanges()) {
 	    		var f = new Feature();
 	    		fc.getFeatures().add(f);
-	    		f.setGeometry(new LineString(List.of(seg.a, seg.b)));
+	    		f.setGeometry(LineString.from(List.of(seg.a, seg.b)));
 	    		f.getProperties().setBorderType(1);
 	    		f.getProperties().setMaxzoom(5);
 	    		f.getProperties().setTime(time);

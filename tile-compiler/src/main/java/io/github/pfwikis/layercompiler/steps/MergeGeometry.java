@@ -26,7 +26,7 @@ public class MergeGeometry extends StepExecutor {
 
     @Override
     public Content process(Inputs in) throws Exception {
-    	var agg = new FeatureCollection();
+    	var layeredOnEachOther = new FeatureCollection();
     	log.info("Geometry layer order: {}", in.getInputs().entrySet().stream().map(e->e.getKey()).collect(Collectors.joining("->")));
     	for(var e:in.getInputs().entrySet()) {
     		var defaultColor = Optional.ofNullable(colorFor(e.getKey()))
@@ -44,22 +44,23 @@ public class MergeGeometry extends StepExecutor {
     		
     		for(var f : dissolved.toFeatureCollection().getFeatures()) {
     			f.getProperties().setUuid(UUID.randomUUID());
-    			agg.getFeatures().add(f);
+    			layeredOnEachOther.getFeatures().add(f);
     		}
     	}
-    	var mosaicC = Tools.mapshaper(this, GeoData.from(agg),
+    	var mosaic = Tools.mapshaper(this, GeoData.from(layeredOnEachOther),
 			"-mosaic", "calc='colorStack=collect(color)"
 						+",uuids=collect(uuid)'",
 			"-filter", "Boolean(colorStack)",
 			"-filter", "!this.isNull"
-		);
-    	var mosaic = mosaicC.toFeatureCollection();
+		).toFeatureCollection();
     	Map<UUID, List<Feature>> resolved = new HashMap<>();
     	for(var f:mosaic.getFeatures()) {
     		Color c = new Color(110, 160, 245);
     		UUID resolvedTransparent = null;
     		var colorStack = f.getProperties().getColorStack();
     		var uuidStack = f.getProperties().getUuids();
+    		if(f.getGeometry()==null)
+				continue;
     		
     		for(int i=0;i<colorStack.size();i++) {
     			var uuid = uuidStack.get(i);
@@ -89,7 +90,7 @@ public class MergeGeometry extends StepExecutor {
     	}
     	
     	FeatureCollection merged = new FeatureCollection();
-    	for(var f:agg.getFeatures()) {
+    	for(var f:layeredOnEachOther.getFeatures()) {
     		var res = resolved.get(f.getProperties().getUuid());
     		if(res != null) {
     			merged.getFeatures().addAll(res);
@@ -99,6 +100,7 @@ public class MergeGeometry extends StepExecutor {
     			f.getProperties().setUuid(null);
     		}
     	}
+    	
     	return Content.timeless(GeoData.from(merged));
     }
 

@@ -3,6 +3,7 @@ package io.github.pfwikis.layercompiler.steps;
 import java.io.File;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.DoubleUnaryOperator;
 
 import org.apache.commons.lang3.tuple.Pair;
 
@@ -20,6 +21,9 @@ import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
 import io.github.pfwikis.layercompiler.steps.model.Time;
 import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
+import io.github.pfwikis.model.FeatureCollection;
+import io.github.pfwikis.model.Geometry;
+import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.model.Properties;
 import io.github.pfwikis.model.Properties.ExportProperties;
 import lombok.Getter;
@@ -60,7 +64,7 @@ public class CompileTiles extends StepExecutor {
     	in.getInputs().entrySet()
 			.stream()
 			.filter(l->!l.getKey().equals("time-meta"))
-			.map(e->Pair.of(e.getKey(), e.getValue().toFeatureCollection()))
+			.map(e->Pair.of(e.getKey(), shift(e.getValue().toFeatureCollection())))
 			.forEach(e->planetiler.addGeoJsonSource(e.getKey(), GeoData.from(e.getValue()).toTmpFile(this)));
     	planetiler.setOutput(new File(Ctx.INSTANCE.getOptions().targetDirectory(), filename+"."+extension).toPath());
     	planetiler.setProfile(new Profile() {
@@ -105,7 +109,27 @@ public class CompileTiles extends StepExecutor {
         return Content.empty();
     }
     
-    @Override
+    //hopefully this is just a temporary workaround until planetiler fixes https://github.com/onthegomap/planetiler/issues/1588
+    private FeatureCollection shift(FeatureCollection fc) {
+    	for(var f:fc.getFeatures()) {
+    		if(f.getGeometry().streamPoints().allMatch(p->p.lng()>180)) {
+    			f.setGeometry(translate(f.getGeometry(), ln->ln-360));
+    		}
+    		if(f.getGeometry().streamPoints().allMatch(p->p.lng()<-180)) {
+    			f.setGeometry(translate(f.getGeometry(), ln->ln+360));
+    		}
+    	}
+		return fc;
+	}
+
+	private <T> Geometry translate(Geometry geometry, DoubleUnaryOperator lngChanger) {
+		geometry.transformPoints(p->
+			new LngLat(lngChanger.applyAsDouble(p.lng()), p.lat())
+		);
+		return geometry;
+	}
+
+	@Override
     public List<StepExecutor> createAutoSteps() {
     	var meta = new PropsMeta();
     	meta.setFilenameSuffix(filename);

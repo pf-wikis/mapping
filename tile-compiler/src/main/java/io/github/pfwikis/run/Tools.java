@@ -58,10 +58,6 @@ public class Tools {
         );
     }
 
-    public static GeoData ogr2ogr(StepExecutor step, Object... args) throws IOException {
-        return Runner.run(step, "ogr2ogr", new Runner.OutFile(), args);
-    }
-
     public static void spriteZero(StepExecutor step, Object... args) throws IOException {
 		Runner.run(step, "spritezero", args);
 	}

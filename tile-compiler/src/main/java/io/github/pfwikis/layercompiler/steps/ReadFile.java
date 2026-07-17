@@ -41,7 +41,12 @@ public class ReadFile extends StepExecutor {
 			res = GeoData.from(finalFile);
 		}
 		else {
-            res = Tools.ogr2ogr(this, Ctx.INSTANCE.getOptions().getMappingDataFile().toPath(), "-preserve_fid", "-dim", "XY", "-mapFieldType", "DateTime=String", layer);
+			res = Tools.mapshaper(
+				this,
+				GeoData.from(Ctx.INSTANCE.getOptions().getMappingDataFile()),
+				"layers="+layer,
+				"-filter-fields", "fid", "invert"
+			);
         }
 		
 		boolean hasTime = res.toFeatureCollection().getFeatures()
