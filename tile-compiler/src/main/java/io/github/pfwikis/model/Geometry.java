@@ -1,15 +1,16 @@
 package io.github.pfwikis.model;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
@@ -25,42 +26,88 @@ import lombok.NoArgsConstructor;
   })
 public interface Geometry {
 	
-	public Stream<LngLat> streamPoints();
-	public long size();
-
-    @Data
-    public static class Polygon implements Geometry {
-        private List<List<LngLat>> coordinates;
-        
-        @Override
+	Stream<LngLat> streamPoints();
+	long size();
+	void transformPoints(UnaryOperator<LngLat> transformer);
+	
+	@Data
+	static abstract class AbstractGeometry<T> implements Geometry {
+		protected T coordinates;
+	}
+	
+	@EqualsAndHashCode(callSuper = true)
+	static abstract class AbstractGeometryLP extends AbstractGeometry<List<LngLat>> {
+		@Override
+        public Stream<LngLat> streamPoints() {
+        	return coordinates.stream();
+        }
+		
+		@Override
+		public long size() {
+			return coordinates.size();
+		}
+		
+		@Override
+		public void transformPoints(UnaryOperator<LngLat> transformer) {
+			var nullsafe = transformer.andThen(Objects::requireNonNull);
+			coordinates = coordinates.stream().map(nullsafe).toList();
+		}
+	}
+	
+	@EqualsAndHashCode(callSuper = true)
+	static abstract class AbstractGeometryLLP extends AbstractGeometry<List<List<LngLat>>> {
+		@Override
         public Stream<LngLat> streamPoints() {
         	return coordinates.stream().flatMap(List::stream);
         }
-
+		
 		@Override
 		public long size() {
 			return coordinates.stream().mapToLong(List::size).sum();
 		}
-    }
-
-    @Data
-    public static class MultiPolygon implements Geometry {
-        private List<List<List<LngLat>>> coordinates;
-        
-        @Override
+		
+		@Override
+		public void transformPoints(UnaryOperator<LngLat> transformer) {
+			var nullsafe = transformer.andThen(Objects::requireNonNull);
+			coordinates = coordinates.stream()
+					.map(r->r.stream().map(nullsafe).toList())
+					.toList();
+		}
+	}
+	
+	@EqualsAndHashCode(callSuper = true)
+	static abstract class AbstractGeometryLLLP extends AbstractGeometry<List<List<List<LngLat>>>> {
+		@Override
         public Stream<LngLat> streamPoints() {
-        	return coordinates.stream().flatMap(List::stream).flatMap(List::stream);
+			return coordinates.stream().flatMap(List::stream).flatMap(List::stream);
         }
-
+		
 		@Override
 		public long size() {
 			return coordinates.stream().flatMap(List::stream).mapToLong(List::size).sum();
 		}
-    }
+		
+		@Override
+		public void transformPoints(UnaryOperator<LngLat> transformer) {
+			var nullsafe = transformer.andThen(Objects::requireNonNull);
+			coordinates = coordinates.stream()
+				.map(r->r.stream()
+					.map(rr->rr.stream()
+						.map(nullsafe)
+						.toList())
+					.toList())
+				.toList();
+		}
+	}
+
+    @EqualsAndHashCode(callSuper = true)
+    static class Polygon extends AbstractGeometryLLP {}
+
+    @EqualsAndHashCode(callSuper = true)
+    static class MultiPolygon extends AbstractGeometryLLLP {}
     
-    @Data
-    public static class Point implements Geometry {
-        private LngLat coordinates;
+    @EqualsAndHashCode(callSuper = true)
+    static class Point extends AbstractGeometry<LngLat> {
         
         @Override
         public Stream<LngLat> streamPoints() {
@@ -71,66 +118,39 @@ public interface Geometry {
 		public long size() {
 			return 1;
 		}
-    }
-    
-    @Data
-    public static class MultiPoint implements Geometry {
-        private List<LngLat> coordinates;
-        
-        @Override
-        public Stream<LngLat> streamPoints() {
-        	return coordinates.stream();
-        }
 
 		@Override
-		public long size() {
-			return coordinates.size();
+		public void transformPoints(UnaryOperator<LngLat> transformer) {
+			coordinates = transformer.andThen(Objects::requireNonNull).apply(coordinates);
 		}
     }
     
-    public static interface ILineString {
+    @EqualsAndHashCode(callSuper = true)
+    static class MultiPoint extends AbstractGeometryLP {}
+    
+    static interface ILineString {
     	List<List<LngLat>> toLines();
     }
     
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class LineString implements Geometry, ILineString {
-        private List<LngLat> coordinates;
-        
-        @Override
-        public Stream<LngLat> streamPoints() {
-        	return coordinates.stream();
-        }
-
+    @EqualsAndHashCode(callSuper = true)
+    static class LineString extends AbstractGeometryLP implements ILineString {
 		@Override
 		public List<List<LngLat>> toLines() {
 			return List.of(coordinates);
 		}
 
-		@Override
-		public long size() {
-			return coordinates.size();
+		public static LineString from(List<LngLat> of) {
+			var r = new LineString();
+			r.coordinates = of;
+			return r;
 		}
     }
     
-    @Data
-    public static class MultiLineString implements Geometry, ILineString {
-        private List<List<LngLat>> coordinates;
-        
-        @Override
-        public Stream<LngLat> streamPoints() {
-        	return coordinates.stream().flatMap(List::stream);
-        }
-
+    @EqualsAndHashCode(callSuper = true)
+    static class MultiLineString extends AbstractGeometryLLP implements ILineString {
 		@Override
 		public List<List<LngLat>> toLines() {
 			return coordinates;
-		}
-
-		@Override
-		public long size() {
-			return coordinates.stream().mapToLong(List::size).sum();
 		}
     }
 }

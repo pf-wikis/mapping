@@ -1,7 +1,5 @@
 package io.github.pfwikis.model;
 
-import java.util.Map;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -12,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import tools.jackson.core.JacksonException;
-import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
 
 @Getter
 @Setter
@@ -28,9 +26,11 @@ public class Label {
 		return new Label(v, null);
 	}
 	
-	public static Label fromJson(JsonNode n) {
+	@JsonCreator
+	public static Label fromJson(ObjectNode n) {
 		try {
-			return Jackson.JSON.treeToValue(n, Label.class);
+			var h = Jackson.JSON.treeToValue(n, Helper.class);
+			return new Label(h.label, h.id);
 		} catch (JacksonException | IllegalArgumentException e) {
 			throw new IllegalStateException();
 		}
@@ -46,7 +46,7 @@ public class Label {
 		if(id == null) {
 			return label;
 		}
-		return Map.of("label", label, "id", id);
+		return new Helper(label, id);
 	}
 
 	public String identifier() {
@@ -55,4 +55,6 @@ public class Label {
 		}
 		return label;
 	}
+	
+	private record Helper(String label, String id) {}
 }

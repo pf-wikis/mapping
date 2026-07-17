@@ -28,7 +28,7 @@ public class SmoothLines extends StepExecutor {
     			continue;
     		}
     		if(f.getGeometry() instanceof LineString line) {
-    			f.setGeometry(new LineString(interpolate(line.getCoordinates())));
+    			f.setGeometry(LineString.from(interpolate(line.getCoordinates())));
     		}
     		else if(f.getGeometry() instanceof MultiLineString lines) {
     			lines.getCoordinates().replaceAll(SmoothLines::interpolate);
