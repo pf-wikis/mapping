@@ -563,6 +563,9 @@
         region-labels: region-labels
         locations: locations
         line-labels: line-labels
+    - step: VALIDATE_TILES
+      dependsOn:
+        in: tiles.COMPILE_TILES
 
 - name: debug-tiles
   steps:
