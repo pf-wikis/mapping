@@ -25,13 +25,18 @@ import lombok.extern.slf4j.Slf4j;
 @Time.Requirement(Time.Requirement.Value.REQUIRES_MERGED)
 public class GenerateHillshade extends StepExecutor {
 
+    // Fixed DEM resolution for the full-resolution grid before tile subsampling.
+    // These are separate from the tile output; data is computed once at high res then subsampled per tile.
+    private static final int RES_X = 4096;
+    private static final int RES_Y = 2048;
+
     private String layer;
     private int maxElevation = 255;
     private double power = 1.0;
     private boolean includeLocations = false;
-    private int gridWidth = 4096;
-    private int gridHeight = 2048;
     private boolean emitBounds = true;
+    private int maxZoom = 5;
+    private int tileSize = 256;
 
     // Optional explicit world bounds. If any is NaN, auto-computed from data.
     private double boundsMinX = Double.NaN;
@@ -71,17 +76,18 @@ public class GenerateHillshade extends StepExecutor {
 
         HillshadeGrid grid;
         if (useExplicit) {
-            grid = new HillshadeGrid(gridWidth, gridHeight, boundsMinX, boundsMaxX, boundsMinY, boundsMaxY,
+            grid = new HillshadeGrid(RES_X, RES_Y, boundsMinX, boundsMaxX, boundsMinY, boundsMaxY,
                     polygons, maxElevation, power, pointBumps, 200.0, 0.3);
         } else {
-            grid = new HillshadeGrid(gridWidth, gridHeight, polygons, maxElevation, power, pointBumps, 200.0, 0.3);
+            grid = new HillshadeGrid(RES_X, RES_Y, polygons, maxElevation, power, pointBumps, 200.0, 0.3);
         }
 
         var targetDir = Ctx.INSTANCE.getOptions().targetDirectory();
         var genDir = Ctx.INSTANCE.getOptions().targetGenDirectory();
-        var pngFile = new File(targetDir, "hillshade-" + layer + ".png");
-        grid.writeHillshade(pngFile);
-        log.info("  Wrote {} ({} bytes)", pngFile.getAbsolutePath(), pngFile.length());
+
+        // Write terrarium-encoded DEM tiles
+        grid.writeDemTiles(targetDir, layer, maxZoom, tileSize);
+        log.info("  Wrote terrarium DEM tiles for '{}' up to zoom {}", layer, maxZoom);
 
         if (emitBounds) {
             writeBoundsTs(genDir, layer, grid);

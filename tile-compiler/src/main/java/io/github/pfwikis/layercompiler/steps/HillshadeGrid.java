@@ -242,6 +242,136 @@ public class HillshadeGrid {
         }
     }
 
+    /**
+     * Terrarium encode a single elevation value (0..255 range supported).
+     * Returns [red, green, blue].
+     */
+    public static int[] encodeTerrarium(int elevation) {
+        int value = elevation + 32768;
+        int red = value / 256;
+        int green = value % 256;
+        int blue = 0;
+        return new int[]{red, green, blue};
+    }
+
+    /**
+     * Terrarium decode RGB values back to elevation.
+     */
+    public static int decodeTerrarium(int red, int green, int blue) {
+        double decoded = (red * 256.0 + green + blue / 256.0) - 32768.0;
+        return (int) Math.round(decoded);
+    }
+
+    /**
+     * Write terrarium-encoded DEM tiles for multiple zoom levels.
+     * Output directory: outputDir/hillshade-{layerName}/{z}/{x}/{y}.png
+     */
+    public void writeDemTiles(File outputDir, String layerName, int maxZoom, int tileSize) throws IOException {
+        File baseDir = new File(outputDir, "hillshade-" + layerName);
+        baseDir.mkdirs();
+
+        for (int z = 0; z <= maxZoom; z++) {
+            // find tiles that overlap the data bounds
+            int minTx = lonToTileX(minX, z);
+            int maxTx = lonToTileX(maxX, z);
+            int minTy = latToTileY(maxY, z); // maxY is north (smaller ty)
+            int maxTy = latToTileY(minY, z); // minY is south (larger ty)
+
+            for (int tx = minTx; tx <= maxTx; tx++) {
+                for (int ty = minTy; ty <= maxTy; ty++) {
+                    BufferedImage tile = createDemTile(z, tx, ty, tileSize);
+                    if (tile != null) {
+                        File tileDir = new File(baseDir, z + "/" + tx);
+                        tileDir.mkdirs();
+                        File tileFile = new File(tileDir, ty + ".png");
+                        ImageIO.write(tile, "png", tileFile);
+                    }
+                }
+            }
+        }
+    }
+
+    private BufferedImage createDemTile(int z, int tx, int ty, int tileSize) {
+        // tile bounds in lat/lon
+        double west = tileXToLon(tx, z);
+        double east = tileXToLon(tx + 1, z);
+        double north = tileYToLat(ty, z);
+        double south = tileYToLat(ty + 1, z);
+
+        BufferedImage img = new BufferedImage(tileSize, tileSize, BufferedImage.TYPE_INT_RGB);
+        boolean hasData = false;
+        float maxElevInTile = 0.0f;
+
+        for (int row = 0; row < tileSize; row++) {
+            double lat = north - (north - south) * (row + 0.5) / tileSize;
+            for (int col = 0; col < tileSize; col++) {
+                double lon = west + (east - west) * (col + 0.5) / tileSize;
+                float e = sampleDem(lon, lat);
+                int elev = (int) Math.round(e);
+                if (elev < 0) elev = 0;
+                if (e > maxElevInTile) maxElevInTile = e;
+                if (elev > 0) hasData = true;
+
+                int[] rgb = encodeTerrarium(elev);
+                int color = (rgb[0] << 16) | (rgb[1] << 8) | rgb[2];
+                img.setRGB(col, row, color);
+            }
+        }
+
+        return (maxElevInTile >= 1.0f) ? img : null;
+    }
+
+    /**
+     * Sample the DEM at a given lat/lon using bilinear interpolation.
+     * Returns 0 if outside the grid.
+     */
+    private float sampleDem(double lon, double lat) {
+        double dcol = (lon - minX) / cellSizeX;
+        double drow = (maxY - lat) / cellSizeY;
+
+        int col0 = (int) Math.floor(dcol);
+        int row0 = (int) Math.floor(drow);
+        double fx = dcol - col0;
+        double fy = drow - row0;
+
+        // Bilinear interpolation from 4 neighbors
+        float v00 = samplePixel(col0, row0);
+        float v10 = samplePixel(col0 + 1, row0);
+        float v01 = samplePixel(col0, row0 + 1);
+        float v11 = samplePixel(col0 + 1, row0 + 1);
+
+        float v0 = v00 * (1 - (float) fx) + v10 * (float) fx;
+        float v1 = v01 * (1 - (float) fx) + v11 * (float) fx;
+        return v0 * (1 - (float) fy) + v1 * (float) fy;
+    }
+
+    private float samplePixel(int col, int row) {
+        if (col < 0 || col >= width || row < 0 || row >= height) return 0f;
+        return dem[row][col];
+    }
+
+    /* --- Web Mercator tile math (lat/lon variant) --- */
+
+    private static int lonToTileX(double lon, int zoom) {
+        int n = 1 << zoom;
+        return clamp((int) Math.floor(((lon + 180.0) / 360.0) * n), 0, n - 1);
+    }
+
+    private static int latToTileY(double lat, int zoom) {
+        int n = 1 << zoom;
+        double latRad = Math.toRadians(lat);
+        return clamp((int) Math.floor((1.0 - Math.log(Math.tan(latRad) + 1.0 / Math.cos(latRad)) / Math.PI) / 2.0 * n), 0, n - 1);
+    }
+
+    private static double tileXToLon(int x, int zoom) {
+        return x / (double) (1 << zoom) * 360.0 - 180.0;
+    }
+
+    private static double tileYToLat(int y, int zoom) {
+        double n = Math.PI - 2.0 * Math.PI * y / (double) (1 << zoom);
+        return Math.toDegrees(Math.atan(0.5 * (Math.exp(n) - Math.exp(-n))));
+    }
+
     public void writeHillshade(File pngFile) throws IOException {
         BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
         byte[] pixels = ((java.awt.image.DataBufferByte) img.getRaster().getDataBuffer()).getData();

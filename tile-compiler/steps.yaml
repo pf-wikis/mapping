@@ -402,8 +402,8 @@
       maxElevation: 255
       power: 0.7
       includeLocations: true
-      gridWidth: 2048
-      gridHeight: 1024
+      maxZoom: 5
+      tileSize: 256
       boundsMinX: -70
       boundsMaxX: 100
       boundsMinY: -40
@@ -418,8 +418,8 @@
       maxElevation: 128
       power: 1.0
       includeLocations: false
-      gridWidth: 2048
-      gridHeight: 1024
+      maxZoom: 5
+      tileSize: 256
       boundsMinX: -70
       boundsMaxX: 100
       boundsMinY: -40

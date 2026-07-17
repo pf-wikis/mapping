@@ -7,7 +7,8 @@ export const defaultState = {
   rotated: false,
   showLabels: 'visible' as 'visible'|'none',
   showLocations: 'visible' as 'visible'|'none',
-  showBorders: 'visible' as 'visible'|'none'
+  showBorders: 'visible' as 'visible'|'none',
+  showHillshade: 'visible' as 'visible'|'none'
 } as const;
 
 export type StateProp = keyof typeof defaultState;

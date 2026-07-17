@@ -1,4 +1,4 @@
-import { FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, RasterLayerSpecification, StyleSpecification, ExpressionFilterSpecification } from "maplibre-gl";
+import { FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, RasterLayerSpecification, HillshadeLayerSpecification, StyleSpecification, ExpressionFilterSpecification } from "maplibre-gl";
 import { ExistingLayer, Prop, propsMeta, maxZoomWithData} from "../../gen/props-meta-golarion";
 import { timeIndexEnd, timeIndexStart } from "../utils/BasicStyleFilters";
 import { OptionalFields } from "../utils/type-utils";
@@ -113,24 +113,38 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     }),
     {
       id: 'hillshade-mountains',
-      type: 'raster',
+      type: 'hillshade',
       source: 'hillshadeMountains',
       paint: {
-        'raster-opacity': 0.35,
-        'raster-fade-duration': 0,
-        'raster-resampling': 'linear'
+        'hillshade-exaggeration': 50,
+        'hillshade-shadow-color': 'rgba(0,0,0,0.4)',
+        'hillshade-highlight-color': 'rgba(255,255,255,0.25)',
+        'hillshade-accent-color': 'rgba(0,0,0,0.1)',
+        'hillshade-illumination-direction': 315,
+        'hillshade-illumination-altitude': 45,
+        'hillshade-method': 'standard'
+      },
+      layout: {
+        visibility: state.showHillshade.get()
       }
-    } as RasterLayerSpecification,
+    } as any,
     {
       id: 'hillshade-hills',
-      type: 'raster',
+      type: 'hillshade',
       source: 'hillshadeHills',
       paint: {
-        'raster-opacity': 0.25,
-        'raster-fade-duration': 0,
-        'raster-resampling': 'linear'
+        'hillshade-exaggeration': 35,
+        'hillshade-shadow-color': 'rgba(0,0,0,0.3)',
+        'hillshade-highlight-color': 'rgba(255,255,255,0.2)',
+        'hillshade-accent-color': 'rgba(0,0,0,0.05)',
+        'hillshade-illumination-direction': 315,
+        'hillshade-illumination-altitude': 45,
+        'hillshade-method': 'standard'
+      },
+      layout: {
+        visibility: state.showHillshade.get()
       }
-    } as RasterLayerSpecification,
+    } as any,
     createLayer('borders', {
       id: 'borders-nations',
       type: 'line',
@@ -412,24 +426,22 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
         encoding: 'mlt'
       },
       hillshadeMountains: {
-        type: 'image',
-        url: `${HOST}/hillshade-mountains.png`,
-        coordinates: [
-          [-70, 42],   // tl
-          [100, 42],  // tr
-          [100, -40], // br
-          [-70, -40]  // bl
-        ]
+        type: 'raster-dem',
+        encoding: 'terrarium',
+        tileSize: 256,
+        tiles: [`${HOST}/hillshade-mountains/{z}/{x}/{y}.png`],
+        minzoom: 0,
+        maxzoom: 5,
+        bounds: [-70, -40, 100, 42]
       },
       hillshadeHills: {
-        type: 'image',
-        url: `${HOST}/hillshade-hills.png`,
-        coordinates: [
-          [-70, 42],   // tl
-          [100, 42],  // tr
-          [100, -40], // br
-          [-70, -40]  // bl
-        ]
+        type: 'raster-dem',
+        encoding: 'terrarium',
+        tileSize: 256,
+        tiles: [`${HOST}/hillshade-hills/{z}/{x}/{y}.png`],
+        minzoom: 0,
+        maxzoom: 5,
+        bounds: [-70, -40, 100, 42]
       },
     },
     state: Object.fromEntries(Object.keys(state).map(k=>[k, {default: (state as any)[k].default}])),
