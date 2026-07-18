@@ -38,19 +38,24 @@ const CSS_W = 1152;
 const CSS_H = 768;
 const MILES_TO_DEG_LAT = 1 / 69.09;
 
-// --- view resolution (mirrors src/api.ts resolveView) ---
-const gaz = JSON.parse(readFileSync(join(dataDir, "search.json"), "utf8"));
-const entryOf = (category, label) =>
-  (gaz.find((c) => c.category === category)?.entries ?? []).find((e) => e.label === label);
+// --- view resolution (ports src/api.ts resolveView) ---
+// search.json is [{category, entries: [{label, timed: [{bbox}]}]}]; flatten to
+// the same shape the module's loadGazetteer produces.
+const gazRaw = JSON.parse(readFileSync(join(dataDir, "search.json"), "utf8"));
+const gaz = gazRaw.flatMap((c) =>
+  (c.entries ?? [])
+    .filter((e) => e.timed?.[0]?.bbox)
+    .map((e) => ({ category: c.category, label: e.label, bbox: e.timed[0].bbox }))
+);
 const bboxCenter = (b) => (b.length === 2 ? [b[0], b[1]] : [(b[0] + b[2]) / 2, (b[1] + b[3]) / 2]);
 
-function zoomForBbox(b, w, h) {
+function viewFromBbox(b, w, h, { maxZoom = 8.4 } = {}) {
   const dx = Math.max(b[2] - b[0], 0.0001);
   const dy = Math.max(b[3] - b[1], 0.0001);
   const midLat = (b[1] + b[3]) / 2;
-  const zx = Math.log2((w * 360) / (512 * dx)) ;
+  const zx = Math.log2((w * 360) / (512 * dx));
   const zy = Math.log2((h * 360 * Math.cos((midLat * Math.PI) / 180)) / (512 * dy));
-  return Math.min(zx, zy) - 0.15; // small margin, matches in-module fit
+  return { center: bboxCenter(b), zoom: Math.min(Math.min(zx, zy) - 0.15, maxZoom) };
 }
 
 function resolveView(spec) {
@@ -59,20 +64,36 @@ function resolveView(spec) {
   }
   const f = spec.fit;
   if (!f) throw new Error(`${spec.key}: needs center+zoom or fit`);
-  const e = entryOf(f.category, f.label);
-  if (!e) throw new Error(`${spec.key}: gazetteer entry not found (${f.category}/${f.label})`);
-  const b = e.timed?.[0]?.bbox;
-  if (f.radiusMi) {
-    const [cx, cy] = bboxCenter(b);
-    const dLat = f.radiusMi * MILES_TO_DEG_LAT;
-    const dLng = dLat / Math.cos((cy * Math.PI) / 180);
-    const bb = [cx - dLng, cy - dLat, cx + dLng, cy + dLat];
-    let zoom = zoomForBbox(bb, CSS_W, CSS_H);
-    if (f.maxZoom) zoom = Math.min(zoom, f.maxZoom);
-    return { center: [cx, cy], zoom };
+  if (f.near) {
+    // District-cluster fits (city maps): union bbox of every category entry
+    // within radiusDeg of the anchor point.
+    const [nx, ny] = f.near;
+    const r = f.radiusDeg ?? 0.35;
+    const members = gaz.filter((e) => {
+      if (e.category !== f.category) return false;
+      const [cx, cy] = bboxCenter(e.bbox);
+      return Math.hypot(cx - nx, cy - ny) < r;
+    });
+    if (!members.length) throw new Error(`${spec.key}: no ${f.category} near ${nx},${ny}`);
+    let bb = [Infinity, Infinity, -Infinity, -Infinity];
+    for (const e of members) {
+      const b = e.bbox.length === 2 ? [e.bbox[0], e.bbox[1], e.bbox[0], e.bbox[1]] : e.bbox;
+      bb = [Math.min(bb[0], b[0]), Math.min(bb[1], b[1]), Math.max(bb[2], b[2]), Math.max(bb[3], b[3])];
+    }
+    return viewFromBbox(bb, CSS_W, CSS_H, { maxZoom: f.maxZoom ?? 8.4 });
   }
-  if (b.length === 2) throw new Error(`${spec.key}: point entry needs radiusMi`);
-  return { center: bboxCenter(b), zoom: zoomForBbox(b, CSS_W, CSS_H) };
+  const e = gaz.find((x) => x.category === f.category && x.label === f.label);
+  if (!e) throw new Error(`${spec.key}: gazetteer entry not found (${f.category}/${f.label})`);
+  let bb;
+  if (e.bbox.length === 2) {
+    const rMi = f.radiusMi ?? 40;
+    const dLat = rMi * MILES_TO_DEG_LAT;
+    const dLng = dLat / Math.cos((e.bbox[1] * Math.PI) / 180);
+    bb = [e.bbox[0] - dLng, e.bbox[1] - dLat, e.bbox[0] + dLng, e.bbox[1] + dLat];
+  } else {
+    bb = e.bbox;
+  }
+  return viewFromBbox(bb, CSS_W, CSS_H, { maxZoom: f.maxZoom ?? 8.4 });
 }
 
 // --- static server for map data + node_modules + bake page ---
@@ -175,7 +196,13 @@ const style = await (await fetch(base + "/style.json")).json();
 // Strip symbol layers per keepIcons policy (mirrors src/api.ts bakeRegion
 // keeps symbols; scene images ship WITH labels — keep full style).
 let done = 0;
+const failed = [];
 for (const spec of regions) {
+  if (!args.includes("--force") && existsSync(join(root, "assets", "scenes", `${spec.key}.webp`))) {
+    done++;
+    continue;
+  }
+  try {
   const view = resolveView(spec);
   const bytes = await pg.evaluate(
     ([style, center, zoom, pr]) => window.__bake(style, center, zoom, pr),
@@ -198,7 +225,12 @@ for (const spec of regions) {
   writeFileSync(join(root, "assets", "thumbs", `${spec.key}.webp`), Buffer.from(thumbBytes));
   done++;
   console.log(`baked ${spec.key} (${done}/${regions.length})`);
+  } catch (e) {
+    failed.push(spec.key);
+    console.error(`FAILED ${spec.key}: ${e.message}`);
+  }
 }
 await browser.close();
 server.close();
-console.log(`done: ${done} scenes -> assets/scenes/`);
+console.log(`done: ${done}/${regions.length} scenes -> assets/scenes/${failed.length ? ` FAILED: ${failed.join(",")}` : ""}`);
+if (failed.length) process.exit(1);
