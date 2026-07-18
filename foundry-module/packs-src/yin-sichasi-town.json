@@ -1,0 +1,50 @@
+{
+ "name": "Yin-Sichasi",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "dxmVpPPEKu0Hovl5",
+   "name": "Yin-Sichasi",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/yin-sichasi-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "ZP5UEUug5LczrJ5M",
+   "x": 2304,
+   "y": 1537,
+   "text": "Yin-Sichasi",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yin-Sichasi"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/yin-sichasi-town.webp",
+ "__key": "yin-sichasi-town",
+ "__folder": "Cities",
+ "_id": "5q7pUBZKKYqOrSJr"
+}

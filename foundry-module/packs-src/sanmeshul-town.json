@@ -1,0 +1,50 @@
+{
+ "name": "Sanmeshul",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "w13Qv8T4VdEPe8Gd",
+   "name": "Sanmeshul",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/sanmeshul-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "7bfrxm8t0ILwp1sD",
+   "x": 2304,
+   "y": 1537,
+   "text": "Sanmeshul",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sanmeshul"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/sanmeshul-town.webp",
+ "__key": "sanmeshul-town",
+ "__folder": "Cities",
+ "_id": "mc7NEeET23iWV0Bf"
+}

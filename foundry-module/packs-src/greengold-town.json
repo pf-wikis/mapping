@@ -1,0 +1,101 @@
+{
+ "name": "Greengold",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "PgNtkVfdipoqBzbQ",
+   "name": "Greengold",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/greengold-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "AjfsSGdTNB1APsNn",
+   "x": 2240,
+   "y": 1566,
+   "text": "Southwestern Road",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Southwestern_Road"
+    }
+   }
+  },
+  {
+   "_id": "YxPAB1UNqC8zeyP2",
+   "x": 2362,
+   "y": 1559,
+   "text": "Vynoren Estate",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vynoren_Estate"
+    }
+   }
+  },
+  {
+   "_id": "8B5sVRfoZ9slvcA1",
+   "x": 2304,
+   "y": 1537,
+   "text": "Greengold",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Greengold"
+    }
+   }
+  },
+  {
+   "_id": "DyRLGfy9NAfN3t5Z",
+   "x": 2246,
+   "y": 1473,
+   "text": "Gray Observatory",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gray_Observatory"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/greengold-town.webp",
+ "__key": "greengold-town",
+ "__folder": "Cities",
+ "_id": "dmm2NHYxRWkC1fq9"
+}

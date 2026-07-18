@@ -1,0 +1,31 @@
+{
+ "name": "Golarion",
+ "width": 3840,
+ "height": 2400,
+ "padding": 0,
+ "grid": {
+  "type": 0,
+  "size": 100,
+  "distance": 605,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "bQw5rOmtuvTtXIlX",
+   "name": "Golarion",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/golarion-world.webp"
+   }
+  }
+ ],
+ "__key": "golarion-world",
+ "__folder": "World & Continents",
+ "_id": "IA7oz70L9uALR5iy",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/golarion-world.webp"
+}
