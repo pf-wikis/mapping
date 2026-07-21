@@ -1,0 +1,50 @@
+{
+ "name": "Tulaupan",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "EvzXIpVSBV5GuBr5",
+   "name": "Tulaupan",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/tulaupan-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "TBIoohujfzqTJcEF",
+   "x": 2304,
+   "y": 1536,
+   "text": "Tulaupan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tulaupan"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/tulaupan-town.webp",
+ "__key": "tulaupan-town",
+ "__folder": "Cities",
+ "_id": "guNuZWGLjCbaFuMJ"
+}

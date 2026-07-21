@@ -1,0 +1,50 @@
+{
+ "name": "Kerim",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "nnMPix4x5L0Ws15q",
+   "name": "Kerim",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/kerim-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "dSuKuMIf2eJhwfEW",
+   "x": 2304,
+   "y": 1537,
+   "text": "Kerim",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kerim"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/kerim-town.webp",
+ "__key": "kerim-town",
+ "__folder": "Cities",
+ "_id": "w7QaouETlwWx1F8S"
+}

@@ -1,0 +1,152 @@
+{
+ "name": "Sothis Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.45,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "En6Yl8U7BQrNQ1sV",
+   "name": "Sothis Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/sothis-environs.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "RoifyaeoMNDcEp8u",
+   "x": 348,
+   "y": 1569,
+   "text": "Lost Mine of Siwat",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lost_Mine_of_Siwat"
+    }
+   }
+  },
+  {
+   "_id": "WBsrs6NzzC2IKhgJ",
+   "x": 2304,
+   "y": 1540,
+   "text": "Sothis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sothis"
+    }
+   }
+  },
+  {
+   "_id": "5WBKlqdZjLd0UuSJ",
+   "x": 2699,
+   "y": 1130,
+   "text": "Water Gardens of Xerbystes",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Water_Gardens_of_Xerbystes"
+    }
+   }
+  },
+  {
+   "_id": "uHLLxewAFOBdJUOI",
+   "x": 2173,
+   "y": 2529,
+   "text": "Kalit",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kalit"
+    }
+   }
+  },
+  {
+   "_id": "vZA3xo4B20Aj9WbW",
+   "x": 2743,
+   "y": 3028,
+   "text": "Valley of the Pyramids",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Valley_of_the_Pyramids"
+    }
+   }
+  },
+  {
+   "_id": "H2gGQQzfEJOpDik9",
+   "x": 3827,
+   "y": 2333,
+   "text": "Androsphinx of Zukebri",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Androsphinx_of_Zukebri"
+    }
+   }
+  },
+  {
+   "_id": "8rhvw3YHtDmDJy4a",
+   "x": 4435,
+   "y": 1890,
+   "text": "Ahn'Selota",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ahn'Selota"
+    }
+   }
+  }
+ ],
+ "__key": "sothis-environs",
+ "__folder": "City Environs",
+ "_id": "DlWILSAJ9XGoiQn5",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/sothis-environs.webp"
+}

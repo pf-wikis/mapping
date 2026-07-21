@@ -1,0 +1,50 @@
+#golarion-map-picker .window-content {
+  padding: 0.5rem;
+}
+
+#golarion-map-picker .gm-picker {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0.5rem;
+}
+
+#golarion-map-picker .gm-map {
+  flex: 1;
+  min-height: 320px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#golarion-map-picker .gm-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+#golarion-map-picker .gm-controls .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+#golarion-map-picker .gm-controls input[name="sceneName"] {
+  min-width: 14rem;
+}
+
+#golarion-map-picker .gm-controls input[name="gridSize"] {
+  width: 5rem;
+}
+
+#golarion-map-picker .gm-readout,
+#golarion-map-picker .gm-status {
+  margin: 0;
+  font-size: var(--font-size-12, 12px);
+  opacity: 0.85;
+}
+
+.golarion-maps-open {
+  flex: 1;
+}

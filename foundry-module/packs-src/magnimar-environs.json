@@ -1,0 +1,169 @@
+{
+ "name": "Magnimar Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.45,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "nDwEAR8Hjn7Hqpl6",
+   "name": "Magnimar Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/magnimar-environs.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "S3zHBZBiMueDZjFQ",
+   "x": 1818,
+   "y": 3028,
+   "text": "Lady's Light",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lady's_Light"
+    }
+   }
+  },
+  {
+   "_id": "VnPdsR0NGWMWRx8S",
+   "x": 2304,
+   "y": 1543,
+   "text": "Magnimar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Magnimar"
+    }
+   }
+  },
+  {
+   "_id": "mZCjnHQd9H4UUdZH",
+   "x": 3408,
+   "y": 1340,
+   "text": "Foxglove Manor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Foxglove_Manor"
+    }
+   }
+  },
+  {
+   "_id": "ErtsBmR2ueSkF7Qe",
+   "x": 3507,
+   "y": 1306,
+   "text": "Licktoad Village",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Licktoad_Village"
+    }
+   }
+  },
+  {
+   "_id": "jnCNlx4M9eJ99R6A",
+   "x": 3593,
+   "y": 1278,
+   "text": "Wisher's Well",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Wisher's_Well"
+    }
+   }
+  },
+  {
+   "_id": "XcibkFkaOCUlENeQ",
+   "x": 3542,
+   "y": 1201,
+   "text": "Sandpoint",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sandpoint"
+    }
+   }
+  },
+  {
+   "_id": "bjybJlOlyb4eA4fb",
+   "x": 3654,
+   "y": 1198,
+   "text": "Paupers' Graves",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Paupers'_Graves"
+    }
+   }
+  },
+  {
+   "_id": "fgChKfYbguSsvRvZ",
+   "x": 3111,
+   "y": 246,
+   "text": "Windsong Abbey",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Windsong_Abbey"
+    }
+   }
+  }
+ ],
+ "__key": "magnimar-environs",
+ "__folder": "City Environs",
+ "_id": "nVfsOYyvJnmKpffp",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/magnimar-environs.webp"
+}

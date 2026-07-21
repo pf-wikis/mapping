@@ -1,0 +1,67 @@
+{
+ "name": "Lepidstadt",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "VKxCDIvPjoT0xpIF",
+   "name": "Lepidstadt",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/lepidstadt-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "bPLs9SmL40GcP1nz",
+   "x": 2304,
+   "y": 1538,
+   "text": "Lepidstadt",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lepidstadt"
+    }
+   }
+  },
+  {
+   "_id": "QLZCtZK22Kcgwkgi",
+   "x": 3536,
+   "y": 1387,
+   "text": "Morast",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Morast"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/lepidstadt-town.webp",
+ "__key": "lepidstadt-town",
+ "__folder": "Cities",
+ "_id": "p6qNRXlVposapCRe"
+}

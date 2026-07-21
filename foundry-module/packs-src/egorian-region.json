@@ -1,0 +1,67 @@
+{
+ "name": "Egorian Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.45,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "q2YOwubYIbuSZxcp",
+   "name": "Egorian Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/egorian-region.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "yyxwRcldNwlI7gtE",
+   "x": 3201,
+   "y": 416,
+   "text": "Dekarium",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dekarium"
+    }
+   }
+  },
+  {
+   "_id": "HrU645GijZMucl3q",
+   "x": 2304,
+   "y": 1541,
+   "text": "Egorian",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Egorian"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/egorian-region.webp",
+ "__key": "egorian-region",
+ "__folder": "City Regions",
+ "_id": "OtZPpFUvR2eeLvWU"
+}

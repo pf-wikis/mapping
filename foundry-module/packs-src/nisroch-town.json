@@ -1,0 +1,67 @@
+{
+ "name": "Nisroch",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "rbVahaHCMVf25mct",
+   "name": "Nisroch",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/nisroch-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "Db0xn4l5a5a4fleM",
+   "x": 1949,
+   "y": 2525,
+   "text": "Nightbinder's Wharf",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nightbinder's_Wharf"
+    }
+   }
+  },
+  {
+   "_id": "O3KNX67kGc3tvlCD",
+   "x": 2304,
+   "y": 1537,
+   "text": "Nisroch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nisroch"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/nisroch-town.webp",
+ "__key": "nisroch-town",
+ "__folder": "Cities",
+ "_id": "I0emrSQkMUL51Wtv"
+}

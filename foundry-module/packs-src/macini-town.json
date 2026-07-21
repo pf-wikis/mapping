@@ -1,0 +1,50 @@
+{
+ "name": "Macini",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "XzSv0rpY4KUrGBjU",
+   "name": "Macini",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/macini-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "SQdOZuJYVHXK9a0l",
+   "x": 2304,
+   "y": 1537,
+   "text": "Macini",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Macini"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/macini-town.webp",
+ "__key": "macini-town",
+ "__folder": "Cities",
+ "_id": "qH4A4lrG6sv6CfXD"
+}
