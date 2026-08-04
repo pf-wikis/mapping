@@ -12,6 +12,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
   let config:ResolvedConfig;
   const host = mode=='development'?'http://localhost:5173':'https://map.pathfinderwiki.com';
   const dataHash = Math.floor(Date.now() / 1000);
+  const compiledStyle = style(host, dataHash);
   
   return {
     define: {
@@ -31,15 +32,19 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
         },
         load(id) {
           if (id === resolvedJsonModule) {
-            let compiledStyle = style(
-              host,
-              dataHash
-            );
             for(let e of validateStyleMin(compiledStyle)) {
               console.error(`Style validation error: ${e.message} at line ${e.line}`);
             }
             return `export default ${JSON.stringify(compiledStyle)}`
           }
+        },
+        generateBundle(_, bundle) {
+          // Emit generated file
+          this.emitFile({
+            type: "asset",
+            fileName: "style.json",
+            source: JSON.stringify(compiledStyle),
+          });
         }
       },
       compression({
