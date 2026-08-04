@@ -70,26 +70,26 @@ export const propsMeta = {
     "props" : {
       "color" : {
         "name" : "color",
-        "nonNullEntries" : 19459,
+        "nonNullEntries" : 19427,
         "nullEntries" : 0
       },
       "export" : {
         "name" : "export",
-        "nonNullEntries" : 19459,
+        "nonNullEntries" : 19427,
         "nullEntries" : 0
       },
       "export_tileMaxzoom" : {
         "name" : "export_tileMaxzoom",
         "maxNumber" : 8,
         "minNumber" : 8,
-        "nonNullEntries" : 19459,
+        "nonNullEntries" : 19427,
         "nullEntries" : 0
       },
       "export_tileMinzoom" : {
         "name" : "export_tileMinzoom",
         "maxNumber" : 0,
         "minNumber" : 0,
-        "nonNullEntries" : 19459,
+        "nonNullEntries" : 19427,
         "nullEntries" : 0
       }
     }
@@ -246,45 +246,45 @@ export const propsMeta = {
     "props" : {
       "export" : {
         "name" : "export",
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 2467,
         "nullEntries" : 0
       },
       "export_tileMaxzoom" : {
         "name" : "export_tileMaxzoom",
         "maxNumber" : 8,
         "minNumber" : 2,
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 2467,
         "nullEntries" : 0
       },
       "export_tileMinzoom" : {
         "name" : "export_tileMinzoom",
         "maxNumber" : 8,
         "minNumber" : 2,
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 2467,
         "nullEntries" : 0
       },
       "fid" : {
         "name" : "fid",
         "maxNumber" : 2146251733,
         "minNumber" : 23921,
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 2467,
         "nullEntries" : 0
       },
       "icon" : {
         "name" : "icon",
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 2467,
         "nullEntries" : 0
       },
       "label" : {
         "name" : "label",
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 2467,
         "nullEntries" : 0
       },
       "pregroupMinzoom" : {
         "name" : "pregroupMinzoom",
         "maxNumber" : 4,
         "minNumber" : 2,
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 2467,
         "nullEntries" : 0
       }
     }

@@ -1,4 +1,4 @@
-import { FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, RasterLayerSpecification, HillshadeLayerSpecification, StyleSpecification, ExpressionFilterSpecification } from "maplibre-gl";
+import { FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, RasterLayerSpecification, HillshadeLayerSpecification, StyleSpecification, ExpressionFilterSpecification, ColorReliefLayerSpecification } from "maplibre-gl";
 import { ExistingLayer, Prop, propsMeta, maxZoomWithData} from "../../gen/props-meta-golarion";
 import { timeIndexEnd, timeIndexStart } from "../utils/BasicStyleFilters";
 import { OptionalFields } from "../utils/type-utils";
@@ -25,7 +25,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     CreatableLayerSpec,
     "id"|"source"|"source-layer"
   >;
-  type LayerSpec = LayerSpecification&{'source-layer'?: ExistingLayer};
+  type LayerSpec = LayerSpecification&{'source-layer'?: ExistingLayer}|HillshadeLayerSpecification|ColorReliefLayerSpecification;
 
   let colors = {
     water:           'rgb(138, 180, 248)',
@@ -113,38 +113,50 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
     }),
     {
       id: 'hillshade-mountains',
+      type: 'color-relief',
+      source: 'hillshadeMountains',
+      paint: {
+        "color-relief-color": [
+          "interpolate",
+          ["linear"],
+          ["elevation"],
+          0,'transparent',
+          10,'rgba(0,255,0,0.5)',
+          249,"rgba(255,0,0,0.5)",
+          1000,"rgba(0,0,255,0.5)"
+        ]
+      },
+      layout: {
+        visibility: state.showHillshade.get()
+      }
+    } as ColorReliefLayerSpecification,
+    /*{
+      id: 'hillshade-mountains',
       type: 'hillshade',
       source: 'hillshadeMountains',
       paint: {
-        'hillshade-exaggeration': 50,
-        'hillshade-shadow-color': 'rgba(0,0,0,0.4)',
-        'hillshade-highlight-color': 'rgba(255,255,255,0.25)',
-        'hillshade-accent-color': 'rgba(0,0,0,0.1)',
-        'hillshade-illumination-direction': 315,
-        'hillshade-illumination-altitude': 45,
+        'hillshade-exaggeration': 1,
         'hillshade-method': 'standard'
       },
       layout: {
         visibility: state.showHillshade.get()
       }
-    } as any,
+    } as HillshadeLayerSpecification,
     {
       id: 'hillshade-hills',
       type: 'hillshade',
       source: 'hillshadeHills',
       paint: {
-        'hillshade-exaggeration': 35,
+        'hillshade-exaggeration': .5,
         'hillshade-shadow-color': 'rgba(0,0,0,0.3)',
         'hillshade-highlight-color': 'rgba(255,255,255,0.2)',
         'hillshade-accent-color': 'rgba(0,0,0,0.05)',
-        'hillshade-illumination-direction': 315,
-        'hillshade-illumination-altitude': 45,
         'hillshade-method': 'standard'
       },
       layout: {
         visibility: state.showHillshade.get()
       }
-    } as any,
+    } as HillshadeLayerSpecification,*/
     createLayer('borders', {
       id: 'borders-nations',
       type: 'line',

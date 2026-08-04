@@ -100,12 +100,12 @@ public class GenerateHillshade extends StepExecutor {
         var tsFile = new File(genDir, "hillshade-bounds-" + layerName + ".ts");
         // Maplibre image source coordinates: [tl, tr, br, bl] = [[minLng, maxLat], [maxLng, maxLat], [maxLng, minLat], [minLng, minLat]]
         String content = String.format(Locale.US,
-            "export const hillshade%sBounds = [%n"
-            + "  [%s, %s],%n"  // tl
-            + "  [%s, %s],%n"  // tr
-            + "  [%s, %s],%n"  // br
-            + "  [%s, %s],%n"  // bl
-            + "] as [[number, number], [number, number], [number, number], [number, number]];%n",
+            "export const hillshade%sBounds = [\n"
+            + "  [%s, %s],\n"  // tl
+            + "  [%s, %s],\n"  // tr
+            + "  [%s, %s],\n"  // br
+            + "  [%s, %s],\n"  // bl
+            + "] as const;\n",
             capitalize(layerName),
             grid.getMinX(), grid.getMaxY(),
             grid.getMaxX(), grid.getMaxY(),

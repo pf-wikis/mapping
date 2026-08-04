@@ -34,7 +34,7 @@ export function addSpecialURLOptions(map:GolarionMap) {
         });
 
         if(map.startupOptions.flyTo) {
-            //test with http://localhost:5173/#location=7.14/41.918/-9.832&flyTo=7.81/31.433/-0.639
+            //test with http://localhost:15173/#location=7.14/41.918/-9.832&flyTo=7.81/31.433/-0.639
             console.log('Fly to ', map.startupOptions.flyTo);
             let flyTo = map.startupOptions.flyTo.split('/');
             if(flyTo.length != 3) {

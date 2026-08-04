@@ -10,7 +10,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
   console.log('Mode: ', mode);
 
   let config:ResolvedConfig;
-  const host = mode=='development'?'http://localhost:5173':'https://map.pathfinderwiki.com';
+  const host = mode=='development'?'http://localhost:15173':'https://map.pathfinderwiki.com';
   const dataHash = Math.floor(Date.now() / 1000);
   
   return {
@@ -66,7 +66,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
       }
     },
     server: {
-      port: 5173,
+      port: 15173,
       proxy: {
         // Use remote data from production map
         '/sprites': 'https://map.pathfinderwiki.com',
