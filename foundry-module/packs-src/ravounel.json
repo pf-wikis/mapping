@@ -1,0 +1,832 @@
+{
+ "name": "Ravounel",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 10.8,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "Z8nFj9qkvu2GnFld",
+   "name": "Ravounel",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/ravounel.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "XXK19MosxwMOfJmZ",
+   "x": 2235,
+   "y": 2700,
+   "text": "Menador Keep",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Menador_Keep"
+    }
+   }
+  },
+  {
+   "_id": "zmhX7Ia19Kzbn1B7",
+   "x": 2016,
+   "y": 2698,
+   "text": "Mount Spire",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mount_Spire"
+    }
+   }
+  },
+  {
+   "_id": "ePZ4Kg03aK3lUpNX",
+   "x": 2143,
+   "y": 2633,
+   "text": "Menador Gap",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Menador_Gap"
+    }
+   }
+  },
+  {
+   "_id": "lfTLZE2zgCWyaHj2",
+   "x": 1027,
+   "y": 2515,
+   "text": "Crooked Cove",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Crooked_Cove"
+    }
+   }
+  },
+  {
+   "_id": "39DVMYsgyWILmIOH",
+   "x": 1047,
+   "y": 2352,
+   "text": "Sember Cove",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sember_Cove"
+    }
+   }
+  },
+  {
+   "_id": "Gcl3qprQGVTMwEwm",
+   "x": 1373,
+   "y": 2210,
+   "text": "Grundlescorn Lair",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Grundlescorn_Lair"
+    }
+   }
+  },
+  {
+   "_id": "lBsghRWp08S9d23Z",
+   "x": 2564,
+   "y": 1885,
+   "text": "Revousa Ditches",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Revousa_Ditches"
+    }
+   }
+  },
+  {
+   "_id": "jjRJDwKng1ydZJTG",
+   "x": 1584,
+   "y": 1850,
+   "text": "Tastikka",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tastikka"
+    }
+   }
+  },
+  {
+   "_id": "FpkPrJwc2NIZdsri",
+   "x": 411,
+   "y": 1723,
+   "text": "Mirivenn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mirivenn"
+    }
+   }
+  },
+  {
+   "_id": "bLsfsbVB1onblkDu",
+   "x": 2471,
+   "y": 1627,
+   "text": "Whiterock",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Whiterock"
+    }
+   }
+  },
+  {
+   "_id": "ckIMNo22KCECXHJI",
+   "x": 1851,
+   "y": 1393,
+   "text": "Acisazi",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Acisazi"
+    }
+   }
+  },
+  {
+   "_id": "VyzYMymwH7r2rYlE",
+   "x": 1320,
+   "y": 1284,
+   "text": "Urchin's Maw",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Urchin's_Maw"
+    }
+   }
+  },
+  {
+   "_id": "XKFYT7gF5YV25Uk4",
+   "x": 2400,
+   "y": 1220,
+   "text": "Kintargo",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kintargo"
+    }
+   }
+  },
+  {
+   "_id": "jI76URVBtPA4GYbU",
+   "x": 2556,
+   "y": 945,
+   "text": "Cypress Point",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cypress_Point"
+    }
+   }
+  },
+  {
+   "_id": "93XrEEKaCnlQCmww",
+   "x": 1866,
+   "y": 733,
+   "text": "Vyre",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vyre"
+    }
+   }
+  },
+  {
+   "_id": "ihOOn0LET3CJ5IpJ",
+   "x": 1562,
+   "y": 483,
+   "text": "Deepmar Penal Colony",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Deepmar_Penal_Colony"
+    }
+   }
+  },
+  {
+   "_id": "EWTsxpu6fLzfOkJI",
+   "x": 1636,
+   "y": 454,
+   "text": "Avernus",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Avernus"
+    }
+   }
+  },
+  {
+   "_id": "ZanKgcN3WyTDx9EH",
+   "x": 1487,
+   "y": 423,
+   "text": "Stygia",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Stygia"
+    }
+   }
+  },
+  {
+   "_id": "5Y6hupnyyF87DvWt",
+   "x": 2608,
+   "y": 367,
+   "text": "Irim",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Irim"
+    }
+   }
+  },
+  {
+   "_id": "3xoe3XCaAOpewlHO",
+   "x": 1527,
+   "y": 362,
+   "text": "Caina",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Caina"
+    }
+   }
+  },
+  {
+   "_id": "oYE7mTS0JIxJGc9E",
+   "x": 1546,
+   "y": 231,
+   "text": "Black Breaker",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Black_Breaker"
+    }
+   }
+  },
+  {
+   "_id": "Exy9IGtWXkAOKV6N",
+   "x": 2820,
+   "y": 2533,
+   "text": "Ostergard Manor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ostergard_Manor"
+    }
+   }
+  },
+  {
+   "_id": "mdAG3kTNuUygvxGx",
+   "x": 3028,
+   "y": 2107,
+   "text": "Summershade Quarry",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Summershade_Quarry"
+    }
+   }
+  },
+  {
+   "_id": "nNEywS3cbQUbvJKF",
+   "x": 4586,
+   "y": 1997,
+   "text": "Aevolar's Crossing",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aevolar's_Crossing"
+    }
+   }
+  },
+  {
+   "_id": "9vgTQilH7XuPizeC",
+   "x": 3251,
+   "y": 1724,
+   "text": "Terapasillion",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Terapasillion"
+    }
+   }
+  },
+  {
+   "_id": "rFDLknkTSGAafNWs",
+   "x": 3834,
+   "y": 1690,
+   "text": "Dauphenal Vineyard",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dauphenal_Vineyard"
+    }
+   }
+  },
+  {
+   "_id": "JXgODj6AKPEHtyXe",
+   "x": 3995,
+   "y": 1263,
+   "text": "Tower of Slant Shadows",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tower_of_Slant_Shadows"
+    }
+   }
+  },
+  {
+   "_id": "saMkHgOsFzCbzp1B",
+   "x": 4338,
+   "y": 1140,
+   "text": "Auginford",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Auginford"
+    }
+   }
+  },
+  {
+   "_id": "bICnf1U4mzX6EJvR",
+   "x": 3221,
+   "y": 995,
+   "text": "Thrune's Chance",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Thrune's_Chance"
+    }
+   }
+  },
+  {
+   "_id": "qiNv2sVkDC461CeC",
+   "x": 4353,
+   "y": 891,
+   "text": "Winter Garden",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Winter_Garden"
+    }
+   }
+  },
+  {
+   "_id": "yqcYUCdy3s5xc2tW",
+   "x": 3929,
+   "y": 811,
+   "text": "Elith Lorin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Elith_Lorin"
+    }
+   }
+  },
+  {
+   "_id": "j8vW0r6QCzNe3o5B",
+   "x": 3330,
+   "y": 750,
+   "text": "Blacksulfur Pond",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Blacksulfur_Pond"
+    }
+   }
+  },
+  {
+   "_id": "3AD9kJkRH4BRdwAU",
+   "x": 3279,
+   "y": 636,
+   "text": "Nightbinder's Wharf",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nightbinder's_Wharf"
+    }
+   }
+  },
+  {
+   "_id": "EvjFWf8BuNAZdYYV",
+   "x": 4509,
+   "y": 631,
+   "text": "Castle of the Captive Sun",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Castle_of_the_Captive_Sun"
+    }
+   }
+  },
+  {
+   "_id": "d1AR1LhCBnX76Cjf",
+   "x": 3299,
+   "y": 578,
+   "text": "Nisroch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nisroch"
+    }
+   }
+  },
+  {
+   "_id": "RkfTBMv8g6sYsZmX",
+   "x": 3882,
+   "y": 532,
+   "text": "Edammera's Folly",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Edammera's_Folly"
+    }
+   }
+  },
+  {
+   "_id": "RqY9OjnqH5iDoKTO",
+   "x": 4182,
+   "y": 420,
+   "text": "Icebow Bridge",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Icebow_Bridge"
+    }
+   }
+  },
+  {
+   "_id": "94nTaEax2PO2BYR2",
+   "x": 4438,
+   "y": 358,
+   "text": "House of Lies",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/House_of_Lies"
+    }
+   }
+  },
+  {
+   "_id": "ItxWdB77KHble0AH",
+   "x": 3186,
+   "y": 314,
+   "text": "Moonless Mirror",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Moonless_Mirror"
+    }
+   }
+  },
+  {
+   "_id": "k3qOxotSIF5UaJEE",
+   "x": 2709,
+   "y": 209,
+   "text": "Wingless Rock",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Wingless_Rock"
+    }
+   }
+  },
+  {
+   "_id": "Z5xFyze28029voDo",
+   "x": 4243,
+   "y": 169,
+   "text": "Kayalhi",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kayalhi"
+    }
+   }
+  },
+  {
+   "_id": "p4f88LvMYaZk93Hg",
+   "x": 2962,
+   "y": 52,
+   "text": "Albatross",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Albatross"
+    }
+   }
+  },
+  {
+   "_id": "rP3LRjtBK17g10x8",
+   "x": 1890,
+   "y": 2982,
+   "text": "Mount Rinia",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mount_Rinia"
+    }
+   }
+  },
+  {
+   "_id": "lAK5CfrMo30glDfc",
+   "x": 1064,
+   "y": 2931,
+   "text": "Pezzack",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pezzack"
+    }
+   }
+  },
+  {
+   "_id": "RFWvL3sCrnAPtIhx",
+   "x": 1937,
+   "y": 2918,
+   "text": "Windspire",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Windspire"
+    }
+   }
+  },
+  {
+   "_id": "9y9Walv7YrtA2RDB",
+   "x": 1545,
+   "y": 2843,
+   "text": "Citadel Enferac",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Citadel_Enferac"
+    }
+   }
+  },
+  {
+   "_id": "GEiyablWcfBGyyJa",
+   "x": 4054,
+   "y": 2796,
+   "text": "Kantaria",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kantaria"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/ravounel.webp",
+ "__key": "ravounel",
+ "__folder": "Nations",
+ "_id": "wRHIt8tsHc4N06j3"
+}

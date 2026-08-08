@@ -1,0 +1,84 @@
+{
+ "name": "Oppara Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.45,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "KH6vEHpsgRYaUDkV",
+   "name": "Oppara Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/oppara-environs.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "VCqjzJr7OLqWUARc",
+   "x": 2304,
+   "y": 1541,
+   "text": "Oppara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Oppara"
+    }
+   }
+  },
+  {
+   "_id": "YbSLhV9hdK9eCIeB",
+   "x": 876,
+   "y": 2530,
+   "text": "Mut",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mut"
+    }
+   }
+  },
+  {
+   "_id": "Un6EyaWLiiSGviql",
+   "x": 3605,
+   "y": 2070,
+   "text": "Pastorling",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pastorling"
+    }
+   }
+  }
+ ],
+ "__key": "oppara-environs",
+ "__folder": "City Environs",
+ "_id": "iYrh0rsHljmfOt7T",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/oppara-environs.webp"
+}

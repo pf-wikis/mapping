@@ -1,0 +1,50 @@
+{
+ "name": "Braganza",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "h4WUG3adDu1YjK5E",
+   "name": "Braganza",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/braganza-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "4o0QyZEik8WI1M6z",
+   "x": 2304,
+   "y": 1537,
+   "text": "Braganza",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Braganza"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/braganza-town.webp",
+ "__key": "braganza-town",
+ "__folder": "Cities",
+ "_id": "Gf9zdcMMKwsCgUoj"
+}

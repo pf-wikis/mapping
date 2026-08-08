@@ -1,0 +1,84 @@
+{
+ "name": "Niswan Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.4,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "YmoOxLVPVKwBzXpF",
+   "name": "Niswan Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/niswan-region.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "7rlVWLxRjBk8JAay",
+   "x": 2304,
+   "y": 1538,
+   "text": "Niswan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Niswan"
+    }
+   }
+  },
+  {
+   "_id": "Lt8VzPu4NPIu4CiD",
+   "x": 68,
+   "y": 1525,
+   "text": "The Conservatory",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/The_Conservatory"
+    }
+   }
+  },
+  {
+   "_id": "87srb3d9YOaWod7A",
+   "x": 358,
+   "y": 1407,
+   "text": "Weeping Stairwell",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Weeping_Stairwell"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/niswan-region.webp",
+ "__key": "niswan-region",
+ "__folder": "City Regions",
+ "_id": "d02ebPhHGLzBcVdw"
+}

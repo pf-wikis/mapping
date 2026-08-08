@@ -1,0 +1,67 @@
+{
+ "name": "Otari",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "XdgkVc6uaLYDxouD",
+   "name": "Otari",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/otari-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "5jtoRFNHKrD68hdQ",
+   "x": 2304,
+   "y": 1537,
+   "text": "Otari",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Otari"
+    }
+   }
+  },
+  {
+   "_id": "S68jR6ytywGPQzXu",
+   "x": 2270,
+   "y": 1451,
+   "text": "Gauntlight Keep",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gauntlight_Keep"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/otari-town.webp",
+ "__key": "otari-town",
+ "__folder": "Cities",
+ "_id": "PvZcRGAz25PcGhr4"
+}
