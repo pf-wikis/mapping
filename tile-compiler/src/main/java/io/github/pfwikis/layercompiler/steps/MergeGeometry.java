@@ -38,8 +38,7 @@ public class MergeGeometry extends StepExecutor {
     		
     		var dissolved = Tools.mapshaper(this, e.getValue(),
     			"-each", defLambda,
-				"-dissolve", "color",
-				"-explode"
+				"-dissolve", "color"
 			);
     		
     		for(var f : dissolved.toFeatureCollection().getFeatures()) {

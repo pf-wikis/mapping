@@ -57,6 +57,7 @@ public class CompileTiles extends StepExecutor {
     		"mlt_shared_dict", "true",
     		"force", "true",
     		"exclude_ids", "true",
+    		"min_feature_size", "0.1",
     		//increase detail at max zoom for best overzooming
     		"min_feature_size_at_max_zoom", "0",
     		"simplify_tolerance_at_max_zoom", "0"
