@@ -26,8 +26,7 @@ let pmtilesProt = new Protocol();
 //add custom tile caching
 if(indexedDB) {
   try {
-    //if this url does not match the one in style we do not cache
-    pmtilesProt.add(new PMTiles(new CachedSource(root+'/golarion.pmtiles?v='+BUILD_DATA_HASH)))
+    pmtilesProt.add(new PMTiles(new CachedSource(style.sources.golarion.url)))
   } catch(e) {
     console.log("Failed to initialize IndexDB cache")
     console.log(e)

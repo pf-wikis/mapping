@@ -5,9 +5,6 @@ const dbId = `map-db-${buildId}`;
 const ranges = 'ranges';
 type Key = IDBValidKey&[number, number]
 
-const dbPromise = navigator.storage.getDirectory()
-  .then(fapi => fapi.getDirectoryHandle(dbId, {create:true}));
-
 setTimeout(async ()=>{
   let api = await navigator.storage.getDirectory()
   for await (const handle of api.values()) {
@@ -31,13 +28,19 @@ setTimeout(async ()=>{
 
 export class CachedSource implements Source {
   fetcher: FetchSource;
+  dbPromise: Promise<FileSystemDirectoryHandle>;
 
   constructor(url:string) {
+    //if this url does not match the one in style we do not cache!!!
+    if(url.startsWith('pmtiles://'))
+      url = url.substring(10);
+
     this.fetcher = new FetchSource(url);
     let useCache = Boolean(buildId)
     this.getBytes = useCache?this.waitLoadCacheStore:this.waitLoadWebStore;
+    this.dbPromise = navigator.storage.getDirectory().then(fapi => fapi.getDirectoryHandle(dbId, {create:true}));
 
-    dbPromise.then(db => {
+    this.dbPromise.then(db => {
       //we want to try loading from the cache first, if we are not in a DEV scenario
       if(useCache) {
         this.getBytes = (offset: number, length: number, signal?: AbortSignal, etag?: string) => this.loadCacheStore(db, offset, length, signal, etag);
@@ -95,11 +98,11 @@ export class CachedSource implements Source {
   }
 
   waitLoadWebStore(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
-    return dbPromise.then(db=>this.loadWebStore(db, offset, length, signal, etag));
+    return this.dbPromise.then(db=>this.loadWebStore(db, offset, length, signal, etag));
   }
 
   waitLoadCacheStore(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
-    return dbPromise.then(db=>this.loadCacheStore(db, offset, length, signal, etag));
+    return this.dbPromise.then(db=>this.loadCacheStore(db, offset, length, signal, etag));
   }
 
   loadWeb(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
