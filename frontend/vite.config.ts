@@ -59,7 +59,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
     ],
     build: {
       target: 'esnext',
-      sourcemap: mode=='development'?'inline':'hidden',
+      sourcemap: 'inline',
       modulePreload: {
         polyfill: false
       },
