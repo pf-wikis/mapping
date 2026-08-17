@@ -10,7 +10,7 @@ kart clone https://github.com/pf-wikis/mapping-data.git /w/data
 echo "Compiling tiles"
 cd /w/tile-compiler
 mvn -B compile package
-java -jar target/tile-compiler.jar compileTiles -maxZoom 12 -prodDetail -mappingDataFile ../data/data.gpkg
+java -jar target/tile-compiler.jar compileTiles -maxZoom 13 -prodDetail -mappingDataFile ../data/data.gpkg
 cd /w
 
 echo "Building frontend"

@@ -1,4 +1,4 @@
-export const maxZoomWithData = 8;
+export const maxZoomWithData = 12;
 export const enum Prop {
   angle='angle',
   borderType='borderType',
@@ -37,7 +37,7 @@ export const propsMeta = {
       },
       "export_tileMaxzoom" : {
         "name" : "export_tileMaxzoom",
-        "maxNumber" : 8,
+        "maxNumber" : 12,
         "minNumber" : 5,
         "nonNullEntries" : 862,
         "nullEntries" : 0
@@ -70,26 +70,26 @@ export const propsMeta = {
     "props" : {
       "color" : {
         "name" : "color",
-        "nonNullEntries" : 19459,
+        "nonNullEntries" : 225,
         "nullEntries" : 0
       },
       "export" : {
         "name" : "export",
-        "nonNullEntries" : 19459,
+        "nonNullEntries" : 225,
         "nullEntries" : 0
       },
       "export_tileMaxzoom" : {
         "name" : "export_tileMaxzoom",
-        "maxNumber" : 8,
-        "minNumber" : 8,
-        "nonNullEntries" : 19459,
+        "maxNumber" : 12,
+        "minNumber" : 12,
+        "nonNullEntries" : 225,
         "nullEntries" : 0
       },
       "export_tileMinzoom" : {
         "name" : "export_tileMinzoom",
         "maxNumber" : 0,
         "minNumber" : 0,
-        "nonNullEntries" : 19459,
+        "nonNullEntries" : 225,
         "nullEntries" : 0
       }
     }
@@ -99,40 +99,40 @@ export const propsMeta = {
     "props" : {
       "export" : {
         "name" : "export",
-        "nonNullEntries" : 1067,
+        "nonNullEntries" : 1068,
         "nullEntries" : 0
       },
       "export_tileMaxzoom" : {
         "name" : "export_tileMaxzoom",
-        "maxNumber" : 8,
-        "minNumber" : 8,
-        "nonNullEntries" : 1067,
+        "maxNumber" : 12,
+        "minNumber" : 12,
+        "nonNullEntries" : 1068,
         "nullEntries" : 0
       },
       "export_tileMinzoom" : {
         "name" : "export_tileMinzoom",
         "maxNumber" : 0,
         "minNumber" : 0,
-        "nonNullEntries" : 1067,
+        "nonNullEntries" : 1068,
         "nullEntries" : 0
       },
       "label" : {
         "name" : "label",
-        "nonNullEntries" : 1067,
+        "nonNullEntries" : 1068,
         "nullEntries" : 0
       },
       "timeIndexEnd" : {
         "name" : "timeIndexEnd",
         "maxNumber" : 1,
         "minNumber" : -15,
-        "nonNullEntries" : 1067,
+        "nonNullEntries" : 1068,
         "nullEntries" : 0
       },
       "timeIndexStart" : {
         "name" : "timeIndexStart",
         "maxNumber" : 0,
         "minNumber" : -16,
-        "nonNullEntries" : 1067,
+        "nonNullEntries" : 1068,
         "nullEntries" : 0
       }
     }
@@ -144,61 +144,61 @@ export const propsMeta = {
         "name" : "angle",
         "maxNumber" : 90,
         "minNumber" : -90,
-        "nonNullEntries" : 811,
-        "nullEntries" : 273
+        "nonNullEntries" : 812,
+        "nullEntries" : 599
       },
       "color" : {
         "name" : "color",
-        "nonNullEntries" : 1084,
+        "nonNullEntries" : 1411,
         "nullEntries" : 0
       },
       "export" : {
         "name" : "export",
-        "nonNullEntries" : 1084,
+        "nonNullEntries" : 1411,
         "nullEntries" : 0
       },
       "export_tileMaxzoom" : {
         "name" : "export_tileMaxzoom",
-        "maxNumber" : 8,
+        "maxNumber" : 12,
         "minNumber" : 1,
-        "nonNullEntries" : 1084,
+        "nonNullEntries" : 1411,
         "nullEntries" : 0
       },
       "export_tileMinzoom" : {
         "name" : "export_tileMinzoom",
-        "maxNumber" : 8,
+        "maxNumber" : 12,
         "minNumber" : 0,
-        "nonNullEntries" : 1084,
+        "nonNullEntries" : 1411,
         "nullEntries" : 0
       },
       "halo" : {
         "name" : "halo",
-        "nonNullEntries" : 1084,
+        "nonNullEntries" : 1411,
         "nullEntries" : 0
       },
       "label" : {
         "name" : "label",
-        "nonNullEntries" : 1084,
+        "nonNullEntries" : 1411,
         "nullEntries" : 0
       },
       "maxzoom" : {
         "name" : "maxzoom",
         "maxNumber" : 21,
-        "minNumber" : 9,
-        "nonNullEntries" : 836,
-        "nullEntries" : 248
+        "minNumber" : 13,
+        "nonNullEntries" : 715,
+        "nullEntries" : 696
       },
       "minzoom" : {
         "name" : "minzoom",
         "maxNumber" : 18,
         "minNumber" : -2,
-        "nonNullEntries" : 484,
-        "nullEntries" : 600
+        "nonNullEntries" : 387,
+        "nullEntries" : 1024
       },
       "type" : {
         "name" : "type",
         "nonNullEntries" : 152,
-        "nullEntries" : 932
+        "nullEntries" : 1259
       }
     }
   },
@@ -217,8 +217,8 @@ export const propsMeta = {
       },
       "export_tileMaxzoom" : {
         "name" : "export_tileMaxzoom",
-        "maxNumber" : 8,
-        "minNumber" : 8,
+        "maxNumber" : 12,
+        "minNumber" : 12,
         "nonNullEntries" : 291,
         "nullEntries" : 0
       },
@@ -246,45 +246,45 @@ export const propsMeta = {
     "props" : {
       "export" : {
         "name" : "export",
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 3388,
         "nullEntries" : 0
       },
       "export_tileMaxzoom" : {
         "name" : "export_tileMaxzoom",
-        "maxNumber" : 8,
+        "maxNumber" : 12,
         "minNumber" : 2,
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 3388,
         "nullEntries" : 0
       },
       "export_tileMinzoom" : {
         "name" : "export_tileMinzoom",
-        "maxNumber" : 8,
+        "maxNumber" : 12,
         "minNumber" : 2,
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 3388,
         "nullEntries" : 0
       },
       "fid" : {
         "name" : "fid",
         "maxNumber" : 2146251733,
         "minNumber" : 23921,
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 3388,
         "nullEntries" : 0
       },
       "icon" : {
         "name" : "icon",
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 3388,
         "nullEntries" : 0
       },
       "label" : {
         "name" : "label",
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 3388,
         "nullEntries" : 0
       },
       "pregroupMinzoom" : {
         "name" : "pregroupMinzoom",
         "maxNumber" : 4,
         "minNumber" : 2,
-        "nonNullEntries" : 2466,
+        "nonNullEntries" : 3388,
         "nullEntries" : 0
       }
     }
