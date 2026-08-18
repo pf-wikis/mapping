@@ -1,0 +1,424 @@
+{
+ "name": "Razmiran",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 7.95,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "iV6hnUY1Nq1qtctu",
+   "name": "Razmiran",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/razmiran.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "mYQizhJybHGHhUrz",
+   "x": 1342,
+   "y": 1122,
+   "text": "Forgotten Track",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Forgotten_Track"
+    }
+   }
+  },
+  {
+   "_id": "zJi8sxdO3XrE8H2s",
+   "x": 104,
+   "y": 1117,
+   "text": "Caliphas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Caliphas"
+    }
+   }
+  },
+  {
+   "_id": "qxU1sIgvoMx6ZoNS",
+   "x": 681,
+   "y": 930,
+   "text": "Coastal Cairns",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Coastal_Cairns"
+    }
+   }
+  },
+  {
+   "_id": "yBXUnF0QGLNOOd6x",
+   "x": 641,
+   "y": 444,
+   "text": "Illmarsh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Illmarsh"
+    }
+   }
+  },
+  {
+   "_id": "qsEcMb519GTHW13F",
+   "x": 293,
+   "y": 228,
+   "text": "Thrushmoor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Thrushmoor"
+    }
+   }
+  },
+  {
+   "_id": "AW0yauGvAMtySb7K",
+   "x": 2568,
+   "y": 1375,
+   "text": "Tymon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tymon"
+    }
+   }
+  },
+  {
+   "_id": "eF6CLo9bqcJoADOO",
+   "x": 2733,
+   "y": 1238,
+   "text": "Saad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Saad"
+    }
+   }
+  },
+  {
+   "_id": "f4VGNfQfAAWXz7rH",
+   "x": 2390,
+   "y": 927,
+   "text": "Maashinelle",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Maashinelle"
+    }
+   }
+  },
+  {
+   "_id": "PLWi5V1jToCLxqT0",
+   "x": 2910,
+   "y": 892,
+   "text": "Solanas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Solanas"
+    }
+   }
+  },
+  {
+   "_id": "aNDfMWtZg5a0DQLl",
+   "x": 3653,
+   "y": 889,
+   "text": "Wilkesmont",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Wilkesmont"
+    }
+   }
+  },
+  {
+   "_id": "UYSVhJNyLjiw3yfO",
+   "x": 3531,
+   "y": 462,
+   "text": "Daggermark",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Daggermark"
+    }
+   }
+  },
+  {
+   "_id": "cFTXq9D0Cx8Xg8Ob",
+   "x": 2011,
+   "y": 352,
+   "text": "Lockridge",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lockridge"
+    }
+   }
+  },
+  {
+   "_id": "KLTHyS0avOaGXbFn",
+   "x": 2745,
+   "y": 299,
+   "text": "Sezgin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sezgin"
+    }
+   }
+  },
+  {
+   "_id": "mXfCMofYQExOUndr",
+   "x": 419,
+   "y": 2934,
+   "text": "The Three Furies",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/The_Three_Furies"
+    }
+   }
+  },
+  {
+   "_id": "KEWFY6WutTyK9Vpl",
+   "x": 1270,
+   "y": 1686,
+   "text": "Thronestep",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Thronestep"
+    }
+   }
+  },
+  {
+   "_id": "9SEgxJa60uN6txnT",
+   "x": 3312,
+   "y": 2888,
+   "text": "Berm",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Berm"
+    }
+   }
+  },
+  {
+   "_id": "mtJv8j0MQyiHqvA4",
+   "x": 3176,
+   "y": 2806,
+   "text": "Xer",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Xer"
+    }
+   }
+  },
+  {
+   "_id": "A1cnLuHC3pduYZtg",
+   "x": 2849,
+   "y": 2376,
+   "text": "Aerduin's Folly",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aerduin's_Folly"
+    }
+   }
+  },
+  {
+   "_id": "7t83OUZFBDr3vcv7",
+   "x": 2251,
+   "y": 2342,
+   "text": "Pilgrimage",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pilgrimage"
+    }
+   }
+  },
+  {
+   "_id": "mIniqnbkQ8iMfKMY",
+   "x": 2827,
+   "y": 2249,
+   "text": "Gensmaren",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gensmaren"
+    }
+   }
+  },
+  {
+   "_id": "0F1XKLUjJhCpV8NI",
+   "x": 2940,
+   "y": 2076,
+   "text": "Whispertruth",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Whispertruth"
+    }
+   }
+  },
+  {
+   "_id": "8yGt4MY8BmM8kF4L",
+   "x": 2720,
+   "y": 2033,
+   "text": "Bleachbone Cave",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bleachbone_Cave"
+    }
+   }
+  },
+  {
+   "_id": "btPSHFMqTDo4r2Lj",
+   "x": 2007,
+   "y": 1453,
+   "text": "First Step",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/First_Step"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/razmiran.webp",
+ "__key": "razmiran",
+ "__folder": "Nations",
+ "_id": "sWuKTtJ4mwx8I1CA"
+}

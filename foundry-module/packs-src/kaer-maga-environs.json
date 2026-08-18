@@ -1,0 +1,84 @@
+{
+ "name": "Kaer Maga Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.07,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "fGk5Hq2kqHGOqh6n",
+   "name": "Kaer Maga Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/kaer-maga-environs.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "qd5xGqpyQeb0lkId",
+   "x": 2304,
+   "y": 1543,
+   "text": "Kaer Maga",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kaer_Maga"
+    }
+   }
+  },
+  {
+   "_id": "1VWJz79PaKUqIiDL",
+   "x": 3027,
+   "y": 2316,
+   "text": "Sirathu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sirathu"
+    }
+   }
+  },
+  {
+   "_id": "bis8qs9JP5YH2BGi",
+   "x": 3997,
+   "y": 1186,
+   "text": "Kallow Mounds",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kallow_Mounds"
+    }
+   }
+  }
+ ],
+ "__key": "kaer-maga-environs",
+ "__folder": "City Environs",
+ "_id": "uoXN6z1LmvFfkaNl",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/kaer-maga-environs.webp"
+}

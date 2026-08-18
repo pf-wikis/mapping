@@ -1,0 +1,118 @@
+{
+ "name": "Daggermark Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.07,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "hPw0ODmy1EVeBBM4",
+   "name": "Daggermark Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/daggermark-region.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "96jSLu36fG9yMr1d",
+   "x": 308,
+   "y": 1133,
+   "text": "Sezgin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sezgin"
+    }
+   }
+  },
+  {
+   "_id": "NA858PS0bIBBFM6x",
+   "x": 2304,
+   "y": 1543,
+   "text": "Daggermark",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Daggermark"
+    }
+   }
+  },
+  {
+   "_id": "USBhV0k4aVD3AyGK",
+   "x": 2494,
+   "y": 353,
+   "text": "Hawk's Nest",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hawk's_Nest"
+    }
+   }
+  },
+  {
+   "_id": "sVNQw0IruLSuCrBJ",
+   "x": 730,
+   "y": 2634,
+   "text": "Solanas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Solanas"
+    }
+   }
+  },
+  {
+   "_id": "4Ckfio8tPyqyTkwS",
+   "x": 2613,
+   "y": 2628,
+   "text": "Wilkesmont",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Wilkesmont"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/daggermark-region.webp",
+ "__key": "daggermark-region",
+ "__folder": "City Regions",
+ "_id": "TjL3gP6Zf4HcvqDK"
+}

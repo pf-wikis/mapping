@@ -1,0 +1,203 @@
+{
+ "name": "Alkenstar Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.41,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "yWWXtX1ZWKu6fpRt",
+   "name": "Alkenstar Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/alkenstar-region.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "0i4pVKX60TaM5Gtu",
+   "x": 124,
+   "y": 1925,
+   "text": "Samsara Oasis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Samsara_Oasis"
+    }
+   }
+  },
+  {
+   "_id": "WVThviIPLSswXSKW",
+   "x": 364,
+   "y": 1400,
+   "text": "Gunworks",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gunworks"
+    }
+   }
+  },
+  {
+   "_id": "lr0Ykn8rRJHJeo8r",
+   "x": 597,
+   "y": 1249,
+   "text": "Karggat Mine",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Karggat_Mine"
+    }
+   }
+  },
+  {
+   "_id": "jtMjcJl5lRizlEdk",
+   "x": 712,
+   "y": 472,
+   "text": "Sultur Mill Outpost",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sultur_Mill_Outpost"
+    }
+   }
+  },
+  {
+   "_id": "vUpnEL96yDbRmT2i",
+   "x": 2264,
+   "y": 2157,
+   "text": "Mercy",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mercy"
+    }
+   }
+  },
+  {
+   "_id": "FObvMEBKHynki6f7",
+   "x": 1612,
+   "y": 1668,
+   "text": "Martel",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Martel"
+    }
+   }
+  },
+  {
+   "_id": "vzyQdNcxUL17kNl0",
+   "x": 2304,
+   "y": 1538,
+   "text": "Alkenstar City",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Alkenstar_City"
+    }
+   }
+  },
+  {
+   "_id": "OB69Q8pZxHWc01DQ",
+   "x": 1992,
+   "y": 1138,
+   "text": "Dongun Hold",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dongun_Hold"
+    }
+   }
+  },
+  {
+   "_id": "YsFQclP5wQQyTzfl",
+   "x": 2697,
+   "y": 853,
+   "text": "Cloudreaver Keep",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cloudreaver_Keep"
+    }
+   }
+  },
+  {
+   "_id": "aj6Vq3FyDzlfQdXh",
+   "x": 4373,
+   "y": 303,
+   "text": "Ecanus",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ecanus"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/alkenstar-region.webp",
+ "__key": "alkenstar-region",
+ "__folder": "City Regions",
+ "_id": "Th2mZRY0pJ1L2VPq"
+}

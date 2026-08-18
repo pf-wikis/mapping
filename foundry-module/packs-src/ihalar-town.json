@@ -1,0 +1,50 @@
+{
+ "name": "Ihalar",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "jdW0XG89LTZZMZBc",
+   "name": "Ihalar",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/ihalar-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "PgKSIBXcFJvjGqzg",
+   "x": 2304,
+   "y": 1537,
+   "text": "Ihalar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ihalar"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/ihalar-town.webp",
+ "__key": "ihalar-town",
+ "__folder": "Cities",
+ "_id": "xx5aWo8Nv5yHQI0B"
+}

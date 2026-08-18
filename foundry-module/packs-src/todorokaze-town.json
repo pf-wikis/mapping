@@ -1,0 +1,50 @@
+{
+ "name": "Todorokaze",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "uRztgbYn7SPlgMOl",
+   "name": "Todorokaze",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/todorokaze-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "B1bQrJb7sTcnwSnW",
+   "x": 2304,
+   "y": 1537,
+   "text": "Todorokaze",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Todorokaze"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/todorokaze-town.webp",
+ "__key": "todorokaze-town",
+ "__folder": "Cities",
+ "_id": "HR7LIDNQqiZiI4zc"
+}

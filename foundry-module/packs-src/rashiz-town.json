@@ -1,0 +1,50 @@
+{
+ "name": "Rashiz",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "sP8klx3PziDF5xIA",
+   "name": "Rashiz",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/rashiz-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "qmw2TVxud1YVZJL6",
+   "x": 2304,
+   "y": 1537,
+   "text": "Rashiz",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rashiz"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/rashiz-town.webp",
+ "__key": "rashiz-town",
+ "__folder": "Cities",
+ "_id": "ofEfbXc9i63Wyd0s"
+}
