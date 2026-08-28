@@ -1,0 +1,50 @@
+{
+ "name": "Sadiyeh",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "BPa14JXiw1SsyVr1",
+   "name": "Sadiyeh",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/sadiyeh-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "J0s4lSC1G47wDSjn",
+   "x": 2304,
+   "y": 1537,
+   "text": "Sadiyeh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sadiyeh"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/sadiyeh-town.webp",
+ "__key": "sadiyeh-town",
+ "__folder": "Cities",
+ "_id": "D9HhqiE1QaOIxhqC"
+}

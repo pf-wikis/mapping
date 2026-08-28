@@ -1,0 +1,50 @@
+{
+ "name": "Prada Hanam",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "MldsXmSGLenOcm85",
+   "name": "Prada Hanam",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/prada-hanam-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "OlgKAT3T84iTYVer",
+   "x": 2304,
+   "y": 1537,
+   "text": "Prada Hanam",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Prada_Hanam"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/prada-hanam-town.webp",
+ "__key": "prada-hanam-town",
+ "__folder": "Cities",
+ "_id": "H3mHl3FpX2v661yi"
+}

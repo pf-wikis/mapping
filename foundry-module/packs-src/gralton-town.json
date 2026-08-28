@@ -1,0 +1,50 @@
+{
+ "name": "Gralton",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "KbPTa9MfYmtj3Lr5",
+   "name": "Gralton",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/gralton-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "1vl1GctmfnD5VMBO",
+   "x": 2304,
+   "y": 1538,
+   "text": "Gralton",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gralton"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/gralton-town.webp",
+ "__key": "gralton-town",
+ "__folder": "Cities",
+ "_id": "Rq9R3772ArW6mwNp"
+}

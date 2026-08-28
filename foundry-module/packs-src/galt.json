@@ -1,0 +1,101 @@
+{
+ "name": "Galt",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 2.72,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "7nOk7PHAgelTbpoP",
+   "name": "Galt",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/galt.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "Kj46DXm6C8wOuOpN",
+   "x": 1663,
+   "y": 2990,
+   "text": "Adrast",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Adrast"
+    }
+   }
+  },
+  {
+   "_id": "yq0TjvjhzjozaDEP",
+   "x": 1565,
+   "y": 2234,
+   "text": "Tregan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tregan"
+    }
+   }
+  },
+  {
+   "_id": "H0R87WH5SOo4sPFx",
+   "x": 3835,
+   "y": 1426,
+   "text": "Torcova",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Torcova"
+    }
+   }
+  },
+  {
+   "_id": "CBM2j7SwCtqfIujL",
+   "x": 3200,
+   "y": 1405,
+   "text": "Mount Rein",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mount_Rein"
+    }
+   }
+  }
+ ],
+ "__key": "galt",
+ "__folder": "Nations",
+ "_id": "wcR1hIsYjeL2Kqat",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/galt.webp"
+}
