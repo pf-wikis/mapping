@@ -2,6 +2,8 @@ import { defineConfig, ResolvedConfig, UserConfig } from 'vite';
 import { compression, defineAlgorithm } from 'vite-plugin-compression2'
 import style from './src/ml-style/style.ts'
 import { validateStyleMin } from '@maplibre/maplibre-gl-style-spec'
+import fs from 'node:fs'
+import path from 'node:path'
 
 const jsonModule = 'virtual:style';
 const resolvedJsonModule = '\0'+jsonModule;
@@ -14,11 +16,18 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
   const dataHash = Math.floor(Date.now() / 1000);
   const compiledStyle = style(host, dataHash);
   
+  let assetNames = {
+    entryFileNames: `${dataHash}/assets/[name]-[hash].js`,
+    chunkFileNames:  `${dataHash}/assets/[name]-[hash].js`,
+    assetFileNames:  `${dataHash}/assets/[name]-[hash].[ext]`,
+  };
+
   return {
     define: {
       HOST: JSON.stringify(host),
       BUILD_DATA_HASH: dataHash
     },
+    publicDir: false,
     plugins: [
       {
         name: 'compile-style',
@@ -42,13 +51,31 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
           // Emit generated file
           this.emitFile({
             type: "asset",
-            fileName: "style.json",
+            fileName: `${dataHash}/style.json`,
             source: JSON.stringify(compiledStyle),
           });
         }
       },
+      {
+        name: 'copy-public',
+        generateBundle(_, bundle) {
+          // Emit generated file
+          this.emitFile({
+            type: "asset",
+            fileName: `latest.json`,
+            source: JSON.stringify(dataHash),
+          });
+        },
+        closeBundle() {
+          fs.cpSync(
+            path.resolve('public'),
+            path.resolve(`dist/${dataHash}`),
+            { recursive: true }
+          )
+        }
+      },
       compression({
-        include: /\..*$/i,
+        include: /\.(?!pmtiles)[^.]*$/i,
         threshold: 0,
         algorithms: [
           defineAlgorithm('gzip', { level: 9 }),
@@ -63,7 +90,15 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
       modulePreload: {
         polyfill: false
       },
-      chunkSizeWarningLimit: 2048
+      chunkSizeWarningLimit: 2048,
+      rolldownOptions: {
+        output: assetNames
+      }
+    },
+    worker: {
+      rolldownOptions: {
+        output: assetNames
+      }
     },
     resolve: {
       alias: {
@@ -72,12 +107,17 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
     },
     server: {
       port: 5173,
-      proxy: {
-        // Use remote data from production map
-        '/sprites': 'https://map.pathfinderwiki.com',
-        //'/golarion.pmtiles': 'https://map.pathfinderwiki.com',
-        '/search.json': 'https://map.pathfinderwiki.com',
-      }
+      proxy: Object.fromEntries(
+        Object.entries({
+          // Use remote data from production map
+          'sprites': 'https://map.pathfinderwiki.com',
+          'golarion.pmtiles': 'https://map.pathfinderwiki.com',
+          'search.json': 'https://map.pathfinderwiki.com',
+        }).map(([key, value]) => [`${dataHash}/${key}`, {
+          target: value,
+          rewrite: path => path.replace(`${dataHash}/`, 'latest/')
+        }])
+      )
     }
   };
 })

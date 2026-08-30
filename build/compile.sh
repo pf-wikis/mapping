@@ -16,7 +16,6 @@ cd /w
 echo "Building frontend"
 datahash=`expr $(date +%s) / 60`
 cd /w/frontend
-printf "VITE_DATA_HASH=$datahash" > ./.env.local
 npm ci
 npm run build
 cd /w
@@ -28,3 +27,8 @@ cp -rf frontend/dist/* /w/output/
 # clean up old files
 echo "Cleaning old files"
 find /w/output -mtime +7 -type f -delete
+
+# link latest
+cd /w/output
+HASH="$(cat ./latest.json)"
+ln -sfn "./$HASH" ./latest

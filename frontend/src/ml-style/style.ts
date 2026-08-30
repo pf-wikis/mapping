@@ -388,14 +388,14 @@ export default function(HOST:string, BUILD_DATA_HASH: number) {
       golarion: {
         type: 'vector',
         attribution: '<a href="https://paizo.com/licenses/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
-        url: `pmtiles://${HOST}/golarion.pmtiles?v=${BUILD_DATA_HASH}`,
+        url: `pmtiles://${HOST}/${BUILD_DATA_HASH}/golarion.pmtiles`,
         encoding: 'mlt'
       },
     },
     state: Object.fromEntries(Object.keys(state).map(k=>[k, {default: (state as any)[k].default}])),
-    sprite: `${HOST}/sprites/sprites`,
+    sprite: `${HOST}/${BUILD_DATA_HASH}/sprites/sprites`,
     layers: layers,
-    glyphs: `${HOST}/fonts/{fontstack}/{range}.pbf`,
+    glyphs: `${HOST}/${BUILD_DATA_HASH}/fonts/{fontstack}/{range}.pbf`,
     transition: {
       duration: 300,
       delay: 0
