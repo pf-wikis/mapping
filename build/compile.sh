@@ -26,7 +26,8 @@ cp -rf frontend/dist/* /w/output/
 
 # clean up old files
 echo "Cleaning old files"
-find /w/output -mtime +7 -type f -delete
+find /w/output -mtime +14 -type f -delete
+find /w/output -type d -empty -delete
 
 # link latest
 cd /w/output
