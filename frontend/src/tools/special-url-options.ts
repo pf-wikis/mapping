@@ -6,7 +6,7 @@ export function addSpecialURLOptions(map:GolarionMap) {
     map.onStyleLoaded(() => {
         map.options.onChange('highlight', (oldValue, newValue) => {
             if(newValue) {
-                let url = `${HOST}/highlights/${newValue}.geojson?v=${BUILD_DATA_HASH}`;
+                let url = `${HOST}/${BUILD_DATA_HASH}/highlights/${newValue}.geojson`;
                 if(oldValue) {
                     (map.map.getSource('highlights') as GeoJSONSource)?.setData(url);
                 }
