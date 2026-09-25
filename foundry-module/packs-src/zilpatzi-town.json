@@ -1,0 +1,50 @@
+{
+ "name": "Zilpatzi",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "iK4SrUg3BBinwzq3",
+   "name": "Zilpatzi",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/zilpatzi-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "x048OeHcQaR6oE74",
+   "x": 2304,
+   "y": 1536,
+   "text": "Zilpatzi",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zilpatzi"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/zilpatzi-town.webp",
+ "__key": "zilpatzi-town",
+ "__folder": "Cities",
+ "_id": "iMM9AVEyma36vN4p"
+}

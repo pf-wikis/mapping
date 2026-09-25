@@ -1,0 +1,900 @@
+{
+ "name": "Absalom Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.45,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "urOq9262A6qbkGH7",
+   "name": "Absalom Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/absalom-environs.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "vsMLm82io9vTqLmU",
+   "x": 124,
+   "y": 1346,
+   "text": "Castinlee",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Castinlee"
+    }
+   }
+  },
+  {
+   "_id": "jeBohJJAHERvYXMx",
+   "x": 21,
+   "y": 1278,
+   "text": "Castinlee Hollows Burying Ground",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Castinlee_Hollows_Burying_Ground"
+    }
+   }
+  },
+  {
+   "_id": "vT9YufJqfGYZ4PXF",
+   "x": 194,
+   "y": 947,
+   "text": "Wellspring Tower",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Wellspring_Tower"
+    }
+   }
+  },
+  {
+   "_id": "3EchMUw24HIDRlA0",
+   "x": 74,
+   "y": 933,
+   "text": "Old Currew's Place",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Old_Currew's_Place"
+    }
+   }
+  },
+  {
+   "_id": "zWN61dW7lqU2N1Rg",
+   "x": 58,
+   "y": 878,
+   "text": "Matten Cleave",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Matten_Cleave"
+    }
+   }
+  },
+  {
+   "_id": "FVZhNrSxU3R1ufsc",
+   "x": 180,
+   "y": 862,
+   "text": "Ferny",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ferny"
+    }
+   }
+  },
+  {
+   "_id": "bLNF22AEK90QSSN7",
+   "x": 1099,
+   "y": 1744,
+   "text": "Otari",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Otari"
+    }
+   }
+  },
+  {
+   "_id": "6e9tierIrXEScI8M",
+   "x": 2279,
+   "y": 1709,
+   "text": "Absalom Lighthouse",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Absalom_Lighthouse"
+    }
+   }
+  },
+  {
+   "_id": "8DQqRED905UghpCo",
+   "x": 2386,
+   "y": 1690,
+   "text": "Dawnfoot",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dawnfoot"
+    }
+   }
+  },
+  {
+   "_id": "9knnfSwSqjztWZDr",
+   "x": 2255,
+   "y": 1606,
+   "text": "Black Whale",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Black_Whale"
+    }
+   }
+  },
+  {
+   "_id": "Y4JiwGjg4XTR0MKt",
+   "x": 2328,
+   "y": 1602,
+   "text": "Beast",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Beast"
+    }
+   }
+  },
+  {
+   "_id": "HtE8zdEMdnhfoxix",
+   "x": 2380,
+   "y": 1597,
+   "text": "Blue Tower",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Blue_Tower"
+    }
+   }
+  },
+  {
+   "_id": "koUTdVmFohG85i6k",
+   "x": 2199,
+   "y": 1571,
+   "text": "Shoreline",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shoreline"
+    }
+   }
+  },
+  {
+   "_id": "dYdVVwmBGgphQEdJ",
+   "x": 2354,
+   "y": 1551,
+   "text": "Blackhill's",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Blackhill's"
+    }
+   }
+  },
+  {
+   "_id": "VOmXy0lVKqtTyjSn",
+   "x": 2253,
+   "y": 1549,
+   "text": "Crimson Coin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Crimson_Coin"
+    }
+   }
+  },
+  {
+   "_id": "mik8KDNq8TYgvIfr",
+   "x": 2304,
+   "y": 1540,
+   "text": "Absalom",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Absalom"
+    }
+   }
+  },
+  {
+   "_id": "Zi20cfDiGHGtVZl2",
+   "x": 2206,
+   "y": 1501,
+   "text": "Westerhold",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Westerhold"
+    }
+   }
+  },
+  {
+   "_id": "1bu1tN934nA7X36B",
+   "x": 2269,
+   "y": 1485,
+   "text": "Absalom Mint",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Absalom_Mint"
+    }
+   }
+  },
+  {
+   "_id": "EszbcqPNDeJCNQMb",
+   "x": 2324,
+   "y": 1485,
+   "text": "Morilla Palace and the Tally Wall",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Morilla_Palace_and_the_Tally_Wall"
+    }
+   }
+  },
+  {
+   "_id": "JDtn9S0DfiWZ2XAI",
+   "x": 2376,
+   "y": 1484,
+   "text": "Copperwood",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Copperwood"
+    }
+   }
+  },
+  {
+   "_id": "dgDb0xEQK0LBkNt2",
+   "x": 469,
+   "y": 1394,
+   "text": "Turpin Rowe",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Turpin_Rowe"
+    }
+   }
+  },
+  {
+   "_id": "703hU00sqnpYGnF4",
+   "x": 2392,
+   "y": 1346,
+   "text": "Spire of Nex",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Spire_of_Nex"
+    }
+   }
+  },
+  {
+   "_id": "zaujMmyp6AbbkDx4",
+   "x": 986,
+   "y": 1312,
+   "text": "Meravon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Meravon"
+    }
+   }
+  },
+  {
+   "_id": "m6ksLDi2xcLKa8NT",
+   "x": 593,
+   "y": 1295,
+   "text": "Old Forest Tower",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Old_Forest_Tower"
+    }
+   }
+  },
+  {
+   "_id": "kNf1OyWsWSv0n5XC",
+   "x": 387,
+   "y": 1291,
+   "text": "Cawshax",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cawshax"
+    }
+   }
+  },
+  {
+   "_id": "BdEYbzDPtp3RITWe",
+   "x": 474,
+   "y": 1193,
+   "text": "Stump",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Stump"
+    }
+   }
+  },
+  {
+   "_id": "SmDlj55HUmQdXUFj",
+   "x": 616,
+   "y": 1171,
+   "text": "Brume",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Brume"
+    }
+   }
+  },
+  {
+   "_id": "3rfxbdk5vKsb6WWQ",
+   "x": 505,
+   "y": 1102,
+   "text": "Arbo",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Arbo"
+    }
+   }
+  },
+  {
+   "_id": "yWmapVFxfj9wGAFp",
+   "x": 423,
+   "y": 1051,
+   "text": "Husna Crossroads",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Husna_Crossroads"
+    }
+   }
+  },
+  {
+   "_id": "zjIzkYOYKyGaXt9A",
+   "x": 2093,
+   "y": 918,
+   "text": "Frothripper",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Frothripper"
+    }
+   }
+  },
+  {
+   "_id": "6F47CCpUIvTF6x1N",
+   "x": 1758,
+   "y": 836,
+   "text": "Yvuvho",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yvuvho"
+    }
+   }
+  },
+  {
+   "_id": "cJbP5qZd5Wfw7BbO",
+   "x": 1863,
+   "y": 753,
+   "text": "Hall of the Yellow-Eyed King",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hall_of_the_Yellow-Eyed_King"
+    }
+   }
+  },
+  {
+   "_id": "DcT1wChsR1dOuovU",
+   "x": 2451,
+   "y": 679,
+   "text": "Glass Fortress",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Glass_Fortress"
+    }
+   }
+  },
+  {
+   "_id": "NsTG7cw3KUIJxURQ",
+   "x": 1474,
+   "y": 654,
+   "text": "Saddlebark Ranch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Saddlebark_Ranch"
+    }
+   }
+  },
+  {
+   "_id": "W4WXy0KqRjqAhK89",
+   "x": 1988,
+   "y": 650,
+   "text": "Arazlant Mox",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Arazlant_Mox"
+    }
+   }
+  },
+  {
+   "_id": "zotJaDk2Z3uFAnJC",
+   "x": 1699,
+   "y": 624,
+   "text": "Famished Mind",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Famished_Mind"
+    }
+   }
+  },
+  {
+   "_id": "xlK3CGIQHwYvpCYM",
+   "x": 2510,
+   "y": 595,
+   "text": "God-Carcass",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/God-Carcass"
+    }
+   }
+  },
+  {
+   "_id": "a0Frogf3TDKGPmi0",
+   "x": 2005,
+   "y": 569,
+   "text": "Aroden's Rest",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aroden's_Rest"
+    }
+   }
+  },
+  {
+   "_id": "gSboycwktQ1iqKPt",
+   "x": 1420,
+   "y": 539,
+   "text": "Eagle Garrison Fort",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Eagle_Garrison_Fort"
+    }
+   }
+  },
+  {
+   "_id": "akUOjFIYLF5A2st9",
+   "x": 2610,
+   "y": 538,
+   "text": "Hazrak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hazrak"
+    }
+   }
+  },
+  {
+   "_id": "jwpX2l5O5Q1xzQ1f",
+   "x": 1702,
+   "y": 510,
+   "text": "Weeping Grandfather",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Weeping_Grandfather"
+    }
+   }
+  },
+  {
+   "_id": "pXFrwqCsP698Z48D",
+   "x": 1639,
+   "y": 482,
+   "text": "Grandfather's Arms",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Grandfather's_Arms"
+    }
+   }
+  },
+  {
+   "_id": "f8APRwQfCPzbT9yH",
+   "x": 706,
+   "y": 474,
+   "text": "Nether Citadel",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nether_Citadel"
+    }
+   }
+  },
+  {
+   "_id": "Tjr8OEz0Gl4IQaOD",
+   "x": 2024,
+   "y": 468,
+   "text": "Mount Ganog",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mount_Ganog"
+    }
+   }
+  },
+  {
+   "_id": "omfteF9ahjwH5EFl",
+   "x": 1640,
+   "y": 419,
+   "text": "Wall of Faces",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Wall_of_Faces"
+    }
+   }
+  },
+  {
+   "_id": "4Y3agVKjVeKhXg6G",
+   "x": 1933,
+   "y": 402,
+   "text": "Aerie",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aerie"
+    }
+   }
+  },
+  {
+   "_id": "dn5NKrTmRwJR1Y0N",
+   "x": 476,
+   "y": 374,
+   "text": "Marsh Tower",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Marsh_Tower"
+    }
+   }
+  },
+  {
+   "_id": "bAULapdQ59CqE3xe",
+   "x": 634,
+   "y": 265,
+   "text": "Willowside",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Willowside"
+    }
+   }
+  },
+  {
+   "_id": "kQSQNpdgGYA1S6yk",
+   "x": 3379,
+   "y": 1283,
+   "text": "Bosco",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bosco"
+    }
+   }
+  },
+  {
+   "_id": "Sky2DJko6xr7pV2O",
+   "x": 3742,
+   "y": 454,
+   "text": "Flesk",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Flesk"
+    }
+   }
+  },
+  {
+   "_id": "sYecVMPagE9s2I1E",
+   "x": 484,
+   "y": 2299,
+   "text": "Galizhur",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Galizhur"
+    }
+   }
+  }
+ ],
+ "__key": "absalom-environs",
+ "__folder": "City Environs",
+ "_id": "l5FSFqn3Eb9ikxlG",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/absalom-environs.webp"
+}

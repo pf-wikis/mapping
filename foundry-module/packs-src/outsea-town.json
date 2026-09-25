@@ -1,0 +1,50 @@
+{
+ "name": "Outsea",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "h5GLP8L3EUyvMf8n",
+   "name": "Outsea",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/outsea-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "pmJ694eTeD1fgWl3",
+   "x": 2304,
+   "y": 1538,
+   "text": "Outsea",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Outsea"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/outsea-town.webp",
+ "__key": "outsea-town",
+ "__folder": "Cities",
+ "_id": "Pqf1iajCi5biamxY"
+}

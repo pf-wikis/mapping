@@ -1,0 +1,50 @@
+{
+ "name": "Senghor",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "GD6LihIRsu3mp79D",
+   "name": "Senghor",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/senghor-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "nEQcGZuSl4M0TeVQ",
+   "x": 2304,
+   "y": 1536,
+   "text": "Senghor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Senghor"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/senghor-town.webp",
+ "__key": "senghor-town",
+ "__folder": "Cities",
+ "_id": "aNluYdNGiC3jsMs7"
+}

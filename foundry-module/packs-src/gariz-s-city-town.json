@@ -1,0 +1,50 @@
+{
+ "name": "Garizés City",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "fR5pB4RBnPY0lBxb",
+   "name": "Garizés City",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/gariz-s-city-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "XfVR39BBEcrv7yb1",
+   "x": 2304,
+   "y": 1537,
+   "text": "Garizés City",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gariz%C3%A9s_City"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/gariz-s-city-town.webp",
+ "__key": "gariz-s-city-town",
+ "__folder": "Cities",
+ "_id": "QTS8eBvximCvpn6Z"
+}

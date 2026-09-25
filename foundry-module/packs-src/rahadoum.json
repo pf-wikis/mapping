@@ -1,0 +1,509 @@
+{
+ "name": "Rahadoum",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 18.3,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "FdUCwOQ2blsxQGJs",
+   "name": "Rahadoum",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/rahadoum.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "OEYZ5wF57OZ8FAQq",
+   "x": 533,
+   "y": 2620,
+   "text": "Merry Widow",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Merry_Widow"
+    }
+   }
+  },
+  {
+   "_id": "NTZin9NQuSYJjocV",
+   "x": 1080,
+   "y": 2444,
+   "text": "Guidestar of Desna",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Guidestar_of_Desna"
+    }
+   }
+  },
+  {
+   "_id": "eKZk5N1ljkWmvR0s",
+   "x": 1352,
+   "y": 1925,
+   "text": "Hapkani",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hapkani"
+    }
+   }
+  },
+  {
+   "_id": "MyQtT3N1oNi8jGGm",
+   "x": 997,
+   "y": 1775,
+   "text": "Botosani",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Botosani"
+    }
+   }
+  },
+  {
+   "_id": "07r0w5Yxoj8vIgoa",
+   "x": 1278,
+   "y": 1420,
+   "text": "Azir",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Azir"
+    }
+   }
+  },
+  {
+   "_id": "sMfBs6uG2cuGy7qv",
+   "x": 2136,
+   "y": 1324,
+   "text": "Ghataking",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ghataking"
+    }
+   }
+  },
+  {
+   "_id": "56DzHxryfxsZXOyU",
+   "x": 2053,
+   "y": 1313,
+   "text": "Deep Sky",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Deep_Sky"
+    }
+   }
+  },
+  {
+   "_id": "fz7Hro45klUDVRgl",
+   "x": 2092,
+   "y": 830,
+   "text": "Mirnura",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mirnura"
+    }
+   }
+  },
+  {
+   "_id": "VfXkwdUpV6gbicSM",
+   "x": 1671,
+   "y": 665,
+   "text": "Erspurn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Erspurn"
+    }
+   }
+  },
+  {
+   "_id": "0Wi6yNvPOQbahbzK",
+   "x": 1241,
+   "y": 535,
+   "text": "Khari",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Khari"
+    }
+   }
+  },
+  {
+   "_id": "xNASrZzt3UjT8rUA",
+   "x": 1274,
+   "y": 464,
+   "text": "Corentyn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Corentyn"
+    }
+   }
+  },
+  {
+   "_id": "eSgkEJJqlt7Ty4CA",
+   "x": 1160,
+   "y": 342,
+   "text": "Citadel Gheradesca",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Citadel_Gheradesca"
+    }
+   }
+  },
+  {
+   "_id": "7NU384B72cknuUSu",
+   "x": 2853,
+   "y": 3071,
+   "text": "Oagon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Oagon"
+    }
+   }
+  },
+  {
+   "_id": "6U0OXabQYPVPjryK",
+   "x": 4607,
+   "y": 3042,
+   "text": "Sele",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sele"
+    }
+   }
+  },
+  {
+   "_id": "YZIxidX4RvdIbICQ",
+   "x": 2634,
+   "y": 2778,
+   "text": "Fangspire",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fangspire"
+    }
+   }
+  },
+  {
+   "_id": "6EWCVskPC8f9Ool2",
+   "x": 3510,
+   "y": 2630,
+   "text": "Dim Gate",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dim_Gate"
+    }
+   }
+  },
+  {
+   "_id": "LNiraQ23tPXaxIbK",
+   "x": 3146,
+   "y": 2476,
+   "text": "Haldun",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Haldun"
+    }
+   }
+  },
+  {
+   "_id": "XcYzqBzIaP5iMmps",
+   "x": 3442,
+   "y": 2440,
+   "text": "Lost Yemal",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lost_Yemal"
+    }
+   }
+  },
+  {
+   "_id": "b1yLotyqXaKlLDta",
+   "x": 4226,
+   "y": 2250,
+   "text": "Hidden Nest",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hidden_Nest"
+    }
+   }
+  },
+  {
+   "_id": "ml1WCjLUSYqT6QvF",
+   "x": 3958,
+   "y": 2174,
+   "text": "Tomb of Emperors",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tomb_of_Emperors"
+    }
+   }
+  },
+  {
+   "_id": "kllGPpVFqDEpOWFe",
+   "x": 2625,
+   "y": 2011,
+   "text": "Hanging City of Teskra",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hanging_City_of_Teskra"
+    }
+   }
+  },
+  {
+   "_id": "pZhl1BqzEvf7i2Me",
+   "x": 2311,
+   "y": 1508,
+   "text": "Shepherd's Rock",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shepherd's_Rock"
+    }
+   }
+  },
+  {
+   "_id": "To95mi0oK5oSr9VN",
+   "x": 3379,
+   "y": 1387,
+   "text": "Deromas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Deromas"
+    }
+   }
+  },
+  {
+   "_id": "vrnxy6qO2UAg2Hp6",
+   "x": 2302,
+   "y": 1217,
+   "text": "Citadel of the Weary Sky",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Citadel_of_the_Weary_Sky"
+    }
+   }
+  },
+  {
+   "_id": "XznmPAQtp7FbOJiJ",
+   "x": 4252,
+   "y": 1092,
+   "text": "Magarai",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Magarai"
+    }
+   }
+  },
+  {
+   "_id": "nVNTXXllpNbOSF2i",
+   "x": 2710,
+   "y": 937,
+   "text": "Manaket",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Manaket"
+    }
+   }
+  },
+  {
+   "_id": "95pirt50ZT48Ss7u",
+   "x": 2800,
+   "y": 786,
+   "text": "Qassabah Heb Amar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Qassabah_Heb_Amar"
+    }
+   }
+  },
+  {
+   "_id": "u9ImqrURkUnTl2V2",
+   "x": 2937,
+   "y": 715,
+   "text": "Cave of Tiandra",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cave_of_Tiandra"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/rahadoum.webp",
+ "__key": "rahadoum",
+ "__folder": "Nations",
+ "_id": "RGslxWsxaACMt0O3"
+}

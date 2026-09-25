@@ -1,0 +1,135 @@
+{
+ "name": "Kenabres Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.07,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "m0eGkG0KfoAUYYOH",
+   "name": "Kenabres Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/kenabres-region.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "ZePkVUJDqUL8RNcQ",
+   "x": 2494,
+   "y": 2834,
+   "text": "Zharech",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zharech"
+    }
+   }
+  },
+  {
+   "_id": "4fYx9cGfmloLma4Z",
+   "x": 2304,
+   "y": 1545,
+   "text": "Kenabres",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kenabres"
+    }
+   }
+  },
+  {
+   "_id": "PCOPkMySOjWlQiC0",
+   "x": 1191,
+   "y": 1275,
+   "text": "Yathscar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yathscar"
+    }
+   }
+  },
+  {
+   "_id": "7JuN75xs6QHkuVa4",
+   "x": 2765,
+   "y": 1089,
+   "text": "Valas's Gift",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Valas's_Gift"
+    }
+   }
+  },
+  {
+   "_id": "mGZQcpXh1YlFUuV2",
+   "x": 4269,
+   "y": 2871,
+   "text": "Chapel of the Argent Shield",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Chapel_of_the_Argent_Shield"
+    }
+   }
+  },
+  {
+   "_id": "w48CJEVQkSbXIbm7",
+   "x": 4446,
+   "y": 1868,
+   "text": "Monastery of Tala",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Monastery_of_Tala"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/kenabres-region.webp",
+ "__key": "kenabres-region",
+ "__folder": "City Regions",
+ "_id": "OypTtiq8P5eaBDCb"
+}

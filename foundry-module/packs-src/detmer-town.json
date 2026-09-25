@@ -1,0 +1,50 @@
+{
+ "name": "Detmer",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "KY8D6YUm6N3xH8Ns",
+   "name": "Detmer",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/detmer-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "whOh9kn8zXXrLt8L",
+   "x": 2304,
+   "y": 1537,
+   "text": "Detmer",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Detmer"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/detmer-town.webp",
+ "__key": "detmer-town",
+ "__folder": "Cities",
+ "_id": "AwDVPEKcEcvVs9tv"
+}

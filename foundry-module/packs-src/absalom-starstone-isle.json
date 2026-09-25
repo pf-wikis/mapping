@@ -1,0 +1,1002 @@
+{
+ "name": "Absalom and Starstone Isle",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 14.1,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "bTGpi4z6JCeM1zZK",
+   "name": "Absalom and Starstone Isle",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/absalom-starstone-isle.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "DUIMQd4TFqnMZRJO",
+   "x": 2170,
+   "y": 1199,
+   "text": "Erran Tower",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Erran_Tower"
+    }
+   }
+  },
+  {
+   "_id": "ewVQF1UQxcWDME8U",
+   "x": 916,
+   "y": 1160,
+   "text": "Cyremium",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cyremium"
+    }
+   }
+  },
+  {
+   "_id": "bHjqF59CxxZDKEy3",
+   "x": 2283,
+   "y": 1140,
+   "text": "Abberton",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Abberton"
+    }
+   }
+  },
+  {
+   "_id": "YT5UIKD2D5sNCb3M",
+   "x": 337,
+   "y": 797,
+   "text": "Lavieton",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lavieton"
+    }
+   }
+  },
+  {
+   "_id": "uGjrx4SA88Yq3g7J",
+   "x": 1159,
+   "y": 775,
+   "text": "Claes",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Claes"
+    }
+   }
+  },
+  {
+   "_id": "dwFVtPpXZym6yIjO",
+   "x": 1233,
+   "y": 363,
+   "text": "Almas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Almas"
+    }
+   }
+  },
+  {
+   "_id": "WgNkMBZYMkXS8CzZ",
+   "x": 1954,
+   "y": 319,
+   "text": "Souston",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Souston"
+    }
+   }
+  },
+  {
+   "_id": "S0YQH8s9MWCdboTC",
+   "x": 979,
+   "y": 54,
+   "text": "Riverford",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Riverford"
+    }
+   }
+  },
+  {
+   "_id": "PCYXp0w1vgmz8n2X",
+   "x": 3985,
+   "y": 1130,
+   "text": "Kozan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kozan"
+    }
+   }
+  },
+  {
+   "_id": "qyqOUIaIzqucOYNz",
+   "x": 3728,
+   "y": 873,
+   "text": "Mut",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mut"
+    }
+   }
+  },
+  {
+   "_id": "ZsExsQZ3lVHybFKf",
+   "x": 4409,
+   "y": 758,
+   "text": "Pastorling",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pastorling"
+    }
+   }
+  },
+  {
+   "_id": "QmL3Urb683u10RTI",
+   "x": 4085,
+   "y": 627,
+   "text": "Oppara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Oppara"
+    }
+   }
+  },
+  {
+   "_id": "YmO6jRbcczx9GdnN",
+   "x": 2674,
+   "y": 312,
+   "text": "Ridonport",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ridonport"
+    }
+   }
+  },
+  {
+   "_id": "NGuXyNl7Fjp2RL8c",
+   "x": 3763,
+   "y": 200,
+   "text": "Old Sehir",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Old_Sehir"
+    }
+   }
+  },
+  {
+   "_id": "suYm3PVLJhPSVJlW",
+   "x": 4484,
+   "y": 23,
+   "text": "Eagle's Head",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Eagle's_Head"
+    }
+   }
+  },
+  {
+   "_id": "0Q3ksZqwWf5NgbTy",
+   "x": 659,
+   "y": 2918,
+   "text": "Enqatis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Enqatis"
+    }
+   }
+  },
+  {
+   "_id": "qsyeQ39sHg7SnT2H",
+   "x": 582,
+   "y": 2697,
+   "text": "Hor-Aha",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hor-Aha"
+    }
+   }
+  },
+  {
+   "_id": "QAKDaxqnDPPiYWqf",
+   "x": 186,
+   "y": 2549,
+   "text": "Stepped Tower of Djedefar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Stepped_Tower_of_Djedefar"
+    }
+   }
+  },
+  {
+   "_id": "iS2pLNA754gr7sHB",
+   "x": 1973,
+   "y": 1971,
+   "text": "Galizhur",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Galizhur"
+    }
+   }
+  },
+  {
+   "_id": "NhhwJAROR7kaMZz1",
+   "x": 1833,
+   "y": 1899,
+   "text": "Diobel",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Diobel"
+    }
+   }
+  },
+  {
+   "_id": "5d8PoZSOzlxAfwmC",
+   "x": 2122,
+   "y": 1835,
+   "text": "Otari",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Otari"
+    }
+   }
+  },
+  {
+   "_id": "CP6bL8RgPCEa3W0l",
+   "x": 2415,
+   "y": 1786,
+   "text": "Absalom",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Absalom"
+    }
+   }
+  },
+  {
+   "_id": "kMGzN8PULScsj0a8",
+   "x": 1831,
+   "y": 1763,
+   "text": "Liferoot Stone",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Liferoot_Stone"
+    }
+   }
+  },
+  {
+   "_id": "ihEjJz5ZtwFoTFbo",
+   "x": 1969,
+   "y": 1750,
+   "text": "Turpin Rowe",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Turpin_Rowe"
+    }
+   }
+  },
+  {
+   "_id": "0dR1JKfMFzRz1muA",
+   "x": 1885,
+   "y": 1738,
+   "text": "Castinlee",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Castinlee"
+    }
+   }
+  },
+  {
+   "_id": "gRQfxy6rFwg0qrQx",
+   "x": 2437,
+   "y": 1738,
+   "text": "Spire of Nex",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Spire_of_Nex"
+    }
+   }
+  },
+  {
+   "_id": "kqbU0OSEacElUQ0O",
+   "x": 2094,
+   "y": 1730,
+   "text": "Meravon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Meravon"
+    }
+   }
+  },
+  {
+   "_id": "qKy6bPTwV4J6QOnr",
+   "x": 1978,
+   "y": 1679,
+   "text": "Arbo",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Arbo"
+    }
+   }
+  },
+  {
+   "_id": "rWOVMWUM2L7Q5A3j",
+   "x": 1819,
+   "y": 1659,
+   "text": "Kerrick",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kerrick"
+    }
+   }
+  },
+  {
+   "_id": "60XP3MxSgib7Ek2F",
+   "x": 2364,
+   "y": 1635,
+   "text": "Frothripper",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Frothripper"
+    }
+   }
+  },
+  {
+   "_id": "j7AAz2hknhMLaf5d",
+   "x": 1869,
+   "y": 1625,
+   "text": "Matten Cleave",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Matten_Cleave"
+    }
+   }
+  },
+  {
+   "_id": "0KskfOfTAoLD6xkS",
+   "x": 1699,
+   "y": 1617,
+   "text": "Elyon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Elyon"
+    }
+   }
+  },
+  {
+   "_id": "lE3IhY2zEJ16rWbC",
+   "x": 2282,
+   "y": 1614,
+   "text": "Yvuvho",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yvuvho"
+    }
+   }
+  },
+  {
+   "_id": "WjmY6sYH3jBMdn0h",
+   "x": 2451,
+   "y": 1577,
+   "text": "Glass Fortress",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Glass_Fortress"
+    }
+   }
+  },
+  {
+   "_id": "pt65aZS1yipd7NFq",
+   "x": 2339,
+   "y": 1570,
+   "text": "Arazlant Mox",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Arazlant_Mox"
+    }
+   }
+  },
+  {
+   "_id": "GNzGNGELN9Y2Yapg",
+   "x": 2200,
+   "y": 1543,
+   "text": "Eagle Garrison Fort",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Eagle_Garrison_Fort"
+    }
+   }
+  },
+  {
+   "_id": "98d7SEWG5bJb4Oju",
+   "x": 2490,
+   "y": 1542,
+   "text": "Hazrak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hazrak"
+    }
+   }
+  },
+  {
+   "_id": "zcHDak1sWqwMGQCR",
+   "x": 2254,
+   "y": 1528,
+   "text": "Grandfather's Arms",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Grandfather's_Arms"
+    }
+   }
+  },
+  {
+   "_id": "X3o9dlXr7Xk3nBvm",
+   "x": 2027,
+   "y": 1527,
+   "text": "Nether Citadel",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nether_Citadel"
+    }
+   }
+  },
+  {
+   "_id": "qYxsYF0pPSZjJABK",
+   "x": 2325,
+   "y": 1509,
+   "text": "Aerie",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aerie"
+    }
+   }
+  },
+  {
+   "_id": "8NPG7F5DrDATVY0U",
+   "x": 2009,
+   "y": 1475,
+   "text": "Willowside",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Willowside"
+    }
+   }
+  },
+  {
+   "_id": "sgeWdWQY4ixBeJTf",
+   "x": 2491,
+   "y": 1406,
+   "text": "Rovagug's Hall",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rovagug's_Hall"
+    }
+   }
+  },
+  {
+   "_id": "sUIpsZOtixLWphKG",
+   "x": 2163,
+   "y": 1390,
+   "text": "Pier's End",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pier's_End"
+    }
+   }
+  },
+  {
+   "_id": "xfRPvoNbTpRzfFxM",
+   "x": 2098,
+   "y": 1267,
+   "text": "Escadar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Escadar"
+    }
+   }
+  },
+  {
+   "_id": "sQnajCo0Ooz2dSaL",
+   "x": 4118,
+   "y": 3046,
+   "text": "Ehur",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ehur"
+    }
+   }
+  },
+  {
+   "_id": "JFvBkX6O7bzH8Z23",
+   "x": 4142,
+   "y": 2782,
+   "text": "Temple of the Eternal Obelisk",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Temple_of_the_Eternal_Obelisk"
+    }
+   }
+  },
+  {
+   "_id": "5zLMLL2ZJUqU7wKz",
+   "x": 4549,
+   "y": 2481,
+   "text": "Avilan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Avilan"
+    }
+   }
+  },
+  {
+   "_id": "U8nOdo3mNGJHLBiu",
+   "x": 4153,
+   "y": 2468,
+   "text": "Hawah",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hawah"
+    }
+   }
+  },
+  {
+   "_id": "scP5V9XmfsMOpsNA",
+   "x": 4326,
+   "y": 2385,
+   "text": "Demirah",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Demirah"
+    }
+   }
+  },
+  {
+   "_id": "gWJGIxzNpZlxdlnr",
+   "x": 4306,
+   "y": 2255,
+   "text": "Tower of Winds",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tower_of_Winds"
+    }
+   }
+  },
+  {
+   "_id": "cs9MMQLj5vn57cAq",
+   "x": 2677,
+   "y": 1724,
+   "text": "Bosco",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bosco"
+    }
+   }
+  },
+  {
+   "_id": "wtB2zlkrBjRVEJP6",
+   "x": 4547,
+   "y": 1670,
+   "text": "Delenah",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Delenah"
+    }
+   }
+  },
+  {
+   "_id": "50U6QdM9soIHkkt5",
+   "x": 4317,
+   "y": 1550,
+   "text": "Golsifar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Golsifar"
+    }
+   }
+  },
+  {
+   "_id": "r72nSjmtCuvbo8ok",
+   "x": 2765,
+   "y": 1521,
+   "text": "Flesk",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Flesk"
+    }
+   }
+  },
+  {
+   "_id": "BHdPVqAkhtxEbi96",
+   "x": 4511,
+   "y": 1366,
+   "text": "Railford",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Railford"
+    }
+   }
+  },
+  {
+   "_id": "U2gnwC01ODSZKboa",
+   "x": 4174,
+   "y": 1347,
+   "text": "Merciful Bay",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Merciful_Bay"
+    }
+   }
+  },
+  {
+   "_id": "Dv91uEMnBZz6Hpw1",
+   "x": 2815,
+   "y": 1304,
+   "text": "High Harbor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/High_Harbor"
+    }
+   }
+  }
+ ],
+ "__key": "absalom-starstone-isle",
+ "__folder": "Inner Sea Regions",
+ "_id": "WfTh0bXvfGqJolVD",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/absalom-starstone-isle.webp"
+}

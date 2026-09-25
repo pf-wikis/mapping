@@ -1,0 +1,67 @@
+{
+ "name": "Trollheim",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "0kAZyccWQEpNZjn8",
+   "name": "Trollheim",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/trollheim-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "SS103sZZDcBFHPMS",
+   "x": 726,
+   "y": 2868,
+   "text": "Hellirinn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hellirinn"
+    }
+   }
+  },
+  {
+   "_id": "tQ7EjU7GNeioj8hQ",
+   "x": 2304,
+   "y": 1538,
+   "text": "Trollheim",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Trollheim"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/trollheim-town.webp",
+ "__key": "trollheim-town",
+ "__folder": "Cities",
+ "_id": "5VXTBNK2JoDDB6Nu"
+}

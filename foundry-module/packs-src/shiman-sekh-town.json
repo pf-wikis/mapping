@@ -1,0 +1,50 @@
+{
+ "name": "Shiman-Sekh",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "IJfca4Ci0FSIsGjo",
+   "name": "Shiman-Sekh",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/shiman-sekh-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "Sni2rXlKlus5oZLk",
+   "x": 2304,
+   "y": 1536,
+   "text": "Shiman-Sekh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shiman-Sekh"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/shiman-sekh-town.webp",
+ "__key": "shiman-sekh-town",
+ "__folder": "Cities",
+ "_id": "QCdc7wN6XR9tFRtE"
+}

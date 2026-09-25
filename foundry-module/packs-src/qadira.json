@@ -1,0 +1,1614 @@
+{
+ "name": "Qadira",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 26.6,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "APorH0rhfDWQeLRN",
+   "name": "Qadira",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/qadira.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "xxkSnzy8v6X5FTft",
+   "x": 2844,
+   "y": 11,
+   "text": "Monastery of the Seven Forms",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Monastery_of_the_Seven_Forms"
+    }
+   }
+  },
+  {
+   "_id": "kmty89L4b0yfMOgY",
+   "x": 334,
+   "y": 2512,
+   "text": "Katapesh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Katapesh"
+    }
+   }
+  },
+  {
+   "_id": "nOhogViLbtZf0xLp",
+   "x": 300,
+   "y": 2301,
+   "text": "Driftwood",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Driftwood"
+    }
+   }
+  },
+  {
+   "_id": "hOUKBfkRCltomdLb",
+   "x": 609,
+   "y": 2128,
+   "text": "Chiron",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Chiron"
+    }
+   }
+  },
+  {
+   "_id": "23NOixNCU9LR5vVT",
+   "x": 31,
+   "y": 2042,
+   "text": "Dead Villages",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dead_Villages"
+    }
+   }
+  },
+  {
+   "_id": "6123sxEZat4xv01Q",
+   "x": 366,
+   "y": 1767,
+   "text": "An-Alak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/An-Alak"
+    }
+   }
+  },
+  {
+   "_id": "LyAmp3qgytmawmdO",
+   "x": 29,
+   "y": 1725,
+   "text": "An",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/An"
+    }
+   }
+  },
+  {
+   "_id": "pg5UJCr3ZQygF134",
+   "x": 183,
+   "y": 1567,
+   "text": "Djefet",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Djefet"
+    }
+   }
+  },
+  {
+   "_id": "kaUDE7hnerRyNGwu",
+   "x": 246,
+   "y": 1437,
+   "text": "Kalit",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kalit"
+    }
+   }
+  },
+  {
+   "_id": "RvdDXMsSvLoUGs1i",
+   "x": 263,
+   "y": 1308,
+   "text": "Sothis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sothis"
+    }
+   }
+  },
+  {
+   "_id": "JrCwbAqBeWX09eeH",
+   "x": 591,
+   "y": 1294,
+   "text": "Tumen",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tumen"
+    }
+   }
+  },
+  {
+   "_id": "NbzbjePDaJjvSY3T",
+   "x": 4,
+   "y": 1056,
+   "text": "Totra",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Totra"
+    }
+   }
+  },
+  {
+   "_id": "Aa5az0JwUTUVFPOl",
+   "x": 309,
+   "y": 412,
+   "text": "Galizhur",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Galizhur"
+    }
+   }
+  },
+  {
+   "_id": "AKAjNEEVL5vbfrI9",
+   "x": 231,
+   "y": 372,
+   "text": "Diobel",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Diobel"
+    }
+   }
+  },
+  {
+   "_id": "JYALpb79TesuYWvG",
+   "x": 393,
+   "y": 337,
+   "text": "Otari",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Otari"
+    }
+   }
+  },
+  {
+   "_id": "LkEkG4pYoD7bNMJu",
+   "x": 556,
+   "y": 309,
+   "text": "Absalom",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Absalom"
+    }
+   }
+  },
+  {
+   "_id": "blAxLOo1z0mZfmj3",
+   "x": 307,
+   "y": 290,
+   "text": "Turpin Rowe",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Turpin_Rowe"
+    }
+   }
+  },
+  {
+   "_id": "2xQsiJzyvkE9j2yz",
+   "x": 377,
+   "y": 278,
+   "text": "Meravon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Meravon"
+    }
+   }
+  },
+  {
+   "_id": "xupSCsNNiIVAVTcQ",
+   "x": 223,
+   "y": 239,
+   "text": "Kerrick",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kerrick"
+    }
+   }
+  },
+  {
+   "_id": "oAIAdj1OiDmmCLh6",
+   "x": 156,
+   "y": 215,
+   "text": "Elyon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Elyon"
+    }
+   }
+  },
+  {
+   "_id": "h5obmpa69mTUhauN",
+   "x": 597,
+   "y": 173,
+   "text": "Hazrak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hazrak"
+    }
+   }
+  },
+  {
+   "_id": "AWo8f2H5J8trmsyP",
+   "x": 466,
+   "y": 166,
+   "text": "Grandfather's Arms",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Grandfather's_Arms"
+    }
+   }
+  },
+  {
+   "_id": "VDXkdwqFcorJOvvs",
+   "x": 329,
+   "y": 136,
+   "text": "Willowside",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Willowside"
+    }
+   }
+  },
+  {
+   "_id": "JXXhKcRQFyc9ydBP",
+   "x": 598,
+   "y": 97,
+   "text": "Rovagug's Hall",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rovagug's_Hall"
+    }
+   }
+  },
+  {
+   "_id": "CFzo166snlSFCbNd",
+   "x": 415,
+   "y": 89,
+   "text": "Pier's End",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pier's_End"
+    }
+   }
+  },
+  {
+   "_id": "uQZ2ZVlRfntoVsZe",
+   "x": 379,
+   "y": 20,
+   "text": "Escadar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Escadar"
+    }
+   }
+  },
+  {
+   "_id": "f4Mz5KlvaKe6KKjc",
+   "x": 2568,
+   "y": 2537,
+   "text": "Heger",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Heger"
+    }
+   }
+  },
+  {
+   "_id": "XfcrRYCLi3zYtjMQ",
+   "x": 2165,
+   "y": 2492,
+   "text": "Jawafeeq",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jawafeeq"
+    }
+   }
+  },
+  {
+   "_id": "xCaLWJ4LVPYHZbox",
+   "x": 1908,
+   "y": 2475,
+   "text": "Sadiyeh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sadiyeh"
+    }
+   }
+  },
+  {
+   "_id": "N0FKIjSstO2uu0sY",
+   "x": 3189,
+   "y": 2393,
+   "text": "Qumarin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Qumarin"
+    }
+   }
+  },
+  {
+   "_id": "AkLPMZnbF2x7S2yN",
+   "x": 2212,
+   "y": 2392,
+   "text": "Sedeq",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sedeq"
+    }
+   }
+  },
+  {
+   "_id": "68SipjyNd0tcggPr",
+   "x": 2387,
+   "y": 2383,
+   "text": "Izzet",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Izzet"
+    }
+   }
+  },
+  {
+   "_id": "k6IhQU3gbDwTLroU",
+   "x": 1880,
+   "y": 2312,
+   "text": "Sukri",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sukri"
+    }
+   }
+  },
+  {
+   "_id": "eJKeCsK1yHxgzpu8",
+   "x": 2230,
+   "y": 2239,
+   "text": "Yalakheen",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yalakheen"
+    }
+   }
+  },
+  {
+   "_id": "9K5fQXUYqesLVWI5",
+   "x": 1886,
+   "y": 2164,
+   "text": "Ayesh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ayesh"
+    }
+   }
+  },
+  {
+   "_id": "vnuwaWE28mFRfb3C",
+   "x": 2285,
+   "y": 2161,
+   "text": "Ihalar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ihalar"
+    }
+   }
+  },
+  {
+   "_id": "dc1mR5JQvUvreO5H",
+   "x": 1193,
+   "y": 2094,
+   "text": "Okeno",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Okeno"
+    }
+   }
+  },
+  {
+   "_id": "0trinC5XG5b0Tu4E",
+   "x": 2620,
+   "y": 1911,
+   "text": "Dimayen",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dimayen"
+    }
+   }
+  },
+  {
+   "_id": "kLNcII44Hl1apWDr",
+   "x": 2999,
+   "y": 1910,
+   "text": "Jezonna Oasis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jezonna_Oasis"
+    }
+   }
+  },
+  {
+   "_id": "IkBMh819Fdse2aKi",
+   "x": 2408,
+   "y": 1852,
+   "text": "Qaharid",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Qaharid"
+    }
+   }
+  },
+  {
+   "_id": "EOMDb7J9nLVtIpRE",
+   "x": 2151,
+   "y": 1808,
+   "text": "Ushumgal",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ushumgal"
+    }
+   }
+  },
+  {
+   "_id": "rIrSUnx0c9o6lfar",
+   "x": 2403,
+   "y": 1756,
+   "text": "Al-Hiraf",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Al-Hiraf"
+    }
+   }
+  },
+  {
+   "_id": "Xvu6C0KHIocgocL3",
+   "x": 2806,
+   "y": 1580,
+   "text": "Isa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Isa"
+    }
+   }
+  },
+  {
+   "_id": "JkAgtrdbR5JrQ7C5",
+   "x": 2080,
+   "y": 1551,
+   "text": "Crystalcrag",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Crystalcrag"
+    }
+   }
+  },
+  {
+   "_id": "4NiXD31bp060xiig",
+   "x": 2883,
+   "y": 1483,
+   "text": "Nirfan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nirfan"
+    }
+   }
+  },
+  {
+   "_id": "k8Xo45LNouCnfg8o",
+   "x": 713,
+   "y": 1383,
+   "text": "Shotep-Kara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shotep-Kara"
+    }
+   }
+  },
+  {
+   "_id": "KJbX75ZriCE9AOv7",
+   "x": 2839,
+   "y": 1381,
+   "text": "Sanmeshul",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sanmeshul"
+    }
+   }
+  },
+  {
+   "_id": "bQRfjlxOyetMQfwY",
+   "x": 1513,
+   "y": 1360,
+   "text": "Merishai",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Merishai"
+    }
+   }
+  },
+  {
+   "_id": "PlJOJns87IFbZNW7",
+   "x": 3036,
+   "y": 1344,
+   "text": "Rashiz",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rashiz"
+    }
+   }
+  },
+  {
+   "_id": "WC7fcyVXcDhth3gK",
+   "x": 1574,
+   "y": 1274,
+   "text": "Khundurai",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Khundurai"
+    }
+   }
+  },
+  {
+   "_id": "TXUoQWjmkxiYVqQh",
+   "x": 748,
+   "y": 1256,
+   "text": "El-Shelad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/El-Shelad"
+    }
+   }
+  },
+  {
+   "_id": "fOJtS5drUeSpgCnb",
+   "x": 2617,
+   "y": 1216,
+   "text": "Shadun",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shadun"
+    }
+   }
+  },
+  {
+   "_id": "4P5YWKc2b4dqCFpd",
+   "x": 756,
+   "y": 1170,
+   "text": "Gardens of Shepeska",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gardens_of_Shepeska"
+    }
+   }
+  },
+  {
+   "_id": "jHpoblTJTAPN2hzl",
+   "x": 1446,
+   "y": 1157,
+   "text": "Tekeh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tekeh"
+    }
+   }
+  },
+  {
+   "_id": "tfNyKC1aVOmBZtIq",
+   "x": 1644,
+   "y": 1136,
+   "text": "Hanpa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hanpa"
+    }
+   }
+  },
+  {
+   "_id": "3CSRuKJL5bDr0ULN",
+   "x": 2462,
+   "y": 1124,
+   "text": "Gurat",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gurat"
+    }
+   }
+  },
+  {
+   "_id": "Do8YK21Umw77wW8G",
+   "x": 1173,
+   "y": 1106,
+   "text": "Merev",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Merev"
+    }
+   }
+  },
+  {
+   "_id": "Hv3j3MFA6m3AX898",
+   "x": 1506,
+   "y": 1013,
+   "text": "Ehur",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ehur"
+    }
+   }
+  },
+  {
+   "_id": "AWaV8fCwszq73vkA",
+   "x": 2882,
+   "y": 963,
+   "text": "Khoka",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Khoka"
+    }
+   }
+  },
+  {
+   "_id": "w7BcqP7XqmIEKTw9",
+   "x": 2370,
+   "y": 958,
+   "text": "Lopul",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lopul"
+    }
+   }
+  },
+  {
+   "_id": "C3Cu8LzkLc3KtVoF",
+   "x": 2614,
+   "y": 928,
+   "text": "Shamara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shamara"
+    }
+   }
+  },
+  {
+   "_id": "74uxUBsaDnWo7T3D",
+   "x": 2501,
+   "y": 881,
+   "text": "Al-Bashir",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Al-Bashir"
+    }
+   }
+  },
+  {
+   "_id": "GVIAIR8PWITsTw4M",
+   "x": 2280,
+   "y": 856,
+   "text": "Kerim",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kerim"
+    }
+   }
+  },
+  {
+   "_id": "5fodP9qxOWi2J6rf",
+   "x": 2135,
+   "y": 779,
+   "text": "Shileh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shileh"
+    }
+   }
+  },
+  {
+   "_id": "EZrfH5YSPQ6Q9VVf",
+   "x": 2689,
+   "y": 745,
+   "text": "Koor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Koor"
+    }
+   }
+  },
+  {
+   "_id": "w7sMX8pogwWw6HCx",
+   "x": 2063,
+   "y": 718,
+   "text": "Ishad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ishad"
+    }
+   }
+  },
+  {
+   "_id": "zll41C5DYbqytUXd",
+   "x": 1747,
+   "y": 697,
+   "text": "Avilan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Avilan"
+    }
+   }
+  },
+  {
+   "_id": "6M9FnuEBAyS1Fn4L",
+   "x": 1526,
+   "y": 690,
+   "text": "Hawah",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hawah"
+    }
+   }
+  },
+  {
+   "_id": "v00XkjpIV89F8Dp2",
+   "x": 2756,
+   "y": 680,
+   "text": "Salav",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Salav"
+    }
+   }
+  },
+  {
+   "_id": "CkUrhjFDKkCUYH3p",
+   "x": 1622,
+   "y": 643,
+   "text": "Demirah",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Demirah"
+    }
+   }
+  },
+  {
+   "_id": "63IDo5UrTh4dnD3G",
+   "x": 1872,
+   "y": 632,
+   "text": "Katheer",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Katheer"
+    }
+   }
+  },
+  {
+   "_id": "2VjQHNhYI8L4tlGP",
+   "x": 2463,
+   "y": 601,
+   "text": "Kharif",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kharif"
+    }
+   }
+  },
+  {
+   "_id": "8UGkmpudXNN7v8iV",
+   "x": 2920,
+   "y": 591,
+   "text": "Gazbilah",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gazbilah"
+    }
+   }
+  },
+  {
+   "_id": "3jJrv2eJwSuUawqA",
+   "x": 2083,
+   "y": 563,
+   "text": "Al-Varish",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Al-Varish"
+    }
+   }
+  },
+  {
+   "_id": "jOQYdUvNJvbn2WlW",
+   "x": 2319,
+   "y": 493,
+   "text": "Butraf",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Butraf"
+    }
+   }
+  },
+  {
+   "_id": "zmPuqj4I7SpMt3me",
+   "x": 2258,
+   "y": 412,
+   "text": "Naamat",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Naamat"
+    }
+   }
+  },
+  {
+   "_id": "XLVysdIojUU3HakI",
+   "x": 2487,
+   "y": 388,
+   "text": "Omash",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Omash"
+    }
+   }
+  },
+  {
+   "_id": "3CtVtsqBalBdNMK3",
+   "x": 3048,
+   "y": 349,
+   "text": "Qadlus Mavari",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Qadlus_Mavari"
+    }
+   }
+  },
+  {
+   "_id": "94GrVprRJJ0wOSfu",
+   "x": 702,
+   "y": 274,
+   "text": "Bosco",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bosco"
+    }
+   }
+  },
+  {
+   "_id": "IiAwbarCDERiM34s",
+   "x": 1746,
+   "y": 245,
+   "text": "Delenah",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Delenah"
+    }
+   }
+  },
+  {
+   "_id": "DfjCuxP6NKd8GRO7",
+   "x": 2080,
+   "y": 244,
+   "text": "Demgazi",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Demgazi"
+    }
+   }
+  },
+  {
+   "_id": "Abp96ag5m2OTMJ5Q",
+   "x": 1617,
+   "y": 178,
+   "text": "Golsifar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Golsifar"
+    }
+   }
+  },
+  {
+   "_id": "79JbyHT4BzKVrHBa",
+   "x": 751,
+   "y": 162,
+   "text": "Flesk",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Flesk"
+    }
+   }
+  },
+  {
+   "_id": "bA3a6GpCrVVzlpOj",
+   "x": 2122,
+   "y": 148,
+   "text": "Heldren",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Heldren"
+    }
+   }
+  },
+  {
+   "_id": "I21dhjXq8nPuyxnY",
+   "x": 2598,
+   "y": 141,
+   "text": "Lionsguard",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lionsguard"
+    }
+   }
+  },
+  {
+   "_id": "tuomh05Xbpeg7nhQ",
+   "x": 2204,
+   "y": 109,
+   "text": "Zimar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zimar"
+    }
+   }
+  },
+  {
+   "_id": "6A83jfmEijHnOQh4",
+   "x": 1726,
+   "y": 75,
+   "text": "Railford",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Railford"
+    }
+   }
+  },
+  {
+   "_id": "PkHfU8j86FXtWiYY",
+   "x": 1537,
+   "y": 64,
+   "text": "Merciful Bay",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Merciful_Bay"
+    }
+   }
+  },
+  {
+   "_id": "uzhOH7BeQ7DUhZRs",
+   "x": 779,
+   "y": 40,
+   "text": "High Harbor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/High_Harbor"
+    }
+   }
+  },
+  {
+   "_id": "HymCCMTtEphMytK9",
+   "x": 3249,
+   "y": 1306,
+   "text": "Rikhist",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rikhist"
+    }
+   }
+  },
+  {
+   "_id": "MftFs6ni0qbEvTTm",
+   "x": 232,
+   "y": 2950,
+   "text": "Tiven's Reed",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tiven's_Reed"
+    }
+   }
+  },
+  {
+   "_id": "x4mWV5RbikRBB4og",
+   "x": 1803,
+   "y": 2997,
+   "text": "Padiskar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Padiskar"
+    }
+   }
+  },
+  {
+   "_id": "qoPSPwpXPYsSNozd",
+   "x": 2801,
+   "y": 2735,
+   "text": "Husanah",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Husanah"
+    }
+   }
+  }
+ ],
+ "__key": "qadira",
+ "__folder": "Nations",
+ "_id": "L5ztBTbBlyVppOex",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/qadira.webp"
+}

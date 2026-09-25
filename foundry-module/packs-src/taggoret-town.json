@@ -1,0 +1,118 @@
+{
+ "name": "Taggoret",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "0aq0TtAI1QcS7jRp",
+   "name": "Taggoret",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/taggoret-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "ppkOJ3rdDJ5CKhAA",
+   "x": 2310,
+   "y": 2070,
+   "text": "Mount Carissa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mount_Carissa"
+    }
+   }
+  },
+  {
+   "_id": "FWZWAHPU3tr9CLlH",
+   "x": 1995,
+   "y": 1540,
+   "text": "Mount Soryu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mount_Soryu"
+    }
+   }
+  },
+  {
+   "_id": "0LBSLWCPuDoa5o30",
+   "x": 2304,
+   "y": 1537,
+   "text": "Taggoret",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Taggoret"
+    }
+   }
+  },
+  {
+   "_id": "JmKUSprpm9M5sGKD",
+   "x": 2762,
+   "y": 1536,
+   "text": "Mount Onik",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mount_Onik"
+    }
+   }
+  },
+  {
+   "_id": "SHl5e0F3o72EKgxl",
+   "x": 2296,
+   "y": 1042,
+   "text": "Mount Langley",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mount_Langley"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/taggoret-town.webp",
+ "__key": "taggoret-town",
+ "__folder": "Cities",
+ "_id": "R8E10Ytiw9TKkp8L"
+}
