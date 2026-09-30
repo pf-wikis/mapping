@@ -12,6 +12,7 @@ public class Jackson {
     		.changeDefaultPropertyInclusion(incl -> incl.withValueInclusion(JsonInclude.Include.NON_NULL))
     		.changeDefaultPropertyInclusion(incl -> incl.withContentInclusion(JsonInclude.Include.NON_NULL))
     		.enable(DateTimeFeature.WRITE_DATES_AS_TIMESTAMPS)
+    		.disable(DateTimeFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS)
     		.build();
     }
 }
