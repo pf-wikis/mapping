@@ -2,10 +2,12 @@ package io.github.pfwikis;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -27,7 +29,6 @@ public class Download {
 			secret = args[0];
 
 		new Download(
-				false,
 				secret,
 				Helper.buildQuery("https://pathfinderwiki.com/w/api.php",
 			            "action","ask",
@@ -42,11 +43,7 @@ public class Download {
 			                "|?Has name",
 			                "|?-Has subobject.Modification date=Modification date"
 			            )
-			        )
-		).download();
-		new Download(
-				true,
-				secret,
+			        ),
 				Helper.buildQuery("https://pathfinderwiki.com/w/api.php",
 			            "action","ask",
 			            "format","json",
@@ -67,35 +64,36 @@ public class Download {
 		).download();
 	}
 
-	private final boolean cityCalculations;
 	private final String antiProtectionSecret;
-	private final String query;
+	private final String locationQuery;
+	private final String cityQuery;
 
 	public void download() throws Exception {
-		var file = new File("../sources/"+(cityCalculations?"cities":"locations")+".geojson");
-		var oldFeatures = Jackson.get().readValue(file, FeatureCollection.class);
+		var citiesFile = new File("../sources/cities.geojson");
+		var locationsFile = new File("../sources/locations.geojson");
+		var oldCities = Jackson.get().readValue(citiesFile, FeatureCollection.class);
+		var oldLocations = Jackson.get().readValue(locationsFile, FeatureCollection.class);
 		
-		var locations = new ArrayList<Location>();
-		var jType = new ObjectMapper().getTypeFactory().constructParametricType(Response.class, Location.class);
+		var locations = load(locationQuery);
+		var cities = load(cityQuery);
 		
-		for(int offset=0;;offset+=50) {
-			
-			Response<Location> array = Helper.read(
-					query + URLEncoder.encode("|offset=" + offset, StandardCharsets.UTF_8),
-					antiProtectionSecret,
-					jType
-			);
-			locations.addAll(array.getQuery().getResults());
-			if (array.getQuery().getResults().size() < 50) {
-				break;
-			}
-		}
-		locations.removeIf(c -> "City district".equals(c.getIbtype()));
-		locations.sort(Comparator.comparing(Location::getName));
 
-		System.out.println("Found " + locations.size() + " locations.");
-		var arr = new ArrayList<Feature>();
-		for (var loc : locations) {
+		System.out.println("Found " + locations.size() + " locations and " + cities.size() + " cities.");
+		locations.addAll(cities.stream().filter(c->mapPopulationSize(c)==-1).peek(c->{
+			c.setLoiType("city-ruins");
+			c.setCapital(null);
+		}).toList());
+		cities.removeIf(c->mapPopulationSize(c)==-1);
+		System.out.println("After ruin detection; " + locations.size() + " locations and " + cities.size() + " cities");
+		
+		store("cities", true, oldCities, cities, citiesFile);
+		store("locations", false, oldLocations, locations, locationsFile);
+	}
+
+    private void store(String name, boolean cityCalculations, FeatureCollection oldPlaces, List<Location> places, File file) {
+    	Collections.sort(places);
+    	var arr = new ArrayList<Feature>();
+		for (var loc : places) {
 			try {
 				System.out.println("\t" + loc.getPageName());
 				var feature = new Feature();
@@ -109,7 +107,7 @@ public class Download {
 					properties.setSize(mapPopulationSize(loc));
 				
 				if (!loc.getPageName().startsWith("PathfinderWiki:")) {
-					downloadExcerpt(loc, feature, oldFeatures);
+					downloadExcerpt(loc, feature, oldPlaces);
 				}
 				
 			} catch (Exception e) {
@@ -118,12 +116,32 @@ public class Download {
 			}
 		}
 
-		var result = new FeatureCollection("cities", arr);
+		var result = new FeatureCollection(name, arr);
 		Jackson.get().writer().withDefaultPrettyPrinter().writeValue(file, result);
-
 	}
 
-    private void downloadExcerpt(Location city, Feature feature, FeatureCollection oldFeatures) throws IOException {
+	private List<Location> load(String query) throws IOException, URISyntaxException, InterruptedException {
+    	var places = new ArrayList<Location>();
+		var jType = new ObjectMapper().getTypeFactory().constructParametricType(Response.class, Location.class);
+		
+		for(int offset=0;;offset+=50) {
+			
+			Response<Location> array = Helper.read(
+					query + URLEncoder.encode("|offset=" + offset, StandardCharsets.UTF_8),
+					antiProtectionSecret,
+					jType
+			);
+			places.addAll(array.getQuery().getResults());
+			if (array.getQuery().getResults().size() < 50) {
+				break;
+			}
+		}
+		places.removeIf(c -> "City district".equals(c.getIbtype()));
+		Collections.sort(places);
+		return places;
+	}
+
+	private void downloadExcerpt(Location city, Feature feature, FeatureCollection oldFeatures) throws IOException {
     	var oldMatches = oldFeatures.getFeatures().stream()
     		.filter(old->feature.getProperties().getLabels().equals(old.getProperties().getLabels()))
     		.filter(old->feature.getGeometry().equals(old.getGeometry()))
@@ -155,8 +173,12 @@ public class Download {
                 return 1;
             } else if (population > 201) {
                 return 2;
+            } else {
+            	return 3;
             }
-        } else if (city.getSize() != null && !city.getSize().isEmpty()) {
+        }
+        
+        if (city.getSize() != null && !city.getSize().isEmpty()) {
             String size = city.getSize();
             if (StringUtils.containsAnyIgnoreCase(size, "Thorp", "Hamlet", "Village")) {
                 return 3;
@@ -167,9 +189,11 @@ public class Download {
             } else if (StringUtils.containsIgnoreCase(size, "Metropolis")) {
                 return 0;
             } else if (StringUtils.containsAnyIgnoreCase(size, "Abandoned", "Ruins")) {
-                return 3; //TODO maybe these should be locations instead?
+                return -1;
             }
         }
+        if(city.getSize()!=null || city.getPopulation()!=null)
+        	return 3;
         return 3;
     }
 }
