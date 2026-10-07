@@ -88,13 +88,8 @@ public class GenerateLabelCenters extends StepExecutor {
 
     private GeoData prepareGeometry(Inputs in) throws IOException {
     	try(var _=this.measureSubtime("prepareGeometry")) {
-	    	var dissolved = Tools.mapshaper(this, in.getInput(),
-	    		"-filter", "Boolean(label)",
-	    		dissolve?List.of("-dissolve", "label"+in.getTimeState().mapshaperTimeFields(), "allow-overlaps", "copy-fields=inSubregion,color"):List.of()
-	    	);
-	        
 	    	//mapshaper sometimes gives weird results here
-	        var withArea = Tools.qgis(this, "native:fieldcalculator", dissolved,
+	        var withArea = Tools.qgis(this, "native:fieldcalculator", in.getInput(),
 	    		"--FIELD_NAME=areaSqkm",
 	    		"--FIELD_TYPE=0", //float
 	    		"--FIELD_PRECISION=7",
@@ -102,7 +97,11 @@ public class GenerateLabelCenters extends StepExecutor {
 			);
 	        
 	        var withFields = Tools.mapshaper(this, withArea,
-	    		dissolve?List.of("-dissolve", "label"+in.getTimeState().mapshaperTimeFields(), "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm"):List.of(),
+        		"-filter", "Boolean(label)",
+        		"-each", "areaAvg=areaSqkm",
+	    		dissolve
+	    			?List.of("-dissolve", "label"+in.getTimeState().mapshaperTimeFields(), "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm", "calc='areaAvg=average(areaAvg)'")
+	    			:List.of(),
 	    		"-sort", "areaSqkm", "descending", //to make bigger feature more important
 				"-each", "minzoom="+minzoomJS(),
 	            "-each", "maxzoom=minzoom+"+labelRange,
@@ -200,6 +199,12 @@ public class GenerateLabelCenters extends StepExecutor {
 	        fc.getFeatures()
 	        	.stream()
 	        	.map(f -> {
+	        		var areaAvg = f.getProperties().getAreaAvg();
+	        		var areaTotal = f.getProperties().getAreaSqkm();
+	        		var ratio = areaAvg.divide(areaTotal, 4, RoundingMode.HALF_UP).floatValue();
+	        		if(ratio > 0.9f) {
+	        			return f;
+	        		}
 	        		try {
 		        		var json = Jackson.JSON.writeValueAsString(f);
 		        		

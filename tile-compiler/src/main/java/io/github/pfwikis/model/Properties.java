@@ -57,6 +57,8 @@ public class Properties extends AnyJson {
 	private Integer timeIndexEnd;
 	private ExportProperties export;
 	private Integer pregroupMinzoom;
+	private BigDecimal areaSqkm;
+	private BigDecimal areaAvg;
 	
 	
 	public static enum Pattern {
