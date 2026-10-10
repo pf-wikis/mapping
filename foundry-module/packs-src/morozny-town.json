@@ -1,0 +1,67 @@
+{
+ "name": "Morozny",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "D0ZJHiSPNA5AO6ws",
+   "name": "Morozny",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/morozny-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "34Lcq7cY8QeyKDrS",
+   "x": 2304,
+   "y": 1538,
+   "text": "Morozny",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Morozny"
+    }
+   }
+  },
+  {
+   "_id": "goDMB0jIsMihodCr",
+   "x": 1187,
+   "y": 1168,
+   "text": "Kerad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kerad"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/morozny-town.webp",
+ "__key": "morozny-town",
+ "__folder": "Cities",
+ "_id": "dVnVHjAuo1sSURm9"
+}

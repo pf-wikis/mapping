@@ -1,0 +1,50 @@
+{
+ "name": "Duwwor",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "8Huu8EsBG0gILy4a",
+   "name": "Duwwor",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/duwwor-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "Gw0sdxblgwjy3oTj",
+   "x": 2304,
+   "y": 1537,
+   "text": "Duwwor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Duwwor"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/duwwor-town.webp",
+ "__key": "duwwor-town",
+ "__folder": "Cities",
+ "_id": "CwAgREbEOLh1146M"
+}

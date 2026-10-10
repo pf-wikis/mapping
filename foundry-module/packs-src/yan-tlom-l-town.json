@@ -1,0 +1,50 @@
+{
+ "name": "Yan Tlomíl",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "3X8R8DmmVuUPyKqI",
+   "name": "Yan Tlomíl",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/yan-tlom-l-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "Gbd3ajX3i7jMBTGH",
+   "x": 2304,
+   "y": 1536,
+   "text": "Yan Tlomíl",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yan_Tlom%C3%ADl"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/yan-tlom-l-town.webp",
+ "__key": "yan-tlom-l-town",
+ "__folder": "Cities",
+ "_id": "JZFM8EqMlmAI0TLg"
+}

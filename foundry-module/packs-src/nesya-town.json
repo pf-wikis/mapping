@@ -1,0 +1,50 @@
+{
+ "name": "Nesya",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "WUbpLAwZMMz61YCK",
+   "name": "Nesya",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/nesya-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "YvwySuyuFHFOhEhA",
+   "x": 2304,
+   "y": 1536,
+   "text": "Nesya",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nesya"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/nesya-town.webp",
+ "__key": "nesya-town",
+ "__folder": "Cities",
+ "_id": "qa9Wa04yJy1rMN9u"
+}

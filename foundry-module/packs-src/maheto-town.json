@@ -1,0 +1,50 @@
+{
+ "name": "Maheto",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "eUUdeQgDWDGrp1yT",
+   "name": "Maheto",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/maheto-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "ftPOdUEd1vy8Ai5G",
+   "x": 2304,
+   "y": 1537,
+   "text": "Maheto",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Maheto"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/maheto-town.webp",
+ "__key": "maheto-town",
+ "__folder": "Cities",
+ "_id": "X89EbDj9AlSMNmD5"
+}

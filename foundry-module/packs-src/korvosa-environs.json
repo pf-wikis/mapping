@@ -1,0 +1,101 @@
+{
+ "name": "Korvosa Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.45,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "RjU6GzNWoUsJ6hXz",
+   "name": "Korvosa Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/korvosa-environs.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "8xtNvP3h3at3ADo6",
+   "x": 729,
+   "y": 1393,
+   "text": "Veldraine",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Veldraine"
+    }
+   }
+  },
+  {
+   "_id": "cQt2cUU7ojzmIBNj",
+   "x": 4,
+   "y": 395,
+   "text": "Palin's Cove",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Palin's_Cove"
+    }
+   }
+  },
+  {
+   "_id": "OLINGhbux26reJ9M",
+   "x": 2152,
+   "y": 2086,
+   "text": "Citadel Vraid",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Citadel_Vraid"
+    }
+   }
+  },
+  {
+   "_id": "sDPyEUNxg9qNERZg",
+   "x": 2304,
+   "y": 1543,
+   "text": "Korvosa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Korvosa"
+    }
+   }
+  }
+ ],
+ "__key": "korvosa-environs",
+ "__folder": "City Environs",
+ "_id": "HpusBdogPmVjBthE",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/korvosa-environs.webp"
+}

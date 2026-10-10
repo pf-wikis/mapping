@@ -1,0 +1,50 @@
+{
+ "name": "Sevenarches",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "uefg6HVrUK4bjxkR",
+   "name": "Sevenarches",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/sevenarches-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "SO0cnWZ3Bz3qNngG",
+   "x": 2304,
+   "y": 1537,
+   "text": "Sevenarches",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sevenarches"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/sevenarches-town.webp",
+ "__key": "sevenarches-town",
+ "__folder": "Cities",
+ "_id": "GBB1sj2ouSSHlGoh"
+}

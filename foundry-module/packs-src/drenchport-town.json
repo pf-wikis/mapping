@@ -1,0 +1,67 @@
+{
+ "name": "Drenchport",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "W7i12KxNULJ33hQI",
+   "name": "Drenchport",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/drenchport-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "zGwcCtqQcx4XAuwf",
+   "x": 431,
+   "y": 3067,
+   "text": "Drowning Rock",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Drowning_Rock"
+    }
+   }
+  },
+  {
+   "_id": "vNx5ogoND5ZueO6E",
+   "x": 2304,
+   "y": 1537,
+   "text": "Drenchport",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Drenchport"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/drenchport-town.webp",
+ "__key": "drenchport-town",
+ "__folder": "Cities",
+ "_id": "GJvcAcFyyutTSXya"
+}

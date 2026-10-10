@@ -1,0 +1,50 @@
+{
+ "name": "Iadara",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "2xRgxStyr1PF4kxz",
+   "name": "Iadara",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/iadara-city.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "195Wh5TDtFB3THSr",
+   "x": 2304,
+   "y": 1537,
+   "text": "Iadara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Iadara"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/iadara-city.webp",
+ "__key": "iadara-city",
+ "__folder": "Cities",
+ "_id": "64GYYq5F43qALnbA"
+}

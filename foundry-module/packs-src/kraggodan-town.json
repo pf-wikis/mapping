@@ -1,0 +1,84 @@
+{
+ "name": "Kraggodan",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "6VnLW6SqJ5jhL4JA",
+   "name": "Kraggodan",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/kraggodan-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "U8GPbwIDNzJyO9K8",
+   "x": 2304,
+   "y": 1537,
+   "text": "Kraggodan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kraggodan"
+    }
+   }
+  },
+  {
+   "_id": "HMKNnYIeh6EYmnG7",
+   "x": 2207,
+   "y": 532,
+   "text": "Whitespectre Canyon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Whitespectre_Canyon"
+    }
+   }
+  },
+  {
+   "_id": "QA5r8WmQ9kPSLrpk",
+   "x": 3076,
+   "y": 1848,
+   "text": "Everrest",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Everrest"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/kraggodan-town.webp",
+ "__key": "kraggodan-town",
+ "__folder": "Cities",
+ "_id": "4gLnZ7lWqfqHdMf3"
+}

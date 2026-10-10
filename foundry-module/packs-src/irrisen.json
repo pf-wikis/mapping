@@ -1,0 +1,1223 @@
+{
+ "name": "Irrisen",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 16.9,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "y7X8HZuur3HaHFxe",
+   "name": "Irrisen",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/irrisen.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "clgWcG5fDdzn5DEB",
+   "x": 2650,
+   "y": 767,
+   "text": "Czarny Las",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Czarny_Las"
+    }
+   }
+  },
+  {
+   "_id": "rPzeUWqhSOsYOCSK",
+   "x": 1704,
+   "y": 665,
+   "text": "Holvirgang",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Holvirgang"
+    }
+   }
+  },
+  {
+   "_id": "Jes0QPPmwpRD0nML",
+   "x": 1052,
+   "y": 638,
+   "text": "Belila",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Belila"
+    }
+   }
+  },
+  {
+   "_id": "VYRjnjtNP7qGHpVG",
+   "x": 635,
+   "y": 345,
+   "text": "Glacier's Rest",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Glacier's_Rest"
+    }
+   }
+  },
+  {
+   "_id": "18IhyfOn6ZiO0KBh",
+   "x": 3092,
+   "y": 728,
+   "text": "Lachka",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lachka"
+    }
+   }
+  },
+  {
+   "_id": "K2bYkPB5FGX5df1T",
+   "x": 3866,
+   "y": 497,
+   "text": "Icestair",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Icestair"
+    }
+   }
+  },
+  {
+   "_id": "Nek9rGHFYWs3Si8z",
+   "x": 236,
+   "y": 2924,
+   "text": "Xin-Edasseril",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Xin-Edasseril"
+    }
+   }
+  },
+  {
+   "_id": "ONrmGkeyH8DtjerC",
+   "x": 83,
+   "y": 2704,
+   "text": "Justnoque",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Justnoque"
+    }
+   }
+  },
+  {
+   "_id": "4O1N43AD7hkjiAoS",
+   "x": 2625,
+   "y": 2538,
+   "text": "Lod",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lod"
+    }
+   }
+  },
+  {
+   "_id": "9TjRNai1LyiUCJc9",
+   "x": 1446,
+   "y": 2537,
+   "text": "Ysborg",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ysborg"
+    }
+   }
+  },
+  {
+   "_id": "a6BFFAD77eOnGhzU",
+   "x": 1165,
+   "y": 2506,
+   "text": "Xin-Cyrusian",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Xin-Cyrusian"
+    }
+   }
+  },
+  {
+   "_id": "T5Gmxw8BuHuCfPfo",
+   "x": 510,
+   "y": 2444,
+   "text": "Jol",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jol"
+    }
+   }
+  },
+  {
+   "_id": "ZL65SBc6a6tHqT6R",
+   "x": 2177,
+   "y": 2431,
+   "text": "Zlatomesto",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zlatomesto"
+    }
+   }
+  },
+  {
+   "_id": "WlM3afUfSlh9qXZv",
+   "x": 625,
+   "y": 2391,
+   "text": "Tomgruv",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tomgruv"
+    }
+   }
+  },
+  {
+   "_id": "aCwpBz4TYLVpzv2O",
+   "x": 247,
+   "y": 2389,
+   "text": "Sojourner's Rest",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sojourner's_Rest"
+    }
+   }
+  },
+  {
+   "_id": "ITNPuJ5PujwWbv4h",
+   "x": 2615,
+   "y": 2385,
+   "text": "Veshtak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Veshtak"
+    }
+   }
+  },
+  {
+   "_id": "W1Du5qzc0FCQ7t90",
+   "x": 1776,
+   "y": 2370,
+   "text": "Zharchovsk",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zharchovsk"
+    }
+   }
+  },
+  {
+   "_id": "oT5Beb07xwgDrcjc",
+   "x": 1390,
+   "y": 2345,
+   "text": "Naldak's Point",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Naldak's_Point"
+    }
+   }
+  },
+  {
+   "_id": "Lolze14JacYxbNck",
+   "x": 1316,
+   "y": 2284,
+   "text": "Dalun",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dalun"
+    }
+   }
+  },
+  {
+   "_id": "EDbZCc7JHGqoZoNe",
+   "x": 1632,
+   "y": 2274,
+   "text": "Saraby",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Saraby"
+    }
+   }
+  },
+  {
+   "_id": "Dj4TOss9GelqVqdd",
+   "x": 635,
+   "y": 2264,
+   "text": "Solskinn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Solskinn"
+    }
+   }
+  },
+  {
+   "_id": "Os4DmUFBEKgAKR89",
+   "x": 2446,
+   "y": 2222,
+   "text": "Sosulka",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sosulka"
+    }
+   }
+  },
+  {
+   "_id": "PbQhgVQwqsx3cWV5",
+   "x": 1232,
+   "y": 2208,
+   "text": "Whiterook",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Whiterook"
+    }
+   }
+  },
+  {
+   "_id": "1Wp2ubDmgIgs4pwU",
+   "x": 1067,
+   "y": 2145,
+   "text": "Saarbotten",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Saarbotten"
+    }
+   }
+  },
+  {
+   "_id": "CJ6nClWorkkwBn5h",
+   "x": 2338,
+   "y": 2114,
+   "text": "Iarna",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Iarna"
+    }
+   }
+  },
+  {
+   "_id": "svKqQ7cwXK4kEXJ7",
+   "x": 957,
+   "y": 2113,
+   "text": "Delmon's Glen",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Delmon's_Glen"
+    }
+   }
+  },
+  {
+   "_id": "xH5SA9wKJIS8u9KN",
+   "x": 2631,
+   "y": 2110,
+   "text": "Zekrotska",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zekrotska"
+    }
+   }
+  },
+  {
+   "_id": "AzogfvRIg4l9sURN",
+   "x": 1200,
+   "y": 2108,
+   "text": "Sascha",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sascha"
+    }
+   }
+  },
+  {
+   "_id": "AR2X0o0DcRLppEAo",
+   "x": 1098,
+   "y": 1991,
+   "text": "Three-Troll",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Three-Troll"
+    }
+   }
+  },
+  {
+   "_id": "03IJe8PeBYF0pKbj",
+   "x": 2365,
+   "y": 1905,
+   "text": "Riba",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Riba"
+    }
+   }
+  },
+  {
+   "_id": "bNAVYjDmXt44Jwmr",
+   "x": 842,
+   "y": 1881,
+   "text": "Losthome",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Losthome"
+    }
+   }
+  },
+  {
+   "_id": "9BDoURdFnm3daHv8",
+   "x": 1147,
+   "y": 1877,
+   "text": "Redtooth",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Redtooth"
+    }
+   }
+  },
+  {
+   "_id": "F2JwwJd3k4D0koQE",
+   "x": 2304,
+   "y": 1824,
+   "text": "Dobrova",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dobrova"
+    }
+   }
+  },
+  {
+   "_id": "ShoZv4PkiyG4JEZi",
+   "x": 682,
+   "y": 1737,
+   "text": "Eldentre",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Eldentre"
+    }
+   }
+  },
+  {
+   "_id": "2TRxGy33EhB9MGrT",
+   "x": 2318,
+   "y": 1658,
+   "text": "Ledenica",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ledenica"
+    }
+   }
+  },
+  {
+   "_id": "RQi0BcPKvpBstSkc",
+   "x": 1030,
+   "y": 1620,
+   "text": "Vasterborg",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vasterborg"
+    }
+   }
+  },
+  {
+   "_id": "NCGRtS3UoZciAwp9",
+   "x": 1528,
+   "y": 1540,
+   "text": "Morozny",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Morozny"
+    }
+   }
+  },
+  {
+   "_id": "4qpBJ0JPAeOudCB7",
+   "x": 1809,
+   "y": 1529,
+   "text": "Zaplava",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zaplava"
+    }
+   }
+  },
+  {
+   "_id": "DQVqKexlt5Pi3DIh",
+   "x": 2578,
+   "y": 1472,
+   "text": "Riekamesto",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Riekamesto"
+    }
+   }
+  },
+  {
+   "_id": "0nJQvcDCvojbvp8Y",
+   "x": 325,
+   "y": 1458,
+   "text": "Ullerskad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ullerskad"
+    }
+   }
+  },
+  {
+   "_id": "ejZiGsm0AwdaoRxo",
+   "x": 1337,
+   "y": 1413,
+   "text": "Zelen",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zelen"
+    }
+   }
+  },
+  {
+   "_id": "z8YYd7fwY7l2fsct",
+   "x": 1828,
+   "y": 1398,
+   "text": "Helkgen",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Helkgen"
+    }
+   }
+  },
+  {
+   "_id": "c4CstphW0pmYWs7f",
+   "x": 988,
+   "y": 1385,
+   "text": "Gojko",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gojko"
+    }
+   }
+  },
+  {
+   "_id": "8U30qAbNGMjz0Y8Y",
+   "x": 712,
+   "y": 1367,
+   "text": "Hellirinn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hellirinn"
+    }
+   }
+  },
+  {
+   "_id": "MP8QJNbLH0eIPCoL",
+   "x": 770,
+   "y": 1318,
+   "text": "Trollheim",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Trollheim"
+    }
+   }
+  },
+  {
+   "_id": "peXlLADkFStFy0Lu",
+   "x": 1267,
+   "y": 1301,
+   "text": "Algidheart",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Algidheart"
+    }
+   }
+  },
+  {
+   "_id": "gybIng1Gs42P99TL",
+   "x": 2331,
+   "y": 1244,
+   "text": "Hagby",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hagby"
+    }
+   }
+  },
+  {
+   "_id": "CSwZsb8JdQYrPylw",
+   "x": 1874,
+   "y": 1225,
+   "text": "Atvan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Atvan"
+    }
+   }
+  },
+  {
+   "_id": "BwkqY4vBpxMtaauf",
+   "x": 1040,
+   "y": 1217,
+   "text": "Skrata",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Skrata"
+    }
+   }
+  },
+  {
+   "_id": "vdFebwsi87Vck3JS",
+   "x": 2011,
+   "y": 1200,
+   "text": "Baldachin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Baldachin"
+    }
+   }
+  },
+  {
+   "_id": "jaqwv41Efz01qxxX",
+   "x": 2020,
+   "y": 1101,
+   "text": "Trezira",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Trezira"
+    }
+   }
+  },
+  {
+   "_id": "ubVd0izGd7q4OnZ7",
+   "x": 2517,
+   "y": 1052,
+   "text": "Badelund",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Badelund"
+    }
+   }
+  },
+  {
+   "_id": "gXaokHDDw9U12Tjb",
+   "x": 2664,
+   "y": 1048,
+   "text": "Chillblight",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Chillblight"
+    }
+   }
+  },
+  {
+   "_id": "cN9jz6GY3xmbrzwI",
+   "x": 198,
+   "y": 1017,
+   "text": "Frostbreach",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Frostbreach"
+    }
+   }
+  },
+  {
+   "_id": "uvHH7aZb8Sz3O4KW",
+   "x": 1132,
+   "y": 922,
+   "text": "Yensa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yensa"
+    }
+   }
+  },
+  {
+   "_id": "uVtwbEw92Ru8nJuv",
+   "x": 1016,
+   "y": 789,
+   "text": "Soduras",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Soduras"
+    }
+   }
+  },
+  {
+   "_id": "7XyaRC71ik6hF1bt",
+   "x": 4178,
+   "y": 2998,
+   "text": "Deepgate",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Deepgate"
+    }
+   }
+  },
+  {
+   "_id": "wVm3jWerY9U4QLsw",
+   "x": 4014,
+   "y": 2806,
+   "text": "Xin-Shalast",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Xin-Shalast"
+    }
+   }
+  },
+  {
+   "_id": "cyNXmQ6F1owLD3H7",
+   "x": 3128,
+   "y": 2207,
+   "text": "Hoarwood",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hoarwood"
+    }
+   }
+  },
+  {
+   "_id": "hdRN1JhgtHsvs6DI",
+   "x": 2842,
+   "y": 2194,
+   "text": "Vonosh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vonosh"
+    }
+   }
+  },
+  {
+   "_id": "8BUMw7tGKLui161q",
+   "x": 3721,
+   "y": 2179,
+   "text": "Nadzieja Lato",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nadzieja_Lato"
+    }
+   }
+  },
+  {
+   "_id": "GKQviNLf7QZmLcGV",
+   "x": 3246,
+   "y": 1930,
+   "text": "Crowtop",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Crowtop"
+    }
+   }
+  },
+  {
+   "_id": "ciIBF8bzS2s6eo6r",
+   "x": 3521,
+   "y": 1845,
+   "text": "Waldsby",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Waldsby"
+    }
+   }
+  },
+  {
+   "_id": "6OMPEKgf6QYoS7E1",
+   "x": 3147,
+   "y": 1745,
+   "text": "Ludovny",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ludovny"
+    }
+   }
+  },
+  {
+   "_id": "8acyoopSrszmdz1M",
+   "x": 3901,
+   "y": 1660,
+   "text": "Kizobran",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kizobran"
+    }
+   }
+  },
+  {
+   "_id": "Whgvu0FIky6HYRHR",
+   "x": 2840,
+   "y": 1333,
+   "text": "Whitethrone",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Whitethrone"
+    }
+   }
+  },
+  {
+   "_id": "Hi6OfYfPRMI9iQff",
+   "x": 3331,
+   "y": 1227,
+   "text": "Tashagrot",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tashagrot"
+    }
+   }
+  },
+  {
+   "_id": "fKHb54aD53ylpdGB",
+   "x": 3300,
+   "y": 1045,
+   "text": "Coldwater",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Coldwater"
+    }
+   }
+  },
+  {
+   "_id": "0A97lvc4UHaO3icg",
+   "x": 3338,
+   "y": 955,
+   "text": "Bosorka",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bosorka"
+    }
+   }
+  },
+  {
+   "_id": "eiF7YwqeyE6LNEbk",
+   "x": 3122,
+   "y": 936,
+   "text": "Isseld",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Isseld"
+    }
+   }
+  }
+ ],
+ "__key": "irrisen",
+ "__folder": "Nations",
+ "_id": "gk9qttt1OyGEdKWQ",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/irrisen.webp"
+}

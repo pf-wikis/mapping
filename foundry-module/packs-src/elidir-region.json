@@ -1,0 +1,67 @@
+{
+ "name": "Elidir Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.07,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "cBfVNl6owKIjpMMh",
+   "name": "Elidir Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/elidir-region.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "OYTEq4xEwHff7ikS",
+   "x": 2304,
+   "y": 1541,
+   "text": "Elidir",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Elidir"
+    }
+   }
+  },
+  {
+   "_id": "EjFiWe4lhPuQO3xf",
+   "x": 2695,
+   "y": 2737,
+   "text": "Irrica Estate",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Irrica_Estate"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/elidir-region.webp",
+ "__key": "elidir-region",
+ "__folder": "City Regions",
+ "_id": "Izee67V9GFktqU57"
+}

@@ -1,0 +1,50 @@
+{
+ "name": "Ipeq",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "D5FCKPXvrj7yTsTQ",
+   "name": "Ipeq",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/ipeq-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "P8JcrYMQkw8LOUxk",
+   "x": 2304,
+   "y": 1536,
+   "text": "Ipeq",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ipeq"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/ipeq-town.webp",
+ "__key": "ipeq-town",
+ "__folder": "Cities",
+ "_id": "jaenNuZkOnhqnmVN"
+}

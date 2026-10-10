@@ -1,0 +1,84 @@
+{
+ "name": "Hell Harbor",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "tSouCgx0Q6nq7EhJ",
+   "name": "Hell Harbor",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/hell-harbor-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "RFFXpHV7e7OmJdlb",
+   "x": 2244,
+   "y": 2886,
+   "text": "Peshaka Naeu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Peshaka_Naeu"
+    }
+   }
+  },
+  {
+   "_id": "mVZQOrhaTMeEXCoh",
+   "x": 2304,
+   "y": 1537,
+   "text": "Hell Harbor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hell_Harbor"
+    }
+   }
+  },
+  {
+   "_id": "yR0Nti28qE3QU38T",
+   "x": 3230,
+   "y": 2898,
+   "text": "Tyvas-Devas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tyvas-Devas"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/hell-harbor-town.webp",
+ "__key": "hell-harbor-town",
+ "__folder": "Cities",
+ "_id": "bsTVoQ66TyUEV3vq"
+}

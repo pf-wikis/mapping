@@ -1,0 +1,50 @@
+{
+ "name": "Osibu",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "XN3LoV98y9mX1mbk",
+   "name": "Osibu",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/osibu-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "61Mbwj3gtBhJn8TG",
+   "x": 2304,
+   "y": 1537,
+   "text": "Osibu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Osibu"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/osibu-town.webp",
+ "__key": "osibu-town",
+ "__folder": "Cities",
+ "_id": "53tEBH5MMwwp751n"
+}

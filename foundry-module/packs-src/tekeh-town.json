@@ -1,0 +1,50 @@
+{
+ "name": "Tekeh",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "7Y0pPGJehlQtqn8L",
+   "name": "Tekeh",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/tekeh-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "fYzm7h2x4JSsigIO",
+   "x": 2304,
+   "y": 1537,
+   "text": "Tekeh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tekeh"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/tekeh-town.webp",
+ "__key": "tekeh-town",
+ "__folder": "Cities",
+ "_id": "R9OjS3Wb370ThK1u"
+}
