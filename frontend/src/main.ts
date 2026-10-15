@@ -15,11 +15,11 @@ import { CompactAttributionControl } from "./tools/CompactAttributionControl.js"
 import { GolarionMap } from "./tools/GolarionMap.js";
 import SearchControl from "./tools/SearchControl.js";
 import TimeSliderControl from "./tools/TimeSliderControl.js";
+import { ExportSVG } from "./tools/ExportSVG.js";
 import { startupOptions } from "./URLOptions.js";
 import { addSpecialURLOptions } from "./tools/special-url-options";
 import { debug } from "./utils/debug";
 import { ProjectionControl } from "./tools/ProjectionControl";
-import { SVGExportControl } from "@versatiles/maplibre-svg-export";
 
 var root = `${location.protocol}//${location.host}`;
 
@@ -77,7 +77,8 @@ if(!startupOptions.embedded) {
   map.addControl(new NavigationControl({showCompass: true}));
   map.addControl(timeSlider, 'top-left');
   map.addControl(new SearchControl(golarionMap), 'top-left');
-  map.addControl(new SVGExportControl(), 'top-right');
+  //map.addControl(new ExportSVG(pmtilesProt), 'top-right');
+  //does not support MLT yet
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',
