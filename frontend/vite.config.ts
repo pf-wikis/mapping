@@ -13,7 +13,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
 
   let config:ResolvedConfig;
   const host = mode=='development'?'http://localhost:5173':'https://map.pathfinderwiki.com';
-  const dataHash = Math.floor(Date.now() / 1000);
+  const dataHash = mode=='development'?'latest':Math.floor(Date.now() / 1000);
   const compiledStyle = style(host, dataHash);
   
   let assetNames = {
@@ -25,7 +25,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
   return {
     define: {
       HOST: JSON.stringify(host),
-      BUILD_DATA_HASH: dataHash
+      BUILD_DATA_HASH: dataHash==='latest'?JSON.stringify(dataHash):dataHash
     },
     publicDir: false,
     plugins: [
@@ -107,17 +107,12 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
     },
     server: {
       port: 5173,
-      proxy: Object.fromEntries(
-        Object.entries({
-          // Use remote data from production map
-          'sprites': 'https://map.pathfinderwiki.com',
-          'golarion.pmtiles': 'https://map.pathfinderwiki.com',
-          'search.json': 'https://map.pathfinderwiki.com',
-        }).map(([key, value]) => [`${dataHash}/${key}`, {
-          target: value,
-          rewrite: path => path.replace(`${dataHash}/`, 'latest/')
-        }])
-      )
+      proxy: {
+        // Use remote data from production map
+        '/latest/sprites': 'https://map.pathfinderwiki.com',
+        '/latest/golarion.pmtiles': 'https://map.pathfinderwiki.com',
+        '/latest/search.json': 'https://map.pathfinderwiki.com',
+      }
     }
   };
 })

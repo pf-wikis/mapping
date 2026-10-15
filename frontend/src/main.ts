@@ -19,6 +19,7 @@ import { startupOptions } from "./URLOptions.js";
 import { addSpecialURLOptions } from "./tools/special-url-options";
 import { debug } from "./utils/debug";
 import { ProjectionControl } from "./tools/ProjectionControl";
+import { SVGExportControl } from "@versatiles/maplibre-svg-export";
 
 var root = `${location.protocol}//${location.host}`;
 
@@ -76,6 +77,7 @@ if(!startupOptions.embedded) {
   map.addControl(new NavigationControl({showCompass: true}));
   map.addControl(timeSlider, 'top-left');
   map.addControl(new SearchControl(golarionMap), 'top-left');
+  map.addControl(new SVGExportControl(), 'top-right');
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',

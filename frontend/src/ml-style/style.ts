@@ -6,7 +6,7 @@ import { state, StateProp } from "./state";
 import { Expression } from "./expression";
 import { projection } from "./projection";
 
-export default function(HOST:string, BUILD_DATA_HASH: number) {
+export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
 
   for(let p in state) {
     state[p as StateProp].enableDebug = true;

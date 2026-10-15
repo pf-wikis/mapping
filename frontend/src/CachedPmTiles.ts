@@ -11,7 +11,7 @@ setTimeout(async ()=>{
     if(handle.name.startsWith('map-db-')) {
       try {
         let otherId = parseInt(handle.name.substring(7));
-        if(otherId < buildId) {
+        if(buildId === 'latest' || otherId < buildId) {
           console.log(`Deleting old version ${otherId} as the new version is ${buildId}`);
           api.removeEntry(handle.name, {recursive: true});
         }
