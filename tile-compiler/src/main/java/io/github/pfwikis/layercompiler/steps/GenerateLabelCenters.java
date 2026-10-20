@@ -208,7 +208,7 @@ public class GenerateLabelCenters extends StepExecutor {
 	        		try {
 		        		var json = Jackson.JSON.writeValueAsString(f);
 		        		
-		        		var hull = ConcaveHullOfPolygons.concaveHullByLengthRatio(new GeoJsonReader().read(json), 0.15);
+		        		var hull = ConcaveHullOfPolygons.concaveHullByLengthRatio(new GeoJsonReader().read(json), 0.15, true, true);
 		        		var geom = Jackson.JSON.readValue(GEO_WRITER.write(hull), Geometry.class);
 		        		var res = new Feature();
 		        		res.setProperties(f.getProperties());
