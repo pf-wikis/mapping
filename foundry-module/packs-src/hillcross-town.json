@@ -1,0 +1,50 @@
+{
+ "name": "Hillcross",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "jZW8Ri4rXb1JFZmz",
+   "name": "Hillcross",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/hillcross-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "7eqBDZYWCAcqUMeE",
+   "x": 2304,
+   "y": 1538,
+   "text": "Hillcross",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hillcross"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/hillcross-town.webp",
+ "__key": "hillcross-town",
+ "__folder": "Cities",
+ "_id": "GrgM7sWeourjiVhK"
+}

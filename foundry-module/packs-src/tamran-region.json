@@ -1,0 +1,220 @@
+{
+ "name": "Tamran Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.07,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "JqqFHfgyjBHB0Hm4",
+   "name": "Tamran Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/tamran-region.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "ZbOybSzJyb29cWet",
+   "x": 1232,
+   "y": 2527,
+   "text": "Deadeye's Haunt",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Deadeye's_Haunt"
+    }
+   }
+  },
+  {
+   "_id": "EcOvdOdmYpmyScIQ",
+   "x": 1028,
+   "y": 2130,
+   "text": "Acorn's Rest",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Acorn's_Rest"
+    }
+   }
+  },
+  {
+   "_id": "ptwljZD8rSRLV7pM",
+   "x": 966,
+   "y": 1743,
+   "text": "Purt",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Purt"
+    }
+   }
+  },
+  {
+   "_id": "TglTZiwvexDXXkiA",
+   "x": 481,
+   "y": 1376,
+   "text": "Fort Ursoss",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fort_Ursoss"
+    }
+   }
+  },
+  {
+   "_id": "XDyPdixvwkFn32xd",
+   "x": 642,
+   "y": 1348,
+   "text": "Greenglade",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Greenglade"
+    }
+   }
+  },
+  {
+   "_id": "mLuhjAbw67o16hV7",
+   "x": 79,
+   "y": 614,
+   "text": "Crystalhurst",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Crystalhurst"
+    }
+   }
+  },
+  {
+   "_id": "qv7gSGYkoqPu3ikc",
+   "x": 1919,
+   "y": 1643,
+   "text": "Fort Drejas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fort_Drejas"
+    }
+   }
+  },
+  {
+   "_id": "NSbVFpijrR36GLTB",
+   "x": 2304,
+   "y": 1542,
+   "text": "Tamran",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tamran"
+    }
+   }
+  },
+  {
+   "_id": "ysUgatA2PFKGJg63",
+   "x": 2245,
+   "y": 1050,
+   "text": "Fort Machema",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fort_Machema"
+    }
+   }
+  },
+  {
+   "_id": "zrgMsGIqAg3w9SdS",
+   "x": 1528,
+   "y": 981,
+   "text": "Spiral of Bones",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Spiral_of_Bones"
+    }
+   }
+  },
+  {
+   "_id": "ZG2QXJjzRUosh4cS",
+   "x": 2578,
+   "y": 541,
+   "text": "Encarthan Coast",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Encarthan_Coast"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/tamran-region.webp",
+ "__key": "tamran-region",
+ "__folder": "City Regions",
+ "_id": "AKYIPcwZOx2QqLsI"
+}

@@ -1,0 +1,84 @@
+{
+ "name": "Nerosyan",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.169,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "9Yc7m8xAFYZ7nU86",
+   "name": "Nerosyan",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/nerosyan-city.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "GEwXZP9W7aDNjOfV",
+   "x": 1776,
+   "y": 1857,
+   "text": "Academy of the Reclamation",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Academy_of_the_Reclamation"
+    }
+   }
+  },
+  {
+   "_id": "oRAa20VNrwajf2u3",
+   "x": 1571,
+   "y": 1810,
+   "text": "Starrise Spire",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Starrise_Spire"
+    }
+   }
+  },
+  {
+   "_id": "x2Jwckpfvcw0RL7h",
+   "x": 2307,
+   "y": 1535,
+   "text": "Nerosyan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nerosyan"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/nerosyan-city.webp",
+ "__key": "nerosyan-city",
+ "__folder": "Cities",
+ "_id": "L1Irr4vYy3qomTtQ"
+}

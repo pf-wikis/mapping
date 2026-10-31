@@ -1,0 +1,1172 @@
+{
+ "name": "Druma",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 12.8,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "bA1ch00stKr9FGAJ",
+   "name": "Druma",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/druma.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "9r116wHny6dvTgFJ",
+   "x": 2021,
+   "y": 874,
+   "text": "Kerse",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kerse"
+    }
+   }
+  },
+  {
+   "_id": "xXYG3rkHSjan5O5X",
+   "x": 347,
+   "y": 812,
+   "text": "Korholm",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Korholm"
+    }
+   }
+  },
+  {
+   "_id": "mi7RvL9x8TIhH2zF",
+   "x": 2094,
+   "y": 732,
+   "text": "Twingate",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Twingate"
+    }
+   }
+  },
+  {
+   "_id": "M2p3Clwmnu1Zpr4H",
+   "x": 683,
+   "y": 614,
+   "text": "Eranmas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Eranmas"
+    }
+   }
+  },
+  {
+   "_id": "05OFSkO9uiuncmRC",
+   "x": 1393,
+   "y": 420,
+   "text": "Detmer",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Detmer"
+    }
+   }
+  },
+  {
+   "_id": "2mm9TzgbnKD8Tmy9",
+   "x": 1474,
+   "y": 331,
+   "text": "Old Detmer",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Old_Detmer"
+    }
+   }
+  },
+  {
+   "_id": "GbgzNinrDQhMNbPq",
+   "x": 2065,
+   "y": 303,
+   "text": "Bailey's Perch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bailey's_Perch"
+    }
+   }
+  },
+  {
+   "_id": "qUsPMYCk8r7uX9bE",
+   "x": 4344,
+   "y": 758,
+   "text": "Elistia",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Elistia"
+    }
+   }
+  },
+  {
+   "_id": "bW3mz2mklLhKUR3Y",
+   "x": 2890,
+   "y": 707,
+   "text": "Peddlegate",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Peddlegate"
+    }
+   }
+  },
+  {
+   "_id": "YI0UmjXxQsprqm0W",
+   "x": 3231,
+   "y": 651,
+   "text": "Tar-Kazmukh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tar-Kazmukh"
+    }
+   }
+  },
+  {
+   "_id": "xvnFd5yF7lro2ZMz",
+   "x": 4453,
+   "y": 637,
+   "text": "Coralesian",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Coralesian"
+    }
+   }
+  },
+  {
+   "_id": "z6sevjkHEajvEVCf",
+   "x": 4132,
+   "y": 603,
+   "text": "Tathandyr",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tathandyr"
+    }
+   }
+  },
+  {
+   "_id": "gZaBySIBeeJNwOQo",
+   "x": 2827,
+   "y": 582,
+   "text": "Mourning Burrows",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mourning_Burrows"
+    }
+   }
+  },
+  {
+   "_id": "GIzQrOw6h1BBB5gb",
+   "x": 3944,
+   "y": 576,
+   "text": "Shevaroth",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shevaroth"
+    }
+   }
+  },
+  {
+   "_id": "2ELEMNNHkGB9KTiI",
+   "x": 3032,
+   "y": 427,
+   "text": "Cutter's Holdout",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cutter's_Holdout"
+    }
+   }
+  },
+  {
+   "_id": "zYbeIu4v35eRwhJ9",
+   "x": 3156,
+   "y": 242,
+   "text": "Riverspire",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Riverspire"
+    }
+   }
+  },
+  {
+   "_id": "odhvzJeiSG4Hdo2R",
+   "x": 2757,
+   "y": 221,
+   "text": "Avennara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Avennara"
+    }
+   }
+  },
+  {
+   "_id": "L3d9O6ygEd18OEMK",
+   "x": 2833,
+   "y": 180,
+   "text": "Bloomwreath",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bloomwreath"
+    }
+   }
+  },
+  {
+   "_id": "iHzTDsHnqSmxB22R",
+   "x": 3570,
+   "y": 114,
+   "text": "City of Thorns",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/City_of_Thorns"
+    }
+   }
+  },
+  {
+   "_id": "ls1FKEblImdv10LB",
+   "x": 3163,
+   "y": 98,
+   "text": "Bieralei",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bieralei"
+    }
+   }
+  },
+  {
+   "_id": "qjQOOGcij1JZMhRK",
+   "x": 2358,
+   "y": 59,
+   "text": "Erages",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Erages"
+    }
+   }
+  },
+  {
+   "_id": "uH9hMy80ZpUNoU4x",
+   "x": 3430,
+   "y": 14,
+   "text": "Lasinavel",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lasinavel"
+    }
+   }
+  },
+  {
+   "_id": "rxKXQ6M3LGDc1drS",
+   "x": 2156,
+   "y": 2932,
+   "text": "Jernashall",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jernashall"
+    }
+   }
+  },
+  {
+   "_id": "nT2Rk1e5EVNHKPF1",
+   "x": 933,
+   "y": 2799,
+   "text": "Umok",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Umok"
+    }
+   }
+  },
+  {
+   "_id": "0zaVaVvYRVJAwE53",
+   "x": 1985,
+   "y": 2799,
+   "text": "Davarn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Davarn"
+    }
+   }
+  },
+  {
+   "_id": "law7pIS7mphGNw2M",
+   "x": 222,
+   "y": 2780,
+   "text": "Logas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Logas"
+    }
+   }
+  },
+  {
+   "_id": "7KgcQlODUTnTJHzS",
+   "x": 1299,
+   "y": 2707,
+   "text": "Twin Horns",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Twin_Horns"
+    }
+   }
+  },
+  {
+   "_id": "UNTxGUIadob5Thxs",
+   "x": 1037,
+   "y": 2691,
+   "text": "Vordia",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vordia"
+    }
+   }
+  },
+  {
+   "_id": "wzKJetnWXGrWTo86",
+   "x": 733,
+   "y": 2660,
+   "text": "Fernsby",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fernsby"
+    }
+   }
+  },
+  {
+   "_id": "EkqSxD3Sw9iHsdNQ",
+   "x": 603,
+   "y": 2624,
+   "text": "Swiftrun",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Swiftrun"
+    }
+   }
+  },
+  {
+   "_id": "tqgjncwACZ5T9wo7",
+   "x": 867,
+   "y": 2457,
+   "text": "Saringallow",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Saringallow"
+    }
+   }
+  },
+  {
+   "_id": "mqRg8G2A1RBV2nk5",
+   "x": 1634,
+   "y": 2404,
+   "text": "Dustpawn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dustpawn"
+    }
+   }
+  },
+  {
+   "_id": "YybilRUNBnsckO0F",
+   "x": 99,
+   "y": 2313,
+   "text": "Finder's Gulch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Finder's_Gulch"
+    }
+   }
+  },
+  {
+   "_id": "3kucQ25li0KkcoPE",
+   "x": 1746,
+   "y": 2300,
+   "text": "Petitioner's Port",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Petitioner's_Port"
+    }
+   }
+  },
+  {
+   "_id": "PCdSAzBo8BeUTRVJ",
+   "x": 1839,
+   "y": 2200,
+   "text": "Alabastrine",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Alabastrine"
+    }
+   }
+  },
+  {
+   "_id": "cgXh4PRV9QyVnCPA",
+   "x": 1518,
+   "y": 2116,
+   "text": "Tuskhead Stoneworking",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tuskhead_Stoneworking"
+    }
+   }
+  },
+  {
+   "_id": "lpqkGLNwJoBg94zU",
+   "x": 923,
+   "y": 2062,
+   "text": "Elidir",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Elidir"
+    }
+   }
+  },
+  {
+   "_id": "CJzwcv7aTuoqRnu1",
+   "x": 2077,
+   "y": 1499,
+   "text": "Cedar Court",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cedar_Court"
+    }
+   }
+  },
+  {
+   "_id": "vUXNuim2TGRMDLax",
+   "x": 110,
+   "y": 1447,
+   "text": "Canorate",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Canorate"
+    }
+   }
+  },
+  {
+   "_id": "gMP8ARC4jzBirXI4",
+   "x": 1772,
+   "y": 1311,
+   "text": "Ulm's Delve",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ulm's_Delve"
+    }
+   }
+  },
+  {
+   "_id": "Qlu8BPRjgCWIgL5P",
+   "x": 1402,
+   "y": 919,
+   "text": "Matriculum's Charge",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Matriculum's_Charge"
+    }
+   }
+  },
+  {
+   "_id": "9np1djedgxMxolLp",
+   "x": 3696,
+   "y": 3020,
+   "text": "Sauerton",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sauerton"
+    }
+   }
+  },
+  {
+   "_id": "Ur0d02EnjrdaGsNP",
+   "x": 2498,
+   "y": 2836,
+   "text": "Taggoret",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Taggoret"
+    }
+   }
+  },
+  {
+   "_id": "Qy4ScFodXicqKJTW",
+   "x": 3009,
+   "y": 2714,
+   "text": "Kar-Azakh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kar-Azakh"
+    }
+   }
+  },
+  {
+   "_id": "CzzChQlVbj99ljUV",
+   "x": 2298,
+   "y": 2699,
+   "text": "New Jelheg",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/New_Jelheg"
+    }
+   }
+  },
+  {
+   "_id": "LJO1IKeeoSsR2WEE",
+   "x": 2594,
+   "y": 2674,
+   "text": "Rhuvasi",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rhuvasi"
+    }
+   }
+  },
+  {
+   "_id": "Pvxw2txPmagaaoVV",
+   "x": 2754,
+   "y": 2648,
+   "text": "Grimsburrow",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Grimsburrow"
+    }
+   }
+  },
+  {
+   "_id": "uIklt4eb5taoyKrK",
+   "x": 3206,
+   "y": 2636,
+   "text": "Kykar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kykar"
+    }
+   }
+  },
+  {
+   "_id": "PXaS2LXYJVPvHkmq",
+   "x": 2826,
+   "y": 2421,
+   "text": "Gildside",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gildside"
+    }
+   }
+  },
+  {
+   "_id": "vUY71iBpDPZCPN0u",
+   "x": 2447,
+   "y": 2190,
+   "text": "Court of Seasons",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Court_of_Seasons"
+    }
+   }
+  },
+  {
+   "_id": "Htz10r4jz39h9xib",
+   "x": 3278,
+   "y": 2056,
+   "text": "Rolgrimmdur",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rolgrimmdur"
+    }
+   }
+  },
+  {
+   "_id": "qXgaQxWcDeC7l9qW",
+   "x": 3973,
+   "y": 1873,
+   "text": "Caldamin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Caldamin"
+    }
+   }
+  },
+  {
+   "_id": "BiO3t0cBWLylvysY",
+   "x": 2350,
+   "y": 1872,
+   "text": "Macridi",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Macridi"
+    }
+   }
+  },
+  {
+   "_id": "kzVLRuorHlkSwUMl",
+   "x": 3649,
+   "y": 1835,
+   "text": "Highhelm",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Highhelm"
+    }
+   }
+  },
+  {
+   "_id": "4pRgOb9xECsuqTRE",
+   "x": 3272,
+   "y": 1793,
+   "text": "Lyperro",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lyperro"
+    }
+   }
+  },
+  {
+   "_id": "ZuUJ92Y5sWlzxGnI",
+   "x": 3982,
+   "y": 1647,
+   "text": "Ringsmith Ranch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ringsmith_Ranch"
+    }
+   }
+  },
+  {
+   "_id": "tR6M6n1lbBDwOlLd",
+   "x": 2752,
+   "y": 1551,
+   "text": "Court of Endless Revelry",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Court_of_Endless_Revelry"
+    }
+   }
+  },
+  {
+   "_id": "M0gK08C5oaEMPYAN",
+   "x": 4451,
+   "y": 1497,
+   "text": "Bellis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bellis"
+    }
+   }
+  },
+  {
+   "_id": "fneR94YmnSgGsUHf",
+   "x": 3761,
+   "y": 1429,
+   "text": "Kovlar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kovlar"
+    }
+   }
+  },
+  {
+   "_id": "mrmOfjyXBS7HPXbF",
+   "x": 3240,
+   "y": 1398,
+   "text": "Gulshire",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gulshire"
+    }
+   }
+  },
+  {
+   "_id": "4xe016VhHaJZORg6",
+   "x": 3147,
+   "y": 1302,
+   "text": "Gottacker",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gottacker"
+    }
+   }
+  },
+  {
+   "_id": "QcDt5NXbfuHD4wE1",
+   "x": 3578,
+   "y": 1290,
+   "text": "Varook's Deep",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Varook's_Deep"
+    }
+   }
+  },
+  {
+   "_id": "TXdlkNvy5cjPOLkp",
+   "x": 4377,
+   "y": 1238,
+   "text": "Calladels",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Calladels"
+    }
+   }
+  },
+  {
+   "_id": "sTMaUbKB3vVmyOBS",
+   "x": 2745,
+   "y": 1111,
+   "text": "Prophet's Home",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Prophet's_Home"
+    }
+   }
+  },
+  {
+   "_id": "LUby0nXQYNSkJolm",
+   "x": 4480,
+   "y": 1000,
+   "text": "Hillhome",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hillhome"
+    }
+   }
+  },
+  {
+   "_id": "5ZfUpvMBVceg6knB",
+   "x": 3517,
+   "y": 993,
+   "text": "Larrad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Larrad"
+    }
+   }
+  },
+  {
+   "_id": "rW4Nljme1rKUr3Sp",
+   "x": 4279,
+   "y": 951,
+   "text": "Bolgrad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bolgrad"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/druma.webp",
+ "__key": "druma",
+ "__folder": "Nations",
+ "_id": "MwnqUR9J3dGDEuce"
+}

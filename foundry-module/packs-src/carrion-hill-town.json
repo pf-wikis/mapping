@@ -1,0 +1,84 @@
+{
+ "name": "Carrion Hill",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "5v44yGfi9uqvTyKg",
+   "name": "Carrion Hill",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/carrion-hill-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "ELvtb7bUE2Elma1H",
+   "x": 2160,
+   "y": 665,
+   "text": "House of Ensland",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/House_of_Ensland"
+    }
+   }
+  },
+  {
+   "_id": "A2Ya5q3SjxQoXwX7",
+   "x": 2304,
+   "y": 1537,
+   "text": "Carrion Hill",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Carrion_Hill"
+    }
+   }
+  },
+  {
+   "_id": "FN271GQnCv715VY3",
+   "x": 2490,
+   "y": 1251,
+   "text": "Candlehalls",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Candlehalls"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/carrion-hill-town.webp",
+ "__key": "carrion-hill-town",
+ "__folder": "Cities",
+ "_id": "aChtct99nfUWVjl5"
+}

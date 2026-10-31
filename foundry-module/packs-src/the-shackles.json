@@ -1,0 +1,1104 @@
+{
+ "name": "The Shackles",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 14,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "bUvWgBBExuvpLNFG",
+   "name": "The Shackles",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/the-shackles.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "vo7dVMWHfXRUFB0Y",
+   "x": 1068,
+   "y": 2001,
+   "text": "Genzei",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Genzei"
+    }
+   }
+  },
+  {
+   "_id": "P5iVlGu84xm5Y9CC",
+   "x": 1529,
+   "y": 1993,
+   "text": "Bogsbridge",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bogsbridge"
+    }
+   }
+  },
+  {
+   "_id": "cd7CJwOyaHkIsr4o",
+   "x": 1575,
+   "y": 1954,
+   "text": "Lilywhite",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lilywhite"
+    }
+   }
+  },
+  {
+   "_id": "ilPILW69FZYeEUuT",
+   "x": 1508,
+   "y": 1869,
+   "text": "Queen Bes",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Queen_Bes"
+    }
+   }
+  },
+  {
+   "_id": "NqrJa5IUAcGo7XkQ",
+   "x": 1231,
+   "y": 1866,
+   "text": "Fort Benbem",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fort_Benbem"
+    }
+   }
+  },
+  {
+   "_id": "DddEdTuUDNIv1UDu",
+   "x": 1684,
+   "y": 1863,
+   "text": "Rapier Bay",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rapier_Bay"
+    }
+   }
+  },
+  {
+   "_id": "fnWgdFg9wEuZ5wg1",
+   "x": 686,
+   "y": 1824,
+   "text": "Heggapnod",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Heggapnod"
+    }
+   }
+  },
+  {
+   "_id": "Av2Dvu0ACCJhipOh",
+   "x": 1623,
+   "y": 1780,
+   "text": "Alendruan Harbor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Alendruan_Harbor"
+    }
+   }
+  },
+  {
+   "_id": "2tkWTJwe597JnRnP",
+   "x": 1217,
+   "y": 1769,
+   "text": "Moak Harbor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Moak_Harbor"
+    }
+   }
+  },
+  {
+   "_id": "9uUCO5YntTMNwy14",
+   "x": 518,
+   "y": 1756,
+   "text": "Ganagsau",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ganagsau"
+    }
+   }
+  },
+  {
+   "_id": "J9RE9wlO0E6rnmQC",
+   "x": 460,
+   "y": 1756,
+   "text": "Banukmaud",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Banukmaud"
+    }
+   }
+  },
+  {
+   "_id": "9d5ZBSriI5pJl9t0",
+   "x": 1044,
+   "y": 1718,
+   "text": "Ollo",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ollo"
+    }
+   }
+  },
+  {
+   "_id": "Mtaqirn6NbdKhwAc",
+   "x": 772,
+   "y": 1702,
+   "text": "Fort Holiday",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fort_Holiday"
+    }
+   }
+  },
+  {
+   "_id": "vEGTGU2nOnZKeLG2",
+   "x": 1285,
+   "y": 1623,
+   "text": "Raketooth",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Raketooth"
+    }
+   }
+  },
+  {
+   "_id": "T8hIakTc5dW7QwcW",
+   "x": 368,
+   "y": 1623,
+   "text": "Zhenbarghua",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zhenbarghua"
+    }
+   }
+  },
+  {
+   "_id": "kEm6AmL1cq2AiuPG",
+   "x": 1038,
+   "y": 1614,
+   "text": "Blackblood Cay",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Blackblood_Cay"
+    }
+   }
+  },
+  {
+   "_id": "wRVvosz68MzLRf2u",
+   "x": 1087,
+   "y": 1593,
+   "text": "Vilelock",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vilelock"
+    }
+   }
+  },
+  {
+   "_id": "O8Cbjxxhlr481rkc",
+   "x": 1405,
+   "y": 1533,
+   "text": "Plumetown",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Plumetown"
+    }
+   }
+  },
+  {
+   "_id": "L6S4A2h05rCd0C53",
+   "x": 1744,
+   "y": 1458,
+   "text": "Kora",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kora"
+    }
+   }
+  },
+  {
+   "_id": "INtjQxPhQzNjNbii",
+   "x": 1670,
+   "y": 1452,
+   "text": "Halabad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Halabad"
+    }
+   }
+  },
+  {
+   "_id": "K5RhjgIL76VaQfgA",
+   "x": 1708,
+   "y": 1408,
+   "text": "Ghrinitshahara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ghrinitshahara"
+    }
+   }
+  },
+  {
+   "_id": "WOBEJ8WoEKKuyi6t",
+   "x": 1752,
+   "y": 1043,
+   "text": "Sumitha",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sumitha"
+    }
+   }
+  },
+  {
+   "_id": "Z8IV0gEDIZbvPieT",
+   "x": 2288,
+   "y": 2373,
+   "text": "Goatshead",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Goatshead"
+    }
+   }
+  },
+  {
+   "_id": "pkMC09IosFRU3Amh",
+   "x": 2207,
+   "y": 2312,
+   "text": "Ngozu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ngozu"
+    }
+   }
+  },
+  {
+   "_id": "AZEFQ9IVm0NdisPc",
+   "x": 2653,
+   "y": 2289,
+   "text": "Rickety's Squibs",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rickety's_Squibs"
+    }
+   }
+  },
+  {
+   "_id": "G0Uf2NvWk5bd4Jyz",
+   "x": 1783,
+   "y": 2154,
+   "text": "Little Oppara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Little_Oppara"
+    }
+   }
+  },
+  {
+   "_id": "zIpMgpcxnWFF3B9a",
+   "x": 3504,
+   "y": 2151,
+   "text": "Azlant Ridge",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Azlant_Ridge"
+    }
+   }
+  },
+  {
+   "_id": "oZtVK5yye5EdcCjC",
+   "x": 1829,
+   "y": 1832,
+   "text": "Quent",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Quent"
+    }
+   }
+  },
+  {
+   "_id": "YqnlFceU2dLE9M3v",
+   "x": 2824,
+   "y": 1808,
+   "text": "Siren's Lash",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Siren's_Lash"
+    }
+   }
+  },
+  {
+   "_id": "bOmMsaBXriH8chWl",
+   "x": 2332,
+   "y": 1743,
+   "text": "Cho-Tzu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cho-Tzu"
+    }
+   }
+  },
+  {
+   "_id": "426pfs2XMA4NKWKC",
+   "x": 2895,
+   "y": 1698,
+   "text": "Colvaas Gibbet",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Colvaas_Gibbet"
+    }
+   }
+  },
+  {
+   "_id": "jQ8MXyztFfMg35wT",
+   "x": 2367,
+   "y": 1698,
+   "text": "Haigui Wan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Haigui_Wan"
+    }
+   }
+  },
+  {
+   "_id": "epsnBfWeoUH57KjM",
+   "x": 1900,
+   "y": 1656,
+   "text": "Rumbutter",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rumbutter"
+    }
+   }
+  },
+  {
+   "_id": "M3daRUhP3f1SswIg",
+   "x": 1817,
+   "y": 1652,
+   "text": "Slipcove",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Slipcove"
+    }
+   }
+  },
+  {
+   "_id": "hlZ2MLs3Le8YFM0G",
+   "x": 1955,
+   "y": 1641,
+   "text": "Beachcomber",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Beachcomber"
+    }
+   }
+  },
+  {
+   "_id": "pQr0aYGLdKi6B4yu",
+   "x": 2479,
+   "y": 1575,
+   "text": "Yelligo Wharf",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yelligo_Wharf"
+    }
+   }
+  },
+  {
+   "_id": "uaYI1CFN5vLycDZc",
+   "x": 2400,
+   "y": 1543,
+   "text": "Heslandaena",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Heslandaena"
+    }
+   }
+  },
+  {
+   "_id": "IDcRqg7LR3XYn3Dl",
+   "x": 4299,
+   "y": 1520,
+   "text": "Egregzia",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Egregzia"
+    }
+   }
+  },
+  {
+   "_id": "UjMZ8VLEp1mDXE3m",
+   "x": 2448,
+   "y": 1517,
+   "text": "Blood Fountain",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Blood_Fountain"
+    }
+   }
+  },
+  {
+   "_id": "b6JsoXmwWEOU7r3m",
+   "x": 2354,
+   "y": 1494,
+   "text": "Dragonsthrall",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dragonsthrall"
+    }
+   }
+  },
+  {
+   "_id": "ipFQfws3t7DcuKrg",
+   "x": 4147,
+   "y": 1486,
+   "text": "Neruma",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Neruma"
+    }
+   }
+  },
+  {
+   "_id": "4KzOnYUlohbChMzS",
+   "x": 3081,
+   "y": 1441,
+   "text": "Parley Point",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Parley_Point"
+    }
+   }
+  },
+  {
+   "_id": "R8rc4PvpdJb4sDRP",
+   "x": 3013,
+   "y": 1426,
+   "text": "Pex",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pex"
+    }
+   }
+  },
+  {
+   "_id": "ZfQWNBIACn7eEP46",
+   "x": 2820,
+   "y": 1396,
+   "text": "Mezdrubal",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mezdrubal"
+    }
+   }
+  },
+  {
+   "_id": "0sD1jR0AkOx89u7K",
+   "x": 3119,
+   "y": 1379,
+   "text": "City of Bleeding Stones",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/City_of_Bleeding_Stones"
+    }
+   }
+  },
+  {
+   "_id": "LGaFUamhKqsCAL9z",
+   "x": 3301,
+   "y": 1379,
+   "text": "Oyster Cay",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Oyster_Cay"
+    }
+   }
+  },
+  {
+   "_id": "XlC4Af35WhSKZnWk",
+   "x": 1776,
+   "y": 1372,
+   "text": "Vezhnu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vezhnu"
+    }
+   }
+  },
+  {
+   "_id": "YpPQDYd2JSaDVwA3",
+   "x": 2934,
+   "y": 1352,
+   "text": "Tyvas-Devas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tyvas-Devas"
+    }
+   }
+  },
+  {
+   "_id": "R4J0KJguZesRGJq4",
+   "x": 2708,
+   "y": 1311,
+   "text": "Heskott Bay",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Heskott_Bay"
+    }
+   }
+  },
+  {
+   "_id": "XhKl9z5NgoEQLF1S",
+   "x": 2894,
+   "y": 1292,
+   "text": "Hell Harbor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hell_Harbor"
+    }
+   }
+  },
+  {
+   "_id": "DvaZOrgGEfIRXfQL",
+   "x": 2584,
+   "y": 1268,
+   "text": "Falchion Point",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Falchion_Point"
+    }
+   }
+  },
+  {
+   "_id": "7gPuSYB63c7uD6Hb",
+   "x": 2732,
+   "y": 1239,
+   "text": "Chalk Harbor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Chalk_Harbor"
+    }
+   }
+  },
+  {
+   "_id": "ht9zXK9AVQcQkx77",
+   "x": 2493,
+   "y": 1234,
+   "text": "Myscurial",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Myscurial"
+    }
+   }
+  },
+  {
+   "_id": "gjRdnJ6e3oiUpguJ",
+   "x": 2648,
+   "y": 1221,
+   "text": "Norboro Ashes",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Norboro_Ashes"
+    }
+   }
+  },
+  {
+   "_id": "rq2Lt5T2TV75TWfo",
+   "x": 2514,
+   "y": 1176,
+   "text": "Arena",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Arena"
+    }
+   }
+  },
+  {
+   "_id": "nJ4G0I0MchgJ4ZAd",
+   "x": 2433,
+   "y": 1092,
+   "text": "Maidenspool",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Maidenspool"
+    }
+   }
+  },
+  {
+   "_id": "SzsTFwYjlXLlWmWj",
+   "x": 2347,
+   "y": 1037,
+   "text": "Downpour",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Downpour"
+    }
+   }
+  },
+  {
+   "_id": "Zn4eUQrpCrpvaZ4X",
+   "x": 2466,
+   "y": 1012,
+   "text": "Drenchport",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Drenchport"
+    }
+   }
+  },
+  {
+   "_id": "MAtX6Vrk5ycA4I8U",
+   "x": 3511,
+   "y": 996,
+   "text": "Greenblood",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Greenblood"
+    }
+   }
+  },
+  {
+   "_id": "9yyoPRomHdgs9qjp",
+   "x": 4330,
+   "y": 399,
+   "text": "Jula",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jula"
+    }
+   }
+  },
+  {
+   "_id": "WgsX2lYrDnMGLEJB",
+   "x": 4573,
+   "y": 1448,
+   "text": "Bloodsalt",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bloodsalt"
+    }
+   }
+  },
+  {
+   "_id": "Tv97Vzc0BILpYVOB",
+   "x": 4464,
+   "y": 1257,
+   "text": "Kiutu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kiutu"
+    }
+   }
+  },
+  {
+   "_id": "NWtCjE1gXHng7yuX",
+   "x": 3558,
+   "y": 2470,
+   "text": "Bloodcove",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bloodcove"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/the-shackles.webp",
+ "__key": "the-shackles",
+ "__folder": "Nations",
+ "_id": "wYHFxtxbu50BJ6XA"
+}

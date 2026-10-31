@@ -1,0 +1,84 @@
+{
+ "name": "An",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "RgjUDtGFfElmitK6",
+   "name": "An",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/an-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "DqeK87XjE0EWZo2L",
+   "x": 2304,
+   "y": 1537,
+   "text": "An",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/An"
+    }
+   }
+  },
+  {
+   "_id": "icNLnzzGdiT5Fzc6",
+   "x": 3004,
+   "y": 1785,
+   "text": "Pyramid of Kamaria",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pyramid_of_Kamaria"
+    }
+   }
+  },
+  {
+   "_id": "GVsvyXAkRi1Ww5c8",
+   "x": 1552,
+   "y": 2486,
+   "text": "Tephu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tephu"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/an-town.webp",
+ "__key": "an-town",
+ "__folder": "Cities",
+ "_id": "6v2hl2W2v8SkFLMw"
+}

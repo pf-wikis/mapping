@@ -1,0 +1,883 @@
+{
+ "name": "Katapesh",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.137,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "3CHu5ZsPKDkcmd0e",
+   "name": "Katapesh",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/katapesh-city.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "Goa0YdZkwXMVldVt",
+   "x": 2164,
+   "y": 991,
+   "text": "Gilded Shell",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gilded_Shell"
+    }
+   }
+  },
+  {
+   "_id": "Ke9xqWRdI2sgbsBe",
+   "x": 1794,
+   "y": 925,
+   "text": "Golden Scarab",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Golden_Scarab"
+    }
+   }
+  },
+  {
+   "_id": "m4GQymdq9RhoY5m5",
+   "x": 2071,
+   "y": 865,
+   "text": "Immaculate Repository",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Immaculate_Repository"
+    }
+   }
+  },
+  {
+   "_id": "6B5qCwaQkPwm4BFK",
+   "x": 1963,
+   "y": 826,
+   "text": "Truther & Trathis Mining and Excavation Company",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Truther_%26_Trathis_Mining_and_Excavation_Company"
+    }
+   }
+  },
+  {
+   "_id": "PhtYMYaZh5Xdc2fe",
+   "x": 2615,
+   "y": 770,
+   "text": "Ivory Wands",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ivory_Wands"
+    }
+   }
+  },
+  {
+   "_id": "7zBLzyonLjqB4H4r",
+   "x": 3014,
+   "y": 768,
+   "text": "Dockside Giant",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dockside_Giant"
+    }
+   }
+  },
+  {
+   "_id": "AB4mxWaMcqF6NnPX",
+   "x": 2221,
+   "y": 713,
+   "text": "Smoking Ruin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Smoking_Ruin"
+    }
+   }
+  },
+  {
+   "_id": "G1IHx3rLoDxsJDaB",
+   "x": 2415,
+   "y": 499,
+   "text": "Charred Meats",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Charred_Meats"
+    }
+   }
+  },
+  {
+   "_id": "8BBR78OspvcfPx8R",
+   "x": 1955,
+   "y": 474,
+   "text": "Rabid Dog",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rabid_Dog"
+    }
+   }
+  },
+  {
+   "_id": "CCmj11r5XHfJKNU6",
+   "x": 3001,
+   "y": 2579,
+   "text": "Castle Clarion",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Castle_Clarion"
+    }
+   }
+  },
+  {
+   "_id": "XqjM4cIBgLsSgwGz",
+   "x": 2509,
+   "y": 2497,
+   "text": "Jerg's Repair Shop",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jerg's_Repair_Shop"
+    }
+   }
+  },
+  {
+   "_id": "aouf3PPsL0kCvMFA",
+   "x": 3093,
+   "y": 2454,
+   "text": "Cliffside Tavern",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cliffside_Tavern"
+    }
+   }
+  },
+  {
+   "_id": "D1at9cTTNUtz9DT6",
+   "x": 2305,
+   "y": 2375,
+   "text": "River Inn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/River_Inn"
+    }
+   }
+  },
+  {
+   "_id": "zkMCvuV6WGLLag1b",
+   "x": 1869,
+   "y": 2199,
+   "text": "The Grand Alchemist's Tower",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/The_Grand_Alchemist's_Tower"
+    }
+   }
+  },
+  {
+   "_id": "GAvOt3Mxb1Oau6ri",
+   "x": 2448,
+   "y": 2164,
+   "text": "Gladiators' Guildhall",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gladiators'_Guildhall"
+    }
+   }
+  },
+  {
+   "_id": "k53XAqlLv5yCyTFO",
+   "x": 2014,
+   "y": 2164,
+   "text": "Ruined Monastery",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ruined_Monastery"
+    }
+   }
+  },
+  {
+   "_id": "pgcMEYGaEIiTWTxc",
+   "x": 2137,
+   "y": 2122,
+   "text": "Red Pyramid",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Red_Pyramid"
+    }
+   }
+  },
+  {
+   "_id": "fRlkPqjJsPqPFHhh",
+   "x": 2027,
+   "y": 2034,
+   "text": "Sisters of the Quill",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sisters_of_the_Quill"
+    }
+   }
+  },
+  {
+   "_id": "fSTkztnTdLhGsXy3",
+   "x": 2882,
+   "y": 2027,
+   "text": "Cindra's Exotic Pets",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cindra's_Exotic_Pets"
+    }
+   }
+  },
+  {
+   "_id": "jxUCwv8TmLj7yf9c",
+   "x": 2707,
+   "y": 1984,
+   "text": "The Doomsayers' Stand",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/The_Doomsayers'_Stand"
+    }
+   }
+  },
+  {
+   "_id": "SGds8HflxtHuPl1f",
+   "x": 2334,
+   "y": 1973,
+   "text": "Katapesh Lodge",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Katapesh_Lodge"
+    }
+   }
+  },
+  {
+   "_id": "2o7Sub7AplTvfOGC",
+   "x": 2491,
+   "y": 1853,
+   "text": "Jangley's Shop",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jangley's_Shop"
+    }
+   }
+  },
+  {
+   "_id": "p8lYk9rMaWev4s5k",
+   "x": 2713,
+   "y": 1835,
+   "text": "Council Hall and Gaol Block",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Council_Hall_and_Gaol_Block"
+    }
+   }
+  },
+  {
+   "_id": "p8hJw09oefoqJGt8",
+   "x": 1755,
+   "y": 1720,
+   "text": "College of Dimensional Studies",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/College_of_Dimensional_Studies"
+    }
+   }
+  },
+  {
+   "_id": "tVSMz8If4A4XwPy9",
+   "x": 2251,
+   "y": 1690,
+   "text": "Grand Coliseum",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Grand_Coliseum"
+    }
+   }
+  },
+  {
+   "_id": "8WrIgoZ9uF3nYDsE",
+   "x": 2655,
+   "y": 1673,
+   "text": "Azure Star",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Azure_Star"
+    }
+   }
+  },
+  {
+   "_id": "5sCL4xrTXZp8MqN2",
+   "x": 2805,
+   "y": 1634,
+   "text": "Ahkmed's Carpets",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ahkmed's_Carpets"
+    }
+   }
+  },
+  {
+   "_id": "aq59QEPzkzHhxt23",
+   "x": 1601,
+   "y": 1604,
+   "text": "Datorro's Brewery",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Datorro's_Brewery"
+    }
+   }
+  },
+  {
+   "_id": "XziNlT84MA1H2slr",
+   "x": 2053,
+   "y": 1525,
+   "text": "Zandrek's Pesh Palace",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zandrek's_Pesh_Palace"
+    }
+   }
+  },
+  {
+   "_id": "3pgfAXFlsDTEMES3",
+   "x": 1510,
+   "y": 1495,
+   "text": "Cheeho the Talking Dog",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cheeho_the_Talking_Dog"
+    }
+   }
+  },
+  {
+   "_id": "7gW2jg2BCMCstAZM",
+   "x": 2718,
+   "y": 1493,
+   "text": "The Ramps",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/The_Ramps"
+    }
+   }
+  },
+  {
+   "_id": "gdF6kwGphRsy2915",
+   "x": 2586,
+   "y": 1463,
+   "text": "Marble Sphinx",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Marble_Sphinx"
+    }
+   }
+  },
+  {
+   "_id": "PwBHRDn6ysvqYeA5",
+   "x": 3059,
+   "y": 1405,
+   "text": "Jerikal's Ales",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jerikal's_Ales"
+    }
+   }
+  },
+  {
+   "_id": "mL7XOYjNotUAtg1v",
+   "x": 2755,
+   "y": 1388,
+   "text": "Temple of Nethys",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Temple_of_Nethys"
+    }
+   }
+  },
+  {
+   "_id": "OgiBWDGlUoQkFafl",
+   "x": 2867,
+   "y": 1379,
+   "text": "Aromas and Aphrodisiacs",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aromas_and_Aphrodisiacs"
+    }
+   }
+  },
+  {
+   "_id": "LwivwieeqCa8rfMP",
+   "x": 1978,
+   "y": 1343,
+   "text": "Golden Oasis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Golden_Oasis"
+    }
+   }
+  },
+  {
+   "_id": "N2RTMLCdrWE5ircI",
+   "x": 2133,
+   "y": 1334,
+   "text": "Sand Dragon Inn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sand_Dragon_Inn"
+    }
+   }
+  },
+  {
+   "_id": "nzQPwNhfms8G3f3n",
+   "x": 1531,
+   "y": 1284,
+   "text": "The Smoke Lady",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/The_Smoke_Lady"
+    }
+   }
+  },
+  {
+   "_id": "3H0HWaljeLb6jQIo",
+   "x": 2397,
+   "y": 1276,
+   "text": "Screaming Obelisk",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Screaming_Obelisk"
+    }
+   }
+  },
+  {
+   "_id": "fpOZu2re0SfF3iMp",
+   "x": 3019,
+   "y": 1233,
+   "text": "Jexler & Young Salvage Company and Deep Sea Exploration and Retrieval",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jexler_%26_Young_Salvage_Company_and_Deep_Sea_Exploration_and_Retrieval"
+    }
+   }
+  },
+  {
+   "_id": "lQ996qzIttqhAkEE",
+   "x": 2890,
+   "y": 1168,
+   "text": "The Slace Block",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/The_Slace_Block"
+    }
+   }
+  },
+  {
+   "_id": "ijQXCZbKMZcqAwIB",
+   "x": 1930,
+   "y": 1167,
+   "text": "Al'Faran's Steel Restaurant",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Al'Faran's_Steel_Restaurant"
+    }
+   }
+  },
+  {
+   "_id": "D1gelcYOuaCdH5DT",
+   "x": 2615,
+   "y": 1158,
+   "text": "Glass Pyramids",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Glass_Pyramids"
+    }
+   }
+  },
+  {
+   "_id": "HCFcsgH4HWQa9HJe",
+   "x": 2497,
+   "y": 1146,
+   "text": "Nexian Embassy",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nexian_Embassy"
+    }
+   }
+  },
+  {
+   "_id": "wwMsEcpVNFPVIiHv",
+   "x": 3083,
+   "y": 1128,
+   "text": "Katapesh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Katapesh"
+    }
+   }
+  },
+  {
+   "_id": "LR0c0RA6N63uk8fA",
+   "x": 1586,
+   "y": 1097,
+   "text": "Alseen's Camels",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Alseen's_Camels"
+    }
+   }
+  },
+  {
+   "_id": "KawzsKbGsKFG8Ota",
+   "x": 2963,
+   "y": 1069,
+   "text": "Trillia's Bathhouse",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Trillia's_Bathhouse"
+    }
+   }
+  },
+  {
+   "_id": "UXouKPrVbAVf0RQu",
+   "x": 3058,
+   "y": 1041,
+   "text": "Annexa Palanthea's Fishy Menagerie",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Annexa_Palanthea's_Fishy_Menagerie"
+    }
+   }
+  },
+  {
+   "_id": "nUaPCjcDju7UGes9",
+   "x": 2837,
+   "y": 1027,
+   "text": "House of Whips",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/House_of_Whips"
+    }
+   }
+  },
+  {
+   "_id": "JeoeX6ORC7Hximeh",
+   "x": 1816,
+   "y": 1025,
+   "text": "Zulran's Equines",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zulran's_Equines"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/katapesh-city.webp",
+ "__key": "katapesh-city",
+ "__folder": "Cities",
+ "_id": "nfSD4BeCLdXxg16Y"
+}

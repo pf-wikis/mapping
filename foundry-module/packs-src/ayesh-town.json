@@ -1,0 +1,50 @@
+{
+ "name": "Ayesh",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "ij46wv6IucoqA4XU",
+   "name": "Ayesh",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/ayesh-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "hyPuEQKumJlQ5zfW",
+   "x": 2304,
+   "y": 1536,
+   "text": "Ayesh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ayesh"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/ayesh-town.webp",
+ "__key": "ayesh-town",
+ "__folder": "Cities",
+ "_id": "3IvuHyfIdcVhP8P2"
+}

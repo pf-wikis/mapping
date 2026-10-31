@@ -1,0 +1,50 @@
+{
+ "name": "Kazuhn City",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "nGErkgIUXxoP9xIU",
+   "name": "Kazuhn City",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/kazuhn-city-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "8gto88VzIVObbNeh",
+   "x": 2304,
+   "y": 1537,
+   "text": "Kazuhn City",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kazuhn_City"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/kazuhn-city-town.webp",
+ "__key": "kazuhn-city-town",
+ "__folder": "Cities",
+ "_id": "EQsZUvN8lFfLYG8h"
+}

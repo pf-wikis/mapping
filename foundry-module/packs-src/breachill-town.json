@@ -1,0 +1,135 @@
+{
+ "name": "Breachill",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.116,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "2MrmCSPLxxFLDN5A",
+   "name": "Breachill",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/breachill-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "di8oI74VJsBxhUzr",
+   "x": 2344,
+   "y": 1618,
+   "text": "Wizard's Grace",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Wizard's_Grace"
+    }
+   }
+  },
+  {
+   "_id": "bOJBTDdrhX0O28o6",
+   "x": 2287,
+   "y": 1524,
+   "text": "Breachill",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Breachill"
+    }
+   }
+  },
+  {
+   "_id": "ituPBhMItI5vAQVP",
+   "x": 2411,
+   "y": 1496,
+   "text": "Morta's Mortuary",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Morta's_Mortuary"
+    }
+   }
+  },
+  {
+   "_id": "LjSRYDKlSAQtcU3b",
+   "x": 2213,
+   "y": 1463,
+   "text": "Reliant Book Company",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Reliant_Book_Company"
+    }
+   }
+  },
+  {
+   "_id": "T02sWEmzXYsm6xLb",
+   "x": 2304,
+   "y": 1404,
+   "text": "Pickled Ear",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pickled_Ear"
+    }
+   }
+  },
+  {
+   "_id": "cm1lN58PODpM0TIA",
+   "x": 2952,
+   "y": 816,
+   "text": "Citadel Altaerein",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Citadel_Altaerein"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/breachill-town.webp",
+ "__key": "breachill-town",
+ "__folder": "Cities",
+ "_id": "5CRmS1hodAaZ7Uec"
+}

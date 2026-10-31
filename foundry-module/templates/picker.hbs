@@ -1,0 +1,32 @@
+<div class="gm-picker">
+  <div class="gm-map"></div>
+  <form class="gm-controls" autocomplete="off">
+    <div class="form-group">
+      <label>{{localize "GOLARIONMAPS.SceneName"}}</label>
+      <input type="text" name="sceneName" value="{{sceneName}}" />
+    </div>
+    <div class="form-group">
+      <label>{{localize "GOLARIONMAPS.Resolution"}}</label>
+      <select name="resFactor">
+        <option value="1">1×</option>
+        <option value="2" selected>2×</option>
+        <option value="3">3×</option>
+        <option value="4">4×</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>{{localize "GOLARIONMAPS.Grid"}}</label>
+      <select name="gridType">
+        <option value="gridless" selected>{{localize "GOLARIONMAPS.Gridless"}}</option>
+        <option value="square">{{localize "GOLARIONMAPS.Square"}}</option>
+      </select>
+      <input type="number" name="gridSize" value="100" min="20" step="1"
+             title="{{localize 'GOLARIONMAPS.GridSizeHint'}}" />
+    </div>
+    <button type="button" data-action="create">
+      <i class="fa-solid fa-map"></i> {{localize "GOLARIONMAPS.CreateScene"}}
+    </button>
+  </form>
+  <p class="gm-readout"></p>
+  <p class="gm-status"></p>
+</div>

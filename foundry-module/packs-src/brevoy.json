@@ -1,0 +1,696 @@
+{
+ "name": "Brevoy",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 17,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "HNKtEybuzEIkxgRZ",
+   "name": "Brevoy",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/brevoy.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "0d6PZbpqI2nJifuI",
+   "x": 24,
+   "y": 1948,
+   "text": "Torch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Torch"
+    }
+   }
+  },
+  {
+   "_id": "MOwZkuy2jxbJBgpt",
+   "x": 691,
+   "y": 2254,
+   "text": "Mormouth",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mormouth"
+    }
+   }
+  },
+  {
+   "_id": "e6IfoHSSGjRlQFwk",
+   "x": 2711,
+   "y": 2183,
+   "text": "Brunderton",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Brunderton"
+    }
+   }
+  },
+  {
+   "_id": "Sv50d9grt3q4SvVs",
+   "x": 2007,
+   "y": 2053,
+   "text": "New Stetven",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/New_Stetven"
+    }
+   }
+  },
+  {
+   "_id": "q4E3IGpIvuyzMmJA",
+   "x": 1882,
+   "y": 1849,
+   "text": "Silverhall",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Silverhall"
+    }
+   }
+  },
+  {
+   "_id": "23sBtLsc5IygDI8s",
+   "x": 1477,
+   "y": 1601,
+   "text": "Zmeyka",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zmeyka"
+    }
+   }
+  },
+  {
+   "_id": "WgkIdgGb7Mi8Y87H",
+   "x": 1459,
+   "y": 1448,
+   "text": "Grayhaven",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Grayhaven"
+    }
+   }
+  },
+  {
+   "_id": "WlSVwM28qFfIlfR8",
+   "x": 1501,
+   "y": 1331,
+   "text": "Highdelve",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Highdelve"
+    }
+   }
+  },
+  {
+   "_id": "bwbFul3vZoyp5xOh",
+   "x": 765,
+   "y": 1301,
+   "text": "Chitterhome",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Chitterhome"
+    }
+   }
+  },
+  {
+   "_id": "yOOQrhXCPfmWZhUu",
+   "x": 1464,
+   "y": 1283,
+   "text": "Golushkin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Golushkin"
+    }
+   }
+  },
+  {
+   "_id": "jGxtVcrsXAT9rZYB",
+   "x": 1054,
+   "y": 1264,
+   "text": "Sunder Horn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sunder_Horn"
+    }
+   }
+  },
+  {
+   "_id": "hMfhRgJIXhVa7DGj",
+   "x": 1875,
+   "y": 1259,
+   "text": "Eagle's Watch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Eagle's_Watch"
+    }
+   }
+  },
+  {
+   "_id": "0QTLImYux6vmUz3Q",
+   "x": 2741,
+   "y": 1155,
+   "text": "Stoneclimb",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Stoneclimb"
+    }
+   }
+  },
+  {
+   "_id": "qAFXjDEn9FrASUtT",
+   "x": 560,
+   "y": 1015,
+   "text": "Chesed",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Chesed"
+    }
+   }
+  },
+  {
+   "_id": "Fr67ErBSRpQbfLBS",
+   "x": 321,
+   "y": 1010,
+   "text": "Graymoor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Graymoor"
+    }
+   }
+  },
+  {
+   "_id": "uFecWFGxfKYmvqVN",
+   "x": 1446,
+   "y": 946,
+   "text": "Port Ice",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Port_Ice"
+    }
+   }
+  },
+  {
+   "_id": "cmYWdvaFaQX2DfC1",
+   "x": 2743,
+   "y": 907,
+   "text": "Skywatch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Skywatch"
+    }
+   }
+  },
+  {
+   "_id": "BS40POnGqxFh8az8",
+   "x": 1935,
+   "y": 460,
+   "text": "Winterbreak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Winterbreak"
+    }
+   }
+  },
+  {
+   "_id": "3DlDJUe08uSBBtq6",
+   "x": 736,
+   "y": 384,
+   "text": "Egede",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Egede"
+    }
+   }
+  },
+  {
+   "_id": "Xq39xkoSaFxLwuT0",
+   "x": 4191,
+   "y": 1751,
+   "text": "Kirya",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kirya"
+    }
+   }
+  },
+  {
+   "_id": "SI4SX9VmNuof1ECq",
+   "x": 4110,
+   "y": 1491,
+   "text": "Mishkar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mishkar"
+    }
+   }
+  },
+  {
+   "_id": "48SB9KoPhMXTBtoc",
+   "x": 4530,
+   "y": 1361,
+   "text": "Evaren",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Evaren"
+    }
+   }
+  },
+  {
+   "_id": "Hv9jIskYNBePHK8e",
+   "x": 4505,
+   "y": 770,
+   "text": "Orost",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Orost"
+    }
+   }
+  },
+  {
+   "_id": "yZMToi3Wqbgayqtx",
+   "x": 4378,
+   "y": 287,
+   "text": "Myrnorosk",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Myrnorosk"
+    }
+   }
+  },
+  {
+   "_id": "p4rTwUKwO0EuzNdq",
+   "x": 3132,
+   "y": 138,
+   "text": "Ker Sharic",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ker_Sharic"
+    }
+   }
+  },
+  {
+   "_id": "UX28tIi4nnTlB0cT",
+   "x": 924,
+   "y": 3046,
+   "text": "Avendale",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Avendale"
+    }
+   }
+  },
+  {
+   "_id": "B230elR1FlK7Xs8i",
+   "x": 1677,
+   "y": 3042,
+   "text": "Mivon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mivon"
+    }
+   }
+  },
+  {
+   "_id": "G4MdCHE8sjKYub8t",
+   "x": 3003,
+   "y": 2922,
+   "text": "Varnhold",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Varnhold"
+    }
+   }
+  },
+  {
+   "_id": "NWLhmvvFIHQ31HXU",
+   "x": 1015,
+   "y": 2872,
+   "text": "Voluse",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Voluse"
+    }
+   }
+  },
+  {
+   "_id": "8zXb6K5B47QtI3Mi",
+   "x": 299,
+   "y": 2840,
+   "text": "Heibarr",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Heibarr"
+    }
+   }
+  },
+  {
+   "_id": "DAQ6pKhn0B5VDTs8",
+   "x": 797,
+   "y": 2794,
+   "text": "Seredain",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Seredain"
+    }
+   }
+  },
+  {
+   "_id": "7e6asroe9n4EuYqM",
+   "x": 1460,
+   "y": 2790,
+   "text": "Sarain",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sarain"
+    }
+   }
+  },
+  {
+   "_id": "JnkycbSe516rxpMh",
+   "x": 1343,
+   "y": 2601,
+   "text": "Pitax",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pitax"
+    }
+   }
+  },
+  {
+   "_id": "qODCPkXoZaVB7emn",
+   "x": 1771,
+   "y": 2499,
+   "text": "Fort Drelev",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fort_Drelev"
+    }
+   }
+  },
+  {
+   "_id": "jlKgjIAMmkBz4W2m",
+   "x": 1233,
+   "y": 2465,
+   "text": "Littletown",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Littletown"
+    }
+   }
+  },
+  {
+   "_id": "fet6uNPjiir6YxEg",
+   "x": 390,
+   "y": 2432,
+   "text": "Hajoth Hakados",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hajoth_Hakados"
+    }
+   }
+  },
+  {
+   "_id": "AcoKwdQConGUpYvV",
+   "x": 170,
+   "y": 2313,
+   "text": "Blackpipe",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Blackpipe"
+    }
+   }
+  },
+  {
+   "_id": "0xWQPdjBC3zyy0HO",
+   "x": 3272,
+   "y": 2803,
+   "text": "Restov",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Restov"
+    }
+   }
+  },
+  {
+   "_id": "PNcVxERXCuwZws0A",
+   "x": 3108,
+   "y": 2761,
+   "text": "Nivakta's Crossing",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nivakta's_Crossing"
+    }
+   }
+  }
+ ],
+ "__key": "brevoy",
+ "__folder": "Nations",
+ "_id": "8dKeDWrWjaEWmFaq",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/brevoy.webp"
+}

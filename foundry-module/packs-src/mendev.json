@@ -1,0 +1,1053 @@
+{
+ "name": "Mendev",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 14.6,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "ZCcDQ9reJQ7aeDPD",
+   "name": "Mendev",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/mendev.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "Nk6ywJLnUnC6lyV1",
+   "x": 1161,
+   "y": 3064,
+   "text": "Plain of Ten Thousand Swords",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Plain_of_Ten_Thousand_Swords"
+    }
+   }
+  },
+  {
+   "_id": "vLUvAU3Wyv5dmuam",
+   "x": 1403,
+   "y": 2987,
+   "text": "Silver Mount",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Silver_Mount"
+    }
+   }
+  },
+  {
+   "_id": "Utwc8GW5l3acIBtL",
+   "x": 714,
+   "y": 2903,
+   "text": "Aaramor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aaramor"
+    }
+   }
+  },
+  {
+   "_id": "vvZTEE2nFrprv3s1",
+   "x": 634,
+   "y": 2891,
+   "text": "Storasta",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Storasta"
+    }
+   }
+  },
+  {
+   "_id": "BzMfJSlC6OTYC5rP",
+   "x": 66,
+   "y": 2870,
+   "text": "Gundrun",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gundrun"
+    }
+   }
+  },
+  {
+   "_id": "xjimmHhWod1u9Mww",
+   "x": 1548,
+   "y": 2809,
+   "text": "Battle of Grasyhot",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Battle_of_Grasyhot"
+    }
+   }
+  },
+  {
+   "_id": "ZrPapBz4i4iHlDzj",
+   "x": 838,
+   "y": 2782,
+   "text": "Nerosyan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nerosyan"
+    }
+   }
+  },
+  {
+   "_id": "GTUs7JaVlbAtkL5a",
+   "x": 175,
+   "y": 2723,
+   "text": "Ghalcor's Tower",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ghalcor's_Tower"
+    }
+   }
+  },
+  {
+   "_id": "l0tO37Qwdi1oC7fH",
+   "x": 681,
+   "y": 2694,
+   "text": "Dredarin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dredarin"
+    }
+   }
+  },
+  {
+   "_id": "Hicrx7tcdSNBxBup",
+   "x": 343,
+   "y": 2677,
+   "text": "Raliscrad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Raliscrad"
+    }
+   }
+  },
+  {
+   "_id": "0KiE8z2zsc98l7WL",
+   "x": 971,
+   "y": 2624,
+   "text": "Boligar Fortress",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Boligar_Fortress"
+    }
+   }
+  },
+  {
+   "_id": "nzp4zUNrAfmigkVW",
+   "x": 1516,
+   "y": 2550,
+   "text": "Bounded Grove",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bounded_Grove"
+    }
+   }
+  },
+  {
+   "_id": "y4ZoNqIEOWPw0uC6",
+   "x": 1764,
+   "y": 2524,
+   "text": "Lackthroat",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lackthroat"
+    }
+   }
+  },
+  {
+   "_id": "ywcCatzz2b9WLcxY",
+   "x": 270,
+   "y": 2453,
+   "text": "Devil's Rest",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Devil's_Rest"
+    }
+   }
+  },
+  {
+   "_id": "U9txyqOBdoIS9YH9",
+   "x": 1757,
+   "y": 2361,
+   "text": "Severed Spiral",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Severed_Spiral"
+    }
+   }
+  },
+  {
+   "_id": "UTbwZ11omIO84SqO",
+   "x": 1099,
+   "y": 2306,
+   "text": "Star Keep",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Star_Keep"
+    }
+   }
+  },
+  {
+   "_id": "eYYMpsAPC820EKce",
+   "x": 1471,
+   "y": 2295,
+   "text": "Dubrov",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dubrov"
+    }
+   }
+  },
+  {
+   "_id": "BzTsq4L25h3ij4Rq",
+   "x": 1211,
+   "y": 2180,
+   "text": "Castle Suma",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Castle_Suma"
+    }
+   }
+  },
+  {
+   "_id": "LE5cAYbCJZ7i5klW",
+   "x": 1670,
+   "y": 2166,
+   "text": "Krega",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Krega"
+    }
+   }
+  },
+  {
+   "_id": "o7IPrEdnLWWAImY5",
+   "x": 1018,
+   "y": 1995,
+   "text": "Zelmisdria's Boudoir",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zelmisdria's_Boudoir"
+    }
+   }
+  },
+  {
+   "_id": "NdmEIwoh0XmKNbZc",
+   "x": 1733,
+   "y": 1952,
+   "text": "Chapel of the Argent Shield",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Chapel_of_the_Argent_Shield"
+    }
+   }
+  },
+  {
+   "_id": "Wlp6vZETYtIsZ9LK",
+   "x": 1363,
+   "y": 1945,
+   "text": "Zharech",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zharech"
+    }
+   }
+  },
+  {
+   "_id": "wUNWTFjKSeyDYMuB",
+   "x": 2154,
+   "y": 1923,
+   "text": "Herne's Oak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Herne's_Oak"
+    }
+   }
+  },
+  {
+   "_id": "18H4tVnubYYqkF9K",
+   "x": 383,
+   "y": 1828,
+   "text": "Threshold",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Threshold"
+    }
+   }
+  },
+  {
+   "_id": "U67w0U5EonQujmzS",
+   "x": 1771,
+   "y": 1743,
+   "text": "Monastery of Tala",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Monastery_of_Tala"
+    }
+   }
+  },
+  {
+   "_id": "j6O0uvAEqWPI7xy7",
+   "x": 1323,
+   "y": 1675,
+   "text": "Kenabres",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kenabres"
+    }
+   }
+  },
+  {
+   "_id": "sRCbqz3cyHEit2rW",
+   "x": 1090,
+   "y": 1619,
+   "text": "Yathscar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yathscar"
+    }
+   }
+  },
+  {
+   "_id": "NkVIS3x9UhW4gdrT",
+   "x": 456,
+   "y": 1601,
+   "text": "Iz",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Iz"
+    }
+   }
+  },
+  {
+   "_id": "X6cNSTVgCjs0NaSE",
+   "x": 1420,
+   "y": 1580,
+   "text": "Valas's Gift",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Valas's_Gift"
+    }
+   }
+  },
+  {
+   "_id": "vJkdChdnTzp2dgmo",
+   "x": 34,
+   "y": 1514,
+   "text": "Saintsgrove",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Saintsgrove"
+    }
+   }
+  },
+  {
+   "_id": "I9I7s2L0K536D5SG",
+   "x": 1947,
+   "y": 1350,
+   "text": "Te Taspeh Valley",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Te_Taspeh_Valley"
+    }
+   }
+  },
+  {
+   "_id": "ka5JCcKsHuenSYTH",
+   "x": 688,
+   "y": 1289,
+   "text": "Pulura's Fall",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pulura's_Fall"
+    }
+   }
+  },
+  {
+   "_id": "T0fUEZG8zmxeT7f9",
+   "x": 1588,
+   "y": 1160,
+   "text": "Vilareth Ford",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vilareth_Ford"
+    }
+   }
+  },
+  {
+   "_id": "yAuZk2xKgKOtwRCD",
+   "x": 1999,
+   "y": 1039,
+   "text": "Icerift Castle",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Icerift_Castle"
+    }
+   }
+  },
+  {
+   "_id": "QkjzU6l0QeYkYNDL",
+   "x": 1690,
+   "y": 1010,
+   "text": "Keeper's Canyon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Keeper's_Canyon"
+    }
+   }
+  },
+  {
+   "_id": "RfiQs62R4EmL9PFv",
+   "x": 1553,
+   "y": 931,
+   "text": "Drezen",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Drezen"
+    }
+   }
+  },
+  {
+   "_id": "08QgzRdreGUxtRBv",
+   "x": 39,
+   "y": 791,
+   "text": "Circle of Hierophants",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Circle_of_Hierophants"
+    }
+   }
+  },
+  {
+   "_id": "UuerrIhcYir4u2N8",
+   "x": 284,
+   "y": 740,
+   "text": "Uncorrupted Guardian Circle",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Uncorrupted_Guardian_Circle"
+    }
+   }
+  },
+  {
+   "_id": "UCo1qXhOu3Cu9XPT",
+   "x": 387,
+   "y": 739,
+   "text": "Greengrave Keep",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Greengrave_Keep"
+    }
+   }
+  },
+  {
+   "_id": "8890eFWDE8jLlylF",
+   "x": 3660,
+   "y": 3048,
+   "text": "Zmeyka",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zmeyka"
+    }
+   }
+  },
+  {
+   "_id": "yKRN2YfMhfr1yfvu",
+   "x": 2251,
+   "y": 3041,
+   "text": "Hollow Garden",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hollow_Garden"
+    }
+   }
+  },
+  {
+   "_id": "2k4xTCMjDE6iJ1Pi",
+   "x": 3641,
+   "y": 2881,
+   "text": "Grayhaven",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Grayhaven"
+    }
+   }
+  },
+  {
+   "_id": "WpnDN6ysLFAIkAZz",
+   "x": 2483,
+   "y": 2824,
+   "text": "Scrapwall",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Scrapwall"
+    }
+   }
+  },
+  {
+   "_id": "51NcIROkvfrCa8Vv",
+   "x": 3686,
+   "y": 2755,
+   "text": "Highdelve",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Highdelve"
+    }
+   }
+  },
+  {
+   "_id": "PR8sE0WgicgQS5H1",
+   "x": 2886,
+   "y": 2722,
+   "text": "Chitterhome",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Chitterhome"
+    }
+   }
+  },
+  {
+   "_id": "KChFVg5uD0RqkaF7",
+   "x": 3647,
+   "y": 2702,
+   "text": "Golushkin",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Golushkin"
+    }
+   }
+  },
+  {
+   "_id": "3rkQ5SvllVykUgt3",
+   "x": 3200,
+   "y": 2681,
+   "text": "Sunder Horn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sunder_Horn"
+    }
+   }
+  },
+  {
+   "_id": "E56U4Sm9lcSCIrOy",
+   "x": 4094,
+   "y": 2676,
+   "text": "Eagle's Watch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Eagle's_Watch"
+    }
+   }
+  },
+  {
+   "_id": "YcepxWj1W6iCI8lB",
+   "x": 2461,
+   "y": 2631,
+   "text": "Silver Trough",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Silver_Trough"
+    }
+   }
+  },
+  {
+   "_id": "BytvDyAxfqW69JIF",
+   "x": 3261,
+   "y": 2480,
+   "text": "Crowhollow",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Crowhollow"
+    }
+   }
+  },
+  {
+   "_id": "BhARDkRN75HRZBxD",
+   "x": 2664,
+   "y": 2411,
+   "text": "Chesed",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Chesed"
+    }
+   }
+  },
+  {
+   "_id": "Xpq8MUsEedjGKK0P",
+   "x": 2404,
+   "y": 2406,
+   "text": "Graymoor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Graymoor"
+    }
+   }
+  },
+  {
+   "_id": "Xw3MBbG6LeCLnNqc",
+   "x": 2739,
+   "y": 2351,
+   "text": "Sable Barrow",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sable_Barrow"
+    }
+   }
+  },
+  {
+   "_id": "l690L8k4aVZE6YxR",
+   "x": 3627,
+   "y": 2336,
+   "text": "Port Ice",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Port_Ice"
+    }
+   }
+  },
+  {
+   "_id": "1LG4lXo0AbXlCh4q",
+   "x": 4376,
+   "y": 2085,
+   "text": "Jundlan Wrecks",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jundlan_Wrecks"
+    }
+   }
+  },
+  {
+   "_id": "PROJkzZyNSo8gBaV",
+   "x": 4159,
+   "y": 1807,
+   "text": "Winterbreak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Winterbreak"
+    }
+   }
+  },
+  {
+   "_id": "AMOicNWa0RcbFrPM",
+   "x": 2855,
+   "y": 1725,
+   "text": "Egede",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Egede"
+    }
+   }
+  },
+  {
+   "_id": "qTuEMR07e2Wm7Ylk",
+   "x": 2541,
+   "y": 1310,
+   "text": "Ayin Lun",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ayin_Lun"
+    }
+   }
+  },
+  {
+   "_id": "XzWOaIpKBDn18W31",
+   "x": 3067,
+   "y": 1080,
+   "text": "Saresp Mountain",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Saresp_Mountain"
+    }
+   }
+  },
+  {
+   "_id": "33Hf9kML4GcHlfof",
+   "x": 3380,
+   "y": 813,
+   "text": "Shatterglass",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shatterglass"
+    }
+   }
+  }
+ ],
+ "__key": "mendev",
+ "__folder": "Nations",
+ "_id": "BludZW6kEtKoAaIl",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/mendev.webp"
+}

@@ -1,0 +1,84 @@
+{
+ "name": "Pitax Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.07,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "yexQBDYPgv0vLw0X",
+   "name": "Pitax Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/pitax-region.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "TRGDTq0SXuRFDpzS",
+   "x": 1661,
+   "y": 748,
+   "text": "Littletown",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Littletown"
+    }
+   }
+  },
+  {
+   "_id": "qJ1fFDILNs4I4Nzx",
+   "x": 2304,
+   "y": 1543,
+   "text": "Pitax",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pitax"
+    }
+   }
+  },
+  {
+   "_id": "9WEIZZIaJA9lsqtU",
+   "x": 2989,
+   "y": 2656,
+   "text": "Sarain",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sarain"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/pitax-region.webp",
+ "__key": "pitax-region",
+ "__folder": "City Regions",
+ "_id": "ms32IDywwMMqHJUP"
+}
