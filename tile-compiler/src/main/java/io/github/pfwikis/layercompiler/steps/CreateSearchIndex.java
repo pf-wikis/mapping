@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
@@ -90,16 +91,8 @@ public class CreateSearchIndex extends StepExecutor {
 		FeatureCollection withArea;
 		if(layerName.equals("cities") || layerName.equals("locations")) {
 			withArea = content.toFeatureCollection();
-		} else {
-			var merged = Tools.mapshaper(this, content,
-				"-filter", "Boolean(label)",
-				//make sure timeStart is defined
-				"-each", "if(!Boolean(this.properties.timeStart)) this.properties.timeStart=null",
-				"-each", "if(!Boolean(this.properties.timeEnd)) this.properties.timeEnd=null",
-				"-dissolve", "label,timeStart,timeEnd"
-			);
-			
-			withArea = Tools.qgis(this, "native:fieldcalculator", merged,
+		} else {			
+			withArea = Tools.qgis(this, "native:fieldcalculator", content,
 				"--FIELD_NAME=areaM2",
 				"--FIELD_TYPE=0", //double
 				"--FORMULA=$area"
@@ -167,11 +160,19 @@ public class CreateSearchIndex extends StepExecutor {
 		if(lat.getMin()==lat.getMax() && lng.getMin()==lng.getMax()) {
 			return new double[] {lng.getMin(), lat.getMin()};
 		}
-		return new double[] {
+		
+		var result = new double[] {
 			lng.getMin(),
 			lat.getMin(),
 			lng.getMax(),
 			lat.getMax()
 		};
+		
+		for(double v:result) {
+			if(!Double.isFinite(v))
+				throw new IllegalStateException("Infinite bbox value in"+Arrays.toString(result));
+		}
+		
+		return result;
 	}
 }
