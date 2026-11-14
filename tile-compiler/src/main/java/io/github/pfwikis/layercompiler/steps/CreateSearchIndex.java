@@ -123,7 +123,8 @@ public class CreateSearchIndex extends StepExecutor {
 				var time = e.getKey();
 				var lngInfo = e.getValue().stream().flatMap(f->f.getGeometry().streamPoints()).collect(Collectors.summarizingDouble(LngLat::lng));
 				var latInfo = e.getValue().stream().flatMap(f->f.getGeometry().streamPoints()).collect(Collectors.summarizingDouble(LngLat::lat));
-				var areaM2 = e.getValue().stream().map(f->f.getProperties().getAreaM2()).filter(Objects::nonNull).findAny().orElse(null);
+				Double areaM2 = e.getValue().stream().map(f->f.getProperties().getAreaM2()).filter(Objects::nonNull).mapToDouble(v->v).sum();
+				if(areaM2 == 0) areaM2 = null;
 				if(!timedResults.subTimeMap(time).isEmpty()) {
 					throw new IllegalStateException("Duplicate values for layer " + layerName + " " + idEntry);
 				}
