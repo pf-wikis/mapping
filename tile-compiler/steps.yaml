@@ -358,24 +358,28 @@
       dependsOn:
         in: region-labels.BORDER_VARIANTS__REGIONS
         mask: land_without_water
+    - step: DISSOLVE_BY_LABEL
 - name: nation-area
   steps: 
     - step: CLIP
       dependsOn:
         in: nation-labels.BORDER_VARIANTS__NATIONS
         mask: land_without_water
+    - step: DISSOLVE_BY_LABEL
 - name: subregion-area
   steps: 
     - step: CLIP
       dependsOn:
         in: subregion-labels.BORDER_VARIANTS__SUBREGIONS
         mask: land_without_water
+    - step: DISSOLVE_BY_LABEL
 - name: province-area
   steps: 
     - step: CLIP
       dependsOn:
         in: province-labels.BORDER_VARIANTS__PROVINCES
         mask: land_without_water
+    - step: DISSOLVE_BY_LABEL
 
 ########################## merge all geometry together
 - name: borders

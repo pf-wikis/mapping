@@ -91,7 +91,15 @@ public class CreateSearchIndex extends StepExecutor {
 		if(layerName.equals("cities") || layerName.equals("locations")) {
 			withArea = content.toFeatureCollection();
 		} else {
-			withArea = Tools.qgis(this, "native:fieldcalculator", content,
+			var merged = Tools.mapshaper(this, content,
+				"-filter", "Boolean(label)",
+				//make sure timeStart is defined
+				"-each", "if(!Boolean(this.properties.timeStart)) this.properties.timeStart=null",
+				"-each", "if(!Boolean(this.properties.timeEnd)) this.properties.timeEnd=null",
+				"-dissolve", "label,timeStart,timeEnd"
+			);
+			
+			withArea = Tools.qgis(this, "native:fieldcalculator", merged,
 				"--FIELD_NAME=areaM2",
 				"--FIELD_TYPE=0", //double
 				"--FORMULA=$area"
@@ -123,10 +131,16 @@ public class CreateSearchIndex extends StepExecutor {
 				var lngInfo = e.getValue().stream().flatMap(f->f.getGeometry().streamPoints()).collect(Collectors.summarizingDouble(LngLat::lng));
 				var latInfo = e.getValue().stream().flatMap(f->f.getGeometry().streamPoints()).collect(Collectors.summarizingDouble(LngLat::lat));
 				var areaM2 = e.getValue().stream().map(f->f.getProperties().getAreaM2()).filter(Objects::nonNull).findAny().orElse(null);
-				timedResults.put(time, new Data(
-					toArray(lngInfo, latInfo),
-					areaM2
-				));
+				if(!timedResults.subTimeMap(time).isEmpty()) {
+					throw new IllegalStateException("Duplicate values for layer " + layerName + " " + idEntry);
+				}
+				timedResults.put(
+					time,
+					new Data(
+						toArray(lngInfo, latInfo),
+						areaM2
+					)
+				);
 			}
 			
 			results.add(new Result(
