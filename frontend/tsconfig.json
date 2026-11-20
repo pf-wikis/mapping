@@ -4,6 +4,8 @@
     "strict": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "noImplicitAny": true,
     "removeComments": true,
     "isolatedModules": true,

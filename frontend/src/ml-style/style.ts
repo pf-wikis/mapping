@@ -1,10 +1,10 @@
-import { FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, StyleSpecification, ExpressionFilterSpecification } from "maplibre-gl";
-import { ExistingLayer, Prop, propsMeta, maxZoomWithData} from "../../gen/props-meta-golarion";
-import { timeIndexEnd, timeIndexStart } from "../utils/BasicStyleFilters";
-import { OptionalFields } from "../utils/type-utils";
-import { state, StateProp } from "./state";
-import { Expression } from "./expression";
-import { projection } from "./projection";
+import type { FillLayerSpecification, LayerSpecification, LineLayerSpecification, SymbolLayerSpecification, StyleSpecification } from "maplibre-gl";
+import { type ExistingLayer, Prop, propsMeta, maxZoomWithData} from "../../gen/props-meta-golarion.ts";
+import { timeIndexEnd, timeIndexStart } from "../utils/BasicStyleFilters.ts";
+import type { OptionalFields } from "../utils/type-utils";
+import { state, type StateProp } from "./state.ts";
+import type { Expression } from "./expression";
+import { projection } from "./projection.ts";
 
 export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
 

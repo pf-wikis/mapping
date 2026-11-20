@@ -1,23 +1,24 @@
 export const maxZoomWithData = 12;
-export const enum Prop {
-  angle='angle',
-  borderType='borderType',
-  color='color',
-  export='export',
-  export_tileMaxzoom='export_tileMaxzoom',
-  export_tileMinzoom='export_tileMinzoom',
-  fid='fid',
-  halo='halo',
-  icon='icon',
-  inSubregion='inSubregion',
-  label='label',
-  maxzoom='maxzoom',
-  minzoom='minzoom',
-  pregroupMinzoom='pregroupMinzoom',
-  timeIndexEnd='timeIndexEnd',
-  timeIndexStart='timeIndexStart',
-  type='type',
-};
+export const Prop = {
+  angle: 'angle',
+  borderType: 'borderType',
+  color: 'color',
+  export: 'export',
+  export_tileMaxzoom: 'export_tileMaxzoom',
+  export_tileMinzoom: 'export_tileMinzoom',
+  fid: 'fid',
+  halo: 'halo',
+  icon: 'icon',
+  inSubregion: 'inSubregion',
+  label: 'label',
+  maxzoom: 'maxzoom',
+  minzoom: 'minzoom',
+  pregroupMinzoom: 'pregroupMinzoom',
+  timeIndexEnd: 'timeIndexEnd',
+  timeIndexStart: 'timeIndexStart',
+  type: 'type',
+} as const;
+export type Prop = typeof Prop[keyof typeof Prop];
 export type ExistingLayer = 'borders'|'geometry'|'highlights'|'labels'|'line-labels'|'locations'|'nation-labels'|'province-labels'|'region-labels'|'subregion-labels'|'time-meta';
 export const propsMeta = {
   "borders" : {

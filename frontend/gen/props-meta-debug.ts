@@ -1,13 +1,14 @@
 export const maxZoomWithData = 12;
-export const enum Prop {
-  city='city',
-  export='export',
-  export_tileMaxzoom='export_tileMaxzoom',
-  export_tileMinzoom='export_tileMinzoom',
-  label='label',
-  timeIndexEnd='timeIndexEnd',
-  timeIndexStart='timeIndexStart',
-};
+export const Prop = {
+  city: 'city',
+  export: 'export',
+  export_tileMaxzoom: 'export_tileMaxzoom',
+  export_tileMinzoom: 'export_tileMinzoom',
+  label: 'label',
+  timeIndexEnd: 'timeIndexEnd',
+  timeIndexStart: 'timeIndexStart',
+} as const;
+export type Prop = typeof Prop[keyof typeof Prop];
 export type ExistingLayer = 'city-polygons'|'highlights'|'time-meta';
 export const propsMeta = {
   "city-polygons" : {

@@ -1,4 +1,4 @@
-import { defineConfig, ResolvedConfig, UserConfig } from 'vite';
+import { defineConfig, type ResolvedConfig, type UserConfig } from 'vite';
 import { compression, defineAlgorithm } from 'vite-plugin-compression2'
 import style from './src/ml-style/style.ts'
 import { validateStyleMin } from '@maplibre/maplibre-gl-style-spec'

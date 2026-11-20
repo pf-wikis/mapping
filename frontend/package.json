@@ -21,8 +21,8 @@
     "vite-plugin-compression2": "^2.4.0"
   },
   "scripts": {
-    "start": "npx vite",
-    "build": "vite build"
+    "start": "vite --configLoader native",
+    "build": "vite build --configLoader native"
   },
   "engines": {
     "node": ">=23.8.0"

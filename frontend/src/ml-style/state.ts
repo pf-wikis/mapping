@@ -1,6 +1,6 @@
-import timeMeta from "../../gen/timeMeta";
-import { ToString, Widen } from "../utils/type-utils";
-import { Expression, GlobalState } from "./expression";
+import timeMeta from "../../gen/timeMeta.ts";
+import type { ToString, Widen } from "../utils/type-utils";
+import type { Expression, GlobalState } from "./expression";
 
 export const defaultState = {
   timeIndex: timeMeta.latest.id,

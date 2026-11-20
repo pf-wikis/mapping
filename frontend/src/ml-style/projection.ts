@@ -1,4 +1,4 @@
-import { ProjectionSpecification } from "maplibre-gl";
+import type { ProjectionSpecification } from "maplibre-gl";
 
 export const projection:ProjectionSpecification = {
     "type": [
