@@ -1,0 +1,50 @@
+{
+ "name": "Escadar",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "YldLWvRPYItDqTsH",
+   "name": "Escadar",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/escadar-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "I50Q7TAheM9RUtx6",
+   "x": 2304,
+   "y": 1536,
+   "text": "Escadar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Escadar"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/escadar-town.webp",
+ "__key": "escadar-town",
+ "__folder": "Cities",
+ "_id": "JwwVfVxZroqe1i0s"
+}

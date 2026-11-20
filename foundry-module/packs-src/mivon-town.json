@@ -1,0 +1,50 @@
+{
+ "name": "Mivon",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "fx8zirz2KUifnp7e",
+   "name": "Mivon",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/mivon-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "0bvigL66Q6aejEZy",
+   "x": 2304,
+   "y": 1537,
+   "text": "Mivon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mivon"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/mivon-town.webp",
+ "__key": "mivon-town",
+ "__folder": "Cities",
+ "_id": "7KvaTp57hI6sUT2m"
+}

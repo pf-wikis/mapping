@@ -1,0 +1,50 @@
+{
+ "name": "Avilan",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "ddWpG0B7MzDSVAnI",
+   "name": "Avilan",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/avilan-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "bIukfx14lqZyODVI",
+   "x": 2304,
+   "y": 1537,
+   "text": "Avilan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Avilan"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/avilan-town.webp",
+ "__key": "avilan-town",
+ "__folder": "Cities",
+ "_id": "0On3l7edTgThL6ZV"
+}

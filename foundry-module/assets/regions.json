@@ -1,0 +1,4026 @@
+{
+ "$comment": "Curated region manifest for compendium generation. Tiers: world/continents (gridless), Inner Sea meta-regions, popular nations, city environs. 'fit' frames a gazetteer (search.json) feature bbox; point features use radiusMi. Explicit center/zoom entries were hand-tuned 2026-07-17. maxZoomWithData upstream is 8; fits cap at 8.4.",
+ "folders": [
+  "World & Continents",
+  "Inner Sea Regions",
+  "Nations",
+  "City Regions",
+  "Cities"
+ ],
+ "regions": [
+  {
+   "key": "golarion-world",
+   "name": "Golarion",
+   "center": [
+    20,
+    10
+   ],
+   "zoom": 1.4,
+   "width": 1280,
+   "height": 800,
+   "resFactor": 3,
+   "gridType": "gridless",
+   "folder": "World & Continents",
+   "notes": false
+  },
+  {
+   "key": "avistan",
+   "name": "Avistan",
+   "center": [
+    -12,
+    47
+   ],
+   "zoom": 3.6,
+   "resFactor": 4,
+   "gridType": "gridless",
+   "folder": "World & Continents"
+  },
+  {
+   "key": "garund",
+   "name": "Garund",
+   "center": [
+    -11,
+    6
+   ],
+   "zoom": 3.3,
+   "resFactor": 4,
+   "gridType": "gridless",
+   "folder": "World & Continents"
+  },
+  {
+   "key": "tian-xia",
+   "name": "Tian Xia",
+   "center": [
+    173,
+    20
+   ],
+   "zoom": 3,
+   "resFactor": 4,
+   "gridType": "gridless",
+   "folder": "World & Continents"
+  },
+  {
+   "key": "casmaron",
+   "name": "Casmaron",
+   "center": [
+    45,
+    20
+   ],
+   "zoom": 3.2,
+   "resFactor": 4,
+   "gridType": "gridless",
+   "folder": "World & Continents"
+  },
+  {
+   "key": "arcadia",
+   "name": "Arcadia",
+   "center": [
+    -94,
+    -5
+   ],
+   "zoom": 3.2,
+   "resFactor": 4,
+   "gridType": "gridless",
+   "folder": "World & Continents"
+  },
+  {
+   "key": "crown-of-the-world",
+   "name": "Crown of the World",
+   "center": [
+    -9,
+    76
+   ],
+   "zoom": 3,
+   "resFactor": 4,
+   "gridType": "gridless",
+   "folder": "World & Continents"
+  },
+  {
+   "key": "inner-sea-region",
+   "name": "The Inner Sea Region",
+   "center": [
+    -8,
+    36
+   ],
+   "zoom": 4.2,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "absalom-starstone-isle",
+   "name": "Absalom and Starstone Isle",
+   "center": [
+    -0.5,
+    31.4
+   ],
+   "zoom": 6.2,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "broken-lands",
+   "name": "Broken Lands",
+   "center": [
+    0.2,
+    49.6
+   ],
+   "zoom": 4.8,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "eye-of-dread",
+   "name": "Eye of Dread",
+   "center": [
+    -12.7,
+    47.2
+   ],
+   "zoom": 5,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "golden-road",
+   "name": "Golden Road",
+   "center": [
+    -3.7,
+    26
+   ],
+   "zoom": 4.6,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "high-seas",
+   "name": "High Seas",
+   "center": [
+    -29.3,
+    22
+   ],
+   "zoom": 4.4,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "impossible-lands",
+   "name": "Impossible Lands",
+   "center": [
+    -5,
+    18.3
+   ],
+   "zoom": 4.8,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "mwangi-expanse",
+   "name": "Mwangi Expanse",
+   "center": [
+    -16.3,
+    17.8
+   ],
+   "zoom": 4.4,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "old-cheliax",
+   "name": "Old Cheliax",
+   "center": [
+    -19.8,
+    36.3
+   ],
+   "zoom": 5,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "saga-lands",
+   "name": "Saga Lands",
+   "center": [
+    -24.6,
+    51.3
+   ],
+   "zoom": 4.7,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "shining-kingdoms",
+   "name": "Shining Kingdoms",
+   "center": [
+    1.5,
+    40
+   ],
+   "zoom": 4.7,
+   "resFactor": 4,
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Inner Sea Regions"
+  },
+  {
+   "key": "varisia",
+   "name": "Varisia",
+   "fit": {
+    "category": "subregions",
+    "label": "Varisia"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "cheliax",
+   "name": "Cheliax",
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations",
+   "center": [
+    -21.3,
+    35.8
+   ],
+   "zoom": 5.1
+  },
+  {
+   "key": "andoran",
+   "name": "Andoran",
+   "fit": {
+    "category": "nations",
+    "label": "Andoran"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "taldor",
+   "name": "Taldor",
+   "fit": {
+    "category": "nations",
+    "label": "Taldor"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "osirion",
+   "name": "Osirion",
+   "fit": {
+    "category": "nations",
+    "label": "Osirion"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "qadira",
+   "name": "Qadira",
+   "fit": {
+    "category": "nations",
+    "label": "Qadira"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "ustalav",
+   "name": "Ustalav",
+   "fit": {
+    "category": "nations",
+    "label": "Ustalav"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "numeria",
+   "name": "Numeria",
+   "fit": {
+    "category": "nations",
+    "label": "Numeria"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "irrisen",
+   "name": "Irrisen",
+   "fit": {
+    "category": "nations",
+    "label": "Irrisen"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "nidal",
+   "name": "Nidal",
+   "fit": {
+    "category": "nations",
+    "label": "Nidal"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "katapesh",
+   "name": "Katapesh",
+   "fit": {
+    "category": "nations",
+    "label": "Katapesh"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "galt",
+   "name": "Galt",
+   "fit": {
+    "category": "nations",
+    "label": "Galt"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "kyonin",
+   "name": "Kyonin",
+   "fit": {
+    "category": "nations",
+    "label": "Kyonin"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "brevoy",
+   "name": "Brevoy",
+   "fit": {
+    "category": "nations",
+    "label": "Brevoy"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "belkzen",
+   "name": "Belkzen",
+   "fit": {
+    "category": "nations",
+    "label": "Belkzen"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "mendev",
+   "name": "Mendev",
+   "fit": {
+    "category": "nations",
+    "label": "Mendev"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "lands-of-the-linnorm-kings",
+   "name": "Lands of the Linnorm Kings",
+   "fit": {
+    "category": "nations",
+    "label": "Lands of the Linnorm Kings"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "realm-of-the-mammoth-lords",
+   "name": "Realm of the Mammoth Lords",
+   "fit": {
+    "category": "nations",
+    "label": "Realm of the Mammoth Lords"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "absalom-environs",
+   "name": "Absalom Region",
+   "fit": {
+    "category": "locations",
+    "label": "Absalom",
+    "radiusMi": 45
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "magnimar-environs",
+   "name": "Magnimar Region",
+   "fit": {
+    "category": "locations",
+    "label": "Magnimar",
+    "radiusMi": 45
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "korvosa-environs",
+   "name": "Korvosa Region",
+   "fit": {
+    "category": "locations",
+    "label": "Korvosa",
+    "radiusMi": 45
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "sandpoint-environs",
+   "name": "Sandpoint Region",
+   "fit": {
+    "category": "locations",
+    "label": "Sandpoint",
+    "radiusMi": 30
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "riddleport-environs",
+   "name": "Riddleport Region",
+   "fit": {
+    "category": "locations",
+    "label": "Riddleport",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "kaer-maga-environs",
+   "name": "Kaer Maga Region",
+   "fit": {
+    "category": "locations",
+    "label": "Kaer Maga",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "westcrown-environs",
+   "name": "Westcrown Region",
+   "fit": {
+    "category": "locations",
+    "label": "Westcrown",
+    "radiusMi": 45
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "sothis-environs",
+   "name": "Sothis Region",
+   "fit": {
+    "category": "locations",
+    "label": "Sothis",
+    "radiusMi": 45
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "oppara-environs",
+   "name": "Oppara Region",
+   "fit": {
+    "category": "locations",
+    "label": "Oppara",
+    "radiusMi": 45
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "almas-environs",
+   "name": "Almas Region",
+   "fit": {
+    "category": "locations",
+    "label": "Almas",
+    "radiusMi": 45
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "absalom-city",
+   "name": "Absalom",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -0.23,
+     30.89
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "magnimar-city",
+   "name": "Magnimar",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -28.01,
+     43.93
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "korvosa-city",
+   "name": "Korvosa",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -18.74,
+     43.37
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "kaer-maga-city",
+   "name": "Kaer Maga",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -20.02,
+     45.79
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "kintargo-city",
+   "name": "Kintargo",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -23.09,
+     39.06
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "vyre-city",
+   "name": "Vyre",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -24.17,
+     39.82
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "katapesh-city",
+   "name": "Katapesh",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -1.21,
+     22.48
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "almas-city",
+   "name": "Almas",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -3.07,
+     33.76
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "port-peril-city",
+   "name": "Port Peril",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -25.86,
+     17.83
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "ilizmagorti-city",
+   "name": "Ilizmagorti",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -30.75,
+     24.28
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "kerse-city",
+   "name": "Kerse",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -6.23,
+     41.03
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "nerosyan-city",
+   "name": "Nerosyan",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -4.95,
+     51.23
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "urgir-city",
+   "name": "Urgir",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -13.71,
+     47.4
+    ],
+    "radiusDeg": 0.35,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "breachill-town",
+   "name": "Breachill",
+   "fit": {
+    "category": "districts",
+    "near": [
+     -7.43,
+     38.73
+    ],
+    "radiusDeg": 0.12,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities"
+  },
+  {
+   "key": "five-kings-mountains",
+   "name": "Five Kings Mountains",
+   "fit": {
+    "category": "nations",
+    "label": "Five Kings Mountains"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "river-kingdoms",
+   "name": "River Kingdoms",
+   "fit": {
+    "category": "subregions",
+    "label": "River Kingdoms"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "the-shackles",
+   "name": "The Shackles",
+   "fit": {
+    "category": "nations",
+    "label": "The Shackles"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "isger",
+   "name": "Isger",
+   "fit": {
+    "category": "nations",
+    "label": "Isger"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "ravounel",
+   "name": "Ravounel",
+   "fit": {
+    "category": "nations",
+    "label": "Ravounel"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "gravelands",
+   "name": "Gravelands",
+   "fit": {
+    "category": "nations",
+    "label": "Gravelands"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "sarkoris-scar",
+   "name": "Sarkoris Scar",
+   "fit": {
+    "category": "nations",
+    "label": "Sarkoris"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "molthune",
+   "name": "Molthune",
+   "fit": {
+    "category": "nations",
+    "label": "Molthune"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "nirmathas",
+   "name": "Nirmathas",
+   "fit": {
+    "category": "nations",
+    "label": "Nirmathas"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "rahadoum",
+   "name": "Rahadoum",
+   "fit": {
+    "category": "nations",
+    "label": "Rahadoum"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "thuvia",
+   "name": "Thuvia",
+   "fit": {
+    "category": "nations",
+    "label": "Thuvia"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "jalmeray",
+   "name": "Jalmeray",
+   "fit": {
+    "category": "nations",
+    "label": "Jalmeray"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "druma",
+   "name": "Druma",
+   "fit": {
+    "category": "nations",
+    "label": "Druma"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "razmiran",
+   "name": "Razmiran",
+   "fit": {
+    "category": "nations",
+    "label": "Razmiran"
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Nations"
+  },
+  {
+   "key": "highhelm-region",
+   "name": "Highhelm Region",
+   "fit": {
+    "category": "locations",
+    "label": "Highhelm",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "otari-region",
+   "name": "Otari Region",
+   "fit": {
+    "category": "locations",
+    "label": "Otari",
+    "radiusMi": 30
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "whitethrone-region",
+   "name": "Whitethrone Region",
+   "fit": {
+    "category": "locations",
+    "label": "Whitethrone",
+    "radiusMi": 45
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "caliphas-region",
+   "name": "Caliphas Region",
+   "fit": {
+    "category": "locations",
+    "label": "Caliphas",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "nantambu-region",
+   "name": "Nantambu Region",
+   "fit": {
+    "category": "locations",
+    "label": "Nantambu",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "egorian-region",
+   "name": "Egorian Region",
+   "fit": {
+    "category": "locations",
+    "label": "Egorian",
+    "radiusMi": 45
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "daggermark-region",
+   "name": "Daggermark Region",
+   "fit": {
+    "category": "locations",
+    "label": "Daggermark",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "pitax-region",
+   "name": "Pitax Region",
+   "fit": {
+    "category": "locations",
+    "label": "Pitax",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "elidir-region",
+   "name": "Elidir Region",
+   "fit": {
+    "category": "locations",
+    "label": "Elidir",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "vigil-region",
+   "name": "Vigil Region",
+   "fit": {
+    "category": "locations",
+    "label": "Vigil",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "kenabres-region",
+   "name": "Kenabres Region",
+   "fit": {
+    "category": "locations",
+    "label": "Kenabres",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "canorate-region",
+   "name": "Canorate Region",
+   "fit": {
+    "category": "locations",
+    "label": "Canorate",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "tamran-region",
+   "name": "Tamran Region",
+   "fit": {
+    "category": "locations",
+    "label": "Tamran",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "azir-region",
+   "name": "Azir Region",
+   "fit": {
+    "category": "locations",
+    "label": "Azir",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "merab-region",
+   "name": "Merab Region",
+   "fit": {
+    "category": "locations",
+    "label": "Merab",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "niswan-region",
+   "name": "Niswan Region",
+   "fit": {
+    "category": "locations",
+    "label": "Niswan",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "thronestep-region",
+   "name": "Thronestep Region",
+   "fit": {
+    "category": "locations",
+    "label": "Thronestep",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "alkenstar-region",
+   "name": "Alkenstar Region",
+   "fit": {
+    "category": "locations",
+    "label": "Alkenstar City",
+    "radiusMi": 40
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "City Regions"
+  },
+  {
+   "key": "otari-town",
+   "name": "Otari",
+   "fit": {
+    "category": "locations",
+    "label": "Otari",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "katheer-city",
+   "name": "Katheer",
+   "fit": {
+    "category": "locations",
+    "label": "Katheer",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "starfall-city",
+   "name": "Starfall",
+   "fit": {
+    "category": "locations",
+    "label": "Starfall",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "pangolais-city",
+   "name": "Pangolais",
+   "fit": {
+    "category": "locations",
+    "label": "Pangolais",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "isarn-city",
+   "name": "Isarn",
+   "fit": {
+    "category": "locations",
+    "label": "Isarn",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true,
+   "regionFolder": "Galt"
+  },
+  {
+   "key": "iadara-city",
+   "name": "Iadara",
+   "fit": {
+    "category": "locations",
+    "label": "Iadara",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "new-stetven-city",
+   "name": "New Stetven",
+   "fit": {
+    "category": "locations",
+    "label": "New Stetven",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "kalsgard-city",
+   "name": "Kalsgard",
+   "fit": {
+    "category": "locations",
+    "label": "Kalsgard",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "mechitar-town",
+   "name": "Mechitar",
+   "fit": {
+    "category": "locations",
+    "label": "Mechitar",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "quantium-town",
+   "name": "Quantium",
+   "fit": {
+    "category": "locations",
+    "label": "Quantium",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "alkenstar-city-town",
+   "name": "Alkenstar City",
+   "fit": {
+    "category": "locations",
+    "label": "Alkenstar City",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "peijia-town",
+   "name": "Peijia",
+   "fit": {
+    "category": "locations",
+    "label": "Peijia",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ng-n-hoa-town",
+   "name": "Ngōn Hoa",
+   "fit": {
+    "category": "locations",
+    "label": "Ngōn Hoa",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "haseong-town",
+   "name": "Haseong",
+   "fit": {
+    "category": "locations",
+    "label": "Haseong",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "surat-prakan-town",
+   "name": "Surat Prakan",
+   "fit": {
+    "category": "locations",
+    "label": "Surat Prakan",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "zetang-town",
+   "name": "Zetang",
+   "fit": {
+    "category": "locations",
+    "label": "Zetang",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "hunthul-town",
+   "name": "Hunthul",
+   "fit": {
+    "category": "locations",
+    "label": "Hunthul",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "kraggodan-town",
+   "name": "Kraggodan",
+   "fit": {
+    "category": "locations",
+    "label": "Kraggodan",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "xin-shalast-town",
+   "name": "Xin-Shalast",
+   "fit": {
+    "category": "locations",
+    "label": "Xin-Shalast",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "xin-edasseril-town",
+   "name": "Xin-Edasseril",
+   "fit": {
+    "category": "locations",
+    "label": "Xin-Edasseril",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "promise-town",
+   "name": "Promise",
+   "fit": {
+    "category": "locations",
+    "label": "Promise",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "usaro-town",
+   "name": "Usaro",
+   "fit": {
+    "category": "locations",
+    "label": "Usaro",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "anthusis-town",
+   "name": "Anthusis",
+   "fit": {
+    "category": "locations",
+    "label": "Anthusis",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "bloodcove-town",
+   "name": "Bloodcove",
+   "fit": {
+    "category": "locations",
+    "label": "Bloodcove",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "zurakan-town",
+   "name": "Zurakan",
+   "fit": {
+    "category": "locations",
+    "label": "Zurakan",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "kalios-town",
+   "name": "Kalios",
+   "fit": {
+    "category": "locations",
+    "label": "Kalios",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "nesya-town",
+   "name": "Nesya",
+   "fit": {
+    "category": "locations",
+    "label": "Nesya",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "hisuikarasu-town",
+   "name": "Hisuikarasu",
+   "fit": {
+    "category": "locations",
+    "label": "Hisuikarasu",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "gujaraldi-town",
+   "name": "Gujaraldi",
+   "fit": {
+    "category": "locations",
+    "label": "Gujaraldi",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "kragnaroth-town",
+   "name": "Kragnaroth",
+   "fit": {
+    "category": "locations",
+    "label": "Kragnaroth",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "sevenarches-town",
+   "name": "Sevenarches",
+   "fit": {
+    "category": "locations",
+    "label": "Sevenarches",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "yin-sichasi-town",
+   "name": "Yin-Sichasi",
+   "fit": {
+    "category": "locations",
+    "label": "Yin-Sichasi",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "halgrim-town",
+   "name": "Halgrim",
+   "fit": {
+    "category": "locations",
+    "label": "Halgrim",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "egede-town",
+   "name": "Egede",
+   "fit": {
+    "category": "locations",
+    "label": "Egede",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "chesed-town",
+   "name": "Chesed",
+   "fit": {
+    "category": "locations",
+    "label": "Chesed",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "cassomir-town",
+   "name": "Cassomir",
+   "fit": {
+    "category": "locations",
+    "label": "Cassomir",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "augustana-town",
+   "name": "Augustana",
+   "fit": {
+    "category": "locations",
+    "label": "Augustana",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "aspenthar-town",
+   "name": "Aspenthar",
+   "fit": {
+    "category": "locations",
+    "label": "Aspenthar",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "manaket-town",
+   "name": "Manaket",
+   "fit": {
+    "category": "locations",
+    "label": "Manaket",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "merev-town",
+   "name": "Merev",
+   "fit": {
+    "category": "locations",
+    "label": "Merev",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "sedeq-town",
+   "name": "Sedeq",
+   "fit": {
+    "category": "locations",
+    "label": "Sedeq",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "lopul-town",
+   "name": "Lopul",
+   "fit": {
+    "category": "locations",
+    "label": "Lopul",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "avilan-town",
+   "name": "Avilan",
+   "fit": {
+    "category": "locations",
+    "label": "Avilan",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "delenah-town",
+   "name": "Delenah",
+   "fit": {
+    "category": "locations",
+    "label": "Delenah",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "al-varish-town",
+   "name": "Al-Varish",
+   "fit": {
+    "category": "locations",
+    "label": "Al-Varish",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "kerim-town",
+   "name": "Kerim",
+   "fit": {
+    "category": "locations",
+    "label": "Kerim",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "sanmeshul-town",
+   "name": "Sanmeshul",
+   "fit": {
+    "category": "locations",
+    "label": "Sanmeshul",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "shamara-town",
+   "name": "Shamara",
+   "fit": {
+    "category": "locations",
+    "label": "Shamara",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ayesh-town",
+   "name": "Ayesh",
+   "fit": {
+    "category": "locations",
+    "label": "Ayesh",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "hawah-town",
+   "name": "Hawah",
+   "fit": {
+    "category": "locations",
+    "label": "Hawah",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "jawafeeq-town",
+   "name": "Jawafeeq",
+   "fit": {
+    "category": "locations",
+    "label": "Jawafeeq",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "sukri-town",
+   "name": "Sukri",
+   "fit": {
+    "category": "locations",
+    "label": "Sukri",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "qaharid-town",
+   "name": "Qaharid",
+   "fit": {
+    "category": "locations",
+    "label": "Qaharid",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "butraf-town",
+   "name": "Butraf",
+   "fit": {
+    "category": "locations",
+    "label": "Butraf",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "demirah-town",
+   "name": "Demirah",
+   "fit": {
+    "category": "locations",
+    "label": "Demirah",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "khundurai-town",
+   "name": "Khundurai",
+   "fit": {
+    "category": "locations",
+    "label": "Khundurai",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ishad-town",
+   "name": "Ishad",
+   "fit": {
+    "category": "locations",
+    "label": "Ishad",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "shileh-town",
+   "name": "Shileh",
+   "fit": {
+    "category": "locations",
+    "label": "Shileh",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "totra-town",
+   "name": "Totra",
+   "fit": {
+    "category": "locations",
+    "label": "Totra",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "an-town",
+   "name": "An",
+   "fit": {
+    "category": "locations",
+    "label": "An",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "yled-town",
+   "name": "Yled",
+   "fit": {
+    "category": "locations",
+    "label": "Yled",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "mzali-town",
+   "name": "Mzali",
+   "fit": {
+    "category": "locations",
+    "label": "Mzali",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "senghor-town",
+   "name": "Senghor",
+   "fit": {
+    "category": "locations",
+    "label": "Senghor",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "maecho-town",
+   "name": "Maecho",
+   "fit": {
+    "category": "locations",
+    "label": "Maecho",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "thulsadus-town",
+   "name": "Thulsadus",
+   "fit": {
+    "category": "locations",
+    "label": "Thulsadus",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "danjing-town",
+   "name": "Danjing",
+   "fit": {
+    "category": "locations",
+    "label": "Danjing",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "pinnacle-town",
+   "name": "Pinnacle",
+   "fit": {
+    "category": "locations",
+    "label": "Pinnacle",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "janderhoff-town",
+   "name": "Janderhoff",
+   "fit": {
+    "category": "locations",
+    "label": "Janderhoff",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "urglin-town",
+   "name": "Urglin",
+   "fit": {
+    "category": "locations",
+    "label": "Urglin",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "glimmerhold-town",
+   "name": "Glimmerhold",
+   "fit": {
+    "category": "locations",
+    "label": "Glimmerhold",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "blisterwell-town",
+   "name": "Blisterwell",
+   "fit": {
+    "category": "locations",
+    "label": "Blisterwell",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "skelt-town",
+   "name": "Skelt",
+   "fit": {
+    "category": "locations",
+    "label": "Skelt",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "wyvernsting-town",
+   "name": "Wyvernsting",
+   "fit": {
+    "category": "locations",
+    "label": "Wyvernsting",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "hillcross-town",
+   "name": "Hillcross",
+   "fit": {
+    "category": "locations",
+    "label": "Hillcross",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "hoarwood-town",
+   "name": "Hoarwood",
+   "fit": {
+    "category": "locations",
+    "label": "Hoarwood",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "lepidstadt-town",
+   "name": "Lepidstadt",
+   "fit": {
+    "category": "locations",
+    "label": "Lepidstadt",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "morozny-town",
+   "name": "Morozny",
+   "fit": {
+    "category": "locations",
+    "label": "Morozny",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ullerskad-town",
+   "name": "Ullerskad",
+   "fit": {
+    "category": "locations",
+    "label": "Ullerskad",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "algidheart-town",
+   "name": "Algidheart",
+   "fit": {
+    "category": "locations",
+    "label": "Algidheart",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "chillblight-town",
+   "name": "Chillblight",
+   "fit": {
+    "category": "locations",
+    "label": "Chillblight",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "jol-town",
+   "name": "Jol",
+   "fit": {
+    "category": "locations",
+    "label": "Jol",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "trollheim-town",
+   "name": "Trollheim",
+   "fit": {
+    "category": "locations",
+    "label": "Trollheim",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "bildt-town",
+   "name": "Bildt",
+   "fit": {
+    "category": "locations",
+    "label": "Bildt",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "gralton-town",
+   "name": "Gralton",
+   "fit": {
+    "category": "locations",
+    "label": "Gralton",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "hajoth-hakados-town",
+   "name": "Hajoth Hakados",
+   "fit": {
+    "category": "locations",
+    "label": "Hajoth Hakados",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "mivon-town",
+   "name": "Mivon",
+   "fit": {
+    "category": "locations",
+    "label": "Mivon",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "azurestone-town",
+   "name": "Azurestone",
+   "fit": {
+    "category": "locations",
+    "label": "Azurestone",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "woodsedge-town",
+   "name": "Woodsedge",
+   "fit": {
+    "category": "locations",
+    "label": "Woodsedge",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "edme-town",
+   "name": "Edme",
+   "fit": {
+    "category": "locations",
+    "label": "Edme",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "avendale-town",
+   "name": "Avendale",
+   "fit": {
+    "category": "locations",
+    "label": "Avendale",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "skathen-town",
+   "name": "Skathen",
+   "fit": {
+    "category": "locations",
+    "label": "Skathen",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "greengold-town",
+   "name": "Greengold",
+   "fit": {
+    "category": "locations",
+    "label": "Greengold",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "outsea-town",
+   "name": "Outsea",
+   "fit": {
+    "category": "locations",
+    "label": "Outsea",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "erages-town",
+   "name": "Erages",
+   "fit": {
+    "category": "locations",
+    "label": "Erages",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "vellumis-town",
+   "name": "Vellumis",
+   "fit": {
+    "category": "locations",
+    "label": "Vellumis",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "korholm-town",
+   "name": "Korholm",
+   "fit": {
+    "category": "locations",
+    "label": "Korholm",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "eranmas-town",
+   "name": "Eranmas",
+   "fit": {
+    "category": "locations",
+    "label": "Eranmas",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "bolgrad-town",
+   "name": "Bolgrad",
+   "fit": {
+    "category": "locations",
+    "label": "Bolgrad",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ardis-town",
+   "name": "Ardis",
+   "fit": {
+    "category": "locations",
+    "label": "Ardis",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "kavapesta-town",
+   "name": "Kavapesta",
+   "fit": {
+    "category": "locations",
+    "label": "Kavapesta",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "carrion-hill-town",
+   "name": "Carrion Hill",
+   "fit": {
+    "category": "locations",
+    "label": "Carrion Hill",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "xer-town",
+   "name": "Xer",
+   "fit": {
+    "category": "locations",
+    "label": "Xer",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "detmer-town",
+   "name": "Detmer",
+   "fit": {
+    "category": "locations",
+    "label": "Detmer",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "lasinavel-town",
+   "name": "Lasinavel",
+   "fit": {
+    "category": "locations",
+    "label": "Lasinavel",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "skywatch-town",
+   "name": "Skywatch",
+   "fit": {
+    "category": "locations",
+    "label": "Skywatch",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "port-ice-town",
+   "name": "Port Ice",
+   "fit": {
+    "category": "locations",
+    "label": "Port Ice",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "winterbreak-town",
+   "name": "Winterbreak",
+   "fit": {
+    "category": "locations",
+    "label": "Winterbreak",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "grayhaven-town",
+   "name": "Grayhaven",
+   "fit": {
+    "category": "locations",
+    "label": "Grayhaven",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "dyinglight-town",
+   "name": "Dyinglight",
+   "fit": {
+    "category": "locations",
+    "label": "Dyinglight",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "raliscrad-town",
+   "name": "Raliscrad",
+   "fit": {
+    "category": "locations",
+    "label": "Raliscrad",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "karcau-town",
+   "name": "Karcau",
+   "fit": {
+    "category": "locations",
+    "label": "Karcau",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "laekastel-town",
+   "name": "Laekastel",
+   "fit": {
+    "category": "locations",
+    "label": "Laekastel",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "remesiana-town",
+   "name": "Remesiana",
+   "fit": {
+    "category": "locations",
+    "label": "Remesiana",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "cettigne-town",
+   "name": "Cettigne",
+   "fit": {
+    "category": "locations",
+    "label": "Cettigne",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "senara-town",
+   "name": "Senara",
+   "fit": {
+    "category": "locations",
+    "label": "Senara",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "tripolne-town",
+   "name": "Tripolne",
+   "fit": {
+    "category": "locations",
+    "label": "Tripolne",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ridwan-town",
+   "name": "Ridwan",
+   "fit": {
+    "category": "locations",
+    "label": "Ridwan",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "nisroch-town",
+   "name": "Nisroch",
+   "fit": {
+    "category": "locations",
+    "label": "Nisroch",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "braganza-town",
+   "name": "Braganza",
+   "fit": {
+    "category": "locations",
+    "label": "Braganza",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "taggun-hold-town",
+   "name": "Taggun Hold",
+   "fit": {
+    "category": "locations",
+    "label": "Taggun Hold",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "mirivenn-town",
+   "name": "Mirivenn",
+   "fit": {
+    "category": "locations",
+    "label": "Mirivenn",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "macini-town",
+   "name": "Macini",
+   "fit": {
+    "category": "locations",
+    "label": "Macini",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "wispil-town",
+   "name": "Wispil",
+   "fit": {
+    "category": "locations",
+    "label": "Wispil",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ridonport-town",
+   "name": "Ridonport",
+   "fit": {
+    "category": "locations",
+    "label": "Ridonport",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "yanmass-town",
+   "name": "Yanmass",
+   "fit": {
+    "category": "locations",
+    "label": "Yanmass",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "maheto-town",
+   "name": "Maheto",
+   "fit": {
+    "category": "locations",
+    "label": "Maheto",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "mut-town",
+   "name": "Mut",
+   "fit": {
+    "category": "locations",
+    "label": "Mut",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "kazuhn-city-town",
+   "name": "Kazuhn City",
+   "fit": {
+    "category": "locations",
+    "label": "Kazuhn City",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "carpenden-town",
+   "name": "Carpenden",
+   "fit": {
+    "category": "locations",
+    "label": "Carpenden",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "oregent-town",
+   "name": "Oregent",
+   "fit": {
+    "category": "locations",
+    "label": "Oregent",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ostenso-town",
+   "name": "Ostenso",
+   "fit": {
+    "category": "locations",
+    "label": "Ostenso",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "rolgrimmdur-town",
+   "name": "Rolgrimmdur",
+   "fit": {
+    "category": "locations",
+    "label": "Rolgrimmdur",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "taggoret-town",
+   "name": "Taggoret",
+   "fit": {
+    "category": "locations",
+    "label": "Taggoret",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "escadar-town",
+   "name": "Escadar",
+   "fit": {
+    "category": "locations",
+    "label": "Escadar",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "larrad-town",
+   "name": "Larrad",
+   "fit": {
+    "category": "locations",
+    "label": "Larrad",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "prophet-s-home-town",
+   "name": "Prophet's Home",
+   "fit": {
+    "category": "locations",
+    "label": "Prophet's Home",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "kykar-town",
+   "name": "Kykar",
+   "fit": {
+    "category": "locations",
+    "label": "Kykar",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "duwwor-town",
+   "name": "Duwwor",
+   "fit": {
+    "category": "locations",
+    "label": "Duwwor",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "jaha-town",
+   "name": "Jaha",
+   "fit": {
+    "category": "locations",
+    "label": "Jaha",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "hinji-town",
+   "name": "Hinji",
+   "fit": {
+    "category": "locations",
+    "label": "Hinji",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "botosani-town",
+   "name": "Botosani",
+   "fit": {
+    "category": "locations",
+    "label": "Botosani",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "sawtooth-marketplace-town",
+   "name": "Sawtooth Marketplace",
+   "fit": {
+    "category": "locations",
+    "label": "Sawtooth Marketplace",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "corentyn-town",
+   "name": "Corentyn",
+   "fit": {
+    "category": "locations",
+    "label": "Corentyn",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "okeno-town",
+   "name": "Okeno",
+   "fit": {
+    "category": "locations",
+    "label": "Okeno",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ushumgal-town",
+   "name": "Ushumgal",
+   "fit": {
+    "category": "locations",
+    "label": "Ushumgal",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "heger-town",
+   "name": "Heger",
+   "fit": {
+    "category": "locations",
+    "label": "Heger",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "sadiyeh-town",
+   "name": "Sadiyeh",
+   "fit": {
+    "category": "locations",
+    "label": "Sadiyeh",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "gurat-town",
+   "name": "Gurat",
+   "fit": {
+    "category": "locations",
+    "label": "Gurat",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "kharif-town",
+   "name": "Kharif",
+   "fit": {
+    "category": "locations",
+    "label": "Kharif",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ehur-town",
+   "name": "Ehur",
+   "fit": {
+    "category": "locations",
+    "label": "Ehur",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "gazbilah-town",
+   "name": "Gazbilah",
+   "fit": {
+    "category": "locations",
+    "label": "Gazbilah",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "izzet-town",
+   "name": "Izzet",
+   "fit": {
+    "category": "locations",
+    "label": "Izzet",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "nirfan-town",
+   "name": "Nirfan",
+   "fit": {
+    "category": "locations",
+    "label": "Nirfan",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "rashiz-town",
+   "name": "Rashiz",
+   "fit": {
+    "category": "locations",
+    "label": "Rashiz",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "tekeh-town",
+   "name": "Tekeh",
+   "fit": {
+    "category": "locations",
+    "label": "Tekeh",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "zimar-town",
+   "name": "Zimar",
+   "fit": {
+    "category": "locations",
+    "label": "Zimar",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "el-shelad-town",
+   "name": "El-Shelad",
+   "fit": {
+    "category": "locations",
+    "label": "El-Shelad",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "omash-town",
+   "name": "Omash",
+   "fit": {
+    "category": "locations",
+    "label": "Omash",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ihalar-town",
+   "name": "Ihalar",
+   "fit": {
+    "category": "locations",
+    "label": "Ihalar",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "naamat-town",
+   "name": "Naamat",
+   "fit": {
+    "category": "locations",
+    "label": "Naamat",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "salav-town",
+   "name": "Salav",
+   "fit": {
+    "category": "locations",
+    "label": "Salav",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "al-hiraf-town",
+   "name": "Al-Hiraf",
+   "fit": {
+    "category": "locations",
+    "label": "Al-Hiraf",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "lamasara-town",
+   "name": "Lamasara",
+   "fit": {
+    "category": "locations",
+    "label": "Lamasara",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "eto-town",
+   "name": "Eto",
+   "fit": {
+    "category": "locations",
+    "label": "Eto",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "shiman-sekh-town",
+   "name": "Shiman-Sekh",
+   "fit": {
+    "category": "locations",
+    "label": "Shiman-Sekh",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ipeq-town",
+   "name": "Ipeq",
+   "fit": {
+    "category": "locations",
+    "label": "Ipeq",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "graydirge-town",
+   "name": "Graydirge",
+   "fit": {
+    "category": "locations",
+    "label": "Graydirge",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "osibu-town",
+   "name": "Osibu",
+   "fit": {
+    "category": "locations",
+    "label": "Osibu",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "oenopion-town",
+   "name": "Oenopion",
+   "fit": {
+    "category": "locations",
+    "label": "Oenopion",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ecanus-town",
+   "name": "Ecanus",
+   "fit": {
+    "category": "locations",
+    "label": "Ecanus",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "martel-town",
+   "name": "Martel",
+   "fit": {
+    "category": "locations",
+    "label": "Martel",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "free-station-town",
+   "name": "Free Station",
+   "fit": {
+    "category": "locations",
+    "label": "Free Station",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "umnyango-town",
+   "name": "Umnyango",
+   "fit": {
+    "category": "locations",
+    "label": "Umnyango",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "quent-town",
+   "name": "Quent",
+   "fit": {
+    "category": "locations",
+    "label": "Quent",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "hell-harbor-town",
+   "name": "Hell Harbor",
+   "fit": {
+    "category": "locations",
+    "label": "Hell Harbor",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "neruma-town",
+   "name": "Neruma",
+   "fit": {
+    "category": "locations",
+    "label": "Neruma",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "drenchport-town",
+   "name": "Drenchport",
+   "fit": {
+    "category": "locations",
+    "label": "Drenchport",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ollo-town",
+   "name": "Ollo",
+   "fit": {
+    "category": "locations",
+    "label": "Ollo",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "husanah-town",
+   "name": "Husanah",
+   "fit": {
+    "category": "locations",
+    "label": "Husanah",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "prada-hanam-town",
+   "name": "Prada Hanam",
+   "fit": {
+    "category": "locations",
+    "label": "Prada Hanam",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "padiskar-town",
+   "name": "Padiskar",
+   "fit": {
+    "category": "locations",
+    "label": "Padiskar",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "bailax-town",
+   "name": "Bailax",
+   "fit": {
+    "category": "locations",
+    "label": "Bailax",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "thap-samut-town",
+   "name": "Thap Samut",
+   "fit": {
+    "category": "locations",
+    "label": "Thap Samut",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "vannisaria-town",
+   "name": "Vannisaria",
+   "fit": {
+    "category": "locations",
+    "label": "Vannisaria",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "todorokaze-town",
+   "name": "Todorokaze",
+   "fit": {
+    "category": "locations",
+    "label": "Todorokaze",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "nagaiyamatsu-town",
+   "name": "Nagaiyamatsu",
+   "fit": {
+    "category": "locations",
+    "label": "Nagaiyamatsu",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "okim-town",
+   "name": "Okim",
+   "fit": {
+    "category": "locations",
+    "label": "Okim",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "seidoyaji-town",
+   "name": "Seidoyaji",
+   "fit": {
+    "category": "locations",
+    "label": "Seidoyaji",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "clear-waters-town",
+   "name": "Clear Waters",
+   "fit": {
+    "category": "locations",
+    "label": "Clear Waters",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "jolizpan-town",
+   "name": "Jolizpan",
+   "fit": {
+    "category": "locations",
+    "label": "Jolizpan",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "tal-pas-town",
+   "name": "Talípas",
+   "fit": {
+    "category": "locations",
+    "label": "Talípas",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "zilpatzi-town",
+   "name": "Zilpatzi",
+   "fit": {
+    "category": "locations",
+    "label": "Zilpatzi",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "grand-pass-town",
+   "name": "Grand Pass",
+   "fit": {
+    "category": "locations",
+    "label": "Grand Pass",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "yan-tlom-l-town",
+   "name": "Yan Tlomíl",
+   "fit": {
+    "category": "locations",
+    "label": "Yan Tlomíl",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "yanti-i-ulde-town",
+   "name": "Yanti Iñulde",
+   "fit": {
+    "category": "locations",
+    "label": "Yanti Iñulde",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "gariz-s-city-town",
+   "name": "Garizés City",
+   "fit": {
+    "category": "locations",
+    "label": "Garizés City",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "apertan-town",
+   "name": "Apertan",
+   "fit": {
+    "category": "locations",
+    "label": "Apertan",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "tulaupan-town",
+   "name": "Tulaupan",
+   "fit": {
+    "category": "locations",
+    "label": "Tulaupan",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "ziplatna-town",
+   "name": "Ziplatna",
+   "fit": {
+    "category": "locations",
+    "label": "Ziplatna",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "tar-kazmukh-town",
+   "name": "Tar-Kazmukh",
+   "fit": {
+    "category": "locations",
+    "label": "Tar-Kazmukh",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "twingate-town",
+   "name": "Twingate",
+   "fit": {
+    "category": "locations",
+    "label": "Twingate",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "peddlegate-town",
+   "name": "Peddlegate",
+   "fit": {
+    "category": "locations",
+    "label": "Peddlegate",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "coralesian-town",
+   "name": "Coralesian",
+   "fit": {
+    "category": "locations",
+    "label": "Coralesian",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "kovlar-town",
+   "name": "Kovlar",
+   "fit": {
+    "category": "locations",
+    "label": "Kovlar",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  },
+  {
+   "key": "davarn-town",
+   "name": "Davarn",
+   "fit": {
+    "category": "locations",
+    "label": "Davarn",
+    "radiusMi": 8,
+    "maxZoom": 13
+   },
+   "gridType": "square",
+   "gridSize": 100,
+   "folder": "Cities",
+   "keepIcons": true
+  }
+ ]
+}

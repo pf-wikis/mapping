@@ -1,0 +1,50 @@
+{
+ "name": "Starfall",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "6Q7D1pXrtUr4KuAF",
+   "name": "Starfall",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/starfall-city.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "jBIFKzOa5h7WPebv",
+   "x": 2304,
+   "y": 1538,
+   "text": "Starfall",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Starfall"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/starfall-city.webp",
+ "__key": "starfall-city",
+ "__folder": "Cities",
+ "_id": "sNGrCmV9J9nZ9W6K"
+}

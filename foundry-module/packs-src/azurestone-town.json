@@ -1,0 +1,50 @@
+{
+ "name": "Azurestone",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "Ay0MjO0W0LYixSt2",
+   "name": "Azurestone",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/azurestone-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "TYBtqSNsBugVc9tB",
+   "x": 2304,
+   "y": 1537,
+   "text": "Azurestone",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Azurestone"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/azurestone-town.webp",
+ "__key": "azurestone-town",
+ "__folder": "Cities",
+ "_id": "aB6iEr97Ycj9WJ4Y"
+}

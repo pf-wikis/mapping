@@ -1,0 +1,1002 @@
+{
+ "name": "Magnimar",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.107,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "PDp3No2PHbTvSMCt",
+   "name": "Magnimar",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/magnimar-city.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "ylMID32NlMx5Yx5X",
+   "x": 2305,
+   "y": 1628,
+   "text": "Fifth Wind",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fifth_Wind"
+    }
+   }
+  },
+  {
+   "_id": "yvLQpt9c7fx013PJ",
+   "x": 2669,
+   "y": 1608,
+   "text": "Osprey Club",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Osprey_Club"
+    }
+   }
+  },
+  {
+   "_id": "2mqY96KsOFT8ufyB",
+   "x": 2751,
+   "y": 1602,
+   "text": "Pediment Building",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pediment_Building"
+    }
+   }
+  },
+  {
+   "_id": "cjzrlidq5NPxHSPe",
+   "x": 2082,
+   "y": 1591,
+   "text": "Lost Lane",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lost_Lane"
+    }
+   }
+  },
+  {
+   "_id": "y6W6uDsYhFFBhK37",
+   "x": 2187,
+   "y": 1579,
+   "text": "Jaijarko Castle",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jaijarko_Castle"
+    }
+   }
+  },
+  {
+   "_id": "S2u88hFSkVLg2MeM",
+   "x": 2824,
+   "y": 1557,
+   "text": "Founder's Archive and Museum of Ages",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Founder's_Archive_and_Museum_of_Ages"
+    }
+   }
+  },
+  {
+   "_id": "Es3KMXSe6ACCMF7p",
+   "x": 2260,
+   "y": 1529,
+   "text": "Harbormaster",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Harbormaster"
+    }
+   }
+  },
+  {
+   "_id": "md4S1OpnjrZFK4uT",
+   "x": 3027,
+   "y": 1459,
+   "text": "Versade Villa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Versade_Villa"
+    }
+   }
+  },
+  {
+   "_id": "O7pzZ13GVp2FtheN",
+   "x": 2480,
+   "y": 1450,
+   "text": "Bazaar of Sails",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bazaar_of_Sails"
+    }
+   }
+  },
+  {
+   "_id": "xfCQIkAje0QiGYD0",
+   "x": 2587,
+   "y": 1447,
+   "text": "No-Horn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/No-Horn"
+    }
+   }
+  },
+  {
+   "_id": "4TmWl3MaADhAV7e6",
+   "x": 2086,
+   "y": 1439,
+   "text": "Battle of Charda",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Battle_of_Charda"
+    }
+   }
+  },
+  {
+   "_id": "YMfiR6tHRPXHD6GA",
+   "x": 2761,
+   "y": 1387,
+   "text": "Golemworks",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Golemworks"
+    }
+   }
+  },
+  {
+   "_id": "dy6ULasOuuWtU7Py",
+   "x": 3017,
+   "y": 1377,
+   "text": "Mindurian Villa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mindurian_Villa"
+    }
+   }
+  },
+  {
+   "_id": "vJ5WnJlHaO5yS5GQ",
+   "x": 2097,
+   "y": 1356,
+   "text": "Wyrmwatch",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Wyrmwatch"
+    }
+   }
+  },
+  {
+   "_id": "bqcvr7lNvlhBMDDf",
+   "x": 2562,
+   "y": 1341,
+   "text": "Gecko",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gecko"
+    }
+   }
+  },
+  {
+   "_id": "87WB58DKzZZCGtHs",
+   "x": 3018,
+   "y": 1288,
+   "text": "Vanderale Villa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vanderale_Villa"
+    }
+   }
+  },
+  {
+   "_id": "7VdcpOfzo7BeIlqm",
+   "x": 2635,
+   "y": 1287,
+   "text": "Shadow Clock",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shadow_Clock"
+    }
+   }
+  },
+  {
+   "_id": "gZiy5TivG7QMuatJ",
+   "x": 2496,
+   "y": 1254,
+   "text": "Gull",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gull"
+    }
+   }
+  },
+  {
+   "_id": "1wlcivBaggkFnauT",
+   "x": 3030,
+   "y": 1191,
+   "text": "Serpent's Run",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Serpent's_Run"
+    }
+   }
+  },
+  {
+   "_id": "mMpIGmtczLBChF7Z",
+   "x": 2615,
+   "y": 1165,
+   "text": "Rat",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Rat"
+    }
+   }
+  },
+  {
+   "_id": "001YAtwbUm8vBlEh",
+   "x": 2420,
+   "y": 1153,
+   "text": "Whale",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Whale"
+    }
+   }
+  },
+  {
+   "_id": "f8YJx3MkHt1s5Pcx",
+   "x": 3016,
+   "y": 1068,
+   "text": "Nirodin Villa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nirodin_Villa"
+    }
+   }
+  },
+  {
+   "_id": "VN0uwAERt6TxsIWC",
+   "x": 2531,
+   "y": 1065,
+   "text": "Salmon",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Salmon"
+    }
+   }
+  },
+  {
+   "_id": "hvEpHJ8GFeM0DSmY",
+   "x": 2350,
+   "y": 1063,
+   "text": "Firepelt",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Firepelt"
+    }
+   }
+  },
+  {
+   "_id": "FnIoO7lDUMwCQowa",
+   "x": 2284,
+   "y": 979,
+   "text": "Crow",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Crow"
+    }
+   }
+  },
+  {
+   "_id": "PEi51HnTAtCLcBrg",
+   "x": 2464,
+   "y": 976,
+   "text": "Osprey",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Osprey"
+    }
+   }
+  },
+  {
+   "_id": "Ih2HLDhqrUVqI20J",
+   "x": 2920,
+   "y": 946,
+   "text": "Fort Indros",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fort_Indros"
+    }
+   }
+  },
+  {
+   "_id": "uiZM1A2iwH3Ez7m0",
+   "x": 2396,
+   "y": 891,
+   "text": "Shark",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shark"
+    }
+   }
+  },
+  {
+   "_id": "AOW34773K11DgEdA",
+   "x": 1594,
+   "y": 1877,
+   "text": "Mistress of Angels",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mistress_of_Angels"
+    }
+   }
+  },
+  {
+   "_id": "4EBQnaGznTD8kZYK",
+   "x": 1630,
+   "y": 1801,
+   "text": "Embassy Building",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Embassy_Building"
+    }
+   }
+  },
+  {
+   "_id": "q1DUPYDRUmzlFbnS",
+   "x": 1502,
+   "y": 1707,
+   "text": "Billivin's Benevolent Balms and Effulgent Elixirs",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Billivin's_Benevolent_Balms_and_Effulgent_Elixirs"
+    }
+   }
+  },
+  {
+   "_id": "3aMrCOLox7rhZ8iv",
+   "x": 1590,
+   "y": 1636,
+   "text": "Red Kestrel Imports",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Red_Kestrel_Imports"
+    }
+   }
+  },
+  {
+   "_id": "0WX8FyTLzgWb8a1n",
+   "x": 2911,
+   "y": 2060,
+   "text": "Boria's",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Boria's"
+    }
+   }
+  },
+  {
+   "_id": "Y4VJnVkzChLZbPVY",
+   "x": 2074,
+   "y": 2006,
+   "text": "Bent Rib Alley",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bent_Rib_Alley"
+    }
+   }
+  },
+  {
+   "_id": "7pN0McKbhsPgxS6v",
+   "x": 2521,
+   "y": 2004,
+   "text": "Arvensoar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Arvensoar"
+    }
+   }
+  },
+  {
+   "_id": "mJISz5jNtM5a8prI",
+   "x": 2673,
+   "y": 1986,
+   "text": "Temple of Iomedae",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Temple_of_Iomedae"
+    }
+   }
+  },
+  {
+   "_id": "jUOiQaeLSU3PeGIy",
+   "x": 2209,
+   "y": 1980,
+   "text": "Dome of the Savored Sting",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dome_of_the_Savored_Sting"
+    }
+   }
+  },
+  {
+   "_id": "v6gbzoitM8W2X9sN",
+   "x": 2130,
+   "y": 1944,
+   "text": "Aquaretum",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aquaretum"
+    }
+   }
+  },
+  {
+   "_id": "4CA4CzNRCogLJ5GA",
+   "x": 1675,
+   "y": 1912,
+   "text": "Pug's Contraptions",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pug's_Contraptions"
+    }
+   }
+  },
+  {
+   "_id": "CfPq91k5aOWNE3WG",
+   "x": 3003,
+   "y": 1905,
+   "text": "Triodea",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Triodea"
+    }
+   }
+  },
+  {
+   "_id": "Z0aDEpmRAFDMrQuI",
+   "x": 2436,
+   "y": 1901,
+   "text": "Courtesan and Unicorn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Courtesan_and_Unicorn"
+    }
+   }
+  },
+  {
+   "_id": "zIE7d2xnrVwxjSub",
+   "x": 2210,
+   "y": 1889,
+   "text": "Deadeye Lodge",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Deadeye_Lodge"
+    }
+   }
+  },
+  {
+   "_id": "X69smJY16xh5XOy0",
+   "x": 1827,
+   "y": 1888,
+   "text": "Cynosure Tower",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cynosure_Tower"
+    }
+   }
+  },
+  {
+   "_id": "2yrkR5pG8qjBade7",
+   "x": 2589,
+   "y": 1881,
+   "text": "Defiant's Garden",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Defiant's_Garden"
+    }
+   }
+  },
+  {
+   "_id": "H4NVwzNOGGof9Z8a",
+   "x": 1930,
+   "y": 1873,
+   "text": "Burn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Burn"
+    }
+   }
+  },
+  {
+   "_id": "TgMIGwKN101Rkcp4",
+   "x": 2355,
+   "y": 1851,
+   "text": "Dreaming Dryad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dreaming_Dryad"
+    }
+   }
+  },
+  {
+   "_id": "usoqdajCgvXFrtEo",
+   "x": 3043,
+   "y": 1829,
+   "text": "House of Lords",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/House_of_Lords"
+    }
+   }
+  },
+  {
+   "_id": "MHwyZ5XYhQ6Plyex",
+   "x": 2156,
+   "y": 1824,
+   "text": "Stone of the Seers",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Stone_of_the_Seers"
+    }
+   }
+  },
+  {
+   "_id": "2lCmdf0wSfWeibG1",
+   "x": 1726,
+   "y": 1820,
+   "text": "Seven's Sawmill",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Seven's_Sawmill"
+    }
+   }
+  },
+  {
+   "_id": "DAxPKI5HCi8cQKCx",
+   "x": 2680,
+   "y": 1778,
+   "text": "Cathedral of Abadar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cathedral_of_Abadar"
+    }
+   }
+  },
+  {
+   "_id": "i8Ke32Dpgc1XeTCW",
+   "x": 2587,
+   "y": 1763,
+   "text": "Deverin Villa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Deverin_Villa"
+    }
+   }
+  },
+  {
+   "_id": "ZBIYqzk6S1vbKR7B",
+   "x": 2426,
+   "y": 1759,
+   "text": "Fancy Reefclaw",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fancy_Reefclaw"
+    }
+   }
+  },
+  {
+   "_id": "dghQEfMJ7EqG0TiM",
+   "x": 3073,
+   "y": 1751,
+   "text": "Heidmarch Manor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Heidmarch_Manor"
+    }
+   }
+  },
+  {
+   "_id": "UckTEsyXCj7Nc2WY",
+   "x": 2935,
+   "y": 1749,
+   "text": "Lord-Mayor's Menagerie",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lord-Mayor's_Menagerie"
+    }
+   }
+  },
+  {
+   "_id": "gfwJ9bSsEn4Hum61",
+   "x": 1963,
+   "y": 1719,
+   "text": "Pig",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pig"
+    }
+   }
+  },
+  {
+   "_id": "cqgOrKi0akXzv4aq",
+   "x": 2993,
+   "y": 1662,
+   "text": "Derexhi Villa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Derexhi_Villa"
+    }
+   }
+  },
+  {
+   "_id": "wPwyBcMeVaTlTE28",
+   "x": 2533,
+   "y": 1644,
+   "text": "Bronze House",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bronze_House"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/magnimar-city.webp",
+ "__key": "magnimar-city",
+ "__folder": "Cities",
+ "_id": "MeXvWMY2vifLwU0X"
+}

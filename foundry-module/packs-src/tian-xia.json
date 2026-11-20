@@ -1,0 +1,679 @@
+{
+ "name": "Tian Xia",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 0,
+  "size": 100,
+  "distance": 143,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "7un6fCCW7IOuz0jL",
+   "name": "Tian Xia",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/tian-xia.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "OQ53SW2C3xp6FQ4m",
+   "x": 1644,
+   "y": 310,
+   "text": "Funako",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Funako"
+    }
+   }
+  },
+  {
+   "_id": "LDvFpV0H1EsL4VTe",
+   "x": 1727,
+   "y": 243,
+   "text": "New Oppara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/New_Oppara"
+    }
+   }
+  },
+  {
+   "_id": "bbhD2hZwVlO6fndm",
+   "x": 1853,
+   "y": 240,
+   "text": "Toduc Wa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Toduc_Wa"
+    }
+   }
+  },
+  {
+   "_id": "EFAU7KNJqKngguRQ",
+   "x": 2431,
+   "y": 203,
+   "text": "Mewru",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mewru"
+    }
+   }
+  },
+  {
+   "_id": "mVhgmn9njTyuXE24",
+   "x": 1668,
+   "y": 181,
+   "text": "Babschu-Jong",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Babschu-Jong"
+    }
+   }
+  },
+  {
+   "_id": "jUvgHbsC7YOqaZUs",
+   "x": 1755,
+   "y": 29,
+   "text": "Sangpo-Jong",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sangpo-Jong"
+    }
+   }
+  },
+  {
+   "_id": "NHGCHfD14rC7lHHF",
+   "x": 310,
+   "y": 2059,
+   "text": "Vannarak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vannarak"
+    }
+   }
+  },
+  {
+   "_id": "g3QBdCDoPVS8G1ws",
+   "x": 293,
+   "y": 1292,
+   "text": "Goka",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Goka"
+    }
+   }
+  },
+  {
+   "_id": "0ouH48FhLfV5oavi",
+   "x": 387,
+   "y": 1253,
+   "text": "Langkhu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Langkhu"
+    }
+   }
+  },
+  {
+   "_id": "JN0bRU6URCAjpE7r",
+   "x": 1400,
+   "y": 2352,
+   "text": "Zom Kullan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zom_Kullan"
+    }
+   }
+  },
+  {
+   "_id": "PbKMba9lguDzP1up",
+   "x": 2450,
+   "y": 2281,
+   "text": "Ngōn Hoa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ng%C5%8Dn_Hoa"
+    }
+   }
+  },
+  {
+   "_id": "XXD6y2FxAg7qd1MN",
+   "x": 2183,
+   "y": 2195,
+   "text": "Surat Prakan",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Surat_Prakan"
+    }
+   }
+  },
+  {
+   "_id": "69tl1J3utzLgcf2h",
+   "x": 1612,
+   "y": 2091,
+   "text": "Thulsadus",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Thulsadus"
+    }
+   }
+  },
+  {
+   "_id": "UrjWse8nQBUqaDp7",
+   "x": 1462,
+   "y": 2080,
+   "text": "Tuotuo",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tuotuo"
+    }
+   }
+  },
+  {
+   "_id": "4iKfnTduJetgt7J8",
+   "x": 2252,
+   "y": 2056,
+   "text": "Thap Samut",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Thap_Samut"
+    }
+   }
+  },
+  {
+   "_id": "AG91SdMoVi6Z3L5p",
+   "x": 1532,
+   "y": 2008,
+   "text": "Jitai",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jitai"
+    }
+   }
+  },
+  {
+   "_id": "bU9LEI3mxjkQ6hBj",
+   "x": 1413,
+   "y": 1944,
+   "text": "Yuming",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yuming"
+    }
+   }
+  },
+  {
+   "_id": "yqoPbwhLc2zOUkpZ",
+   "x": 2428,
+   "y": 1930,
+   "text": "Haseong",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Haseong"
+    }
+   }
+  },
+  {
+   "_id": "EAuHpTK74T4VQkT3",
+   "x": 1579,
+   "y": 1908,
+   "text": "Changdo",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Changdo"
+    }
+   }
+  },
+  {
+   "_id": "Ctw51e0Ybm4Rm8Px",
+   "x": 2198,
+   "y": 1879,
+   "text": "Maecho",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Maecho"
+    }
+   }
+  },
+  {
+   "_id": "MgJmOXrYEYSg9R6u",
+   "x": 1253,
+   "y": 1848,
+   "text": "Nanzhu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nanzhu"
+    }
+   }
+  },
+  {
+   "_id": "chqnOMq7turwvaJ8",
+   "x": 1492,
+   "y": 1718,
+   "text": "Xiwu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Xiwu"
+    }
+   }
+  },
+  {
+   "_id": "qW9zzWaAfLKfORwf",
+   "x": 1025,
+   "y": 1708,
+   "text": "He Ming",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/He_Ming"
+    }
+   }
+  },
+  {
+   "_id": "VH5mhPzIGzYaPYH1",
+   "x": 1641,
+   "y": 1590,
+   "text": "Danjing",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Danjing"
+    }
+   }
+  },
+  {
+   "_id": "qNesmSR0TLVZDazG",
+   "x": 1043,
+   "y": 1544,
+   "text": "Khitai",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Khitai"
+    }
+   }
+  },
+  {
+   "_id": "2ckHRerxmlOqJKZ0",
+   "x": 2521,
+   "y": 1506,
+   "text": "Peijia",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Peijia"
+    }
+   }
+  },
+  {
+   "_id": "sWrqGQo31enba5Gj",
+   "x": 1333,
+   "y": 1471,
+   "text": "Anjing",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Anjing"
+    }
+   }
+  },
+  {
+   "_id": "uUQqxX1S4sF8Q9xu",
+   "x": 2551,
+   "y": 1313,
+   "text": "Zetang",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Zetang"
+    }
+   }
+  },
+  {
+   "_id": "Gux0KlE38jOxZMGL",
+   "x": 2532,
+   "y": 1097,
+   "text": "Nagaiyamatsu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Nagaiyamatsu"
+    }
+   }
+  },
+  {
+   "_id": "GjLJSdkAhZjzMg9h",
+   "x": 1304,
+   "y": 928,
+   "text": "Mukinami",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mukinami"
+    }
+   }
+  },
+  {
+   "_id": "2ETnQ4c16rK2193p",
+   "x": 2449,
+   "y": 829,
+   "text": "Hisuikarasu",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hisuikarasu"
+    }
+   }
+  },
+  {
+   "_id": "TSVlANialDygBI1b",
+   "x": 1989,
+   "y": 689,
+   "text": "Todorokaze",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Todorokaze"
+    }
+   }
+  },
+  {
+   "_id": "OMiFZCsbr7Wnvme6",
+   "x": 1995,
+   "y": 594,
+   "text": "Okim",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Okim"
+    }
+   }
+  },
+  {
+   "_id": "R9ANjlO1Nwg1bMiI",
+   "x": 2026,
+   "y": 567,
+   "text": "Seidoyaji",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Seidoyaji"
+    }
+   }
+  },
+  {
+   "_id": "Hkuz0OxivGIcC3xq",
+   "x": 1191,
+   "y": 532,
+   "text": "Dhucharg",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dhucharg"
+    }
+   }
+  },
+  {
+   "_id": "bqettmcl9Nk35OY0",
+   "x": 1819,
+   "y": 490,
+   "text": "Vannisaria",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vannisaria"
+    }
+   }
+  },
+  {
+   "_id": "c4DkppwHKQG23tUY",
+   "x": 2504,
+   "y": 452,
+   "text": "Pobashabla",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pobashabla"
+    }
+   }
+  },
+  {
+   "_id": "VLjW5egtnpo6feZH",
+   "x": 2448,
+   "y": 3010,
+   "text": "Waunomani",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Waunomani"
+    }
+   }
+  }
+ ],
+ "__key": "tian-xia",
+ "__folder": "World & Continents",
+ "_id": "0tNYqlTJdzz8Suy9",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/tian-xia.webp"
+}

@@ -1,0 +1,50 @@
+{
+ "name": "Hunthul",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "L3S4HrVIngusXeXz",
+   "name": "Hunthul",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/hunthul-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "iRJal05azIVh4Hdo",
+   "x": 2304,
+   "y": 1538,
+   "text": "Hunthul",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hunthul"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/hunthul-town.webp",
+ "__key": "hunthul-town",
+ "__folder": "Cities",
+ "_id": "ZWW0KjXtWY0AE42e"
+}

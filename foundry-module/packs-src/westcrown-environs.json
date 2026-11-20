@@ -1,0 +1,492 @@
+{
+ "name": "Westcrown Region",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 3.45,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "8CeiGJdDXJY9AOvE",
+   "name": "Westcrown Region",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/westcrown-environs.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "fhLRwCSZYYQMUDf9",
+   "x": 2270,
+   "y": 1718,
+   "text": "Delvehaven",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Delvehaven"
+    }
+   }
+  },
+  {
+   "_id": "qpXHkexb1kHexAh7",
+   "x": 864,
+   "y": 1641,
+   "text": "Citadel Rivad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Citadel_Rivad"
+    }
+   }
+  },
+  {
+   "_id": "X4kHFMO258SgmrjD",
+   "x": 2203,
+   "y": 1637,
+   "text": "Taranik House",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Taranik_House"
+    }
+   }
+  },
+  {
+   "_id": "cJu951V5s5AcQ1kr",
+   "x": 2243,
+   "y": 1609,
+   "text": "Ducotrion",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ducotrion"
+    }
+   }
+  },
+  {
+   "_id": "SvHEsd9Lv1fFnf3x",
+   "x": 2156,
+   "y": 1548,
+   "text": "Limehouse Theater",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Limehouse_Theater"
+    }
+   }
+  },
+  {
+   "_id": "LdRTkqy9qnM0KbKq",
+   "x": 2304,
+   "y": 1541,
+   "text": "Westcrown",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Westcrown"
+    }
+   }
+  },
+  {
+   "_id": "dyyKlU74T9XQ5bIt",
+   "x": 2259,
+   "y": 1517,
+   "text": "Blacknape Hideout",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Blacknape_Hideout"
+    }
+   }
+  },
+  {
+   "_id": "gkyAOP1x05eafqwn",
+   "x": 2196,
+   "y": 1494,
+   "text": "Canaroden",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Canaroden"
+    }
+   }
+  },
+  {
+   "_id": "HAfeByihaosyrG4N",
+   "x": 2150,
+   "y": 1448,
+   "text": "Jacovo's Stables",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Jacovo's_Stables"
+    }
+   }
+  },
+  {
+   "_id": "BgM840OnbCCwLIpd",
+   "x": 2315,
+   "y": 1429,
+   "text": "Dorjanala",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dorjanala"
+    }
+   }
+  },
+  {
+   "_id": "Hq9L97QZruP2rFnh",
+   "x": 2156,
+   "y": 1389,
+   "text": "Dusk Market",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dusk_Market"
+    }
+   }
+  },
+  {
+   "_id": "HfxQHDO6SUiJF41c",
+   "x": 2308,
+   "y": 1368,
+   "text": "Korradath",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Korradath"
+    }
+   }
+  },
+  {
+   "_id": "NNJoJxXgXzZZl5Xk",
+   "x": 2141,
+   "y": 1338,
+   "text": "Sunset Gate",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sunset_Gate"
+    }
+   }
+  },
+  {
+   "_id": "JIMU8Y82o9whm6WV",
+   "x": 2203,
+   "y": 1325,
+   "text": "Old Temple of Erastil",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Old_Temple_of_Erastil"
+    }
+   }
+  },
+  {
+   "_id": "zx4GFT1GKyNaupxH",
+   "x": 2279,
+   "y": 1297,
+   "text": "Thesing's Tower",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Thesing's_Tower"
+    }
+   }
+  },
+  {
+   "_id": "4Ht6Ym3z7Vf9MBwe",
+   "x": 1722,
+   "y": 79,
+   "text": "Westpool",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Westpool"
+    }
+   }
+  },
+  {
+   "_id": "HS0v3rFcl0woluTP",
+   "x": 2489,
+   "y": 1693,
+   "text": "Wave Door",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Wave_Door"
+    }
+   }
+  },
+  {
+   "_id": "1zs1DPIGeRRe09eO",
+   "x": 2499,
+   "y": 1636,
+   "text": "Founder's Peak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Founder's_Peak"
+    }
+   }
+  },
+  {
+   "_id": "NjIgxtEwd7DlDCMq",
+   "x": 2354,
+   "y": 1494,
+   "text": "Trivardum",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Trivardum"
+    }
+   }
+  },
+  {
+   "_id": "lHFOKphP8VE9a2ZV",
+   "x": 2502,
+   "y": 1266,
+   "text": "Bloody Tarn",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bloody_Tarn"
+    }
+   }
+  },
+  {
+   "_id": "Vc0PZzEiSEeRuMc9",
+   "x": 2545,
+   "y": 1217,
+   "text": "Trollclaw Cleft",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Trollclaw_Cleft"
+    }
+   }
+  },
+  {
+   "_id": "vn8y2i92rshYdRER",
+   "x": 2455,
+   "y": 1184,
+   "text": "Maggot Tree",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Maggot_Tree"
+    }
+   }
+  },
+  {
+   "_id": "jOTmM8ADdVwR9ZfY",
+   "x": 2180,
+   "y": 1799,
+   "text": "Vaneo Arvanxi",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Vaneo_Arvanxi"
+    }
+   }
+  },
+  {
+   "_id": "Z462vfiWWbYfAQT7",
+   "x": 2315,
+   "y": 1783,
+   "text": "Qatada Nessudidia",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Qatada_Nessudidia"
+    }
+   }
+  },
+  {
+   "_id": "a2yKmvixbQL0zuOy",
+   "x": 2240,
+   "y": 1766,
+   "text": "Arodennama",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Arodennama"
+    }
+   }
+  },
+  {
+   "_id": "Zb0oZ1xZTAE9c2OT",
+   "x": 2176,
+   "y": 1746,
+   "text": "Sanqatada Cinqarda",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sanqatada_Cinqarda"
+    }
+   }
+  },
+  {
+   "_id": "DZCMzjW8tnDfDNTf",
+   "x": 2420,
+   "y": 1772,
+   "text": "Imperial Marina",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Imperial_Marina"
+    }
+   }
+  }
+ ],
+ "__key": "westcrown-environs",
+ "__folder": "City Environs",
+ "_id": "5K0Q8J4m7I6GVa94",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/westcrown-environs.webp"
+}

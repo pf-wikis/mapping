@@ -1,0 +1,67 @@
+{
+ "name": "Xer",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.613,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "ORwqZ5ovlBLihW3Z",
+   "name": "Xer",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/xer-town.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "5oT4Oy9JCn5eoTF1",
+   "x": 2304,
+   "y": 1537,
+   "text": "Xer",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Xer"
+    }
+   }
+  },
+  {
+   "_id": "x83ocFVXl88esg4r",
+   "x": 4112,
+   "y": 2636,
+   "text": "Berm",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Berm"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/xer-town.webp",
+ "__key": "xer-town",
+ "__folder": "Cities",
+ "_id": "YMJif65iEJarxwKm"
+}

@@ -1,0 +1,679 @@
+{
+ "name": "Thuvia",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 18.7,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "xMV56rJ62VWOYRtY",
+   "name": "Thuvia",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/thuvia.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "KTvtiUQSfXxdGHxF",
+   "x": 1620,
+   "y": 2995,
+   "text": "Sele",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sele"
+    }
+   }
+  },
+  {
+   "_id": "PpcR3bspi3GhaRUG",
+   "x": 549,
+   "y": 2593,
+   "text": "Dim Gate",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dim_Gate"
+    }
+   }
+  },
+  {
+   "_id": "gPXxuUz6tm0teOPQ",
+   "x": 194,
+   "y": 2442,
+   "text": "Haldun",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Haldun"
+    }
+   }
+  },
+  {
+   "_id": "1qkdJ0sqDRwpZM2D",
+   "x": 483,
+   "y": 2407,
+   "text": "Lost Yemal",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lost_Yemal"
+    }
+   }
+  },
+  {
+   "_id": "aObmr6nJI4t9iLlB",
+   "x": 2026,
+   "y": 2272,
+   "text": "Shouk",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shouk"
+    }
+   }
+  },
+  {
+   "_id": "VBgPsK9apRmypkU2",
+   "x": 1249,
+   "y": 2222,
+   "text": "Hidden Nest",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Hidden_Nest"
+    }
+   }
+  },
+  {
+   "_id": "FhoBrXJd9k5GfOp0",
+   "x": 1806,
+   "y": 2167,
+   "text": "Duwwor",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Duwwor"
+    }
+   }
+  },
+  {
+   "_id": "LILJU7DzB1huNTGY",
+   "x": 987,
+   "y": 2147,
+   "text": "Tomb of Emperors",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tomb_of_Emperors"
+    }
+   }
+  },
+  {
+   "_id": "qAOfH5McFloKTvxh",
+   "x": 2997,
+   "y": 2139,
+   "text": "Citadel of the Alchemist",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Citadel_of_the_Alchemist"
+    }
+   }
+  },
+  {
+   "_id": "67WnEIhNqc1a4Pq0",
+   "x": 2949,
+   "y": 1924,
+   "text": "Uldani Necropolis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Uldani_Necropolis"
+    }
+   }
+  },
+  {
+   "_id": "a7HWckm0Yz7F5T4Z",
+   "x": 2089,
+   "y": 1846,
+   "text": "Fort Binebthus",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fort_Binebthus"
+    }
+   }
+  },
+  {
+   "_id": "F0jJJgbzFXZuvjv0",
+   "x": 2819,
+   "y": 1574,
+   "text": "Resa",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Resa"
+    }
+   }
+  },
+  {
+   "_id": "lt0ffCkaZ7hHwwfg",
+   "x": 1847,
+   "y": 1428,
+   "text": "House of Oblivion",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/House_of_Oblivion"
+    }
+   }
+  },
+  {
+   "_id": "jbOW7RKdDniLIdCv",
+   "x": 2502,
+   "y": 1412,
+   "text": "Olivine Tomb of Djederet II",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Olivine_Tomb_of_Djederet_II"
+    }
+   }
+  },
+  {
+   "_id": "AuBCKNBrUCkwcDNP",
+   "x": 422,
+   "y": 1379,
+   "text": "Deromas",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Deromas"
+    }
+   }
+  },
+  {
+   "_id": "m0YE7rpwXadzK2Lc",
+   "x": 1274,
+   "y": 1091,
+   "text": "Magarai",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Magarai"
+    }
+   }
+  },
+  {
+   "_id": "IGSvZbpKc7xmFe0J",
+   "x": 1999,
+   "y": 871,
+   "text": "Merab",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Merab"
+    }
+   }
+  },
+  {
+   "_id": "XKDCLyWdo9sLUOWP",
+   "x": 4489,
+   "y": 3032,
+   "text": "Painted Flutes",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Painted_Flutes"
+    }
+   }
+  },
+  {
+   "_id": "ChzPTMCptOPmiyXM",
+   "x": 4588,
+   "y": 2872,
+   "text": "Gembasket",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gembasket"
+    }
+   }
+  },
+  {
+   "_id": "H7M9b5eLB0QemKNO",
+   "x": 4485,
+   "y": 2697,
+   "text": "Kho",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kho"
+    }
+   }
+  },
+  {
+   "_id": "vlSobNcSBKCspAvl",
+   "x": 4436,
+   "y": 2544,
+   "text": "Mephit Spring",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Mephit_Spring"
+    }
+   }
+  },
+  {
+   "_id": "C2ILyNn2gIXrQv08",
+   "x": 4424,
+   "y": 2421,
+   "text": "Tomb of the Bound Sphinx",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tomb_of_the_Bound_Sphinx"
+    }
+   }
+  },
+  {
+   "_id": "LGw3OvFVlgTAl1JL",
+   "x": 4481,
+   "y": 2335,
+   "text": "Tar Kuata",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tar_Kuata"
+    }
+   }
+  },
+  {
+   "_id": "kqzTp3NkSd9VcotR",
+   "x": 4374,
+   "y": 2273,
+   "text": "Aphet East",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aphet_East"
+    }
+   }
+  },
+  {
+   "_id": "Td5NobDVJ1q6FGsd",
+   "x": 4208,
+   "y": 2251,
+   "text": "Ekbet",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ekbet"
+    }
+   }
+  },
+  {
+   "_id": "Ydpyv8mNxX6lwrLP",
+   "x": 4569,
+   "y": 2166,
+   "text": "Asuulek's Mouth",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Asuulek's_Mouth"
+    }
+   }
+  },
+  {
+   "_id": "eKI8jyYh8D5rJe9K",
+   "x": 4269,
+   "y": 2117,
+   "text": "Klarwa Fountain",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Klarwa_Fountain"
+    }
+   }
+  },
+  {
+   "_id": "PWK44cIKPk3XT9Fg",
+   "x": 4332,
+   "y": 2022,
+   "text": "Killik-Tura Oasis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Killik-Tura_Oasis"
+    }
+   }
+  },
+  {
+   "_id": "1pTqcbDpQSrBUvb8",
+   "x": 3557,
+   "y": 2010,
+   "text": "Cathedral of Claws",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Cathedral_of_Claws"
+    }
+   }
+  },
+  {
+   "_id": "bqhJ4bX8YRsulGfp",
+   "x": 3092,
+   "y": 1894,
+   "text": "Pashow",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Pashow"
+    }
+   }
+  },
+  {
+   "_id": "oaLtEzvssOi0FFwC",
+   "x": 4230,
+   "y": 1819,
+   "text": "Akhenaten",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Akhenaten"
+    }
+   }
+  },
+  {
+   "_id": "haP4iT9EDVy5ZrY2",
+   "x": 4301,
+   "y": 1796,
+   "text": "El-Amara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/El-Amara"
+    }
+   }
+  },
+  {
+   "_id": "vJN5U98YQbBUOVNz",
+   "x": 4325,
+   "y": 1697,
+   "text": "Lost Fortress of Mekshir",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lost_Fortress_of_Mekshir"
+    }
+   }
+  },
+  {
+   "_id": "2yUboYlpwS4cbXX7",
+   "x": 4082,
+   "y": 1504,
+   "text": "Lamasara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lamasara"
+    }
+   }
+  },
+  {
+   "_id": "Etg9DCocOvHY415d",
+   "x": 4431,
+   "y": 1304,
+   "text": "Sphinx Head",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sphinx_Head"
+    }
+   }
+  },
+  {
+   "_id": "FfJUrJ4ai5hwZrlk",
+   "x": 4051,
+   "y": 1246,
+   "text": "Desert's Mouth",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Desert's_Mouth"
+    }
+   }
+  },
+  {
+   "_id": "9FSUe1pa2isS9PF4",
+   "x": 4200,
+   "y": 1098,
+   "text": "Myrissos",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Myrissos"
+    }
+   }
+  },
+  {
+   "_id": "5Ximr5FGgjqdXA1m",
+   "x": 3048,
+   "y": 1048,
+   "text": "Aspenthar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aspenthar"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/thuvia.webp",
+ "__key": "thuvia",
+ "__folder": "Nations",
+ "_id": "Y8EI8I1DOq7I4MyZ"
+}

@@ -1,0 +1,118 @@
+{
+ "name": "Urgir",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 0.1,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "IgAbfOGpVb0zyOxY",
+   "name": "Urgir",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/urgir-city.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "ZhYLT2mhD552jDEM",
+   "x": 2013,
+   "y": 1541,
+   "text": "Market District",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Market_District"
+    }
+   }
+  },
+  {
+   "_id": "k141ArqpAMjq6LuG",
+   "x": 2375,
+   "y": 1705,
+   "text": "Sharpened Axe",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sharpened_Axe"
+    }
+   }
+  },
+  {
+   "_id": "vW1kUzvD2QgQkndN",
+   "x": 2317,
+   "y": 1541,
+   "text": "Urgir",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Urgir"
+    }
+   }
+  },
+  {
+   "_id": "2U5wXgAP3kUpTdML",
+   "x": 2600,
+   "y": 1540,
+   "text": "Great Palace",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Great_Palace"
+    }
+   }
+  },
+  {
+   "_id": "JIlE34yl9OQNzsU6",
+   "x": 2448,
+   "y": 1400,
+   "text": "Halls of the Closed Fist",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Halls_of_the_Closed_Fist"
+    }
+   }
+  }
+ ],
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/urgir-city.webp",
+ "__key": "urgir-city",
+ "__folder": "Cities",
+ "_id": "9e9dKLJ1lMDl6Oli"
+}

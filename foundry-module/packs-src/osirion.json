@@ -1,0 +1,645 @@
+{
+ "name": "Osirion",
+ "width": 4608,
+ "height": 3072,
+ "padding": 0,
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 15.5,
+  "units": "mi"
+ },
+ "tokenVision": false,
+ "fog": {
+  "exploration": false
+ },
+ "navigation": true,
+ "levels": [
+  {
+   "_id": "9JKVeyTanaVxZnwp",
+   "name": "Osirion",
+   "index": 0,
+   "background": {
+    "src": "modules/foundryvtt-golarion-maps/assets/scenes/osirion.webp"
+   }
+  }
+ ],
+ "notes": [
+  {
+   "_id": "Y20yNdNW5mdIfmSK",
+   "x": 798,
+   "y": 1046,
+   "text": "Lamasara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Lamasara"
+    }
+   }
+  },
+  {
+   "_id": "8TEaPQxOUnT0fEhp",
+   "x": 1484,
+   "y": 839,
+   "text": "Shiman-Sekh",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shiman-Sekh"
+    }
+   }
+  },
+  {
+   "_id": "klv5WwSAZ40kVM3z",
+   "x": 943,
+   "y": 551,
+   "text": "Myrissos",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Myrissos"
+    }
+   }
+  },
+  {
+   "_id": "UVrlfP4lXP0FE9Jo",
+   "x": 3416,
+   "y": 1306,
+   "text": "Sothis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Sothis"
+    }
+   }
+  },
+  {
+   "_id": "8Smq84Vwx2jvFA0y",
+   "x": 3977,
+   "y": 1282,
+   "text": "Tumen",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tumen"
+    }
+   }
+  },
+  {
+   "_id": "LQBztEmWna4Qv3Xn",
+   "x": 2783,
+   "y": 1060,
+   "text": "Setrypsis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Setrypsis"
+    }
+   }
+  },
+  {
+   "_id": "Gba18lOwWVgYPzaA",
+   "x": 2971,
+   "y": 876,
+   "text": "Totra",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Totra"
+    }
+   }
+  },
+  {
+   "_id": "221e8TAUDS07aFKD",
+   "x": 2240,
+   "y": 679,
+   "text": "Enqatis",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Enqatis"
+    }
+   }
+  },
+  {
+   "_id": "7ErG2yQsWkhub7NJ",
+   "x": 4244,
+   "y": 1218,
+   "text": "El-Shelad",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/El-Shelad"
+    }
+   }
+  },
+  {
+   "_id": "aqYcSXHGHVw3dqt9",
+   "x": 4258,
+   "y": 1071,
+   "text": "Gardens of Shepeska",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Gardens_of_Shepeska"
+    }
+   }
+  },
+  {
+   "_id": "0qFDvDBirDsqbRJD",
+   "x": 1290,
+   "y": 2500,
+   "text": "Kho",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kho"
+    }
+   }
+  },
+  {
+   "_id": "0tv3iYwkCpvs1Az6",
+   "x": 1496,
+   "y": 2192,
+   "text": "Djeneg",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Djeneg"
+    }
+   }
+  },
+  {
+   "_id": "AMSHOAN16iZQKyFk",
+   "x": 1285,
+   "y": 2058,
+   "text": "Tar Kuata",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Tar_Kuata"
+    }
+   }
+  },
+  {
+   "_id": "L3v7NU0YOlb29ubN",
+   "x": 1155,
+   "y": 1983,
+   "text": "Aphet East",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Aphet_East"
+    }
+   }
+  },
+  {
+   "_id": "lubjNZcG9n6xqcFX",
+   "x": 951,
+   "y": 1957,
+   "text": "Ekbet",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ekbet"
+    }
+   }
+  },
+  {
+   "_id": "L2e9I0VW5PBauTXP",
+   "x": 979,
+   "y": 1430,
+   "text": "Akhenaten",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Akhenaten"
+    }
+   }
+  },
+  {
+   "_id": "DIZlufc3hPYU4rGJ",
+   "x": 1066,
+   "y": 1401,
+   "text": "El-Amara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/El-Amara"
+    }
+   }
+  },
+  {
+   "_id": "XJ2k7hWONN77x9yP",
+   "x": 3478,
+   "y": 3003,
+   "text": "Driftwood",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Driftwood"
+    }
+   }
+  },
+  {
+   "_id": "ptxln0t7X8d3vpPf",
+   "x": 2697,
+   "y": 2930,
+   "text": "El-Fatar",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/El-Fatar"
+    }
+   }
+  },
+  {
+   "_id": "dtnpPKv39iXZ7BUX",
+   "x": 2261,
+   "y": 2868,
+   "text": "Kelmarane",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kelmarane"
+    }
+   }
+  },
+  {
+   "_id": "gKb44fZ15KBDvIv2",
+   "x": 2360,
+   "y": 2841,
+   "text": "Bronze Hook",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Bronze_Hook"
+    }
+   }
+  },
+  {
+   "_id": "tYwi7jgiSBtMi9yW",
+   "x": 2854,
+   "y": 2827,
+   "text": "Yavipho",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Yavipho"
+    }
+   }
+  },
+  {
+   "_id": "thGmPfjhCbXxYKd7",
+   "x": 4006,
+   "y": 2707,
+   "text": "Chiron",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Chiron"
+    }
+   }
+  },
+  {
+   "_id": "S5kiH8TKcaWxPQqo",
+   "x": 2938,
+   "y": 2697,
+   "text": "Fort Fang",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Fort_Fang"
+    }
+   }
+  },
+  {
+   "_id": "Jzv7izKI7c1VzY8H",
+   "x": 2113,
+   "y": 2597,
+   "text": "Erekrus",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Erekrus"
+    }
+   }
+  },
+  {
+   "_id": "QNYOeTbxErie4z3t",
+   "x": 3018,
+   "y": 2560,
+   "text": "Dead Villages",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Dead_Villages"
+    }
+   }
+  },
+  {
+   "_id": "6lNNs2PLvB3g9zA4",
+   "x": 1904,
+   "y": 2473,
+   "text": "Oe-Tet",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Oe-Tet"
+    }
+   }
+  },
+  {
+   "_id": "N1JXF3D2oilrJUbP",
+   "x": 2285,
+   "y": 2344,
+   "text": "Safani",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Safani"
+    }
+   }
+  },
+  {
+   "_id": "25QSv5j37hREeaSn",
+   "x": 2580,
+   "y": 2318,
+   "text": "Ipeq",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Ipeq"
+    }
+   }
+  },
+  {
+   "_id": "TlIMHz9eFIqtspSw",
+   "x": 3592,
+   "y": 2091,
+   "text": "An-Alak",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/An-Alak"
+    }
+   }
+  },
+  {
+   "_id": "V4QL8pupkqtUyO9E",
+   "x": 3007,
+   "y": 2087,
+   "text": "Wati",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Wati"
+    }
+   }
+  },
+  {
+   "_id": "l5uYYU9KiN43PUnJ",
+   "x": 3015,
+   "y": 2018,
+   "text": "An",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/An"
+    }
+   }
+  },
+  {
+   "_id": "7qlvxZ4OESFDOao0",
+   "x": 3278,
+   "y": 1749,
+   "text": "Djefet",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Djefet"
+    }
+   }
+  },
+  {
+   "_id": "mPjshcNkHVF5XMQo",
+   "x": 3386,
+   "y": 1528,
+   "text": "Kalit",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Kalit"
+    }
+   }
+  },
+  {
+   "_id": "6Lc6DNvnbAPJic0g",
+   "x": 2565,
+   "y": 1491,
+   "text": "Eto",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Eto"
+    }
+   }
+  },
+  {
+   "_id": "GDOSoQ0Mot5aypVJ",
+   "x": 4183,
+   "y": 1433,
+   "text": "Shotep-Kara",
+   "fontSize": 24,
+   "iconSize": 32,
+   "texture": {
+    "src": "icons/svg/village.svg"
+   },
+   "global": true,
+   "flags": {
+    "foundryvtt-golarion-maps": {
+     "wikiUrl": "https://pathfinderwiki.com/wiki/Shotep-Kara"
+    }
+   }
+  }
+ ],
+ "__key": "osirion",
+ "__folder": "Nations",
+ "_id": "bIcHd93jLBXw4lLb",
+ "thumb": "modules/foundryvtt-golarion-maps/assets/thumbs/osirion.webp"
+}

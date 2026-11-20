@@ -1,0 +1,57 @@
+{
+  "id": "golarion-map-scenes",
+  "title": "Golarion Map Scenes",
+  "description": "The PathfinderWiki interactive map of Golarion as ready-to-use Foundry scenes: 297 faithful map renders from the world map down to individual towns, with hexploration grids in correct miles and location pins linked to gazetteer journals and PathfinderWiki articles. This module uses trademarks and/or copyrights owned by Paizo Inc., used under Paizo's Community Use Policy. We are expressly prohibited from charging you to use or access this content. This module is not published, endorsed, or specifically approved by Paizo.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Cliff Colvin",
+      "url": "https://github.com/cliffcolvin"
+    }
+  ],
+  "esmodules": [
+    "dist/module.js"
+  ],
+  "styles": [
+    "dist/style.css"
+  ],
+  "packs": [
+    {
+      "name": "golarion-scenes",
+      "label": "Golarion Maps",
+      "path": "packs/golarion-scenes",
+      "type": "Scene",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "golarion-adventure",
+      "label": "Golarion Maps — Install All",
+      "path": "packs/golarion-adventure",
+      "type": "Adventure",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    }
+  ],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "url": "https://github.com/pf-wikis/mapping",
+  "manifest": "",
+  "download": "",
+  "readme": "https://github.com/pf-wikis/mapping/tree/main/foundry-module#readme",
+  "bugs": "https://github.com/pf-wikis/mapping/issues",
+  "license": "LICENSE"
+}
