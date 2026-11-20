@@ -12,7 +12,9 @@ import org.apache.commons.io.IOUtils;
 import com.google.common.collect.Lists;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public enum ToolVariant {
 	
 	NATIVE {
@@ -107,7 +109,9 @@ public enum ToolVariant {
 				proc.onExit().join();
 				if(proc.exitValue()==0)
 					return variant;
-			} catch (IOException e) {}
+			} catch (IOException e) {
+				log.info("Can't run tool {} with variant {}", args[0], variant.name());
+			}
 		}
 	
 		throw new IllegalStateException("Unhandled tool "+args[0]);

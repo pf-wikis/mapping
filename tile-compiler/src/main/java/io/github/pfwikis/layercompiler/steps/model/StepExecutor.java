@@ -3,7 +3,9 @@ package io.github.pfwikis.layercompiler.steps.model;
 import java.io.Closeable;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -77,9 +79,11 @@ public abstract class StepExecutor extends Task<String, Content> {
 		
 		//shortcut in case there is only one
 		if(variants.size()==1) {
+			log.info("Processing as sliced, but only one slice");
 			var variant = variants.getFirst();
-			var res = limitContentToTime(process(variant), variant.getTime()).asTimelessIfPossible();
-			return res;
+			var res = limitContentToTime(process(variant), variant.getTime());
+			return Content.sliced(mergeIdenticalSlices(new ArrayList<>(res.getSlices())))
+				.asTimelessIfPossible();
 		}
 		
 		try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
@@ -90,11 +94,18 @@ public abstract class StepExecutor extends Task<String, Content> {
 					return limitContentToTime(process(v),v.getTime());
 				}))
 				.toList();
+			log.info("Processing as sliced: {} slices", futures.size());
 			var results = new ArrayList<TimeSlice>(futures.size());
 		    try {
 		        for (var f : futures) {
 		            results.addAll(f.get().getSlices());
 		        }
+		        //the step could have produced the same result from different inputs
+		        results = mergeIdenticalSlices(results);
+                log.info(
+                        "Processing as sliced: {} slices resulted in {} slices",
+                        futures.size(),
+                        results.size());
 		        return Content.sliced(results);
 		    } catch (Exception e) {
 		    	futures.forEach(f->f.cancel(true));
@@ -103,7 +114,48 @@ public abstract class StepExecutor extends Task<String, Content> {
 		}
 	}
     
-    private TimeSlicedContent limitContentToTime(Content content, TimeRange range) {
+    private static final byte[] EMPTY_BYTES = new byte[0];
+    private static final Comparator<TimeRange> TIME_RANGE_ORDER = Comparator
+        .comparing(TimeRange::getTimeStart, Comparator.nullsFirst(Comparator.naturalOrder()))
+        .thenComparing(TimeRange::getTimeEnd, Comparator.nullsLast(Comparator.naturalOrder()));
+
+    /*package*/ static ArrayList<TimeSlice> mergeIdenticalSlices(ArrayList<TimeSlice> results) {
+        if(results.size() < 2)
+            return results;
+
+        results.sort(Comparator.comparing(TimeSlice::getTime, TIME_RANGE_ORDER));
+
+        var merged = new ArrayList<TimeSlice>(results.size());
+        var current = results.getFirst();
+        var currentBytes = contentBytes(current.getData());
+        for(int i=1;i<results.size();i++) {
+            var next = results.get(i);
+            var nextBytes = next.getData() == current.getData()
+                ? currentBytes
+                : contentBytes(next.getData());
+            //Only contiguous ranges may be merged. Non-contiguous equal slices have to stay separate.
+            if(Arrays.equals(currentBytes, nextBytes)
+                    && current.getTime().toGuavaRange().isConnected(next.getTime().toGuavaRange())) {
+                current = new TimeSlice(
+                    TimeRange.from(current.getTime().toGuavaRange().span(next.getTime().toGuavaRange())),
+                    current.getData()
+                );
+            }
+            else {
+                merged.add(current);
+                current = next;
+                currentBytes = nextBytes;
+            }
+        }
+        merged.add(current);
+        return merged;
+    }
+
+    private static byte[] contentBytes(GeoData data) {
+        return data.isEmpty()? EMPTY_BYTES : data.toBytes();
+    }
+
+	private TimeSlicedContent limitContentToTime(Content content, TimeRange range) {
     	if(range.equals(TimeRange.always())) {
     		return content.asSliced();
     	}
