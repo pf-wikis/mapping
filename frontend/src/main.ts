@@ -4,19 +4,18 @@ import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import './style.scss';
 
 import style from 'virtual:style';
+import MeasureControl from './tools/measure.js';
 
 import { PMTiles, Protocol } from 'pmtiles';
 import { makeLocationsClickable } from "./tools/location-popup.js";
 import { addRightClickMenu } from "./tools/right-click-menu.js";
 import { CachedSource } from "./CachedPmTiles.js";
-import NewTab from "./tools/NewTab.js";
 import { CompactAttributionControl } from "./tools/CompactAttributionControl.js";
 import { GolarionMap } from "./tools/GolarionMap.js";
 import TimeSliderControl from "./tools/TimeSliderControl.js";
 import { startupOptions } from "./URLOptions.js";
 import { addSpecialURLOptions } from "./tools/special-url-options";
 import { debug } from "./utils/debug";
-import { ProjectionControl } from "./tools/ProjectionControl";
 
 var root = `${location.protocol}//${location.host}`;
 
@@ -72,15 +71,10 @@ let timeSlider = new TimeSliderControl(golarionMap);
 addSpecialURLOptions(golarionMap);
 
 if(!startupOptions.embedded) {
-  const [{ default: SearchControl }, { SVGExportControl }] = await Promise.all([
-    import('./tools/SearchControl.js'),
-    import('@versatiles/maplibre-svg-export'),
+  const [{ addFullVersionTools }] = await Promise.all([
+    import('./tools/FullVersionTools.js'),
   ]);
-  map.addControl(new ProjectionControl(golarionMap));
-  map.addControl(new NavigationControl({showCompass: true}));
-  map.addControl(timeSlider, 'top-left');
-  map.addControl(new SearchControl(golarionMap), 'top-left');
-  map.addControl(new SVGExportControl(), 'top-right');
+  addFullVersionTools(golarionMap, timeSlider);
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',
@@ -93,14 +87,8 @@ map.addControl(new ScaleControl({
 map.addControl(new CompactAttributionControl(startupOptions.embedded));
 
 //controls are loaded on demand to keep the initial JS bundle small
-const { default: MeasureControl } = await import('./tools/measure.js');
 let measureControl = new MeasureControl(golarionMap);
 map.addControl(measureControl);
-if(startupOptions.embedded) {
-  map.addControl(new NewTab());
-  //attribution._toggleAttribution();
-  //map.once('load', e=>attribution._toggleAttribution());
-}
 
 makeLocationsClickable(golarionMap);
 addRightClickMenu(golarionMap, measureControl);
