@@ -4,7 +4,6 @@ import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import './style.scss';
 
 import style from 'virtual:style';
-import MeasureControl from './tools/measure.js';
 
 import { PMTiles, Protocol } from 'pmtiles';
 import { makeLocationsClickable } from "./tools/location-popup.js";
@@ -13,14 +12,11 @@ import { CachedSource } from "./CachedPmTiles.js";
 import NewTab from "./tools/NewTab.js";
 import { CompactAttributionControl } from "./tools/CompactAttributionControl.js";
 import { GolarionMap } from "./tools/GolarionMap.js";
-import SearchControl from "./tools/SearchControl.js";
 import TimeSliderControl from "./tools/TimeSliderControl.js";
-import { ExportSVG } from "./tools/ExportSVG.js";
 import { startupOptions } from "./URLOptions.js";
 import { addSpecialURLOptions } from "./tools/special-url-options";
 import { debug } from "./utils/debug";
 import { ProjectionControl } from "./tools/ProjectionControl";
-import { SVGExportControl } from "@versatiles/maplibre-svg-export";
 
 var root = `${location.protocol}//${location.host}`;
 
@@ -76,13 +72,15 @@ let timeSlider = new TimeSliderControl(golarionMap);
 addSpecialURLOptions(golarionMap);
 
 if(!startupOptions.embedded) {
+  const [{ default: SearchControl }, { SVGExportControl }] = await Promise.all([
+    import('./tools/SearchControl.js'),
+    import('@versatiles/maplibre-svg-export'),
+  ]);
   map.addControl(new ProjectionControl(golarionMap));
   map.addControl(new NavigationControl({showCompass: true}));
   map.addControl(timeSlider, 'top-left');
   map.addControl(new SearchControl(golarionMap), 'top-left');
   map.addControl(new SVGExportControl(), 'top-right');
-  //map.addControl(new ExportSVG(pmtilesProt), 'top-right');
-  //does not support MLT yet
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',
@@ -93,6 +91,9 @@ map.addControl(new ScaleControl({
   maxWidth: startupOptions.embedded?50:100,
 }));
 map.addControl(new CompactAttributionControl(startupOptions.embedded));
+
+//controls are loaded on demand to keep the initial JS bundle small
+const { default: MeasureControl } = await import('./tools/measure.js');
 let measureControl = new MeasureControl(golarionMap);
 map.addControl(measureControl);
 if(startupOptions.embedded) {
