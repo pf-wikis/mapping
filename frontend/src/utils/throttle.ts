@@ -1,14 +1,20 @@
-/*Throttles but also ensures the last call is executed (delayed though) */
-export default function throttle(f: Function, delay: number) {
+/* Leading-edge throttle: calls immediately, then at most once per delay.
+   The last call is still executed (delayed) so trailing updates are not lost. */
+export default function throttle<Args extends unknown[]>(f: (...args: Args) => void, delay: number) {
     let lastCall = Number.NEGATIVE_INFINITY;
-    let wait;
-    let handle:any;
-    return (...args: any[]) => {
-        wait = lastCall + delay - Date.now();
+    let handle: ReturnType<typeof setTimeout> | undefined;
+    return (...args: Args) => {
+        const remaining = lastCall + delay - Date.now();
         clearTimeout(handle);
-        handle = setTimeout(() => {
-            f(...args);
+        if (remaining <= 0) {
             lastCall = Date.now();
-        }, wait);
+            f(...args);
+        }
+        else {
+            handle = setTimeout(() => {
+                lastCall = Date.now();
+                f(...args);
+            }, remaining);
+        }
     };
 }
