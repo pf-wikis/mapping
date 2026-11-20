@@ -28,7 +28,9 @@ setTimeout(async ()=>{
 
 export class CachedSource implements Source {
   fetcher: FetchSource;
-  dbPromise: Promise<FileSystemDirectoryHandle>;
+  dbPromise: Promise<FileSystemDirectoryHandle> | undefined;
+  private useCache = buildId !== 'latest';
+  private pendingWrites = new Set<string>();
 
   constructor(url:string) {
     //if this url does not match the one in style we do not cache!!!
@@ -36,23 +38,21 @@ export class CachedSource implements Source {
       url = url.substring(10);
 
     this.fetcher = new FetchSource(url);
-    let useCache = Boolean(buildId)
-    this.getBytes = useCache?this.waitLoadCacheStore:this.waitLoadWebStore;
-    this.dbPromise = navigator.storage.getDirectory().then(fapi => fapi.getDirectoryHandle(dbId, {create:true}));
+    this.getBytes = this.loadWeb.bind(this);
 
-    this.dbPromise.then(db => {
-      //we want to try loading from the cache first, if we are not in a DEV scenario
-      if(useCache) {
+    if(this.useCache) {
+      this.getBytes = this.waitLoadCacheStore.bind(this);
+      this.dbPromise = navigator.storage.getDirectory().then(fapi => fapi.getDirectoryHandle(dbId, {create:true}));
+
+      this.dbPromise.then(db => {
+        //we want to try loading from the cache first
         this.getBytes = (offset: number, length: number, signal?: AbortSignal, etag?: string) => this.loadCacheStore(db, offset, length, signal, etag);
-      }
-      else {
-        this.getBytes = (offset: number, length: number, signal?: AbortSignal, etag?: string) => this.loadWebStore(db, offset, length, signal, etag);
-      }
-    }).catch(e => {
-      //if the db fails we load directly from web
-      this.getBytes = this.loadWeb;
-      console.log(e)
-    });
+      }).catch(e => {
+        //if the db fails we load directly from web
+        this.getBytes = this.loadWeb.bind(this);
+        console.log(e)
+      });
+    }
   }
 
   getBytes: (offset: number, length: number, signal?: AbortSignal, etag?: string) => Promise<RangeResponse>;
@@ -87,22 +87,34 @@ export class CachedSource implements Source {
 
   loadWebStore(db:FileSystemDirectoryHandle, offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
     let loaded = this.loadWeb(offset, length, signal, etag)
-    loaded.then(async resp => {
-      let fh = await db.getFileHandle(this.key(offset, length), {create:true})
-      let w = await fh.createWritable()
-      await w.write(resp.data)
-      await w.close()
-      
-    });
+    const key = this.key(offset, length);
+
+    //a concurrent request is already caching this range
+    if(this.pendingWrites.has(key))
+      return loaded;
+
+    this.pendingWrites.add(key);
+    void loaded.then(async resp => {
+      if(signal?.aborted)
+        return;
+      try {
+        let fh = await db.getFileHandle(key, {create:true})
+        let w = await fh.createWritable()
+        await w.write(resp.data)
+        await w.close()
+      }
+      catch(e) {
+        console.warn(`Failed to cache tile range ${key}`, e);
+      }
+    }, () => {
+      //the web request failed, so there is nothing to cache
+    }).finally(() => this.pendingWrites.delete(key));
+
     return loaded
   }
 
-  waitLoadWebStore(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
-    return this.dbPromise.then(db=>this.loadWebStore(db, offset, length, signal, etag));
-  }
-
   waitLoadCacheStore(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
-    return this.dbPromise.then(db=>this.loadCacheStore(db, offset, length, signal, etag));
+    return this.dbPromise!.then(db=>this.loadCacheStore(db, offset, length, signal, etag));
   }
 
   loadWeb(offset: number, length: number, signal?: AbortSignal, etag?: string):Promise<RangeResponse> {
