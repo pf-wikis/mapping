@@ -16,7 +16,6 @@ type ProjectOption = typeof projectionOptions[number];
 
 let initialRaw = parseOptions();
 let zoom = initialRaw.get('zoom');
-let projection = initialRaw.get('projection')??'auto';
 export const startupOptions = {
     flyTo: initialRaw.get('flyTo')??undefined,
     bbox: initialRaw.get('bbox')??undefined,
@@ -80,8 +79,6 @@ export interface Options extends OptionsHolder {}
 
 export function init(map:GolarionMap):Options {
     
-    let year = initialRaw.get('year');
-    
     const options = new Proxy(new OptionsHolder(), {
         set<K extends OptionProp>(target:OptionsHolder, p:K, newValue:OptionsHolder[K], receiver:any) {
             if(target._set(p, newValue)) {
@@ -94,11 +91,13 @@ export function init(map:GolarionMap):Options {
     function updateOptions() {
         let raw = parseOptions();
         let highlight = raw.get('highlight')??'';
+        let year = Number.parseInt(raw.get('year')??'');
+        let projection = raw.get('projection')??'auto';
         options.hideLabels = raw.get('hideLabels') === 'true';
         options.hideLocations = raw.get('hideLocations') === 'true';
         options.hideBorders = raw.get('hideBorders') === 'true';
         options.highlight = (highlightLabels as readonly string[]).includes(highlight)?highlight as HighlightLabel:undefined;
-        options.year = year?Number.parseInt(year)??timeMeta.latest.start:timeMeta.latest.start;
+        options.year = Number.isNaN(year)?timeMeta.latest.start:year;
         options.projection = (projectionOptions as readonly string[]).includes(projection) ? projection as ProjectOption : 'auto';
     }
     updateOptions();
