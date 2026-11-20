@@ -57,7 +57,9 @@ export const map = new Map({
   pixelRatio: Math.max(window.devicePixelRatio || 1, 2),
   validateStyle: debug,
   canvasContextAttributes: {
-    preserveDrawingBuffer: true
+    // Enable preserveDrawingBuffer if any screenshot feature is added; it is
+    // required for reading pixels back from the canvas (e.g. toDataURL()).
+    // preserveDrawingBuffer: true,
   }
 });
 export const golarionMap = new GolarionMap(map);
