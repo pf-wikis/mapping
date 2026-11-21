@@ -26,7 +26,6 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.jar.JarFile;
-import java.util.stream.Stream;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -58,6 +57,7 @@ public enum CacheManager {
 	private static final String CACHE_FORMAT = "1";
 	private static final String ENTRIES = "entries";
 	private static final String BLOBS = "blobs";
+	public static final String BUILD_CLASS_HASH_PATH = "io/github/pfwikis/cache/build-class-hash.txt";
 
 	private final Set<Path> touched = ConcurrentHashMap.newKeySet();
 	private final ConcurrentMap<Path, byte[]> fileHashes = new ConcurrentHashMap<>();
@@ -528,6 +528,82 @@ public enum CacheManager {
 
 		var location = StepExecutor.class.getProtectionDomain().getCodeSource().getLocation();
 		var source = Path.of(location.toURI());
+		updateString(digest, "classes");
+		updateString(digest, classHashFor(source));
+
+		for(var configFile : List.of("pom.xml", "steps.yaml")) {
+			var path = Path.of(configFile);
+			if(Files.isRegularFile(path)) {
+				updateString(digest, configFile);
+				digest.update(Files.readAllBytes(path));
+			}
+		}
+
+		return HexFormat.of().formatHex(digest.digest());
+	}
+
+	private static String classHashFor(Path source) throws IOException {
+		var buildHash = readBuildClassHash(source);
+		return buildHash != null ? buildHash : computeClassHash(source);
+	}
+
+	private static String readBuildClassHash(Path source) throws IOException {
+		if(Files.isDirectory(source)) {
+			var resource = source.resolve(BUILD_CLASS_HASH_PATH);
+			if(!Files.isRegularFile(resource) || !isBuildClassHashFresh(source, resource))
+				return null;
+			var value = Files.readString(resource).strip();
+			if(value.isEmpty())
+				return null;
+			log.debug("Using build-time class hash from {}", resource);
+			return value;
+		}
+
+		if(Files.isRegularFile(source)) {
+			try(var jar = new JarFile(source.toFile())) {
+				var entry = jar.getJarEntry(BUILD_CLASS_HASH_PATH);
+				if(entry == null)
+					return null;
+				try(InputStream in = jar.getInputStream(entry)) {
+					var value = new String(in.readAllBytes(), StandardCharsets.UTF_8).strip();
+					if(value.isEmpty())
+						return null;
+					log.debug("Using build-time class hash from JAR entry {}", entry.getName());
+					return value;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/*
+	 * In an IDE, Maven's generated hash resource can be older than classes compiled by the IDE.
+	 * In that case fall back to hashing the classes directly.
+	 */
+	private static boolean isBuildClassHashFresh(Path source, Path resource) throws IOException {
+		var resourceTime = Files.getLastModifiedTime(resource).toMillis();
+		var classes = source.resolve("io/github/pfwikis");
+		try(var paths = Files.walk(classes)) {
+			return paths.filter(Files::isRegularFile)
+				.filter(p -> p.toString().endsWith(".class"))
+				.allMatch(p -> {
+					try {
+						return Files.getLastModifiedTime(p).toMillis() <= resourceTime;
+					} catch(IOException e) {
+						return false;
+					}
+				});
+		}
+	}
+
+	/**
+	 * Hashes all compiler class files under a classes directory or JAR. Public so the Maven
+	 * process-classes step can persist this hash as a resource.
+	 */
+	public static String computeClassHash(Path source) throws IOException {
+		var digest = sha256();
+		updateString(digest, CACHE_FORMAT);
 		var entries = new ArrayList<String>();
 
 		if(Files.isDirectory(source)) {
@@ -562,14 +638,6 @@ public enum CacheManager {
 		}
 		else {
 			throw new IOException("Unsupported compiler code source "+source);
-		}
-
-		for(var configFile : List.of("pom.xml", "steps.yaml")) {
-			var path = Path.of(configFile);
-			if(Files.isRegularFile(path)) {
-				updateString(digest, configFile);
-				digest.update(Files.readAllBytes(path));
-			}
 		}
 
 		return HexFormat.of().formatHex(digest.digest());
