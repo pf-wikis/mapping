@@ -21,7 +21,9 @@ public class Tools {
             "run", qgisCommand,
             "--distance_units=meters",
             "--area_units=m2",
-            "--ellipsoid=EPSG:4326",
+            // EPSG:7030 is the WGS84 ellipsoid; EPSG:4326 is a CRS and makes
+            // QGIS fall back to planar measurements for expressions like $area.
+            "--ellipsoid=EPSG:7030",
             new Runner.TmpGeojson("--INPUT=", in),
             new Runner.OutFile("--"+outputName+"="),
             args

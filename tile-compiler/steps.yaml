@@ -535,13 +535,13 @@
         locations: locations
         line-labels: line-labels
 
-- name: debug-tiles
-  steps:
-    - step: COMPILE_TILES
-      filename: debug
-      dependsOn:
-        time-meta: time-meta
-        city-polygons: city-polygons
+#- name: debug-tiles
+#  steps:
+#    - step: COMPILE_TILES
+#      filename: debug
+#      dependsOn:
+#        time-meta: time-meta
+#        city-polygons: city-polygons
 
 ############################ unrelated steps
 - name: sprites

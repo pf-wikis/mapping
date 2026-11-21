@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
-import java.util.Objects;
 import java.util.Vector;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
@@ -26,9 +25,8 @@ import io.github.pfwikis.layercompiler.steps.model.Time;
 import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.layercompiler.steps.time.TimeMetaCollect.TimeMeta;
-import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.LngLat;
-import io.github.pfwikis.run.Tools;
+import io.github.pfwikis.util.GeometryArea;
 import io.github.pfwikis.util.Jackson;
 import io.github.pfwikis.util.TimeMap;
 import io.github.pfwikis.util.time.TimeRange;
@@ -88,18 +86,9 @@ public class CreateSearchIndex extends StepExecutor {
     }
 
 	private ArrayList<Result> processLayer(TimeMeta meta, String layerName, GeoData content) throws IOException {
-		FeatureCollection withArea;
-		if(layerName.equals("cities") || layerName.equals("locations")) {
-			withArea = content.toFeatureCollection();
-		} else {			
-			withArea = Tools.qgis(this, "native:fieldcalculator", content,
-				"--FIELD_NAME=areaM2",
-				"--FIELD_TYPE=0", //double
-				"--FORMULA=$area"
-			).toFeatureCollection();
-		}
+		var features = content.toFeatureCollection();
 		
-		var perId = withArea.getFeatures()
+		var perId = features.getFeatures()
 			.stream()
 			.filter(f->f.getProperties().getLabel()!=null)
 			.peek(f-> {
@@ -123,8 +112,15 @@ public class CreateSearchIndex extends StepExecutor {
 				var time = e.getKey();
 				var lngInfo = e.getValue().stream().flatMap(f->f.getGeometry().streamPoints()).collect(Collectors.summarizingDouble(LngLat::lng));
 				var latInfo = e.getValue().stream().flatMap(f->f.getGeometry().streamPoints()).collect(Collectors.summarizingDouble(LngLat::lat));
-				Double areaM2 = e.getValue().stream().map(f->f.getProperties().getAreaM2()).filter(Objects::nonNull).mapToDouble(v->v).sum();
-				if(areaM2 == 0) areaM2 = null;
+				Double areaM2 = null;
+				if(!layerName.equals("cities") && !layerName.equals("locations")) {
+					double computedAreaM2 = e.getValue().stream()
+						.mapToDouble(f->GeometryArea.areaM2(f.getGeometry()))
+						.sum();
+					if(computedAreaM2 != 0) {
+						areaM2 = computedAreaM2;
+					}
+				}
 				if(!timedResults.subTimeMap(time).isEmpty()) {
 					throw new IllegalStateException("Duplicate values for layer " + layerName + " " + idEntry);
 				}

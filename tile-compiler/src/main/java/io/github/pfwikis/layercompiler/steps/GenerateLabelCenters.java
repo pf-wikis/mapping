@@ -11,6 +11,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.locationtech.jts.algorithm.hull.ConcaveHullOfPolygons;
 import org.locationtech.jts.io.geojson.GeoJsonReader;
 import org.locationtech.jts.io.geojson.GeoJsonWriter;
@@ -28,6 +29,7 @@ import io.github.pfwikis.model.Geometry.Point;
 import io.github.pfwikis.model.LngLat;
 import io.github.pfwikis.model.Properties;
 import io.github.pfwikis.run.Tools;
+import io.github.pfwikis.util.GeometryArea;
 import io.github.pfwikis.util.Jackson;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -89,16 +91,17 @@ public class GenerateLabelCenters extends StepExecutor {
     private GeoData prepareGeometry(Inputs in) throws IOException {
     	try(var _=this.measureSubtime("prepareGeometry")) {
 	    	//mapshaper sometimes gives weird results here
-	        var withArea = Tools.qgis(this, "native:fieldcalculator", in.getInput(),
-	    		"--FIELD_NAME=areaSqkm",
-	    		"--FIELD_TYPE=0", //float
-	    		"--FIELD_PRECISION=7",
-	    		"--FORMULA=try($area/1000000,0)"
-			);
+	        var input = in.getInput().toFeatureCollection();
+	        var withArea = new FeatureCollection();
+	        for(var f:input.getFeatures()) {
+	        	if(f.getProperties().getLabel() != null) {
+	        		f.getProperties().setAreaSqkm(BigDecimal.valueOf(GeometryArea.areaSqKm(f.getGeometry())));
+	        		f.getProperties().setAreaAvg(f.getProperties().getAreaSqkm());
+	        		withArea.getFeatures().add(f);
+	        	}
+	        }
 	        
-	        var withFields = Tools.mapshaper(this, withArea,
-        		"-filter", "Boolean(label)",
-        		"-each", "areaAvg=areaSqkm",
+	        var withFields = Tools.mapshaper(this, GeoData.from(withArea),
 	    		dissolve
 	    			?List.of("-dissolve", "label"+in.getTimeState().mapshaperTimeFields(), "allow-overlaps", "copy-fields=inSubregion,color", "sum-fields=areaSqkm", "calc='areaAvg=average(areaAvg)'")
 	    			:List.of(),
