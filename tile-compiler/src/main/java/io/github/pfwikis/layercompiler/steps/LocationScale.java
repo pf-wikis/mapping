@@ -29,6 +29,12 @@ import lombok.extern.slf4j.Slf4j;
 public class LocationScale extends StepExecutor {
 
     @Override
+    public boolean isCacheable() {
+        // Writes the extra/*.json files consumed by the frontend.
+        return false;
+    }
+
+    @Override
     public Content process(Inputs in) throws IOException {
     	var fc = in.getInput().toFeatureCollection();
     	

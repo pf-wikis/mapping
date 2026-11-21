@@ -19,6 +19,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import com.github.dexecutor.core.task.Task;
 import com.google.common.base.Stopwatch;
 
+import io.github.pfwikis.layercompiler.cache.CacheManager;
 import io.github.pfwikis.layercompiler.description.StepDescription;
 import io.github.pfwikis.layercompiler.steps.model.Time.ContentState;
 import io.github.pfwikis.layercompiler.steps.model.Time.DataState;
@@ -58,13 +59,29 @@ public abstract class StepExecutor extends Task<String, Content> {
     	var oldName = Thread.currentThread().getName();
         try {
         	setThreadName(description.getGroup(), description.getStep(), null);
-        	
+
+        	String cacheKey = null;
+        	try {
+        		cacheKey = CacheManager.INSTANCE.keyFor(this);
+        		if(cacheKey != null) {
+        			var cached = CacheManager.INSTANCE.load(cacheKey);
+        			if(cached != null)
+        				return cached;
+        		}
+        	} catch(Exception e) {
+        		log.warn("Could not use persistent cache for {}: {}", description.getId(), e.getMessage());
+        		cacheKey = null;
+        	}
+
         	//we need to differentiate between different cases based on our requirement
         	Content results = switch(description.getTimeRequirement()) {
         		case ANY,REQUIRES_MERGED -> executeWithMergedContents();
         		case REQUIRES_SLICED -> executeWithSlicedInputs();
         	};
-        	
+
+        	if(cacheKey != null)
+        		CacheManager.INSTANCE.store(cacheKey, results);
+
         	return results;
         } catch (Throwable t) {
         	log.error("Failed execution", t);
@@ -230,6 +247,29 @@ public abstract class StepExecutor extends Task<String, Content> {
 			res.add(Pair.of(key, transform.apply(content.getResult())));
 		}
 		return res;
+	}
+
+	/**
+	 * Inputs in the order they were declared, used for persistent cache keys.
+	 */
+	public List<Pair<String, Content>> getInputsForCaching() {
+		return getAllInputs(Function.identity());
+	}
+
+	/**
+	 * Steps that read files outside the DAG (for example READ_FILE) can add the content hash of
+	 * those files to their cache key by overriding this method.
+	 */
+	public byte[] getCacheSalt() {
+		return null;
+	}
+
+	/**
+	 * Steps that write output files in addition to returning content must opt out of caching,
+	 * unless a cache hit can reproduce those side effects as well.
+	 */
+	public boolean isCacheable() {
+		return true;
 	}
 	
 	public record Timing(String key, Stopwatch watch, StepExecutor step) implements Closeable {

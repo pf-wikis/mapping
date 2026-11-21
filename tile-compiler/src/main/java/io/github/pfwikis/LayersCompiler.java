@@ -18,6 +18,7 @@ import com.github.dexecutor.core.graph.LevelOrderTraversar;
 import com.github.dexecutor.core.graph.StringTraversarAction;
 import com.github.dexecutor.core.task.ExecutionResults;
 
+import io.github.pfwikis.layercompiler.cache.CacheManager;
 import io.github.pfwikis.layercompiler.description.ExecutionPlan;
 import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.run.Runner;
@@ -53,6 +54,7 @@ public class LayersCompiler {
                 System.exit(-1);
             }
             printTimings(results, plan);
+            CacheManager.INSTANCE.sweep();
             
         } finally {
             pool.shutdown();

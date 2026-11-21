@@ -77,9 +77,7 @@ public enum ToolVariant {
 	
 	public static ToolVariant getFor(String command) {
 		return switch(command) {
-			case "ogr2ogr" -> getOgr2ogr();
 			case "mapshaper" -> getMapshaper();
-			case "geojson-polygon-labels" -> getGeojsonPolygonLabels();
 			case "qgis_process" -> getQgisProcess();
 			case "spritezero" -> getSpritezero();
 			default -> throw new IllegalStateException("Unhandled tool "+command);
@@ -87,11 +85,7 @@ public enum ToolVariant {
 	}
 	
 	@Getter(lazy = true)
-	private static final ToolVariant ogr2ogr = test("ogr2ogr", "--version");
-	@Getter(lazy = true)
 	private static final ToolVariant mapshaper = test("mapshaper", "--version");
-	@Getter(lazy = true)
-	private static final ToolVariant geojsonPolygonLabels = test("geojson-polygon-labels", "--help");
 	@Getter(lazy = true)
 	private static final ToolVariant qgisProcess = test("qgis_process", "-v");
 	@Getter(lazy = true)

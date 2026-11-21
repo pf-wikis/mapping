@@ -14,4 +14,5 @@ public class StepDescription {
 	private final String step;
 	private final StepExecutor executor;
 	private Time.Requirement.Value timeRequirement;
+	private String cacheConfig = "{}";
 }

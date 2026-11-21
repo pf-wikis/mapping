@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Objects;
 
+import io.github.pfwikis.layercompiler.cache.CacheManager;
 import io.github.pfwikis.layercompiler.description.Ctx;
 import io.github.pfwikis.layercompiler.steps.model.Inputs;
 import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
@@ -37,8 +38,7 @@ public class ReadFile extends StepExecutor {
     public Content process(Inputs in) throws IOException {
 		GeoData res;
 		if(file != null) {
-			var finalFile = Path.of("../sources").resolve(file.toPath()).toFile().getCanonicalFile();
-			res = GeoData.from(finalFile);
+			res = GeoData.from(resolveFile());
 		}
 		else {
 			res = Tools.mapshaper(
@@ -55,5 +55,17 @@ public class ReadFile extends StepExecutor {
 		
 		return hasTime?Content.merged(res):Content.timeless(res);
     }
+
+	@Override
+	public byte[] getCacheSalt() {
+		var source = file != null
+			? resolveFile()
+			: Ctx.INSTANCE.getOptions().getMappingDataFile();
+		return CacheManager.INSTANCE.hashFile(source.toPath());
+	}
+
+	private File resolveFile() {
+		return Path.of("../sources").resolve(file.toPath()).toAbsolutePath().normalize().toFile();
+	}
 
 }

@@ -15,7 +15,11 @@ public class CLIOptions {
     private boolean prodDetail = false;
     @Parameter(names = "-mappingDataFile")
     private File mappingDataFile = new File("../../mapping-data/mapping-data.gpkg");
-	
+    @Parameter(names = "-cacheDir")
+    private File cacheDir = new File("../cache");
+    @Parameter(names = "-noCache")
+    private boolean noCache = false;
+
     public File targetDirectory() {
 		return new File("../frontend/public");
 	}

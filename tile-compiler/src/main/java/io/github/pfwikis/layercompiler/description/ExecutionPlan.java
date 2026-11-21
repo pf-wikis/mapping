@@ -46,6 +46,7 @@ public class ExecutionPlan {
                     throw new IllegalStateException("Duplicate name "+id);
                 }
                 var descr = new StepDescription(id, lsDescription.getName(), rawStep.getStep(), rawStep.createStep());
+                descr.setCacheConfig(rawStep.getUnknownFields().toString());
                 descr.getExecutor().setDescription(descr);
                 plan.id2Step.put(id, descr);
                 raw2Step.put(rawStep, descr);
