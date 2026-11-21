@@ -31,6 +31,7 @@ import io.github.pfwikis.model.Properties;
 import io.github.pfwikis.run.Tools;
 import io.github.pfwikis.util.GeometryArea;
 import io.github.pfwikis.util.Jackson;
+import io.github.pfwikis.util.MinimumBoundingRectangle;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -158,36 +159,37 @@ public class GenerateLabelCenters extends StepExecutor {
 
 	private Map<UUID, BigDecimal> calcAngles(GeoData withUuid) throws IOException {
 		try(var _=this.measureSubtime("calcAngles")) {
-	    	var orientedRectangles = Tools.qgis(this, "qgis:minimumboundinggeometry", withUuid,
-	    		"--TYPE=1",
-	    		"--FIELD=uuid"
-			).toFeatureCollection();
-	
-	        var angles = orientedRectangles
-	    		.getFeatures().stream()
-	    		.collect(Collectors.<Feature, UUID, BigDecimal>toMap(
-	    			f->f.getProperties().getUuid(),
-	    			f-> {
-	    				var width = f.getProperties().getWidth().doubleValue();
-	    				var height = f.getProperties().getHeight().doubleValue();
-	    				//do not rotate if the actual rectangle is more of a square
-	    				if(height/width<1.5d)
-	    					return BigDecimal.ZERO;
-	    				
-	    				var angle = f.getProperties().getAngle()
+			return withUuid.toFeatureCollection()
+				.getFeatures().stream()
+				.collect(Collectors.<Feature, UUID, BigDecimal>toMap(
+					f->f.getProperties().getUuid(),
+					f-> {
+						var rectangle = MinimumBoundingRectangle.calculate(f.getGeometry());
+						var width = round6(rectangle.width());
+						var height = round6(rectangle.height());
+						//do not rotate if the actual rectangle is more of a square
+						if(height/width<1.5d)
+							return BigDecimal.ZERO;
+
+						var angle = BigDecimal.valueOf(round6(rectangle.angle()))
 							.subtract(BigDecimal.valueOf(90))
 							.setScale(0, RoundingMode.HALF_UP)
 							.intValueExact();
-	    				if(angle < 10 && angle > -10)
-	    					return BigDecimal.ZERO;
-	    				else
-	    					return BigDecimal.valueOf(angle);
-	    			}
+						if(angle < 10 && angle > -10)
+							return BigDecimal.ZERO;
+						else
+							return BigDecimal.valueOf(angle);
+					}
 				));
-	        return angles;
 		}
 	}
-	
+
+	private static double round6(double value) {
+		return BigDecimal.valueOf(value)
+			.setScale(6, RoundingMode.HALF_UP)
+			.doubleValue();
+	}
+
 	private static final GeoJsonWriter GEO_WRITER;
 	
 	static {
