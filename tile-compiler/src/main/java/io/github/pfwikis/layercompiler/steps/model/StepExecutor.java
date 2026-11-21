@@ -1,7 +1,7 @@
 package io.github.pfwikis.layercompiler.steps.model;
 
 import java.io.Closeable;
-import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,6 +29,7 @@ import io.github.pfwikis.layercompiler.steps.model.content.TimeSlicedContent.Tim
 import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.util.TimeMap;
+import io.github.pfwikis.util.TimingStats;
 import io.github.pfwikis.util.TimeSet;
 import io.github.pfwikis.util.time.TimeRange;
 import lombok.Getter;
@@ -41,7 +42,7 @@ public abstract class StepExecutor extends Task<String, Content> {
 
     protected StepDescription description;
     private SequencedMap<String, String> inputMapping = new LinkedHashMap<>();
-    private Map<String, Duration> subTimings = new HashMap<>();
+    private Map<String, TimingStats> subTimings = new HashMap<>();
 
 
     protected abstract Content process(Inputs in) throws Exception;
@@ -272,17 +273,19 @@ public abstract class StepExecutor extends Task<String, Content> {
 		return true;
 	}
 	
-	public record Timing(String key, Stopwatch watch, StepExecutor step) implements Closeable {
+	public record Timing(String key, Stopwatch watch, Instant start, StepExecutor step) implements Closeable {
 		@Override
 		public void close() {
 			var time = watch.stop().elapsed();
+			var end = Instant.now();
 			synchronized(step.subTimings) {
-				step.subTimings.merge(key, time, Duration::plus);
+				step.subTimings.merge(key, TimingStats.of(time, start, end), TimingStats::plus);
 			}
 		}
     }
     public Timing measureSubtime(String key) {
-    	return new Timing(key, Stopwatch.createStarted(), this);
+		var start = Instant.now();
+		return new Timing(key, Stopwatch.createStarted(), start, this);
     }
 
 
