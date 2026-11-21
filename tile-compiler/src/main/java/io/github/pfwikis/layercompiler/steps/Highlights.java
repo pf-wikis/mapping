@@ -1,7 +1,9 @@
 package io.github.pfwikis.layercompiler.steps;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
 
 import io.github.pfwikis.layercompiler.steps.model.Inputs;
 import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
@@ -44,7 +46,7 @@ public class Highlights extends StepExecutor {
 				chunkSize);
 		
 		//this chunking is necessary to prevent an OOM
-		fc = new FeatureCollection();
+		var chunks = new ArrayList<FeatureCollection>();
 		int chunk = 0;
 		while(!todo.isEmpty()) {
 			var chunkCol = new FeatureCollection();
@@ -61,39 +63,19 @@ public class Highlights extends StepExecutor {
 					currentSize,
 					todo.size()
 			);
-			
-			var buffered = Tools.qgis(this, "native:buffer", GeoData.from(chunkCol),
-	            "--DISTANCE=expression:5*\"buffer\"",
-	            "--SEGMENTS=5",
-	            "--END_CAP_STYLE=0",
-	            "--JOIN_STYLE=0",
-	            "--MITER_LIMIT=2"
-	        );
-			
-			var withoutHoles = Tools.mapshaper(this, buffered,
-				"-drop", "holes"
-			);
-			
-			var debuffered = Tools.qgis(this, "native:buffer", withoutHoles,
-	            "--DISTANCE=expression:-4*\"buffer\"",
-	            "--SEGMENTS=5",
-	            "--END_CAP_STYLE=0",
-	            "--JOIN_STYLE=0",
-	            "--MITER_LIMIT=2"
-	        );
-			
-			var simple = Tools.mapshaper(this, debuffered,
-				"-each", "this.properties.buffer=undefined",
-				"-simplify", "0.4", "keep-shapes"
-			);
-	        var smooth = Tools.qgis(this, "native:smoothgeometry", simple,
-	            "--ITERATIONS=2",
-	            "--OFFSET=0.3",
-	            "--MAX_ANGLE=170"
-	        );
-	        fc.getFeatures().addAll(smooth.toFeatureCollection().getFeatures());
+			chunks.add(chunkCol);
 		}
-		
+
+		fc = new FeatureCollection();
+		try(var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+			var futures = chunks.stream()
+				.map(chunkCol -> executor.submit(() -> processChunk(chunkCol)))
+				.toList();
+			for(var future:futures) {
+				fc.getFeatures().addAll(future.get());
+			}
+		}
+
 		fc.getFeatures().removeIf(f->f.getGeometry() == null);
 		fc.getFeatures().forEach(f-> {
 			if(f.getGeometry() instanceof Polygon p) {
@@ -111,6 +93,39 @@ public class Highlights extends StepExecutor {
 		});
 		
 		return Content.derivedFrom(in, GeoData.from(fc));
+	}
+
+	private List<Feature> processChunk(FeatureCollection chunkCol) throws IOException {
+		var buffered = Tools.qgis(this, "native:buffer", GeoData.from(chunkCol),
+            "--DISTANCE=expression:5*\"buffer\"",
+            "--SEGMENTS=5",
+            "--END_CAP_STYLE=0",
+            "--JOIN_STYLE=0",
+            "--MITER_LIMIT=2"
+        );
+
+		var withoutHoles = Tools.mapshaper(this, buffered,
+			"-drop", "holes"
+		);
+
+		var debuffered = Tools.qgis(this, "native:buffer", withoutHoles,
+            "--DISTANCE=expression:-4*\"buffer\"",
+            "--SEGMENTS=5",
+            "--END_CAP_STYLE=0",
+            "--JOIN_STYLE=0",
+            "--MITER_LIMIT=2"
+        );
+
+		var simple = Tools.mapshaper(this, debuffered,
+			"-each", "this.properties.buffer=undefined",
+			"-simplify", "0.4", "keep-shapes"
+		);
+        var smooth = Tools.qgis(this, "native:smoothgeometry", simple,
+            "--ITERATIONS=2",
+            "--OFFSET=0.3",
+            "--MAX_ANGLE=170"
+        );
+        return smooth.toFeatureCollection().getFeatures();
 	}
 
 	private List<List<LngLat>> invert(List<List<LngLat>> coordinates) {
