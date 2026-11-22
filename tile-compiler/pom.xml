@@ -100,10 +100,25 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.onthegomap.planetiler</groupId>
-			<artifactId>planetiler-core</artifactId>
-			<version>0.10.2</version>
-			<scope>compile</scope>
+			<groupId>org.maplibre</groupId>
+			<artifactId>mlt</artifactId>
+			<version>0.0.12</version>
+			<exclusions>
+				<exclusion>
+					<groupId>no.ecc.vectortile</groupId>
+					<artifactId>java-vector-tile</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.carrotsearch</groupId>
+			<artifactId>hppc</artifactId>
+			<version>0.10.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.roaringbitmap</groupId>
+			<artifactId>RoaringBitmap</artifactId>
+			<version>1.6.13</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

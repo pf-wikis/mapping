@@ -1,18 +1,10 @@
 package io.github.pfwikis.layercompiler.steps;
 
 import java.io.File;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.DoubleUnaryOperator;
-
-import org.apache.commons.lang3.tuple.Pair;
-
-import com.onthegomap.planetiler.FeatureCollector;
-import com.onthegomap.planetiler.Planetiler;
-import com.onthegomap.planetiler.Profile;
-import com.onthegomap.planetiler.config.Arguments;
-import com.onthegomap.planetiler.geo.GeometryPipeline;
-import com.onthegomap.planetiler.reader.SourceFeature;
 
 import io.github.pfwikis.layercompiler.description.Ctx;
 import io.github.pfwikis.layercompiler.description.StepDescription;
@@ -20,12 +12,10 @@ import io.github.pfwikis.layercompiler.steps.model.Inputs;
 import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
 import io.github.pfwikis.layercompiler.steps.model.Time;
 import io.github.pfwikis.layercompiler.steps.model.content.Content;
-import io.github.pfwikis.layercompiler.steps.model.data.GeoData;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Geometry;
 import io.github.pfwikis.model.LngLat;
-import io.github.pfwikis.model.Properties;
-import io.github.pfwikis.model.Properties.ExportProperties;
+import io.github.pfwikis.tile.MltPmtilesCompiler;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -46,66 +36,16 @@ public class CompileTiles extends StepExecutor {
     	Objects.requireNonNull(meta);
 
     	int maxZoom = Ctx.INSTANCE.getOptions().getMaxZoom();
-    	var planetiler = Planetiler.create(Arguments.of(
-    		"tile-format", "mlt",
-    		"maxzoom", Integer.toString(maxZoom),
-    		"render_maxzoom", Integer.toString(maxZoom),
-    		"feature_source_id_multiplier", 1,
-    		//"mlt_advanced", "true",
-    		//does not work without outlines
-    		//"mlt_tessellate_polygons", "true",
-    		"mlt_shared_dict", "true",
-    		"force", "true",
-    		"exclude_ids", "true",
-    		"min_feature_size", "0.1",
-    		//increase detail at max zoom for best overzooming
-    		"min_feature_size_at_max_zoom", "0",
-    		"simplify_tolerance_at_max_zoom", "0"
-    	));
+    	var layers = new LinkedHashMap<String, FeatureCollection>();
     	in.getInputs().entrySet()
-			.stream()
-			.filter(l->!l.getKey().equals("time-meta"))
-			.map(e->Pair.of(e.getKey(), shift(e.getValue().toFeatureCollection())))
-			.forEach(e->planetiler.addGeoJsonSource(e.getKey(), GeoData.from(e.getValue()).toTmpFile(this)));
-    	planetiler.setOutput(new File(Ctx.INSTANCE.getOptions().targetDirectory(), filename+"."+extension).toPath());
-    	planetiler.setProfile(new Profile() {
-
-			@Override
-			public void processFeature(SourceFeature f, FeatureCollector features) {
-				//sourceFeature.latLonGeometry()
-				var out = features.anyGeometry(f.getSource());
-				
-				//filter by zoom level
-				out.setZoomRange(
-					f.getStruct(Properties.Fields.export).get(ExportProperties.Fields.tileMinzoom).orElse(0).asInt(),
-					f.getStruct(Properties.Fields.export).get(ExportProperties.Fields.tileMaxzoom).orElse(maxZoom).asInt()
-				);
-				
-				//add properties but with exceptions
-				for(var e:f.tags().entrySet()) {
-					switch(e.getKey()) {
-						case Properties.Fields.label->{
-							if(f.getSource().equals("locations")) {
-								out.setAttrWithMinzoom(e.getKey(), e.getValue(), Math.min(maxZoom, (int)f.getLong(Properties.Fields.pregroupMinzoom)+5));
-							}
-							else
-								out.setAttr(e.getKey(), e.getValue());
-						}
-						case Properties.Fields.export->{}
-						default->out.setAttr(e.getKey(), e.getValue());
-					}
-				}
-				
-				//disable simplifaction completely at maxzoom
-				out.transformScaledGeometryByZoom(zoom-> {
-					if(maxZoom == zoom) {
-						return GeometryPipeline.NOOP;
-					}
-					return null;
-				});
-			}
-    	});
-    	planetiler.run();
+    		.stream()
+    		.filter(l -> !l.getKey().equals("time-meta"))
+    		.forEach(e -> layers.put(e.getKey(), shift(e.getValue().toFeatureCollection())));
+    	new MltPmtilesCompiler().compile(
+    		layers,
+    		maxZoom,
+    		new File(Ctx.INSTANCE.getOptions().targetDirectory(), filename+"."+extension).toPath()
+    	);
 
         return Content.empty();
     }
@@ -121,7 +61,7 @@ public class CompileTiles extends StepExecutor {
     		}
     	}
 		return fc;
-	}
+    }
 
 	private <T> Geometry translate(Geometry geometry, DoubleUnaryOperator lngChanger) {
 		geometry.transformPoints(p->
