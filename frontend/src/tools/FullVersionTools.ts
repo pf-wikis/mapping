@@ -4,7 +4,6 @@ import { ProjectionControl } from "./ProjectionControl";
 import SearchControl from "./SearchControl";
 import { SVGExportControl } from "@versatiles/maplibre-svg-export";
 import TimeSliderControl from "./TimeSliderControl";
-import NewTab from "./NewTab";
 
 export function addFullVersionTools(map: GolarionMap, timeSlider: TimeSliderControl) {
   map.map.addControl(new ProjectionControl(map));
@@ -12,5 +11,4 @@ export function addFullVersionTools(map: GolarionMap, timeSlider: TimeSliderCont
   map.map.addControl(timeSlider, 'top-left');
   map.map.addControl(new SearchControl(map), 'top-left');
   map.map.addControl(new SVGExportControl(), 'top-right');
-  map.map.addControl(new NewTab());
 }

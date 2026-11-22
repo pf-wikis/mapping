@@ -16,6 +16,7 @@ import TimeSliderControl from "./tools/TimeSliderControl.js";
 import { startupOptions } from "./URLOptions.js";
 import { addSpecialURLOptions } from "./tools/special-url-options";
 import { debug } from "./utils/debug";
+import NewTab from "./tools/NewTab.js";
 
 var root = `${location.protocol}//${location.host}`;
 
@@ -75,6 +76,9 @@ if(!startupOptions.embedded) {
     import('./tools/FullVersionTools.js'),
   ]);
   addFullVersionTools(golarionMap, timeSlider);
+}
+else {
+  map.addControl(new NewTab());
 }
 map.addControl(new ScaleControl({
   unit: 'imperial',
