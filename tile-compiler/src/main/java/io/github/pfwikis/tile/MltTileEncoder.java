@@ -73,7 +73,11 @@ final class MltTileEncoder {
 			.useFSST(false)
 			.typeMismatchPolicy(ConversionConfig.TypeMismatchPolicy.COERCE)
 			.optimizations(optimizations)
-			.preTessellatePolygons(false)
+			// Pre-tessellation lets renderers use the triangles directly instead of tessellating
+			// polygons at render time. The outline topology is kept so clients can reconstruct
+			// the original polygon rings as well.
+			.preTessellatePolygons(true)
+			.outlineFeatureTableNames(List.of("ALL"))
 			.useMortonEncoding(true)
 			.build();
 
@@ -118,17 +122,17 @@ final class MltTileEncoder {
 
 	private static byte[] gzip(byte[] input) throws IOException {
 		var output = new ByteArrayOutputStream(input.length);
-		try(var gzip = new FastGzip(output)) {
+		try(var gzip = new MaxGzip(output)) {
 			gzip.write(input);
 		}
 		return output.toByteArray();
 	}
 
-	/** gzip is dominated by many tiny tiles; the fastest deflate level is enough for transport compression. */
-	private static final class FastGzip extends GZIPOutputStream {
-		FastGzip(java.io.OutputStream out) throws IOException {
+	/** Tile compression favors archive size over build speed. */
+	private static final class MaxGzip extends GZIPOutputStream {
+		MaxGzip(java.io.OutputStream out) throws IOException {
 			super(out);
-			def.setLevel(java.util.zip.Deflater.BEST_SPEED);
+			def.setLevel(java.util.zip.Deflater.BEST_COMPRESSION);
 		}
 	}
 }

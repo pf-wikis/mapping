@@ -99,6 +99,11 @@
  * total wall time                  353 s               125 s
  * </pre>
  *
+ * <p>The table is from the pipeline before pre-tessellation was enabled. On the
+ * same z15 inputs, pre-tessellation changes the tile phase from about 75.8 s to
+ * 76.5 s and the archive from 1.81 GB to 2.11 GB, because the triangle mesh is
+ * stored alongside the ring topology. That size trade improves rendering.
+ *
  * <p>The addressed tile count is identical ({@code 895082460} in the measured
  * run), so the speedup is not caused by emitting fewer tiles; it comes from
  * avoiding the generic feature sort, encoding repeated content once, and
@@ -126,9 +131,10 @@
  *       identical fill runs are collapsed into one directory entry with a run
  *       length. Planetiler's generic archive writer retains boxed entry objects
  *       for every tile entry and performs more format-independent work.</li>
- *   <li><b>Cheaper compression.</b> Tile payloads use the fastest deflate level.
- *       PMTiles is a transport container, so this only changes compressed bytes,
- *       not the decoded MLT content or the deduplication of identical tiles.</li>
+ *   <li><b>Compression is independent of tiling.</b> Tile payloads are compressed
+ *       as a whole with gzip at the best level. This changes only the stored
+ *       bytes, not the decoded MLT content or the deduplication of identical
+ *       tiles.</li>
  *   <li><b>Tiling strategy.</b> Layers are processed one at a time so prepared
  *       source geometry can be released early; features, large polygon tiles and
  *       fill decomposition are parallelized; big features no longer become a
@@ -139,6 +145,26 @@
  * model, MLT output and PMTiles output. It is not a general Planetiler
  * replacement, but for this pipeline it removes the dominant general-purpose
  * costs without changing the decoded result.
+ *
+ * <h2>Pre-tessellation and compression</h2>
+ *
+ * <p>Polygons are always pre-tessellated in the MLT output. Renderers can then
+ * draw fills from the triangle mesh instead of tessellating polygons at render
+ * time. The original outline topology is kept for every feature table
+ * ({@code outlineFeatureTableNames("ALL")}) so clients that need polygon rings,
+ * including MapLibre's JS decoder, can reconstruct them. Pre-tessellation makes
+ * the archive larger than plain polygon encoding, but that trade is intentional.
+ *
+ * <p>PMTiles tile payloads use gzip with {@code Deflater.BEST_COMPRESSION}. On
+ * the pre-tessellated tile data the best level is about 1.7% smaller than the
+ * fastest level. Directories and JSON metadata keep the default level: their
+ * best-level compression costs tens of seconds for well under 0.1% of the
+ * archive.
+ *
+ * <p>Other MLT size options were measured and deliberately not enabled: FastPFOR
+ * increases size by about 7% and slows encoding substantially, FSST is neutral,
+ * forcing string column mappings increases size, and feature id sorting with
+ * bundled ids is neutral.
  *
  * <h2>Coordinate conventions</h2>
  *
