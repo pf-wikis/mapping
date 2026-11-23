@@ -43,6 +43,8 @@ final class PmtilesWriter implements AutoCloseable {
 	private final LongLongHashMap hashToOffset = new LongLongHashMap();
 	private final Path entrySpool;
 	private final DataOutputStream entries;
+	private final int minLeafSize;
+	private final int maxSingleDirectorySize;
 	private long lastFlushedTileId;
 	private long lastFlushedOffset = -1;
 	private long lastFlushedLength;
@@ -52,7 +54,16 @@ final class PmtilesWriter implements AutoCloseable {
 	private Entry pending;
 
 	PmtilesWriter(Path output) throws IOException {
+		this(output,
+			Integer.getInteger("tile.pmtilesLeafSize", 262144),
+			Integer.getInteger("tile.pmtilesDirectoryThreshold", 16257));
+	}
+
+	/** Visible for tests that need to force multiple directory leaves. */
+	PmtilesWriter(Path output, int minLeafSize, int maxSingleDirectorySize) throws IOException {
 		this.output = output;
+		this.minLeafSize = minLeafSize;
+		this.maxSingleDirectorySize = maxSingleDirectorySize;
 		this.entrySpool = output.resolveSibling(output.getFileName() + ".entries");
 		this.entries = new DataOutputStream(new BufferedOutputStream(Files.newOutputStream(entrySpool), 1 << 20));
 		channel = FileChannel.open(output,
@@ -166,28 +177,33 @@ final class PmtilesWriter implements AutoCloseable {
 		if(entryCount < 16384) {
 			var all = readEntries(0, (int)entryCount);
 			var test = gzip(directoryToBytes(all));
-			if(test.length < 16257)
+			if(test.length < maxSingleDirectorySize)
 				return new Directories(test, new byte[0]);
 		}
 
-		int leafSize = (int)Math.max(262144L, entryCount / 2000L);
+		int leafSize = (int)Math.max(minLeafSize, entryCount / 2000L);
 		var rootEntries = new ArrayList<Entry>();
 		var leaves = new ByteArrayOutputStream();
 		long read = 0;
-		// Leaf entries encode deltas from the previous entry. The first entry of a
-		// leaf must therefore continue from the last tile id of the previous leaf;
-		// restarting at zero corrupts every leaf after the first.
+		// The spooled tile-id and offset deltas are relative to the previous
+		// entry. The first entry of a leaf must therefore continue from the last
+		// entry of the previous leaf; restarting at zero corrupts every later leaf.
 		long nextTileId = 0;
+		long nextOffset = -1;
+		long nextLength = 0;
 		try(var in = new DataInputStream(new BufferedInputStream(Files.newInputStream(entrySpool), 1 << 20))) {
 			while(read < entryCount) {
 				int size = (int)Math.min(leafSize, entryCount - read);
-				var chunk = readEntries(in, size, nextTileId);
+				var chunk = readEntries(in, size, nextTileId, nextOffset, nextLength);
 				var leaf = gzip(directoryToBytes(chunk));
 				rootEntries.add(new Entry(chunk.getFirst().tileId, leaves.size(), leaf.length, 0));
 				leaves.writeBytes(leaf);
 				read += size;
+				// Deltas are relative to the entry's start, not to the end of its run.
 				var last = chunk.getLast();
-				nextTileId = last.tileId + last.runLength;
+				nextTileId = last.tileId;
+				nextOffset = last.offset;
+				nextLength = last.length;
 			}
 		}
 		var root = gzip(directoryToBytes(rootEntries));
@@ -196,15 +212,15 @@ final class PmtilesWriter implements AutoCloseable {
 
 	private List<Entry> readEntries(int ignored, int count) throws IOException {
 		try(var in = new DataInputStream(new BufferedInputStream(Files.newInputStream(entrySpool), 1 << 20))) {
-			return readEntries(in, count, 0);
+			return readEntries(in, count, 0, -1, 0);
 		}
 	}
 
-	private List<Entry> readEntries(DataInputStream in, int count, long initialTileId) throws IOException {
+	private List<Entry> readEntries(DataInputStream in, int count, long initialTileId, long initialOffset, long initialLength) throws IOException {
 		var result = new ArrayList<Entry>(count);
 		long tileId = initialTileId;
-		long lastOffset = -1;
-		long lastLength = 0;
+		long lastOffset = initialOffset;
+		long lastLength = initialLength;
 		for(int i=0; i<count; i++) {
 			try {
 				tileId += TileStore.readVarLong(in);

@@ -128,7 +128,9 @@
  *       large buffer, directory entries are spooled to a temporary file,
  *       deduplication uses a primitive {@code long -> long} hash map, and
  *       identical fill runs are collapsed into one directory entry with a run
- *       length. Planetiler's generic archive writer retains boxed entry objects
+ *       length. A leaf boundary continues both the tile id and the tile offset
+ *       from the previous leaf; resetting either shifts or truncates all later
+ *       tiles. Planetiler's generic archive writer retains boxed entry objects
  *       for every tile entry and performs more format-independent work.</li>
  *   <li><b>Compression is independent of tiling.</b> Tile payloads are compressed
  *       as a whole with gzip at the best level. This changes only the stored
