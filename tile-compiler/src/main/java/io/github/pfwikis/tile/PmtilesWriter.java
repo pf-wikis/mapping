@@ -174,14 +174,20 @@ final class PmtilesWriter implements AutoCloseable {
 		var rootEntries = new ArrayList<Entry>();
 		var leaves = new ByteArrayOutputStream();
 		long read = 0;
+		// Leaf entries encode deltas from the previous entry. The first entry of a
+		// leaf must therefore continue from the last tile id of the previous leaf;
+		// restarting at zero corrupts every leaf after the first.
+		long nextTileId = 0;
 		try(var in = new DataInputStream(new BufferedInputStream(Files.newInputStream(entrySpool), 1 << 20))) {
 			while(read < entryCount) {
 				int size = (int)Math.min(leafSize, entryCount - read);
-				var chunk = readEntries(in, size);
+				var chunk = readEntries(in, size, nextTileId);
 				var leaf = gzip(directoryToBytes(chunk));
 				rootEntries.add(new Entry(chunk.getFirst().tileId, leaves.size(), leaf.length, 0));
 				leaves.writeBytes(leaf);
 				read += size;
+				var last = chunk.getLast();
+				nextTileId = last.tileId + last.runLength;
 			}
 		}
 		var root = gzip(directoryToBytes(rootEntries));
@@ -190,13 +196,13 @@ final class PmtilesWriter implements AutoCloseable {
 
 	private List<Entry> readEntries(int ignored, int count) throws IOException {
 		try(var in = new DataInputStream(new BufferedInputStream(Files.newInputStream(entrySpool), 1 << 20))) {
-			return readEntries(in, count);
+			return readEntries(in, count, 0);
 		}
 	}
 
-	private List<Entry> readEntries(DataInputStream in, int count) throws IOException {
+	private List<Entry> readEntries(DataInputStream in, int count, long initialTileId) throws IOException {
 		var result = new ArrayList<Entry>(count);
-		long tileId = 0;
+		long tileId = initialTileId;
 		long lastOffset = -1;
 		long lastLength = 0;
 		for(int i=0; i<count; i++) {

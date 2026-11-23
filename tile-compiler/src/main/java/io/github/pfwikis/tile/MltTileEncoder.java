@@ -25,6 +25,13 @@ import org.maplibre.mlt.metadata.tileset.MltMetadata;
 
 final class MltTileEncoder {
 	private static final Pattern MATCH_ALL = Pattern.compile(".*");
+	/**
+	 * Pre-tessellation lets renderers draw fills from the stored triangle mesh.
+	 * MapLibre GL JS currently reconstructs rings from the mesh and tessellates
+	 * again, but native clients can use it directly. Disable with
+	 * {@code -Dtile.preTessellate=false}.
+	 */
+	private static final boolean PRE_TESSELLATE = Boolean.parseBoolean(System.getProperty("tile.preTessellate", "true"));
 
 	byte[] encode(Map<String, List<org.maplibre.mlt.data.Feature>> tileLayers) throws IOException {
 		if(tileLayers.isEmpty())
@@ -73,11 +80,8 @@ final class MltTileEncoder {
 			.useFSST(false)
 			.typeMismatchPolicy(ConversionConfig.TypeMismatchPolicy.COERCE)
 			.optimizations(optimizations)
-			// Pre-tessellation lets renderers use the triangles directly instead of tessellating
-			// polygons at render time. The outline topology is kept so clients can reconstruct
-			// the original polygon rings as well.
-			.preTessellatePolygons(true)
-			.outlineFeatureTableNames(List.of("ALL"))
+			.preTessellatePolygons(PRE_TESSELLATE)
+			.outlineFeatureTableNames(PRE_TESSELLATE ? List.of("ALL") : List.of())
 			.useMortonEncoding(true)
 			.build();
 

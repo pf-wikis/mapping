@@ -99,10 +99,9 @@
  * total wall time                  353 s               125 s
  * </pre>
  *
- * <p>The table is from the pipeline before pre-tessellation was enabled. On the
- * same z15 inputs, pre-tessellation changes the tile phase from about 75.8 s to
- * 76.5 s and the archive from 1.81 GB to 2.11 GB, because the triangle mesh is
- * stored alongside the ring topology. That size trade improves rendering.
+ * <p>On the same z15 inputs, pre-tessellation changes the tile phase from about
+ * 75.8 s to 76.5 s and the archive from 1.81 GB to 2.11 GB, because the triangle
+ * mesh is stored alongside the ring topology.
  *
  * <p>The addressed tile count is identical ({@code 895082460} in the measured
  * run), so the speedup is not caused by emitting fewer tiles; it comes from
@@ -148,18 +147,16 @@
  *
  * <h2>Pre-tessellation and compression</h2>
  *
- * <p>Polygons are always pre-tessellated in the MLT output. Renderers can then
- * draw fills from the triangle mesh instead of tessellating polygons at render
- * time. The original outline topology is kept for every feature table
- * ({@code outlineFeatureTableNames("ALL")}) so clients that need polygon rings,
- * including MapLibre's JS decoder, can reconstruct them. Pre-tessellation makes
- * the archive larger than plain polygon encoding, but that trade is intentional.
+ * <p>MLT polygon pre-tessellation is enabled by default (disable with
+ * {@code -Dtile.preTessellate=false}). The original outline topology is kept for
+ * every feature table ({@code outlineFeatureTableNames("ALL")}) so clients can
+ * reconstruct polygon rings. MapLibre GL JS currently reconstructs rings and
+ * tessellates them again rather than drawing the mesh, so the web frontend pays
+ * the larger archive without yet getting the mesh rendering benefit.
  *
- * <p>PMTiles tile payloads use gzip with {@code Deflater.BEST_COMPRESSION}. On
- * the pre-tessellated tile data the best level is about 1.7% smaller than the
- * fastest level. Directories and JSON metadata keep the default level: their
- * best-level compression costs tens of seconds for well under 0.1% of the
- * archive.
+ * <p>PMTiles tile payloads use gzip with {@code Deflater.BEST_COMPRESSION}.
+ * Directories and JSON metadata keep the default level: their best-level
+ * compression costs tens of seconds for well under 0.1% of the archive.
  *
  * <p>Other MLT size options were measured and deliberately not enabled: FastPFOR
  * increases size by about 7% and slows encoding substantially, FSST is neutral,
