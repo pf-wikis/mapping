@@ -27,11 +27,11 @@ public record TileCoord(long encoded, int x, int y, int z) implements Comparable
         assert (z <= 16);
     }
 
-    private static long startIndexForZoom(int z) {
+    static long startIndexForZoom(int z) {
         return ZOOM_START_INDEX[z];
     }
 
-    private static int zoomForIndex(long idx) {
+    static int zoomForIndex(long idx) {
         for (int z = 16; z >= 0; --z) {
             if (ZOOM_START_INDEX[z] > idx) continue;
             return z;

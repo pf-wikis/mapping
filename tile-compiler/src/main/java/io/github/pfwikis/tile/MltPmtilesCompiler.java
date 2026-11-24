@@ -49,11 +49,17 @@ public final class MltPmtilesCompiler {
 			long encodedCount = 0;
 			start = System.nanoTime();
 			try(var merger = new TileMerger(runs, store.fillRuns());
-				var writer = new PmtilesWriter(output)) {
+				var writer = new PmtilesWriter(output);
+				var signatures = new TileSignatureTracker(tempDir.resolve("signatures"))) {
 				while(merger.nextRun()) {
 					var tileFeatures = merger.features();
+					long tileId = merger.runTileId();
+					int count = merger.runCount();
+					long[] kept = signatures.keptRanges(tileId, count, tileFeatures);
+					if(kept != null && kept.length == 0)
+						continue;
 					var future = executor.submit(() -> encodeTile(encoder, context, tileFeatures, fillCache));
-					window.addLast(new TileWork(merger.runTileId(), merger.runCount(), future));
+					window.addLast(new TileWork(tileId, count, kept, future));
 					if(window.size() >= windowSize)
 						encodedCount += writeNext(window, writer);
 				}
@@ -76,11 +82,20 @@ public final class MltPmtilesCompiler {
 	private static int writeNext(ArrayDeque<TileWork> window, PmtilesWriter writer) throws IOException, InterruptedException, ExecutionException {
 		var work = window.removeFirst();
 		var tile = work.bytes().get();
-		if(tile != null && tile.bytes() != null) {
+		if(tile == null || tile.bytes() == null)
+			return 0;
+		if(work.kept() == null) {
 			writer.addRun(work.tileId(), work.count(), tile.bytes(), tile.hash());
 			return work.count();
 		}
-		return 0;
+
+		int written = 0;
+		for(int i=0; i<work.kept().length; i+=2) {
+			int length = (int)work.kept()[i+1];
+			writer.addRun(work.tileId() + work.kept()[i], length, tile.bytes(), tile.hash());
+			written += length;
+		}
+		return written;
 	}
 
 	private static EncodedTile encodeTile(MltTileEncoder encoder, TileContext context, List<TileStore.TileFeature> features,
@@ -130,7 +145,7 @@ public final class MltPmtilesCompiler {
 		return result;
 	}
 
-	private record TileWork(long tileId, int count, Future<EncodedTile> bytes) {}
+	private record TileWork(long tileId, int count, long[] kept, Future<EncodedTile> bytes) {}
 
 	private static void deleteRecursively(Path directory) {
 		try(var files = Files.walk(directory)) {
