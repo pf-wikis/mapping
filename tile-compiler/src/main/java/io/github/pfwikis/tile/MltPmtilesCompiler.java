@@ -52,7 +52,7 @@ public final class MltPmtilesCompiler {
 				var writer = new PmtilesWriter(output);
 				var signatures = new TileSignatureTracker(tempDir.resolve("signatures"))) {
 				while(merger.nextRun()) {
-					var tileFeatures = merger.features();
+					var tileFeatures = collapseUniformFills(merger.features());
 					long tileId = merger.runTileId();
 					int count = merger.runCount();
 					long[] kept = signatures.keptRanges(tileId, count, tileFeatures);
@@ -77,6 +77,34 @@ public final class MltPmtilesCompiler {
 		} finally {
 			deleteRecursively(tempDir);
 		}
+	}
+
+	/**
+	 * A fill-only tile is covered completely by each of its fill features. All
+	 * fills are opaque, so only the topmost fill is visible and the rest can be
+	 * removed.
+	 */
+	static List<TileStore.TileFeature> collapseUniformFills(List<TileStore.TileFeature> features) {
+		if(features.size() <= 1)
+			return features;
+		int layer = -1;
+		TileStore.TileFeature top = null;
+		for(var feature : features) {
+			if(!feature.fill())
+				return features;
+			if(top == null) {
+				layer = feature.layer();
+				top = feature;
+			} else {
+				// Different source layers can be drawn in style-layer order, which
+				// the compiler does not know. Only collapse within one layer.
+				if(feature.layer() != layer)
+					return features;
+				if(feature.order() > top.order())
+					top = feature;
+			}
+		}
+		return List.of(top);
 	}
 
 	private static int writeNext(ArrayDeque<TileWork> window, PmtilesWriter writer) throws IOException, InterruptedException, ExecutionException {
