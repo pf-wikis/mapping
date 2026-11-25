@@ -4,13 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
@@ -23,12 +22,12 @@ import io.github.pfwikis.layercompiler.steps.model.Time;
 import io.github.pfwikis.layercompiler.steps.model.content.Content;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.model.Properties;
+import io.github.pfwikis.util.ColorUtil;
 import io.github.pfwikis.util.Jackson;
 import lombok.Data;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import tools.jackson.databind.JsonNode;
-import tools.jackson.databind.node.ValueNode;
 
 @Slf4j
 @Time.Requirement(Time.Requirement.Value.REQUIRES_MERGED)
@@ -61,7 +60,17 @@ public class PropsMeta extends StepExecutor {
     		.append(";\n")
     		.append("export const propsMeta = ")
     		.append(Jackson.JSON.writerWithDefaultPrettyPrinter().writeValueAsString(layers))
-    		.append(" as const;\n");
+    		.append(" as const;\n")
+    		.append("export const colors = ")
+    		.append(Jackson.JSON.writerWithDefaultPrettyPrinter().writeValueAsString(
+    			Arrays.stream(MergeGeometry.GeomColor.values())
+    				.filter(v->v.getColor()!=null)
+    				.flatMap(v->Arrays.stream(v.getLayerNames())
+    						.map(l->Map.entry(l, ColorUtil.toHex(v.getColor())))
+    				)
+    				.collect(Collectors.toMap(Entry::getKey, Entry::getValue))
+    		))
+    		.append(";\n");
     	
     	log.info("Props meta:\n{}", sb);
     	

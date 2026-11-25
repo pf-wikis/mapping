@@ -1,5 +1,6 @@
 import { defineConfig, type ResolvedConfig, type UserConfig } from 'vite';
 import { compression, defineAlgorithm } from 'vite-plugin-compression2'
+import sourcemaps from 'rolldown-plugin-sourcemaps'
 import style from './src/ml-style/style.ts'
 import { validateStyleMin } from '@maplibre/maplibre-gl-style-spec'
 import fs from 'node:fs'
@@ -12,7 +13,10 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
   console.log('Mode: ', mode);
 
   let config:ResolvedConfig;
-  const host = mode=='development'?'http://localhost:5173':'https://map.pathfinderwiki.com';
+  // Development may run on any port (Vite increments if 5173 is busy). Use
+  // origin-relative URLs so the assets are fetched from the server that served
+  // the app instead of a hard-coded localhost port.
+  const host = mode=='development'?'':'https://map.pathfinderwiki.com';
   const dataHash = mode=='development'?'latest':Math.floor(Date.now() / 1000);
   const compiledStyle = style(host, dataHash);
   
@@ -28,6 +32,13 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
       BUILD_DATA_HASH: dataHash==='latest'?JSON.stringify(dataHash):dataHash
     },
     publicDir: false,
+    optimizeDeps: {
+      // Dev pre-bundles dependencies with Rolldown as well; without this the
+      // dev maps still point at the minified dependency bundles.
+      rolldownOptions: {
+        plugins: [sourcemaps()]
+      }
+    },
     plugins: [
       {
         name: 'compile-style',
@@ -96,6 +107,9 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
       }
     },
     worker: {
+      // The worker bundle is built separately; it needs its own instance or
+      // maplibre's worker map still points at the minified bundle.
+      plugins: () => [sourcemaps()],
       rolldownOptions: {
         output: assetNames
       }
@@ -110,7 +124,7 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
       proxy: {
         // Use remote data from production map
         '/latest/sprites': 'https://map.pathfinderwiki.com',
-        '/latest/golarion.pmtiles': 'https://map.pathfinderwiki.com',
+        //'/latest/golarion.pmtiles': 'https://map.pathfinderwiki.com',
         '/latest/search.json': 'https://map.pathfinderwiki.com',
       }
     }

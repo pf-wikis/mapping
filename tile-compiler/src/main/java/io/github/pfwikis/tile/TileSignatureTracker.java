@@ -16,27 +16,38 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.locationtech.jts.algorithm.distance.DiscreteHausdorffDistance;
+import org.locationtech.jts.geom.Envelope;
+import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.geom.MultiPolygon;
+import org.locationtech.jts.geom.Polygon;
+import org.locationtech.jts.geom.util.AffineTransformation;
+import org.locationtech.jts.io.ParseException;
+import org.locationtech.jts.io.WKBReader;
+import org.locationtech.jts.io.WKBWriter;
+
 import com.carrotsearch.hppc.LongArrayList;
 
 /**
- * Compares low-detail tiles with their parent tile at the previous zoom.
+ * Compares each tile with its first stored ancestor and drops it when the
+ * ancestor already carries the same information.
  *
- * <p>A low-detail tile may contain only uniform fill features and point
- * features. Boundary geometry (lines and non-fill polygons) is never dropped:
- * that is where the extra zoom level actually adds detail.
- *
- * <p>A low-detail child is dropped when:
+ * <p>Compared content:
  * <ul>
- *   <li>its fill features and their attributes are exactly the same as the
- *       parent's;</li>
- *   <li>it has the same point features and attributes as the part of the parent
- *       that overlaps the child;</li>
- *   <li>those points are within 0.1% of a tile extent of the parent's
- *       overzoomed location.</li>
+ *   <li>uniform fill features by an exact set/attribute signature;</li>
+ *   <li>point features by layer/order/attributes and position within 0.1% of a
+ *       tile extent;</li>
+ *   <li>boundary geometry (lines and non-fill polygons) by clipping the
+ *       ancestor geometry into the child tile and comparing shapes within the
+ *       same 0.1% extent tolerance.</li>
  * </ul>
  *
- * <p>Signatures and point data are spooled per zoom and read back in tile-id
- * order, so memory use does not grow with the number of tiles.
+ * <p>When a tile is dropped, its entry stores references to the first stored
+ * ancestor (transformed into that tile's frame), so repeated drops are measured
+ * against the original stored content instead of accumulating error.
+ *
+ * <p>Entries are spooled per zoom and read back in tile-id order, keeping
+ * memory use bounded.
  */
 final class TileSignatureTracker implements AutoCloseable {
 	/** Debug switch to produce a baseline archive with every tile stored. */
@@ -45,8 +56,13 @@ final class TileSignatureTracker implements AutoCloseable {
 	private static final int MAX_CONSECUTIVE_DROPPED_ZOOMS = 8;
 
 	private static final double TILE_EXTENT = 4096d;
-	private static final double POINT_ERROR = TILE_EXTENT * 0.001;
-	private static final double POINT_BUFFER = TILE_EXTENT * 4d / 256d + 1d;
+	private static final double POSITION_ERROR = TILE_EXTENT * 0.001;
+	private static final double BUFFER = TILE_EXTENT * 4d / 256d + 1d;
+	private static final Envelope BUFFERED_EXTENT =
+		new Envelope(-BUFFER, TILE_EXTENT + BUFFER, -BUFFER, TILE_EXTENT + BUFFER);
+	private static final Geometry CLIP = GeoUtils.JTS_FACTORY.toGeometry(BUFFERED_EXTENT);
+	private static final WKBWriter WKB_WRITER = new WKBWriter();
+	private static final WKBReader WKB_READER = new WKBReader();
 
 	private static final long[] KEEP_ALL = null;
 	private static final long[] DROP_ALL = new long[0];
@@ -78,7 +94,9 @@ final class TileSignatureTracker implements AutoCloseable {
 
 		long localStart = tileId - TileCoord.startIndexForZoom(zoom);
 		Analysis analysis = analyze(features);
-		if(analysis == null || count > 1 && !analysis.points.isEmpty())
+		// Multi-tile runs can only contain fills. Anything else is left to the
+		// normal writer and is not used as an ancestor reference.
+		if(analysis == null || count > 1 && (!analysis.points.isEmpty() || !analysis.boundaries.isEmpty()))
 			return KEEP_ALL;
 
 		long[] kept;
@@ -88,20 +106,28 @@ final class TileSignatureTracker implements AutoCloseable {
 		else
 			kept = computeKept(localStart, count, analysis);
 
-		List<PointFeature> reference;
 		if(count > 1) {
-			reference = List.of();
-		} else if(kept == KEEP_ALL) {
-			// This tile is stored, so it becomes the new reference itself.
-			reference = analysis.points;
-		} else {
-			// This tile was dropped. Keep referring to the first stored ancestor's
-			// positions, transformed into this tile's frame, so repeated drops do
-			// not accumulate positional error.
-			TileCoord coord = TileCoord.hilbertDecode(TileCoord.startIndexForZoom(zoom) + localStart);
-			reference = transform(reader.points(), coord.x() & 1, coord.y() & 1);
+			write(localStart, count, analysis.fill, List.of(), List.of());
+			return kept;
 		}
-		write(localStart, count, analysis.fill, reference);
+
+		TileCoord coord = TileCoord.hilbertDecode(TileCoord.startIndexForZoom(zoom) + localStart);
+		int dx = coord.x() & 1;
+		int dy = coord.y() & 1;
+
+		List<PointFeature> points;
+		List<BoundaryFeature> boundaries;
+		if(kept == KEEP_ALL) {
+			// This tile is stored and becomes the new reference.
+			points = analysis.points;
+			boundaries = analysis.boundaries;
+		} else {
+			// Keep referring to the first stored ancestor, transformed into this
+			// tile's frame. This prevents error accumulation across drop chains.
+			points = transformPoints(reader.points(), dx, dy);
+			boundaries = transformBoundaries(reader.boundaries(), dx, dy);
+		}
+		write(localStart, count, analysis.fill, points, boundaries);
 		return kept;
 	}
 
@@ -122,7 +148,7 @@ final class TileSignatureTracker implements AutoCloseable {
 				continue;
 			}
 
-			if(reader.points().isEmpty()) {
+			if(reader.points().isEmpty() && reader.boundaries().isEmpty()) {
 				if(keptStart >= 0) {
 					kept.add(keptStart);
 					kept.add(segmentStart - localStart - keptStart);
@@ -131,12 +157,13 @@ final class TileSignatureTracker implements AutoCloseable {
 				continue;
 			}
 
-			// The parent has points, so the decision can differ for each of its
-			// four children. Check them individually.
 			for(long child = segmentStart; child < segmentEnd; child++) {
 				long offset = child - localStart;
 				TileCoord coord = TileCoord.hilbertDecode(TileCoord.startIndexForZoom(trackedZoom) + child);
-				boolean drop = pointsMatch(analysis, reader.points(), coord.x() & 1, coord.y() & 1);
+				int dx = coord.x() & 1;
+				int dy = coord.y() & 1;
+				boolean drop = pointsMatch(analysis.points, reader.points(), dx, dy)
+					&& boundariesMatch(analysis.boundaries, reader.boundaries(), dx, dy);
 				if(drop) {
 					if(keptStart >= 0) {
 						kept.add(keptStart);
@@ -161,26 +188,66 @@ final class TileSignatureTracker implements AutoCloseable {
 		return Arrays.copyOf(kept.buffer, kept.size());
 	}
 
-	private void write(long localStart, int count, Signature fill, List<PointFeature> points) throws IOException {
-		writer.writeLong(localStart);
-		writer.writeLong(count);
-		writer.writeLong(fill.a);
-		writer.writeLong(fill.b);
-		writer.writeInt(points.size());
-		for(var point : points) {
-			writer.writeInt(point.layer);
-			writer.writeLong(point.order);
-			writer.writeInt(point.attrs);
-			writer.writeInt(point.xs.length);
-			for(int i=0; i<point.xs.length; i++) {
-				writer.writeInt(point.xs[i]);
-				writer.writeInt(point.ys[i]);
-			}
+	private static boolean boundariesMatch(List<BoundaryFeature> child, List<BoundaryFeature> parent, int dx, int dy) {
+		if(child.isEmpty() && parent.isEmpty())
+			return true;
+
+		var expected = new HashMap<FeatureKey, Geometry>();
+		for(var feature : parent) {
+			Geometry clipped = transformClip(feature.geometry, dx, dy);
+			if(clipped != null && !clipped.isEmpty())
+				expected.put(new FeatureKey(feature.layer, feature.order, feature.attrs), clipped);
+		}
+		if(child.isEmpty())
+			return expected.isEmpty();
+
+		var actual = new HashMap<FeatureKey, Geometry>();
+		for(var feature : child)
+			actual.put(new FeatureKey(feature.layer, feature.order, feature.attrs), feature.geometry);
+
+		if(actual.size() != expected.size())
+			return false;
+
+		for(var entry : actual.entrySet()) {
+			Geometry want = expected.get(entry.getKey());
+			if(want == null || !geometryMatches(entry.getValue(), want))
+				return false;
+		}
+		return true;
+	}
+
+	private static boolean geometryMatches(Geometry child, Geometry parent) {
+		Geometry a = boundaryOf(child);
+		Geometry b = boundaryOf(parent);
+		if(a.isEmpty() || b.isEmpty())
+			return a.isEmpty() && b.isEmpty();
+		try {
+			// Densify so long simplified segments are sampled, not just vertices.
+			return DiscreteHausdorffDistance.distance(a, b, 0.25) <= POSITION_ERROR;
+		} catch(RuntimeException e) {
+			return false;
 		}
 	}
 
-	/** Maps the stored ancestor's points into one child tile's coordinate frame. */
-	private static List<PointFeature> transform(List<PointFeature> parent, int dx, int dy) {
+	private static Geometry boundaryOf(Geometry geometry) {
+		return geometry instanceof Polygon || geometry instanceof MultiPolygon
+			? geometry.getBoundary()
+			: geometry;
+	}
+
+	private static Geometry transformClip(Geometry geometry, int dx, int dy) {
+		var transform = new AffineTransformation(
+			2, 0, -TILE_EXTENT * dx,
+			0, 2, -TILE_EXTENT * dy
+		);
+		try {
+			return transform.transform(geometry).intersection(CLIP);
+		} catch(RuntimeException e) {
+			return null;
+		}
+	}
+
+	private static List<PointFeature> transformPoints(List<PointFeature> parent, int dx, int dy) {
 		if(parent.isEmpty())
 			return List.of();
 		var result = new ArrayList<PointFeature>(parent.size());
@@ -191,8 +258,7 @@ final class TileSignatureTracker implements AutoCloseable {
 			for(int i=0; i<feature.xs.length; i++) {
 				double x = 2d * feature.xs[i] - TILE_EXTENT * dx;
 				double y = 2d * feature.ys[i] - TILE_EXTENT * dy;
-				if(x < -POINT_BUFFER || x > TILE_EXTENT + POINT_BUFFER
-						|| y < -POINT_BUFFER || y > TILE_EXTENT + POINT_BUFFER)
+				if(x < -BUFFER || x > TILE_EXTENT + BUFFER || y < -BUFFER || y > TILE_EXTENT + BUFFER)
 					continue;
 				xs[count] = (int)Math.round(x);
 				ys[count] = (int)Math.round(y);
@@ -209,6 +275,101 @@ final class TileSignatureTracker implements AutoCloseable {
 			));
 		}
 		return result;
+	}
+
+	private static List<BoundaryFeature> transformBoundaries(List<BoundaryFeature> parent, int dx, int dy) {
+		if(parent.isEmpty())
+			return List.of();
+		var result = new ArrayList<BoundaryFeature>(parent.size());
+		for(var feature : parent) {
+			Geometry clipped = transformClip(feature.geometry, dx, dy);
+			if(clipped != null && !clipped.isEmpty())
+				result.add(new BoundaryFeature(feature.layer, feature.order, feature.attrs, clipped));
+		}
+		return result;
+	}
+
+	private static boolean pointsMatch(List<PointFeature> child, List<PointFeature> parentPoints, int dx, int dy) {
+		var expected = new HashMap<FeatureKey, List<double[]>>();
+		for(var feature : parentPoints) {
+			var key = new FeatureKey(feature.layer, feature.order, feature.attrs);
+			List<double[]> list = null;
+			for(int i=0; i<feature.xs.length; i++) {
+				double x = 2d * feature.xs[i] - TILE_EXTENT * dx;
+				double y = 2d * feature.ys[i] - TILE_EXTENT * dy;
+				if(x < -BUFFER || x > TILE_EXTENT + BUFFER || y < -BUFFER || y > TILE_EXTENT + BUFFER)
+					continue;
+				if(list == null)
+					list = expected.computeIfAbsent(key, k -> new ArrayList<>());
+				list.add(new double[] {x, y});
+			}
+		}
+
+		if(child.isEmpty())
+			return expected.isEmpty();
+
+		var actual = new HashMap<FeatureKey, List<double[]>>();
+		for(var feature : child) {
+			var key = new FeatureKey(feature.layer, feature.order, feature.attrs);
+			var list = actual.computeIfAbsent(key, k -> new ArrayList<>());
+			for(int i=0; i<feature.xs.length; i++)
+				list.add(new double[] {feature.xs[i], feature.ys[i]});
+		}
+
+		if(actual.size() != expected.size())
+			return false;
+		double tolerance = POSITION_ERROR * POSITION_ERROR;
+		for(var entry : actual.entrySet()) {
+			var want = expected.get(entry.getKey());
+			if(want == null || want.size() != entry.getValue().size())
+				return false;
+			boolean[] used = new boolean[want.size()];
+			for(var point : entry.getValue()) {
+				boolean matched = false;
+				for(int i=0; i<want.size(); i++) {
+					if(used[i])
+						continue;
+					double ddx = point[0] - want.get(i)[0];
+					double ddy = point[1] - want.get(i)[1];
+					if(ddx*ddx + ddy*ddy <= tolerance) {
+						used[i] = true;
+						matched = true;
+						break;
+					}
+				}
+				if(!matched)
+					return false;
+			}
+		}
+		return true;
+	}
+
+	private void write(long localStart, int count, Signature fill, List<PointFeature> points,
+		List<BoundaryFeature> boundaries) throws IOException {
+		writer.writeLong(localStart);
+		writer.writeLong(count);
+		writer.writeLong(fill.a);
+		writer.writeLong(fill.b);
+		writer.writeInt(points.size());
+		for(var point : points) {
+			writer.writeInt(point.layer);
+			writer.writeLong(point.order);
+			writer.writeInt(point.attrs);
+			writer.writeInt(point.xs.length);
+			for(int i=0; i<point.xs.length; i++) {
+				writer.writeInt(point.xs[i]);
+				writer.writeInt(point.ys[i]);
+			}
+		}
+		writer.writeInt(boundaries.size());
+		for(var feature : boundaries) {
+			writer.writeInt(feature.layer);
+			writer.writeLong(feature.order);
+			writer.writeInt(feature.attrs);
+			byte[] wkb = WKB_WRITER.write(feature.geometry);
+			writer.writeInt(wkb.length);
+			writer.write(wkb);
+		}
 	}
 
 	private void transition(int zoom) throws IOException {
@@ -245,9 +406,9 @@ final class TileSignatureTracker implements AutoCloseable {
 	}
 
 	/**
-	 * Splits the features into fill content and point content. Returns
-	 * {@code null} for tiles containing boundary geometry, which are never
-	 * candidates for dropping.
+	 * Splits a tile into fill content, point content and boundary content.
+	 * Returns {@code null} only for empty tiles or undecodable geometry, which
+	 * are never used as ancestors.
 	 */
 	private static Analysis analyze(List<TileStore.TileFeature> features) {
 		if(features.isEmpty())
@@ -257,6 +418,7 @@ final class TileSignatureTracker implements AutoCloseable {
 		long xor = 0;
 		int fills = 0;
 		var points = new ArrayList<PointFeature>();
+		var boundaries = new ArrayList<BoundaryFeature>();
 
 		for(var feature : features) {
 			if(feature.fill()) {
@@ -269,16 +431,20 @@ final class TileSignatureTracker implements AutoCloseable {
 				fills++;
 				continue;
 			}
-			if(feature.type() != TileGeometryCodec.GeometryType.POINT)
-				return null;
 
+			Geometry geometry;
 			try {
-				var geometry = TileGeometryCodec.decode(
+				geometry = TileGeometryCodec.decode(
 					new TileGeometryCodec.EncodedGeometry(feature.type(), feature.commands())
 				);
+			} catch(GeometryException e) {
+				return null;
+			}
+			if(geometry.isEmpty())
+				continue;
+
+			if(feature.type() == TileGeometryCodec.GeometryType.POINT) {
 				var coordinates = geometry.getCoordinates();
-				if(coordinates.length == 0)
-					continue;
 				int[] xs = new int[coordinates.length];
 				int[] ys = new int[coordinates.length];
 				for(int i=0; i<coordinates.length; i++) {
@@ -286,8 +452,10 @@ final class TileSignatureTracker implements AutoCloseable {
 					ys[i] = (int)Math.round(coordinates[i].y);
 				}
 				points.add(new PointFeature(feature.layer(), feature.order(), feature.attrs(), xs, ys));
-			} catch(GeometryException e) {
-				return null;
+			} else {
+				boundaries.add(new BoundaryFeature(
+					feature.layer(), feature.order(), feature.attrs(), geometry
+				));
 			}
 		}
 
@@ -295,63 +463,7 @@ final class TileSignatureTracker implements AutoCloseable {
 			mix(sum + fills),
 			mix(xor ^ fills)
 		);
-		return new Analysis(fill, points);
-	}
-
-	private static boolean pointsMatch(Analysis child, List<PointFeature> parentPoints, int dx, int dy) {
-		var expected = new HashMap<PointKey, List<double[]>>();
-		for(var feature : parentPoints) {
-			var key = new PointKey(feature.layer, feature.order, feature.attrs);
-			List<double[]> list = null;
-			for(int i=0; i<feature.xs.length; i++) {
-				double x = 2d * feature.xs[i] - TILE_EXTENT * dx;
-				double y = 2d * feature.ys[i] - TILE_EXTENT * dy;
-				if(x < -POINT_BUFFER || x > TILE_EXTENT + POINT_BUFFER
-						|| y < -POINT_BUFFER || y > TILE_EXTENT + POINT_BUFFER)
-					continue;
-				if(list == null)
-					list = expected.computeIfAbsent(key, k -> new ArrayList<>());
-				list.add(new double[] {x, y});
-			}
-		}
-
-		if(child.points.isEmpty())
-			return expected.isEmpty();
-
-		var actual = new HashMap<PointKey, List<double[]>>();
-		for(var feature : child.points) {
-			var key = new PointKey(feature.layer, feature.order, feature.attrs);
-			var list = actual.computeIfAbsent(key, k -> new ArrayList<>());
-			for(int i=0; i<feature.xs.length; i++)
-				list.add(new double[] {feature.xs[i], feature.ys[i]});
-		}
-
-		if(actual.size() != expected.size())
-			return false;
-		double tolerance = POINT_ERROR * POINT_ERROR;
-		for(var entry : actual.entrySet()) {
-			var want = expected.get(entry.getKey());
-			if(want == null || want.size() != entry.getValue().size())
-				return false;
-			boolean[] used = new boolean[want.size()];
-			for(var point : entry.getValue()) {
-				boolean matched = false;
-				for(int i=0; i<want.size(); i++) {
-					if(used[i])
-						continue;
-					double ddx = point[0] - want.get(i)[0];
-					double ddy = point[1] - want.get(i)[1];
-					if(ddx*ddx + ddy*ddy <= tolerance) {
-						used[i] = true;
-						matched = true;
-						break;
-					}
-				}
-				if(!matched)
-					return false;
-			}
-		}
-		return true;
+		return new Analysis(fill, points, boundaries);
 	}
 
 	private static long mix(long value) {
@@ -378,9 +490,10 @@ final class TileSignatureTracker implements AutoCloseable {
 	}
 
 	record Signature(long a, long b) {}
-	private record Analysis(Signature fill, List<PointFeature> points) {}
+	private record Analysis(Signature fill, List<PointFeature> points, List<BoundaryFeature> boundaries) {}
 	private record PointFeature(int layer, long order, int attrs, int[] xs, int[] ys) {}
-	private record PointKey(int layer, long order, int attrs) {}
+	private record BoundaryFeature(int layer, long order, int attrs, Geometry geometry) {}
+	private record FeatureKey(int layer, long order, int attrs) {}
 
 	private static final class SignatureReader implements Closeable {
 		private final DataInputStream in;
@@ -389,6 +502,7 @@ final class TileSignatureTracker implements AutoCloseable {
 		private long fillA;
 		private long fillB;
 		private List<PointFeature> points;
+		private List<BoundaryFeature> boundaries;
 		private boolean hasEntry;
 
 		SignatureReader(Path path) throws IOException {
@@ -402,17 +516,19 @@ final class TileSignatureTracker implements AutoCloseable {
 			} catch(EOFException e) {
 				hasEntry = false;
 				points = List.of();
+				boundaries = List.of();
 				return;
 			}
 			long length = in.readLong();
 			fillA = in.readLong();
 			fillB = in.readLong();
-			int count = in.readInt();
-			if(count == 0) {
+
+			int pointCount = in.readInt();
+			if(pointCount == 0) {
 				points = List.of();
 			} else {
-				var list = new ArrayList<PointFeature>(count);
-				for(int i=0; i<count; i++) {
+				var list = new ArrayList<PointFeature>(pointCount);
+				for(int i=0; i<pointCount; i++) {
 					int layer = in.readInt();
 					long order = in.readLong();
 					int attrs = in.readInt();
@@ -426,6 +542,27 @@ final class TileSignatureTracker implements AutoCloseable {
 					list.add(new PointFeature(layer, order, attrs, xs, ys));
 				}
 				points = list;
+			}
+
+			int boundaryCount = in.readInt();
+			if(boundaryCount == 0) {
+				boundaries = List.of();
+			} else {
+				var list = new ArrayList<BoundaryFeature>(boundaryCount);
+				for(int i=0; i<boundaryCount; i++) {
+					int layer = in.readInt();
+					long order = in.readLong();
+					int attrs = in.readInt();
+					int bytes = in.readInt();
+					byte[] wkb = new byte[bytes];
+					in.readFully(wkb);
+					try {
+						list.add(new BoundaryFeature(layer, order, attrs, WKB_READER.read(wkb)));
+					} catch(ParseException e) {
+						throw new IOException("Could not read boundary geometry", e);
+					}
+				}
+				boundaries = list;
 			}
 			end = start + length;
 			hasEntry = true;
@@ -444,6 +581,10 @@ final class TileSignatureTracker implements AutoCloseable {
 
 		List<PointFeature> points() {
 			return points;
+		}
+
+		List<BoundaryFeature> boundaries() {
+			return boundaries;
 		}
 
 		@Override

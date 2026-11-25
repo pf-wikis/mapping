@@ -20,7 +20,7 @@ import NewTab from "./tools/NewTab.js";
 
 var root = `${location.protocol}//${location.host}`;
 
-let pmtilesProt = new Protocol();
+let pmtilesProt = new Protocol({errorOnMissingTile: false});
 //add custom tile caching
 if(indexedDB) {
   try {

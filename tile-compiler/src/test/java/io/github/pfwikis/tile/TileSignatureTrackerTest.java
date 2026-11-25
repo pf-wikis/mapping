@@ -56,10 +56,58 @@ class TileSignatureTrackerTest {
 	}
 
 	@Test
-	void keepsFillChildWhenParentHasBoundaryGeometry() throws Exception {
+	void keepsFillChildWhenParentHasBoundaryGeometryInThatArea() throws Exception {
 		try(var tracker = new TileSignatureTracker(tempDir)) {
-			tracker.keptRanges(tileAt(1, 0), 1, List.of(line(0, 0, 0)));
-			assertThat(tracker.keptRanges(tileAt(2, 0), 4, List.of(fill(0, 0, 0)))).isNull();
+			var fill = fill(0, 1, 0);
+			tracker.keptRanges(tileAt(1, 0), 1,
+				List.of(fill, line(0, 0, 0, 1000, 1000, 3000, 1000)));
+			assertThat(tracker.keptRanges(tileAt(2, 0), 1, List.of(fill))).isNull();
+		}
+	}
+
+	@Test
+	void dropsBoundaryChildWithinTolerance() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			tracker.keptRanges(tileAt(1, 0), 1,
+				List.of(line(0, 0, 0, 500, 1000, 1500, 1000)));
+			// Same line overzoomed, plus a collinear vertex that adds no shape.
+			assertThat(tracker.keptRanges(tileAt(2, 0), 1,
+				List.of(line(0, 0, 0, 1000, 2000, 2000, 2000, 3000, 2000)))).isEmpty();
+		}
+	}
+
+	@Test
+	void keepsBoundaryChildOutsideTolerance() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			tracker.keptRanges(tileAt(1, 0), 1,
+				List.of(line(0, 0, 0, 500, 1000, 1500, 1000)));
+			assertThat(tracker.keptRanges(tileAt(2, 0), 1,
+				List.of(line(0, 0, 0, 1000, 2010, 3000, 2010)))).isNull();
+		}
+	}
+
+	@Test
+	void keepsBoundaryChildWithDifferentFeatureSet() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			tracker.keptRanges(tileAt(1, 0), 1,
+				List.of(line(0, 0, 0, 500, 1000, 1500, 1000)));
+			assertThat(tracker.keptRanges(tileAt(2, 0), 1,
+				List.of(
+					line(0, 0, 0, 1000, 2000, 3000, 2000),
+					line(1, 0, 0, 1000, 2500, 3000, 2500)
+				))).isNull();
+		}
+	}
+
+	@Test
+	void dropsBoundaryChainsAgainstTheFirstStoredAncestor() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			tracker.keptRanges(tileAt(1, 0), 1,
+				List.of(line(0, 0, 0, 500, 500, 1000, 500)));
+			assertThat(tracker.keptRanges(tileAt(2, 0), 1,
+				List.of(line(0, 0, 0, 1000, 1000, 2000, 1000)))).isEmpty();
+			assertThat(tracker.keptRanges(tileAt(3, 0), 1,
+				List.of(line(0, 0, 0, 2000, 2000, 4000, 2000)))).isEmpty();
 		}
 	}
 
@@ -164,8 +212,13 @@ class TileSignatureTrackerTest {
 		return new TileStore.TileFeature(layer, order, attrs, GeometryType.POLYGON, new int[0], true);
 	}
 
-	private static TileStore.TileFeature line(int layer, long order, int attrs) {
-		return new TileStore.TileFeature(layer, order, attrs, GeometryType.LINE, new int[0], false);
+	private static TileStore.TileFeature line(int layer, long order, int attrs, double... xy) {
+		var coordinates = new Coordinate[xy.length / 2];
+		for(int i=0; i<coordinates.length; i++)
+			coordinates[i] = new Coordinate(xy[2*i] / 16d, xy[2*i+1] / 16d);
+		var geometry = GeoUtils.JTS_FACTORY.createLineString(coordinates);
+		var encoded = TileGeometryCodec.encodeToCommands(geometry, 0);
+		return new TileStore.TileFeature(layer, order, attrs, encoded.type(), encoded.commands(), false);
 	}
 
 	private static TileStore.TileFeature point(int x, int y) {

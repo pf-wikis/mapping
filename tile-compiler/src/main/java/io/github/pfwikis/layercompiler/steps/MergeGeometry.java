@@ -2,6 +2,7 @@ package io.github.pfwikis.layercompiler.steps;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,7 @@ import io.github.pfwikis.model.Feature;
 import io.github.pfwikis.model.FeatureCollection;
 import io.github.pfwikis.run.Tools;
 import io.github.pfwikis.util.ColorUtil;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -102,26 +104,49 @@ public class MergeGeometry extends StepExecutor {
     	
     	return Content.timeless(GeoData.from(merged));
     }
+    
+    @Getter
+    public enum GeomColor {
+        LAND      (new Color(248, 241, 225),      "land"),
+        ICE       (new Color(1f, 1f, 1f, 0.75f),  "ice"),
+        DISTRICTS (new Color(212, 204, 185),      "districts"),
+        DESERTS   (new Color(255, 247, 190),      "deserts"),
+        SWAMP     (new Color(183, 197, 188),      "swamp"),
+        MOUNTAINS (new Color(222, 212, 184),      "mountains"),
+        HILLS     (new Color(235, 227, 205),      "hills"),
+        FORESTS   (new Color(187, 226, 198),      "forests"),
+        SWAMPS    (new Color(183, 197, 188),      "swamps"),
+        WATERS    (new Color(138, 180, 248),      "rivers", "shallow-waters", "waters"),
+        BUILDINGS (new Color(119, 136, 153),      "buildings"),
+        ROADS     (new Color(185, 157, 92),       "roads"),
+        SPECIALS  (null,                          "specials"),
+        CONTINENTS(new Color(248, 241, 225),      "continents"),
+        GENERIC   (null,                          "generic");
+
+        private static final Map<String, GeomColor> BY_LAYER = Arrays.stream(values())
+                .flatMap(lc -> Arrays.stream(lc.layerNames)
+                        .map(name -> Map.entry(name, lc)))
+                .collect(Collectors.toUnmodifiableMap(Map.Entry::getKey, Map.Entry::getValue));
+
+        private final Color color;
+        private final String[] layerNames;
+
+        GeomColor(Color color, String... layerNames) {
+            this.color = color;
+            this.layerNames = layerNames;
+        }
+
+        public static GeomColor forLayer(String layer) {
+            var result = BY_LAYER.get(layer);
+            if (result == null) {
+                throw new IllegalStateException("Unknown color for " + layer);
+            }
+            return result;
+        }
+    }
 
 	public static Color colorFor(String layer) {
-		return switch(layer) {
-			case "land" -> new Color(248, 241, 225);
-			case "ice" -> new Color(1f,1f,1f,0.75f); 
-			case "districts" -> new Color(212, 204, 185);
-			case "deserts" -> new Color(255, 247, 190);
-			case "swamp" -> new Color(183, 197, 188);
-			case "mountains" -> new Color(222, 212, 184);
-			case "hills" -> new Color(235, 227, 205);
-			case "forests" -> new Color(187, 226, 198);
-			case "swamps" -> new Color(183, 197, 188);
-			case "rivers", "shallow-waters", "waters" -> new Color(138, 180, 248);
-			case "buildings" -> new Color(119, 136, 153);
-			case "roads" -> new Color(185, 157,  92);
-			case "specials" -> null;//new Color(255, 0, 0);
-			case "continents" -> new Color(248, 241, 225);
-			case "generic" -> null;//new Color(255, 0, 0);
-			default -> throw new IllegalStateException("Unknown color for "+layer);
-		};
+		return GeomColor.forLayer(layer).getColor();
 	}
 
 }

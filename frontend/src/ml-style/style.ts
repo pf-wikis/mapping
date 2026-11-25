@@ -387,6 +387,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
     sources: {
       golarion: {
         type: 'vector',
+        sparse: true,
         attribution: '<a href="https://paizo.com/licenses/communityuse">Paizo CUP</a>, <a href="https://github.com/pf-wikis/mapping#acknowledgments">Acknowledgments</a>',
         url: `pmtiles://${HOST}/${BUILD_DATA_HASH}/golarion.pmtiles`,
         encoding: 'mlt'
