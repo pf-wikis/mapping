@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import io.github.pfwikis.layercompiler.ColorPalette;
 import io.github.pfwikis.layercompiler.description.Ctx;
 import io.github.pfwikis.layercompiler.steps.model.Inputs;
 import io.github.pfwikis.layercompiler.steps.model.StepExecutor;
@@ -63,7 +64,7 @@ public class PropsMeta extends StepExecutor {
     		.append(" as const;\n")
     		.append("export const colors = ")
     		.append(Jackson.JSON.writerWithDefaultPrettyPrinter().writeValueAsString(
-    			Arrays.stream(MergeGeometry.GeomColor.values())
+    			Arrays.stream(ColorPalette.values())
     				.filter(v->v.getColor()!=null)
     				.flatMap(v->Arrays.stream(v.getLayerNames())
     						.map(l->Map.entry(l, ColorUtil.toHex(v.getColor())))

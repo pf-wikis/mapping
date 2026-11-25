@@ -5,6 +5,7 @@ import type { OptionalFields } from "../utils/type-utils";
 import { state, type StateProp } from "./state.ts";
 import type { Expression } from "./expression";
 import { projection } from "./projection.ts";
+import { colors } from "../../gen/props-meta-golarion.ts";
 
 export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
 
@@ -26,21 +27,6 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
     "id"|"source"|"source-layer"
   >;
   type LayerSpec = LayerSpecification&{'source-layer'?: ExistingLayer};
-
-  let colors = {
-    water:           'rgb(138, 180, 248)',
-    waterDeep:       'rgb(110, 160, 245)',
-    waterDarker:     'rgb(  9,  64, 153)',
-    road:            'rgb(185, 157,  92)',
-    roadDarker:      'rgb( 90,  76,  44)',
-    regionBorders:   'rgb(107,  42,  33)',
-    regionLabels:    'rgb( 17,  42,  97)',
-    regionLabelsOut: 'rgb(213, 195, 138)',
-    nationBorders:   'rgb(170, 170, 170)',
-    borderDarker:    'rgb( 74,  74,  74)',
-    white:           'rgb(255, 255, 255)',
-    black:           'rgb( 10,  10,  10)'
-  };
 
   function createLayer(layerId:ExistingLayer, base:PartialCreateableLayerSpec):LayerSpec {
     let layer = propsMeta[layerId];
@@ -116,7 +102,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
       type: 'line',
       filter: ['==', ['get', Prop.borderType], 3],
       paint: {
-        'line-color': colors.nationBorders,
+        'line-color': colors.bordersNation,
         'line-width': ["interpolate", ["exponential", 2], ["zoom"],
           3, .375,
           5, 2,
@@ -132,7 +118,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
       type: 'line',
       filter: ['==', ['get', Prop.borderType], 2],
       paint: {
-        'line-color': colors.nationBorders,
+        'line-color': colors.bordersNation,
         'line-width': ["interpolate", ["exponential", 2], ["zoom"],
           0, .375,
           3, 2,
@@ -149,7 +135,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
       maxzoom: 5,
       filter: ['==', ['get', Prop.borderType], 1],
       paint: {
-        'line-color': colors.regionBorders,
+        'line-color': colors.bordersRegion,
         'line-width': 2,
         "line-opacity": ["interpolate", ["exponential", 2], ["zoom"],
           3.5, 1,
@@ -167,7 +153,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
       filter: ['==', ['get', Prop.borderType], 4],
       minzoom: 4,
       paint: {
-        'line-color': colors.nationBorders,
+        'line-color': colors.bordersNation,
         'line-opacity': ["interpolate", ["exponential", 2], ["zoom"],
           4, 0,
           6, 1,
@@ -185,7 +171,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
       filter: ['==', ['get', Prop.borderType], 5],
       minzoom: 8,
       paint: {
-        'line-color': colors.nationBorders,
+        'line-color': colors.bordersNation,
         'line-opacity': ["interpolate", ["exponential", 2], ["zoom"],
           8, 0,
           10, 1,
@@ -304,7 +290,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
       },
       paint: {
         'text-color': colors.white,
-        'text-halo-color': colors.regionLabels,
+        'text-halo-color': colors.labelsRegion,
         'text-halo-width': ['interpolate', ['linear'], ['zoom'],
           5, .375,
           7, 1.5,
@@ -331,7 +317,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
       },
       paint: {
         'text-color': colors.white,
-        'text-halo-color': colors.regionLabels,
+        'text-halo-color': colors.labelsRegion,
         'text-halo-width': ['interpolate', ['linear'], ['zoom'],
           4, .75,
           5, 1.875,
@@ -354,7 +340,7 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
       },
       paint: {
         'text-color': colors.white,
-        'text-halo-color': colors.regionLabels,
+        'text-halo-color': colors.labelsRegion,
         'text-halo-width': ['interpolate', ['linear'], ['zoom'],
           4, .75,
           5, 1.875,
@@ -373,8 +359,8 @@ export default function(HOST:string, BUILD_DATA_HASH: number|'latest') {
         'symbol-z-order': 'source',
       },
       paint: {
-        'text-color': colors.regionLabels,
-        'text-halo-color': colors.regionLabelsOut,
+        'text-color': colors.labelsRegion,
+        'text-halo-color': colors.labelsRegionOuter,
         'text-halo-width': 1.5,
       }
     }),

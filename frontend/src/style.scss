@@ -128,3 +128,131 @@ a {
 		}
 	}
 }
+
+.map-legend-toggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #333;
+
+	>svg {
+		display: block;
+	}
+}
+
+.map-legend {
+	position: absolute;
+	top: 10px;
+	right: 52px;
+	z-index: 3;
+	box-sizing: border-box;
+	width: min(19rem, calc(100% - 4.5rem));
+	max-height: calc(100% - 20px);
+	overflow-y: auto;
+	padding: .75rem .9rem .85rem;
+	border-radius: 4px;
+	background: #fff;
+	color: #222;
+	font: 12px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+	box-shadow: 0 0 0 2px rgba(0, 0, 0, .1), 0 2px 8px rgba(0, 0, 0, .16);
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+.map-legend-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: .5rem;
+	padding-bottom: .35rem;
+	margin-bottom: .55rem;
+	border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.map-legend-title {
+	margin: 0;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .06em;
+	text-transform: uppercase;
+	color: #333;
+}
+
+.map-legend-close {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.5rem;
+	height: 1.5rem;
+	padding: 0;
+	border: 0;
+	border-radius: 3px;
+	background: transparent;
+	color: #555;
+	font-size: 18px;
+	line-height: 1;
+	cursor: pointer;
+
+	&:hover {
+		background: rgba(0, 0, 0, .08);
+		color: #000;
+	}
+}
+
+.map-legend-section {
+	& + & {
+		margin-top: .65rem;
+	}
+
+	h3 {
+		margin: 0 0 .2rem;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: .04em;
+		text-transform: uppercase;
+		color: #666;
+	}
+}
+
+.map-legend-row {
+	display: flex;
+	align-items: center;
+	gap: .55rem;
+	min-height: 1.35rem;
+}
+
+.map-legend-swatch {
+	display: inline-block;
+	flex: 0 0 1.75rem;
+	height: .85rem;
+	border: 1px solid rgba(0, 0, 0, .18);
+	border-radius: 2px;
+}
+
+.map-legend-line {
+	display: inline-block;
+	flex: 0 0 1.75rem;
+	height: var(--legend-line-width, 2px);
+	background-color: var(--legend-line-color, #000);
+	border-radius: 1px;
+
+	&--dash-long {
+		background: repeating-linear-gradient(to right,
+			var(--legend-line-color) 0 5px, transparent 5px 15px);
+	}
+
+	&--dash-short {
+		background: repeating-linear-gradient(to right,
+			var(--legend-line-color) 0 2px, transparent 2px 6px);
+	}
+}
+
+.map-legend-note {
+	margin: .7rem 0 0;
+	padding-top: .55rem;
+	border-top: 1px solid rgba(0, 0, 0, .1);
+	color: #777;
+	font-size: 11px;
+}

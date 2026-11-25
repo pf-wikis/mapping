@@ -507,13 +507,20 @@ export const colors = {
   "swamps" : "#B7C5BC",
   "shallow-waters" : "#8AB4F8",
   "districts" : "#D4CCB9",
+  "black" : "#0A0A0A",
   "roads" : "#B99D5C",
   "ice" : "#FFFFFFBF",
   "swamp" : "#B7C5BC",
   "forests" : "#BBE2C6",
+  "bordersRegion" : "#6B2A21",
   "continents" : "#F8F1E1",
+  "labelsRegionOuter" : "#D5C38A",
   "deserts" : "#FFF7BE",
+  "white" : "#FFF",
   "buildings" : "#789",
+  "waterDeep" : "#6EA0F5",
   "hills" : "#EBE3CD",
-  "land" : "#F8F1E1"
+  "land" : "#F8F1E1",
+  "labelsRegion" : "#112A61",
+  "bordersNation" : "#AAA"
 };

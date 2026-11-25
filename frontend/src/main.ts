@@ -1,5 +1,5 @@
-import { addProtocol, Map, NavigationControl, ScaleControl, setWorkerUrl } from "maplibre-gl";
-import type { AddProtocolAction, AddProtocolResponseData } from "maplibre-gl";
+import { addProtocol, Map, ScaleControl, setWorkerUrl } from "maplibre-gl";
+import type { AddProtocolAction } from "maplibre-gl";
 import 'maplibre-gl/dist/maplibre-gl.css';
 import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url';
 import './style.scss';
@@ -31,16 +31,7 @@ if(indexedDB) {
     console.log(e)
   }
 }
-//pmtiles types the response data as `unknown`; MapLibre accepts ArrayBuffer,
-//typed arrays, strings, image data, or JSON objects from a protocol handler.
-const pmtilesProtocol: AddProtocolAction = async (params, abortController) => {
-  const response = await pmtilesProt.tilev4(params, abortController);
-  return {
-    ...response,
-    data: response.data as AddProtocolResponseData,
-  };
-};
-addProtocol("pmtiles", pmtilesProtocol);
+addProtocol("pmtiles", pmtilesProt.tilev4 as AddProtocolAction);
 setWorkerUrl(workerUrl);
 
 /******************************* update style according to option *******************************/
