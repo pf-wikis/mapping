@@ -26,12 +26,15 @@ import org.maplibre.mlt.metadata.tileset.MltMetadata;
 final class MltTileEncoder {
 	private static final Pattern MATCH_ALL = Pattern.compile(".*");
 	/**
-	 * Pre-tessellation lets renderers draw fills from the stored triangle mesh.
-	 * MapLibre GL JS currently reconstructs rings from the mesh and tessellates
-	 * again, but native clients can use it directly. Disable with
-	 * {@code -Dtile.preTessellate=false}.
+	 * Pre-tessellation stores polygon triangle meshes so renderers can upload
+	 * them directly instead of triangulating at runtime. It is disabled by
+	 * default because MapLibre GL JS does not render the mesh yet: it rebuilds
+	 * the outline rings and tessellates them again, so the extra mesh streams
+	 * only cost build time and archive size. Re-enable by default as soon as
+	 * MapLibre GL JS (or the WebGPU renderer) supports drawing pre-tessellated
+	 * tiles; until then it remains available with {@code -Dtile.preTessellate=true}.
 	 */
-	private static final boolean PRE_TESSELLATE = Boolean.parseBoolean(System.getProperty("tile.preTessellate", "true"));
+	private static final boolean PRE_TESSELLATE = Boolean.parseBoolean(System.getProperty("tile.preTessellate", "false"));
 
 	byte[] encode(Map<String, List<org.maplibre.mlt.data.Feature>> tileLayers) throws IOException {
 		if(tileLayers.isEmpty())

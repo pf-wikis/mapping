@@ -149,12 +149,14 @@
  *
  * <h2>Pre-tessellation and compression</h2>
  *
- * <p>MLT polygon pre-tessellation is enabled by default (disable with
- * {@code -Dtile.preTessellate=false}). The original outline topology is kept for
- * every feature table ({@code outlineFeatureTableNames("ALL")}) so clients can
- * reconstruct polygon rings. MapLibre GL JS currently reconstructs rings and
- * tessellates them again rather than drawing the mesh, so the web frontend pays
- * the larger archive without yet getting the mesh rendering benefit.
+ * <p>MLT polygon pre-tessellation is disabled by default (enable with
+ * {@code -Dtile.preTessellate=true}). MapLibre GL JS does not draw the stored
+ * mesh yet, it reconstructs rings and tessellates them again, so the extra mesh
+ * streams only cost build time and archive size. Re-enable this default as soon
+ * as MapLibre GL JS (or the WebGPU renderer) supports drawing pre-tessellated
+ * tiles. When enabled, the original outline topology is kept for every feature
+ * table ({@code outlineFeatureTableNames("ALL")}) so clients can still
+ * reconstruct polygon rings.
  *
  * <p>PMTiles tile payloads use gzip with {@code Deflater.BEST_COMPRESSION}.
  * Directories and JSON metadata keep the default level: their best-level
