@@ -42,6 +42,17 @@ final class FeatureTiler {
 	}
 
 	void tile(Map<String, FeatureCollection> layers) {
+		// Use a dedicated pool instead of the common pool: the common pool only has
+		// availableProcessors-1 workers, which leaves one core idle when tiling is
+		// the only thing running. Nested parallel streams inside the tasks reuse
+		// this pool because they are invoked from its workers.
+		int parallelism = Math.max(1, Runtime.getRuntime().availableProcessors());
+		try(var pool = new java.util.concurrent.ForkJoinPool(parallelism)) {
+			pool.submit(() -> tileLayers(layers)).join();
+		}
+	}
+
+	private void tileLayers(Map<String, FeatureCollection> layers) {
 		// Tile one layer at a time so the prepared source geometry of a finished
 		// layer can be released before the next (usually larger) layer is tiled.
 		for(var entry : layers.entrySet()) {

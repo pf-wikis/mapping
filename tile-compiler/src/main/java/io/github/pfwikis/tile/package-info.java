@@ -188,10 +188,15 @@
  *
  * <p>Layers are tiled one at a time so that source geometry of a finished layer
  * can be released before the next (usually larger) layer is processed. Features
- * within a layer are tiled in parallel; work is split further across fill
- * columns and large polygon tiles. Tile encoding runs on a fixed thread pool
+ * within a layer are tiled in parallel on a dedicated fork-join pool sized to
+ * the available processors (the common pool would leave one worker unused);
+ * work is split further across fill columns and large polygon tiles. Tile
+ * encoding runs on a fixed thread pool (override with {@code tile.encodeThreads})
  * with a bounded sliding window, while PMTiles writing remains sequential so the
- * tile-id order and run-length compression stay deterministic.
+ * tile-id order and run-length compression stay deterministic. The encode loop
+ * logs a per-phase breakdown (merge, signature check, waiting for encoders,
+ * writing and encoder busy time) to make bottlenecks visible at production
+ * scale.
  *
  * <h2>Determinism and parity</h2>
  *

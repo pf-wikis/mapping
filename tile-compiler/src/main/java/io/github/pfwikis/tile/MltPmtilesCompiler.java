@@ -12,6 +12,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.maplibre.mlt.data.MVTFeature;
 
@@ -30,6 +31,19 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public final class MltPmtilesCompiler {
 
+	/** Counters for the encode loop; worker threads update the atomic fields. */
+	private static final class EncodeStats {
+		long runs;
+		long droppedRuns;
+		long mergeNanos;
+		long signatureNanos;
+		long waitNanos;
+		long writeNanos;
+		final AtomicLong encodeCalls = new AtomicLong();
+		final AtomicLong fillCacheHits = new AtomicLong();
+		final AtomicLong encodeNanos = new AtomicLong();
+	}
+
 	public void compile(Map<String, FeatureCollection> layers, int maxZoom, Path output) throws Exception {
 		log.info("Tiling {} layers up to z{}", layers.size(), maxZoom);
 		var tempDir = Files.createTempDirectory("pf-tile-store-");
@@ -42,34 +56,54 @@ public final class MltPmtilesCompiler {
 
 			var encoder = new MltTileEncoder();
 			var fillCache = new java.util.concurrent.ConcurrentHashMap<List<FillKey>, EncodedTile>();
-			int threads = Math.max(1, Runtime.getRuntime().availableProcessors());
+			int threads = Math.max(1, Integer.getInteger("tile.encodeThreads",
+				Runtime.getRuntime().availableProcessors()));
 			int windowSize = Math.max(64, threads * 8);
 			var executor = Executors.newFixedThreadPool(threads);
+			var stats = new EncodeStats();
 			var window = new ArrayDeque<TileWork>();
 			long encodedCount = 0;
 			start = System.nanoTime();
 			try(var merger = new TileMerger(runs, store.fillRuns());
 				var writer = new PmtilesWriter(output);
-				var signatures = new TileSignatureTracker(tempDir.resolve("signatures"))) {
+				var signatures = new TileSignatureTracker(tempDir.resolve("signatures"), maxZoom)) {
 				while(merger.nextRun()) {
+					long phase = System.nanoTime();
 					var tileFeatures = collapseUniformFills(merger.features());
 					long tileId = merger.runTileId();
 					int count = merger.runCount();
+					stats.runs++;
+					stats.mergeNanos += System.nanoTime() - phase;
+
+					phase = System.nanoTime();
 					long[] kept = signatures.keptRanges(tileId, count, tileFeatures);
-					if(kept != null && kept.length == 0)
+					stats.signatureNanos += System.nanoTime() - phase;
+
+					if(kept != null && kept.length == 0) {
+						stats.droppedRuns++;
 						continue;
-					var future = executor.submit(() -> encodeTile(encoder, context, tileFeatures, fillCache));
+					}
+					var future = executor.submit(() -> encodeTile(encoder, context, tileFeatures, fillCache, stats));
 					window.addLast(new TileWork(tileId, count, kept, future));
 					if(window.size() >= windowSize)
-						encodedCount += writeNext(window, writer);
+						encodedCount += writeNext(window, writer, stats);
 				}
 				while(!window.isEmpty())
-					encodedCount += writeNext(window, writer);
-				log.info("Encoded {} tiles in {}ms", encodedCount, (System.nanoTime()-start)/1_000_000);
+					encodedCount += writeNext(window, writer, stats);
+				long loopNanos = System.nanoTime()-start;
+				log.info("Encoded {} tiles in {}ms", encodedCount, loopNanos/1_000_000);
+				log.info("Encode loop: {} runs ({} dropped), {} encode calls ({} fill-cache hits); "
+						+ "merge={}ms signature={}ms wait={}ms write={}ms encodeBusy={}ms on {} threads ({}% of wall)",
+					stats.runs, stats.droppedRuns, stats.encodeCalls.get(), stats.fillCacheHits.get(),
+					stats.mergeNanos/1_000_000, stats.signatureNanos/1_000_000,
+					stats.waitNanos/1_000_000, stats.writeNanos/1_000_000,
+					stats.encodeNanos.get()/1_000_000, threads,
+					loopNanos == 0 ? 0 : stats.encodeNanos.get() * 100L / (loopNanos * threads));
 
 				start = System.nanoTime();
 				writer.finish(maxZoom, context.fields());
-				log.info("Wrote PMTiles in {}ms", (System.nanoTime()-start)/1_000_000);
+				log.info("Wrote PMTiles in {}ms ({} entries, {} unique tile contents)",
+					(System.nanoTime()-start)/1_000_000, writer.entryCount(), writer.uniqueContents());
 			} finally {
 				executor.shutdown();
 				executor.awaitTermination(1, TimeUnit.MINUTES);
@@ -107,40 +141,55 @@ public final class MltPmtilesCompiler {
 		return List.of(top);
 	}
 
-	private static int writeNext(ArrayDeque<TileWork> window, PmtilesWriter writer) throws IOException, InterruptedException, ExecutionException {
+	private static int writeNext(ArrayDeque<TileWork> window, PmtilesWriter writer, EncodeStats stats) throws IOException, InterruptedException, ExecutionException {
 		var work = window.removeFirst();
+		long phase = System.nanoTime();
 		var tile = work.bytes().get();
-		if(tile == null || tile.bytes() == null)
-			return 0;
-		if(work.kept() == null) {
-			writer.addRun(work.tileId(), work.count(), tile.bytes(), tile.hash());
-			return work.count();
-		}
+		stats.waitNanos += System.nanoTime() - phase;
+		phase = System.nanoTime();
+		try {
+			if(tile == null || tile.bytes() == null)
+				return 0;
+			if(work.kept() == null) {
+				writer.addRun(work.tileId(), work.count(), tile.bytes(), tile.hash());
+				return work.count();
+			}
 
-		int written = 0;
-		for(int i=0; i<work.kept().length; i+=2) {
-			int length = (int)work.kept()[i+1];
-			writer.addRun(work.tileId() + work.kept()[i], length, tile.bytes(), tile.hash());
-			written += length;
+			int written = 0;
+			for(int i=0; i<work.kept().length; i+=2) {
+				int length = (int)work.kept()[i+1];
+				writer.addRun(work.tileId() + work.kept()[i], length, tile.bytes(), tile.hash());
+				written += length;
+			}
+			return written;
+		} finally {
+			stats.writeNanos += System.nanoTime() - phase;
 		}
-		return written;
 	}
 
 	private static EncodedTile encodeTile(MltTileEncoder encoder, TileContext context, List<TileStore.TileFeature> features,
-		java.util.concurrent.ConcurrentHashMap<List<FillKey>, EncodedTile> fillCache) throws IOException, GeometryException {
-		// High-zoom fills cover most of the world; their MLT bytes only depend on
-		// the set of fill layers/attributes, so encode each combination once.
-		var key = fillKey(features);
-		if(key != null) {
-			var cached = fillCache.get(key);
-			if(cached != null)
-				return cached;
-			var bytes = encoder.encode(toMlt(context, features));
-			var tile = new EncodedTile(bytes, PmtilesWriter.hash(bytes));
-			var previous = fillCache.putIfAbsent(key, tile);
-			return previous == null ? tile : previous;
+		java.util.concurrent.ConcurrentHashMap<List<FillKey>, EncodedTile> fillCache, EncodeStats stats) throws IOException, GeometryException {
+		stats.encodeCalls.incrementAndGet();
+		long start = System.nanoTime();
+		try {
+			// High-zoom fills cover most of the world; their MLT bytes only depend on
+			// the set of fill layers/attributes, so encode each combination once.
+			var key = fillKey(features);
+			if(key != null) {
+				var cached = fillCache.get(key);
+				if(cached != null) {
+					stats.fillCacheHits.incrementAndGet();
+					return cached;
+				}
+				var bytes = encoder.encode(toMlt(context, features));
+				var tile = new EncodedTile(bytes, PmtilesWriter.hash(bytes));
+				var previous = fillCache.putIfAbsent(key, tile);
+				return previous == null ? tile : previous;
+			}
+			return new EncodedTile(encoder.encode(toMlt(context, features)), 0L);
+		} finally {
+			stats.encodeNanos.addAndGet(System.nanoTime() - start);
 		}
-		return new EncodedTile(encoder.encode(toMlt(context, features)), 0L);
 	}
 
 	private static List<FillKey> fillKey(List<TileStore.TileFeature> features) {

@@ -125,6 +125,14 @@ final class PmtilesWriter implements AutoCloseable {
 		pending = null;
 	}
 
+	long entryCount() {
+		return entryCount;
+	}
+
+	long uniqueContents() {
+		return hashToOffset.size();
+	}
+
 	void finish(int maxZoom, Map<String, Set<String>> layerFields) throws IOException {
 		flushPending();
 		entries.close();

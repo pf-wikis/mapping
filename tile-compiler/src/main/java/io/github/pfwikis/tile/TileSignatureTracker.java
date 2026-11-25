@@ -68,6 +68,7 @@ final class TileSignatureTracker implements AutoCloseable {
 	private static final long[] DROP_ALL = new long[0];
 
 	private final Path directory;
+	private final int maxZoom;
 	private int trackedZoom = -1;
 	private Path trackedFile;
 	private DataOutputStream writer;
@@ -75,7 +76,16 @@ final class TileSignatureTracker implements AutoCloseable {
 	private Path readerFile;
 
 	TileSignatureTracker(Path directory) throws IOException {
+		this(directory, Integer.MAX_VALUE);
+	}
+
+	/**
+	 * @param maxZoom the last zoom that is compiled; no signature file is written
+	 *        for it because no higher zoom will ever read it
+	 */
+	TileSignatureTracker(Path directory, int maxZoom) throws IOException {
 		this.directory = Files.createDirectories(directory);
+		this.maxZoom = maxZoom;
 	}
 
 	/**
@@ -346,6 +356,8 @@ final class TileSignatureTracker implements AutoCloseable {
 
 	private void write(long localStart, int count, Signature fill, List<PointFeature> points,
 		List<BoundaryFeature> boundaries) throws IOException {
+		if(writer == null)
+			return;
 		writer.writeLong(localStart);
 		writer.writeLong(count);
 		writer.writeLong(fill.a);
@@ -394,10 +406,12 @@ final class TileSignatureTracker implements AutoCloseable {
 
 		trackedZoom = zoom;
 		trackedFile = directory.resolve("signatures-"+zoom+".bin");
-		writer = new DataOutputStream(new BufferedOutputStream(
-			Files.newOutputStream(trackedFile, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING),
-			1 << 20
-		));
+		if(zoom < maxZoom) {
+			writer = new DataOutputStream(new BufferedOutputStream(
+				Files.newOutputStream(trackedFile, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING),
+				1 << 20
+			));
+		}
 
 		if(previousZoom == zoom - 1 && previous != null) {
 			reader = new SignatureReader(previous);
