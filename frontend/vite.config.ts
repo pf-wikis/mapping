@@ -31,7 +31,11 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
       HOST: JSON.stringify(host),
       BUILD_DATA_HASH: dataHash==='latest'?JSON.stringify(dataHash):dataHash
     },
-    publicDir: false,
+    // The build copies `public/` into `dist/<dataHash>/` itself (see
+    // `copy-public`), so Vite must not also copy it to the dist root. In dev
+    // we do want Vite's static handler, because it knows how to serve range
+    // requests for the PMTiles file.
+    publicDir: command === 'serve' && !isPreview ? 'public' : false,
     optimizeDeps: {
       // Dev pre-bundles dependencies with Rolldown as well; without this the
       // dev maps still point at the minified dependency bundles.
@@ -64,6 +68,41 @@ export default defineConfig(({ command, mode, isSsrBuild, isPreview }):UserConfi
             type: "asset",
             fileName: `${dataHash}/style.json`,
             source: JSON.stringify(compiledStyle),
+          });
+        }
+      },
+      {
+        // A production build copies `public/` into `dist/${dataHash}/`, so the
+        // app always requests data as `/${dataHash}/…`. The dev server serves
+        // `public/` at the root, so rewrite those requests to the matching
+        // file. Paths configured in `server.proxy` are skipped so they still
+        // reach the proxy middleware (which runs after plugin middlewares).
+        name: 'serve-public-under-data-hash',
+        apply: 'serve',
+        configureServer(server) {
+          const publicDir = server.config.publicDir;
+          const prefix = `/${dataHash}/`;
+          const proxied = Object.keys(server.config.server.proxy ?? {});
+          server.middlewares.use((req, res, next) => {
+            const url = req.url;
+            if (!url || !url.startsWith(prefix)) return next();
+            const pathname = url.split('?')[0];
+            if (proxied.some(p => pathname.startsWith(p))) return next();
+            let rel: string;
+            try {
+              rel = decodeURIComponent(pathname.slice(prefix.length));
+            } catch {
+              return next();
+            }
+            const file = path.resolve(publicDir, rel);
+            if (!file.startsWith(publicDir + path.sep)) return next();
+            try {
+              if (!fs.statSync(file).isFile()) return next();
+            } catch {
+              return next();
+            }
+            req.url = `/${rel}${url.slice(pathname.length)}`;
+            next();
           });
         }
       },
