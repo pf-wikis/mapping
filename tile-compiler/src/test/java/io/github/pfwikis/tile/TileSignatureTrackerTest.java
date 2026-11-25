@@ -208,6 +208,111 @@ class TileSignatureTrackerTest {
 		}
 	}
 
+	@Test
+	void reportsDropStatistics() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			var fillA = List.of(fill(0, 0, 0));
+			var fillB = List.of(fill(0, 0, 1));
+			tracker.keptRanges(tileAt(1, 0), 1, fillA);
+			assertThat(tracker.keptRanges(tileAt(2, 0), 4, fillA)).isEmpty();
+			tracker.keptRanges(tileAt(3, 0), 16, fillB);
+
+			var stats = tracker.dropStatistics();
+			assertThat(stats.keptTiles()).isEqualTo(17);
+			assertThat(stats.droppedTiles()).isEqualTo(4);
+			assertThat(stats.droppedWithDroppedParent()).isZero();
+			assertThat(stats.droppedWithDroppedAncestor()).isZero();
+			assertThat(stats.droppedWithKeptChild()).isEqualTo(4);
+		}
+	}
+
+	@Test
+	void reportsDroppedAncestorsThroughChains() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			var fill = List.of(fill(0, 0, 0));
+			tracker.keptRanges(tileAt(1, 0), 1, fill);
+			assertThat(tracker.keptRanges(tileAt(2, 0), 4, fill)).isEmpty();
+			assertThat(tracker.keptRanges(tileAt(3, 0), 16, fill)).isEmpty();
+			assertThat(tracker.keptRanges(tileAt(4, 0), 64, fill)).isEmpty();
+
+			var stats = tracker.dropStatistics();
+			assertThat(stats.keptTiles()).isEqualTo(1);
+			assertThat(stats.droppedTiles()).isEqualTo(84);
+			assertThat(stats.droppedWithDroppedParent()).isEqualTo(80);
+			assertThat(stats.droppedWithDroppedAncestor()).isEqualTo(80);
+			assertThat(stats.droppedWithKeptChild()).isZero();
+		}
+	}
+
+	@Test
+	void reportsDroppedAncestorBehindAKeptParent() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			var fillA = List.of(fill(0, 0, 0));
+			var fillB = List.of(fill(0, 0, 1));
+			tracker.keptRanges(tileAt(1, 0), 1, fillA);
+			assertThat(tracker.keptRanges(tileAt(2, 0), 4, fillA)).isEmpty();
+			tracker.keptRanges(tileAt(3, 0), 16, fillB);
+			assertThat(tracker.keptRanges(tileAt(4, 0), 64, fillB)).isEmpty();
+
+			var stats = tracker.dropStatistics();
+			assertThat(stats.keptTiles()).isEqualTo(17);
+			assertThat(stats.droppedTiles()).isEqualTo(68);
+			// The z4 parent is kept; only the z2 grandparent was dropped.
+			assertThat(stats.droppedWithDroppedParent()).isZero();
+			assertThat(stats.droppedWithDroppedAncestor()).isEqualTo(64);
+			assertThat(stats.droppedWithKeptChild()).isEqualTo(4);
+		}
+	}
+
+	@Test
+	void dropsFillRunCoveredByOneMultiParentEntry() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			var fill = List.of(fill(0, 0, 0));
+			assertThat(tracker.keptRanges(tileAt(2, 0), 8, fill)).isNull();
+			assertThat(tracker.keptRanges(tileAt(3, 0), 32, fill)).isEmpty();
+		}
+	}
+
+	@Test
+	void keepsOnlyThePartOfAFillRunWhoseParentEntryMatches() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			var fillA = List.of(fill(0, 0, 0));
+			var fillB = List.of(fill(0, 0, 1));
+			tracker.keptRanges(tileAt(2, 0), 4, fillA);
+			tracker.keptRanges(tileAt(2, 4), 4, fillB);
+			// Parents 0..3 match, parents 4..7 do not; the run starts in parent 0.
+			assertThat(tracker.keptRanges(tileAt(3, 2), 30, fillA))
+				.containsExactly(14, 16);
+		}
+	}
+
+	@Test
+	void keepsFillChildrenWhereThePreviousZoomHasNoEntry() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			var fill = List.of(fill(0, 0, 0));
+			tracker.keptRanges(tileAt(2, 0), 4, fill);
+			// Parents 0..3 have an entry, parents 4..7 do not.
+			assertThat(tracker.keptRanges(tileAt(3, 0), 32, fill))
+				.containsExactly(16, 16);
+		}
+	}
+
+	@Test
+	void reportsKeptChildrenAcrossLargeFillRuns() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			var fillA = List.of(fill(0, 0, 0));
+			var fillB = List.of(fill(0, 0, 1));
+			tracker.keptRanges(tileAt(1, 0), 2, fillA);
+			assertThat(tracker.keptRanges(tileAt(2, 0), 8, fillA)).isEmpty();
+			tracker.keptRanges(tileAt(3, 0), 32, fillB);
+
+			var stats = tracker.dropStatistics();
+			assertThat(stats.keptTiles()).isEqualTo(34);
+			assertThat(stats.droppedTiles()).isEqualTo(8);
+			assertThat(stats.droppedWithKeptChild()).isEqualTo(8);
+		}
+	}
+
 	private static TileStore.TileFeature fill(int layer, long order, int attrs) {
 		return new TileStore.TileFeature(layer, order, attrs, GeometryType.POLYGON, new int[0], true);
 	}

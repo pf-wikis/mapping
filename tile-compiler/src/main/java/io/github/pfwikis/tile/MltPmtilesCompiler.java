@@ -14,7 +14,10 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.apache.commons.io.FileUtils;
 import org.maplibre.mlt.data.MVTFeature;
+
+import com.google.common.base.Stopwatch;
 
 import io.github.pfwikis.model.FeatureCollection;
 import lombok.extern.slf4j.Slf4j;
@@ -48,11 +51,11 @@ public final class MltPmtilesCompiler {
 		log.info("Tiling {} layers up to z{}", layers.size(), maxZoom);
 		var tempDir = Files.createTempDirectory("pf-tile-store-");
 		var context = new TileContext();
-		long start = System.nanoTime();
+		var spillWatch = Stopwatch.createStarted();
 		try(var store = new TileStore(tempDir)) {
 			new FeatureTiler(maxZoom, store, context).tile(layers);
 			var runs = store.finish();
-			log.info("Spilled {} run(s) in {}ms", runs.size(), (System.nanoTime()-start)/1_000_000);
+			log.info("Spilled {} run(s) in {}ms", runs.size(), spillWatch.elapsed(TimeUnit.MILLISECONDS));
 
 			var encoder = new MltTileEncoder();
 			var fillCache = new java.util.concurrent.ConcurrentHashMap<List<FillKey>, EncodedTile>();
@@ -63,21 +66,22 @@ public final class MltPmtilesCompiler {
 			var stats = new EncodeStats();
 			var window = new ArrayDeque<TileWork>();
 			long encodedCount = 0;
-			start = System.nanoTime();
+			var encodeWatch = Stopwatch.createStarted();
+			var phase = Stopwatch.createUnstarted();
 			try(var merger = new TileMerger(runs, store.fillRuns());
 				var writer = new PmtilesWriter(output);
 				var signatures = new TileSignatureTracker(tempDir.resolve("signatures"), maxZoom)) {
 				while(merger.nextRun()) {
-					long phase = System.nanoTime();
+					phase.reset().start();
 					var tileFeatures = collapseUniformFills(merger.features());
 					long tileId = merger.runTileId();
 					int count = merger.runCount();
 					stats.runs++;
-					stats.mergeNanos += System.nanoTime() - phase;
+					stats.mergeNanos += phase.elapsed(TimeUnit.NANOSECONDS);
 
-					phase = System.nanoTime();
+					phase.reset().start();
 					long[] kept = signatures.keptRanges(tileId, count, tileFeatures);
-					stats.signatureNanos += System.nanoTime() - phase;
+					stats.signatureNanos += phase.elapsed(TimeUnit.NANOSECONDS);
 
 					if(kept != null && kept.length == 0) {
 						stats.droppedRuns++;
@@ -90,7 +94,7 @@ public final class MltPmtilesCompiler {
 				}
 				while(!window.isEmpty())
 					encodedCount += writeNext(window, writer, stats);
-				long loopNanos = System.nanoTime()-start;
+				long loopNanos = encodeWatch.stop().elapsed(TimeUnit.NANOSECONDS);
 				log.info("Encoded {} tiles in {}ms", encodedCount, loopNanos/1_000_000);
 				log.info("Encode loop: {} runs ({} dropped), {} encode calls ({} fill-cache hits); "
 						+ "merge={}ms signature={}ms wait={}ms write={}ms encodeBusy={}ms on {} threads ({}% of wall)",
@@ -100,16 +104,25 @@ public final class MltPmtilesCompiler {
 					stats.encodeNanos.get()/1_000_000, threads,
 					loopNanos == 0 ? 0 : stats.encodeNanos.get() * 100L / (loopNanos * threads));
 
-				start = System.nanoTime();
+				var drops = signatures.dropStatistics();
+				log.info("Tile dropping{}: kept={} dropped={}; dropped with dropped parent={} ({}%), "
+						+ "with any dropped ancestor={} ({}%), with kept child={} ({}%)",
+					drops.enabled() ? "" : " (disabled)",
+					drops.keptTiles(), drops.droppedTiles(),
+					drops.droppedWithDroppedParent(), percent(drops.droppedWithDroppedParent(), drops.droppedTiles()),
+					drops.droppedWithDroppedAncestor(), percent(drops.droppedWithDroppedAncestor(), drops.droppedTiles()),
+					drops.droppedWithKeptChild(), percent(drops.droppedWithKeptChild(), drops.droppedTiles()));
+
+				var finishWatch = Stopwatch.createStarted();
 				writer.finish(maxZoom, context.fields());
 				log.info("Wrote PMTiles in {}ms ({} entries, {} unique tile contents)",
-					(System.nanoTime()-start)/1_000_000, writer.entryCount(), writer.uniqueContents());
+					finishWatch.elapsed(TimeUnit.MILLISECONDS), writer.entryCount(), writer.uniqueContents());
 			} finally {
 				executor.shutdown();
 				executor.awaitTermination(1, TimeUnit.MINUTES);
 			}
 		} finally {
-			deleteRecursively(tempDir);
+			FileUtils.deleteQuietly(tempDir.toFile());
 		}
 	}
 
@@ -133,7 +146,7 @@ public final class MltPmtilesCompiler {
 				// Different source layers can be drawn in style-layer order, which
 				// the compiler does not know. Only collapse within one layer.
 				if(feature.layer() != layer)
-					return features;
+					return features; //TODO this could be better
 				if(feature.order() > top.order())
 					top = feature;
 			}
@@ -143,10 +156,10 @@ public final class MltPmtilesCompiler {
 
 	private static int writeNext(ArrayDeque<TileWork> window, PmtilesWriter writer, EncodeStats stats) throws IOException, InterruptedException, ExecutionException {
 		var work = window.removeFirst();
-		long phase = System.nanoTime();
+		var waitWatch = Stopwatch.createStarted();
 		var tile = work.bytes().get();
-		stats.waitNanos += System.nanoTime() - phase;
-		phase = System.nanoTime();
+		stats.waitNanos += waitWatch.elapsed(TimeUnit.NANOSECONDS);
+		var writeWatch = Stopwatch.createStarted();
 		try {
 			if(tile == null || tile.bytes() == null)
 				return 0;
@@ -163,14 +176,14 @@ public final class MltPmtilesCompiler {
 			}
 			return written;
 		} finally {
-			stats.writeNanos += System.nanoTime() - phase;
+			stats.writeNanos += writeWatch.elapsed(TimeUnit.NANOSECONDS);
 		}
 	}
 
 	private static EncodedTile encodeTile(MltTileEncoder encoder, TileContext context, List<TileStore.TileFeature> features,
 		java.util.concurrent.ConcurrentHashMap<List<FillKey>, EncodedTile> fillCache, EncodeStats stats) throws IOException, GeometryException {
 		stats.encodeCalls.incrementAndGet();
-		long start = System.nanoTime();
+		var watch = Stopwatch.createStarted();
 		try {
 			// High-zoom fills cover most of the world; their MLT bytes only depend on
 			// the set of fill layers/attributes, so encode each combination once.
@@ -188,7 +201,7 @@ public final class MltPmtilesCompiler {
 			}
 			return new EncodedTile(encoder.encode(toMlt(context, features)), 0L);
 		} finally {
-			stats.encodeNanos.addAndGet(System.nanoTime() - start);
+			stats.encodeNanos.addAndGet(watch.elapsed(TimeUnit.NANOSECONDS));
 		}
 	}
 
@@ -224,15 +237,7 @@ public final class MltPmtilesCompiler {
 
 	private record TileWork(long tileId, int count, long[] kept, Future<EncodedTile> bytes) {}
 
-	private static void deleteRecursively(Path directory) {
-		try(var files = Files.walk(directory)) {
-			files.sorted(java.util.Comparator.reverseOrder()).forEach(path -> {
-				try {
-					Files.deleteIfExists(path);
-				} catch(IOException ignored) {
-				}
-			});
-		} catch(IOException ignored) {
-		}
+	private static long percent(long part, long total) {
+		return total == 0 ? 0 : part * 100 / total;
 	}
 }

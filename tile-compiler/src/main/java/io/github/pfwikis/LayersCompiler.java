@@ -19,6 +19,7 @@ import com.github.dexecutor.core.ExecutionConfig;
 import com.github.dexecutor.core.graph.LevelOrderTraversar;
 import com.github.dexecutor.core.graph.StringTraversarAction;
 import com.github.dexecutor.core.task.ExecutionResults;
+import com.google.common.base.Stopwatch;
 
 import io.github.pfwikis.layercompiler.cache.CacheManager;
 import io.github.pfwikis.layercompiler.description.ExecutionPlan;
@@ -46,10 +47,10 @@ public class LayersCompiler {
     		executor.print(new LevelOrderTraversar<>(), new StringTraversarAction<>(sb));
     		log.info("Execution plan:\n{}", sb.toString());
     
-            long wallStartNanos = System.nanoTime();
+            var wallWatch = Stopwatch.createStarted();
             long cpuStartNanos = processCpuTimeNanos();
             var results = executor.execute(ExecutionConfig.NON_TERMINATING);
-            long wallNanos = System.nanoTime() - wallStartNanos;
+            long wallNanos = wallWatch.stop().elapsed(TimeUnit.NANOSECONDS);
             long cpuEndNanos = processCpuTimeNanos();
 
             if(!results.getErrored().isEmpty()) {
@@ -106,7 +107,7 @@ public class LayersCompiler {
 				.append(result.getValue().stats.work().toSeconds())
 				.append("s")
 				.append("\twall=")
-				.append(result.getValue().stats.wall().toSeconds())
+				.append(result.getValue().stats.totalWall().toSeconds())
 				.append("s");
 
 			for(var sub:result.getValue().subtimes.entrySet().stream().sorted(Comparator.comparing(Entry::getKey)).toList()) {
@@ -117,7 +118,7 @@ public class LayersCompiler {
 					.append(sub.getValue().work().toSeconds())
 					.append("s")
 					.append("\twall=")
-					.append(sub.getValue().wall().toSeconds())
+					.append(sub.getValue().totalWall().toSeconds())
 					.append("s");
 			}
 		}

@@ -16,8 +16,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.ReentrantLock;
+
+import com.google.common.base.Stopwatch;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -145,7 +148,7 @@ final class TileStore implements AutoCloseable {
 			.thenComparingLong(e -> e.feature().order()));
 
 		var path = directory.resolve("run-" + runs.size() + ".bin");
-		long started = System.nanoTime();
+		var watch = Stopwatch.createStarted();
 		try(var out = new DataOutputStream(new BufferedOutputStream(Files.newOutputStream(path), 1 << 20))) {
 			int i = 0;
 			while(i < entries.size()) {
@@ -170,7 +173,7 @@ final class TileStore implements AutoCloseable {
 			}
 		}
 		runs.add(path);
-		log.info("Spilled run {} ({} tile features) in {}ms", runs.size()-1, entries.size(), (System.nanoTime()-started)/1_000_000);
+		log.info("Spilled run {} ({} tile features) in {}ms", runs.size()-1, entries.size(), watch.elapsed(TimeUnit.MILLISECONDS));
 	}
 
 	/** Spills any remaining in-memory features so all data is available as sorted runs. */

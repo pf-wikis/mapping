@@ -67,8 +67,203 @@ final class TileSignatureTracker implements AutoCloseable {
 	private static final long[] KEEP_ALL = null;
 	private static final long[] DROP_ALL = new long[0];
 
+	/**
+	 * Outcome of the redundancy check for one tile address, across all zooms.
+	 *
+	 * @param keptTiles addresses that were stored
+	 * @param droppedTiles addresses that were replaced by an ancestor reference
+	 * @param droppedWithDroppedParent dropped addresses whose parent at zoom-1
+	 *        was dropped as well
+	 * @param droppedWithDroppedAncestor dropped addresses that have a dropped
+	 *        ancestor at any zoom level
+	 * @param droppedWithKeptChild dropped addresses that have at least one kept
+	 *        child at zoom+1
+	 */
+	record DropStatistics(boolean enabled, long keptTiles, long droppedTiles,
+		long droppedWithDroppedParent, long droppedWithDroppedAncestor, long droppedWithKeptChild) {}
+
+	/**
+	 * Tracks kept/dropped tile addresses and the parent/child relationships
+	 * between drops. Addresses are processed zoom by zoom in ascending local
+	 * order, so only the previous zoom has to be kept in memory.
+	 */
+	private static final class DropStats {
+		private static final byte DROPPED = 1;
+		private static final byte ANCESTOR_DROPPED = 2;
+
+		private StatusIntervals previous = new StatusIntervals();
+		private StatusIntervals current = new StatusIntervals();
+		private int zoom = -1;
+		private int range;
+		private long markedUpTo = -1;
+		long keptTiles;
+		long droppedTiles;
+		long droppedWithDroppedParent;
+		long droppedWithDroppedAncestor;
+		long droppedWithKeptChild;
+
+		void startZoom(int newZoom) {
+			if(newZoom == zoom)
+				return;
+			if(zoom >= 0) {
+				var done = previous;
+				previous = current;
+				current = done;
+				current.clear();
+				previous.resetCursor();
+				if(newZoom != zoom + 1)
+					previous.clear();
+			}
+			markedUpTo = -1;
+			zoom = newZoom;
+		}
+
+		void record(long localStart, int count, long[] keptRanges) {
+			range = 0;
+			long end = localStart + count;
+			long parentEnd = ((end - 1) >>> 2) + 1;
+			long parent = localStart >>> 2;
+			while(parent < parentEnd) {
+				byte parentFlags = previous.lookup(parent);
+				long nextParent = Math.min(parentEnd, previous.nextChange(parent));
+				if(nextParent <= parent)
+					nextParent = parent + 1;
+				long from = Math.max(localStart, parent << 2);
+				long to = Math.min(end, nextParent << 2);
+				if(from < to)
+					recordSpan(from, to, parentFlags, keptRanges, localStart);
+				parent = nextParent;
+			}
+		}
+
+		private void recordSpan(long from, long to, byte parentFlags, long[] keptRanges, long localStart) {
+			boolean parentDropped = (parentFlags & DROPPED) != 0;
+			boolean anyDroppedAncestor = parentDropped || (parentFlags & ANCESTOR_DROPPED) != 0;
+			long cursor = from;
+			while(cursor < to) {
+				boolean kept;
+				long next;
+				if(keptRanges == null) {
+					kept = true;
+					next = to;
+				} else if(keptRanges.length == 0) {
+					kept = false;
+					next = to;
+				} else {
+					while(range < keptRanges.length
+							&& localStart + keptRanges[range] + keptRanges[range+1] <= cursor)
+						range += 2;
+					if(range < keptRanges.length && localStart + keptRanges[range] <= cursor) {
+						kept = true;
+						next = Math.min(to, localStart + keptRanges[range] + keptRanges[range+1]);
+					} else if(range < keptRanges.length) {
+						kept = false;
+						next = Math.min(to, localStart + keptRanges[range]);
+					} else {
+						kept = false;
+						next = to;
+					}
+				}
+				if(next <= cursor)
+					throw new IllegalStateException("Drop statistics made no progress");
+
+				if(kept) {
+					keptTiles += next - cursor;
+					if(parentDropped)
+						markKeptChildren(cursor, next);
+				} else {
+					droppedTiles += next - cursor;
+					if(parentDropped)
+						droppedWithDroppedParent += next - cursor;
+					if(anyDroppedAncestor)
+						droppedWithDroppedAncestor += next - cursor;
+				}
+
+				byte flags = (byte)((kept ? 0 : DROPPED) | (anyDroppedAncestor ? ANCESTOR_DROPPED : 0));
+				if(flags != 0)
+					current.add(cursor, next, flags);
+				cursor = next;
+			}
+		}
+
+		private void markKeptChildren(long from, long to) {
+			long first = from >>> 2;
+			long last = (to - 1) >>> 2;
+			long firstNew = Math.max(first, markedUpTo + 1);
+			if(last >= firstNew) {
+				droppedWithKeptChild += last - firstNew + 1;
+				markedUpTo = last;
+			}
+		}
+
+		DropStatistics summary() {
+			return new DropStatistics(ENABLED, keptTiles, droppedTiles,
+				droppedWithDroppedParent, droppedWithDroppedAncestor, droppedWithKeptChild);
+		}
+	}
+
+	/**
+	 * Sorted, merged ranges of tile addresses that carry non-zero status bits.
+	 * Addresses in the gaps are treated as "kept without dropped ancestors".
+	 */
+	private static final class StatusIntervals {
+		private long[] starts = new long[256];
+		private long[] ends = new long[256];
+		private byte[] flags = new byte[256];
+		private int size;
+		private int cursor;
+
+		void clear() {
+			size = 0;
+			cursor = 0;
+		}
+
+		void resetCursor() {
+			cursor = 0;
+		}
+
+		void add(long start, long end, byte flag) {
+			if(size > 0 && ends[size-1] == start && flags[size-1] == flag) {
+				ends[size-1] = end;
+				return;
+			}
+			if(size == starts.length) {
+				int capacity = Math.max(16, size * 2);
+				starts = Arrays.copyOf(starts, capacity);
+				ends = Arrays.copyOf(ends, capacity);
+				flags = Arrays.copyOf(flags, capacity);
+			}
+			starts[size] = start;
+			ends[size] = end;
+			flags[size] = flag;
+			size++;
+		}
+
+		byte lookup(long local) {
+			while(cursor < size && ends[cursor] <= local)
+				cursor++;
+			if(cursor < size && starts[cursor] <= local)
+				return flags[cursor];
+			return 0;
+		}
+
+		/**
+		 * First address after {@code local} where {@link #lookup(long)} may return a
+		 * different value. Must be called after {@code lookup(local)} and with
+		 * non-decreasing addresses.
+		 */
+		long nextChange(long local) {
+			if(cursor >= size)
+				return Long.MAX_VALUE;
+			if(starts[cursor] <= local)
+				return ends[cursor];
+			return starts[cursor];
+		}
+	}
+
 	private final Path directory;
 	private final int maxZoom;
+	private final DropStats dropStats = new DropStats();
 	private int trackedZoom = -1;
 	private Path trackedFile;
 	private DataOutputStream writer;
@@ -106,8 +301,10 @@ final class TileSignatureTracker implements AutoCloseable {
 		Analysis analysis = analyze(features);
 		// Multi-tile runs can only contain fills. Anything else is left to the
 		// normal writer and is not used as an ancestor reference.
-		if(analysis == null || count > 1 && (!analysis.points.isEmpty() || !analysis.boundaries.isEmpty()))
+		if(analysis == null || count > 1 && (!analysis.points.isEmpty() || !analysis.boundaries.isEmpty())) {
+			dropStats.record(localStart, count, KEEP_ALL);
 			return KEEP_ALL;
+		}
 
 		long[] kept;
 		boolean forced = zoom == 0 || zoom % (MAX_CONSECUTIVE_DROPPED_ZOOMS + 1) == 0;
@@ -115,6 +312,7 @@ final class TileSignatureTracker implements AutoCloseable {
 			kept = KEEP_ALL;
 		else
 			kept = computeKept(localStart, count, analysis);
+		dropStats.record(localStart, count, kept);
 
 		if(count > 1) {
 			write(localStart, count, analysis.fill, List.of(), List.of());
@@ -141,49 +339,52 @@ final class TileSignatureTracker implements AutoCloseable {
 		return kept;
 	}
 
+	/**
+	 * Totals collected while tiles were checked. The counters are complete after
+	 * the last tile was processed.
+	 */
+	DropStatistics dropStatistics() {
+		return dropStats.summary();
+	}
+
 	private long[] computeKept(long localStart, int count, Analysis analysis) throws IOException {
 		long end = localStart + count;
-		long parentStart = localStart >>> 2;
-		long parentEnd = (end - 1) >>> 2;
+		long parentEnd = ((end - 1) >>> 2) + 1;
 		var kept = new LongArrayList();
 		long keptStart = -1;
 
-		for(long parent = parentStart; parent <= parentEnd; parent++) {
-			long segmentStart = Math.max(localStart, parent << 2);
-			long segmentEnd = Math.min(end, (parent << 2) + 4);
+		// The previous zoom's reader yields entries that are constant over a range
+		// of parent addresses. Process those ranges in bulk instead of asking
+		// hasEntryAt() for every parent: a fill run can cover millions of parents.
+		long parent = localStart >>> 2;
+		while(parent < parentEnd) {
+			long from;
 
-			if(!reader.hasEntryAt(parent) || !reader.matchesFill(analysis.fill)) {
-				if(keptStart < 0)
-					keptStart = segmentStart - localStart;
+			if(!reader.hasEntryAt(parent)) {
+				long nextEntry = reader.hasEntry() ? reader.start() : Long.MAX_VALUE;
+				long nextParent = Math.min(parentEnd, nextEntry);
+				from = Math.max(localStart, parent << 2);
+				long to = Math.min(end, nextParent << 2);
+				keptStart = keepSpan(kept, keptStart, localStart, from, to);
+				parent = nextParent;
 				continue;
 			}
 
-			if(reader.points().isEmpty() && reader.boundaries().isEmpty()) {
-				if(keptStart >= 0) {
-					kept.add(keptStart);
-					kept.add(segmentStart - localStart - keptStart);
-					keptStart = -1;
-				}
-				continue;
+			long nextParent = Math.min(parentEnd, reader.end());
+			from = Math.max(localStart, parent << 2);
+			long to = Math.min(end, nextParent << 2);
+
+			if(!reader.matchesFill(analysis.fill)) {
+				keptStart = keepSpan(kept, keptStart, localStart, from, to);
+			} else if(reader.points().isEmpty() && reader.boundaries().isEmpty()) {
+				keptStart = dropSpan(kept, keptStart, localStart, from, to);
+			} else {
+				keptStart = compareChildren(kept, keptStart, analysis, localStart, from, to);
 			}
 
-			for(long child = segmentStart; child < segmentEnd; child++) {
-				long offset = child - localStart;
-				TileCoord coord = TileCoord.hilbertDecode(TileCoord.startIndexForZoom(trackedZoom) + child);
-				int dx = coord.x() & 1;
-				int dy = coord.y() & 1;
-				boolean drop = pointsMatch(analysis.points, reader.points(), dx, dy)
-					&& boundariesMatch(analysis.boundaries, reader.boundaries(), dx, dy);
-				if(drop) {
-					if(keptStart >= 0) {
-						kept.add(keptStart);
-						kept.add(offset - keptStart);
-						keptStart = -1;
-					}
-				} else if(keptStart < 0) {
-					keptStart = offset;
-				}
-			}
+			if(nextParent <= parent)
+				throw new IllegalStateException("Signature reader made no progress at parent "+parent);
+			parent = nextParent;
 		}
 
 		if(keptStart >= 0) {
@@ -196,6 +397,42 @@ final class TileSignatureTracker implements AutoCloseable {
 		if(kept.size() == 2 && kept.get(0) == 0 && kept.get(1) == count)
 			return KEEP_ALL;
 		return Arrays.copyOf(kept.buffer, kept.size());
+	}
+
+	private static long keepSpan(LongArrayList kept, long keptStart, long localStart, long from, long to) {
+		if(from < to && keptStart < 0)
+			return from - localStart;
+		return keptStart;
+	}
+
+	private static long dropSpan(LongArrayList kept, long keptStart, long localStart, long from, long to) {
+		if(from < to && keptStart >= 0) {
+			kept.add(keptStart);
+			kept.add(from - localStart - keptStart);
+			return -1;
+		}
+		return keptStart;
+	}
+
+	private long compareChildren(LongArrayList kept, long keptStart, Analysis analysis, long localStart, long from, long to) {
+		for(long child = from; child < to; child++) {
+			long offset = child - localStart;
+			TileCoord coord = TileCoord.hilbertDecode(TileCoord.startIndexForZoom(trackedZoom) + child);
+			int dx = coord.x() & 1;
+			int dy = coord.y() & 1;
+			boolean drop = pointsMatch(analysis.points, reader.points(), dx, dy)
+				&& boundariesMatch(analysis.boundaries, reader.boundaries(), dx, dy);
+			if(drop) {
+				if(keptStart >= 0) {
+					kept.add(keptStart);
+					kept.add(offset - keptStart);
+					keptStart = -1;
+				}
+			} else if(keptStart < 0) {
+				keptStart = offset;
+			}
+		}
+		return keptStart;
 	}
 
 	private static boolean boundariesMatch(List<BoundaryFeature> child, List<BoundaryFeature> parent, int dx, int dy) {
@@ -388,6 +625,7 @@ final class TileSignatureTracker implements AutoCloseable {
 		if(zoom == trackedZoom)
 			return;
 
+		dropStats.startZoom(zoom);
 		Path previous = trackedFile;
 		int previousZoom = trackedZoom;
 
@@ -587,6 +825,18 @@ final class TileSignatureTracker implements AutoCloseable {
 			while(hasEntry && end <= local)
 				advance();
 			return hasEntry && start <= local;
+		}
+
+		long start() {
+			return start;
+		}
+
+		long end() {
+			return end;
+		}
+
+		boolean hasEntry() {
+			return hasEntry;
 		}
 
 		boolean matchesFill(Signature signature) {

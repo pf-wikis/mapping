@@ -18,6 +18,6 @@ class TimingStatsTest {
         var result = first.plus(second);
 
         assertThat(result.work()).isEqualTo(Duration.ofSeconds(5));
-        assertThat(result.wall()).isEqualTo(Duration.ofSeconds(8));
+        assertThat(result.totalWall()).isEqualTo(Duration.ofSeconds(8));
     }
 }
