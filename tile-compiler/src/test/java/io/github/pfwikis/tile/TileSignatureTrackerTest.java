@@ -313,6 +313,17 @@ class TileSignatureTrackerTest {
 		}
 	}
 
+	@Test
+	void ignoresParentBoundaryThatClipsAway() throws Exception {
+		try(var tracker = new TileSignatureTracker(tempDir)) {
+			var fill = fill(0, 1, 0);
+			tracker.keptRanges(tileAt(1, 0), 1,
+				List.of(fill, line(0, 0, 0, 3500, 3500, 3800, 3800)));
+			// Child 0 is the top-left quadrant; the parent line clips away there.
+			assertThat(tracker.keptRanges(tileAt(2, 0), 1, List.of(fill))).isEmpty();
+		}
+	}
+
 	private static TileStore.TileFeature fill(int layer, long order, int attrs) {
 		return new TileStore.TileFeature(layer, order, attrs, GeometryType.POLYGON, new int[0], true);
 	}

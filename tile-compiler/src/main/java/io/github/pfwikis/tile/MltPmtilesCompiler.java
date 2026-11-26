@@ -113,6 +113,22 @@ public final class MltPmtilesCompiler {
 					drops.droppedWithDroppedAncestor(), percent(drops.droppedWithDroppedAncestor(), drops.droppedTiles()),
 					drops.droppedWithKeptChild(), percent(drops.droppedWithKeptChild(), drops.droppedTiles()));
 
+				var sig = signatures.signatureTimings();
+				long sigParts = sig.analyzeNanos() + sig.computeNanos() + sig.transformNanos()
+					+ sig.writeNanos() + sig.statsNanos();
+				log.info("Signature breakdown: analyze={}ms ({} runs), compute={}ms ({} runs), "
+						+ "transform={}ms, write={}ms ({} runs), stats={}ms, other={}ms",
+					sig.analyzeNanos()/1_000_000, sig.analyzedRuns(),
+					sig.computeNanos()/1_000_000, sig.comparedRuns(),
+					sig.transformNanos()/1_000_000,
+					sig.writeNanos()/1_000_000, sig.writtenRuns(),
+					sig.statsNanos()/1_000_000,
+					Math.max(0, stats.signatureNanos - sigParts)/1_000_000);
+				log.info("Compute breakdown: points={}ms ({} calls), boundaries={}ms ({} calls), span/other={}ms",
+					sig.pointsNanos()/1_000_000, sig.pointCompareCalls(),
+					sig.boundariesNanos()/1_000_000, sig.boundaryCompareCalls(),
+					Math.max(0, sig.computeNanos() - sig.pointsNanos() - sig.boundariesNanos())/1_000_000);
+
 				var finishWatch = Stopwatch.createStarted();
 				writer.finish(maxZoom, context.fields());
 				log.info("Wrote PMTiles in {}ms ({} entries, {} unique tile contents)",

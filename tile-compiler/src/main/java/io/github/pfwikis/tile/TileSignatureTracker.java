@@ -83,6 +83,14 @@ final class TileSignatureTracker implements AutoCloseable {
 		long droppedWithDroppedParent, long droppedWithDroppedAncestor, long droppedWithKeptChild) {}
 
 	/**
+	 * Wall-clock split of the time spent in {@link #keptRanges}. All counters are
+	 * updated from the single thread that drives the tile merger.
+	 */
+	record SignatureTimings(long analyzeNanos, long computeNanos, long transformNanos, long writeNanos, long statsNanos,
+		long pointsNanos, long boundariesNanos,
+		long analyzedRuns, long comparedRuns, long writtenRuns, long pointCompareCalls, long boundaryCompareCalls) {}
+
+	/**
 	 * Tracks kept/dropped tile addresses and the parent/child relationships
 	 * between drops. Addresses are processed zoom by zoom in ascending local
 	 * order, so only the previous zoom has to be kept in memory.
@@ -269,6 +277,18 @@ final class TileSignatureTracker implements AutoCloseable {
 	private DataOutputStream writer;
 	private SignatureReader reader;
 	private Path readerFile;
+	private long analyzeNanos;
+	private long computeNanos;
+	private long transformNanos;
+	private long writeNanos;
+	private long statsNanos;
+	private long pointsNanos;
+	private long boundariesNanos;
+	private long analyzedRuns;
+	private long comparedRuns;
+	private long writtenRuns;
+	private long pointCompareCalls;
+	private long boundaryCompareCalls;
 
 	TileSignatureTracker(Path directory) throws IOException {
 		this(directory, Integer.MAX_VALUE);
@@ -298,24 +318,36 @@ final class TileSignatureTracker implements AutoCloseable {
 		transition(zoom);
 
 		long localStart = tileId - TileCoord.startIndexForZoom(zoom);
+		long phase = System.nanoTime();
 		Analysis analysis = analyze(features);
+		analyzeNanos += System.nanoTime() - phase;
+		analyzedRuns++;
 		// Multi-tile runs can only contain fills. Anything else is left to the
 		// normal writer and is not used as an ancestor reference.
 		if(analysis == null || count > 1 && (!analysis.points.isEmpty() || !analysis.boundaries.isEmpty())) {
+			phase = System.nanoTime();
 			dropStats.record(localStart, count, KEEP_ALL);
+			statsNanos += System.nanoTime() - phase;
 			return KEEP_ALL;
 		}
 
 		long[] kept;
 		boolean forced = zoom == 0 || zoom % (MAX_CONSECUTIVE_DROPPED_ZOOMS + 1) == 0;
-		if(forced || reader == null)
+		phase = System.nanoTime();
+		if(forced || reader == null) {
 			kept = KEEP_ALL;
-		else
+		} else {
 			kept = computeKept(localStart, count, analysis);
+			comparedRuns++;
+		}
+		computeNanos += System.nanoTime() - phase;
+
+		phase = System.nanoTime();
 		dropStats.record(localStart, count, kept);
+		statsNanos += System.nanoTime() - phase;
 
 		if(count > 1) {
-			write(localStart, count, analysis.fill, List.of(), List.of());
+			timedWrite(localStart, count, analysis.fill, List.of(), List.of());
 			return kept;
 		}
 
@@ -332,11 +364,24 @@ final class TileSignatureTracker implements AutoCloseable {
 		} else {
 			// Keep referring to the first stored ancestor, transformed into this
 			// tile's frame. This prevents error accumulation across drop chains.
+			phase = System.nanoTime();
 			points = transformPoints(reader.points(), dx, dy);
 			boundaries = transformBoundaries(reader.boundaries(), dx, dy);
+			transformNanos += System.nanoTime() - phase;
 		}
-		write(localStart, count, analysis.fill, points, boundaries);
+		timedWrite(localStart, count, analysis.fill, points, boundaries);
 		return kept;
+	}
+
+	private void timedWrite(long localStart, int count, Signature fill, List<PointFeature> points,
+		List<BoundaryFeature> boundaries) throws IOException {
+		long start = System.nanoTime();
+		try {
+			write(localStart, count, fill, points, boundaries);
+		} finally {
+			writeNanos += System.nanoTime() - start;
+			writtenRuns++;
+		}
 	}
 
 	/**
@@ -345,6 +390,12 @@ final class TileSignatureTracker implements AutoCloseable {
 	 */
 	DropStatistics dropStatistics() {
 		return dropStats.summary();
+	}
+
+	SignatureTimings signatureTimings() {
+		return new SignatureTimings(analyzeNanos, computeNanos, transformNanos, writeNanos, statsNanos,
+			pointsNanos, boundariesNanos,
+			analyzedRuns, comparedRuns, writtenRuns, pointCompareCalls, boundaryCompareCalls);
 	}
 
 	private long[] computeKept(long localStart, int count, Analysis analysis) throws IOException {
@@ -420,8 +471,21 @@ final class TileSignatureTracker implements AutoCloseable {
 			TileCoord coord = TileCoord.hilbertDecode(TileCoord.startIndexForZoom(trackedZoom) + child);
 			int dx = coord.x() & 1;
 			int dy = coord.y() & 1;
-			boolean drop = pointsMatch(analysis.points, reader.points(), dx, dy)
-				&& boundariesMatch(analysis.boundaries, reader.boundaries(), dx, dy);
+
+			boolean drop = true;
+			if(!analysis.points.isEmpty() || !reader.points().isEmpty()) {
+				long phase = System.nanoTime();
+				drop = pointsMatch(analysis.points, reader.points(), dx, dy);
+				pointsNanos += System.nanoTime() - phase;
+				pointCompareCalls++;
+			}
+			if(drop && (!analysis.boundaries.isEmpty() || !reader.boundaries().isEmpty())) {
+				long phase = System.nanoTime();
+				drop = boundariesMatch(analysis.boundaries, reader.boundaries(), dx, dy);
+				boundariesNanos += System.nanoTime() - phase;
+				boundaryCompareCalls++;
+			}
+
 			if(drop) {
 				if(keptStart >= 0) {
 					kept.add(keptStart);
