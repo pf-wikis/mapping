@@ -15,6 +15,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import org.locationtech.jts.algorithm.distance.DiscreteHausdorffDistance;
 import org.locationtech.jts.geom.Envelope;
@@ -86,9 +90,9 @@ final class TileSignatureTracker implements AutoCloseable {
 	 * Wall-clock split of the time spent in {@link #keptRanges}. All counters are
 	 * updated from the single thread that drives the tile merger.
 	 */
-	record SignatureTimings(long analyzeNanos, long computeNanos, long transformNanos, long writeNanos, long statsNanos,
-		long pointsNanos, long boundariesNanos,
-		long analyzedRuns, long comparedRuns, long writtenRuns, long pointCompareCalls, long boundaryCompareCalls) {}
+	record SignatureTimings(long analyzeNanos, long scanNanos, long taskNanos, long waitNanos,
+		long pointsNanos, long boundariesNanos, long transformNanos, long writeNanos, long statsNanos,
+		long analyzedRuns, long taskRuns, long writtenRuns, long pointCompareCalls, long boundaryCompareCalls) {}
 
 	/**
 	 * Tracks kept/dropped tile addresses and the parent/child relationships
@@ -272,20 +276,23 @@ final class TileSignatureTracker implements AutoCloseable {
 	private final Path directory;
 	private final int maxZoom;
 	private final DropStats dropStats = new DropStats();
+	private final ExecutorService executor;
 	private int trackedZoom = -1;
 	private Path trackedFile;
 	private DataOutputStream writer;
 	private SignatureReader reader;
 	private Path readerFile;
 	private long analyzeNanos;
-	private long computeNanos;
+	private long scanNanos;
+	private long taskNanos;
+	private long waitNanos;
 	private long transformNanos;
 	private long writeNanos;
 	private long statsNanos;
 	private long pointsNanos;
 	private long boundariesNanos;
 	private long analyzedRuns;
-	private long comparedRuns;
+	private long taskRuns;
 	private long writtenRuns;
 	private long pointCompareCalls;
 	private long boundaryCompareCalls;
@@ -301,78 +308,102 @@ final class TileSignatureTracker implements AutoCloseable {
 	TileSignatureTracker(Path directory, int maxZoom) throws IOException {
 		this.directory = Files.createDirectories(directory);
 		this.maxZoom = maxZoom;
+		int threads = Math.max(1,
+			Integer.getInteger("tile.signatureThreads", Runtime.getRuntime().availableProcessors()));
+		this.executor = Executors.newFixedThreadPool(threads, runnable -> {
+			var thread = new Thread(runnable, "tile-signature");
+			thread.setDaemon(true);
+			return thread;
+		});
 	}
 
 	/**
-	 * Records the run for the next zoom and returns the local
-	 * {@code (start, length)} ranges that have to be written.
-	 *
-	 * @return {@code null} to keep the whole run, an empty array to drop it, or
-	 *         pairs of local start offsets and lengths
+	 * Synchronous variant, used by tests and callers that do not need to overlap
+	 * signature work with other runs.
 	 */
 	long[] keptRanges(long tileId, int count, List<TileStore.TileFeature> features) throws IOException {
+		return complete(submit(tileId, count, features));
+	}
+
+	/**
+	 * Starts the redundancy check for one run. The previous zoom's entries are
+	 * read on the calling thread (they are sequential); the expensive geometry
+	 * comparisons and ancestor transforms run on the signature pool.
+	 */
+	SignatureJob submit(long tileId, int count, List<TileStore.TileFeature> features) throws IOException {
 		if(!ENABLED)
-			return KEEP_ALL;
+			return SignatureJob.done();
 
 		int zoom = TileCoord.zoomForIndex(tileId);
 		transition(zoom);
-
 		long localStart = tileId - TileCoord.startIndexForZoom(zoom);
+
 		long phase = System.nanoTime();
 		Analysis analysis = analyze(features);
 		analyzeNanos += System.nanoTime() - phase;
 		analyzedRuns++;
+
 		// Multi-tile runs can only contain fills. Anything else is left to the
 		// normal writer and is not used as an ancestor reference.
-		if(analysis == null || count > 1 && (!analysis.points.isEmpty() || !analysis.boundaries.isEmpty())) {
-			phase = System.nanoTime();
-			dropStats.record(localStart, count, KEEP_ALL);
-			statsNanos += System.nanoTime() - phase;
-			return KEEP_ALL;
-		}
+		if(analysis == null || count > 1 && (!analysis.points.isEmpty() || !analysis.boundaries.isEmpty()))
+			return SignatureJob.sync(localStart, count, null, false,
+				new RunResult(KEEP_ALL, List.of(), List.of(), 0, 0, 0, 0, 0, 0));
 
-		long[] kept;
 		boolean forced = zoom == 0 || zoom % (MAX_CONSECUTIVE_DROPPED_ZOOMS + 1) == 0;
-		phase = System.nanoTime();
-		if(forced || reader == null) {
-			kept = KEEP_ALL;
-		} else {
-			kept = computeKept(localStart, count, analysis);
-			comparedRuns++;
-		}
-		computeNanos += System.nanoTime() - phase;
+		if(forced || reader == null)
+			return SignatureJob.sync(localStart, count, analysis.fill, true,
+				new RunResult(KEEP_ALL, analysis.points, analysis.boundaries, 0, 0, 0, 0, 0, 0));
 
 		phase = System.nanoTime();
-		dropStats.record(localStart, count, kept);
-		statsNanos += System.nanoTime() - phase;
+		RunPlan plan = plan(localStart, count, analysis, zoom);
+		scanNanos += System.nanoTime() - phase;
 
-		if(count > 1) {
-			timedWrite(localStart, count, analysis.fill, List.of(), List.of());
-			return kept;
-		}
+		if(!plan.hasCompare)
+			return SignatureJob.sync(localStart, count, analysis.fill, true, apply(plan));
 
-		TileCoord coord = TileCoord.hilbertDecode(TileCoord.startIndexForZoom(zoom) + localStart);
-		int dx = coord.x() & 1;
-		int dy = coord.y() & 1;
-
-		List<PointFeature> points;
-		List<BoundaryFeature> boundaries;
-		if(kept == KEEP_ALL) {
-			// This tile is stored and becomes the new reference.
-			points = analysis.points;
-			boundaries = analysis.boundaries;
-		} else {
-			// Keep referring to the first stored ancestor, transformed into this
-			// tile's frame. This prevents error accumulation across drop chains.
-			phase = System.nanoTime();
-			points = transformPoints(reader.points(), dx, dy);
-			boundaries = transformBoundaries(reader.boundaries(), dx, dy);
-			transformNanos += System.nanoTime() - phase;
-		}
-		timedWrite(localStart, count, analysis.fill, points, boundaries);
-		return kept;
+		return SignatureJob.async(localStart, count, analysis.fill, executor.submit(() -> apply(plan)));
 	}
 
+	/**
+	 * Applies a {@link #submit} result in submission order: writes the signature
+	 * entry, updates the drop statistics and returns the kept ranges.
+	 */
+	long[] complete(SignatureJob job) throws IOException {
+		if(job == null || !ENABLED)
+			return KEEP_ALL;
+
+		RunResult result;
+		if(job.future != null) {
+			long phase = System.nanoTime();
+			try {
+				result = job.future.get();
+			} catch(InterruptedException e) {
+				Thread.currentThread().interrupt();
+				throw new IOException("Interrupted while checking tile signatures", e);
+			} catch(java.util.concurrent.ExecutionException e) {
+				throw new IOException("Tile signature task failed", e.getCause());
+			}
+			waitNanos += System.nanoTime() - phase;
+		} else {
+			result = job.result;
+		}
+
+		if(job.writeEntry)
+			timedWrite(job.localStart, job.count, job.fill, result.points, result.boundaries);
+
+		long phase = System.nanoTime();
+		dropStats.record(job.localStart, job.count, result.kept);
+		statsNanos += System.nanoTime() - phase;
+
+		taskNanos += result.taskNanos;
+		taskRuns++;
+		pointsNanos += result.pointsNanos;
+		boundariesNanos += result.boundariesNanos;
+		transformNanos += result.transformNanos;
+		pointCompareCalls += result.pointCalls;
+		boundaryCompareCalls += result.boundaryCalls;
+		return result.kept;
+	}
 	private void timedWrite(long localStart, int count, Signature fill, List<PointFeature> points,
 		List<BoundaryFeature> boundaries) throws IOException {
 		long start = System.nanoTime();
@@ -393,61 +424,106 @@ final class TileSignatureTracker implements AutoCloseable {
 	}
 
 	SignatureTimings signatureTimings() {
-		return new SignatureTimings(analyzeNanos, computeNanos, transformNanos, writeNanos, statsNanos,
-			pointsNanos, boundariesNanos,
-			analyzedRuns, comparedRuns, writtenRuns, pointCompareCalls, boundaryCompareCalls);
+		return new SignatureTimings(analyzeNanos, scanNanos, taskNanos, waitNanos,
+			pointsNanos, boundariesNanos, transformNanos, writeNanos, statsNanos,
+			analyzedRuns, taskRuns, writtenRuns, pointCompareCalls, boundaryCompareCalls);
 	}
 
-	private long[] computeKept(long localStart, int count, Analysis analysis) throws IOException {
+	private RunPlan plan(long localStart, int count, Analysis analysis, int zoom) throws IOException {
+		var plan = new RunPlan(localStart, count, zoom, analysis);
 		long end = localStart + count;
 		long parentEnd = ((end - 1) >>> 2) + 1;
-		var kept = new LongArrayList();
-		long keptStart = -1;
 
 		// The previous zoom's reader yields entries that are constant over a range
 		// of parent addresses. Process those ranges in bulk instead of asking
 		// hasEntryAt() for every parent: a fill run can cover millions of parents.
 		long parent = localStart >>> 2;
 		while(parent < parentEnd) {
-			long from;
-
 			if(!reader.hasEntryAt(parent)) {
 				long nextEntry = reader.hasEntry() ? reader.start() : Long.MAX_VALUE;
 				long nextParent = Math.min(parentEnd, nextEntry);
-				from = Math.max(localStart, parent << 2);
-				long to = Math.min(end, nextParent << 2);
-				keptStart = keepSpan(kept, keptStart, localStart, from, to);
+				plan.add(Math.max(localStart, parent << 2), Math.min(end, nextParent << 2), RunPlan.KEEP, null);
+				if(nextParent <= parent)
+					throw new IllegalStateException("Signature reader made no progress at parent "+parent);
 				parent = nextParent;
 				continue;
 			}
 
 			long nextParent = Math.min(parentEnd, reader.end());
-			from = Math.max(localStart, parent << 2);
+			long from = Math.max(localStart, parent << 2);
 			long to = Math.min(end, nextParent << 2);
 
-			if(!reader.matchesFill(analysis.fill)) {
-				keptStart = keepSpan(kept, keptStart, localStart, from, to);
-			} else if(reader.points().isEmpty() && reader.boundaries().isEmpty()) {
-				keptStart = dropSpan(kept, keptStart, localStart, from, to);
-			} else {
-				keptStart = compareChildren(kept, keptStart, analysis, localStart, from, to);
-			}
+			if(!reader.matchesFill(analysis.fill))
+				plan.add(from, to, RunPlan.KEEP, null);
+			else if(reader.points().isEmpty() && reader.boundaries().isEmpty())
+				plan.add(from, to, RunPlan.DROP, null);
+			else
+				plan.add(from, to, RunPlan.COMPARE, new ParentContent(reader.points(), reader.boundaries()));
 
 			if(nextParent <= parent)
 				throw new IllegalStateException("Signature reader made no progress at parent "+parent);
 			parent = nextParent;
 		}
+		return plan;
+	}
+
+	private RunResult apply(RunPlan plan) {
+		long start = System.nanoTime();
+		var kept = new LongArrayList();
+		long keptStart = -1;
+		var timings = new RunTimings();
+
+		for(var segment : plan.segments) {
+			if(segment.kind == RunPlan.KEEP)
+				keptStart = keepSpan(kept, keptStart, plan.localStart, segment.from, segment.to);
+			else if(segment.kind == RunPlan.DROP)
+				keptStart = dropSpan(kept, keptStart, plan.localStart, segment.from, segment.to);
+			else
+				keptStart = compareChildren(kept, keptStart, plan, segment, timings);
+		}
 
 		if(keptStart >= 0) {
 			kept.add(keptStart);
-			kept.add(count - keptStart);
+			kept.add(plan.count - keptStart);
 		}
 
+		long[] keptRanges;
 		if(kept.isEmpty())
-			return DROP_ALL;
-		if(kept.size() == 2 && kept.get(0) == 0 && kept.get(1) == count)
-			return KEEP_ALL;
-		return Arrays.copyOf(kept.buffer, kept.size());
+			keptRanges = DROP_ALL;
+		else if(kept.size() == 2 && kept.get(0) == 0 && kept.get(1) == plan.count)
+			keptRanges = KEEP_ALL;
+		else
+			keptRanges = Arrays.copyOf(kept.buffer, kept.size());
+
+		long transformNanos = 0;
+		List<PointFeature> points = List.of();
+		List<BoundaryFeature> boundaries = List.of();
+		if(plan.count == 1) {
+			if(keptRanges == KEEP_ALL) {
+				// This tile is stored and becomes the new reference.
+				points = plan.analysis.points;
+				boundaries = plan.analysis.boundaries;
+			} else {
+				// Keep referring to the first stored ancestor, transformed into
+				// this tile's frame. This prevents error accumulation across drop
+				// chains.
+				ParentContent parent = plan.singleCompareParent();
+				if(parent != null) {
+					long phase = System.nanoTime();
+					TileCoord coord = TileCoord.hilbertDecode(
+						TileCoord.startIndexForZoom(plan.zoom) + plan.localStart);
+					int dx = coord.x() & 1;
+					int dy = coord.y() & 1;
+					points = transformPoints(parent.points, dx, dy);
+					boundaries = transformBoundaries(parent.boundaries, dx, dy);
+					transformNanos = System.nanoTime() - phase;
+				}
+			}
+		}
+
+		return new RunResult(keptRanges, points, boundaries, System.nanoTime() - start,
+			timings.pointsNanos, timings.boundariesNanos, transformNanos,
+			timings.pointCalls, timings.boundaryCalls);
 	}
 
 	private static long keepSpan(LongArrayList kept, long keptStart, long localStart, long from, long to) {
@@ -465,25 +541,27 @@ final class TileSignatureTracker implements AutoCloseable {
 		return keptStart;
 	}
 
-	private long compareChildren(LongArrayList kept, long keptStart, Analysis analysis, long localStart, long from, long to) {
-		for(long child = from; child < to; child++) {
-			long offset = child - localStart;
-			TileCoord coord = TileCoord.hilbertDecode(TileCoord.startIndexForZoom(trackedZoom) + child);
+	private static long compareChildren(LongArrayList kept, long keptStart, RunPlan plan,
+		RunPlan.Segment segment, RunTimings timings) {
+		for(long child = segment.from; child < segment.to; child++) {
+			long offset = child - plan.localStart;
+			TileCoord coord = TileCoord.hilbertDecode(TileCoord.startIndexForZoom(plan.zoom) + child);
 			int dx = coord.x() & 1;
 			int dy = coord.y() & 1;
 
+			ParentContent parent = segment.parent;
 			boolean drop = true;
-			if(!analysis.points.isEmpty() || !reader.points().isEmpty()) {
+			if(!plan.analysis.points.isEmpty() || !parent.points.isEmpty()) {
 				long phase = System.nanoTime();
-				drop = pointsMatch(analysis.points, reader.points(), dx, dy);
-				pointsNanos += System.nanoTime() - phase;
-				pointCompareCalls++;
+				drop = pointsMatch(plan.analysis.points, parent.points, dx, dy);
+				timings.pointsNanos += System.nanoTime() - phase;
+				timings.pointCalls++;
 			}
-			if(drop && (!analysis.boundaries.isEmpty() || !reader.boundaries().isEmpty())) {
+			if(drop && (!plan.analysis.boundaries.isEmpty() || !parent.boundaries.isEmpty())) {
 				long phase = System.nanoTime();
-				drop = boundariesMatch(analysis.boundaries, reader.boundaries(), dx, dy);
-				boundariesNanos += System.nanoTime() - phase;
-				boundaryCompareCalls++;
+				drop = boundariesMatch(plan.analysis.boundaries, parent.boundaries, dx, dy);
+				timings.boundariesNanos += System.nanoTime() - phase;
+				timings.boundaryCalls++;
 			}
 
 			if(drop) {
@@ -497,6 +575,88 @@ final class TileSignatureTracker implements AutoCloseable {
 			}
 		}
 		return keptStart;
+	}
+
+	/** A submitted signature check. Results must be applied in submission order. */
+	static final class SignatureJob {
+		private final long localStart;
+		private final int count;
+		private final Signature fill;
+		private final boolean writeEntry;
+		private final Future<RunResult> future;
+		private final RunResult result;
+
+		private SignatureJob(long localStart, int count, Signature fill, boolean writeEntry,
+			Future<RunResult> future, RunResult result) {
+			this.localStart = localStart;
+			this.count = count;
+			this.fill = fill;
+			this.writeEntry = writeEntry;
+			this.future = future;
+			this.result = result;
+		}
+
+		static SignatureJob done() {
+			return new SignatureJob(0, 0, null, false, null, null);
+		}
+
+		static SignatureJob sync(long localStart, int count, Signature fill, boolean writeEntry, RunResult result) {
+			return new SignatureJob(localStart, count, fill, writeEntry, null, result);
+		}
+
+		static SignatureJob async(long localStart, int count, Signature fill, Future<RunResult> future) {
+			return new SignatureJob(localStart, count, fill, true, future, null);
+		}
+	}
+
+	private record RunResult(long[] kept, List<PointFeature> points, List<BoundaryFeature> boundaries,
+		long taskNanos, long pointsNanos, long boundariesNanos, long transformNanos,
+		long pointCalls, long boundaryCalls) {}
+
+	private static final class RunPlan {
+		static final byte KEEP = 0;
+		static final byte DROP = 1;
+		static final byte COMPARE = 2;
+
+		final long localStart;
+		final int count;
+		final int zoom;
+		final Analysis analysis;
+		final List<Segment> segments = new ArrayList<>();
+		boolean hasCompare;
+
+		RunPlan(long localStart, int count, int zoom, Analysis analysis) {
+			this.localStart = localStart;
+			this.count = count;
+			this.zoom = zoom;
+			this.analysis = analysis;
+		}
+
+		void add(long from, long to, byte kind, ParentContent parent) {
+			if(from >= to)
+				return;
+			if(kind == COMPARE)
+				hasCompare = true;
+			segments.add(new Segment(from, to, kind, parent));
+		}
+
+		ParentContent singleCompareParent() {
+			if(segments.size() != 1)
+				return null;
+			var segment = segments.get(0);
+			return segment.kind == COMPARE ? segment.parent : null;
+		}
+
+		record Segment(long from, long to, byte kind, ParentContent parent) {}
+	}
+
+	private record ParentContent(List<PointFeature> points, List<BoundaryFeature> boundaries) {}
+
+	private static final class RunTimings {
+		long pointsNanos;
+		long boundariesNanos;
+		long pointCalls;
+		long boundaryCalls;
 	}
 
 	private static boolean boundariesMatch(List<BoundaryFeature> child, List<BoundaryFeature> parent, int dx, int dy) {
@@ -791,6 +951,14 @@ final class TileSignatureTracker implements AutoCloseable {
 
 	@Override
 	public void close() throws IOException {
+		executor.shutdown();
+		try {
+			if(!executor.awaitTermination(1, TimeUnit.MINUTES))
+				executor.shutdownNow();
+		} catch(InterruptedException e) {
+			executor.shutdownNow();
+			Thread.currentThread().interrupt();
+		}
 		if(reader != null) {
 			reader.close();
 			reader = null;

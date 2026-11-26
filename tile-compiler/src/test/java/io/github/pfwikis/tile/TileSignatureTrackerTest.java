@@ -2,7 +2,9 @@ package io.github.pfwikis.tile;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -322,6 +324,50 @@ class TileSignatureTrackerTest {
 			// Child 0 is the top-left quadrant; the parent line clips away there.
 			assertThat(tracker.keptRanges(tileAt(2, 0), 1, List.of(fill))).isEmpty();
 		}
+	}
+
+	@Test
+	void batchSubmissionMatchesSynchronousProcessing() throws Exception {
+		assertThat(processBatch(true)).containsExactly(processBatch(false));
+	}
+
+	private long[] processBatch(boolean batch) throws Exception {
+		var directory = Files.createTempDirectory("sig-batch-");
+		try(var tracker = new TileSignatureTracker(directory)) {
+			for(int i=0; i<16; i++)
+				tracker.keptRanges(tileAt(1, i), 1, features(i));
+
+			var jobs = new ArrayList<TileSignatureTracker.SignatureJob>();
+			var kept = new long[64][];
+			for(int j=0; j<64; j++) {
+				var content = features(j + 16);
+				if(batch)
+					jobs.add(tracker.submit(tileAt(2, j), 1, content));
+				else
+					kept[j] = encode(tracker.keptRanges(tileAt(2, j), 1, content));
+			}
+			if(batch) {
+				for(int j=0; j<64; j++)
+					kept[j] = encode(tracker.complete(jobs.get(j)));
+			}
+
+			var flat = new long[64];
+			for(int j=0; j<64; j++)
+				flat[j] = kept[j].length == 0 ? -2 : kept[j][0];
+			return flat;
+		}
+	}
+
+	private static List<TileStore.TileFeature> features(int seed) {
+		return List.of(
+			fill(seed % 3, seed, seed % 2),
+			line(seed % 2, seed, seed % 4,
+				200 + (seed * 37) % 900, 300 + (seed * 53) % 900,
+				3200 - (seed * 29) % 900, 3600 - (seed * 41) % 900));
+	}
+
+	private static long[] encode(long[] kept) {
+		return kept == null ? new long[] {-1} : kept;
 	}
 
 	private static TileStore.TileFeature fill(int layer, long order, int attrs) {

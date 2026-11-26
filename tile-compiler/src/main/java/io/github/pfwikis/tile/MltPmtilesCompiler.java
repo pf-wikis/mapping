@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
@@ -73,6 +74,9 @@ public final class MltPmtilesCompiler {
 			try(var merger = new TileMerger(runs, store.fillRuns());
 				var writer = new PmtilesWriter(output);
 				var signatures = new TileSignatureTracker(tempDir.resolve("signatures"), maxZoom)) {
+				var sigWindow = new ArrayDeque<PendingSignature>();
+				int sigWindowSize = Math.max(16, Integer.getInteger("tile.signatureWindow", threads * 4));
+				int currentZoom = -1;
 				while(merger.nextRun()) {
 					phase.reset().start();
 					var tileFeatures = collapseUniformFills(merger.features());
@@ -81,19 +85,25 @@ public final class MltPmtilesCompiler {
 					stats.runs++;
 					stats.mergeNanos += phase.elapsed(TimeUnit.NANOSECONDS);
 
-					phase.reset().start();
-					long[] kept = signatures.keptRanges(tileId, count, tileFeatures);
-					stats.signatureNanos += phase.elapsed(TimeUnit.NANOSECONDS);
-
-					if(kept != null && kept.length == 0) {
-						stats.droppedRuns++;
-						continue;
+					int zoom = TileCoord.zoomForIndex(tileId);
+					if(zoom != currentZoom) {
+						while(!sigWindow.isEmpty())
+							encodedCount += finishSignature(sigWindow.removeFirst(), signatures, encoder, context,
+								fillCache, stats, executor, window, windowSize, writer, phase);
+						currentZoom = zoom;
 					}
-					var future = executor.submit(() -> encodeTile(encoder, context, tileFeatures, fillCache, stats));
-					window.addLast(new TileWork(tileId, count, kept, future));
-					if(window.size() >= windowSize)
-						encodedCount += writeNext(window, writer, stats);
+
+					phase.reset().start();
+					var job = signatures.submit(tileId, count, tileFeatures);
+					stats.signatureNanos += phase.elapsed(TimeUnit.NANOSECONDS);
+					sigWindow.addLast(new PendingSignature(tileId, count, tileFeatures, job));
+					if(sigWindow.size() >= sigWindowSize)
+						encodedCount += finishSignature(sigWindow.removeFirst(), signatures, encoder, context,
+							fillCache, stats, executor, window, windowSize, writer, phase);
 				}
+				while(!sigWindow.isEmpty())
+					encodedCount += finishSignature(sigWindow.removeFirst(), signatures, encoder, context,
+						fillCache, stats, executor, window, windowSize, writer, phase);
 				while(!window.isEmpty())
 					encodedCount += writeNext(window, writer, stats);
 				long loopNanos = encodeWatch.stop().elapsed(TimeUnit.NANOSECONDS);
@@ -116,20 +126,20 @@ public final class MltPmtilesCompiler {
 					drops.droppedWithKeptChild(), percent(drops.droppedWithKeptChild(), drops.droppedTiles()));
 
 				var sig = signatures.signatureTimings();
-				long sigParts = sig.analyzeNanos() + sig.computeNanos() + sig.transformNanos()
+				long sigMain = sig.analyzeNanos() + sig.scanNanos() + sig.waitNanos()
 					+ sig.writeNanos() + sig.statsNanos();
-				log.info("Signature breakdown: analyze={}ms ({} runs), compute={}ms ({} runs), "
-						+ "transform={}ms, write={}ms ({} runs), stats={}ms, other={}ms",
-					sig.analyzeNanos()/1_000_000, sig.analyzedRuns(),
-					sig.computeNanos()/1_000_000, sig.comparedRuns(),
-					sig.transformNanos()/1_000_000,
-					sig.writeNanos()/1_000_000, sig.writtenRuns(),
-					sig.statsNanos()/1_000_000,
-					Math.max(0, stats.signatureNanos - sigParts)/1_000_000);
-				log.info("Compute breakdown: points={}ms ({} calls), boundaries={}ms ({} calls), span/other={}ms",
+				log.info("Signature phases: analyze={}ms, scan={}ms, worker={}ms ({} checks; "
+						+ "points={}ms/{} calls, boundaries={}ms/{} calls, transform={}ms), "
+						+ "wait={}ms, write={}ms ({} runs), stats={}ms, other={}ms",
+					sig.analyzeNanos()/1_000_000, sig.scanNanos()/1_000_000,
+					sig.taskNanos()/1_000_000, sig.taskRuns(),
 					sig.pointsNanos()/1_000_000, sig.pointCompareCalls(),
 					sig.boundariesNanos()/1_000_000, sig.boundaryCompareCalls(),
-					Math.max(0, sig.computeNanos() - sig.pointsNanos() - sig.boundariesNanos())/1_000_000);
+					sig.transformNanos()/1_000_000,
+					sig.waitNanos()/1_000_000,
+					sig.writeNanos()/1_000_000, sig.writtenRuns(),
+					sig.statsNanos()/1_000_000,
+					Math.max(0, stats.signatureNanos - sigMain)/1_000_000);
 
 				var finishWatch = Stopwatch.createStarted();
 				writer.finish(maxZoom, context.fields());
@@ -143,6 +153,34 @@ public final class MltPmtilesCompiler {
 			FileUtils.deleteQuietly(tempDir.toFile());
 		}
 	}
+
+	/**
+	 * Applies the next submitted signature result and, unless the run was dropped,
+	 * queues its tile for encoding. Signature results must be applied in the order
+	 * the merger produced the runs.
+	 */
+	private static long finishSignature(PendingSignature pending, TileSignatureTracker signatures,
+		MltTileEncoder encoder, TileContext context,
+		java.util.concurrent.ConcurrentHashMap<List<FillKey>, EncodedTile> fillCache,
+		EncodeStats stats, ExecutorService executor, ArrayDeque<TileWork> window, int windowSize,
+		PmtilesWriter writer, Stopwatch phase) throws Exception {
+		phase.reset().start();
+		long[] kept = signatures.complete(pending.job());
+		stats.signatureNanos += phase.elapsed(TimeUnit.NANOSECONDS);
+
+		if(kept != null && kept.length == 0) {
+			stats.droppedRuns++;
+			return 0;
+		}
+		var future = executor.submit(() -> encodeTile(encoder, context, pending.features(), fillCache, stats));
+		window.addLast(new TileWork(pending.tileId(), pending.count(), kept, future));
+		if(window.size() >= windowSize)
+			return writeNext(window, writer, stats);
+		return 0;
+	}
+
+	private record PendingSignature(long tileId, int count, List<TileStore.TileFeature> features,
+		TileSignatureTracker.SignatureJob job) {}
 
 	/**
 	 * A fill-only tile is covered completely by each of its fill features. All
