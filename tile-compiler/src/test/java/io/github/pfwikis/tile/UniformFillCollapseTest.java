@@ -34,13 +34,13 @@ class UniformFillCollapseTest {
 	}
 
 	@Test
-	void keepsTheStackWhenABoundaryFeatureIsPresent() {
+	void collapsesFillsButKeepsBoundaryFeatures() {
 		var bottom = fill(0, 0, "#FF0000");
 		var top = fill(0, 1, "#0000FF");
 		var line = new TileStore.TileFeature(0, 2, attrs("#FFFFFF"), GeometryType.LINE, new int[0], false);
 
 		assertThat(MltPmtilesCompiler.collapseUniformFills(List.of(bottom, top, line)))
-			.containsExactly(bottom, top, line);
+			.containsExactly(top, line);
 	}
 
 	@Test

@@ -17,6 +17,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.apache.commons.io.FileUtils;
 import org.maplibre.mlt.data.MVTFeature;
 
+import com.carrotsearch.hppc.IntLongHashMap;
+import com.carrotsearch.hppc.IntLongMap;
 import com.google.common.base.Stopwatch;
 
 import io.github.pfwikis.model.FeatureCollection;
@@ -150,24 +152,34 @@ public final class MltPmtilesCompiler {
 	static List<TileStore.TileFeature> collapseUniformFills(List<TileStore.TileFeature> features) {
 		if(features.size() <= 1)
 			return features;
-		int layer = -1;
-		TileStore.TileFeature top = null;
+		
+		boolean anyFiltered = false;
+		IntLongMap layer2top = new IntLongHashMap();
 		for(var feature : features) {
-			if(!feature.fill())
-				return features;
-			if(top == null) {
-				layer = feature.layer();
-				top = feature;
-			} else {
-				// Different source layers can be drawn in style-layer order, which
-				// the compiler does not know. Only collapse within one layer.
-				if(feature.layer() != layer)
-					return features; //TODO this could be better
-				if(feature.order() > top.order())
-					top = feature;
+			if(feature.fill()) {
+				var id=layer2top.indexOf(feature.layer());
+				if(id<0) {
+					layer2top.put(feature.layer(), feature.order());
+				}
+				else {
+					anyFiltered = true;
+					var old = layer2top.indexGet(id);
+					if(feature.order()>old)
+						layer2top.indexReplace(id, feature.order());
+				}
 			}
 		}
-		return List.of(top);
+		
+		if(!anyFiltered)
+			return features;
+		
+		var res = new ArrayList<TileStore.TileFeature>(features.size());
+		for(var feature : features) {
+			if(!feature.fill() || layer2top.get(feature.layer())==feature.order()) {
+				res.add(feature);
+			}
+		}
+		return res;
 	}
 
 	private static int writeNext(ArrayDeque<TileWork> window, PmtilesWriter writer, EncodeStats stats) throws IOException, InterruptedException, ExecutionException {
