@@ -125,6 +125,19 @@ public final class MltPmtilesCompiler {
 					drops.droppedWithDroppedAncestor(), percent(drops.droppedWithDroppedAncestor(), drops.droppedTiles()),
 					drops.droppedWithKeptChild(), percent(drops.droppedWithKeptChild(), drops.droppedTiles()));
 
+				var reasons = signatures.signatureReasons();
+				log.info("Kept reasons: untracked={} ({}%), noParent={} ({}%), forced={} ({}%), "
+						+ "fill={} ({}%), pointKey={} ({}%), pointGeometry={} ({}%), "
+						+ "boundaryKey={} ({}%), boundaryGeometry={} ({}%)",
+					reasons.untracked(), percent(reasons.untracked(), drops.keptTiles()),
+					reasons.noParent(), percent(reasons.noParent(), drops.keptTiles()),
+					reasons.forced(), percent(reasons.forced(), drops.keptTiles()),
+					reasons.fillMismatch(), percent(reasons.fillMismatch(), drops.keptTiles()),
+					reasons.pointKey(), percent(reasons.pointKey(), drops.keptTiles()),
+					reasons.pointGeometry(), percent(reasons.pointGeometry(), drops.keptTiles()),
+					reasons.boundaryKey(), percent(reasons.boundaryKey(), drops.keptTiles()),
+					reasons.boundaryGeometry(), percent(reasons.boundaryGeometry(), drops.keptTiles()));
+
 				var sig = signatures.signatureTimings();
 				long sigMain = sig.analyzeNanos() + sig.scanNanos() + sig.waitNanos()
 					+ sig.writeNanos() + sig.statsNanos();

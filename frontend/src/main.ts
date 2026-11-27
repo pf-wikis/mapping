@@ -7,7 +7,8 @@ import './style.scss';
 import style from 'virtual:style';
 import MeasureControl from './tools/measure.js';
 
-import { PMTiles, Protocol } from 'pmtiles';
+import { FetchSource, PMTiles, Protocol, type Source } from 'pmtiles';
+import { pmtilesDecompress } from './PmTilesDecompress.js';
 import { makeLocationsClickable } from "./tools/location-popup.js";
 import { addRightClickMenu } from "./tools/right-click-menu.js";
 import { CachedSource } from "./CachedPmTiles.js";
@@ -23,14 +24,19 @@ var root = `${location.protocol}//${location.host}`;
 
 let pmtilesProt = new Protocol({errorOnMissingTile: false});
 //add custom tile caching
+let sourceUrl: string = style.sources.golarion.url;
+if(sourceUrl.startsWith("pmtiles://"))
+  sourceUrl = sourceUrl.substring(10);
+let pmtilesSource: Source = new FetchSource(sourceUrl);
 if(indexedDB) {
   try {
-    pmtilesProt.add(new PMTiles(new CachedSource(style.sources.golarion.url)))
+    pmtilesSource = new CachedSource(sourceUrl);
   } catch(e) {
     console.log("Failed to initialize IndexDB cache")
     console.log(e)
   }
 }
+pmtilesProt.add(new PMTiles(pmtilesSource, undefined, pmtilesDecompress));
 addProtocol("pmtiles", pmtilesProt.tilev4 as AddProtocolAction);
 setWorkerUrl(workerUrl);
 

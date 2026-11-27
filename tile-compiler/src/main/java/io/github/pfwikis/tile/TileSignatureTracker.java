@@ -71,6 +71,20 @@ final class TileSignatureTracker implements AutoCloseable {
 	private static final long[] KEEP_ALL = null;
 	private static final long[] DROP_ALL = new long[0];
 
+	private static final byte REASON_UNTRACKED = 0;
+	private static final byte REASON_NO_PARENT = 1;
+	private static final byte REASON_FORCED = 2;
+	private static final byte REASON_FILL = 3;
+	private static final byte REASON_POINT_KEY = 4;
+	private static final byte REASON_POINT_GEOMETRY = 5;
+	private static final byte REASON_BOUNDARY_KEY = 6;
+	private static final byte REASON_BOUNDARY_GEOMETRY = 7;
+	private static final int REASON_COUNT = 8;
+
+	private static final int MATCH = 0;
+	private static final int KEY_MISMATCH = 1;
+	private static final int GEOMETRY_MISMATCH = 2;
+
 	/**
 	 * Outcome of the redundancy check for one tile address, across all zooms.
 	 *
@@ -93,6 +107,10 @@ final class TileSignatureTracker implements AutoCloseable {
 	record SignatureTimings(long analyzeNanos, long scanNanos, long taskNanos, long waitNanos,
 		long pointsNanos, long boundariesNanos, long transformNanos, long writeNanos, long statsNanos,
 		long analyzedRuns, long taskRuns, long writtenRuns, long pointCompareCalls, long boundaryCompareCalls) {}
+
+	/** Why tiles in the tracked feature runs were kept instead of dropped. */
+	record SignatureReasons(long untracked, long noParent, long forced, long fillMismatch,
+		long pointKey, long pointGeometry, long boundaryKey, long boundaryGeometry) {}
 
 	/**
 	 * Tracks kept/dropped tile addresses and the parent/child relationships
@@ -296,6 +314,7 @@ final class TileSignatureTracker implements AutoCloseable {
 	private long writtenRuns;
 	private long pointCompareCalls;
 	private long boundaryCompareCalls;
+	private final long[] reasonCounts = new long[REASON_COUNT];
 
 	TileSignatureTracker(Path directory) throws IOException {
 		this(directory, Integer.MAX_VALUE);
@@ -345,14 +364,18 @@ final class TileSignatureTracker implements AutoCloseable {
 
 		// Multi-tile runs can only contain fills. Anything else is left to the
 		// normal writer and is not used as an ancestor reference.
-		if(analysis == null || count > 1 && (!analysis.points.isEmpty() || !analysis.boundaries.isEmpty()))
-			return SignatureJob.sync(localStart, count, null, false,
-				new RunResult(KEEP_ALL, List.of(), List.of(), 0, 0, 0, 0, 0, 0));
+		if(analysis == null || count > 1 && (!analysis.points.isEmpty() || !analysis.boundaries.isEmpty())) {
+			recordReason(count, REASON_UNTRACKED);
+			return SignatureJob.sync(localStart, count, null, false, result(KEEP_ALL, List.of(), List.of(),
+				0, 0, 0, 0, 0, 0, null));
+		}
 
 		boolean forced = zoom == 0 || zoom % (MAX_CONSECUTIVE_DROPPED_ZOOMS + 1) == 0;
-		if(forced || reader == null)
+		if(forced || reader == null) {
+			recordReason(count, forced ? REASON_FORCED : REASON_NO_PARENT);
 			return SignatureJob.sync(localStart, count, analysis.fill, true,
-				new RunResult(KEEP_ALL, analysis.points, analysis.boundaries, 0, 0, 0, 0, 0, 0));
+				result(KEEP_ALL, analysis.points, analysis.boundaries, 0, 0, 0, 0, 0, 0, null));
+		}
 
 		phase = System.nanoTime();
 		RunPlan plan = plan(localStart, count, analysis, zoom);
@@ -402,6 +425,9 @@ final class TileSignatureTracker implements AutoCloseable {
 		transformNanos += result.transformNanos;
 		pointCompareCalls += result.pointCalls;
 		boundaryCompareCalls += result.boundaryCalls;
+		if(result.reasons != null)
+			for(int i=0; i<REASON_COUNT; i++)
+				reasonCounts[i] += result.reasons[i];
 		return result.kept;
 	}
 	private void timedWrite(long localStart, int count, Signature fill, List<PointFeature> points,
@@ -429,6 +455,24 @@ final class TileSignatureTracker implements AutoCloseable {
 			analyzedRuns, taskRuns, writtenRuns, pointCompareCalls, boundaryCompareCalls);
 	}
 
+	SignatureReasons signatureReasons() {
+		return new SignatureReasons(reasonCounts[REASON_UNTRACKED], reasonCounts[REASON_NO_PARENT],
+			reasonCounts[REASON_FORCED], reasonCounts[REASON_FILL], reasonCounts[REASON_POINT_KEY],
+			reasonCounts[REASON_POINT_GEOMETRY], reasonCounts[REASON_BOUNDARY_KEY],
+			reasonCounts[REASON_BOUNDARY_GEOMETRY]);
+	}
+
+	private void recordReason(long count, byte reason) {
+		reasonCounts[reason] += count;
+	}
+
+	private static RunResult result(long[] kept, List<PointFeature> points, List<BoundaryFeature> boundaries,
+		long taskNanos, long pointsNanos, long boundariesNanos, long transformNanos,
+		long pointCalls, long boundaryCalls, long[] reasons) {
+		return new RunResult(kept, points, boundaries, taskNanos, pointsNanos, boundariesNanos,
+			transformNanos, pointCalls, boundaryCalls, reasons);
+	}
+
 	private RunPlan plan(long localStart, int count, Analysis analysis, int zoom) throws IOException {
 		var plan = new RunPlan(localStart, count, zoom, analysis);
 		long end = localStart + count;
@@ -442,7 +486,8 @@ final class TileSignatureTracker implements AutoCloseable {
 			if(!reader.hasEntryAt(parent)) {
 				long nextEntry = reader.hasEntry() ? reader.start() : Long.MAX_VALUE;
 				long nextParent = Math.min(parentEnd, nextEntry);
-				plan.add(Math.max(localStart, parent << 2), Math.min(end, nextParent << 2), RunPlan.KEEP, null);
+				plan.add(Math.max(localStart, parent << 2), Math.min(end, nextParent << 2),
+					RunPlan.KEEP, null, REASON_NO_PARENT);
 				if(nextParent <= parent)
 					throw new IllegalStateException("Signature reader made no progress at parent "+parent);
 				parent = nextParent;
@@ -454,11 +499,11 @@ final class TileSignatureTracker implements AutoCloseable {
 			long to = Math.min(end, nextParent << 2);
 
 			if(!reader.matchesFill(analysis.fill))
-				plan.add(from, to, RunPlan.KEEP, null);
+				plan.add(from, to, RunPlan.KEEP, null, REASON_FILL);
 			else if(reader.points().isEmpty() && reader.boundaries().isEmpty())
-				plan.add(from, to, RunPlan.DROP, null);
+				plan.add(from, to, RunPlan.DROP, null, (byte)-1);
 			else
-				plan.add(from, to, RunPlan.COMPARE, new ParentContent(reader.points(), reader.boundaries()));
+				plan.add(from, to, RunPlan.COMPARE, new ParentContent(reader.points(), reader.boundaries()), (byte)-1);
 
 			if(nextParent <= parent)
 				throw new IllegalStateException("Signature reader made no progress at parent "+parent);
@@ -472,14 +517,17 @@ final class TileSignatureTracker implements AutoCloseable {
 		var kept = new LongArrayList();
 		long keptStart = -1;
 		var timings = new RunTimings();
+		var reasons = new long[REASON_COUNT];
 
 		for(var segment : plan.segments) {
-			if(segment.kind == RunPlan.KEEP)
+			if(segment.kind == RunPlan.KEEP) {
+				reasons[segment.reason] += segment.to - segment.from;
 				keptStart = keepSpan(kept, keptStart, plan.localStart, segment.from, segment.to);
-			else if(segment.kind == RunPlan.DROP)
+			} else if(segment.kind == RunPlan.DROP) {
 				keptStart = dropSpan(kept, keptStart, plan.localStart, segment.from, segment.to);
-			else
-				keptStart = compareChildren(kept, keptStart, plan, segment, timings);
+			} else {
+				keptStart = compareChildren(kept, keptStart, plan, segment, timings, reasons);
+			}
 		}
 
 		if(keptStart >= 0) {
@@ -521,9 +569,9 @@ final class TileSignatureTracker implements AutoCloseable {
 			}
 		}
 
-		return new RunResult(keptRanges, points, boundaries, System.nanoTime() - start,
+		return result(keptRanges, points, boundaries, System.nanoTime() - start,
 			timings.pointsNanos, timings.boundariesNanos, transformNanos,
-			timings.pointCalls, timings.boundaryCalls);
+			timings.pointCalls, timings.boundaryCalls, reasons);
 	}
 
 	private static long keepSpan(LongArrayList kept, long keptStart, long localStart, long from, long to) {
@@ -542,7 +590,7 @@ final class TileSignatureTracker implements AutoCloseable {
 	}
 
 	private static long compareChildren(LongArrayList kept, long keptStart, RunPlan plan,
-		RunPlan.Segment segment, RunTimings timings) {
+		RunPlan.Segment segment, RunTimings timings, long[] reasons) {
 		for(long child = segment.from; child < segment.to; child++) {
 			long offset = child - plan.localStart;
 			TileCoord coord = TileCoord.hilbertDecode(TileCoord.startIndexForZoom(plan.zoom) + child);
@@ -553,15 +601,23 @@ final class TileSignatureTracker implements AutoCloseable {
 			boolean drop = true;
 			if(!plan.analysis.points.isEmpty() || !parent.points.isEmpty()) {
 				long phase = System.nanoTime();
-				drop = pointsMatch(plan.analysis.points, parent.points, dx, dy);
+				int match = pointsMatch(plan.analysis.points, parent.points, dx, dy);
 				timings.pointsNanos += System.nanoTime() - phase;
 				timings.pointCalls++;
+				if(match != MATCH) {
+					drop = false;
+					reasons[match == KEY_MISMATCH ? REASON_POINT_KEY : REASON_POINT_GEOMETRY]++;
+				}
 			}
 			if(drop && (!plan.analysis.boundaries.isEmpty() || !parent.boundaries.isEmpty())) {
 				long phase = System.nanoTime();
-				drop = boundariesMatch(plan.analysis.boundaries, parent.boundaries, dx, dy);
+				int match = boundariesMatch(plan.analysis.boundaries, parent.boundaries, dx, dy);
 				timings.boundariesNanos += System.nanoTime() - phase;
 				timings.boundaryCalls++;
+				if(match != MATCH) {
+					drop = false;
+					reasons[match == KEY_MISMATCH ? REASON_BOUNDARY_KEY : REASON_BOUNDARY_GEOMETRY]++;
+				}
 			}
 
 			if(drop) {
@@ -611,7 +667,7 @@ final class TileSignatureTracker implements AutoCloseable {
 
 	private record RunResult(long[] kept, List<PointFeature> points, List<BoundaryFeature> boundaries,
 		long taskNanos, long pointsNanos, long boundariesNanos, long transformNanos,
-		long pointCalls, long boundaryCalls) {}
+		long pointCalls, long boundaryCalls, long[] reasons) {}
 
 	private static final class RunPlan {
 		static final byte KEEP = 0;
@@ -632,12 +688,12 @@ final class TileSignatureTracker implements AutoCloseable {
 			this.analysis = analysis;
 		}
 
-		void add(long from, long to, byte kind, ParentContent parent) {
+		void add(long from, long to, byte kind, ParentContent parent, byte reason) {
 			if(from >= to)
 				return;
 			if(kind == COMPARE)
 				hasCompare = true;
-			segments.add(new Segment(from, to, kind, parent));
+			segments.add(new Segment(from, to, kind, parent, reason));
 		}
 
 		ParentContent singleCompareParent() {
@@ -647,7 +703,7 @@ final class TileSignatureTracker implements AutoCloseable {
 			return segment.kind == COMPARE ? segment.parent : null;
 		}
 
-		record Segment(long from, long to, byte kind, ParentContent parent) {}
+		record Segment(long from, long to, byte kind, ParentContent parent, byte reason) {}
 	}
 
 	private record ParentContent(List<PointFeature> points, List<BoundaryFeature> boundaries) {}
@@ -659,9 +715,9 @@ final class TileSignatureTracker implements AutoCloseable {
 		long boundaryCalls;
 	}
 
-	private static boolean boundariesMatch(List<BoundaryFeature> child, List<BoundaryFeature> parent, int dx, int dy) {
+	private static int boundariesMatch(List<BoundaryFeature> child, List<BoundaryFeature> parent, int dx, int dy) {
 		if(child.isEmpty() && parent.isEmpty())
-			return true;
+			return MATCH;
 
 		var expected = new HashMap<FeatureKey, Geometry>();
 		for(var feature : parent) {
@@ -670,21 +726,23 @@ final class TileSignatureTracker implements AutoCloseable {
 				expected.put(new FeatureKey(feature.layer, feature.order, feature.attrs), clipped);
 		}
 		if(child.isEmpty())
-			return expected.isEmpty();
+			return expected.isEmpty() ? MATCH : KEY_MISMATCH;
 
 		var actual = new HashMap<FeatureKey, Geometry>();
 		for(var feature : child)
 			actual.put(new FeatureKey(feature.layer, feature.order, feature.attrs), feature.geometry);
 
 		if(actual.size() != expected.size())
-			return false;
+			return KEY_MISMATCH;
 
 		for(var entry : actual.entrySet()) {
 			Geometry want = expected.get(entry.getKey());
-			if(want == null || !geometryMatches(entry.getValue(), want))
-				return false;
+			if(want == null)
+				return KEY_MISMATCH;
+			if(!geometryMatches(entry.getValue(), want))
+				return GEOMETRY_MISMATCH;
 		}
-		return true;
+		return MATCH;
 	}
 
 	private static boolean geometryMatches(Geometry child, Geometry parent) {
@@ -760,7 +818,7 @@ final class TileSignatureTracker implements AutoCloseable {
 		return result;
 	}
 
-	private static boolean pointsMatch(List<PointFeature> child, List<PointFeature> parentPoints, int dx, int dy) {
+	private static int pointsMatch(List<PointFeature> child, List<PointFeature> parentPoints, int dx, int dy) {
 		var expected = new HashMap<FeatureKey, List<double[]>>();
 		for(var feature : parentPoints) {
 			var key = new FeatureKey(feature.layer, feature.order, feature.attrs);
@@ -777,7 +835,7 @@ final class TileSignatureTracker implements AutoCloseable {
 		}
 
 		if(child.isEmpty())
-			return expected.isEmpty();
+			return expected.isEmpty() ? MATCH : KEY_MISMATCH;
 
 		var actual = new HashMap<FeatureKey, List<double[]>>();
 		for(var feature : child) {
@@ -788,12 +846,12 @@ final class TileSignatureTracker implements AutoCloseable {
 		}
 
 		if(actual.size() != expected.size())
-			return false;
+			return KEY_MISMATCH;
 		double tolerance = POSITION_ERROR * POSITION_ERROR;
 		for(var entry : actual.entrySet()) {
 			var want = expected.get(entry.getKey());
 			if(want == null || want.size() != entry.getValue().size())
-				return false;
+				return KEY_MISMATCH;
 			boolean[] used = new boolean[want.size()];
 			for(var point : entry.getValue()) {
 				boolean matched = false;
@@ -809,10 +867,10 @@ final class TileSignatureTracker implements AutoCloseable {
 					}
 				}
 				if(!matched)
-					return false;
+					return GEOMETRY_MISMATCH;
 			}
 		}
-		return true;
+		return MATCH;
 	}
 
 	private void write(long localStart, int count, Signature fill, List<PointFeature> points,

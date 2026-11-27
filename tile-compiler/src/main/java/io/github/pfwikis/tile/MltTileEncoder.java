@@ -11,7 +11,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.zip.GZIPOutputStream;
+import java.util.zip.Deflater;
+import java.util.zip.DeflaterOutputStream;
 
 import org.maplibre.mlt.converter.ConversionConfig;
 import org.maplibre.mlt.converter.FeatureTableOptimizations;
@@ -88,7 +89,7 @@ final class MltTileEncoder {
 			.useMortonEncoding(true)
 			.build();
 
-		return gzip(MltConverter.encode(input, metadata, config, null));
+		return rawDeflate(MltConverter.encode(input, metadata, config, null));
 	}
 
 	private static void findStringColumns(MapboxVectorTile input, Set<String> stringColumns, Map<String, Set<String>> stringColumnsByLayer) {
@@ -127,19 +128,19 @@ final class MltTileEncoder {
 		}
 	}
 
-	private static byte[] gzip(byte[] input) throws IOException {
+	/**
+	 * Tile payloads use raw DEFLATE. The gzip header and trailer add 18 bytes to
+	 * every unique tile without improving the compressed data, and the frontend
+	 * supplies a custom PMTiles decompressor that inflates these payloads.
+	 */
+	private static byte[] rawDeflate(byte[] input) throws IOException {
 		var output = new ByteArrayOutputStream(input.length);
-		try(var gzip = new MaxGzip(output)) {
-			gzip.write(input);
+		var deflater = new Deflater(Deflater.BEST_COMPRESSION, true);
+		try(var deflate = new DeflaterOutputStream(output, deflater, 8192, true)) {
+			deflate.write(input);
+		} finally {
+			deflater.end();
 		}
 		return output.toByteArray();
-	}
-
-	/** Tile compression favors archive size over build speed. */
-	private static final class MaxGzip extends GZIPOutputStream {
-		MaxGzip(java.io.OutputStream out) throws IOException {
-			super(out);
-			def.setLevel(java.util.zip.Deflater.BEST_COMPRESSION);
-		}
 	}
 }

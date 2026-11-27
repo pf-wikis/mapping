@@ -158,7 +158,8 @@ final class PmtilesWriter implements AutoCloseable {
 			hashToOffset.size(),
 			true,
 			(byte)2,
-			(byte)2,
+			// Tile payloads use raw DEFLATE; the frontend decompressor handles PMTiles compression 0.
+			(byte)0,
 			(byte)6,
 			(byte)0,
 			(byte)maxZoom,
